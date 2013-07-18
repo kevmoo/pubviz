@@ -1,0 +1,11 @@
+digraph G {
+  hop -> args
+  hop -> bot
+  hop -> bot_io
+  hop -> logging
+  hop -> meta
+  hop -> path
+  hop -> unittest
+  hop -> html5lib [style=dotted]
+}
+
