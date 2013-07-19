@@ -8,10 +8,10 @@ import 'package:unmodifiable_collection/unmodifiable_collection.dart';
 
 class VizRoot {
   final VizPackage root;
-  final Set<VizPackage> packages;
+  final Map<String, VizPackage> packages;
 
-  VizRoot._(this.root, Set<VizPackage> packages):
-    this.packages = new UnmodifiableSetView(packages);
+  VizRoot._(this.root, Map<String, VizPackage> packages):
+    this.packages = new UnmodifiableMapView(packages);
 
   static Future<VizRoot> forDirectory(String path) {
     return VizPackage.forDirectory(path)
@@ -19,7 +19,11 @@ class VizRoot {
 
           return _getReferencedPackages(path)
               .then((packages) {
-                assert(packages.contains(root));
+                assert(packages.containsKey(root.name));
+
+                // want to make sure that the root note instance is the same
+                // as the instance in the packages collection
+                root = packages[root.name];
 
                 return new VizRoot._(root, packages);
               });
@@ -63,8 +67,8 @@ class VizRoot {
         .then((_) => map);
   }
 
-  static Future<Set<VizPackage>> _getReferencedPackages(String path) {
-    var set = new Set<VizPackage>();
+  static Future<Map<String, VizPackage>> _getReferencedPackages(String path) {
+    var set = new Map<String, VizPackage>();
 
     return _getPackageMap(path)
         .then((Map<String, String> map) {
@@ -75,8 +79,9 @@ class VizRoot {
                 .then((VizPackage vp) {
                   assert(vp.name == packageName);
 
-                  assert(!set.contains(vp));
-                  set.add(vp);
+                  assert(!set.containsKey(vp.name));
+                  assert(!set.containsValue(vp));
+                  set[vp.name] = vp;
                 });
           });
         })
@@ -86,30 +91,35 @@ class VizRoot {
 
 
   String toDot() {
+    _update();
+
     var sink = new StringBuffer();
     sink.writeln('digraph G {');
 
-
-    var orderedPacks = packages.toList(growable: false)
-        ..sort();
-
-    for(var pack in orderedPacks) {
+    for(var pack in packages.values) {
       sink.writeln();
 
-      var props =
-        {
-         'label' : '"${pack.name}\n${pack.version}"',
-         'shape': 'box'
-        };
+      var primary = root == pack;
 
-      _writeNode(sink, pack.name, props);
-
-      pack._writeConnections(sink, root == pack);
+      pack._write(sink, primary);
     }
 
     sink.writeln('}');
 
     return sink.toString();
+  }
+
+  void _update() {
+    if(root.isPrimary == false) {
+      root.isPrimary = true;
+
+      for(var primaryDep in root.dependencies) {
+        var package = packages[primaryDep.name];
+        assert(!package.isPrimary);
+        package.isPrimary = true;
+      }
+
+    }
   }
 }
 
@@ -134,6 +144,7 @@ class VizPackage extends Comparable {
   final String name;
   final String version;
   final Set<Dependency> dependencies;
+  bool isPrimary = false;
 
   VizPackage._(String path, this.name, this.version, Set<Dependency> deps) :
     dependencies = new UnmodifiableSetView(deps),
@@ -183,7 +194,20 @@ class VizPackage extends Comparable {
 
   int get hashCode => name.hashCode;
 
-  void _writeConnections(StringSink sink, bool primary) {
+  void _write(StringSink sink, bool primary) {
+
+    var props =
+      {
+       'label' : '"$name\n$version"',
+       'shape': 'box'
+      };
+
+    if(isPrimary) {
+      props['group'] = 'primary';
+    }
+
+    _writeNode(sink, name, props);
+
     var orderedDeps = dependencies.toList(growable: false)
         ..sort();
 
@@ -193,6 +217,10 @@ class VizPackage extends Comparable {
           '"${dep.versionConstraint}"',
           'fontcolor': 'gray'
         };
+
+        if(primary) {
+          props['penwidth'] = '3';
+        }
 
         if(dep.isDevDependency) {
           props['style'] = 'dotted';
