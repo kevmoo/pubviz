@@ -1,60 +1,59 @@
 digraph G {
 
   args [label="args
-0.6.5",shape=box]
+0.6.5",shape=box];
 
   bot [label="bot
-0.22.1",shape=box]
-  bot -> meta [label=">=0.6.3",fontcolor=gray]
-  bot -> pathos [label=">=0.6.3",fontcolor=gray]
-  bot -> unittest [label=">=0.6.3",fontcolor=gray]
+0.22.2",shape=box];
+  bot -> meta [label=">=0.6.5",fontcolor=gray];
+  bot -> unittest [label=">=0.6.5",fontcolor=gray];
 
   bot_io [label="bot_io
-0.21.3",shape=box]
-  bot_io -> args [label=">=0.6.3",fontcolor=gray]
-  bot_io -> bot [label=">=0.22.1",fontcolor=gray]
-  bot_io -> crypto [label=">=0.6.3",fontcolor=gray]
-  bot_io -> logging [label=">=0.6.3",fontcolor=gray]
-  bot_io -> meta [label=">=0.6.3",fontcolor=gray]
-  bot_io -> pathos [label=">=0.6.3",fontcolor=gray]
+0.22.0",shape=box];
+  bot_io -> args [label=">=0.6.5",fontcolor=gray];
+  bot_io -> bot [label=">=0.22.1",fontcolor=gray];
+  bot_io -> crypto [label=">=0.6.5",fontcolor=gray];
+  bot_io -> logging [label=">=0.6.5",fontcolor=gray];
+  bot_io -> meta [label=">=0.6.5",fontcolor=gray];
+  bot_io -> path [label=">=0.6.5",fontcolor=gray];
 
   crypto [label="crypto
-0.6.5",shape=box]
+0.6.5",shape=box];
 
   discovery_api_client_generator [label="discovery_api_client_generator
-0.3.0-dev",shape=box]
-  discovery_api_client_generator -> args [label=">=0.6.5",fontcolor=gray]
-  discovery_api_client_generator -> logging [label=">=0.6.5",fontcolor=gray]
-  discovery_api_client_generator -> meta [label=">=0.6.5",fontcolor=gray]
-  discovery_api_client_generator -> path [label=">=0.6.5",fontcolor=gray]
-  discovery_api_client_generator -> bot_io [label=">=0.21.3",fontcolor=gray,style=dotted]
-  discovery_api_client_generator -> hop [label=">=0.23.0",fontcolor=gray,style=dotted]
-  discovery_api_client_generator -> unittest [label=">=0.6.5",fontcolor=gray,style=dotted]
+0.3.0-dev",shape=box];
+  discovery_api_client_generator -> args [label=">=0.6.5",fontcolor=gray];
+  discovery_api_client_generator -> logging [label=">=0.6.5",fontcolor=gray];
+  discovery_api_client_generator -> meta [label=">=0.6.5",fontcolor=gray];
+  discovery_api_client_generator -> path [label=">=0.6.5",fontcolor=gray];
+  discovery_api_client_generator -> bot_io [label=">=0.21.3",fontcolor=gray,style=dotted];
+  discovery_api_client_generator -> hop [label=">=0.23.0",fontcolor=gray,style=dotted];
+  discovery_api_client_generator -> unittest [label=">=0.6.5",fontcolor=gray,style=dotted];
 
   hop [label="hop
-0.23.0",shape=box]
-  hop -> args [label=">=0.6.3",fontcolor=gray]
-  hop -> bot [label=">=0.22.1",fontcolor=gray]
-  hop -> bot_io [label=">=0.21.2",fontcolor=gray]
-  hop -> logging [label=">=0.6.3",fontcolor=gray]
-  hop -> meta [label=">=0.6.3",fontcolor=gray]
-  hop -> pathos [label=">=0.6.3",fontcolor=gray]
-  hop -> unittest [label=">=0.6.3",fontcolor=gray]
+0.23.0",shape=box];
+  hop -> args [label=">=0.6.3",fontcolor=gray];
+  hop -> bot [label=">=0.22.1",fontcolor=gray];
+  hop -> bot_io [label=">=0.21.2",fontcolor=gray];
+  hop -> logging [label=">=0.6.3",fontcolor=gray];
+  hop -> meta [label=">=0.6.3",fontcolor=gray];
+  hop -> pathos [label=">=0.6.3",fontcolor=gray];
+  hop -> unittest [label=">=0.6.3",fontcolor=gray];
 
   logging [label="logging
-0.6.5",shape=box]
+0.6.5",shape=box];
 
   meta [label="meta
-0.6.5",shape=box]
+0.6.5",shape=box];
 
   path [label="path
-0.6.5",shape=box]
+0.6.5",shape=box];
 
   pathos [label="pathos
-0.6.3+1",shape=box]
+0.6.3+1",shape=box];
 
   unittest [label="unittest
-0.6.5",shape=box]
-  unittest -> meta [label="any",fontcolor=gray]
+0.6.5",shape=box];
+  unittest -> meta [label="any",fontcolor=gray];
 }
 

@@ -95,7 +95,14 @@ class VizRoot {
 
     for(var pack in orderedPacks) {
       sink.writeln();
-      sink.writeln('  ${pack.name} [label="${pack.name}\n${pack.version}",shape=box]');
+
+      var props =
+        {
+         'label' : '"${pack.name}\n${pack.version}"',
+         'shape': 'box'
+        };
+
+      _writeNode(sink, pack.name, props);
 
       pack._writeConnections(sink, root == pack);
     }
@@ -104,9 +111,22 @@ class VizRoot {
 
     return sink.toString();
   }
+}
 
-  void _writeNodes(StringSink sink) {
+void _writeNode(StringSink sink, String name, Map<String, String> values) {
+  sink.write('  $name');
+  if(!values.isEmpty) {
+    var props = values.keys.map((key) => '$key=${values[key]}')
+        .toList(growable: false)
+        .join(',');
+    sink.write(' [$props]');
   }
+  sink.writeln(';');
+}
+
+void _writeEdge(StringSink sink, String from, String to, Map<String, String> values) {
+  var name = '$from -> $to';
+  _writeNode(sink, name, values);
 }
 
 class VizPackage extends Comparable {
@@ -163,17 +183,22 @@ class VizPackage extends Comparable {
 
   int get hashCode => name.hashCode;
 
-  void _writeConnections(StringSink sink, bool includeDevDependencies) {
+  void _writeConnections(StringSink sink, bool primary) {
     var orderedDeps = dependencies.toList(growable: false)
         ..sort();
 
     for(var dep in orderedDeps) {
-      if(!dep.isDevDependency || includeDevDependencies) {
-        sink.write('  $name -> ${dep.name} [label="${dep.versionConstraint}",fontcolor=gray');
+      if(!dep.isDevDependency || primary) {
+        var props = { 'label':
+          '"${dep.versionConstraint}"',
+          'fontcolor': 'gray'
+        };
+
         if(dep.isDevDependency) {
-          sink.write(',style=dotted');
+          props['style'] = 'dotted';
         }
-        sink.writeln(']');
+
+        _writeEdge(sink, name, dep.name, props);
       }
     }
   }
