@@ -3,26 +3,26 @@
 
 1. Make sure you run `pub install` or `pub update` in your target project directory.
 1. Run `pubviz` passing in the target project directory as the only argument
-    * `./bin/pubviz.dart ~/source/github/pubviz/`
+    * `./bin/pubviz.dart ~/pubviz/`
 1. Notice the pretty output:
 
 ```
 digraph G {
 
   path [label="path
-0.6.5",shape=box]
+0.6.5",shape=box,margin="0.25,0.15",group=primary];
 
   pubviz [label="pubviz
-",shape=box]
-  pubviz -> path [label=">=0.6.5",fontcolor=gray]
-  pubviz -> unmodifiable_collection [label=">=0.6.5",fontcolor=gray]
-  pubviz -> yaml [label=">=0.6.5",fontcolor=gray]
+0.1.0-dev",fontsize=16,style=bold,shape=box,margin="0.25,0.15",group=primary];
+  pubviz -> path [label=">=0.6.5",fontcolor=gray,penwidth=2];
+  pubviz -> unmodifiable_collection [label=">=0.6.5",fontcolor=gray,penwidth=2];
+  pubviz -> yaml [label=">=0.6.5",fontcolor=gray,penwidth=2];
 
   unmodifiable_collection [label="unmodifiable_collection
-0.6.5",shape=box]
+0.6.5",shape=box,margin="0.25,0.15",group=primary];
 
   yaml [label="yaml
-0.6.5",shape=box]
+0.6.5",shape=box,margin="0.25,0.15",group=primary];
 }
 ```
 
