@@ -5,6 +5,7 @@
 1. Run `pubviz` passing in the target project directory as the only argument
     * `./bin/pubviz.dart ~/source/github/pubviz/`
 1. Notice the pretty output:
+
 ```
 digraph G {
 
