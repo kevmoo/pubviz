@@ -96,7 +96,10 @@ class VizRoot {
     var sink = new StringBuffer();
     sink.writeln('digraph G {');
 
-    for(var pack in packages.values) {
+    var orderedPacks = packages.values.toList(growable: false)
+        ..sort();
+
+    for(var pack in orderedPacks) {
       sink.writeln();
 
       var primary = root == pack;
