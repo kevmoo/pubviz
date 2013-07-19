@@ -5,8 +5,6 @@ import 'package:path/path.dart' as pathos;
 import 'dart:json' as json;
 import 'package:unmodifiable_collection/unmodifiable_collection.dart';
 
-const _pubspecFile = 'pubspec.yaml';
-
 void main() {
   var args = (new Options()).arguments;
 
@@ -112,6 +110,7 @@ class VizRoot {
         ..sort();
 
     for(var pack in orderedPacks) {
+      sink.writeln();
       sink.writeln('  ${pack.name} [label="${pack.name}\n${pack.version}",shape=box]');
 
       pack._writeConnections(sink, root == pack);
@@ -140,7 +139,7 @@ class VizPackage extends Comparable {
     var dir = new Directory(path);
     assert(dir.existsSync());
 
-    var pubspecPath = pathos.join(path, _pubspecFile);
+    var pubspecPath = pathos.join(path, 'pubspec.yaml');
 
     Map<String, dynamic> pubspecMap;
 
@@ -186,7 +185,7 @@ class VizPackage extends Comparable {
 
     for(var dep in orderedDeps) {
       if(!dep.isDevDependency || includeDevDependencies) {
-        sink.write('  $name -> ${dep.name} [label="${dep.versionConstraint}", fontcolor=gray');
+        sink.write('  $name -> ${dep.name} [label="${dep.versionConstraint}",fontcolor=gray');
         if(dep.isDevDependency) {
           sink.write(',style=dotted');
         }
