@@ -1,35 +1,36 @@
 digraph G {
 
   hop [label="hop
-0.23.0",shape=box,group=primary];
-  hop -> args [label=">=0.6.3",fontcolor=gray];
-  hop -> bot [label=">=0.22.1",fontcolor=gray];
-  hop -> bot_io [label=">=0.21.2",fontcolor=gray];
-  hop -> logging [label=">=0.6.3",fontcolor=gray];
-  hop -> meta [label=">=0.6.3",fontcolor=gray];
-  hop -> pathos [label=">=0.6.3",fontcolor=gray];
-  hop -> unittest [label=">=0.6.3",fontcolor=gray];
+0.23.1-dev",fontsize=16,style=bold,shape=box,margin="0.25,0.15",group=primary];
+  hop -> args [label=">=0.6.5",fontcolor=gray,penwidth=2];
+  hop -> bot [label=">=0.22.1",fontcolor=gray,penwidth=2];
+  hop -> bot_io [label=">=0.22.0",fontcolor=gray,penwidth=2];
+  hop -> logging [label=">=0.6.5",fontcolor=gray,penwidth=2];
+  hop -> meta [label=">=0.6.5",fontcolor=gray,penwidth=2];
+  hop -> path [label=">=0.6.5",fontcolor=gray,penwidth=2];
+  hop -> unittest [label=">=0.6.5",fontcolor=gray,penwidth=2];
+  hop -> html5lib [label=">=0.4.3",fontcolor=gray,penwidth=2,style=dashed];
+
+  html5lib [label="html5lib
+0.4.3",group=primary];
+  html5lib -> browser [label=">=0.3.2",fontcolor=gray];
+  html5lib -> meta [label="any",fontcolor=gray];
+  html5lib -> source_maps [label=">=0.4.5",fontcolor=gray];
+  html5lib -> unittest [label="any",fontcolor=gray];
+
+  browser [label="browser
+0.6.5"];
 
   args [label="args
-0.6.5",shape=box,group=primary];
+0.6.5",shape=box,margin="0.25,0.15",group=primary];
 
   bot [label="bot
-0.22.2",shape=box];
+0.22.2",shape=box,margin="0.25,0.15",group=primary];
   bot -> meta [label=">=0.6.5",fontcolor=gray];
   bot -> unittest [label=">=0.6.5",fontcolor=gray];
 
-  discovery_api_client_generator [label="discovery_api_client_generator
-0.3.0-dev",shape=box,group=primary];
-  discovery_api_client_generator -> args [label=">=0.6.5",fontcolor=gray,penwidth=3];
-  discovery_api_client_generator -> logging [label=">=0.6.5",fontcolor=gray,penwidth=3];
-  discovery_api_client_generator -> meta [label=">=0.6.5",fontcolor=gray,penwidth=3];
-  discovery_api_client_generator -> path [label=">=0.6.5",fontcolor=gray,penwidth=3];
-  discovery_api_client_generator -> bot_io [label=">=0.21.3",fontcolor=gray,penwidth=3,style=dotted];
-  discovery_api_client_generator -> hop [label=">=0.23.0",fontcolor=gray,penwidth=3,style=dotted];
-  discovery_api_client_generator -> unittest [label=">=0.6.5",fontcolor=gray,penwidth=3,style=dotted];
-
   bot_io [label="bot_io
-0.22.0",shape=box,group=primary];
+0.22.0",shape=box,margin="0.25,0.15",group=primary];
   bot_io -> args [label=">=0.6.5",fontcolor=gray];
   bot_io -> bot [label=">=0.22.1",fontcolor=gray];
   bot_io -> crypto [label=">=0.6.5",fontcolor=gray];
@@ -38,22 +39,22 @@ digraph G {
   bot_io -> path [label=">=0.6.5",fontcolor=gray];
 
   crypto [label="crypto
-0.6.5",shape=box];
+0.6.5",shape=box,margin="0.25,0.15"];
 
   logging [label="logging
-0.6.5",shape=box,group=primary];
+0.6.5",shape=box,margin="0.25,0.15",group=primary];
 
   meta [label="meta
-0.6.5",shape=box,group=primary];
+0.6.5",shape=box,margin="0.25,0.15",group=primary];
 
   path [label="path
-0.6.5",shape=box,group=primary];
+0.6.5",shape=box,margin="0.25,0.15",group=primary];
+
+  source_maps [label="source_maps
+0.6.5"];
 
   unittest [label="unittest
-0.6.5",shape=box,group=primary];
+0.6.5",shape=box,margin="0.25,0.15",group=primary];
   unittest -> meta [label="any",fontcolor=gray];
-
-  pathos [label="pathos
-0.6.3+1",shape=box];
 }
 

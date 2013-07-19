@@ -113,12 +113,32 @@ class VizRoot {
     if(root.isPrimary == false) {
       root.isPrimary = true;
 
+      assert(root.onlyDev);
+      root.onlyDev = false;
+
       for(var primaryDep in root.dependencies) {
         var package = packages[primaryDep.name];
+
         assert(!package.isPrimary);
         package.isPrimary = true;
+
+        if(!primaryDep.isDevDependency) {
+          _updateDevOnly(primaryDep);
+        }
       }
 
+    }
+  }
+
+  void _updateDevOnly(Dependency dep) {
+    var package = packages[dep.name];
+
+    if(package.onlyDev) {
+      package.onlyDev = false;
+
+      for(var subDep in package.dependencies.where((d) => !d.isDevDependency)) {
+        _updateDevOnly(subDep);
+      }
     }
   }
 }
@@ -145,6 +165,17 @@ class VizPackage extends Comparable {
   final String version;
   final Set<Dependency> dependencies;
   bool isPrimary = false;
+
+  bool _onlyDev = true;
+
+  bool get onlyDev => _onlyDev;
+
+  void set onlyDev(bool value) {
+    assert(value == false);
+    assert(_onlyDev == true);
+
+    _onlyDev = value;
+  }
 
   VizPackage._(String path, this.name, this.version, Set<Dependency> deps) :
     dependencies = new UnmodifiableSetView(deps),
@@ -194,13 +225,23 @@ class VizPackage extends Comparable {
 
   int get hashCode => name.hashCode;
 
-  void _write(StringSink sink, bool primary) {
+  void _write(StringSink sink, bool isRoot) {
 
     var props =
       {
-       'label' : '"$name\n$version"',
-       'shape': 'box'
+       'label' : '"$name\n$version"'
       };
+
+    if(isRoot) {
+      assert(!onlyDev);
+      props['fontsize'] = '16';
+      props['style'] = 'bold';
+    }
+
+    if(!onlyDev) {
+      props['shape'] = 'box';
+      props['margin'] = '"0.25,0.15"';
+    }
 
     if(isPrimary) {
       props['group'] = 'primary';
@@ -212,18 +253,18 @@ class VizPackage extends Comparable {
         ..sort();
 
     for(var dep in orderedDeps) {
-      if(!dep.isDevDependency || primary) {
+      if(!dep.isDevDependency || isRoot) {
         var props = { 'label':
           '"${dep.versionConstraint}"',
           'fontcolor': 'gray'
         };
 
-        if(primary) {
-          props['penwidth'] = '3';
+        if(isRoot) {
+          props['penwidth'] = '2';
         }
 
         if(dep.isDevDependency) {
-          props['style'] = 'dotted';
+          props['style'] = 'dashed';
         }
 
         _writeEdge(sink, name, dep.name, props);
