@@ -1,5 +1,8 @@
 name: pubviz
-description: A sample command-line application
+version: 0.1.0-dev
+author: Kevin Moore <kevin@thinkpixellab.com>
+description: Visualize package dependencies in your Dart project
+homepage: https://github.com/kevmoo/pubviz
 environment:
   sdk: '>=0.6.5'
 dependencies:
