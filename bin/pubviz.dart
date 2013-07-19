@@ -18,19 +18,123 @@ void main() {
 
   final path = args[0];
 
-  VizPackage.forDirectory(path)
-    .then((VizPackage vp) {
+  VizRoot.forDirectory(path)
+    .then((VizRoot vp) {
       print(vp.toDot());
     });
 }
 
-class VizPackage {
+class VizRoot {
+  final VizPackage root;
+  final Set<VizPackage> packages;
+
+  VizRoot._(this.root, Set<VizPackage> packages):
+    this.packages = new UnmodifiableSetView(packages);
+
+  static Future<VizRoot> forDirectory(String path) {
+    return VizPackage.forDirectory(path)
+        .then((VizPackage root) {
+
+          return _getReferencedPackages(path)
+              .then((packages) {
+                assert(packages.contains(root));
+
+                return new VizRoot._(root, packages);
+              });
+        });
+  }
+
+
+  static Future<Map<String, String>> _getPackageMap(String path) {
+    var packagePath = pathos.join(path, 'packages');
+    var packageDir = new Directory(packagePath);
+
+    var dirs = new Map<String, String>();
+
+    var map = new Map<String, String>();
+
+    return packageDir.list(recursive: false, followLinks: false)
+        .toList()
+        .then((List<Link> links) {
+          return Future.forEach(links, (link) {
+            return link.target()
+                .then((String targetPath) {
+                  var linkName = pathos.basename(link.path);
+
+                  if(pathos.isRelative(targetPath)) {
+                    targetPath = pathos.join(packagePath, targetPath);
+                    targetPath = pathos.normalize(targetPath);
+                  }
+
+                  assert(pathos.isAbsolute(targetPath));
+                  assert(pathos.basename(targetPath) == 'lib');
+
+                  targetPath = pathos.dirname(targetPath);
+
+                  assert(!map.containsKey(linkName));
+                  assert(!map.containsValue(targetPath));
+
+                  map[linkName] = targetPath;
+                });
+          });
+        })
+        .then((_) => map);
+  }
+
+  static Future<Set<VizPackage>> _getReferencedPackages(String path) {
+    var set = new Set<VizPackage>();
+
+    return _getPackageMap(path)
+        .then((Map<String, String> map) {
+
+          return Future.forEach(map.keys, (String packageName) {
+            var subPath = map[packageName];
+            return VizPackage.forDirectory(subPath)
+                .then((VizPackage vp) {
+                  assert(vp.name == packageName);
+
+                  assert(!set.contains(vp));
+                  set.add(vp);
+                });
+          });
+        })
+        .then((_) => set);
+  }
+
+
+
+  String toDot() {
+    var sink = new StringBuffer();
+    sink.writeln('digraph G {');
+
+
+    var orderedPacks = packages.toList(growable: false)
+        ..sort();
+
+    for(var pack in orderedPacks) {
+      sink.writeln('  ${pack.name} [label="${pack.name}\n${pack.version}",shape=box]');
+
+      pack._writeConnections(sink, root == pack);
+    }
+
+    sink.writeln('}');
+
+    return sink.toString();
+  }
+
+  void _writeNodes(StringSink sink) {
+  }
+}
+
+class VizPackage extends Comparable {
   final String path;
   final String name;
+  final String version;
   final Set<Dependency> dependencies;
 
-  VizPackage._(this.path, this.name, Set<Dependency> deps) :
-    dependencies = new UnmodifiableSetView(deps);
+  VizPackage._(String path, this.name, this.version, Set<Dependency> deps) :
+    dependencies = new UnmodifiableSetView(deps),
+    this.path = pathos.normalize(path);
 
   static Future<VizPackage> forDirectory(String path) {
     var dir = new Directory(path);
@@ -47,33 +151,47 @@ class VizPackage {
           String packageName = pubspecMap['name'];
           assert(packageName != null && packageName.length > 0);
 
+          String version = pubspecMap['version'];
+          if(version == null) version = '';
+
           var deps = Dependency.getDependencies(pubspecMap);
 
-          return new VizPackage._(path, packageName, deps);
+          return new VizPackage._(path, packageName, version, deps);
         });
   }
 
   String toString() => '$name @ $path';
 
-  String toDot() {
-    var sink = new StringBuffer();
-    sink.writeln('digraph G {');
-    _writeConnections(sink);
-    sink.writeln('}');
-
-    return sink.toString();
+  int compareTo(VizPackage other) {
+    return name.compareTo(other.name);
   }
 
-  void _writeConnections(StringSink sink) {
+  bool operator ==(other) {
+    if(other is VizPackage) {
+      var match = (name == other.name);
+      if(match) {
+        assert(other.path == path);
+        assert(other.version == version);
+        return true;
+      }
+    }
+    return false;
+  }
+
+  int get hashCode => name.hashCode;
+
+  void _writeConnections(StringSink sink, bool includeDevDependencies) {
     var orderedDeps = dependencies.toList(growable: false)
         ..sort();
 
     for(var dep in orderedDeps) {
-      sink.write('  $name -> ${dep.name}');
-      if(dep.isDevDependency) {
-        sink.write(' [style=dotted]');
+      if(!dep.isDevDependency || includeDevDependencies) {
+        sink.write('  $name -> ${dep.name} [label="${dep.versionConstraint}", fontcolor=gray');
+        if(dep.isDevDependency) {
+          sink.write(',style=dotted');
+        }
+        sink.writeln(']');
       }
-      sink.writeln();
     }
   }
 }

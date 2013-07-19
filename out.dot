@@ -1,11 +1,51 @@
 digraph G {
-  hop -> args
-  hop -> bot
-  hop -> bot_io
-  hop -> logging
-  hop -> meta
-  hop -> path
-  hop -> unittest
-  hop -> html5lib [style=dotted]
+  args [label="args
+0.6.5",shape=box]
+  bot [label="bot
+0.22.1",shape=box]
+  bot -> meta [label=">=0.6.3", fontcolor=gray]
+  bot -> pathos [label=">=0.6.3", fontcolor=gray]
+  bot -> unittest [label=">=0.6.3", fontcolor=gray]
+  bot_io [label="bot_io
+0.22.0",shape=box]
+  bot_io -> args [label=">=0.6.5", fontcolor=gray]
+  bot_io -> bot [label=">=0.22.1", fontcolor=gray]
+  bot_io -> crypto [label=">=0.6.5", fontcolor=gray]
+  bot_io -> logging [label=">=0.6.5", fontcolor=gray]
+  bot_io -> meta [label=">=0.6.5", fontcolor=gray]
+  bot_io -> path [label=">=0.6.5", fontcolor=gray]
+  browser [label="browser
+0.6.5",shape=box]
+  crypto [label="crypto
+0.6.5",shape=box]
+  hop [label="hop
+0.23.1-dev",shape=box]
+  hop -> args [label=">=0.6.5", fontcolor=gray]
+  hop -> bot [label=">=0.22.1", fontcolor=gray]
+  hop -> bot_io [label=">=0.22.0", fontcolor=gray]
+  hop -> logging [label=">=0.6.5", fontcolor=gray]
+  hop -> meta [label=">=0.6.5", fontcolor=gray]
+  hop -> path [label=">=0.6.5", fontcolor=gray]
+  hop -> unittest [label=">=0.6.5", fontcolor=gray]
+  hop -> html5lib [label=">=0.4.3", fontcolor=gray,style=dotted]
+  html5lib [label="html5lib
+0.4.3",shape=box]
+  html5lib -> browser [label=">=0.3.2", fontcolor=gray]
+  html5lib -> meta [label="any", fontcolor=gray]
+  html5lib -> source_maps [label=">=0.4.5", fontcolor=gray]
+  html5lib -> unittest [label="any", fontcolor=gray]
+  logging [label="logging
+0.6.5",shape=box]
+  meta [label="meta
+0.6.5",shape=box]
+  path [label="path
+0.6.5",shape=box]
+  pathos [label="pathos
+0.6.3+1",shape=box]
+  source_maps [label="source_maps
+0.6.5",shape=box]
+  unittest [label="unittest
+0.6.5",shape=box]
+  unittest -> meta [label="any", fontcolor=gray]
 }
 
