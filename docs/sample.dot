@@ -9,7 +9,7 @@ digraph G {
   bot -> unittest [label=">=0.6.5",fontcolor=gray];
 
   bot_io [label="bot_io
-0.22.0",shape=box,margin="0.25,0.15",group=primary];
+0.22.0+1",shape=box,margin="0.25,0.15",group=primary];
   bot_io -> args [label=">=0.6.5",fontcolor=gray];
   bot_io -> bot [label=">=0.22.1",fontcolor=gray];
   bot_io -> crypto [label=">=0.6.5",fontcolor=gray];
@@ -24,10 +24,10 @@ digraph G {
 0.6.5",shape=box,margin="0.25,0.15"];
 
   hop [label="hop
-0.23.1-dev",fontsize=16,style=bold,shape=box,margin="0.25,0.15",group=primary];
+0.24.1-dev",fontsize=16,style=bold,shape=box,margin="0.25,0.15",group=primary];
   hop -> args [label=">=0.6.5",fontcolor=gray,penwidth=2];
   hop -> bot [label=">=0.22.1",fontcolor=gray,penwidth=2];
-  hop -> bot_io [label=">=0.22.0",fontcolor=gray,penwidth=2];
+  hop -> bot_io [label=">=0.22.0+1",fontcolor=gray,penwidth=2];
   hop -> logging [label=">=0.6.5",fontcolor=gray,penwidth=2];
   hop -> meta [label=">=0.6.5",fontcolor=gray,penwidth=2];
   hop -> path [label=">=0.6.5",fontcolor=gray,penwidth=2];
