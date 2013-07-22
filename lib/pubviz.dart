@@ -102,9 +102,7 @@ class VizRoot {
     for(var pack in orderedPacks) {
       sink.writeln();
 
-      var primary = root == pack;
-
-      pack._write(sink, primary);
+      pack._write(sink, root.name);
     }
 
     sink.writeln('}');
@@ -228,7 +226,8 @@ class VizPackage extends Comparable {
 
   int get hashCode => name.hashCode;
 
-  void _write(StringSink sink, bool isRoot) {
+  void _write(StringSink sink, String rootName) {
+    var isRoot = rootName == name;
 
     var props =
       {
@@ -257,8 +256,8 @@ class VizPackage extends Comparable {
 
     for(var dep in orderedDeps) {
       if(!dep.isDevDependency || isRoot) {
-        var props = { 'label':
-          '"${dep.versionConstraint}"',
+        var props = {
+          'label': '"${dep.versionConstraint}"',
           'fontcolor': 'gray'
         };
 
@@ -268,6 +267,11 @@ class VizPackage extends Comparable {
 
         if(dep.isDevDependency) {
           props['style'] = 'dashed';
+        }
+
+        if(dep.name == rootName) {
+          // If a package depends on the root node, it should not affect layout
+          props['constraint'] = 'false';
         }
 
         _writeEdge(sink, name, dep.name, props);
