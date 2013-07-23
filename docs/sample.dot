@@ -17,9 +17,6 @@ digraph G {
   bot_io -> meta [label=">=0.6.5",fontcolor=gray];
   bot_io -> path [label=">=0.6.5",fontcolor=gray];
 
-  browser [label="browser
-0.6.5"];
-
   crypto [label="crypto
 0.6.5",shape=box,margin="0.25,0.15"];
 
@@ -35,11 +32,8 @@ digraph G {
   hop -> html5lib [label=">=0.4.3",fontcolor=gray,penwidth=2,style=dashed];
 
   html5lib [label="html5lib
-0.4.3",group=primary];
-  html5lib -> browser [label=">=0.3.2",fontcolor=gray];
-  html5lib -> meta [label="any",fontcolor=gray];
-  html5lib -> source_maps [label=">=0.4.5",fontcolor=gray];
-  html5lib -> unittest [label="any",fontcolor=gray];
+0.4.4",group=primary];
+  html5lib -> source_maps [label=">=0.6.5",fontcolor=gray];
 
   logging [label="logging
 0.6.5",shape=box,margin="0.25,0.15",group=primary];
