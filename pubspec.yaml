@@ -4,8 +4,8 @@ author: Kevin Moore <kevin@thinkpixellab.com>
 description: Visualize package dependencies in your Dart project
 homepage: https://github.com/kevmoo/pubviz
 environment:
-  sdk: '>=0.6.5'
+  sdk: '>=0.6.14'
 dependencies:
-  path: '>=0.6.5'
-  unmodifiable_collection: '>=0.6.5'
-  yaml: '>=0.6.5'
+  path: '>=0.6.14'
+  unmodifiable_collection: '>=0.6.14'
+  yaml: '>=0.6.14'
