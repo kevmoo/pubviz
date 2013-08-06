@@ -25,4 +25,6 @@ String _getPath() {
     print("should only have one arg -> a path");
     exit(1);
   }
+
+  return args[0];
 }
