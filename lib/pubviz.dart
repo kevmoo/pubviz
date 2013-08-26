@@ -238,7 +238,7 @@ class VizPackage extends Comparable {
 
     if(isRoot) {
       assert(!onlyDev);
-      props['fontsize'] = '16';
+      props['fontsize'] = '18';
       props['style'] = 'bold';
     }
 
@@ -248,7 +248,7 @@ class VizPackage extends Comparable {
     }
 
     if(isPrimary) {
-      props['group'] = 'primary';
+      props['style'] = 'bold';
     }
 
     _writeNode(sink, name, props);
