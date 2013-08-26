@@ -68,7 +68,7 @@ class VizRoot {
   }
 
   static Future<Map<String, VizPackage>> _getReferencedPackages(String path) {
-    var set = new Map<String, VizPackage>();
+    var packs = new Map<String, VizPackage>();
 
     return _getPackageMap(path)
         .then((Map<String, String> map) {
@@ -79,13 +79,13 @@ class VizRoot {
                 .then((VizPackage vp) {
                   assert(vp.name == packageName);
 
-                  assert(!set.containsKey(vp.name));
-                  assert(!set.containsValue(vp));
-                  set[vp.name] = vp;
+                  assert(!packs.containsKey(vp.name));
+                  assert(!packs.containsValue(vp));
+                  packs[vp.name] = vp;
                 });
           });
         })
-        .then((_) => set);
+        .then((_) => packs);
   }
 
 
