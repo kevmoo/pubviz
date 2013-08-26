@@ -267,6 +267,8 @@ class VizPackage extends Comparable {
 
         if(dep.isDevDependency) {
           props['style'] = 'dashed';
+        } else if(onlyDev) {
+          props['color'] = 'gray';
         }
 
         if(dep.name == rootName) {
