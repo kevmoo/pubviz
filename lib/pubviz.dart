@@ -95,6 +95,8 @@ class VizRoot {
 
     var sink = new StringBuffer();
     sink.writeln('digraph G {');
+    sink.writeln('  node [fontname=Helvetica];');
+    sink.writeln('  edge [fontname=Helvetica, fontcolor=gray];');
 
     var orderedPacks = packages.values.toList(growable: false)
         ..sort();
@@ -256,27 +258,28 @@ class VizPackage extends Comparable {
 
     for(var dep in orderedDeps) {
       if(!dep.isDevDependency || isRoot) {
-        var props = {
-          'label': '"${dep.versionConstraint}"',
-          'fontcolor': 'gray'
-        };
+        var edgeProps = {};
+
+        if(dep.versionConstraint != 'any') {
+          edgeProps['label'] = '"${dep.versionConstraint}"';
+        }
 
         if(isRoot) {
-          props['penwidth'] = '2';
+          edgeProps['penwidth'] = '2';
         }
 
         if(dep.isDevDependency) {
-          props['style'] = 'dashed';
+          edgeProps['style'] = 'dashed';
         } else if(onlyDev) {
-          props['color'] = 'gray';
+          edgeProps['color'] = 'gray';
         }
 
         if(dep.name == rootName) {
           // If a package depends on the root node, it should not affect layout
-          props['constraint'] = 'false';
+          edgeProps['constraint'] = 'false';
         }
 
-        _writeEdge(sink, name, dep.name, props);
+        _writeEdge(sink, name, dep.name, edgeProps);
       }
     }
   }
