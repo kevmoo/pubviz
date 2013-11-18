@@ -1,11 +1,11 @@
 name: pubviz
-version: 0.1.0-dev
+version: 1.0.0
 author: Kevin Moore <kevin@thinkpixellab.com>
 description: Visualize package dependencies in your Dart project
 homepage: https://github.com/kevmoo/pubviz
 environment:
-  sdk: '>=0.6.20'
+  sdk: '>=0.8.10+6 <2.0.0'
 dependencies:
-  path: '>=0.6.20'
-  unmodifiable_collection: '>=0.6.20'
-  yaml: '>=0.6.20'
+  path: '>=0.9.0 <0.10.0'
+  unmodifiable_collection: '>=0.9.0 <0.10.0'
+  yaml: '>=0.9.0 <0.10.0'

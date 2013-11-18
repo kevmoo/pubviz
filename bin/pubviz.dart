@@ -4,9 +4,9 @@ import 'dart:io';
 import 'package:path/path.dart' as pathos;
 import 'package:pubviz/pubviz.dart';
 
-void main() {
+void main(List<String> args) {
 
-  final path = _getPath();
+  final path = _getPath(args);
 
   VizRoot.forDirectory(path)
     .then((VizRoot vp) {
@@ -14,8 +14,7 @@ void main() {
     });
 }
 
-String _getPath() {
-  var args = (new Options()).arguments;
+String _getPath(List<String> args) {
 
   if(args.isEmpty) {
     return pathos.current;
