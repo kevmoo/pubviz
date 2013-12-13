@@ -4,7 +4,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:yaml/yaml.dart';
 import 'package:path/path.dart' as pathos;
-import 'package:unmodifiable_collection/unmodifiable_collection.dart';
+import 'package:collection_helpers/wrappers.dart';
 
 class VizRoot {
   final VizPackage root;
