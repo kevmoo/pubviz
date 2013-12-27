@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>pubviz - PACKAGE_TITLE</title>
+  </head>
+  <body>
+    <script src="http://mdaines.github.io/viz.js/viz.js"></script>
+    <script type="text/vnd.graphviz" id="dot">
+DOT_HERE
+    </script>
+    <script>
+
+      function inspect(s) {
+        return "<pre>" + s.replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\"/g, "&quot;") + "</pre>"
+      }
+
+      function src(id) {
+        return document.getElementById(id).innerHTML;
+      }
+
+      function example(id, format) {
+        var result;
+        try {
+          return Viz(src(id), 'svg');
+        } catch(e) {
+          return inspect(e.toString());
+        }
+      }
+
+      document.body.innerHTML += example("dot");
+    </script>
+  </body>
+</html>
