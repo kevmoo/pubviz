@@ -2,8 +2,6 @@ name: pubviz
 author: Kevin Moore <kevmoo@google.com>
 version: 1.1.0+1
 homepage: https://github.com/kevmoo/pubviz
-sdk:
-  sdk: '>=1.0.0 <2.0.0'
 description: Visualize package dependencies in your Dart project
 environment:
   sdk: '>=1.0.0 <2.0.0'
