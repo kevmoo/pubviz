@@ -28,4 +28,4 @@ digraph G {
 
 Direct the ouput to a `dot` file: `./bin/pubviz.dart ~/some_dart_project/ > some_dot_file.dot` and use [GraphViz](http://www.graphviz.org/) to generate a PNG.
 
-![sample](https://raw.github.com/kevmoo/pubviz/master/docs/sample.png)
+![sample](https://raw.github.com/kevmoo/pubviz/master/doc/sample.png)
