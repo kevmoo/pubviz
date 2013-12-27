@@ -97,7 +97,7 @@ class VizRoot {
 
 
 
-  String toDot() {
+  String toDot({bool escapeLabels: false}) {
     _update();
 
     var sink = new StringBuffer();
@@ -105,13 +105,13 @@ class VizRoot {
     sink.writeln('  node [fontname=Helvetica];');
     sink.writeln('  edge [fontname=Helvetica, fontcolor=gray];');
 
-    var orderedPacks = packages.values.toList(growable: false)
+    List<VizPackage> orderedPacks = packages.values.toList(growable: false)
         ..sort();
 
     for(var pack in orderedPacks) {
       sink.writeln();
 
-      pack._write(sink, root.name);
+      pack._write(sink, root.name, escapeLabels: escapeLabels);
     }
 
     sink.writeln('}');
@@ -235,12 +235,14 @@ class VizPackage extends Comparable {
 
   int get hashCode => name.hashCode;
 
-  void _write(StringSink sink, String rootName) {
+  void _write(StringSink sink, String rootName, {bool escapeLabels: false}) {
     var isRoot = rootName == name;
+
+    var newLine = (escapeLabels) ? r'\n' : '\n';
 
     var label = name;
     if(version.isNotEmpty) {
-      label = label + '\n$version';
+      label = label + '$newLine$version';
     }
 
     var props = { 'label' : '"$label"' };
