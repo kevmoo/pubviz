@@ -19,6 +19,13 @@ class VizRoot {
 
           return _getReferencedPackages(path)
               .then((packages) {
+                if(!packages.containsKey(root.name)) {
+                  // the current package likely has no lib dir
+                  var rootLibDirPath = pathos.join(path, 'lib');
+                  var rootLibDir = new Directory(rootLibDirPath);
+                  assert(!rootLibDir.existsSync());
+                  packages[root.name] = root;
+                }
                 assert(packages.containsKey(root.name));
 
                 // want to make sure that the root note instance is the same
