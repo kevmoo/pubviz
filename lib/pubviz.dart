@@ -238,10 +238,12 @@ class VizPackage extends Comparable {
   void _write(StringSink sink, String rootName) {
     var isRoot = rootName == name;
 
-    var props =
-      {
-       'label' : '"$name\n$version"'
-      };
+    var label = name;
+    if(version.isNotEmpty) {
+      label = label + '\n$version';
+    }
+
+    var props = { 'label' : '"$label"' };
 
     if(isRoot) {
       assert(!onlyDev);
