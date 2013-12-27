@@ -1,0 +1,16 @@
+#!/bin/bash
+
+PROG_NAME=$(cd -P -- "$(dirname -- "$0")" && pwd -P) && \
+  PROG_NAME=$PROG_NAME/$(basename -- "$0")
+
+while [ -h $PROG_NAME ]; do
+  DIR=$(dirname -- "$PROG_NAME")
+  SYM=$(readlink $PROG_NAME)
+  PROG_NAME=$(cd $DIR && cd $(dirname -- "$SYM") && pwd)/$(basename -- "$SYM")
+done
+
+CUR_DIR="$(cd "${PROG_NAME%/*}" ; pwd -P)"
+
+PACK_DIR="$CUR_DIR"/packages/
+
+exec dart --package-root=$PACK_DIR "$PROG_NAME".dart "$@"
