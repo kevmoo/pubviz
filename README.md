@@ -8,21 +8,25 @@
 
 ```
 digraph G {
+  node [fontname=Helvetica];
+  edge [fontname=Helvetica, fontcolor=gray];
+
+  http [label="http
+0.9.2+3",fontsize=18,style=bold,shape=box,margin="0.25,0.15"];
+  http -> path [label=">=0.9.0 <2.0.0",penwidth=2];
+  http -> stack_trace [label=">=0.9.1 <0.10.0",penwidth=2];
+  http -> unittest [label=">=0.9.0 <0.10.0",penwidth=2,style=dashed];
 
   path [label="path
-0.6.5",shape=box,margin="0.25,0.15",group=primary];
+1.0.0",shape=box,margin="0.25,0.15",style=bold];
 
-  pubviz [label="pubviz
-0.1.0-dev",fontsize=16,style=bold,shape=box,margin="0.25,0.15",group=primary];
-  pubviz -> path [label=">=0.6.5",fontcolor=gray,penwidth=2];
-  pubviz -> unmodifiable_collection [label=">=0.6.5",fontcolor=gray,penwidth=2];
-  pubviz -> yaml [label=">=0.6.5",fontcolor=gray,penwidth=2];
+  stack_trace [label="stack_trace
+0.9.1",shape=box,margin="0.25,0.15",style=bold];
+  stack_trace -> path [label=">=1.0.0-rc.1 <2.0.0"];
 
-  unmodifiable_collection [label="unmodifiable_collection
-0.6.5",shape=box,margin="0.25,0.15",group=primary];
-
-  yaml [label="yaml
-0.6.5",shape=box,margin="0.25,0.15",group=primary];
+  unittest [label="unittest
+0.9.3",style=bold];
+  unittest -> stack_trace [label=">=0.9.0 <0.10.0",color=gray];
 }
 ```
 
