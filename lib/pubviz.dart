@@ -108,7 +108,7 @@ class VizRoot {
     List<VizPackage> orderedPacks = packages.values.toList(growable: false)
         ..sort();
 
-    for(var pack in orderedPacks) {
+    for (var pack in orderedPacks) {
       sink.writeln();
 
       pack._write(sink, root.name, escapeLabels: escapeLabels);
@@ -120,19 +120,19 @@ class VizRoot {
   }
 
   void _update() {
-    if(root.isPrimary == false) {
+    if (root.isPrimary == false) {
       root.isPrimary = true;
 
       assert(root.onlyDev);
       root.onlyDev = false;
 
-      for(var primaryDep in root.dependencies) {
+      for (var primaryDep in root.dependencies) {
         var package = packages[primaryDep.name];
 
         assert(!package.isPrimary);
         package.isPrimary = true;
 
-        if(!primaryDep.isDevDependency) {
+        if (!primaryDep.isDevDependency) {
           _updateDevOnly(primaryDep);
         }
       }
@@ -143,7 +143,7 @@ class VizRoot {
   void _updateDevOnly(Dependency dep) {
     var package = packages[dep.name];
 
-    if(package.onlyDev) {
+    if (package.onlyDev) {
       package.onlyDev = false;
 
       for(var subDep in package.dependencies.where((d) => !d.isDevDependency)) {
@@ -187,9 +187,9 @@ class VizPackage extends Comparable {
     _onlyDev = value;
   }
 
-  VizPackage._(String path, this.name, this.version, Set<Dependency> deps) :
-    dependencies = new UnmodifiableSetView(deps),
-    this.path = pathos.normalize(path);
+  VizPackage._(String path, this.name, this.version, Set<Dependency> deps)
+      : dependencies = new UnmodifiableSetView(deps),
+        this.path = pathos.normalize(path);
 
   static Future<VizPackage> forDirectory(String path) {
     var dir = new Directory(path);
@@ -222,9 +222,9 @@ class VizPackage extends Comparable {
   }
 
   bool operator ==(other) {
-    if(other is VizPackage) {
+    if (other is VizPackage) {
       var match = (name == other.name);
-      if(match) {
+      if (match) {
         assert(other.path == path);
         assert(other.version == version);
         return true;
@@ -241,24 +241,24 @@ class VizPackage extends Comparable {
     var newLine = (escapeLabels) ? r'\n' : '\n';
 
     var label = name;
-    if(version.isNotEmpty) {
+    if (version.isNotEmpty) {
       label = label + '$newLine$version';
     }
 
     var props = { 'label' : '"$label"' };
 
-    if(isRoot) {
+    if (isRoot) {
       assert(!onlyDev);
       props['fontsize'] = '18';
       props['style'] = 'bold';
     }
 
-    if(!onlyDev) {
+    if (!onlyDev) {
       props['shape'] = 'box';
       props['margin'] = '"0.25,0.15"';
     }
 
-    if(isPrimary) {
+    if (isPrimary) {
       props['style'] = 'bold';
     }
 
@@ -267,25 +267,25 @@ class VizPackage extends Comparable {
     var orderedDeps = dependencies.toList(growable: false)
         ..sort();
 
-    for(var dep in orderedDeps) {
-      if(!dep.isDevDependency || isRoot) {
+    for (var dep in orderedDeps) {
+      if (!dep.isDevDependency || isRoot) {
         var edgeProps = {};
 
-        if(dep.versionConstraint != 'any') {
+        if (dep.versionConstraint != 'any') {
           edgeProps['label'] = '"${dep.versionConstraint}"';
         }
 
-        if(isRoot) {
+        if (isRoot) {
           edgeProps['penwidth'] = '2';
         }
 
-        if(dep.isDevDependency) {
+        if (dep.isDevDependency) {
           edgeProps['style'] = 'dashed';
-        } else if(onlyDev) {
+        } else if (onlyDev) {
           edgeProps['color'] = 'gray';
         }
 
-        if(dep.name == rootName) {
+        if (dep.name == rootName) {
           // If a package depends on the root node, it should not affect layout
           edgeProps['constraint'] = 'false';
         }
@@ -306,8 +306,8 @@ class Dependency implements Comparable<Dependency> {
   static Set<Dependency> getDependencies(Map<String, dynamic> yaml) {
     var deps = new Set<Dependency>();
 
-    _populateFromSection(yaml['dependencies'],deps, false);
-    _populateFromSection(yaml['dev_dependencies'],deps, true);
+    _populateFromSection(yaml['dependencies'], deps, false);
+    _populateFromSection(yaml['dev_dependencies'], deps, true);
 
     return deps;
   }
@@ -315,9 +315,9 @@ class Dependency implements Comparable<Dependency> {
   static void _populateFromSection(Map<String, dynamic> yaml, Set<Dependency> value, bool isDev) {
     if(yaml != null) {
       yaml.forEach((String key, constraint) {
-        if(constraint == null) {
+        if (constraint == null) {
           constraint = '';
-        } else if(constraint is Map) {
+        } else if (constraint is Map) {
           constraint = '??complex??';
         }
 
@@ -329,14 +329,14 @@ class Dependency implements Comparable<Dependency> {
     }
   }
 
-  bool operator==(other) => other is Dependency && other.name == name;
+  bool operator ==(other) => other is Dependency && other.name == name;
 
   int get hashcode => name.hashCode;
 
   int compareTo(Dependency other) {
-    if(other.isDevDependency == isDevDependency) {
+    if (other.isDevDependency == isDevDependency) {
       return name.compareTo(other.name);
-    } else if(isDevDependency) {
+    } else if (isDevDependency) {
       return 1;
     } else {
       return -1;
@@ -351,6 +351,5 @@ class Dependency implements Comparable<Dependency> {
 
 Future<Map<String, dynamic>> _openYaml(String path) {
   var file = new File(path);
-  return file.readAsString()
-      .then(loadYaml);
+  return file.readAsString().then(loadYaml);
 }

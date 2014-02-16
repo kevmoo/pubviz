@@ -15,16 +15,15 @@ void main(List<String> args) {
 
   var path = _getPath(result.rest);
 
-  VizRoot.forDirectory(path)
-    .then((VizRoot vp) {
-      if(open) {
-        return _open(vp);
-      } else if(html) {
-        return _printHtml(vp);
-      } else {
-        print(vp.toDot());
-      }
-    });
+  VizRoot.forDirectory(path).then((VizRoot vp) {
+    if (open) {
+      return _open(vp);
+    } else if (html) {
+      return _printHtml(vp);
+    } else {
+      print(vp.toDot());
+    }
+  });
 }
 
 Future _open(VizRoot root) {
@@ -33,7 +32,6 @@ Future _open(VizRoot root) {
 
   return _getHtmlContent(root).then((value) {
     content = value;
-
     return Directory.systemTemp.createTemp('pubviz_${root.root.name}_');
   }).then((dir) {
     filePath = pathos.join(dir.path, 'pubviz.html');
@@ -43,9 +41,9 @@ Future _open(VizRoot root) {
     return file.writeAsString(content, mode: FileMode.WRITE, flush: true);
   }).then((_) {
     print('File generated: $filePath');
-    if(Platform.isMacOS) {
+    if (Platform.isMacOS) {
       return Process.run('open', [filePath], runInShell: true);
-    } else if(Platform.isLinux) {
+    } else if (Platform.isLinux) {
       return Process.run('xdg-open', [filePath], runInShell: true);
     } else {
       print("We don't know how to open a file in ${Platform.operatingSystem}");
@@ -64,24 +62,23 @@ Future<String> _getHtmlContent(VizRoot root) {
   var templateFile = new File(_templatePath);
   assert(templateFile.existsSync());
 
-  return templateFile.readAsString()
-      .then((String content) {
-        var dot = root.toDot(escapeLabels: true);
+  return templateFile.readAsString().then((String content) {
+    var dot = root.toDot(escapeLabels: true);
 
-        content = content.replaceAll(DOT_PLACE_HOLDER, dot);
-        content = content.replaceAll(TITLE_PLACE_HOLDER, root.root.name);
+    content = content.replaceAll(DOT_PLACE_HOLDER, dot);
+    content = content.replaceAll(TITLE_PLACE_HOLDER, root.root.name);
 
-        return content;
-      });
+    return content;
+  });
 }
 
 String _getPath(List<String> args) {
 
-  if(args.isEmpty) {
+  if (args.isEmpty) {
     return pathos.current;
   }
 
-  if(args.length != 1) {
+  if (args.length != 1) {
     print("should only have one arg -> a path");
     exit(1);
   }
@@ -89,12 +86,11 @@ String _getPath(List<String> args) {
   return args[0];
 }
 
-ArgParser _getParser() =>
-    new ArgParser()
-      ..addFlag('html', abbr: 'h', defaultsTo: false)
-      ..addFlag('open', abbr: 'o',
-          help: 'Generate an html file in the system temp directory and open it',
-          defaultsTo: false);
+ArgParser _getParser() => new ArgParser()
+    ..addFlag('html', abbr: 'h', defaultsTo: false)
+    ..addFlag('open', abbr: 'o',
+        help: 'Generate an html file in the system temp directory and open it',
+        defaultsTo: false);
 
 String get _templatePath {
   var templatePath = pathos.fromUri(Platform.script);
