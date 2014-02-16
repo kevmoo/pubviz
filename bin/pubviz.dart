@@ -11,12 +11,15 @@ void main(List<String> args) {
 
   var result = parser.parse(args);
   bool html = result['html'];
+  bool open = result['open'];
 
-  final path = _getPath(result.rest);
+  var path = _getPath(result.rest);
 
   VizRoot.forDirectory(path)
     .then((VizRoot vp) {
-      if(html) {
+      if(open) {
+        return _open(vp);
+      } else if(html) {
         return _printHtml(vp);
       } else {
         print(vp.toDot());
@@ -24,7 +27,39 @@ void main(List<String> args) {
     });
 }
 
+Future _open(VizRoot root) {
+  String content;
+  String filePath;
+
+  return _getHtmlContent(root).then((value) {
+    content = value;
+
+    return Directory.systemTemp.createTemp('pubviz_${root.root.name}_');
+  }).then((dir) {
+    filePath = pathos.join(dir.path, 'pubviz.html');
+    var file = new File(filePath);
+    return file.create();
+  }).then((file) {
+    return file.writeAsString(content, mode: FileMode.WRITE, flush: true);
+  }).then((_) {
+    if(Platform.isMacOS) {
+      return Process.run('open', [filePath], runInShell: true);
+    } else if(Platform.isLinux) {
+      return Process.run('xdg-open', [filePath], runInShell: true);
+    } else {
+      print("We don't know how to open a file in ${Platform.operatingSystem}");
+      exit(1);
+    }
+  });
+}
+
 Future _printHtml(VizRoot root) {
+  return _getHtmlContent(root).then((String content) {
+    print(content);
+  });
+}
+
+Future<String> _getHtmlContent(VizRoot root) {
   var templateFile = new File(_templatePath);
   assert(templateFile.existsSync());
 
@@ -35,7 +70,7 @@ Future _printHtml(VizRoot root) {
         content = content.replaceAll(DOT_PLACE_HOLDER, dot);
         content = content.replaceAll(TITLE_PLACE_HOLDER, root.root.name);
 
-        print(content);
+        return content;
       });
 }
 
@@ -55,7 +90,10 @@ String _getPath(List<String> args) {
 
 ArgParser _getParser() =>
     new ArgParser()
-      ..addFlag('html', abbr: 'h', defaultsTo: false);
+      ..addFlag('html', abbr: 'h', defaultsTo: false)
+      ..addFlag('open', abbr: 'o',
+          help: 'Generate an html file in the system temp directory and open it',
+          defaultsTo: false);
 
 String get _templatePath {
   var templatePath = pathos.fromUri(Platform.script);
