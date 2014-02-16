@@ -1,10 +1,26 @@
 #pubviz
-## Visualize package dependencies in your Dart project
+### Visualize package dependencies in your Dart project
 
-1. Make sure you run `pub install` or `pub update` in your target project directory.
-1. Run `pubviz` passing in the target project directory as the only argument
-    * `./bin/pubviz.dart ~/pubviz/`
-1. Notice the pretty output:
+*Make sure you run `pub install` or `pub update` in your target project directory.*
+
+### Generate and open an html file for a package.
+
+```
+dart bin/pubviz.dart open /path/to/http_package
+```
+
+Should open your default browser to something like:
+
+![sample](https://raw.github.com/kevmoo/pubviz/master/doc/sample.png)
+
+
+### Print GraphViz dot format to command line
+
+```
+dart bin/pubviz.dart --format=dot print /path/to/http_package
+```
+
+You should see output something like:
 
 ```
 digraph G {
@@ -30,6 +46,17 @@ digraph G {
 }
 ```
 
-Direct the ouput to a `dot` file: `./bin/pubviz.dart ~/some_dart_project/ > some_dot_file.dot` and use [GraphViz](http://www.graphviz.org/) to generate a PNG.
+### pubviz with no arguments prints help
 
-![sample](https://raw.github.com/kevmoo/pubviz/master/doc/sample.png)
+```
+usage: pubviz [--format=<format>] (open | print) [<package path>]
+
+  open   Populate a temporary file with the content and open it.
+  print  Print the output to stdout.
+
+-f, --format
+          [dot]     Generate a GraphViz dot file
+          [html]    Wrap the GraphViz dot format in an HTML template which renders it.
+
+If <package path> is omitted, the current directory is used.
+```
