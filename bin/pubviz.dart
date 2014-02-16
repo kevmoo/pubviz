@@ -42,6 +42,7 @@ Future _open(VizRoot root) {
   }).then((file) {
     return file.writeAsString(content, mode: FileMode.WRITE, flush: true);
   }).then((_) {
+    print('File generated: $filePath');
     if(Platform.isMacOS) {
       return Process.run('open', [filePath], runInShell: true);
     } else if(Platform.isLinux) {
