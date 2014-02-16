@@ -2,7 +2,7 @@
 
 import 'dart:async';
 import 'dart:io';
-import 'package:path/path.dart' as pathos;
+import 'package:path/path.dart' as p;
 import 'package:pubviz/pubviz.dart';
 import 'package:args/args.dart';
 
@@ -10,31 +10,61 @@ void main(List<String> args) {
   var parser = _getParser();
 
   var result = parser.parse(args);
-  bool html = result['html'];
-  bool open = result['open'];
 
-  var path = _getPath(result.rest);
+  var command = result.command;
+
+  if(command == null) {
+    _printUsage(parser);
+    return;
+  }
+
+  var path = _getPath(command.rest);
+
+  var format = result['format'];
 
   VizRoot.forDirectory(path).then((VizRoot vp) {
-    if (open) {
-      return _open(vp);
-    } else if (html) {
-      return _printHtml(vp);
+    if(command.name == 'print') {
+      _printContent(vp, format);
+    } else if(command.name == 'open') {
+      _open(vp, format);
     } else {
-      print(vp.toDot());
+      throw new StateError('Should never get here...');
     }
   });
 }
 
-Future _open(VizRoot root) {
+void _printUsage(ArgParser parser) {
+  print('usage: pubviz [--format=<format>] (open | print) [<package path>]');
+  print('');
+  print('  open   Populate a temporary file with the content and open it.');
+  print('  print  Print the output to stdout.');
+  print('');
+  print(parser.getUsage());
+  print('');
+  print('If <package path> is omitted, the current directory is used.');
+}
+
+Future _getContent(VizRoot root, String format) {
+  if(format == 'html') {
+    return _getHtmlContent(root);
+  } else if(format == 'dot') {
+    return new Future.value(root.toDot());
+  }
+  throw new StateError('format "$format" is not supported');
+}
+
+Future _open(VizRoot root, String format) {
   String content;
   String filePath;
 
-  return _getHtmlContent(root).then((value) {
+  var name = root.root.name;
+
+  return _getContent(root, format).then((value) {
     content = value;
-    return Directory.systemTemp.createTemp('pubviz_${root.root.name}_');
+    return Directory.systemTemp.createTemp('pubviz_${name}_');
   }).then((dir) {
-    filePath = pathos.join(dir.path, 'pubviz.html');
+    var extention = (format == 'html') ? 'html' : 'dot';
+    filePath = p.join(dir.path, '$name.$extention');
     var file = new File(filePath);
     return file.create();
   }).then((file) {
@@ -58,14 +88,14 @@ Future _open(VizRoot root) {
   });
 }
 
-Future _printHtml(VizRoot root) {
-  return _getHtmlContent(root).then((String content) {
+Future _printContent(VizRoot root, String format) {
+  return _getContent(root, format).then((String content) {
     print(content);
   });
 }
 
 Future<String> _getHtmlContent(VizRoot root) {
-  var templateFile = new File(_templatePath);
+  var templateFile = new File(_getTemplatePath());
   assert(templateFile.existsSync());
 
   return templateFile.readAsString().then((String content) {
@@ -81,7 +111,7 @@ Future<String> _getHtmlContent(VizRoot root) {
 String _getPath(List<String> args) {
 
   if (args.isEmpty) {
-    return pathos.current;
+    return p.current;
   }
 
   if (args.length != 1) {
@@ -93,20 +123,29 @@ String _getPath(List<String> args) {
 }
 
 ArgParser _getParser() => new ArgParser()
-    ..addFlag('html', abbr: 'h', defaultsTo: false)
-    ..addFlag('open', abbr: 'o',
-        help: 'Put the generated content into a temporary file and open it.',
-        defaultsTo: false);
+    ..addOption('format', abbr: 'f', allowed: _FORMAT_ALLOWED,
+        defaultsTo: 'html', allowedHelp: _FORMAT_HELP)
+    ..addCommand('open')
+    ..addCommand('print');
 
-String get _templatePath {
-  var templatePath = pathos.fromUri(Platform.script);
-  templatePath = pathos.dirname(templatePath);
-  templatePath = pathos.join(templatePath, '..', TEMPLATE_PATH);
-  templatePath = pathos.normalize(templatePath);
+String _getTemplatePath() {
+  var templatePath = p.fromUri(Platform.script);
+  templatePath = p.dirname(templatePath);
+  templatePath = p.join(templatePath, '..', TEMPLATE_PATH);
+  templatePath = p.normalize(templatePath);
   return templatePath;
 }
 
 const TEMPLATE_PATH = 'asset/pubviz.html';
+
 const DOT_PLACE_HOLDER = 'DOT_HERE';
+
 const TITLE_PLACE_HOLDER = 'PACKAGE_TITLE';
+
+const _FORMAT_ALLOWED = const ['html', 'dot'];
+
+const _FORMAT_HELP = const {
+  'dot': 'Generate a GraphViz dot file',
+  'html': 'Wrap the GraphViz dot format in an HTML template which renders it.'
+};
 
