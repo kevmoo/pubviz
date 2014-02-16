@@ -109,17 +109,26 @@ Future<String> _getHtmlContent(VizRoot root) {
 }
 
 String _getPath(List<String> args) {
-
-  if (args.isEmpty) {
-    return p.current;
-  }
-
-  if (args.length != 1) {
-    print("should only have one arg -> a path");
+  if (args.length > 1) {
+    print("Only one argument is allowed. You provided ${args.length}.");
     exit(1);
   }
 
-  return args[0];
+  var path = args.isEmpty ? p.current : args.first;
+
+  if (!FileSystemEntity.isDirectorySync(path)) {
+    print('The provided path does not exist or is not a directory: $path');
+    exit(1);
+  }
+
+  var yamlPath = p.join(path, 'pubspec.yaml');
+
+  if(!FileSystemEntity.isFileSync(yamlPath)) {
+    print('Could not find a pubspec.yaml in the target path.: $path');
+    exit(1);
+  }
+
+  return path;
 }
 
 ArgParser _getParser() => new ArgParser()
