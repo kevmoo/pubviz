@@ -41,14 +41,20 @@ Future _open(VizRoot root) {
     return file.writeAsString(content, mode: FileMode.WRITE, flush: true);
   }).then((_) {
     print('File generated: $filePath');
-    if (Platform.isMacOS) {
-      return Process.run('open', [filePath], runInShell: true);
-    } else if (Platform.isLinux) {
-      return Process.run('xdg-open', [filePath], runInShell: true);
+
+    String openCommand;
+    if(Platform.isMacOS) {
+      openCommand = 'open';
+    } else if(Platform.isLinux) {
+      openCommand = 'xdg-open';
+    } else if(Platform.isWindows) {
+      openCommand = 'start';
     } else {
       print("We don't know how to open a file in ${Platform.operatingSystem}");
       exit(1);
     }
+
+    return Process.run(openCommand, [filePath], runInShell: true);
   });
 }
 
@@ -89,7 +95,7 @@ String _getPath(List<String> args) {
 ArgParser _getParser() => new ArgParser()
     ..addFlag('html', abbr: 'h', defaultsTo: false)
     ..addFlag('open', abbr: 'o',
-        help: 'Generate an html file in the system temp directory and open it',
+        help: 'Put the generated content into a temporary file and open it.',
         defaultsTo: false);
 
 String get _templatePath {
