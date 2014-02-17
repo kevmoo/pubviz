@@ -1,7 +1,7 @@
 #pubviz
 ### Visualize package dependencies in your Dart project
 
-*Make sure you run `pub install` or `pub update` in your target project directory.*
+*Make sure you run `pub get` or `pub upgrade` in your target project directory.*
 
 ### Generate and open an html file for a package.
 
