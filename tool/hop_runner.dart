@@ -1,5 +1,5 @@
 import 'package:hop/hop.dart';
-import 'package:hop/hop_tasks.dart';
+import 'package:hop_git/hop_git.dart';
 
 void main(List<String> args) {
 
