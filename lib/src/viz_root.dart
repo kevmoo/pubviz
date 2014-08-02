@@ -38,60 +38,6 @@ class VizRoot {
     });
   }
 
-  static Future<Map<String, String>> _getPackageMap(String path) {
-    var packagePath = pathos.join(path, 'packages');
-    var packageDir = new Directory(packagePath);
-
-    var dirs = new Map<String, String>();
-
-    var map = new Map<String, String>();
-
-    return packageDir.list(
-        recursive: false,
-        followLinks: false).toList().then((List<Link> links) {
-      return Future.forEach(links, (link) {
-        return link.target().then((String targetPath) {
-          var linkName = pathos.basename(link.path);
-
-          if (pathos.isRelative(targetPath)) {
-            targetPath = pathos.join(packagePath, targetPath);
-            targetPath = pathos.normalize(targetPath);
-          }
-
-          assert(pathos.isAbsolute(targetPath));
-          assert(pathos.basename(targetPath) == 'lib');
-
-          targetPath = pathos.dirname(targetPath);
-
-          assert(!map.containsKey(linkName));
-          assert(!map.containsValue(targetPath));
-
-          map[linkName] = targetPath;
-        });
-      });
-    }).then((_) => map);
-  }
-
-  static Future<Map<String, VizPackage>> _getReferencedPackages(String path) {
-    var packs = new Map<String, VizPackage>();
-
-    return _getPackageMap(path).then((Map<String, String> map) {
-
-      return Future.forEach(map.keys, (String packageName) {
-        var subPath = map[packageName];
-        return VizPackage.forDirectory(subPath).then((VizPackage vp) {
-          assert(vp.name == packageName);
-
-          assert(!packs.containsKey(vp.name));
-          assert(!packs.containsValue(vp));
-          packs[vp.name] = vp;
-        });
-      });
-    }).then((_) => packs);
-  }
-
-
-
   String toDot({bool escapeLabels: false}) {
     _update();
 
@@ -131,7 +77,6 @@ class VizRoot {
           _updateDevOnly(primaryDep);
         }
       }
-
     }
   }
 
@@ -146,4 +91,55 @@ class VizRoot {
       }
     }
   }
+}
+
+Future<Map<String, String>> _getPackageMap(String path) {
+  var packagePath = pathos.join(path, 'packages');
+  var packageDir = new Directory(packagePath);
+
+  var dirs = new Map<String, String>();
+
+  var map = new Map<String, String>();
+
+  return packageDir.list(recursive: false, followLinks: false).toList()
+      .then((List<Link> links) {
+    return Future.forEach(links, (link) {
+      return link.target().then((String targetPath) {
+        var linkName = pathos.basename(link.path);
+
+        if (pathos.isRelative(targetPath)) {
+          targetPath = pathos.join(packagePath, targetPath);
+          targetPath = pathos.normalize(targetPath);
+        }
+
+        assert(pathos.isAbsolute(targetPath));
+        assert(pathos.basename(targetPath) == 'lib');
+
+        targetPath = pathos.dirname(targetPath);
+
+        assert(!map.containsKey(linkName));
+        assert(!map.containsValue(targetPath));
+
+        map[linkName] = targetPath;
+      });
+    });
+  }).then((_) => map);
+}
+
+Future<Map<String, VizPackage>> _getReferencedPackages(String path) {
+  var packs = new Map<String, VizPackage>();
+
+  return _getPackageMap(path).then((Map<String, String> map) {
+
+    return Future.forEach(map.keys, (String packageName) {
+      var subPath = map[packageName];
+      return VizPackage.forDirectory(subPath).then((VizPackage vp) {
+        assert(vp.name == packageName);
+
+        assert(!packs.containsKey(vp.name));
+        assert(!packs.containsValue(vp));
+        packs[vp.name] = vp;
+      });
+    });
+  }).then((_) => packs);
 }
