@@ -7,11 +7,12 @@ import 'package:path/path.dart' as p;
 import 'package:yaml/yaml.dart' as yaml;
 
 import 'dependency.dart';
+import 'version.dart';
 
 class VizPackage extends Comparable {
   final String path;
   final String name;
-  final String version;
+  final Version version;
   final Set<Dependency> dependencies;
   bool isPrimary = false;
 
@@ -44,8 +45,9 @@ class VizPackage extends Comparable {
       String packageName = pubspecMap['name'];
       assert(packageName != null && packageName.length > 0);
 
-      String version = pubspecMap['version'];
-      if (version == null) version = '';
+      var versionString = pubspecMap['version'];
+      var version = (versionString == null) ?
+          null : new Version.parse(versionString);
 
       var deps = Dependency.getDependencies(pubspecMap);
 
@@ -79,7 +81,7 @@ class VizPackage extends Comparable {
     var newLine = (escapeLabels) ? r'\n' : '\n';
 
     var label = name;
-    if (version.isNotEmpty) {
+    if (version != null) {
       label = label + '$newLine$version';
     }
 
