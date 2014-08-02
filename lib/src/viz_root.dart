@@ -12,9 +12,8 @@ class VizRoot {
   final VizPackage root;
   final Map<String, VizPackage> packages;
 
-  VizRoot._(this.root, Map<String, VizPackage> packages) : this.packages =
-      new UnmodifiableMapView(
-      packages);
+  VizRoot._(this.root, Map<String, VizPackage> packages)
+      : this.packages = new UnmodifiableMapView(packages);
 
   static Future<VizRoot> forDirectory(String path) {
     return VizPackage.forDirectory(path).then((VizPackage root) {
@@ -46,10 +45,7 @@ class VizRoot {
     sink.writeln('  node [fontname=Helvetica];');
     sink.writeln('  edge [fontname=Helvetica, fontcolor=gray];');
 
-    List<VizPackage> orderedPacks = packages.values.toList(growable: false)
-        ..sort();
-
-    for (var pack in orderedPacks) {
+    for (var pack in packages.values) {
       sink.writeln();
 
       pack.write(sink, root.name, escapeLabels: escapeLabels);
