@@ -12,31 +12,30 @@ class VizRoot {
   final VizPackage root;
   final Map<String, VizPackage> packages;
 
-  VizRoot._(this.root, Map<String, VizPackage> packages):
-    this.packages = new UnmodifiableMapView(packages);
+  VizRoot._(this.root, Map<String, VizPackage> packages) : this.packages =
+      new UnmodifiableMapView(
+      packages);
 
   static Future<VizRoot> forDirectory(String path) {
-    return VizPackage.forDirectory(path)
-        .then((VizPackage root) {
+    return VizPackage.forDirectory(path).then((VizPackage root) {
 
-          return _getReferencedPackages(path)
-              .then((packages) {
-                if(!packages.containsKey(root.name)) {
-                  // the current package likely has no lib dir
-                  var rootLibDirPath = pathos.join(path, 'lib');
-                  var rootLibDir = new Directory(rootLibDirPath);
-                  assert(!rootLibDir.existsSync());
-                  packages[root.name] = root;
-                }
-                assert(packages.containsKey(root.name));
+      return _getReferencedPackages(path).then((packages) {
+        if (!packages.containsKey(root.name)) {
+          // the current package likely has no lib dir
+          var rootLibDirPath = pathos.join(path, 'lib');
+          var rootLibDir = new Directory(rootLibDirPath);
+          assert(!rootLibDir.existsSync());
+          packages[root.name] = root;
+        }
+        assert(packages.containsKey(root.name));
 
-                // want to make sure that the root note instance is the same
-                // as the instance in the packages collection
-                root = packages[root.name];
+        // want to make sure that the root note instance is the same
+        // as the instance in the packages collection
+        root = packages[root.name];
 
-                return new VizRoot._(root, packages);
-              });
-        });
+        return new VizRoot._(root, packages);
+      });
+    });
   }
 
   static Future<Map<String, String>> _getPackageMap(String path) {
@@ -47,53 +46,48 @@ class VizRoot {
 
     var map = new Map<String, String>();
 
-    return packageDir.list(recursive: false, followLinks: false)
-        .toList()
-        .then((List<Link> links) {
-          return Future.forEach(links, (link) {
-            return link.target()
-                .then((String targetPath) {
-                  var linkName = pathos.basename(link.path);
+    return packageDir.list(
+        recursive: false,
+        followLinks: false).toList().then((List<Link> links) {
+      return Future.forEach(links, (link) {
+        return link.target().then((String targetPath) {
+          var linkName = pathos.basename(link.path);
 
-                  if(pathos.isRelative(targetPath)) {
-                    targetPath = pathos.join(packagePath, targetPath);
-                    targetPath = pathos.normalize(targetPath);
-                  }
+          if (pathos.isRelative(targetPath)) {
+            targetPath = pathos.join(packagePath, targetPath);
+            targetPath = pathos.normalize(targetPath);
+          }
 
-                  assert(pathos.isAbsolute(targetPath));
-                  assert(pathos.basename(targetPath) == 'lib');
+          assert(pathos.isAbsolute(targetPath));
+          assert(pathos.basename(targetPath) == 'lib');
 
-                  targetPath = pathos.dirname(targetPath);
+          targetPath = pathos.dirname(targetPath);
 
-                  assert(!map.containsKey(linkName));
-                  assert(!map.containsValue(targetPath));
+          assert(!map.containsKey(linkName));
+          assert(!map.containsValue(targetPath));
 
-                  map[linkName] = targetPath;
-                });
-          });
-        })
-        .then((_) => map);
+          map[linkName] = targetPath;
+        });
+      });
+    }).then((_) => map);
   }
 
   static Future<Map<String, VizPackage>> _getReferencedPackages(String path) {
     var packs = new Map<String, VizPackage>();
 
-    return _getPackageMap(path)
-        .then((Map<String, String> map) {
+    return _getPackageMap(path).then((Map<String, String> map) {
 
-          return Future.forEach(map.keys, (String packageName) {
-            var subPath = map[packageName];
-            return VizPackage.forDirectory(subPath)
-                .then((VizPackage vp) {
-                  assert(vp.name == packageName);
+      return Future.forEach(map.keys, (String packageName) {
+        var subPath = map[packageName];
+        return VizPackage.forDirectory(subPath).then((VizPackage vp) {
+          assert(vp.name == packageName);
 
-                  assert(!packs.containsKey(vp.name));
-                  assert(!packs.containsValue(vp));
-                  packs[vp.name] = vp;
-                });
-          });
-        })
-        .then((_) => packs);
+          assert(!packs.containsKey(vp.name));
+          assert(!packs.containsValue(vp));
+          packs[vp.name] = vp;
+        });
+      });
+    }).then((_) => packs);
   }
 
 

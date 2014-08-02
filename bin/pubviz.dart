@@ -13,7 +13,7 @@ void main(List<String> args) {
 
   var command = result.command;
 
-  if(command == null) {
+  if (command == null) {
     _printUsage(parser);
     return;
   }
@@ -23,9 +23,9 @@ void main(List<String> args) {
   var format = result['format'];
 
   VizRoot.forDirectory(path).then((VizRoot vp) {
-    if(command.name == 'print') {
+    if (command.name == 'print') {
       _printContent(vp, format);
-    } else if(command.name == 'open') {
+    } else if (command.name == 'open') {
       _open(vp, format);
     } else {
       throw new StateError('Should never get here...');
@@ -45,9 +45,9 @@ void _printUsage(ArgParser parser) {
 }
 
 Future _getContent(VizRoot root, String format) {
-  if(format == 'html') {
+  if (format == 'html') {
     return _getHtmlContent(root);
-  } else if(format == 'dot') {
+  } else if (format == 'dot') {
     return new Future.value(root.toDot());
   }
   throw new StateError('format "$format" is not supported');
@@ -73,11 +73,11 @@ Future _open(VizRoot root, String format) {
     print('File generated: $filePath');
 
     String openCommand;
-    if(Platform.isMacOS) {
+    if (Platform.isMacOS) {
       openCommand = 'open';
-    } else if(Platform.isLinux) {
+    } else if (Platform.isLinux) {
       openCommand = 'xdg-open';
-    } else if(Platform.isWindows) {
+    } else if (Platform.isWindows) {
       openCommand = 'start';
     } else {
       print("We don't know how to open a file in ${Platform.operatingSystem}");
@@ -123,7 +123,7 @@ String _getPath(List<String> args) {
 
   var yamlPath = p.join(path, 'pubspec.yaml');
 
-  if(!FileSystemEntity.isFileSync(yamlPath)) {
+  if (!FileSystemEntity.isFileSync(yamlPath)) {
     print('Could not find a pubspec.yaml in the target path.: $path');
     exit(1);
   }

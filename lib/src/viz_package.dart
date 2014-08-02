@@ -38,20 +38,19 @@ class VizPackage extends Comparable {
 
     Map<String, dynamic> pubspecMap;
 
-    return openYaml(pubspecPath)
-        .then((Map value) {
-          pubspecMap = value;
+    return _openYaml(pubspecPath).then((Map value) {
+      pubspecMap = value;
 
-          String packageName = pubspecMap['name'];
-          assert(packageName != null && packageName.length > 0);
+      String packageName = pubspecMap['name'];
+      assert(packageName != null && packageName.length > 0);
 
-          String version = pubspecMap['version'];
-          if(version == null) version = '';
+      String version = pubspecMap['version'];
+      if (version == null) version = '';
 
-          var deps = Dependency.getDependencies(pubspecMap);
+      var deps = Dependency.getDependencies(pubspecMap);
 
-          return new VizPackage._(path, packageName, version, deps);
-        });
+      return new VizPackage._(path, packageName, version, deps);
+    });
   }
 
   String toString() => '$name @ $path';
@@ -101,7 +100,7 @@ class VizPackage extends Comparable {
       props['style'] = 'bold';
     }
 
-    writeNode(sink, name, props);
+    _writeNode(sink, name, props);
 
     var orderedDeps = dependencies.toList(growable: false)
         ..sort();
@@ -129,15 +128,15 @@ class VizPackage extends Comparable {
           edgeProps['constraint'] = 'false';
         }
 
-        writeEdge(sink, name, dep.name, edgeProps);
+        _writeEdge(sink, name, dep.name, edgeProps);
       }
     }
   }
 }
 
-void writeNode(StringSink sink, String name, Map<String, String> values) {
+void _writeNode(StringSink sink, String name, Map<String, String> values) {
   sink.write('  $name');
-  if(!values.isEmpty) {
+  if (!values.isEmpty) {
     var props = values.keys.map((key) => '$key=${values[key]}')
         .toList(growable: false)
         .join(',');
@@ -146,12 +145,13 @@ void writeNode(StringSink sink, String name, Map<String, String> values) {
   sink.writeln(';');
 }
 
-void writeEdge(StringSink sink, String from, String to, Map<String, String> values) {
+void _writeEdge(StringSink sink, String from, String to, Map<String,
+    String> values) {
   var name = '$from -> $to';
-  writeNode(sink, name, values);
+  _writeNode(sink, name, values);
 }
 
-Future<Map<String, dynamic>> openYaml(String path) {
+Future<Map<String, dynamic>> _openYaml(String path) {
   var file = new File(path);
   return file.readAsString().then(yaml.loadYaml);
 }
