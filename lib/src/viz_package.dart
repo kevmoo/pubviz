@@ -109,7 +109,7 @@ class VizPackage extends Comparable {
       if (!dep.isDevDependency || isRoot) {
         var edgeProps = {};
 
-        if (dep.versionConstraint != 'any') {
+        if (!dep.versionConstraint.isAny) {
           edgeProps['label'] = '"${dep.versionConstraint}"';
         }
 

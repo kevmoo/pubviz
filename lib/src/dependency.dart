@@ -1,11 +1,14 @@
 library pubviz.dependency;
 
+import 'version.dart';
+
 class Dependency implements Comparable<Dependency> {
   final String name;
-  final String versionConstraint;
+  final VersionConstraint versionConstraint;
   final bool isDevDependency;
 
-  Dependency._(this.name, this.versionConstraint, this.isDevDependency);
+  Dependency._(this.name, String versionConstraint, this.isDevDependency)
+      : this.versionConstraint = new VersionConstraint.parse(versionConstraint);
 
   static Set<Dependency> getDependencies(Map<String, dynamic> yaml) {
     var deps = new Set<Dependency>();
