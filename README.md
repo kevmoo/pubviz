@@ -3,10 +3,35 @@
 
 *Make sure you run `pub get` or `pub upgrade` in your target project directory.*
 
+### Running pubviz
+
+#### pub global run - recommended with Dart v1.6+
+
+First, activate `pubviz`.
+```
+~/anypath/> pub global activate pubviz
+```
+
+Then run it in the target project path.
+
+```
+~/source/dart_proj_path/> pub global run pubviz [arguments]
+```
+
+#### Running pubviz directly
+
+Sync the `pubviz` source from the [GitHub project](https://github.com/kevmoo/pubviz).
+
+Run it directly.
+```
+~/source/dart_proj_path/> path_to_dart_sdk/dart pubviz_path/bin/pubviz.dart [arguments]
+```
+
+
 ### Generate and open an html file for a package.
 
 ```
-dart bin/pubviz.dart open /path/to/http_package
+pub global run pubviz open /path/to/http_package
 ```
 
 Should open your default browser to something like:
@@ -17,7 +42,7 @@ Should open your default browser to something like:
 ### Print GraphViz dot format to command line
 
 ```
-dart bin/pubviz.dart --format=dot print /path/to/http_package
+pub global run pubviz --format=dot print /path/to/http_package
 ```
 
 You should see output something like:
