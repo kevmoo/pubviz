@@ -2,9 +2,10 @@
 
 import 'dart:async';
 import 'dart:io';
+
+import 'package:args/args.dart';
 import 'package:path/path.dart' as p;
 import 'package:pubviz/pubviz.dart';
-import 'package:args/args.dart';
 
 void main(List<String> args) {
   var parser = _getParser();
