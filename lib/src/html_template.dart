@@ -1,3 +1,6 @@
+library pubviz.html_template;
+
+const String TEMPLATE = r'''
 <!DOCTYPE html>
 <html>
   <head>
@@ -54,3 +57,4 @@ DOT_HERE
     </script>
   </body>
 </html>
+''';

@@ -45,25 +45,25 @@ void _printUsage(ArgParser parser) {
   print('If <package path> is omitted, the current directory is used.');
 }
 
-Future _getContent(VizRoot root, String format) {
-  if (format == 'html') {
-    return _getHtmlContent(root);
-  } else if (format == 'dot') {
-    return new Future.value(root.toDot());
+String _getContent(VizRoot root, String format) {
+  switch(format) {
+    case 'html':
+      return _getHtmlContent(root);
+    case 'dot':
+      return root.toDot();
+    default:
+      throw new StateError('format "$format" is not supported');
   }
-  throw new StateError('format "$format" is not supported');
 }
 
 Future _open(VizRoot root, String format) {
-  String content;
   String filePath;
 
   var name = root.root.name;
 
-  return _getContent(root, format).then((value) {
-    content = value;
-    return Directory.systemTemp.createTemp('pubviz_${name}_');
-  }).then((dir) {
+  String content = _getContent(root, format);
+
+  return Directory.systemTemp.createTemp('pubviz_${name}_').then((dir) {
     var extention = (format == 'html') ? 'html' : 'dot';
     filePath = p.join(dir.path, '$name.$extention');
     var file = new File(filePath);
@@ -89,24 +89,19 @@ Future _open(VizRoot root, String format) {
   });
 }
 
-Future _printContent(VizRoot root, String format) {
-  return _getContent(root, format).then((String content) {
-    print(content);
-  });
+void _printContent(VizRoot root, String format) {
+  var content = _getContent(root, format);
+  print(content);
 }
 
-Future<String> _getHtmlContent(VizRoot root) {
-  var templateFile = new File(_getTemplatePath());
-  assert(templateFile.existsSync());
+String _getHtmlContent(VizRoot root) {
+  var dot = root.toDot(escapeLabels: true);
 
-  return templateFile.readAsString().then((String content) {
-    var dot = root.toDot(escapeLabels: true);
+  var content = TEMPLATE;
+  content = content.replaceAll(DOT_PLACE_HOLDER, dot);
+  content = content.replaceAll(TITLE_PLACE_HOLDER, root.root.name);
 
-    content = content.replaceAll(DOT_PLACE_HOLDER, dot);
-    content = content.replaceAll(TITLE_PLACE_HOLDER, root.root.name);
-
-    return content;
-  });
+  return content;
 }
 
 String _getPath(List<String> args) {
@@ -137,16 +132,6 @@ ArgParser _getParser() => new ArgParser()
         defaultsTo: 'html', allowedHelp: _FORMAT_HELP)
     ..addCommand('open')
     ..addCommand('print');
-
-String _getTemplatePath() {
-  var templatePath = p.fromUri(Platform.script);
-  templatePath = p.dirname(templatePath);
-  templatePath = p.join(templatePath, '..', TEMPLATE_PATH);
-  templatePath = p.normalize(templatePath);
-  return templatePath;
-}
-
-const TEMPLATE_PATH = 'asset/pubviz.html';
 
 const DOT_PLACE_HOLDER = 'DOT_HERE';
 
