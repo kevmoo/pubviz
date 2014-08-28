@@ -8,7 +8,7 @@ class Dependency implements Comparable<Dependency> {
   final bool isDevDependency;
 
   Dependency._(this.name, String versionConstraint, this.isDevDependency)
-      : this.versionConstraint = new VersionConstraint.parse(versionConstraint);
+      : this.versionConstraint = _parseOrNull(versionConstraint);
 
   static Set<Dependency> getDependencies(Map<String, dynamic> yaml) {
     var deps = new Set<Dependency>();
@@ -26,7 +26,7 @@ class Dependency implements Comparable<Dependency> {
         if (constraint == null) {
           constraint = '';
         } else if (constraint is Map) {
-          constraint = '??complex??';
+          constraint = constraint.toString();
         }
 
         var dep = new Dependency._(key, constraint, isDev);
@@ -54,5 +54,13 @@ class Dependency implements Comparable<Dependency> {
   String toString() {
     var devStr = isDevDependency ? '(dev)' : '';
     return '$name$devStr $versionConstraint';
+  }
+}
+
+VersionConstraint _parseOrNull(String input) {
+  try {
+    return new VersionConstraint.parse(input);
+  } on FormatException catch (e) {
+    return VersionConstraint.empty;
   }
 }
