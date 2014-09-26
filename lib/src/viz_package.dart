@@ -36,7 +36,8 @@ class VizPackage extends Comparable {
       : dependencies = new UnmodifiableSetView(deps),
         this.path = p.normalize(path);
 
-  static Future<VizPackage> forDirectory(String path) async {
+  static Future<VizPackage> forDirectory(String path,
+      {bool flagOutdated: false}) async {
     var dir = new Directory(path);
     assert(dir.existsSync());
 
@@ -53,7 +54,13 @@ class VizPackage extends Comparable {
 
     var deps = Dependency.getDependencies(pubspecMap);
 
-    return new VizPackage._(path, packageName, version, deps);
+    var package = new VizPackage._(path, packageName, version, deps);
+
+    if (flagOutdated) {
+      await package.updateLatestVersion();
+    }
+
+    return package;
   }
 
   String toString() => '$name @ $path';
@@ -103,6 +110,10 @@ class VizPackage extends Comparable {
       props['style'] = 'bold';
     }
 
+    if (latestVersion != null && latestVersion.compareTo(version) > 0) {
+      props['color'] = 'red';
+    }
+
     _writeNode(sink, name, props);
 
     var orderedDeps = dependencies.toList(growable: false)..sort();
@@ -113,6 +124,10 @@ class VizPackage extends Comparable {
 
         if (!dep.versionConstraint.isAny) {
           edgeProps['label'] = '"${dep.versionConstraint}"';
+        }
+
+        if (dep.includesLatest != null && !dep.includesLatest) {
+          edgeProps['fontcolor'] = 'red';
         }
 
         if (isRoot) {

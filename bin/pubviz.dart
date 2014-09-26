@@ -21,8 +21,9 @@ main(List<String> args) async {
   var path = _getPath(command.rest);
 
   var format = result['format'];
+  var flagOutdated = result['flag-outdated'];
 
-  var vp = await VizRoot.forDirectory(path);
+  var vp = await VizRoot.forDirectory(path, flagOutdated: flagOutdated);
   if (command.name == 'print') {
     _printContent(vp, format);
   } else if (command.name == 'open') {
@@ -131,7 +132,13 @@ ArgParser _getParser() => new ArgParser()
       defaultsTo: 'html',
       allowedHelp: _FORMAT_HELP)
   ..addCommand('open')
-  ..addCommand('print');
+  ..addCommand('print')
+  ..addFlag('flag-outdated',
+      abbr: 'o',
+      defaultsTo: false,
+      negatable: true,
+      help: 'Check pub.dartlang.org for lasted packages and flag those that '
+      'are outdated.');
 
 const DOT_PLACE_HOLDER = 'DOT_HERE';
 

@@ -12,20 +12,37 @@ import 'viz_package.dart';
 class VizRoot {
   final VizPackage root;
   final Map<String, VizPackage> packages;
+  final bool flagOutdated;
 
-  VizRoot._(this.root, Map<String, VizPackage> packages)
+  VizRoot._(this.root, Map<String, VizPackage> packages, this.flagOutdated)
       : this.packages = new UnmodifiableMapView(packages);
 
-  static Future<VizRoot> forDirectory(String path) async {
+  static Future<VizRoot> forDirectory(String path,
+      {bool flagOutdated: false}) async {
     var root = await VizPackage.forDirectory(path);
-    var packages = await _getReferencedPackages(path);
+    var packages = await _getReferencedPackages(path, flagOutdated);
     assert(packages.containsKey(root.name));
 
     // want to make sure that the root note instance is the same
     // as the instance in the packages collection
     root = packages[root.name];
 
-    return new VizRoot._(root, packages);
+    var value = new VizRoot._(root, packages, flagOutdated);
+
+    if (flagOutdated) {
+      for (var dep in _allDeps(value)) {
+        assert(dep.includesLatest == null);
+
+        var package = packages[dep.name];
+
+        if (package != null && package.latestVersion != null) {
+          dep.includesLatest =
+              dep.versionConstraint.allows(package.latestVersion);
+        }
+      }
+    }
+
+    return value;
   }
 
   String toDot({bool escapeLabels: false}) {
@@ -97,14 +114,15 @@ Future<Map<String, String>> _getPackageMap(String path) async {
   return map;
 }
 
-Future<Map<String, VizPackage>> _getReferencedPackages(String path) async {
+Future<Map<String, VizPackage>> _getReferencedPackages(
+    String path, bool flagOutdated) async {
   var packs = new Map<String, VizPackage>();
 
   var map = await _getPackageMap(path);
 
   for (var packageName in map.keys) {
     var subPath = map[packageName];
-    var vp = await VizPackage.forDirectory(subPath);
+    var vp = await VizPackage.forDirectory(subPath, flagOutdated: flagOutdated);
     assert(vp.name == packageName);
 
     assert(!packs.containsKey(vp.name));
@@ -112,4 +130,10 @@ Future<Map<String, VizPackage>> _getReferencedPackages(String path) async {
     packs[vp.name] = vp;
   }
   return packs;
+}
+
+Iterable<Dependency> _allDeps(VizRoot root) sync* {
+  for (var pkg in root.packages.values) {
+    yield* pkg.dependencies;
+  }
 }

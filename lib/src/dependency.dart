@@ -7,6 +7,16 @@ class Dependency implements Comparable<Dependency> {
   final VersionConstraint versionConstraint;
   final bool isDevDependency;
 
+  bool _includesLatest;
+
+  bool get includesLatest => _includesLatest;
+
+  void set includesLatest(bool value) {
+    assert(_includesLatest == null);
+    assert(value != null);
+    _includesLatest = value;
+  }
+
   Dependency._(this.name, String versionConstraint, this.isDevDependency)
       : this.versionConstraint = _parseOrNull(versionConstraint);
 
