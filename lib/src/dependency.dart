@@ -1,6 +1,6 @@
 library pubviz.dependency;
 
-import 'version.dart';
+import 'package:pub_semver/pub_semver.dart';
 
 class Dependency implements Comparable<Dependency> {
   final String name;

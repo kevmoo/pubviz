@@ -4,10 +4,10 @@ import 'dart:async';
 import 'dart:io';
 import 'package:collection/wrappers.dart';
 import 'package:path/path.dart' as p;
+import 'package:pub_semver/pub_semver.dart';
 import 'package:yaml/yaml.dart' as yaml;
 
 import 'dependency.dart';
-import 'version.dart';
 
 class VizPackage extends Comparable {
   final String path;
