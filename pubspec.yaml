@@ -11,6 +11,8 @@ dependencies:
   path: '>=1.0.0 <2.0.0'
   pub_semver: '>=1.0.0 <2.0.0'
   yaml: '>=2.0.0 <3.0.0'
+executables:
+  pubviz:
 dev_dependencies:
   hop: '>=0.30.0 <0.32.0'
   hop_git: '>=0.1.0 <0.2.0'
