@@ -1,37 +1,35 @@
-#pubviz
 ### Visualize package dependencies in your Dart project
+
+*pubviz requires at least Dart v1.6.*
 
 *Make sure you run `pub get` or `pub upgrade` in your target project directory.*
 
-### Running pubviz
+### Installing
 
-#### pub global run - recommended with Dart v1.6+
-
-First, activate `pubviz`.
+Activate `pubviz`.
 ```
 ~/anypath/> pub global activate pubviz
 ```
 
-Then run it in the target project path.
+### Use
+
+If you have installed Dart v1.7+ and [modified your PATH][path], you can
+run `pubviz` directly.
 
 ```
-~/source/dart_proj_path/> pub global run pubviz [arguments]
+~/proj_path/> pubviz [arguments]
 ```
 
-#### Running pubviz directly
-
-Sync the `pubviz` source from the [GitHub project](https://github.com/kevmoo/pubviz).
-
-Run it directly.
-```
-~/source/dart_proj_path/> path_to_dart_sdk/dart pubviz_path/bin/pubviz.dart [arguments]
-```
-
-
-### Generate and open an html file for a package.
+Otherwise you can use the `pub global` command.
 
 ```
-pub global run pubviz open /path/to/http_package
+~/proj_path/> pub global run pubviz [arguments]
+```
+
+### Generate and open an html file for the package on the current path.
+
+```
+~/http_package/> pubviz open
 ```
 
 Should open your default browser to something like:
@@ -39,10 +37,10 @@ Should open your default browser to something like:
 ![sample](https://raw.github.com/kevmoo/pubviz/master/doc/sample.png)
 
 
-### Print GraphViz dot format to command line
+### Print GraphViz dot format to command line for a package on a specified path.
 
 ```
-pub global run pubviz --format=dot print /path/to/http_package
+~/any_path/> pubviz --format=dot print /path/to/http_package
 ```
 
 You should see output something like:
@@ -85,3 +83,5 @@ usage: pubviz [--format=<format>] (open | print) [<package path>]
 
 If <package path> is omitted, the current directory is used.
 ```
+
+[path]: https://www.dartlang.org/tools/pub/cmd/pub-global.html#running-a-script-from-your-path
