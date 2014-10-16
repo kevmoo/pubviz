@@ -4,6 +4,10 @@
 
 *Make sure you run `pub get` or `pub upgrade` in your target project directory.*
 
+### Example
+
+Here's an [example](http://kevmoo.github.io/pubviz/) of `pubviz` run on itself.
+
 ### Installing
 
 Activate `pubviz`.

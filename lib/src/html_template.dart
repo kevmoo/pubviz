@@ -23,7 +23,7 @@ const String TEMPLATE = r'''
   </head>
   <body>
     <button onclick='zoomClick();'>Zoom</button>
-    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js'></script>
     <script src="http://kevmoo.github.io/pubviz/viz.js"></script>
     <script type="text/vnd.graphviz" id="dot">
 DOT_HERE
