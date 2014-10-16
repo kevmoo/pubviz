@@ -20,15 +20,15 @@
   </head>
   <body>
     <button onclick='zoomClick();'>Zoom</button>
-    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js'></script>
     <script src="http://kevmoo.github.io/pubviz/viz.js"></script>
     <script type="text/vnd.graphviz" id="dot">
 digraph G {
   node [fontname=Helvetica];
   edge [fontname=Helvetica, fontcolor=gray];
 
-  args [label="args\n0.11.0+1",shape=box,margin="0.25,0.15",style=bold];
-  args -> collection [label=">=0.9.0 <0.10.0"];
+  args [label="args\n0.12.0+2",shape=box,margin="0.25,0.15",style=bold];
+  args -> collection [label=">=0.9.0 <2.0.0"];
 
   bot [label="bot\n0.27.0+2"];
 
@@ -38,10 +38,10 @@ digraph G {
   bot_io -> logging [label=">=0.9.0 <0.10.0",color=gray];
   bot_io -> path [label=">=1.0.0 <2.0.0",color=gray];
 
-  collection [label="collection\n0.9.4",shape=box,margin="0.25,0.15",style=bold];
+  collection [label="collection\n1.0.0",shape=box,margin="0.25,0.15",style=bold];
 
-  completion [label="completion\n0.1.2+3"];
-  completion -> args [label=">=0.9.0 <0.12.0",color=gray];
+  completion [label="completion\n0.1.2+5"];
+  completion -> args [label=">=0.12.0 <0.13.0",color=gray];
   completion -> bot [label=">=0.26.0 <0.28.0",color=gray];
   completion -> logging [label=">=0.9.0 <0.10.0",color=gray];
   completion -> path [label=">=1.0.0 <2.0.0",color=gray];
@@ -52,11 +52,11 @@ digraph G {
   git -> bot [label=">=0.26.0 <0.28.0",color=gray];
   git -> path [label=">=1.0.0 <2.0.0",color=gray];
 
-  hop [label="hop\n0.31.0+1",style=bold];
-  hop -> args [label=">=0.9.0 <0.12.0",color=gray];
+  hop [label="hop\n0.31.0+4",style=bold];
+  hop -> args [label=">=0.9.0 <0.13.0",color=gray];
   hop -> bot [label=">=0.26.0 <0.28.0",color=gray];
   hop -> bot_io [label=">=0.26.1 <0.27.0",color=gray];
-  hop -> collection [label=">=0.9.0 <0.10.0",color=gray];
+  hop -> collection [label=">=0.9.0 <2.0.0",color=gray];
   hop -> completion [label=">=0.1.0 <0.2.0",color=gray];
   hop -> logging [label=">=0.9.1 <0.10.0",color=gray];
   hop -> path [label=">=0.9.0 <2.0.0",color=gray];
@@ -65,14 +65,18 @@ digraph G {
   hop_git -> git [label=">=0.4.1 <0.5.0",color=gray];
   hop_git -> hop [label=">=0.30.0 <0.32.0",color=gray];
 
-  logging [label="logging\n0.9.1+2"];
+  logging [label="logging\n0.9.2"];
 
-  path [label="path\n1.2.2",shape=box,margin="0.25,0.15",style=bold];
+  path [label="path\n1.3.0",shape=box,margin="0.25,0.15",style=bold];
 
-  pubviz [label="pubviz\n2.1.1-dev",fontsize=18,style=bold,shape=box,margin="0.25,0.15"];
-  pubviz -> args [label=">=0.10.0+1 <0.12.0",penwidth=2];
-  pubviz -> collection [label=">=0.9.0 <1.0.0",penwidth=2];
+  pub_semver [label="pub_semver\n1.0.0",shape=box,margin="0.25,0.15",style=bold];
+  pub_semver -> collection [label=">=0.9.0 <2.0.0"];
+
+  pubviz [label="pubviz\n2.2.1+4",fontsize=18,style=bold,shape=box,margin="0.25,0.15"];
+  pubviz -> args [label=">=0.10.0+1 <0.13.0",penwidth=2];
+  pubviz -> collection [label=">=0.9.0 <2.0.0",penwidth=2];
   pubviz -> path [label=">=1.0.0 <2.0.0",penwidth=2];
+  pubviz -> pub_semver [label=">=1.0.0 <2.0.0",penwidth=2];
   pubviz -> yaml [label=">=2.0.0 <3.0.0",penwidth=2];
   pubviz -> hop [label=">=0.30.0 <0.32.0",penwidth=2,style=dashed];
   pubviz -> hop_git [label=">=0.1.0 <0.2.0",penwidth=2,style=dashed];
@@ -84,8 +88,8 @@ digraph G {
   string_scanner -> path [label=">=1.2.0 <2.0.0"];
   string_scanner -> source_span [label=">=1.0.0 <2.0.0"];
 
-  yaml [label="yaml\n2.0.0",shape=box,margin="0.25,0.15",style=bold];
-  yaml -> collection [label=">=0.9.2 <0.10.0"];
+  yaml [label="yaml\n2.0.1+1",shape=box,margin="0.25,0.15",style=bold];
+  yaml -> collection [label=">=0.9.2 <2.0.0"];
   yaml -> path [label=">=1.2.0 <2.0.0"];
   yaml -> source_span [label=">=1.0.0 <2.0.0"];
   yaml -> string_scanner [label=">=0.1.0 <0.2.0"];
@@ -121,4 +125,3 @@ digraph G {
     </script>
   </body>
 </html>
-
