@@ -55,37 +55,36 @@ String _getContent(VizRoot root, String format) {
   }
 }
 
-Future _open(VizRoot root, String format) {
+Future _open(VizRoot root, String format) async {
   String filePath;
 
   var name = root.root.name;
 
   String content = _getContent(root, format);
 
-  return Directory.systemTemp.createTemp('pubviz_${name}_').then((dir) {
-    var extention = (format == 'html') ? 'html' : 'dot';
-    filePath = p.join(dir.path, '$name.$extention');
-    var file = new File(filePath);
-    return file.create();
-  }).then((file) {
-    return file.writeAsString(content, mode: FileMode.WRITE, flush: true);
-  }).then((_) {
-    print('File generated: $filePath');
+  var dir = await Directory.systemTemp.createTemp('pubviz_${name}_');
+  var extention = (format == 'html') ? 'html' : 'dot';
+  filePath = p.join(dir.path, '$name.$extention');
+  var file = new File(filePath);
 
-    String openCommand;
-    if (Platform.isMacOS) {
-      openCommand = 'open';
-    } else if (Platform.isLinux) {
-      openCommand = 'xdg-open';
-    } else if (Platform.isWindows) {
-      openCommand = 'start';
-    } else {
-      print("We don't know how to open a file in ${Platform.operatingSystem}");
-      exit(1);
-    }
+  file = await file.create();
+  await file.writeAsString(content, mode: FileMode.WRITE, flush: true);
 
-    return Process.run(openCommand, [filePath], runInShell: true);
-  });
+  print('File generated: $filePath');
+
+  String openCommand;
+  if (Platform.isMacOS) {
+    openCommand = 'open';
+  } else if (Platform.isLinux) {
+    openCommand = 'xdg-open';
+  } else if (Platform.isWindows) {
+    openCommand = 'start';
+  } else {
+    print("We don't know how to open a file in ${Platform.operatingSystem}");
+    exit(1);
+  }
+
+  return Process.run(openCommand, [filePath], runInShell: true);
 }
 
 void _printContent(VizRoot root, String format) {

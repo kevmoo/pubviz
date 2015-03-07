@@ -31,28 +31,24 @@ class VizPackage extends Comparable {
       : dependencies = new UnmodifiableSetView(deps),
         this.path = p.normalize(path);
 
-  static Future<VizPackage> forDirectory(String path) {
+  static Future<VizPackage> forDirectory(String path) async {
     var dir = new Directory(path);
     assert(dir.existsSync());
 
     var pubspecPath = p.join(path, 'pubspec.yaml');
 
-    Map<String, dynamic> pubspecMap;
+    Map<String, dynamic> pubspecMap = await _openYaml(pubspecPath);
 
-    return _openYaml(pubspecPath).then((Map value) {
-      pubspecMap = value;
+    String packageName = pubspecMap['name'];
+    assert(packageName != null && packageName.length > 0);
 
-      String packageName = pubspecMap['name'];
-      assert(packageName != null && packageName.length > 0);
+    var versionString = pubspecMap['version'];
+    var version =
+        (versionString == null) ? null : new Version.parse(versionString);
 
-      var versionString = pubspecMap['version'];
-      var version =
-          (versionString == null) ? null : new Version.parse(versionString);
+    var deps = Dependency.getDependencies(pubspecMap);
 
-      var deps = Dependency.getDependencies(pubspecMap);
-
-      return new VizPackage._(path, packageName, version, deps);
-    });
+    return new VizPackage._(path, packageName, version, deps);
   }
 
   String toString() => '$name @ $path';
@@ -153,7 +149,8 @@ void _writeEdge(
   _writeNode(sink, name, values);
 }
 
-Future<Map<String, dynamic>> _openYaml(String path) {
+Future<Map<String, dynamic>> _openYaml(String path) async {
   var file = new File(path);
-  return file.readAsString().then(yaml.loadYaml);
+  var value = await file.readAsString();
+  return yaml.loadYaml(value);
 }

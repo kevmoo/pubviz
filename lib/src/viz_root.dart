@@ -15,25 +15,23 @@ class VizRoot {
   VizRoot._(this.root, Map<String, VizPackage> packages)
       : this.packages = new UnmodifiableMapView(packages);
 
-  static Future<VizRoot> forDirectory(String path) {
-    return VizPackage.forDirectory(path).then((VizPackage root) {
-      return _getReferencedPackages(path).then((packages) {
-        if (!packages.containsKey(root.name)) {
-          // the current package likely has no lib dir
-          var rootLibDirPath = pathos.join(path, 'lib');
-          var rootLibDir = new Directory(rootLibDirPath);
-          assert(!rootLibDir.existsSync());
-          packages[root.name] = root;
-        }
-        assert(packages.containsKey(root.name));
+  static Future<VizRoot> forDirectory(String path) async {
+    var root = await VizPackage.forDirectory(path);
+    var packages = await _getReferencedPackages(path);
+    if (!packages.containsKey(root.name)) {
+      // the current package likely has no lib dir
+      var rootLibDirPath = pathos.join(path, 'lib');
+      var rootLibDir = new Directory(rootLibDirPath);
+      assert(!rootLibDir.existsSync());
+      packages[root.name] = root;
+    }
+    assert(packages.containsKey(root.name));
 
-        // want to make sure that the root note instance is the same
-        // as the instance in the packages collection
-        root = packages[root.name];
+    // want to make sure that the root note instance is the same
+    // as the instance in the packages collection
+    root = packages[root.name];
 
-        return new VizRoot._(root, packages);
-      });
-    });
+    return new VizRoot._(root, packages);
   }
 
   String toDot({bool escapeLabels: false}) {
@@ -89,52 +87,50 @@ class VizRoot {
   }
 }
 
-Future<Map<String, String>> _getPackageMap(String path) {
+Future<Map<String, String>> _getPackageMap(String path) async {
   var packagePath = pathos.join(path, 'packages');
   var packageDir = new Directory(packagePath);
 
   var map = new Map<String, String>();
 
-  return packageDir
-      .list(recursive: false, followLinks: false)
-      .toList()
-      .then((List<Link> links) {
-    return Future.forEach(links, (link) {
-      return link.target().then((String targetPath) {
-        var linkName = pathos.basename(link.path);
+  var links =
+      await packageDir.list(recursive: false, followLinks: false).toList();
 
-        if (pathos.isRelative(targetPath)) {
-          targetPath = pathos.join(packagePath, targetPath);
-          targetPath = pathos.normalize(targetPath);
-        }
+  for (var link in links) {
+    var targetPath = await link.target();
+    var linkName = pathos.basename(link.path);
 
-        assert(pathos.isAbsolute(targetPath));
-        assert(pathos.basename(targetPath) == 'lib');
+    if (pathos.isRelative(targetPath)) {
+      targetPath = pathos.join(packagePath, targetPath);
+      targetPath = pathos.normalize(targetPath);
+    }
 
-        targetPath = pathos.dirname(targetPath);
+    assert(pathos.isAbsolute(targetPath));
+    assert(pathos.basename(targetPath) == 'lib');
 
-        assert(!map.containsKey(linkName));
-        assert(!map.containsValue(targetPath));
+    targetPath = pathos.dirname(targetPath);
 
-        map[linkName] = targetPath;
-      });
-    });
-  }).then((_) => map);
+    assert(!map.containsKey(linkName));
+    assert(!map.containsValue(targetPath));
+
+    map[linkName] = targetPath;
+  }
+  return map;
 }
 
-Future<Map<String, VizPackage>> _getReferencedPackages(String path) {
+Future<Map<String, VizPackage>> _getReferencedPackages(String path) async {
   var packs = new Map<String, VizPackage>();
 
-  return _getPackageMap(path).then((Map<String, String> map) {
-    return Future.forEach(map.keys, (String packageName) {
-      var subPath = map[packageName];
-      return VizPackage.forDirectory(subPath).then((VizPackage vp) {
-        assert(vp.name == packageName);
+  var map = await _getPackageMap(path);
 
-        assert(!packs.containsKey(vp.name));
-        assert(!packs.containsValue(vp));
-        packs[vp.name] = vp;
-      });
-    });
-  }).then((_) => packs);
+  for (var packageName in map.keys) {
+    var subPath = map[packageName];
+    var vp = await VizPackage.forDirectory(subPath);
+    assert(vp.name == packageName);
+
+    assert(!packs.containsKey(vp.name));
+    assert(!packs.containsValue(vp));
+    packs[vp.name] = vp;
+  }
+  return packs;
 }
