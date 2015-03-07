@@ -4,7 +4,9 @@ import 'dart:async';
 import 'dart:collection';
 import 'dart:convert';
 import 'dart:io';
+
 import 'package:path/path.dart' as p;
+import 'package:pub_semver/pub_semver.dart';
 
 import 'dependency.dart';
 import 'viz_package.dart';
@@ -35,7 +37,9 @@ class VizRoot {
 
         var package = packages[dep.name];
 
-        if (package != null && package.latestVersion != null) {
+        if (package != null &&
+            package.latestVersion != null &&
+            dep.versionConstraint != VersionConstraint.empty) {
           dep.includesLatest =
               dep.versionConstraint.allows(package.latestVersion);
         }

@@ -110,7 +110,9 @@ class VizPackage extends Comparable {
       props['style'] = 'bold';
     }
 
-    if (latestVersion != null && latestVersion.compareTo(version) > 0) {
+    if (version != null &&
+        latestVersion != null &&
+        latestVersion.compareTo(version) > 0) {
       props['color'] = 'red';
       props['xlabel'] = '"$latestVersion"';
     }
