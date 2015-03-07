@@ -19,8 +19,8 @@ class Dependency implements Comparable<Dependency> {
     return deps;
   }
 
-  static void _populateFromSection(Map<String, dynamic> yaml,
-      Set<Dependency> value, bool isDev) {
+  static void _populateFromSection(
+      Map<String, dynamic> yaml, Set<Dependency> value, bool isDev) {
     if (yaml != null) {
       yaml.forEach((String key, constraint) {
         if (constraint == null) {

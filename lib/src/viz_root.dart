@@ -17,7 +17,6 @@ class VizRoot {
 
   static Future<VizRoot> forDirectory(String path) {
     return VizPackage.forDirectory(path).then((VizPackage root) {
-
       return _getReferencedPackages(path).then((packages) {
         if (!packages.containsKey(root.name)) {
           // the current package likely has no lib dir
@@ -82,7 +81,8 @@ class VizRoot {
     if (package.onlyDev) {
       package.onlyDev = false;
 
-      for(var subDep in package.dependencies.where((d) => !d.isDevDependency)) {
+      for (var subDep
+          in package.dependencies.where((d) => !d.isDevDependency)) {
         _updateDevOnly(subDep);
       }
     }
@@ -95,7 +95,9 @@ Future<Map<String, String>> _getPackageMap(String path) {
 
   var map = new Map<String, String>();
 
-  return packageDir.list(recursive: false, followLinks: false).toList()
+  return packageDir
+      .list(recursive: false, followLinks: false)
+      .toList()
       .then((List<Link> links) {
     return Future.forEach(links, (link) {
       return link.target().then((String targetPath) {
@@ -124,7 +126,6 @@ Future<Map<String, VizPackage>> _getReferencedPackages(String path) {
   var packs = new Map<String, VizPackage>();
 
   return _getPackageMap(path).then((Map<String, String> map) {
-
     return Future.forEach(map.keys, (String packageName) {
       var subPath = map[packageName];
       return VizPackage.forDirectory(subPath).then((VizPackage vp) {

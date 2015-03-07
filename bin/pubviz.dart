@@ -1,5 +1,4 @@
 #!/usr/bin/env dart
-
 import 'dart:async';
 import 'dart:io';
 
@@ -46,7 +45,7 @@ void _printUsage(ArgParser parser) {
 }
 
 String _getContent(VizRoot root, String format) {
-  switch(format) {
+  switch (format) {
     case 'html':
       return _getHtmlContent(root);
     case 'dot':
@@ -128,10 +127,13 @@ String _getPath(List<String> args) {
 }
 
 ArgParser _getParser() => new ArgParser()
-    ..addOption('format', abbr: 'f', allowed: _FORMAT_ALLOWED,
-        defaultsTo: 'html', allowedHelp: _FORMAT_HELP)
-    ..addCommand('open')
-    ..addCommand('print');
+  ..addOption('format',
+      abbr: 'f',
+      allowed: _FORMAT_ALLOWED,
+      defaultsTo: 'html',
+      allowedHelp: _FORMAT_HELP)
+  ..addCommand('open')
+  ..addCommand('print');
 
 const DOT_PLACE_HOLDER = 'DOT_HERE';
 
@@ -143,4 +145,3 @@ const _FORMAT_HELP = const {
   'dot': 'Generate a GraphViz dot file',
   'html': 'Wrap the GraphViz dot format in an HTML template which renders it.'
 };
-

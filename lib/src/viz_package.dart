@@ -46,8 +46,8 @@ class VizPackage extends Comparable {
       assert(packageName != null && packageName.length > 0);
 
       var versionString = pubspecMap['version'];
-      var version = (versionString == null) ?
-          null : new Version.parse(versionString);
+      var version =
+          (versionString == null) ? null : new Version.parse(versionString);
 
       var deps = Dependency.getDependencies(pubspecMap);
 
@@ -85,7 +85,7 @@ class VizPackage extends Comparable {
       label = label + '$newLine$version';
     }
 
-    var props = { 'label' : '"$label"' };
+    var props = {'label': '"$label"'};
 
     if (isRoot) {
       assert(!onlyDev);
@@ -104,8 +104,7 @@ class VizPackage extends Comparable {
 
     _writeNode(sink, name, props);
 
-    var orderedDeps = dependencies.toList(growable: false)
-        ..sort();
+    var orderedDeps = dependencies.toList(growable: false)..sort();
 
     for (var dep in orderedDeps) {
       if (!dep.isDevDependency || isRoot) {
@@ -139,7 +138,8 @@ class VizPackage extends Comparable {
 void _writeNode(StringSink sink, String name, Map<String, String> values) {
   sink.write('  $name');
   if (!values.isEmpty) {
-    var props = values.keys.map((key) => '$key=${values[key]}')
+    var props = values.keys
+        .map((key) => '$key=${values[key]}')
         .toList(growable: false)
         .join(',');
     sink.write(' [$props]');
@@ -147,8 +147,8 @@ void _writeNode(StringSink sink, String name, Map<String, String> values) {
   sink.writeln(';');
 }
 
-void _writeEdge(StringSink sink, String from, String to, Map<String,
-    String> values) {
+void _writeEdge(
+    StringSink sink, String from, String to, Map<String, String> values) {
   var name = '$from -> $to';
   _writeNode(sink, name, values);
 }
