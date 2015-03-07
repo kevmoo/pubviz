@@ -19,13 +19,6 @@ class VizRoot {
   static Future<VizRoot> forDirectory(String path) async {
     var root = await VizPackage.forDirectory(path);
     var packages = await _getReferencedPackages(path);
-    if (!packages.containsKey(root.name)) {
-      // the current package likely has no lib dir
-      var rootLibDirPath = p.join(path, 'lib');
-      var rootLibDir = new Directory(rootLibDirPath);
-      assert(!rootLibDir.existsSync());
-      packages[root.name] = root;
-    }
     assert(packages.containsKey(root.name));
 
     // want to make sure that the root note instance is the same
