@@ -40,7 +40,7 @@ void _printUsage(ArgParser parser) {
   print('  open   Populate a temporary file with the content and open it.');
   print('  print  Print the output to stdout.');
   print('');
-  print(parser.getUsage());
+  print(parser.usage);
   print('');
   print('If <package path> is omitted, the current directory is used.');
 }

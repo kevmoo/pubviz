@@ -93,8 +93,6 @@ Future<Map<String, String>> _getPackageMap(String path) {
   var packagePath = pathos.join(path, 'packages');
   var packageDir = new Directory(packagePath);
 
-  var dirs = new Map<String, String>();
-
   var map = new Map<String, String>();
 
   return packageDir.list(recursive: false, followLinks: false).toList()
