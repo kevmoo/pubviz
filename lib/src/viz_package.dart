@@ -8,6 +8,7 @@ import 'package:pub_semver/pub_semver.dart';
 import 'package:yaml/yaml.dart' as yaml;
 
 import 'dependency.dart';
+import 'util.dart';
 
 class VizPackage extends Comparable {
   final String path;
@@ -26,6 +27,10 @@ class VizPackage extends Comparable {
 
     _onlyDev = value;
   }
+
+  Version _latestVersion;
+
+  Version get latestVersion => _latestVersion;
 
   VizPackage._(String path, this.name, this.version, Set<Dependency> deps)
       : dependencies = new UnmodifiableSetView(deps),
@@ -128,6 +133,14 @@ class VizPackage extends Comparable {
         _writeEdge(sink, name, dep.name, edgeProps);
       }
     }
+  }
+
+  Future<Version> updateLatestVersion() async {
+    if (_latestVersion != null) return _latestVersion;
+
+    _latestVersion = await getLatestVersion(name);
+
+    return _latestVersion;
   }
 }
 
