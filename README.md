@@ -82,10 +82,11 @@ usage: pubviz [--format=<format>] (open | print) [<package path>]
   print  Print the output to stdout.
 
 -f, --format
-          [dot]     Generate a GraphViz dot file
-          [html]    Wrap the GraphViz dot format in an HTML template which renders it.
+          [dot]             Generate a GraphViz dot file
+          [html]            Wrap the GraphViz dot format in an HTML template which renders it.
 
-If <package path> is omitted, the current directory is used.
-```
+-o, --[no-]flag-outdated    Check pub.dartlang.org for lasted packages and flag those that are outdated.
+
+If <package path> is omitted, the current directory is used.```
 
 [path]: https://www.dartlang.org/tools/pub/cmd/pub-global.html#running-a-script-from-your-path
