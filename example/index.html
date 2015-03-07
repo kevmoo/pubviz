@@ -27,72 +27,92 @@ digraph G {
   node [fontname=Helvetica];
   edge [fontname=Helvetica, fontcolor=gray];
 
-  args [label="args\n0.12.0+2",shape=box,margin="0.25,0.15",style=bold];
-  args -> collection [label=">=0.9.0 <2.0.0"];
+  pubviz [label="pubviz\n2.2.2-dev",fontsize=18,style=bold,shape=box,margin="0.25,0.15"];
+  pubviz -> args [label="^0.12.1",fontcolor=red,penwidth=2];
+  pubviz -> collection [label="^1.0.0",penwidth=2];
+  pubviz -> http [label="^0.11.1+3",penwidth=2];
+  pubviz -> path [label="^1.0.0",penwidth=2];
+  pubviz -> pub_semver [label="^1.0.0",penwidth=2];
+  pubviz -> yaml [label="^2.0.0",penwidth=2];
+  pubviz -> hop [label="^0.31.0",penwidth=2,style=dashed];
+  pubviz -> hop_git [label="^0.1.0",penwidth=2,style=dashed];
+  pubviz -> unittest [label="^0.11.5+4",penwidth=2,style=dashed];
 
-  bot [label="bot\n0.27.0+2"];
+  args [label="args\n0.12.2+6",shape=box,margin="0.25,0.15",style=bold,color=red];
 
-  bot_io [label="bot_io\n0.26.3+1"];
-  bot_io -> bot [label=">=0.27.0 <0.28.0",color=gray];
-  bot_io -> crypto [label=">=0.9.0 <0.10.0",color=gray];
-  bot_io -> logging [label=">=0.9.0 <0.10.0",color=gray];
-  bot_io -> path [label=">=1.0.0 <2.0.0",color=gray];
+  collection [label="collection\n1.1.0",shape=box,margin="0.25,0.15",style=bold];
 
-  collection [label="collection\n1.0.0",shape=box,margin="0.25,0.15",style=bold];
+  bot [label="bot\n0.28.0"];
 
-  completion [label="completion\n0.1.2+5"];
-  completion -> args [label=">=0.12.0 <0.13.0",color=gray];
-  completion -> bot [label=">=0.26.0 <0.28.0",color=gray];
-  completion -> logging [label=">=0.9.0 <0.10.0",color=gray];
-  completion -> path [label=">=1.0.0 <2.0.0",color=gray];
-
-  crypto [label="crypto\n0.9.0"];
-
-  git [label="git\n0.4.1+1"];
-  git -> bot [label=">=0.26.0 <0.28.0",color=gray];
+  git [label="git\n0.4.1+2"];
+  git -> bot [label=">=0.26.0 <0.29.0",color=gray];
   git -> path [label=">=1.0.0 <2.0.0",color=gray];
 
-  hop [label="hop\n0.31.0+4",style=bold];
-  hop -> args [label=">=0.9.0 <0.13.0",color=gray];
-  hop -> bot [label=">=0.26.0 <0.28.0",color=gray];
+  crypto [label="crypto\n0.9.0",shape=box,margin="0.25,0.15"];
+
+  http [label="http\n0.11.1+3",shape=box,margin="0.25,0.15",style=bold];
+  http -> http_parser [label=">=0.0.1 <0.1.0"];
+  http -> path [label=">=0.9.0 <2.0.0"];
+  http -> stack_trace [label=">=0.9.1 <2.0.0"];
+
+  matcher [label="matcher\n0.11.4+2"];
+
+  hop_git [label="hop_git\n0.1.0+1",style=bold];
+  hop_git -> git [label=">=0.4.1 <0.5.0",color=gray];
+  hop_git -> hop [label=">=0.30.0 <0.32.0",color=gray];
+
+  stack_trace [label="stack_trace\n1.2.3",shape=box,margin="0.25,0.15"];
+  stack_trace -> path [label=">=1.2.0 <2.0.0"];
+
+  pub_semver [label="pub_semver\n1.1.0",shape=box,margin="0.25,0.15",style=bold];
+  pub_semver -> collection [label=">=0.9.0 <2.0.0"];
+
+  hop [label="hop\n0.31.1",style=bold];
+  hop -> args [label=">=0.9.0 <0.13.0",fontcolor=red,color=gray];
+  hop -> bot [label=">=0.26.0 <0.29.0",color=gray];
   hop -> bot_io [label=">=0.26.1 <0.27.0",color=gray];
   hop -> collection [label=">=0.9.0 <2.0.0",color=gray];
   hop -> completion [label=">=0.1.0 <0.2.0",color=gray];
   hop -> logging [label=">=0.9.1 <0.10.0",color=gray];
   hop -> path [label=">=0.9.0 <2.0.0",color=gray];
 
-  hop_git [label="hop_git\n0.1.0+1",style=bold];
-  hop_git -> git [label=">=0.4.1 <0.5.0",color=gray];
-  hop_git -> hop [label=">=0.30.0 <0.32.0",color=gray];
+  bot_io [label="bot_io\n0.26.3+2"];
+  bot_io -> bot [label=">=0.27.0 <0.29.0",color=gray];
+  bot_io -> crypto [label=">=0.9.0 <0.10.0",color=gray];
+  bot_io -> logging [label=">=0.9.0 <0.10.0",color=gray];
+  bot_io -> path [label=">=1.0.0 <2.0.0",color=gray];
 
-  logging [label="logging\n0.9.2"];
+  path [label="path\n1.3.3",shape=box,margin="0.25,0.15",style=bold];
 
-  path [label="path\n1.3.0",shape=box,margin="0.25,0.15",style=bold];
+  completion [label="completion\n0.1.3"];
+  completion -> args [label=">=0.12.1 <0.14.0",color=gray];
+  completion -> bot [label=">=0.26.0 <0.29.0",color=gray];
+  completion -> logging [label=">=0.9.0 <0.10.0",color=gray];
+  completion -> path [label=">=1.0.0 <2.0.0",color=gray];
 
-  pub_semver [label="pub_semver\n1.0.0",shape=box,margin="0.25,0.15",style=bold];
-  pub_semver -> collection [label=">=0.9.0 <2.0.0"];
+  http_parser [label="http_parser\n0.0.2+5",shape=box,margin="0.25,0.15"];
+  http_parser -> collection [label=">=0.9.1 <2.0.0"];
+  http_parser -> crypto [label=">=0.9.0 <0.10.0"];
+  http_parser -> string_scanner [label=">=0.0.0 <0.2.0"];
 
-  pubviz [label="pubviz\n2.2.1+6",fontsize=18,style=bold,shape=box,margin="0.25,0.15"];
-  pubviz -> args [label=">=0.10.0+1 <0.13.0",penwidth=2];
-  pubviz -> collection [label=">=0.9.0 <2.0.0",penwidth=2];
-  pubviz -> path [label=">=1.0.0 <2.0.0",penwidth=2];
-  pubviz -> pub_semver [label=">=1.0.0 <2.0.0",penwidth=2];
-  pubviz -> yaml [label=">=2.0.0 <3.0.0",penwidth=2];
-  pubviz -> hop [label=">=0.30.0 <0.32.0",penwidth=2,style=dashed];
-  pubviz -> hop_git [label=">=0.1.0 <0.2.0",penwidth=2,style=dashed];
+  logging [label="logging\n0.9.3"];
 
-  source_span [label="source_span\n1.0.0",shape=box,margin="0.25,0.15"];
+  yaml [label="yaml\n2.1.2",shape=box,margin="0.25,0.15",style=bold];
+  yaml -> collection [label=">=1.1.0 <2.0.0"];
+  yaml -> path [label=">=1.2.0 <2.0.0"];
+  yaml -> source_span [label=">=1.0.0 <2.0.0"];
+  yaml -> string_scanner [label=">=0.1.3 <0.2.0"];
+
+  source_span [label="source_span\n1.0.3",shape=box,margin="0.25,0.15"];
   source_span -> path [label=">=1.2.0 <2.0.0"];
 
-  string_scanner [label="string_scanner\n0.1.0",shape=box,margin="0.25,0.15"];
+  string_scanner [label="string_scanner\n0.1.3",shape=box,margin="0.25,0.15"];
   string_scanner -> path [label=">=1.2.0 <2.0.0"];
   string_scanner -> source_span [label=">=1.0.0 <2.0.0"];
 
-  yaml [label="yaml\n2.0.1+1",shape=box,margin="0.25,0.15",style=bold];
-  yaml -> collection [label=">=0.9.2 <2.0.0"];
-  yaml -> path [label=">=1.2.0 <2.0.0"];
-  yaml -> source_span [label=">=1.0.0 <2.0.0"];
-  yaml -> string_scanner [label=">=0.1.0 <0.2.0"];
+  unittest [label="unittest\n0.11.5+4",style=bold];
+  unittest -> matcher [label=">=0.11.4 <0.11.5",color=gray];
+  unittest -> stack_trace [label=">=0.9.0 <2.0.0",color=gray];
 }
 
     </script>
@@ -125,3 +145,4 @@ digraph G {
     </script>
   </body>
 </html>
+
