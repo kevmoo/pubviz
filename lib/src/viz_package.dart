@@ -112,6 +112,7 @@ class VizPackage extends Comparable {
 
     if (latestVersion != null && latestVersion.compareTo(version) > 0) {
       props['color'] = 'red';
+      props['xlabel'] = '"$latestVersion"';
     }
 
     _writeNode(sink, name, props);
