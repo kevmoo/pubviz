@@ -129,10 +129,6 @@ class VizPackage extends Comparable {
           edgeProps['label'] = '"${dep.versionConstraint}"';
         }
 
-        if (dep.includesLatest != null && !dep.includesLatest) {
-          edgeProps['fontcolor'] = 'red';
-        }
-
         if (isRoot) {
           edgeProps['penwidth'] = '2';
         }
@@ -141,6 +137,15 @@ class VizPackage extends Comparable {
           edgeProps['style'] = 'dashed';
         } else if (onlyDev) {
           edgeProps['color'] = 'gray';
+        }
+
+        if (dep.includesLatest != null && !dep.includesLatest) {
+          edgeProps['fontcolor'] = 'red';
+          if (edgeProps['color'] == 'gray') {
+            edgeProps['color'] = 'pink';
+          } else {
+            edgeProps['color'] = 'red';
+          }
         }
 
         if (dep.name == rootName) {
