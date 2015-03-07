@@ -3,7 +3,7 @@ library pubviz.viz_root;
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'package:path/path.dart' as pathos;
+import 'package:path/path.dart' as p;
 import 'package:collection/wrappers.dart';
 
 import 'dependency.dart';
@@ -21,7 +21,7 @@ class VizRoot {
     var packages = await _getReferencedPackages(path);
     if (!packages.containsKey(root.name)) {
       // the current package likely has no lib dir
-      var rootLibDirPath = pathos.join(path, 'lib');
+      var rootLibDirPath = p.join(path, 'lib');
       var rootLibDir = new Directory(rootLibDirPath);
       assert(!rootLibDir.existsSync());
       packages[root.name] = root;
@@ -97,8 +97,8 @@ Future<Map<String, String>> _getPackageMap(String path) async {
   var packages = json['packages'] as Map;
 
   packages.forEach((k, v) {
-    assert(pathos.basename(v) == 'lib');
-    map[k] = pathos.dirname(v);
+    assert(p.basename(v) == 'lib');
+    map[k] = p.dirname(v);
   });
 
   return map;
