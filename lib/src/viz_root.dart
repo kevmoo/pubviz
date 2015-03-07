@@ -1,10 +1,10 @@
 library pubviz.viz_root;
 
 import 'dart:async';
+import 'dart:collection';
 import 'dart:convert';
 import 'dart:io';
 import 'package:path/path.dart' as p;
-import 'package:collection/wrappers.dart';
 
 import 'dependency.dart';
 import 'viz_package.dart';
