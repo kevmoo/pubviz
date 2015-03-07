@@ -6,7 +6,7 @@ import 'package:args/args.dart';
 import 'package:path/path.dart' as p;
 import 'package:pubviz/pubviz.dart';
 
-void main(List<String> args) {
+main(List<String> args) async {
   var parser = _getParser();
 
   var result = parser.parse(args);
@@ -22,15 +22,14 @@ void main(List<String> args) {
 
   var format = result['format'];
 
-  VizRoot.forDirectory(path).then((VizRoot vp) {
-    if (command.name == 'print') {
-      _printContent(vp, format);
-    } else if (command.name == 'open') {
-      _open(vp, format);
-    } else {
-      throw new StateError('Should never get here...');
-    }
-  });
+  var vp = await VizRoot.forDirectory(path);
+  if (command.name == 'print') {
+    _printContent(vp, format);
+  } else if (command.name == 'open') {
+    await _open(vp, format);
+  } else {
+    throw new StateError('Should never get here...');
+  }
 }
 
 void _printUsage(ArgParser parser) {
