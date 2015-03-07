@@ -1,6 +1,7 @@
 library pubviz.viz_root;
 
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 import 'package:path/path.dart' as pathos;
 import 'package:collection/wrappers.dart';
@@ -88,33 +89,18 @@ class VizRoot {
 }
 
 Future<Map<String, String>> _getPackageMap(String path) async {
-  var packagePath = pathos.join(path, 'packages');
-  var packageDir = new Directory(packagePath);
-
   var map = new Map<String, String>();
 
-  var links =
-      await packageDir.list(recursive: false, followLinks: false).toList();
+  var result = await Process.run('pub', ['list-package-dirs']);
+  var json = JSON.decode(result.stdout as String);
 
-  for (var link in links) {
-    var targetPath = await link.target();
-    var linkName = pathos.basename(link.path);
+  var packages = json['packages'] as Map;
 
-    if (pathos.isRelative(targetPath)) {
-      targetPath = pathos.join(packagePath, targetPath);
-      targetPath = pathos.normalize(targetPath);
-    }
+  packages.forEach((k, v) {
+    assert(pathos.basename(v) == 'lib');
+    map[k] = pathos.dirname(v);
+  });
 
-    assert(pathos.isAbsolute(targetPath));
-    assert(pathos.basename(targetPath) == 'lib');
-
-    targetPath = pathos.dirname(targetPath);
-
-    assert(!map.containsKey(linkName));
-    assert(!map.containsValue(targetPath));
-
-    map[linkName] = targetPath;
-  }
   return map;
 }
 
