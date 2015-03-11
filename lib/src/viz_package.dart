@@ -118,7 +118,7 @@ class VizPackage extends Comparable {
       props['xlabel'] = '"$latestVersion"';
     }
 
-    _writeNode(sink, name, props);
+    _writeNode(sink, '"$name"', props);
 
     var orderedDeps = dependencies.toList(growable: false)..sort();
 
@@ -183,7 +183,7 @@ void _writeNode(StringSink sink, String name, Map<String, String> values) {
 
 void _writeEdge(
     StringSink sink, String from, String to, Map<String, String> values) {
-  var name = '$from -> $to';
+  var name = '"$from" -> "$to"';
   _writeNode(sink, name, values);
 }
 
