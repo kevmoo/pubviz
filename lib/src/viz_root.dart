@@ -20,7 +20,7 @@ class VizRoot {
       : this.packages = new UnmodifiableMapView(packages);
 
   static Future<VizRoot> forDirectory(String path,
-      {bool flagOutdated: false}) async {
+      {bool flagOutdated: false, Iterable<String> ignorePackages}) async {
     var root = await VizPackage.forDirectory(path);
     var packages = await _getReferencedPackages(path, flagOutdated);
     assert(packages.containsKey(root.name));
@@ -32,7 +32,7 @@ class VizRoot {
     var value = new VizRoot._(root, packages, flagOutdated);
 
     if (flagOutdated) {
-      for (var dep in _allDeps(value)) {
+      for (var dep in _allDeps(value, ignorePackages)) {
         assert(dep.includesLatest == null);
 
         var package = packages[dep.name];
@@ -49,7 +49,7 @@ class VizRoot {
     return value;
   }
 
-  String toDot({bool escapeLabels: false}) {
+  String toDot({bool escapeLabels: false, Iterable<String> ignorePackages}) {
     _update();
 
     var sink = new StringBuffer();
@@ -57,10 +57,11 @@ class VizRoot {
     sink.writeln('  node [fontname=Helvetica];');
     sink.writeln('  edge [fontname=Helvetica, fontcolor=gray];');
 
-    for (var pack in packages.values) {
+    for (var pack
+        in packages.values.where((v) => !ignorePackages.contains(v.name))) {
       sink.writeln();
-
-      pack.write(sink, root.name, escapeLabels: escapeLabels);
+      pack.write(sink, root.name,
+          escapeLabels: escapeLabels, ignorePackages: ignorePackages);
     }
 
     sink.writeln('}');
@@ -136,8 +137,10 @@ Future<Map<String, VizPackage>> _getReferencedPackages(
   return packs;
 }
 
-Iterable<Dependency> _allDeps(VizRoot root) sync* {
-  for (var pkg in root.packages.values) {
+Iterable<Dependency> _allDeps(
+    VizRoot root, Iterable<String> ignorePackages) sync* {
+  for (var pkg
+      in root.packages.values.where((v) => !ignorePackages.contains(v))) {
     yield* pkg.dependencies;
   }
 }

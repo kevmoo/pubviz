@@ -9,7 +9,14 @@ import 'package:pubviz/pubviz.dart';
 main(List<String> args) async {
   var parser = _getParser();
 
-  var result = parser.parse(args);
+  var result;
+  try {
+    result = parser.parse(args);
+  } on FormatException catch (e) {
+    print(e.message);
+    _printUsage(parser);
+    return;
+  }
 
   var command = result.command;
 
@@ -22,19 +29,24 @@ main(List<String> args) async {
 
   var format = result['format'];
   var flagOutdated = result['flag-outdated'];
+  var ignorePackages = result['ignore-packages'] != null
+      ? result['ignore-packages'].map((e) => e.trim()).toList()
+      : const [];
 
-  var vp = await VizRoot.forDirectory(path, flagOutdated: flagOutdated);
+  var vp = await VizRoot.forDirectory(path,
+      flagOutdated: flagOutdated, ignorePackages: ignorePackages);
   if (command.name == 'print') {
-    _printContent(vp, format);
+    _printContent(vp, format, ignorePackages);
   } else if (command.name == 'open') {
-    await _open(vp, format);
+    await _open(vp, format, ignorePackages);
   } else {
     throw new StateError('Should never get here...');
   }
 }
 
 void _printUsage(ArgParser parser) {
-  print('usage: pubviz [--format=<format>] (open | print) [<package path>]');
+  print(
+      'usage: pubviz [--format=<format>] [--ignore=<package1>,<package2>] (open | print) [<package path>]');
   print('');
   print('  open   Populate a temporary file with the content and open it.');
   print('  print  Print the output to stdout.');
@@ -44,23 +56,23 @@ void _printUsage(ArgParser parser) {
   print('If <package path> is omitted, the current directory is used.');
 }
 
-String _getContent(VizRoot root, String format) {
+String _getContent(VizRoot root, String format, List<String> ignorePackages) {
   switch (format) {
     case 'html':
-      return _getHtmlContent(root);
+      return _getHtmlContent(root, ignorePackages: ignorePackages);
     case 'dot':
-      return root.toDot();
+      return root.toDot(ignorePackages: ignorePackages);
     default:
       throw new StateError('format "$format" is not supported');
   }
 }
 
-Future _open(VizRoot root, String format) async {
+Future _open(VizRoot root, String format, List<String> ignorePackages) async {
   String filePath;
 
   var name = root.root.name;
 
-  String content = _getContent(root, format);
+  String content = _getContent(root, format, ignorePackages);
 
   var dir = await Directory.systemTemp.createTemp('pubviz_${name}_');
   var extention = (format == 'html') ? 'html' : 'dot';
@@ -87,13 +99,13 @@ Future _open(VizRoot root, String format) async {
   return Process.run(openCommand, [filePath], runInShell: true);
 }
 
-void _printContent(VizRoot root, String format) {
-  var content = _getContent(root, format);
+void _printContent(VizRoot root, String format, List<String> ignorePackages) {
+  var content = _getContent(root, format, ignorePackages);
   print(content);
 }
 
-String _getHtmlContent(VizRoot root) {
-  var dot = root.toDot(escapeLabels: true);
+String _getHtmlContent(VizRoot root, {List<String> ignorePackages: const []}) {
+  var dot = root.toDot(escapeLabels: true, ignorePackages: ignorePackages);
 
   var content = TEMPLATE;
   content = content.replaceAll(DOT_PLACE_HOLDER, dot);
@@ -131,6 +143,10 @@ ArgParser _getParser() => new ArgParser()
       allowed: _FORMAT_ALLOWED,
       defaultsTo: 'html',
       allowedHelp: _FORMAT_HELP)
+  ..addOption('ignore-packages',
+      abbr: 'i',
+      help: 'A comma seperatedlist of packages to not include in the output.',
+      allowMultiple: true)
   ..addCommand('open')
   ..addCommand('print')
   ..addFlag('flag-outdated',

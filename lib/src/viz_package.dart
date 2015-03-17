@@ -83,7 +83,8 @@ class VizPackage extends Comparable {
 
   int get hashCode => name.hashCode;
 
-  void write(StringSink sink, String rootName, {bool escapeLabels: false}) {
+  void write(StringSink sink, String rootName,
+      {bool escapeLabels: false, Iterable<String> ignorePackages}) {
     var isRoot = rootName == name;
 
     var newLine = (escapeLabels) ? r'\n' : '\n';
@@ -121,7 +122,8 @@ class VizPackage extends Comparable {
 
     var orderedDeps = dependencies.toList(growable: false)..sort();
 
-    for (var dep in orderedDeps) {
+    for (var dep
+        in orderedDeps.where((d) => !ignorePackages.contains(d.name))) {
       if (!dep.isDevDependency || isRoot) {
         var edgeProps = {};
 
