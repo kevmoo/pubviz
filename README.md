@@ -1,7 +1,5 @@
 ### Visualize package dependencies in your Dart project
 
-*pubviz requires at least Dart v1.6.*
-
 *Make sure you run `pub get` or `pub upgrade` in your target project directory.*
 
 ### Example
