@@ -106,7 +106,8 @@ class VizRoot {
 Future<Map<String, String>> _getPackageMap(String path) async {
   var map = new Map<String, String>();
 
-  var result = await Process.run('pub', ['list-package-dirs']);
+  var result =
+      await Process.run('pub', ['list-package-dirs'], runInShell: true);
   var json = JSON.decode(result.stdout as String);
 
   var packages = json['packages'] as Map;
