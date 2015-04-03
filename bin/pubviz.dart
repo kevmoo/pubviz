@@ -27,10 +27,10 @@ main(List<String> args) async {
 
   var path = _getPath(command.rest);
 
-  var format = result['format'];
+  var format = result[_formatOption];
   var flagOutdated = result['flag-outdated'];
   var ignorePackages = result['ignore-packages'] != null
-      ? result['ignore-packages'].map((e) => e.trim()).toList()
+      ? result[_ignoreOption].map((e) => e.trim()).toList()
       : const [];
 
   var vp = await VizRoot.forDirectory(path,
@@ -45,8 +45,9 @@ main(List<String> args) async {
 }
 
 void _printUsage(ArgParser parser) {
-  print(
-      'usage: pubviz [--format=<format>] [--ignore=<package1>,<package2>] (open | print) [<package path>]');
+  print('usage: pubviz [--${_formatOption}=<format>] '
+      '[--${_ignoreOption}=<package1>,<package2>] '
+      '(open | print) [<package path>]');
   print('');
   print('  open   Populate a temporary file with the content and open it.');
   print('  print  Print the output to stdout.');
@@ -137,15 +138,18 @@ String _getPath(List<String> args) {
   return path;
 }
 
+const _formatOption = 'format';
+const _ignoreOption = 'ignore-packages';
+
 ArgParser _getParser() => new ArgParser()
-  ..addOption('format',
+  ..addOption(_formatOption,
       abbr: 'f',
       allowed: _FORMAT_ALLOWED,
       defaultsTo: 'html',
       allowedHelp: _FORMAT_HELP)
-  ..addOption('ignore-packages',
+  ..addOption(_ignoreOption,
       abbr: 'i',
-      help: 'A comma seperatedlist of packages to not include in the output.',
+      help: 'A comma seperated list of packages to exclude in the output.',
       allowMultiple: true)
   ..addCommand('open')
   ..addCommand('print')
