@@ -126,7 +126,7 @@ Future<Map<String, VizPackage>> _getReferencedPackages(
 
   var map = await _getPackageMap(path);
 
-  for (var packageName in map.keys) {
+  var futures = map.keys.map((packageName) async {
     var subPath = map[packageName];
     var vp = await VizPackage.forDirectory(subPath, flagOutdated: flagOutdated);
     assert(vp.name == packageName);
@@ -134,7 +134,10 @@ Future<Map<String, VizPackage>> _getReferencedPackages(
     assert(!packs.containsKey(vp.name));
     assert(!packs.containsValue(vp));
     packs[vp.name] = vp;
-  }
+  });
+
+  await Future.wait(futures);
+
   return packs;
 }
 

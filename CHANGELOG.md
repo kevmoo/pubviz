@@ -1,3 +1,7 @@
+## 2.3.1
+
+* With `--flag-outdated` (`-o`) do version lookup in parallel. *MUCH* faster.
+
 ## 2.3.0
 
 * Allow ignoring packages via `--ignore-packages`.
