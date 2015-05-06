@@ -47,7 +47,7 @@ Should open your default browser to something like:
 
 You should see output something like:
 
-```
+```dot
 digraph G {
   node [fontname=Helvetica];
   edge [fontname=Helvetica, fontcolor=gray];
