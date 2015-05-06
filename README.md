@@ -85,6 +85,7 @@ usage: pubviz [--format=<format>] (open | print) [<package path>]
 
 -o, --[no-]flag-outdated    Check pub.dartlang.org for lasted packages and flag those that are outdated.
 
-If <package path> is omitted, the current directory is used.```
+If <package path> is omitted, the current directory is used.
+```
 
 [path]: https://www.dartlang.org/tools/pub/cmd/pub-global.html#running-a-script-from-your-path
