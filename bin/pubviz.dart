@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:args/args.dart';
 import 'package:path/path.dart' as p;
 import 'package:pubviz/pubviz.dart';
+import 'package:pubviz/viz/dot.dart' as dot;
 
 main(List<String> args) async {
   var parser = _getParser();
@@ -60,9 +61,9 @@ void _printUsage(ArgParser parser) {
 String _getContent(VizRoot root, String format, List<String> ignorePackages) {
   switch (format) {
     case 'html':
-      return _getHtmlContent(root, ignorePackages: ignorePackages);
+      return dot.toDotHtml(root, ignorePackages: ignorePackages);
     case 'dot':
-      return toDot(root, ignorePackages: ignorePackages);
+      return dot.toDot(root, ignorePackages: ignorePackages);
     default:
       throw new StateError('format "$format" is not supported');
   }
@@ -103,16 +104,6 @@ Future _open(VizRoot root, String format, List<String> ignorePackages) async {
 void _printContent(VizRoot root, String format, List<String> ignorePackages) {
   var content = _getContent(root, format, ignorePackages);
   print(content);
-}
-
-String _getHtmlContent(VizRoot root, {List<String> ignorePackages: const []}) {
-  var dot = toDot(root, escapeLabels: true, ignorePackages: ignorePackages);
-
-  var content = TEMPLATE;
-  content = content.replaceAll(DOT_PLACE_HOLDER, dot);
-  content = content.replaceAll(TITLE_PLACE_HOLDER, root.root.name);
-
-  return content;
 }
 
 String _getPath(List<String> args) {
@@ -159,10 +150,6 @@ ArgParser _getParser() => new ArgParser()
       negatable: true,
       help: 'Check pub.dartlang.org for lasted packages and flag those that '
       'are outdated.');
-
-const DOT_PLACE_HOLDER = 'DOT_HERE';
-
-const TITLE_PLACE_HOLDER = 'PACKAGE_TITLE';
 
 const _FORMAT_ALLOWED = const ['html', 'dot'];
 

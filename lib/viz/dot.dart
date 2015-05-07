@@ -1,10 +1,20 @@
 library pubviz.dot;
 
-import 'viz_package.dart';
-import 'viz_root.dart';
+import 'package:pubviz/pubviz.dart';
+
+String toDotHtml(VizRoot root, {List<String> ignorePackages}) {
+  var dot = toDot(root, escapeLabels: true, ignorePackages: ignorePackages);
+
+  return _DOT_HTML_TEMPLATE.replaceAll(_DOT_PLACE_HOLDER, dot).replaceAll(
+      _TITLE_PLACE_HOLDER, root.root.name);
+}
 
 String toDot(VizRoot item,
     {bool escapeLabels: false, Iterable<String> ignorePackages}) {
+  if (ignorePackages == null) {
+    ignorePackages = const <String>[];
+  }
+
   var sink = new StringBuffer();
   sink.writeln('digraph G {');
   sink.writeln('  node [fontname=Helvetica];');
@@ -13,8 +23,7 @@ String toDot(VizRoot item,
   for (var pack
       in item.packages.values.where((v) => !ignorePackages.contains(v.name))) {
     sink.writeln();
-    _writeDot(pack, sink, item.root.name,
-        escapeLabels: escapeLabels, ignorePackages: ignorePackages);
+    _writeDot(pack, sink, item.root.name, escapeLabels, ignorePackages);
   }
 
   sink.writeln('}');
@@ -23,7 +32,7 @@ String toDot(VizRoot item,
 }
 
 void _writeDot(VizPackage pkg, StringSink sink, String rootName,
-    {bool escapeLabels: false, Iterable<String> ignorePackages}) {
+    bool escapeLabels, Iterable<String> ignorePackages) {
   var isRoot = rootName == pkg.name;
 
   var newLine = (escapeLabels) ? r'\n' : '\n';
@@ -115,3 +124,66 @@ void _writeNode(StringSink sink, String name, Map<String, String> values) {
   }
   sink.writeln(';');
 }
+
+const _DOT_PLACE_HOLDER = 'DOT_HERE';
+
+const _TITLE_PLACE_HOLDER = 'PACKAGE_TITLE';
+
+const String _DOT_HTML_TEMPLATE = r'''
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>pubviz - PACKAGE_TITLE</title>
+    <style type='text/css'>
+      *, *:before, *:after {
+        -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+      }
+      button {
+        position: fixed;
+        padding: 10px;
+        top: 5px;
+        left: 5px;
+        opacity: 0.8;
+      }
+      html, body { margin:10px; padding:0; }
+      svg {  height:100%; width:100%; }
+      svg.zoom {height: inherit; width: inherit;}
+    </style>
+  </head>
+  <body>
+    <button onclick='zoomClick();'>Zoom</button>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js'></script>
+    <script src="http://kevmoo.github.io/pubviz/viz.js"></script>
+    <script type="text/vnd.graphviz" id="dot">
+DOT_HERE
+    </script>
+    <script>
+
+      function zoomClick() {
+        var attr = $('svg').attr('class');
+        var attr = (attr == 'zoom') ? '' : 'zoom';
+        $('svg').attr('class', attr);
+      };
+
+      function inspect(s) {
+        return "<pre>" + s.replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\"/g, "&quot;") + "</pre>"
+      }
+
+      function src(id) {
+        return document.getElementById(id).innerHTML;
+      }
+
+      function example(id) {
+        var result;
+        try {
+          return Viz(src(id), 'svg');
+        } catch(e) {
+          return inspect(e.toString());
+        }
+      }
+
+      document.body.innerHTML += example("dot");
+    </script>
+  </body>
+</html>
+''';
