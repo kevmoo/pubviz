@@ -78,8 +78,8 @@ Future _open(VizRoot root, String format, List<String> ignorePackages) async {
   String content = _getContent(root, format, ignorePackages);
 
   var dir = await Directory.systemTemp.createTemp('pubviz_${name}_');
-  var extention = (format == 'html') ? 'html' : 'dot';
-  filePath = p.join(dir.path, '$name.$extention');
+  var extension = (format == 'html') ? 'html' : 'dot';
+  filePath = p.join(dir.path, '$name.$extension');
   var file = new File(filePath);
 
   file = await file.create();
