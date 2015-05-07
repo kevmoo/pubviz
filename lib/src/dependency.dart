@@ -70,7 +70,7 @@ class Dependency implements Comparable<Dependency> {
 VersionConstraint _parseOrNull(String input) {
   try {
     return new VersionConstraint.parse(input);
-  } on FormatException catch (e) {
+  } on FormatException {
     return VersionConstraint.empty;
   }
 }
