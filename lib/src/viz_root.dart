@@ -46,27 +46,9 @@ class VizRoot {
       }
     }
 
+    value._update();
+
     return value;
-  }
-
-  String toDot({bool escapeLabels: false, Iterable<String> ignorePackages}) {
-    _update();
-
-    var sink = new StringBuffer();
-    sink.writeln('digraph G {');
-    sink.writeln('  node [fontname=Helvetica];');
-    sink.writeln('  edge [fontname=Helvetica, fontcolor=gray];');
-
-    for (var pack
-        in packages.values.where((v) => !ignorePackages.contains(v.name))) {
-      sink.writeln();
-      pack.write(sink, root.name,
-          escapeLabels: escapeLabels, ignorePackages: ignorePackages);
-    }
-
-    sink.writeln('}');
-
-    return sink.toString();
   }
 
   void _update() {

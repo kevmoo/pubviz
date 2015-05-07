@@ -83,83 +83,6 @@ class VizPackage extends Comparable {
 
   int get hashCode => name.hashCode;
 
-  void write(StringSink sink, String rootName,
-      {bool escapeLabels: false, Iterable<String> ignorePackages}) {
-    var isRoot = rootName == name;
-
-    var newLine = (escapeLabels) ? r'\n' : '\n';
-
-    var label = name;
-    if (version != null) {
-      label = label + '$newLine$version';
-    }
-
-    var props = {'label': '"$label"'};
-
-    if (isRoot) {
-      assert(!onlyDev);
-      props['fontsize'] = '18';
-      props['style'] = 'bold';
-    }
-
-    if (!onlyDev) {
-      props['shape'] = 'box';
-      props['margin'] = '"0.25,0.15"';
-    }
-
-    if (isPrimary) {
-      props['style'] = 'bold';
-    }
-
-    if (version != null &&
-        latestVersion != null &&
-        latestVersion.compareTo(version) > 0) {
-      props['color'] = 'red';
-      props['xlabel'] = '"$latestVersion"';
-    }
-
-    _writeNode(sink, '"$name"', props);
-
-    var orderedDeps = dependencies.toList(growable: false)..sort();
-
-    for (var dep
-        in orderedDeps.where((d) => !ignorePackages.contains(d.name))) {
-      if (!dep.isDevDependency || isRoot) {
-        var edgeProps = {};
-
-        if (!dep.versionConstraint.isAny) {
-          edgeProps['label'] = '"${dep.versionConstraint}"';
-        }
-
-        if (isRoot) {
-          edgeProps['penwidth'] = '2';
-        }
-
-        if (dep.isDevDependency) {
-          edgeProps['style'] = 'dashed';
-        } else if (onlyDev) {
-          edgeProps['color'] = 'gray';
-        }
-
-        if (dep.includesLatest != null && !dep.includesLatest) {
-          edgeProps['fontcolor'] = 'red';
-          if (edgeProps['color'] == 'gray') {
-            edgeProps['color'] = 'pink';
-          } else {
-            edgeProps['color'] = 'red';
-          }
-        }
-
-        if (dep.name == rootName) {
-          // If a package depends on the root node, it should not affect layout
-          edgeProps['constraint'] = 'false';
-        }
-
-        _writeEdge(sink, name, dep.name, edgeProps);
-      }
-    }
-  }
-
   Future<Version> updateLatestVersion() async {
     if (_latestVersion != null) return _latestVersion;
 
@@ -167,24 +90,6 @@ class VizPackage extends Comparable {
 
     return _latestVersion;
   }
-}
-
-void _writeNode(StringSink sink, String name, Map<String, String> values) {
-  sink.write('  $name');
-  if (!values.isEmpty) {
-    var props = values.keys
-        .map((key) => '$key=${values[key]}')
-        .toList(growable: false)
-        .join(',');
-    sink.write(' [$props]');
-  }
-  sink.writeln(';');
-}
-
-void _writeEdge(
-    StringSink sink, String from, String to, Map<String, String> values) {
-  var name = '"$from" -> "$to"';
-  _writeNode(sink, name, values);
 }
 
 Future<Map<String, dynamic>> _openYaml(String path) async {

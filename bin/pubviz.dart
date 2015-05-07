@@ -62,7 +62,7 @@ String _getContent(VizRoot root, String format, List<String> ignorePackages) {
     case 'html':
       return _getHtmlContent(root, ignorePackages: ignorePackages);
     case 'dot':
-      return root.toDot(ignorePackages: ignorePackages);
+      return toDot(root, ignorePackages: ignorePackages);
     default:
       throw new StateError('format "$format" is not supported');
   }
@@ -106,7 +106,7 @@ void _printContent(VizRoot root, String format, List<String> ignorePackages) {
 }
 
 String _getHtmlContent(VizRoot root, {List<String> ignorePackages: const []}) {
-  var dot = root.toDot(escapeLabels: true, ignorePackages: ignorePackages);
+  var dot = toDot(root, escapeLabels: true, ignorePackages: ignorePackages);
 
   var content = TEMPLATE;
   content = content.replaceAll(DOT_PLACE_HOLDER, dot);
