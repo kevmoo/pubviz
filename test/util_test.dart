@@ -1,4 +1,4 @@
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 
 import 'package:pub_semver/pub_semver.dart';
 import 'package:pubviz/src/util.dart';
