@@ -70,19 +70,22 @@ String _getContent(VizRoot root, String format, List<String> ignorePackages) {
   }
 }
 
+String _getExtension(String format) {
+  switch (format) {
+    default:
+      return format;
+  }
+}
+
 Future _open(VizRoot root, String format, List<String> ignorePackages) async {
-  String filePath;
-
+  var extension = _getExtension(format);
   var name = root.root.name;
-
-  String content = _getContent(root, format, ignorePackages);
-
   var dir = await Directory.systemTemp.createTemp('pubviz_${name}_');
-  var extension = (format == 'html') ? 'html' : 'dot';
-  filePath = p.join(dir.path, '$name.$extension');
+  var filePath = p.join(dir.path, '$name.$extension');
   var file = new File(filePath);
 
   file = await file.create();
+  String content = _getContent(root, format, ignorePackages);
   await file.writeAsString(content, mode: FileMode.WRITE, flush: true);
 
   print('File generated: $filePath');
