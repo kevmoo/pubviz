@@ -39,7 +39,7 @@ void _writeDot(VizPackage pkg, StringSink sink, String rootName,
 
   var label = pkg.name;
   if (pkg.version != null) {
-    label = label + '$newLine$pkg.version';
+    label = label + '$newLine${pkg.version}';
   }
 
   var props = {'label': '"$label"'};
@@ -66,7 +66,7 @@ void _writeDot(VizPackage pkg, StringSink sink, String rootName,
     props['xlabel'] = '"$pkg.latestVersion"';
   }
 
-  _writeNode(sink, '"$pkg.name"', props);
+  _writeNode(sink, '"${pkg.name}"', props);
 
   var orderedDeps = pkg.dependencies.toList(growable: false)..sort();
 
