@@ -22,6 +22,7 @@ main(List<String> args) async {
   var command = result.command;
 
   if (command == null) {
+    print("Specify a command: ${parser.commands.keys.join(', ')}");
     _printUsage(parser);
     return;
   }
@@ -135,7 +136,7 @@ const _ignoreOption = 'ignore-packages';
 ArgParser _getParser() => new ArgParser()
   ..addOption(_formatOption,
       abbr: 'f',
-      allowed: _FORMAT_ALLOWED,
+      allowed: _FORMAT_HELP.keys.toList(),
       defaultsTo: 'html',
       allowedHelp: _FORMAT_HELP)
   ..addOption(_ignoreOption,
@@ -150,8 +151,6 @@ ArgParser _getParser() => new ArgParser()
       negatable: true,
       help: 'Check pub.dartlang.org for lasted packages and flag those that '
       'are outdated.');
-
-const _FORMAT_ALLOWED = const ['html', 'dot'];
 
 const _FORMAT_HELP = const {
   'dot': 'Generate a GraphViz dot file',
