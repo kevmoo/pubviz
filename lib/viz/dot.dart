@@ -151,38 +151,12 @@ const String _DOT_HTML_TEMPLATE = r'''
     </style>
   </head>
   <body>
-    <button onclick='zoomClick();'>Zoom</button>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js'></script>
-    <script src="http://kevmoo.github.io/pubviz/viz.js"></script>
+    <button id="zoomBtn">Zoom</button>
+    <script src="https://kevmoo.github.io/pubviz/viz.js"></script>
+    <script type="application/dart" src="https://kevmoo.github.io/pubviz/web_app.dart"></script>
+    <script src="https://kevmoo.github.io/pubviz/packages/browser/dart.js"></script>
     <script type="text/vnd.graphviz" id="dot">
 DOT_HERE
-    </script>
-    <script>
-
-      function zoomClick() {
-        var attr = $('svg').attr('class');
-        var attr = (attr == 'zoom') ? '' : 'zoom';
-        $('svg').attr('class', attr);
-      };
-
-      function inspect(s) {
-        return "<pre>" + s.replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\"/g, "&quot;") + "</pre>"
-      }
-
-      function src(id) {
-        return document.getElementById(id).innerHTML;
-      }
-
-      function example(id) {
-        var result;
-        try {
-          return Viz(src(id), 'svg');
-        } catch(e) {
-          return inspect(e.toString());
-        }
-      }
-
-      document.body.innerHTML += example("dot");
     </script>
   </body>
 </html>
