@@ -12,6 +12,7 @@
         top: 5px;
         left: 5px;
         opacity: 0.8;
+        display: none;
       }
       html, body { margin:10px; padding:0; }
       svg {  height:100%; width:100%; }
@@ -19,9 +20,10 @@
     </style>
   </head>
   <body>
-    <button onclick='zoomClick();'>Zoom</button>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js'></script>
+    <button id="zoomBtn">Zoom</button>
     <script src="http://kevmoo.github.io/pubviz/viz.js"></script>
+    <script type="application/dart" src="web_app.dart"></script>
+    <script src="packages/browser/dart.js"></script>
     <script type="text/vnd.graphviz" id="dot">
 digraph G {
   node [fontname=Helvetica];
@@ -115,33 +117,6 @@ digraph G {
   unittest -> stack_trace [label=">=0.9.0 <2.0.0",color=gray];
 }
 
-    </script>
-    <script>
-
-      function zoomClick() {
-        var attr = $('svg').attr('class');
-        var attr = (attr == 'zoom') ? '' : 'zoom';
-        $('svg').attr('class', attr);
-      };
-
-      function inspect(s) {
-        return "<pre>" + s.replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\"/g, "&quot;") + "</pre>"
-      }
-
-      function src(id) {
-        return document.getElementById(id).innerHTML;
-      }
-
-      function example(id) {
-        var result;
-        try {
-          return Viz(src(id), 'svg');
-        } catch(e) {
-          return inspect(e.toString());
-        }
-      }
-
-      document.body.innerHTML += example("dot");
     </script>
   </body>
 </html>
