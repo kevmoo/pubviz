@@ -1,3 +1,7 @@
+## 2.3.2
+
+* All fancy with mouse-over effects.
+
 ## 2.3.1+1
 
 * Fix `README.md`.
