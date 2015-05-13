@@ -1,3 +1,7 @@
+## 2.3.3
+
+* Using CSS animations for effects. Hosting style on GitHub.
+
 ## 2.3.2
 
 * All fancy with mouse-over effects.

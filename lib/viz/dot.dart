@@ -134,38 +134,14 @@ const String _DOT_HTML_TEMPLATE = r'''
 <html>
   <head>
     <title>pubviz - PACKAGE_TITLE</title>
-    <style type='text/css'>
-      *, *:before, *:after {
-        -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
-      }
-      button {
-        position: fixed;
-        padding: 10px;
-        top: 5px;
-        left: 5px;
-        opacity: 0.8;
-      }
-      g.active > text {
-        font-weight: bold;
-        font-size: 105%;
-      }
-      g.active > polygon, g.active > ellipse, g.active > path {
-        stroke: blue;
-        stroke-width: 3px !important;
-      }
-      g.active.edge > polygon {
-        fill: blue;
-      }
-      html, body { margin:10px; padding:0; }
-      svg {  height:100%; width:100%; }
-      svg.zoom {height: inherit; width: inherit;}
-    </style>
+    <base href="https://kevmoo.github.io/pubviz/">
+    <link rel="stylesheet" href="style.css">
+    <script src="viz.js"></script>
+    <script type="application/dart" src="web_app.dart"></script>
+    <script src="packages/browser/dart.js"></script>
   </head>
   <body>
     <button id="zoomBtn">Zoom</button>
-    <script src="https://kevmoo.github.io/pubviz/viz.js"></script>
-    <script type="application/dart" src="https://kevmoo.github.io/pubviz/web_app.dart"></script>
-    <script src="https://kevmoo.github.io/pubviz/packages/browser/dart.js"></script>
     <script type="text/vnd.graphviz" id="dot">
 DOT_HERE
     </script>
