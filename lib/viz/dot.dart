@@ -145,6 +145,17 @@ const String _DOT_HTML_TEMPLATE = r'''
         left: 5px;
         opacity: 0.8;
       }
+      g.active > text {
+        font-weight: bold;
+        font-size: 105%;
+      }
+      g.active > polygon, g.active > ellipse, g.active > path {
+        stroke: blue;
+        stroke-width: 3px !important;
+      }
+      g.active.edge > polygon {
+        fill: blue;
+      }
       html, body { margin:10px; padding:0; }
       svg {  height:100%; width:100%; }
       svg.zoom {height: inherit; width: inherit;}
