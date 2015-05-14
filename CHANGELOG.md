@@ -1,3 +1,11 @@
+## 2.3.4
+
+* Properly escape the latest version for outdated dependencies.
+
+* Add a reasonable tool-tip for the entire graph.
+
+* Don't show the root node as outdated.
+
 ## 2.3.3
 
 * Using CSS animations for effects. Hosting style on GitHub.
