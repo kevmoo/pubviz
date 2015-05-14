@@ -60,7 +60,8 @@ void _writeDot(VizPackage pkg, StringSink sink, String rootName,
     props['style'] = 'bold';
   }
 
-  if (pkg.version != null &&
+  if (!isRoot &&
+      pkg.version != null &&
       pkg.latestVersion != null &&
       pkg.latestVersion.compareTo(pkg.version) > 0) {
     props['color'] = 'red';
