@@ -63,7 +63,7 @@ void _writeDot(VizPackage pkg, StringSink sink, String rootName,
       pkg.latestVersion != null &&
       pkg.latestVersion.compareTo(pkg.version) > 0) {
     props['color'] = 'red';
-    props['xlabel'] = '"$pkg.latestVersion"';
+    props['xlabel'] = '"${pkg.latestVersion}"';
   }
 
   _writeNode(sink, '"${pkg.name}"', props);
