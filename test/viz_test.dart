@@ -28,7 +28,7 @@ void main() {
     VizRoot vp = await VizRoot.forDirectory(_tempDir.path);
 
     expect(vp.root.name, 'test_pubspec');
-    expect(vp.packages, contains('shelf'));
+    expect(vp.packages, contains('http'));
     expect(vp.packages, contains('test'));
   });
 }
@@ -43,8 +43,12 @@ Future _initTest() async {
 
   await new File(p.join(_tempDir.path, 'pubspec.yaml')).writeAsString(content);
 
-  ProcessResult pr =
-      await Process.run('pub', ['upgrade'], workingDirectory: _tempDir.path);
+  // NOTE: since all dependencies in the the sample pubspec are in pubviz
+  //       we can use offline to improve speed.
+  ProcessResult pr = await Process.run('pub', ['get', '--offline'],
+      workingDirectory: _tempDir.path);
 
-  expect(pr.exitCode, 0);
+  if (pr.exitCode != 0) {
+    fail([pr.stdout, pr.stderr].join('\n'));
+  }
 }
