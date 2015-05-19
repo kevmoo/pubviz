@@ -23,11 +23,11 @@ class VizRoot {
       {bool flagOutdated: false, Iterable<String> ignorePackages}) async {
     var root = await VizPackage.forDirectory(path);
     var packages = await _getReferencedPackages(path, flagOutdated);
-    assert(packages.containsKey(root.name));
 
-    // want to make sure that the root note instance is the same
+    // want to make sure that the root node instance is the same
     // as the instance in the packages collection
     root = packages[root.name];
+    assert(root != null);
 
     var value = new VizRoot._(root, packages, flagOutdated);
 
@@ -88,8 +88,8 @@ class VizRoot {
 Future<Map<String, String>> _getPackageMap(String path) async {
   var map = new Map<String, String>();
 
-  var result =
-      await Process.run('pub', ['list-package-dirs'], runInShell: true);
+  var result = await Process.run('pub', ['list-package-dirs'],
+      runInShell: true, workingDirectory: path);
   var json = JSON.decode(result.stdout as String);
 
   var packages = json['packages'] as Map;
