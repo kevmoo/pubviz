@@ -1,3 +1,7 @@
+## 2.3.5
+
+* Tweaks test code, examples, dependencies.
+
 ## 2.3.4
 
 * Properly escape the latest version for outdated dependencies.
