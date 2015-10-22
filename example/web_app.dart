@@ -21,7 +21,7 @@ void main() {
 }
 
 void _updateBody(String output) {
-  document.body.appendHtml(output);
+  document.body.appendHtml(output, treeSanitizer: NodeTreeSanitizer.trusted);
   zoomBtn.style.display = 'block';
 
   _root = querySelector('svg') as svg.SvgElement;
