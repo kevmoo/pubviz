@@ -1,7 +1,8 @@
 import 'dart:convert' show HTML_ESCAPE;
 import 'dart:html';
-import 'dart:js' as js;
 import 'dart:svg' as svg;
+
+import 'package:js/js.dart';
 
 final zoomBtn = querySelector('#zoomBtn') as ButtonElement;
 final dotScript = querySelector('#dot') as ScriptElement;
@@ -12,7 +13,7 @@ void main() {
   var content = dotScript.innerHtml;
 
   try {
-    var output = _runViz(content, 'svg');
+    var output = Viz(content, 'svg');
     _updateBody(output);
   } catch (e) {
     var output = '<pre>${HTML_ESCAPE.convert(e.toString())}</pre>';
@@ -101,5 +102,5 @@ void _updateOver(svg.GElement element) {
   });
 }
 
-String _runViz(String content, String tag) =>
-    js.context.callMethod('Viz', [content, tag]);
+@JS()
+external String Viz(String content, String tag);

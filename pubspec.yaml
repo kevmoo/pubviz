@@ -4,7 +4,7 @@ author: Kevin Moore <kevmoo@google.com>
 description: Visualize package dependencies in your Dart project
 homepage: https://github.com/kevmoo/pubviz
 environment:
-  sdk: '>=1.12.0 <2.0.0'
+  sdk: '>=1.13.0-dev.7.2 <2.0.0'
 dependencies:
   args: ^0.13.0
   collection: ^1.0.0
@@ -14,6 +14,7 @@ dependencies:
   yaml: ^2.0.0
 dev_dependencies:
   browser: any
+  js: ^0.6.0-beta.5
   test: ^0.12.0
 executables:
   pubviz: null
