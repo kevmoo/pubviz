@@ -153,7 +153,7 @@ ArgParser _getParser() => new ArgParser()
       defaultsTo: false,
       negatable: true,
       help: 'Check pub.dartlang.org for lasted packages and flag those that '
-      'are outdated.');
+          'are outdated.');
 
 const _FORMAT_HELP = const {
   'dot': 'Generate a GraphViz dot file',

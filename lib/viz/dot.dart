@@ -5,8 +5,9 @@ import 'package:pubviz/pubviz.dart';
 String toDotHtml(VizRoot root, {List<String> ignorePackages}) {
   var dot = toDot(root, escapeLabels: true, ignorePackages: ignorePackages);
 
-  return _DOT_HTML_TEMPLATE.replaceAll(_DOT_PLACE_HOLDER, dot).replaceAll(
-      _TITLE_PLACE_HOLDER, root.root.name);
+  return _DOT_HTML_TEMPLATE
+      .replaceAll(_DOT_PLACE_HOLDER, dot)
+      .replaceAll(_TITLE_PLACE_HOLDER, root.root.name);
 }
 
 String toDot(VizRoot item,
