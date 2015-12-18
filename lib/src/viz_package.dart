@@ -11,7 +11,6 @@ import 'dependency.dart';
 import 'util.dart';
 
 class VizPackage extends Comparable {
-  final String path;
   final String name;
   final Version version;
   final Set<Dependency> dependencies;
@@ -32,9 +31,8 @@ class VizPackage extends Comparable {
 
   Version get latestVersion => _latestVersion;
 
-  VizPackage._(String path, this.name, this.version, Set<Dependency> deps)
-      : dependencies = new UnmodifiableSetView(deps),
-        this.path = p.normalize(path);
+  VizPackage._(this.name, this.version, Set<Dependency> deps)
+      : dependencies = new UnmodifiableSetView(deps);
 
   static Future<VizPackage> forDirectory(String path,
       {bool flagOutdated: false}) async {
@@ -54,7 +52,7 @@ class VizPackage extends Comparable {
 
     var deps = Dependency.getDependencies(pubspecMap);
 
-    var package = new VizPackage._(path, packageName, version, deps);
+    var package = new VizPackage._(packageName, version, deps);
 
     if (flagOutdated) {
       await package.updateLatestVersion();
@@ -63,7 +61,7 @@ class VizPackage extends Comparable {
     return package;
   }
 
-  String toString() => '$name @ $path';
+  String toString() => '$name @ $version';
 
   int compareTo(VizPackage other) {
     return name.compareTo(other.name);
@@ -73,7 +71,6 @@ class VizPackage extends Comparable {
     if (other is VizPackage) {
       var match = (name == other.name);
       if (match) {
-        assert(other.path == path);
         assert(other.version == version);
         return true;
       }
