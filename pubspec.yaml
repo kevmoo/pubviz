@@ -18,3 +18,10 @@ dev_dependencies:
   test: ^0.12.0
 executables:
   pubviz: null
+transformers:
+- $dart2js:
+    commandLineOptions:
+      - --no-frequency-based-minification
+      - --trust-type-annotations
+      - --trust-primitives
+      - --dump-info
