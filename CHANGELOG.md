@@ -1,3 +1,7 @@
+## 2.3.6
+
+* Cleanup, handled some deprecations, improve load time.
+
 ## 2.3.5
 
 * Tweaks test code, examples, dependencies.
