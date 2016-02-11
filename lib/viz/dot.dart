@@ -140,8 +140,6 @@ const String _DOT_HTML_TEMPLATE = r'''
     <base href="https://kevmoo.github.io/pubviz/">
     <link rel="stylesheet" href="style.css">
     <script src="viz.js"></script>
-    <script type="application/dart" src="web_app.dart"></script>
-    <script src="packages/browser/dart.js"></script>
   </head>
   <body>
     <button id="zoomBtn">Zoom</button>
@@ -149,5 +147,6 @@ const String _DOT_HTML_TEMPLATE = r'''
 DOT_HERE
     </script>
   </body>
+  <script deferred src="web_app.dart.js"></script>
 </html>
 ''';
