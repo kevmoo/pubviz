@@ -31,27 +31,27 @@ void _updateBody(String output) {
     _root.classes.toggle('zoom');
   });
 
-  _root.querySelectorAll('g.node').forEach((Element node) {
-    var title = node.querySelector('title').text;
-    node.id = title;
-  });
+  for (var element in _root.querySelectorAll('g.node')) {
+    var title = element.querySelector('title').text;
+    element.id = title;
+  }
 
-  _root.querySelectorAll('g.edge').forEach((Element node) {
+  for (var node in _root.querySelectorAll('g.edge')) {
     var title = node.querySelector('title').text;
     var things = title.split('->');
     node.setAttribute('x-from', things[0]);
     node.setAttribute('x-to', things[1]);
-  });
+  }
 
   _root.onMouseOver.listen((MouseEvent event) {
-    Element target = event.toElement as Element;
+    Element target = event.relatedTarget as Element;
 
     while (target != null && target is! svg.GElement) {
       target = target.parent;
     }
 
-    if (target != null && target.classes.contains('edge') ||
-        target.classes.contains('node')) {
+    if (target != null &&
+        (target.classes.contains('edge') || target.classes.contains('node'))) {
       _updateOver(target);
     } else {
       _updateOver(null);
