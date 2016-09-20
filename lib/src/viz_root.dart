@@ -90,6 +90,12 @@ Future<Map<String, String>> _getPackageMap(String path) async {
 
   var result = await Process.run('pub', ['list-package-dirs'],
       runInShell: true, workingDirectory: path);
+
+  if (result.exitCode != 0) {
+    throw new ProcessException(
+        'pub', ['list-package-dirs'], result.stderr, result.exitCode);
+  }
+
   var json = JSON.decode(result.stdout as String);
 
   var packages = json['packages'] as Map;

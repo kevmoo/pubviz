@@ -1,3 +1,7 @@
+## 2.3.7
+
+* Better stack trace on errors.
+
 ## 2.3.6
 
 * Cleanup, handled some deprecations, improve load time.

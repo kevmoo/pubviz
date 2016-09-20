@@ -6,6 +6,7 @@ import 'package:args/args.dart';
 import 'package:path/path.dart' as p;
 import 'package:pubviz/pubviz.dart';
 import 'package:pubviz/viz/dot.dart' as dot;
+import 'package:stack_trace/stack_trace.dart';
 
 main(List<String> args) async {
   var parser = _getParser();
@@ -35,15 +36,21 @@ main(List<String> args) async {
       ? result[_ignoreOption].map((e) => e.trim()).toList()
       : const [];
 
-  var vp = await VizRoot.forDirectory(path,
-      flagOutdated: flagOutdated, ignorePackages: ignorePackages);
-  if (command.name == 'print') {
-    _printContent(vp, format, ignorePackages);
-  } else if (command.name == 'open') {
-    await _open(vp, format, ignorePackages);
-  } else {
-    throw new StateError('Should never get here...');
-  }
+  await Chain.capture(() async {
+    var vp = await VizRoot.forDirectory(path,
+        flagOutdated: flagOutdated, ignorePackages: ignorePackages);
+    if (command.name == 'print') {
+      _printContent(vp, format, ignorePackages);
+    } else if (command.name == 'open') {
+      await _open(vp, format, ignorePackages);
+    } else {
+      throw new StateError('Should never get here...');
+    }
+  }, onError: (error, Chain chain) {
+    stderr.writeln(error);
+    stderr.writeln(chain.terse);
+    exitCode = 1;
+  });
 }
 
 void _printUsage(ArgParser parser) {
