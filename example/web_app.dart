@@ -1,3 +1,6 @@
+@JS()
+library web_app;
+
 import 'dart:convert' show HTML_ESCAPE;
 import 'dart:html';
 import 'dart:svg' as svg;
