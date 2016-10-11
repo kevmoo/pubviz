@@ -18,7 +18,6 @@ String toDot(VizRoot item,
 
   var sink = new StringBuffer();
   sink.writeln('digraph pubviz {');
-  sink.writeln('  tooltip="${item.root.name}";');
   sink.writeln('  node [fontname=Helvetica];');
   sink.writeln('  edge [fontname=Helvetica, fontcolor=gray];');
 
