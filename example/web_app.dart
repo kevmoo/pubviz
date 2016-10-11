@@ -1,22 +1,57 @@
 @JS()
 library web_app;
 
-import 'dart:convert' show HTML_ESCAPE;
+import 'dart:convert' show HTML_ESCAPE, LineSplitter;
 import 'dart:html';
 import 'dart:svg' as svg;
 
 import 'package:js/js.dart';
 
 final zoomBtn = querySelector('#zoomBtn') as ButtonElement;
-final dotScript = querySelector('#dot') as ScriptElement;
 
 svg.SvgElement _root;
 
+final List<String> _dotContent = new List.unmodifiable(LineSplitter
+    .split((querySelector('#dot') as ScriptElement).innerHtml.trim()));
+
+final Set<String> _toIgnore = new Set<String>();
+
 void main() {
-  var content = dotScript.innerHtml;
+  _process();
+}
+
+void _process() {
+  var removedLines = <String>[];
+
+  var lines = _dotContent.where((line) {
+    for (var item in _toIgnore) {
+      if (line.contains('"$item"')) {
+        if (!line.contains('->')) {
+          removedLines.add(line);
+        }
+
+        return false;
+      }
+    }
+    return true;
+  }).toList();
+
+  if (removedLines.isNotEmpty) {
+    if (lines.last != '}') {
+      throw 'huh?';
+    }
+    lines.removeLast();
+    lines.add('  subgraph cluster0 {');
+    lines.add('    label=Removed;');
+    lines.add('    style=filled;');
+    lines.add('    fillcolor="#dddddd";');
+    lines.addAll(removedLines);
+    lines.add('  }');
+    lines.add('}');
+  }
 
   try {
-    var output = Viz(content, 'svg');
+    var output = Viz(lines.join('\n'), 'svg');
     _updateBody(output);
   } catch (e) {
     var output = '<pre>${HTML_ESCAPE.convert(e.toString())}</pre>';
@@ -25,6 +60,18 @@ void main() {
 }
 
 void _updateBody(String output) {
+  if (_root != null) {
+    _root.remove();
+  }
+
+  output = LineSplitter
+      .split(output)
+      .where((line) =>
+          !line.contains('<!--') &&
+          !line.contains('-->') &&
+          !line.contains('?xml'))
+      .join('\n');
+
   document.body.appendHtml(output, treeSanitizer: NodeTreeSanitizer.trusted);
   zoomBtn.style.display = 'block';
 
@@ -38,6 +85,14 @@ void _updateBody(String output) {
     var title = element.querySelector('title').text;
     element.id = title;
   }
+
+  _root.querySelectorAll('g.node').onClick.listen((MouseEvent event) {
+    var target = event.currentTarget as Element;
+    if (_toIgnore.add(target.id)) {} else {
+      _toIgnore.remove(target.id);
+    }
+    _process();
+  });
 
   for (var node in _root.querySelectorAll('g.edge')) {
     var title = node.querySelector('title').text;
