@@ -24,6 +24,9 @@ g.active > polygon, g.active > ellipse, g.active > path {
 g.active.edge > polygon {
     fill: blue;
 }
+.node ellipse, .node polygon {
+    fill: #eee;
+}
 html, body { margin:10px; padding:0; }
 svg {  height:100%; width:100%; }
 svg.zoom {height: inherit; width: inherit;}
