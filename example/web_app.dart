@@ -18,9 +18,20 @@ final Set<String> _toIgnore = new Set<String>();
 
 void main() {
   _process();
+
+  zoomBtn.onClick.listen((_) {
+    if (_root != null) {
+      _root.classes.toggle('zoom');
+    }
+  });
 }
 
 void _process() {
+  if (_root != null) {
+    _root.remove();
+    _root = null;
+  }
+
   var removedLines = <String>[];
 
   var lines = _dotContent.where((line) {
@@ -60,9 +71,7 @@ void _process() {
 }
 
 void _updateBody(String output) {
-  if (_root != null) {
-    _root.remove();
-  }
+  assert(_root == null);
 
   output = LineSplitter
       .split(output)
@@ -76,10 +85,6 @@ void _updateBody(String output) {
   zoomBtn.style.display = 'block';
 
   _root = querySelector('svg') as svg.SvgElement;
-
-  zoomBtn.onClick.listen((_) {
-    _root.classes.toggle('zoom');
-  });
 
   for (var element in _root.querySelectorAll('g.node')) {
     var title = element.querySelector('title').text;
