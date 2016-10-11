@@ -46,22 +46,13 @@ void _updateBody(String output) {
     node.setAttribute('x-to', things[1]);
   }
 
-  _root.onMouseOver.listen((MouseEvent event) {
-    Element target = event.relatedTarget as Element;
+  var nodesOfInterest = _root.querySelectorAll('g.edge, g.node');
 
-    while (target != null && target is! svg.GElement) {
-      target = target.parent;
-    }
-
-    if (target != null &&
-        (target.classes.contains('edge') || target.classes.contains('node'))) {
-      _updateOver(target);
-    } else {
-      _updateOver(null);
-    }
+  nodesOfInterest.onMouseEnter.listen((MouseEvent event) {
+    _updateOver(event.currentTarget);
   });
 
-  _root.onMouseLeave.listen((MouseEvent event) {
+  nodesOfInterest.onMouseLeave.listen((MouseEvent event) {
     _updateOver(null);
   });
 }
