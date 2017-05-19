@@ -110,7 +110,7 @@ Future<Map<String, String>> _getPackageMap(String path) async {
 
 Future<Map<String, VizPackage>> _getReferencedPackages(
     String path, bool flagOutdated) async {
-  var packs = new Map<String, VizPackage>();
+  var packs = new SplayTreeMap<String, VizPackage>();
 
   var map = await _getPackageMap(path);
 
