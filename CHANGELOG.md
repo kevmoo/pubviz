@@ -1,3 +1,11 @@
+## 2.3.8
+
+* Send a descriptive user agent to the server.
+
+* Added retry logic for HTTP requests.
+
+* Sort the output.
+
 ## 2.3.7
 
 * Better stack trace on errors.
