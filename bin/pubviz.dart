@@ -143,7 +143,7 @@ String _getPath(List<String> args) {
 const _formatOption = 'format';
 const _ignoreOption = 'ignore-packages';
 
-ArgParser _getParser() => new ArgParser()
+ArgParser _getParser() => new ArgParser(allowTrailingOptions: true)
   ..addOption(_formatOption,
       abbr: 'f',
       allowed: _FORMAT_HELP.keys.toList(),

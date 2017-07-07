@@ -1,3 +1,7 @@
+## 2.3.9
+
+* Updated dependencies.
+
 ## 2.3.8
 
 * Send a descriptive user agent to the server.
