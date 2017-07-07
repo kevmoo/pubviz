@@ -40,8 +40,19 @@ class VizRoot {
         if (package != null &&
             package.latestVersion != null &&
             dep.versionConstraint != VersionConstraint.empty) {
-          dep.includesLatest =
+          var allowsLatest =
               dep.versionConstraint.allows(package.latestVersion);
+
+          if (!allowsLatest) {
+            // it could be that the versionConstraint is actually *ahead* of
+            // latest – with a pre-release version
+
+            if (package.latestVersion.compareTo(dep.versionConstraint) < 0) {
+              allowsLatest = true;
+            }
+          }
+
+          dep.includesLatest = allowsLatest;
         }
       }
     }

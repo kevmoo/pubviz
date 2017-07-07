@@ -9,6 +9,7 @@ class Dependency implements Comparable<Dependency> {
 
   bool _includesLatest;
 
+  /// Also true if there is a pre-release version after the latest version
   bool get includesLatest => _includesLatest;
 
   void set includesLatest(bool value) {

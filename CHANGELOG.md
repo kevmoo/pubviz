@@ -2,6 +2,9 @@
 
 * Updated dependencies.
 
+* Fix case where we're pulling in a pre-release version that is after the
+  latest stable version.
+
 ## 2.3.8
 
 * Send a descriptive user agent to the server.
