@@ -1,3 +1,7 @@
+## 2.3.9+1
+
+* Use `gviz` package. Get out of the GraphViz formatting business.
+
 ## 2.3.9
 
 * Updated dependencies.

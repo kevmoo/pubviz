@@ -1,5 +1,6 @@
 library pubviz.dot;
 
+import 'package:gviz/gviz.dart';
 import 'package:pubviz/pubviz.dart';
 
 String toDotHtml(VizRoot root, {List<String> ignorePackages}) {
@@ -16,24 +17,21 @@ String toDot(VizRoot item,
     ignorePackages = const <String>[];
   }
 
-  var sink = new StringBuffer();
-  sink.writeln('digraph pubviz {');
-  sink.writeln('  node [fontname=Helvetica];');
-  sink.writeln('  edge [fontname=Helvetica, fontcolor=gray];');
+  var graph = new Graph(
+      name: 'pubviz',
+      nodeProperties: {'fontname': 'Helvetica'},
+      edgeProperties: {'fontname': 'Helvetica', 'fontcolor': 'gray'});
 
   for (var pack
       in item.packages.values.where((v) => !ignorePackages.contains(v.name))) {
-    sink.writeln();
-    _writeDot(pack, sink, item.root.name, escapeLabels, ignorePackages);
+    _writeDot(pack, graph, item.root.name, escapeLabels, ignorePackages);
   }
 
-  sink.writeln('}');
-
-  return sink.toString();
+  return graph.toString();
 }
 
-void _writeDot(VizPackage pkg, StringSink sink, String rootName,
-    bool escapeLabels, Iterable<String> ignorePackages) {
+void _writeDot(VizPackage pkg, Graph graph, String rootName, bool escapeLabels,
+    Iterable<String> ignorePackages) {
   var isRoot = rootName == pkg.name;
 
   var newLine = (escapeLabels) ? r'\n' : '\n';
@@ -43,7 +41,7 @@ void _writeDot(VizPackage pkg, StringSink sink, String rootName,
     label = label + '$newLine${pkg.version}';
   }
 
-  var props = {'label': '"$label"'};
+  var props = {'label': label};
 
   if (isRoot) {
     assert(!pkg.onlyDev);
@@ -53,7 +51,7 @@ void _writeDot(VizPackage pkg, StringSink sink, String rootName,
 
   if (!pkg.onlyDev) {
     props['shape'] = 'box';
-    props['margin'] = '"0.25,0.15"';
+    props['margin'] = '0.25,0.15';
   }
 
   if (pkg.isPrimary) {
@@ -65,10 +63,10 @@ void _writeDot(VizPackage pkg, StringSink sink, String rootName,
       pkg.latestVersion != null &&
       pkg.latestVersion.compareTo(pkg.version) > 0) {
     props['color'] = 'red';
-    props['xlabel'] = '"${pkg.latestVersion}"';
+    props['xlabel'] = '${pkg.latestVersion}';
   }
 
-  _writeNode(sink, '"${pkg.name}"', props);
+  graph.addNode(pkg.name, properties: props);
 
   var orderedDeps = pkg.dependencies.toList(growable: false)..sort();
 
@@ -77,7 +75,7 @@ void _writeDot(VizPackage pkg, StringSink sink, String rootName,
       var edgeProps = {};
 
       if (!dep.versionConstraint.isAny) {
-        edgeProps['label'] = '"${dep.versionConstraint}"';
+        edgeProps['label'] = '${dep.versionConstraint}';
       }
 
       if (isRoot) {
@@ -104,27 +102,9 @@ void _writeDot(VizPackage pkg, StringSink sink, String rootName,
         edgeProps['constraint'] = 'false';
       }
 
-      _writeEdge(sink, pkg.name, dep.name, edgeProps);
+      graph.addEdge(pkg.name, dep.name, properties: edgeProps);
     }
   }
-}
-
-void _writeEdge(
-    StringSink sink, String from, String to, Map<String, String> values) {
-  var name = '"$from" -> "$to"';
-  _writeNode(sink, name, values);
-}
-
-void _writeNode(StringSink sink, String name, Map<String, String> values) {
-  sink.write('  $name');
-  if (!values.isEmpty) {
-    var props = values.keys
-        .map((key) => '$key=${values[key]}')
-        .toList(growable: false)
-        .join(',');
-    sink.write(' [$props]');
-  }
-  sink.writeln(';');
 }
 
 const _DOT_PLACE_HOLDER = 'DOT_HERE';

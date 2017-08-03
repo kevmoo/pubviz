@@ -12,260 +12,262 @@ digraph pubviz {
   node [fontname=Helvetica];
   edge [fontname=Helvetica, fontcolor=gray];
 
-  "analyzer" [label="analyzer\n0.30.0"];
-  "analyzer" -> "args" [label=">=0.12.1 <0.14.0",color=gray];
-  "analyzer" -> "charcode" [label="^1.1.0",color=gray];
-  "analyzer" -> "cli_util" [label="^0.0.1",color=gray];
-  "analyzer" -> "collection" [label="^1.10.1",color=gray];
-  "analyzer" -> "convert" [label="^2.0.0",color=gray];
-  "analyzer" -> "crypto" [label=">=1.1.1 <3.0.0",color=gray];
-  "analyzer" -> "front_end" [label="0.1.0-alpha.4",color=gray];
-  "analyzer" -> "glob" [label="^1.0.3",color=gray];
-  "analyzer" -> "html" [label=">=0.12.0 <1.14.0",color=gray];
-  "analyzer" -> "isolate" [label=">=0.2.2 <2.0.0",color=gray];
-  "analyzer" -> "kernel" [label="0.3.0-alpha.1",color=gray];
-  "analyzer" -> "meta" [label="^1.0.2",color=gray];
-  "analyzer" -> "package_config" [label=">=0.1.5 <2.0.0",color=gray];
-  "analyzer" -> "path" [label=">=0.9.0 <2.0.0",color=gray];
-  "analyzer" -> "plugin" [label="^0.2.0",color=gray];
-  "analyzer" -> "source_span" [label="^1.2.0",color=gray];
-  "analyzer" -> "watcher" [label=">=0.9.6 <0.10.0",color=gray];
-  "analyzer" -> "yaml" [label="^2.1.2",color=gray];
+  analyzer [label="analyzer\n0.30.0+2"];
+  analyzer -> args [label=">=0.12.1 <0.14.0", color=pink, fontcolor=red];
+  analyzer -> charcode [label="^1.1.0", color=gray];
+  analyzer -> cli_util [label="^0.1.0", color=gray];
+  analyzer -> collection [label="^1.10.1", color=gray];
+  analyzer -> convert [label="^2.0.0", color=gray];
+  analyzer -> crypto [label=">=1.1.1 <3.0.0", color=gray];
+  analyzer -> front_end [label="0.1.0-alpha.4", color=gray];
+  analyzer -> glob [label="^1.0.3", color=gray];
+  analyzer -> html [label=">=0.12.0 <1.14.0", color=gray];
+  analyzer -> isolate [label=">=0.2.2 <2.0.0", color=gray];
+  analyzer -> kernel [label="0.3.0-alpha.1", color=gray];
+  analyzer -> meta [label="^1.0.2", color=gray];
+  analyzer -> package_config [label=">=0.1.5 <2.0.0", color=gray];
+  analyzer -> path [label=">=0.9.0 <2.0.0", color=gray];
+  analyzer -> plugin [label="^0.2.0", color=gray];
+  analyzer -> source_span [label="^1.2.0", color=gray];
+  analyzer -> watcher [label=">=0.9.6 <0.10.0", color=gray];
+  analyzer -> yaml [label="^2.1.2", color=gray];
 
-  "args" [label="args\n0.13.7",shape=box,margin="0.25,0.15",style=bold];
+  args [label="args\n0.13.7", shape=box, margin="0.25,0.15", style=bold, color=red, xlabel="1.0.0"];
 
-  "async" [label="async\n1.13.3",shape=box,margin="0.25,0.15"];
-  "async" -> "collection" [label="^1.5.0"];
+  async [label="async\n1.13.3", shape=box, margin="0.25,0.15"];
+  async -> collection [label="^1.5.0"];
 
-  "barback" [label="barback\n0.15.2+11"];
-  "barback" -> "async" [label="^1.10.0",color=gray];
-  "barback" -> "collection" [label="^1.5.0",color=gray];
-  "barback" -> "path" [label=">=0.9.0 <2.0.0",color=gray];
-  "barback" -> "pool" [label=">=1.0.0 <2.0.0",color=gray];
-  "barback" -> "source_span" [label=">=1.0.0 <2.0.0",color=gray];
-  "barback" -> "stack_trace" [label=">=0.9.1 <2.0.0",color=gray];
+  barback [label="barback\n0.15.2+11"];
+  barback -> async [label="^1.10.0", color=gray];
+  barback -> collection [label="^1.5.0", color=gray];
+  barback -> path [label=">=0.9.0 <2.0.0", color=gray];
+  barback -> pool [label=">=1.0.0 <2.0.0", color=gray];
+  barback -> source_span [label=">=1.0.0 <2.0.0", color=gray];
+  barback -> stack_trace [label=">=0.9.1 <2.0.0", color=gray];
 
-  "boolean_selector" [label="boolean_selector\n1.0.2"];
-  "boolean_selector" -> "collection" [label="^1.5.0",color=gray];
-  "boolean_selector" -> "source_span" [label="^1.0.0",color=gray];
-  "boolean_selector" -> "string_scanner" [label=">=0.1.1 <2.0.0",color=gray];
+  boolean_selector [label="boolean_selector\n1.0.2"];
+  boolean_selector -> collection [label="^1.5.0", color=gray];
+  boolean_selector -> source_span [label="^1.0.0", color=gray];
+  boolean_selector -> string_scanner [label=">=0.1.1 <2.0.0", color=gray];
 
-  "browser" [label="browser\n0.10.0+2",style=bold];
+  browser [label="browser\n0.10.0+2", style=bold];
 
-  "charcode" [label="charcode\n1.1.1",shape=box,margin="0.25,0.15"];
+  charcode [label="charcode\n1.1.1", shape=box, margin="0.25,0.15"];
 
-  "cli_util" [label="cli_util\n0.0.1+2"];
-  "cli_util" -> "path" [label=">=1.0.0 <2.0.0",color=gray];
-  "cli_util" -> "which" [label=">=0.1.2 <0.2.0",color=gray];
+  cli_util [label="cli_util\n0.1.2"];
+  cli_util -> path [label=">=1.0.0 <2.0.0", color=gray];
 
-  "collection" [label="collection\n1.14.0",shape=box,margin="0.25,0.15",style=bold];
+  collection [label="collection\n1.14.3", shape=box, margin="0.25,0.15", style=bold];
 
-  "convert" [label="convert\n2.0.1"];
-  "convert" -> "charcode" [label="^1.1.0",color=gray];
-  "convert" -> "typed_data" [label="^1.1.0",color=gray];
+  convert [label="convert\n2.0.1"];
+  convert -> charcode [label="^1.1.0", color=gray];
+  convert -> typed_data [label="^1.1.0", color=gray];
 
-  "crypto" [label="crypto\n2.0.1"];
-  "crypto" -> "collection" [label="^1.0.0",color=gray];
-  "crypto" -> "convert" [label=">=1.0.0 <3.0.0",color=gray];
+  crypto [label="crypto\n2.0.2"];
+  crypto -> collection [label="^1.0.0", color=gray];
+  crypto -> convert [label=">=1.0.0 <3.0.0", color=gray];
+  crypto -> typed_data [label="^1.0.0", color=gray];
 
-  "csslib" [label="csslib\n0.13.6"];
-  "csslib" -> "args" [label=">=0.9.0 <0.14.0",color=gray];
-  "csslib" -> "logging" [label=">=0.9.0 <0.12.0",color=gray];
-  "csslib" -> "path" [label=">=0.9.0 <2.0.0",color=gray];
-  "csslib" -> "source_span" [label=">=1.0.0 <2.0.0",color=gray];
+  csslib [label="csslib\n0.14.0"];
+  csslib -> args [label=">=0.9.0 <0.14.0", color=pink, fontcolor=red];
+  csslib -> logging [label=">=0.9.0 <0.12.0", color=gray];
+  csslib -> path [label=">=0.9.0 <2.0.0", color=gray];
+  csslib -> source_span [label=">=1.0.0 <2.0.0", color=gray];
 
-  "front_end" [label="front_end\n0.1.0-alpha.4"];
-  "front_end" -> "analyzer" [label="^0.30.0",color=gray];
-  "front_end" -> "kernel" [label="0.3.0-alpha.1",color=gray];
-  "front_end" -> "path" [label="^1.3.9",color=gray];
-  "front_end" -> "source_span" [label="^1.2.3",color=gray];
+  front_end [label="front_end\n0.1.0-alpha.4"];
+  front_end -> analyzer [label="^0.30.0", color=gray];
+  front_end -> kernel [label="0.3.0-alpha.1", color=gray];
+  front_end -> path [label="^1.3.9", color=gray];
+  front_end -> source_span [label="^1.2.3", color=gray];
 
-  "glob" [label="glob\n1.1.3"];
-  "glob" -> "async" [label="^1.2.0",color=gray];
-  "glob" -> "collection" [label=">=1.1.0 <2.0.0",color=gray];
-  "glob" -> "path" [label=">=1.3.0 <2.0.0",color=gray];
-  "glob" -> "string_scanner" [label=">=0.1.0 <2.0.0",color=gray];
+  glob [label="glob\n1.1.3"];
+  glob -> async [label="^1.2.0", color=gray];
+  glob -> collection [label=">=1.1.0 <2.0.0", color=gray];
+  glob -> path [label=">=1.3.0 <2.0.0", color=gray];
+  glob -> string_scanner [label=">=0.1.0 <2.0.0", color=gray];
 
-  "html" [label="html\n0.13.1"];
-  "html" -> "csslib" [label=">=0.13.2 <0.14.0",color=gray];
-  "html" -> "source_span" [label=">=1.0.0 <2.0.0",color=gray];
-  "html" -> "utf" [label=">=0.9.0 <0.10.0",color=gray];
+  gviz [label="gviz\n0.0.1", shape=box, margin="0.25,0.15", style=bold];
 
-  "http" [label="http\n0.11.3+13",shape=box,margin="0.25,0.15",style=bold];
-  "http" -> "async" [label="^1.10.0"];
-  "http" -> "collection" [label="^1.5.0"];
-  "http" -> "http_parser" [label=">=0.0.1 <4.0.0"];
-  "http" -> "path" [label=">=0.9.0 <2.0.0"];
-  "http" -> "stack_trace" [label=">=0.9.1 <2.0.0"];
+  html [label="html\n0.13.2"];
+  html -> csslib [label=">=0.13.2 <0.15.0", color=gray];
+  html -> source_span [label=">=1.0.0 <2.0.0", color=gray];
+  html -> utf [label=">=0.9.0 <0.10.0", color=gray];
 
-  "http_multi_server" [label="http_multi_server\n2.0.3"];
-  "http_multi_server" -> "async" [label="^1.2.0",color=gray];
+  http [label="http\n0.11.3+14", shape=box, margin="0.25,0.15", style=bold];
+  http -> async [label="^1.10.0"];
+  http -> collection [label="^1.5.0"];
+  http -> http_parser [label=">=0.0.1 <4.0.0"];
+  http -> path [label=">=0.9.0 <2.0.0"];
+  http -> stack_trace [label=">=0.9.1 <2.0.0"];
 
-  "http_parser" [label="http_parser\n3.1.1",shape=box,margin="0.25,0.15"];
-  "http_parser" -> "charcode" [label="^1.1.0"];
-  "http_parser" -> "collection" [label=">=0.9.1 <2.0.0"];
-  "http_parser" -> "source_span" [label="^1.0.0"];
-  "http_parser" -> "string_scanner" [label=">=0.0.0 <2.0.0"];
-  "http_parser" -> "typed_data" [label="^1.1.0"];
+  http_multi_server [label="http_multi_server\n2.0.3"];
+  http_multi_server -> async [label="^1.2.0", color=gray];
 
-  "isolate" [label="isolate\n1.0.0"];
+  http_parser [label="http_parser\n3.1.1", shape=box, margin="0.25,0.15"];
+  http_parser -> charcode [label="^1.1.0"];
+  http_parser -> collection [label=">=0.9.1 <2.0.0"];
+  http_parser -> source_span [label="^1.0.0"];
+  http_parser -> string_scanner [label=">=0.0.0 <2.0.0"];
+  http_parser -> typed_data [label="^1.1.0"];
 
-  "js" [label="js\n0.6.1",style=bold];
+  isolate [label="isolate\n1.0.0"];
 
-  "kernel" [label="kernel\n0.3.0-alpha.1"];
-  "kernel" -> "args" [label="^0.13.4",color=gray];
-  "kernel" -> "logging" [label="^0.11.2",color=gray];
-  "kernel" -> "package_config" [label="^1.0.0",color=gray];
-  "kernel" -> "path" [label="^1.3.9",color=gray];
+  js [label="js\n0.6.1", style=bold];
 
-  "logging" [label="logging\n0.11.3+1"];
+  kernel [label="kernel\n0.3.0-alpha.1"];
+  kernel -> args [label="^0.13.4", color=pink, fontcolor=red];
+  kernel -> logging [label="^0.11.2", color=gray];
+  kernel -> package_config [label="^1.0.0", color=gray];
+  kernel -> path [label="^1.3.9", color=gray];
 
-  "matcher" [label="matcher\n0.12.1"];
+  logging [label="logging\n0.11.3+1"];
 
-  "meta" [label="meta\n1.0.5"];
+  matcher [label="matcher\n0.12.1+1"];
+  matcher -> stack_trace [label="^1.2.0", color=gray];
 
-  "mime" [label="mime\n0.9.3"];
+  meta [label="meta\n1.1.1"];
 
-  "package_config" [label="package_config\n1.0.1"];
-  "package_config" -> "charcode" [label="^1.1.0",color=gray];
-  "package_config" -> "path" [label="^1.0.0",color=gray];
+  mime [label="mime\n0.9.3"];
 
-  "package_resolver" [label="package_resolver\n1.0.2"];
-  "package_resolver" -> "collection" [label="^1.9.0",color=gray];
-  "package_resolver" -> "http" [label="^0.11.0",color=gray];
-  "package_resolver" -> "package_config" [label=">=0.1.0 <2.0.0",color=gray];
-  "package_resolver" -> "path" [label="^1.0.0",color=gray];
+  node_preamble [label="node_preamble\n1.4.0"];
 
-  "path" [label="path\n1.4.1",shape=box,margin="0.25,0.15",style=bold];
+  package_config [label="package_config\n1.0.2"];
+  package_config -> charcode [label="^1.1.0", color=gray];
+  package_config -> path [label="^1.0.0", color=gray];
 
-  "plugin" [label="plugin\n0.2.0"];
+  package_resolver [label="package_resolver\n1.0.2"];
+  package_resolver -> collection [label="^1.9.0", color=gray];
+  package_resolver -> http [label="^0.11.0", color=gray];
+  package_resolver -> package_config [label=">=0.1.0 <2.0.0", color=gray];
+  package_resolver -> path [label="^1.0.0", color=gray];
 
-  "pool" [label="pool\n1.3.1"];
-  "pool" -> "async" [label="^1.4.0",color=gray];
-  "pool" -> "stack_trace" [label=">=0.9.2 <2.0.0",color=gray];
+  path [label="path\n1.4.2", shape=box, margin="0.25,0.15", style=bold];
 
-  "pub_semver" [label="pub_semver\n1.3.2",shape=box,margin="0.25,0.15",style=bold];
-  "pub_semver" -> "collection" [label=">=0.9.0 <2.0.0"];
+  plugin [label="plugin\n0.2.0+1"];
 
-  "pubviz" [label="pubviz\n2.3.8",fontsize=18,style=bold,shape=box,margin="0.25,0.15"];
-  "pubviz" -> "args" [label="^0.13.0",penwidth=2];
-  "pubviz" -> "collection" [label="^1.0.0",penwidth=2];
-  "pubviz" -> "http" [label="^0.11.1+3",penwidth=2];
-  "pubviz" -> "path" [label="^1.0.0",penwidth=2];
-  "pubviz" -> "pub_semver" [label="^1.0.0",penwidth=2];
-  "pubviz" -> "stack_trace" [label="^1.6.0",penwidth=2];
-  "pubviz" -> "yaml" [label="^2.0.0",penwidth=2];
-  "pubviz" -> "browser" [penwidth=2,style=dashed];
-  "pubviz" -> "js" [label="^0.6.0-beta.5",penwidth=2,style=dashed];
-  "pubviz" -> "test" [label="^0.12.0",penwidth=2,style=dashed];
+  pool [label="pool\n1.3.1"];
+  pool -> async [label="^1.4.0", color=gray];
+  pool -> stack_trace [label=">=0.9.2 <2.0.0", color=gray];
 
-  "shelf" [label="shelf\n0.6.7+2"];
-  "shelf" -> "async" [label="^1.10.0",color=gray];
-  "shelf" -> "collection" [label="^1.5.0",color=gray];
-  "shelf" -> "http_parser" [label="^3.1.0",color=gray];
-  "shelf" -> "path" [label="^1.0.0",color=gray];
-  "shelf" -> "stack_trace" [label="^1.0.0",color=gray];
-  "shelf" -> "stream_channel" [label="^1.0.0",color=gray];
+  pub_semver [label="pub_semver\n1.3.2", shape=box, margin="0.25,0.15", style=bold];
+  pub_semver -> collection [label=">=0.9.0 <2.0.0"];
 
-  "shelf_packages_handler" [label="shelf_packages_handler\n1.0.0"];
-  "shelf_packages_handler" -> "async" [label="^1.1.0",color=gray];
-  "shelf_packages_handler" -> "package_resolver" [label="^1.0.0",color=gray];
-  "shelf_packages_handler" -> "path" [label="^1.0.0",color=gray];
-  "shelf_packages_handler" -> "shelf" [label="^0.6.0",color=gray];
-  "shelf_packages_handler" -> "shelf_static" [label="^0.2.0",color=gray];
+  pubviz [label="pubviz\n2.3.9+1", fontsize="18", style=bold, shape=box, margin="0.25,0.15"];
+  pubviz -> args [label=">=0.13.0 <2.0.0", penwidth="2"];
+  pubviz -> collection [label="^1.0.0", penwidth="2"];
+  pubviz -> gviz [label="^0.0.1", penwidth="2"];
+  pubviz -> http [label="^0.11.1+3", penwidth="2"];
+  pubviz -> path [label="^1.0.0", penwidth="2"];
+  pubviz -> pub_semver [label="^1.0.0", penwidth="2"];
+  pubviz -> stack_trace [label="^1.6.0", penwidth="2"];
+  pubviz -> yaml [label="^2.0.0", penwidth="2"];
+  pubviz -> browser [penwidth="2", style=dashed];
+  pubviz -> js [label="^0.6.0-beta.5", penwidth="2", style=dashed];
+  pubviz -> test [label="^0.12.0", penwidth="2", style=dashed];
 
-  "shelf_static" [label="shelf_static\n0.2.4"];
-  "shelf_static" -> "convert" [label=">=1.0.0 <3.0.0",color=gray];
-  "shelf_static" -> "http_parser" [label=">=0.0.2+2 <4.0.0",color=gray];
-  "shelf_static" -> "mime" [label=">=0.9.0 <0.10.0",color=gray];
-  "shelf_static" -> "path" [label=">=1.1.0 <2.0.0",color=gray];
-  "shelf_static" -> "shelf" [label=">=0.5.7 <0.8.0",color=gray];
+  shelf [label="shelf\n0.6.8"];
+  shelf -> async [label="^1.10.0", color=gray];
+  shelf -> collection [label="^1.5.0", color=gray];
+  shelf -> http_parser [label="^3.1.0", color=gray];
+  shelf -> path [label="^1.0.0", color=gray];
+  shelf -> stack_trace [label="^1.0.0", color=gray];
+  shelf -> stream_channel [label="^1.0.0", color=gray];
 
-  "shelf_web_socket" [label="shelf_web_socket\n0.2.1"];
-  "shelf_web_socket" -> "shelf" [label=">=0.6.5 <0.8.0",color=gray];
-  "shelf_web_socket" -> "stream_channel" [label="^1.4.0",color=gray];
-  "shelf_web_socket" -> "web_socket_channel" [label="^1.0.0",color=gray];
+  shelf_packages_handler [label="shelf_packages_handler\n1.0.0"];
+  shelf_packages_handler -> async [label="^1.1.0", color=gray];
+  shelf_packages_handler -> package_resolver [label="^1.0.0", color=gray];
+  shelf_packages_handler -> path [label="^1.0.0", color=gray];
+  shelf_packages_handler -> shelf [label="^0.6.0", color=gray];
+  shelf_packages_handler -> shelf_static [label="^0.2.0", color=gray];
 
-  "source_map_stack_trace" [label="source_map_stack_trace\n1.1.4"];
-  "source_map_stack_trace" -> "package_resolver" [label="^1.0.0",color=gray];
-  "source_map_stack_trace" -> "path" [label="^1.0.0",color=gray];
-  "source_map_stack_trace" -> "source_maps" [label="^0.10.2",color=gray];
-  "source_map_stack_trace" -> "stack_trace" [label="^1.0.0",color=gray];
+  shelf_static [label="shelf_static\n0.2.5"];
+  shelf_static -> convert [label=">=1.0.0 <3.0.0", color=gray];
+  shelf_static -> http_parser [label=">=0.0.2+2 <4.0.0", color=gray];
+  shelf_static -> mime [label=">=0.9.0 <0.10.0", color=gray];
+  shelf_static -> path [label=">=1.1.0 <2.0.0", color=gray];
+  shelf_static -> shelf [label=">=0.5.7 <0.8.0", color=gray];
 
-  "source_maps" [label="source_maps\n0.10.4"];
-  "source_maps" -> "source_span" [label="^1.3.0",color=gray];
+  shelf_web_socket [label="shelf_web_socket\n0.2.1"];
+  shelf_web_socket -> shelf [label=">=0.6.5 <0.8.0", color=gray];
+  shelf_web_socket -> stream_channel [label="^1.4.0", color=gray];
+  shelf_web_socket -> web_socket_channel [label="^1.0.0", color=gray];
 
-  "source_span" [label="source_span\n1.4.0",shape=box,margin="0.25,0.15"];
-  "source_span" -> "charcode" [label="^1.0.0"];
-  "source_span" -> "path" [label=">=1.2.0 <2.0.0"];
+  source_map_stack_trace [label="source_map_stack_trace\n1.1.4"];
+  source_map_stack_trace -> package_resolver [label="^1.0.0", color=gray];
+  source_map_stack_trace -> path [label="^1.0.0", color=gray];
+  source_map_stack_trace -> source_maps [label="^0.10.2", color=gray];
+  source_map_stack_trace -> stack_trace [label="^1.0.0", color=gray];
 
-  "stack_trace" [label="stack_trace\n1.7.3",shape=box,margin="0.25,0.15",style=bold];
-  "stack_trace" -> "path" [label="^1.2.0"];
+  source_maps [label="source_maps\n0.10.4"];
+  source_maps -> source_span [label="^1.3.0", color=gray];
 
-  "stream_channel" [label="stream_channel\n1.6.1"];
-  "stream_channel" -> "async" [label="^1.11.0",color=gray];
-  "stream_channel" -> "stack_trace" [label="^1.0.0",color=gray];
+  source_span [label="source_span\n1.4.0", shape=box, margin="0.25,0.15"];
+  source_span -> charcode [label="^1.0.0"];
+  source_span -> path [label=">=1.2.0 <2.0.0"];
 
-  "string_scanner" [label="string_scanner\n1.0.1",shape=box,margin="0.25,0.15"];
-  "string_scanner" -> "charcode" [label="^1.1.0"];
-  "string_scanner" -> "source_span" [label="^1.0.0"];
+  stack_trace [label="stack_trace\n1.8.0", shape=box, margin="0.25,0.15", style=bold];
+  stack_trace -> path [label="^1.2.0"];
 
-  "term_glyph" [label="term_glyph\n1.0.0"];
+  stream_channel [label="stream_channel\n1.6.1"];
+  stream_channel -> async [label="^1.11.0", color=gray];
+  stream_channel -> stack_trace [label="^1.0.0", color=gray];
 
-  "test" [label="test\n0.12.20+13",style=bold];
-  "test" -> "analyzer" [label=">=0.23.0 <0.31.0",color=gray];
-  "test" -> "args" [label="^0.13.1",color=gray];
-  "test" -> "async" [label="^1.13.0",color=gray];
-  "test" -> "barback" [label=">=0.14.0 <0.16.0",color=gray];
-  "test" -> "boolean_selector" [label="^1.0.0",color=gray];
-  "test" -> "collection" [label="^1.8.0",color=gray];
-  "test" -> "glob" [label="^1.0.0",color=gray];
-  "test" -> "http_multi_server" [label=">=1.0.0 <3.0.0",color=gray];
-  "test" -> "matcher" [label=">=0.12.1 <0.12.2",color=gray];
-  "test" -> "meta" [label="^1.0.0",color=gray];
-  "test" -> "package_resolver" [label="^1.0.0",color=gray];
-  "test" -> "path" [label="^1.2.0",color=gray];
-  "test" -> "pool" [label="^1.3.0",color=gray];
-  "test" -> "pub_semver" [label="^1.0.0",color=gray];
-  "test" -> "shelf" [label=">=0.6.5 <0.8.0",color=gray];
-  "test" -> "shelf_packages_handler" [label="^1.0.0",color=gray];
-  "test" -> "shelf_static" [label="^0.2.0",color=gray];
-  "test" -> "shelf_web_socket" [label="^0.2.0",color=gray];
-  "test" -> "source_map_stack_trace" [label="^1.1.4",color=gray];
-  "test" -> "source_maps" [label="^0.10.2",color=gray];
-  "test" -> "source_span" [label="^1.0.0",color=gray];
-  "test" -> "stack_trace" [label="^1.2.1",color=gray];
-  "test" -> "stream_channel" [label="^1.6.0",color=gray];
-  "test" -> "string_scanner" [label=">=0.1.1 <2.0.0",color=gray];
-  "test" -> "term_glyph" [label="^1.0.0",color=gray];
-  "test" -> "web_socket_channel" [label="^1.0.0",color=gray];
-  "test" -> "yaml" [label="^2.0.0",color=gray];
+  string_scanner [label="string_scanner\n1.0.2", shape=box, margin="0.25,0.15"];
+  string_scanner -> charcode [label="^1.1.0"];
+  string_scanner -> source_span [label="^1.4.0"];
 
-  "typed_data" [label="typed_data\n1.1.3",shape=box,margin="0.25,0.15"];
+  term_glyph [label="term_glyph\n1.0.0"];
 
-  "utf" [label="utf\n0.9.0+3"];
+  test [label="test\n0.12.24+1", style=bold];
+  test -> analyzer [label=">=0.26.4 <0.32.0", color=gray];
+  test -> args [label=">=0.13.1 <2.0.0", color=gray];
+  test -> async [label="^1.13.0", color=gray];
+  test -> barback [label=">=0.14.0 <0.16.0", color=gray];
+  test -> boolean_selector [label="^1.0.0", color=gray];
+  test -> collection [label="^1.8.0", color=gray];
+  test -> glob [label="^1.0.0", color=gray];
+  test -> http_multi_server [label=">=1.0.0 <3.0.0", color=gray];
+  test -> js [label="^0.6.0", color=gray];
+  test -> matcher [label=">=0.12.1 <0.12.2", color=gray];
+  test -> meta [label="^1.0.0", color=gray];
+  test -> node_preamble [label="^1.3.0", color=gray];
+  test -> package_resolver [label="^1.0.0", color=gray];
+  test -> path [label="^1.2.0", color=gray];
+  test -> pool [label="^1.3.0", color=gray];
+  test -> pub_semver [label="^1.0.0", color=gray];
+  test -> shelf [label=">=0.6.5 <0.8.0", color=gray];
+  test -> shelf_packages_handler [label="^1.0.0", color=gray];
+  test -> shelf_static [label="^0.2.0", color=gray];
+  test -> shelf_web_socket [label="^0.2.0", color=gray];
+  test -> source_map_stack_trace [label="^1.1.4", color=gray];
+  test -> source_maps [label="^0.10.2", color=gray];
+  test -> source_span [label="^1.0.0", color=gray];
+  test -> stack_trace [label="^1.2.1", color=gray];
+  test -> stream_channel [label="^1.6.0", color=gray];
+  test -> string_scanner [label=">=0.1.1 <2.0.0", color=gray];
+  test -> term_glyph [label="^1.0.0", color=gray];
+  test -> web_socket_channel [label="^1.0.0", color=gray];
+  test -> yaml [label="^2.0.0", color=gray];
 
-  "watcher" [label="watcher\n0.9.7+3"];
-  "watcher" -> "async" [label="^1.10.0",color=gray];
-  "watcher" -> "collection" [label="^1.0.0",color=gray];
-  "watcher" -> "path" [label=">=0.9.0 <2.0.0",color=gray];
+  typed_data [label="typed_data\n1.1.4", shape=box, margin="0.25,0.15"];
 
-  "web_socket_channel" [label="web_socket_channel\n1.0.4"];
-  "web_socket_channel" -> "async" [label="^1.3.0",color=gray];
-  "web_socket_channel" -> "crypto" [label=">=0.9.2 <3.0.0",color=gray];
-  "web_socket_channel" -> "stream_channel" [label="^1.2.0",color=gray];
+  utf [label="utf\n0.9.0+3"];
 
-  "when" [label="when\n0.2.0"];
+  watcher [label="watcher\n0.9.7+3"];
+  watcher -> async [label="^1.10.0", color=gray];
+  watcher -> collection [label="^1.0.0", color=gray];
+  watcher -> path [label=">=0.9.0 <2.0.0", color=gray];
 
-  "which" [label="which\n0.1.3"];
-  "which" -> "path" [label=">=1.3.1 <2.0.0",color=gray];
-  "which" -> "when" [label=">=0.2.0 <0.3.0",color=gray];
+  web_socket_channel [label="web_socket_channel\n1.0.4"];
+  web_socket_channel -> async [label="^1.3.0", color=gray];
+  web_socket_channel -> crypto [label=">=0.9.2 <3.0.0", color=gray];
+  web_socket_channel -> stream_channel [label="^1.2.0", color=gray];
 
-  "yaml" [label="yaml\n2.1.12",shape=box,margin="0.25,0.15",style=bold];
-  "yaml" -> "charcode" [label="^1.1.0"];
-  "yaml" -> "collection" [label=">=1.1.0 <2.0.0"];
-  "yaml" -> "source_span" [label=">=1.0.0 <2.0.0"];
-  "yaml" -> "string_scanner" [label=">=0.1.4 <2.0.0"];
+  yaml [label="yaml\n2.1.12", shape=box, margin="0.25,0.15", style=bold];
+  yaml -> charcode [label="^1.1.0"];
+  yaml -> collection [label=">=1.1.0 <2.0.0"];
+  yaml -> source_span [label=">=1.0.0 <2.0.0"];
+  yaml -> string_scanner [label=">=0.1.4 <2.0.0"];
 }
 
     </script>
