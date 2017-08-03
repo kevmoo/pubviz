@@ -15,15 +15,17 @@
         "id": "library/85591458",
         "kind": "library",
         "name": "dart.dom.html",
-        "size": 21033,
+        "size": 21159,
         "children": [
           "class/5605510",
           "class/6212434",
           "class/6966771",
           "class/10453800",
+          "class/19733790",
           "class/24851237",
           "class/26961235",
           "class/30122249",
+          "class/32940685",
           "class/39742574",
           "class/46821537",
           "class/55140098",
@@ -37,6 +39,7 @@
           "class/89261345",
           "class/91046737",
           "class/96039302",
+          "class/96608627",
           "class/107480341",
           "class/109454374",
           "class/117850361",
@@ -62,6 +65,7 @@
           "class/201989315",
           "class/225022741",
           "class/233738397",
+          "class/234031567",
           "class/252654247",
           "class/259041475",
           "class/263432589",
@@ -79,13 +83,12 @@
           "class/345327946",
           "class/347377144",
           "class/359797717",
-          "class/370885794",
           "class/375304374",
+          "class/379035531",
           "class/383128115",
           "class/383180566",
           "class/383296023",
           "class/384861079",
-          "class/388756670",
           "class/406153521",
           "class/408634161",
           "class/410257432",
@@ -94,14 +97,12 @@
           "class/422296824",
           "class/427740495",
           "class/428836038",
+          "class/432238229",
           "class/438582966",
-          "class/442182205",
           "class/443301924",
           "class/448748906",
           "class/450259530",
           "class/460588490",
-          "class/480478891",
-          "class/484826397",
           "class/485201602",
           "class/485578406",
           "class/486475221",
@@ -112,6 +113,7 @@
           "class/518334415",
           "class/529031495",
           "class/530909430",
+          "class/545711229",
           "class/549947255",
           "class/551044018",
           "class/553990467",
@@ -141,6 +143,7 @@
           "class/662292640",
           "class/666928357",
           "class/669166755",
+          "class/670647924",
           "class/673787572",
           "class/688226486",
           "class/689213311",
@@ -158,13 +161,12 @@
           "class/754236096",
           "class/758110105",
           "class/758827947",
-          "class/762943405",
           "class/766774061",
           "class/767715287",
           "class/771854752",
-          "class/775206984",
           "class/777999233",
           "class/782880094",
+          "class/784114753",
           "class/791352067",
           "class/792754277",
           "class/796633142",
@@ -190,7 +192,6 @@
           "class/888030090",
           "class/896575907",
           "class/897378195",
-          "class/901622731",
           "class/918195715",
           "class/920706154",
           "class/925540164",
@@ -199,8 +200,8 @@
           "class/930773876",
           "class/931283771",
           "class/932959358",
-          "class/933343743",
           "class/933811091",
+          "class/935578091",
           "class/938665676",
           "class/939061945",
           "class/941149145",
@@ -208,13 +209,13 @@
           "class/945591037",
           "class/945873475",
           "class/946391310",
+          "class/951868333",
           "class/955576470",
           "class/960338917",
           "class/961309232",
           "class/969691905",
           "class/969817502",
           "class/973831837",
-          "class/979598411",
           "class/981166865",
           "class/992156986",
           "class/992603795",
@@ -239,10 +240,13 @@
           "function/950791599",
           "typedef/53167012",
           "typedef/55986852",
+          "typedef/63901059",
+          "typedef/291642082",
           "typedef/338338038",
           "typedef/598973994",
           "typedef/663671574",
           "typedef/688454266",
+          "typedef/839253121",
           "typedef/846856560",
           "typedef/865017825",
           "typedef/988943273"
@@ -380,7 +384,7 @@
         "id": "library/325218131",
         "kind": "library",
         "name": "_interceptors",
-        "size": 6341,
+        "size": 6346,
         "children": [
           "class/86936801",
           "class/245082925",
@@ -417,7 +421,7 @@
         "id": "library/470705070",
         "kind": "library",
         "name": "dart.dom.svg",
-        "size": 3176,
+        "size": 4706,
         "children": [
           "class/1889497",
           "class/8054138",
@@ -439,7 +443,7 @@
           "class/225921974",
           "class/271092571",
           "class/304755094",
-          "class/316719589",
+          "class/315700092",
           "class/320134652",
           "class/397200730",
           "class/415009044",
@@ -456,6 +460,7 @@
           "class/547332781",
           "class/557401430",
           "class/559747317",
+          "class/567359146",
           "class/591761430",
           "class/595229906",
           "class/599208010",
@@ -475,6 +480,7 @@
           "class/781431712",
           "class/784503513",
           "class/812840016",
+          "class/813969515",
           "class/824743323",
           "class/831546412",
           "class/844191589",
@@ -482,6 +488,7 @@
           "class/860557986",
           "class/860687346",
           "class/860909130",
+          "class/878983453",
           "class/907462466",
           "class/913141581",
           "class/915489195",
@@ -489,6 +496,7 @@
           "class/956629250",
           "class/958429862",
           "class/965279547",
+          "class/980673591",
           "class/984553163",
           "class/1003322925",
           "class/1010514842",
@@ -518,7 +526,7 @@
         "id": "library/631335891",
         "kind": "library",
         "name": "dart.core",
-        "size": 5824,
+        "size": 5808,
         "children": [
           "class/36312556",
           "class/56472591",
@@ -748,6 +756,7 @@
           "function/214755004",
           "function/225159691",
           "function/227832360",
+          "function/252845871",
           "function/257728434",
           "function/263798810",
           "function/264370095",
@@ -847,7 +856,7 @@
         "id": "library/1038137564",
         "kind": "library",
         "name": "dart.typed_data.implementation",
-        "size": 2575,
+        "size": 2577,
         "children": [
           "class/72050732",
           "class/164720227",
@@ -873,7 +882,7 @@
         "id": "library/1052666095",
         "kind": "library",
         "name": "dart.async",
-        "size": 17184,
+        "size": 17150,
         "children": [
           "class/72608649",
           "class/80405414",
@@ -907,7 +916,6 @@
           "class/861929861",
           "class/926172034",
           "class/934351233",
-          "class/935962970",
           "class/961595590",
           "class/1012203707",
           "class/1021778339",
@@ -1084,6 +1092,20 @@
           "function/636061569"
         ]
       },
+      "19733790": {
+        "id": "class/19733790",
+        "kind": "class",
+        "name": "SlotElement",
+        "size": 0,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "library/85591458",
+        "modifiers": {
+          "abstract": false
+        },
+        "children": [
+          "field/452404347"
+        ]
+      },
       "21047326": {
         "id": "class/21047326",
         "kind": "class",
@@ -1145,6 +1167,18 @@
         "id": "class/30122249",
         "kind": "class",
         "name": "XmlDocument",
+        "size": 0,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "library/85591458",
+        "modifiers": {
+          "abstract": false
+        },
+        "children": []
+      },
+      "32940685": {
+        "id": "class/32940685",
+        "kind": "class",
+        "name": "MessagePort",
         "size": 0,
         "outputUnit": "outputUnit/987444055",
         "parent": "library/85591458",
@@ -1607,7 +1641,7 @@
         "id": "class/86936801",
         "kind": "class",
         "name": "Interceptor",
-        "size": 366,
+        "size": 372,
         "outputUnit": "outputUnit/987444055",
         "parent": "library/325218131",
         "modifiers": {
@@ -1694,11 +1728,23 @@
         "id": "class/96039302",
         "kind": "class",
         "name": "HtmlElement",
-        "size": 1096,
+        "size": 1069,
         "outputUnit": "outputUnit/987444055",
         "parent": "library/85591458",
         "modifiers": {
           "abstract": false
+        },
+        "children": []
+      },
+      "96608627": {
+        "id": "class/96608627",
+        "kind": "class",
+        "name": "_ServiceWorker",
+        "size": 47,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "library/85591458",
+        "modifiers": {
+          "abstract": true
         },
         "children": []
       },
@@ -1965,7 +2011,9 @@
         "modifiers": {
           "abstract": false
         },
-        "children": []
+        "children": [
+          "field/780490296"
+        ]
       },
       "136912529": {
         "id": "class/136912529",
@@ -2145,7 +2193,7 @@
         "id": "class/154158031",
         "kind": "class",
         "name": "_ValidatingTreeSanitizer",
-        "size": 2186,
+        "size": 2250,
         "outputUnit": "outputUnit/987444055",
         "parent": "library/85591458",
         "modifiers": {
@@ -2269,7 +2317,9 @@
         "modifiers": {
           "abstract": false
         },
-        "children": []
+        "children": [
+          "field/190775017"
+        ]
       },
       "166252293": {
         "id": "class/166252293",
@@ -2794,6 +2844,18 @@
         },
         "children": []
       },
+      "234031567": {
+        "id": "class/234031567",
+        "kind": "class",
+        "name": "_USBConnectionEvent",
+        "size": 0,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "library/85591458",
+        "modifiers": {
+          "abstract": true
+        },
+        "children": []
+      },
       "245066649": {
         "id": "class/245066649",
         "kind": "class",
@@ -3181,6 +3243,23 @@
         },
         "children": []
       },
+      "315700092": {
+        "id": "class/315700092",
+        "kind": "class",
+        "name": "AttributeClassSet",
+        "size": 303,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "library/470705070",
+        "modifiers": {
+          "abstract": false
+        },
+        "children": [
+          "field/896119921",
+          "function/48116214",
+          "function/524476833",
+          "function/625721805"
+        ]
+      },
       "315916065": {
         "id": "class/315916065",
         "kind": "class",
@@ -3193,23 +3272,6 @@
         },
         "children": [
           "field/869432905"
-        ]
-      },
-      "316719589": {
-        "id": "class/316719589",
-        "kind": "class",
-        "name": "_AttributeClassSet",
-        "size": 303,
-        "outputUnit": "outputUnit/987444055",
-        "parent": "library/470705070",
-        "modifiers": {
-          "abstract": false
-        },
-        "children": [
-          "field/189813979",
-          "function/467834401",
-          "function/564769724",
-          "function/821049294"
         ]
       },
       "317291728": {
@@ -3314,7 +3376,7 @@
         "id": "class/337756919",
         "kind": "class",
         "name": "_Html5NodeValidator",
-        "size": 879,
+        "size": 870,
         "outputUnit": "outputUnit/987444055",
         "parent": "library/85591458",
         "modifiers": {
@@ -3540,18 +3602,6 @@
           "function/1047605700"
         ]
       },
-      "370885794": {
-        "id": "class/370885794",
-        "kind": "class",
-        "name": "DefaultSessionStartEvent",
-        "size": 0,
-        "outputUnit": "outputUnit/987444055",
-        "parent": "library/85591458",
-        "modifiers": {
-          "abstract": false
-        },
-        "children": []
-      },
       "373504153": {
         "id": "class/373504153",
         "kind": "class",
@@ -3614,6 +3664,18 @@
           "function/692778624"
         ]
       },
+      "379035531": {
+        "id": "class/379035531",
+        "kind": "class",
+        "name": "WindowClient",
+        "size": 0,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "library/85591458",
+        "modifiers": {
+          "abstract": false
+        },
+        "children": []
+      },
       "383128115": {
         "id": "class/383128115",
         "kind": "class",
@@ -3666,7 +3728,7 @@
         "id": "class/384231720",
         "kind": "class",
         "name": "DateTime",
-        "size": 11,
+        "size": 0,
         "outputUnit": "outputUnit/987444055",
         "parent": "library/631335891",
         "modifiers": {
@@ -3702,20 +3764,6 @@
         },
         "children": [
           "function/1050105482"
-        ]
-      },
-      "388756670": {
-        "id": "class/388756670",
-        "kind": "class",
-        "name": "DomSettableTokenList",
-        "size": 0,
-        "outputUnit": "outputUnit/987444055",
-        "parent": "library/85591458",
-        "modifiers": {
-          "abstract": false
-        },
-        "children": [
-          "field/192928109"
         ]
       },
       "391122424": {
@@ -3964,6 +4012,18 @@
         },
         "children": []
       },
+      "432238229": {
+        "id": "class/432238229",
+        "kind": "class",
+        "name": "BlobEvent",
+        "size": 0,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "library/85591458",
+        "modifiers": {
+          "abstract": false
+        },
+        "children": []
+      },
       "434731514": {
         "id": "class/434731514",
         "kind": "class",
@@ -4005,15 +4065,14 @@
         "id": "class/438137149",
         "kind": "class",
         "name": "Future",
-        "size": 14,
+        "size": 0,
         "outputUnit": "outputUnit/987444055",
         "parent": "library/1052666095",
         "modifiers": {
           "abstract": true
         },
         "children": [
-          "field/1022934707",
-          "function/513053773"
+          "field/1022934707"
         ]
       },
       "438582966": {
@@ -4031,31 +4090,18 @@
           "field/545680547"
         ]
       },
-      "442182205": {
-        "id": "class/442182205",
-        "kind": "class",
-        "name": "PluginPlaceholderElement",
-        "size": 0,
-        "outputUnit": "outputUnit/987444055",
-        "parent": "library/85591458",
-        "modifiers": {
-          "abstract": false
-        },
-        "children": [
-          "field/749360488"
-        ]
-      },
       "443301924": {
         "id": "class/443301924",
         "kind": "class",
         "name": "DomTokenList",
-        "size": 135,
+        "size": 114,
         "outputUnit": "outputUnit/987444055",
         "parent": "library/85591458",
         "modifiers": {
           "abstract": false
         },
         "children": [
+          "field/381796299",
           "field/549726190",
           "function/300838234",
           "function/458065643"
@@ -4206,20 +4252,6 @@
           "function/553240683"
         ]
       },
-      "480478891": {
-        "id": "class/480478891",
-        "kind": "class",
-        "name": "MediaKeyEvent",
-        "size": 0,
-        "outputUnit": "outputUnit/987444055",
-        "parent": "library/85591458",
-        "modifiers": {
-          "abstract": false
-        },
-        "children": [
-          "field/581913452"
-        ]
-      },
       "481500691": {
         "id": "class/481500691",
         "kind": "class",
@@ -4233,20 +4265,6 @@
         "children": [
           "function/173469993",
           "function/808159833"
-        ]
-      },
-      "484826397": {
-        "id": "class/484826397",
-        "kind": "class",
-        "name": "CrossOriginConnectEvent",
-        "size": 0,
-        "outputUnit": "outputUnit/987444055",
-        "parent": "library/85591458",
-        "modifiers": {
-          "abstract": false
-        },
-        "children": [
-          "field/475853821"
         ]
       },
       "485201602": {
@@ -4473,7 +4491,7 @@
         "id": "class/523978038",
         "kind": "class",
         "name": "JSArray",
-        "size": 1829,
+        "size": 1828,
         "outputUnit": "outputUnit/987444055",
         "parent": "library/325218131",
         "modifiers": {
@@ -4643,6 +4661,21 @@
           "abstract": false
         },
         "children": []
+      },
+      "545711229": {
+        "id": "class/545711229",
+        "kind": "class",
+        "name": "ExtendableMessageEvent",
+        "size": 0,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "library/85591458",
+        "modifiers": {
+          "abstract": false
+        },
+        "children": [
+          "field/63365323",
+          "field/783536444"
+        ]
       },
       "546089572": {
         "id": "class/546089572",
@@ -4852,6 +4885,20 @@
           "abstract": false
         },
         "children": []
+      },
+      "567359146": {
+        "id": "class/567359146",
+        "kind": "class",
+        "name": "Number",
+        "size": 35,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "library/470705070",
+        "modifiers": {
+          "abstract": false
+        },
+        "children": [
+          "field/314115818"
+        ]
       },
       "571092653": {
         "id": "class/571092653",
@@ -5100,7 +5147,7 @@
         "id": "class/604138865",
         "kind": "class",
         "name": "_BufferingStreamSubscription",
-        "size": 1660,
+        "size": 1651,
         "outputUnit": "outputUnit/987444055",
         "parent": "library/1052666095",
         "modifiers": {
@@ -5315,7 +5362,9 @@
         "modifiers": {
           "abstract": false
         },
-        "children": []
+        "children": [
+          "field/13780890"
+        ]
       },
       "627604344": {
         "id": "class/627604344",
@@ -5545,7 +5594,7 @@
         "id": "class/661490465",
         "kind": "class",
         "name": "EventTarget",
-        "size": 319,
+        "size": 300,
         "outputUnit": "outputUnit/987444055",
         "parent": "library/85591458",
         "modifiers": {
@@ -5656,6 +5705,20 @@
           "abstract": false
         },
         "children": []
+      },
+      "670647924": {
+        "id": "class/670647924",
+        "kind": "class",
+        "name": "PresentationConnectionCloseEvent",
+        "size": 0,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "library/85591458",
+        "modifiers": {
+          "abstract": false
+        },
+        "children": [
+          "field/495052060"
+        ]
       },
       "673787572": {
         "id": "class/673787572",
@@ -6373,18 +6436,6 @@
         },
         "children": []
       },
-      "762943405": {
-        "id": "class/762943405",
-        "kind": "class",
-        "name": "PeriodicSyncEvent",
-        "size": 0,
-        "outputUnit": "outputUnit/987444055",
-        "parent": "library/85591458",
-        "modifiers": {
-          "abstract": false
-        },
-        "children": []
-      },
       "764600059": {
         "id": "class/764600059",
         "kind": "class",
@@ -6506,18 +6557,6 @@
           "function/156463617"
         ]
       },
-      "775206984": {
-        "id": "class/775206984",
-        "kind": "class",
-        "name": "_HTMLAppletElement",
-        "size": 0,
-        "outputUnit": "outputUnit/987444055",
-        "parent": "library/85591458",
-        "modifiers": {
-          "abstract": true
-        },
-        "children": []
-      },
       "777564756": {
         "id": "class/777564756",
         "kind": "class",
@@ -6528,7 +6567,9 @@
         "modifiers": {
           "abstract": false
         },
-        "children": []
+        "children": [
+          "field/674874365"
+        ]
       },
       "777999233": {
         "id": "class/777999233",
@@ -6598,11 +6639,25 @@
         },
         "children": []
       },
+      "784114753": {
+        "id": "class/784114753",
+        "kind": "class",
+        "name": "Client",
+        "size": 0,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "library/85591458",
+        "modifiers": {
+          "abstract": false
+        },
+        "children": [
+          "field/929638255"
+        ]
+      },
       "784178238": {
         "id": "class/784178238",
         "kind": "class",
         "name": "_Future",
-        "size": 4075,
+        "size": 4080,
         "outputUnit": "outputUnit/987444055",
         "parent": "library/1052666095",
         "modifiers": {
@@ -6625,11 +6680,11 @@
           "function/94108092",
           "function/96457955",
           "function/271674536",
+          "function/289180415",
           "function/292751514",
           "function/325386239",
           "function/352514166",
           "function/472201782",
-          "function/492708773",
           "function/519629171",
           "function/533906117",
           "function/553149607",
@@ -6886,6 +6941,20 @@
           "field/548849454",
           "field/722361362",
           "field/922284979"
+        ]
+      },
+      "813969515": {
+        "id": "class/813969515",
+        "kind": "class",
+        "name": "Length",
+        "size": 35,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "library/470705070",
+        "modifiers": {
+          "abstract": false
+        },
+        "children": [
+          "field/482655782"
         ]
       },
       "815753246": {
@@ -7219,11 +7288,9 @@
           "field/554487436",
           "field/571752380",
           "field/597578690",
-          "field/667197665",
           "field/838776908",
           "field/917464888",
           "field/979097463",
-          "field/1018160733",
           "field/1040228987",
           "function/110403471",
           "function/325903689",
@@ -7265,7 +7332,9 @@
         "modifiers": {
           "abstract": false
         },
-        "children": []
+        "children": [
+          "field/923456332"
+        ]
       },
       "861929861": {
         "id": "class/861929861",
@@ -7368,6 +7437,25 @@
           "field/489070184"
         ]
       },
+      "878983453": {
+        "id": "class/878983453",
+        "kind": "class",
+        "name": "LengthList",
+        "size": 528,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "library/470705070",
+        "modifiers": {
+          "abstract": false
+        },
+        "children": [
+          "function/29960022",
+          "function/394009594",
+          "function/394009595",
+          "function/524861671",
+          "function/660922452",
+          "function/991090123"
+        ]
+      },
       "881282833": {
         "id": "class/881282833",
         "kind": "class",
@@ -7464,18 +7552,6 @@
           "field/390537820",
           "field/570177477"
         ]
-      },
-      "901622731": {
-        "id": "class/901622731",
-        "kind": "class",
-        "name": "CrossOriginServiceWorkerClient",
-        "size": 0,
-        "outputUnit": "outputUnit/987444055",
-        "parent": "library/85591458",
-        "modifiers": {
-          "abstract": false
-        },
-        "children": []
       },
       "907462466": {
         "id": "class/907462466",
@@ -7596,6 +7672,7 @@
           "abstract": false
         },
         "children": [
+          "field/24024104",
           "field/750720671"
         ]
       },
@@ -7640,6 +7717,8 @@
         },
         "children": [
           "field/203188191",
+          "field/586613134",
+          "field/762570208",
           "field/967776621"
         ]
       },
@@ -7681,18 +7760,6 @@
           "function/467545252"
         ]
       },
-      "933343743": {
-        "id": "class/933343743",
-        "kind": "class",
-        "name": "MediaKeyError",
-        "size": 0,
-        "outputUnit": "outputUnit/987444055",
-        "parent": "library/85591458",
-        "modifiers": {
-          "abstract": false
-        },
-        "children": []
-      },
       "933811091": {
         "id": "class/933811091",
         "kind": "class",
@@ -7720,6 +7787,18 @@
           "field/657138181"
         ]
       },
+      "935578091": {
+        "id": "class/935578091",
+        "kind": "class",
+        "name": "InstallEvent",
+        "size": 0,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "library/85591458",
+        "modifiers": {
+          "abstract": false
+        },
+        "children": []
+      },
       "935796886": {
         "id": "class/935796886",
         "kind": "class",
@@ -7729,18 +7808,6 @@
         "parent": "library/1038137564",
         "modifiers": {
           "abstract": false
-        },
-        "children": []
-      },
-      "935962970": {
-        "id": "class/935962970",
-        "kind": "class",
-        "name": "_EventSink",
-        "size": 11,
-        "outputUnit": "outputUnit/987444055",
-        "parent": "library/1052666095",
-        "modifiers": {
-          "abstract": true
         },
         "children": []
       },
@@ -7939,6 +8006,18 @@
         "children": [
           "field/249142929"
         ]
+      },
+      "951868333": {
+        "id": "class/951868333",
+        "kind": "class",
+        "name": "PresentationConnectionAvailableEvent",
+        "size": 0,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "library/85591458",
+        "modifiers": {
+          "abstract": false
+        },
+        "children": []
       },
       "954836234": {
         "id": "class/954836234",
@@ -8151,17 +8230,24 @@
         },
         "children": []
       },
-      "979598411": {
-        "id": "class/979598411",
+      "980673591": {
+        "id": "class/980673591",
         "kind": "class",
-        "name": "_XMLHttpRequestProgressEvent",
-        "size": 0,
+        "name": "NumberList",
+        "size": 528,
         "outputUnit": "outputUnit/987444055",
-        "parent": "library/85591458",
+        "parent": "library/470705070",
         "modifiers": {
-          "abstract": true
+          "abstract": false
         },
-        "children": []
+        "children": [
+          "function/141703218",
+          "function/294864442",
+          "function/313434709",
+          "function/313434710",
+          "function/392481975",
+          "function/474768756"
+        ]
       },
       "981166865": {
         "id": "class/981166865",
@@ -8215,7 +8301,7 @@
         "id": "class/992156986",
         "kind": "class",
         "name": "Element",
-        "size": 1700,
+        "size": 1766,
         "outputUnit": "outputUnit/987444055",
         "parent": "library/85591458",
         "modifiers": {
@@ -8233,12 +8319,14 @@
           "field/467973440",
           "field/490772869",
           "field/507277120",
+          "field/522633194",
           "field/568135315",
           "field/584092830",
           "field/643556454",
           "field/704258324",
           "field/742570978",
           "field/744967987",
+          "field/855437238",
           "field/919003962",
           "field/944121671",
           "field/999333178",
@@ -8309,7 +8397,7 @@
         "id": "class/996025280",
         "kind": "class",
         "name": "Event",
-        "size": 1118,
+        "size": 1144,
         "outputUnit": "outputUnit/987444055",
         "parent": "library/85591458",
         "modifiers": {
@@ -8619,7 +8707,9 @@
         "modifiers": {
           "abstract": false
         },
-        "children": []
+        "children": [
+          "field/388325704"
+        ]
       },
       "1028283566": {
         "id": "class/1028283566",
@@ -8847,7 +8937,7 @@
         ],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
-        "code": "ws:function(a){var z,y,x\nz=[]\nif(a!=null)if(new P.Ci(a).tg(0,\"edge\"))C.Nm.Ay(z,[a.getAttribute(\"x-to\"),a.getAttribute(\"x-from\")])\nelse z.push(a.id)\ny=[null]\nx=new W.wz($.v7.querySelectorAll(\"g.node\"),y)\nx.aN(x,new G.tb(z))\ny=new W.wz($.v7.querySelectorAll(\"g.edge\"),y)\ny.aN(y,new G.GJ(z))}\n",
+        "code": "ws:function(a){var z,y,x\nz=[]\nif(a!=null)if(new P.Ke(a).tg(0,\"edge\"))C.Nm.Ay(z,[a.getAttribute(\"x-to\"),a.getAttribute(\"x-from\")])\nelse z.push(a.id)\ny=[null]\nx=new W.wz($.v7.querySelectorAll(\"g.node\"),y)\nx.aN(x,new G.tb(z))\ny=new W.wz($.v7.querySelectorAll(\"g.edge\"),y)\ny.aN(y,new G.GJ(z))}\n",
         "type": "(GElement) -> void",
         "measurements": null
       },
@@ -9004,7 +9094,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[exact=JSBool]",
         "parameters": [
           {
             "name": "v",
@@ -9200,7 +9290,7 @@
           "external": false
         },
         "returnType": "void",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null]",
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
@@ -9433,7 +9523,7 @@
         "id": "function/19823936",
         "kind": "function",
         "name": "_sanitizeElement",
-        "size": 846,
+        "size": 847,
         "outputUnit": "outputUnit/987444055",
         "parent": "class/154158031",
         "children": [],
@@ -9484,7 +9574,7 @@
         ],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
-        "code": "kR:function(a,b,c,d,e,f,g){var z,y,x,w,v\nif(c){this.EP(a,b)\nwindow\nz=\"Removing element due to corrupted attributes on <\"+d+\">\"\nif(typeof console!=\"undefined\")console.warn(z)\nreturn}if(!this.a.i0(a)){this.EP(a,b)\nwindow\nz=\"Removing disallowed element <\"+H.d(e)+\"> from \"+J.Ac(b)\nif(typeof console!=\"undefined\")console.warn(z)\nreturn}if(g!=null)if(!this.a.Eb(a,\"is\",g)){this.EP(a,b)\nwindow\nz=\"Removing disallowed type extension <\"+H.d(e)+' is=\"'+g+'\">'\nif(typeof console!=\"undefined\")console.warn(z)\nreturn}z=f.gV()\ny=H.VM(z.slice(),[H.Kp(z,0)])\nfor(x=f.gV().length-1,z=f.a;x>=0;--x){w=y[x]\nif(!this.a.Eb(a,J.aX(w),z.getAttribute(w))){window\nv=\"Removing disallowed attribute <\"+H.d(e)+\" \"+w+'=\"'+H.d(z.getAttribute(w))+'\">'\nif(typeof console!=\"undefined\")console.warn(v)\nz.getAttribute(w)\nz.removeAttribute(w)}}if(!!J.v(a).$isyY)this.Pn(a.content)}\n",
+        "code": "kR:function(a,b,c,d,e,f,g){var z,y,x,w,v\nif(c){this.EP(a,b)\nwindow\nz=\"Removing element due to corrupted attributes on <\"+d+\">\"\nif(typeof console!=\"undefined\")console.warn(z)\nreturn}if(!this.a.i0(a)){this.EP(a,b)\nwindow\nz=\"Removing disallowed element <\"+H.d(e)+\"> from \"+J.Ac(b)\nif(typeof console!=\"undefined\")console.warn(z)\nreturn}if(g!=null)if(!this.a.Eb(a,\"is\",g)){this.EP(a,b)\nwindow\nz=\"Removing disallowed type extension <\"+H.d(e)+' is=\"'+g+'\">'\nif(typeof console!=\"undefined\")console.warn(z)\nreturn}z=f.gV()\ny=H.VM(z.slice(0),[H.Kp(z,0)])\nfor(x=f.gV().length-1,z=f.a;x>=0;--x){w=y[x]\nif(!this.a.Eb(a,J.aX(w),z.getAttribute(w))){window\nv=\"Removing disallowed attribute <\"+H.d(e)+\" \"+w+'=\"'+H.d(z.getAttribute(w))+'\">'\nif(typeof console!=\"undefined\")console.warn(v)\nz.getAttribute(w)\nz.removeAttribute(w)}}if(!!J.v(a).$isyY)this.Pn(a.content)}\n",
         "type": "(Element, Node, bool, String, String, Map, String) -> void",
         "measurements": null
       },
@@ -9687,6 +9777,29 @@
         "type": "() -> String",
         "measurements": null
       },
+      "29960022": {
+        "id": "function/29960022",
+        "kind": "function",
+        "name": "last",
+        "size": 87,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/878983453",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "Length",
+        "inferredReturnType": "[exact=Length]",
+        "parameters": [],
+        "sideEffects": "Depends on [] field store static store, Changes [] field static.",
+        "inlinedCount": 0,
+        "code": "grZ:function(a){var z=a.length\nif(z>0)return a[z-1]\nthrow H.b(new P.lj(\"No elements\"))}\n",
+        "type": "() -> Length",
+        "measurements": null
+      },
       "30570662": {
         "id": "function/30570662",
         "kind": "function",
@@ -9813,7 +9926,7 @@
         "id": "function/33230983",
         "kind": "function",
         "name": "_nullErrorHandler",
-        "size": 119,
+        "size": 117,
         "outputUnit": "outputUnit/987444055",
         "parent": "library/1052666095",
         "children": [],
@@ -9839,7 +9952,7 @@
         ],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
-        "code": "SZ:[function(a,b){var z=$.X3\nz.toString\nP.L2(null,null,z,a,b)},function(a){return P.SZ(a,null)},\"$2\",\"$1\",\"Cr\",2,2,5,0]\n",
+        "code": "SZ:[function(a,b){var z=$.X3\nz.toString\nP.L2(null,null,z,a,b)},function(a){return P.SZ(a,null)},\"$2\",\"$1\",\"Cr\",2,2,5]\n",
         "type": "(Object, [StackTrace]) -> void",
         "measurements": null
       },
@@ -10267,6 +10380,35 @@
         "inlinedCount": 0,
         "code": "Eb:function(a,b,c){if(this.jF(a,b,c))return!0\nif(b===\"template\"&&c===\"\")return!0\nif(a.getAttribute(\"template\")===\"\")return this.e.tg(0,b)\nreturn!1}\n",
         "type": "(Element, String, String) -> bool",
+        "measurements": null
+      },
+      "48116214": {
+        "id": "function/48116214",
+        "kind": "function",
+        "name": "AttributeClassSet",
+        "size": 0,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/315700092",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "dynamic",
+        "inferredReturnType": "[exact=AttributeClassSet]",
+        "parameters": [
+          {
+            "name": "_element",
+            "type": "[subclass=SvgElement]",
+            "declaredType": "null"
+          }
+        ],
+        "sideEffects": "Depends on nothing, Changes nothing.",
+        "inlinedCount": 3,
+        "code": null,
+        "type": "(Element) -> dynamic",
         "measurements": null
       },
       "48612165": {
@@ -11182,7 +11324,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null|subclass=Object]",
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
@@ -11205,7 +11347,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null|subclass=Object]",
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
@@ -11430,7 +11572,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null]",
         "parameters": [
           {
             "name": "key",
@@ -11545,7 +11687,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null]",
         "parameters": [
           {
             "name": "node",
@@ -11574,7 +11716,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null]",
         "parameters": [
           {
             "name": "node",
@@ -12217,13 +12359,13 @@
           "factory": false,
           "external": false
         },
-        "returnType": "_LinkedIdentityHashSet<_LinkedIdentityHashSet.E>",
+        "returnType": "dynamic",
         "inferredReturnType": "[exact=_LinkedIdentityHashSet]",
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 1,
         "code": null,
-        "type": "() -> _LinkedIdentityHashSet<_LinkedIdentityHashSet.E>",
+        "type": "() -> dynamic",
         "measurements": null
       },
       "120716174": {
@@ -12778,6 +12920,35 @@
         "type": "(dynamic, StackTrace) -> void",
         "measurements": null
       },
+      "141703218": {
+        "id": "function/141703218",
+        "kind": "function",
+        "name": "[]",
+        "size": 98,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/980673591",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "Number",
+        "inferredReturnType": "[null|exact=Number]",
+        "parameters": [
+          {
+            "name": "index",
+            "type": "[null|subclass=JSInt]",
+            "declaredType": "int"
+          }
+        ],
+        "sideEffects": "Depends on [] field store static store, Changes [] field static.",
+        "inlinedCount": 0,
+        "code": "q:function(a,b){if(b>>>0!==b||b>=a.length)throw H.b(P.Cf(b,a,null,null,null))\nreturn a.getItem(b)}\n",
+        "type": "(int) -> Number",
+        "measurements": null
+      },
       "141968770": {
         "id": "function/141968770",
         "kind": "function",
@@ -12821,13 +12992,13 @@
           "factory": false,
           "external": false
         },
-        "returnType": "StaticClosure",
+        "returnType": "dynamic",
         "inferredReturnType": "[exact=StaticClosure]",
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 1,
         "code": null,
-        "type": "() -> StaticClosure",
+        "type": "() -> dynamic",
         "measurements": null
       },
       "143741280": {
@@ -13289,7 +13460,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null]",
         "parameters": [
           {
             "name": "k",
@@ -13842,7 +14013,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null|subclass=Object]",
         "parameters": [
           {
             "name": "e",
@@ -14359,7 +14530,7 @@
           "external": false
         },
         "returnType": "String",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[exact=JSString]",
         "parameters": [
           {
             "name": "n",
@@ -14411,7 +14582,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null]",
         "parameters": [
           {
             "name": "subscription",
@@ -14545,7 +14716,7 @@
         "id": "function/205154197",
         "kind": "function",
         "name": "_registerErrorHandler",
-        "size": 94,
+        "size": 101,
         "outputUnit": "outputUnit/987444055",
         "parent": "library/1052666095",
         "children": [],
@@ -14571,7 +14742,7 @@
         ],
         "sideEffects": "Depends on nothing, Changes nothing.",
         "inlinedCount": 0,
-        "code": "VH:function(a,b){if(H.Xy(a,{func:1,args:[,,]})){b.toString\nreturn a}else{b.toString\nreturn a}}\n",
+        "code": "VH:function(a,b){if(H.Xy(a,{func:1,args:[P.c8,P.c8]})){b.toString\nreturn a}else{b.toString\nreturn a}}\n",
         "type": "(Function, Zone) -> Function",
         "measurements": null
       },
@@ -14628,7 +14799,7 @@
           }
         ],
         "sideEffects": "Depends on nothing, Changes nothing.",
-        "inlinedCount": 28,
+        "inlinedCount": 32,
         "code": null,
         "type": "(String) -> dynamic",
         "measurements": null
@@ -14706,7 +14877,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null|subtype=bool]",
         "parameters": [
           {
             "name": "v",
@@ -14775,7 +14946,7 @@
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
-        "code": "Bl:function(){var z=P.qU\nz=new W.ct(P.tM(C.Qx,z),P.L(null,null,null,z),P.L(null,null,null,z),P.L(null,null,null,z),null)\nz.CY(null,new H.A8(C.Qx,new W.tE(),[H.Kp(C.Qx,0),null]),[\"TEMPLATE\"],null)\nreturn z}\n",
+        "code": "Bl:function(){var z=P.qU\nz=new W.ct(P.tM(C.Qx,z),P.L(null,null,null,z),P.L(null,null,null,z),P.L(null,null,null,z),null)\nz.j9(null,new H.A8(C.Qx,new W.tE(),[H.Kp(C.Qx,0),null]),[\"TEMPLATE\"],null)\nreturn z}\n",
         "type": "() -> dynamic",
         "measurements": null
       },
@@ -15155,7 +15326,7 @@
           "external": false
         },
         "returnType": "void",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null]",
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
@@ -15207,7 +15378,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null]",
         "parameters": [
           {
             "name": "_",
@@ -15217,7 +15388,7 @@
         ],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
-        "code": "$1:function(a){var z=$.v7\nif(z!=null)new P.Ci(z).lo(0,\"zoom\")}\n",
+        "code": "$1:function(a){var z=$.v7\nif(z!=null)new P.Ke(z).lo(0,\"zoom\")}\n",
         "type": "(dynamic) -> dynamic",
         "measurements": null
       },
@@ -15293,7 +15464,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null]",
         "parameters": [
           {
             "name": "element",
@@ -15322,7 +15493,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null]",
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
@@ -15466,7 +15637,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null]",
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
@@ -15489,7 +15660,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[exact=JSBool]",
         "parameters": [
           {
             "name": "line",
@@ -15518,7 +15689,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null]",
         "parameters": [
           {
             "name": "event",
@@ -15547,7 +15718,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null]",
         "parameters": [
           {
             "name": "event",
@@ -15576,7 +15747,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null]",
         "parameters": [
           {
             "name": "event",
@@ -15885,6 +16056,35 @@
         "type": "() -> StateError",
         "measurements": null
       },
+      "252845871": {
+        "id": "function/252845871",
+        "kind": "function",
+        "name": "registerGlobalObject",
+        "size": 0,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "library/966364039",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "void",
+        "inferredReturnType": "[null]",
+        "parameters": [
+          {
+            "name": "object",
+            "type": "[null|subclass=Object]",
+            "declaredType": "null"
+          }
+        ],
+        "sideEffects": "Depends on nothing, Changes nothing.",
+        "inlinedCount": 1,
+        "code": null,
+        "type": "(dynamic) -> void",
+        "measurements": null
+      },
       "253794122": {
         "id": "function/253794122",
         "kind": "function",
@@ -16049,7 +16249,7 @@
           }
         ],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
-        "inlinedCount": 2,
+        "inlinedCount": 1,
         "code": null,
         "type": "(String, String) -> void",
         "measurements": null
@@ -16069,7 +16269,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null]",
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
@@ -16092,7 +16292,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null]",
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
@@ -16521,7 +16721,7 @@
           }
         ],
         "sideEffects": "Depends on nothing, Changes nothing.",
-        "inlinedCount": 15,
+        "inlinedCount": 17,
         "code": null,
         "type": "(String) -> dynamic",
         "measurements": null
@@ -16952,7 +17152,7 @@
         "parameters": [
           {
             "name": "list",
-            "type": "[subclass=DomTokenList]",
+            "type": "[exact=DomTokenList]",
             "declaredType": "DomTokenList"
           },
           {
@@ -16982,7 +17182,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null|subclass=Object]",
         "parameters": [
           {
             "name": "error",
@@ -17111,6 +17311,35 @@
         "inlinedCount": 0,
         "code": "bu:function(a){var z,y,x,w,v\nz=new P.DW()\ny=this.a\nif(y<0)return\"-\"+new P.a6(0-y).bu(0)\nx=z.$1(C.jn.K(y,6e7)%60)\nw=z.$1(C.jn.K(y,1e6)%60)\nv=new P.P7().$1(y%1e6)\nreturn\"\"+C.jn.K(y,36e8)+\":\"+H.d(x)+\":\"+H.d(w)+\".\"+H.d(v)}\n",
         "type": "() -> String",
+        "measurements": null
+      },
+      "289180415": {
+        "id": "function/289180415",
+        "kind": "function",
+        "name": "_Future.value",
+        "size": 0,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/784178238",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "dynamic",
+        "inferredReturnType": "[exact=_Future]",
+        "parameters": [
+          {
+            "name": "value",
+            "type": "[null]",
+            "declaredType": "T"
+          }
+        ],
+        "sideEffects": "Depends on [] field store static store, Changes [] field static.",
+        "inlinedCount": 1,
+        "code": null,
+        "type": "(_Future.T) -> dynamic",
         "measurements": null
       },
       "291238918": {
@@ -17284,7 +17513,7 @@
         "parameters": [
           {
             "name": "list",
-            "type": "[subclass=DomTokenList]",
+            "type": "[exact=DomTokenList]",
             "declaredType": "DomTokenList"
           },
           {
@@ -17297,6 +17526,29 @@
         "inlinedCount": 2,
         "code": null,
         "type": "(DomTokenList, String) -> void",
+        "measurements": null
+      },
+      "294864442": {
+        "id": "function/294864442",
+        "kind": "function",
+        "name": "last",
+        "size": 87,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/980673591",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "Number",
+        "inferredReturnType": "[exact=Number]",
+        "parameters": [],
+        "sideEffects": "Depends on [] field store static store, Changes [] field static.",
+        "inlinedCount": 0,
+        "code": "grZ:function(a){var z=a.length\nif(z>0)return a[z-1]\nthrow H.b(new P.lj(\"No elements\"))}\n",
+        "type": "() -> Number",
         "measurements": null
       },
       "296829629": {
@@ -17366,7 +17618,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null]",
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
@@ -17388,13 +17640,13 @@
           "factory": false,
           "external": false
         },
-        "returnType": "_SvgNodeValidator",
+        "returnType": "dynamic",
         "inferredReturnType": "[exact=_SvgNodeValidator]",
         "parameters": [],
         "sideEffects": "Depends on nothing, Changes nothing.",
         "inlinedCount": 1,
         "code": null,
-        "type": "() -> _SvgNodeValidator",
+        "type": "() -> dynamic",
         "measurements": null
       },
       "299781104": {
@@ -17854,6 +18106,58 @@
         "type": "(ListQueue<_ListQueueIterator.E>) -> dynamic",
         "measurements": null
       },
+      "313434709": {
+        "id": "function/313434709",
+        "kind": "function",
+        "name": "length",
+        "size": 31,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/980673591",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "int",
+        "inferredReturnType": "[subclass=JSInt]",
+        "parameters": [],
+        "sideEffects": "Depends on [] field store static store, Changes nothing.",
+        "inlinedCount": 2,
+        "code": "gA:function(a){return a.length}\n",
+        "type": "() -> int",
+        "measurements": null
+      },
+      "313434710": {
+        "id": "function/313434710",
+        "kind": "function",
+        "name": "length",
+        "size": 70,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/980673591",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "dynamic",
+        "inferredReturnType": "[empty]",
+        "parameters": [
+          {
+            "name": "value",
+            "type": "[subclass=JSInt]",
+            "declaredType": "int"
+          }
+        ],
+        "sideEffects": "Depends on nothing, Changes nothing.",
+        "inlinedCount": 0,
+        "code": "sA:function(a,b){throw H.b(new P.ub(\"Cannot resize immutable List.\"))}\n",
+        "type": "(int) -> dynamic",
+        "measurements": null
+      },
       "314686478": {
         "id": "function/314686478",
         "kind": "function",
@@ -18122,7 +18426,7 @@
           }
         ],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
-        "inlinedCount": 2,
+        "inlinedCount": 3,
         "code": null,
         "type": "(String) -> dynamic",
         "measurements": null
@@ -18555,7 +18859,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null|subclass=Object]",
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
@@ -18578,7 +18882,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null|subclass=Object]",
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
@@ -18601,7 +18905,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null|subclass=Object]",
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
@@ -18624,7 +18928,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null|subclass=Object]",
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
@@ -18647,7 +18951,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null|subclass=Object]",
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
@@ -20126,6 +20430,35 @@
         "type": "(dynamic, dynamic) -> dynamic",
         "measurements": null
       },
+      "392481975": {
+        "id": "function/392481975",
+        "kind": "function",
+        "name": "elementAt",
+        "size": 36,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/980673591",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "Number",
+        "inferredReturnType": "[null|exact=Number]",
+        "parameters": [
+          {
+            "name": "index",
+            "type": "[null|subclass=JSInt]",
+            "declaredType": "int"
+          }
+        ],
+        "sideEffects": "Depends on [] field store static store, Changes [] field static.",
+        "inlinedCount": 0,
+        "code": "Zv:function(a,b){return this.q(a,b)}\n",
+        "type": "(int) -> Number",
+        "measurements": null
+      },
       "393060060": {
         "id": "function/393060060",
         "kind": "function",
@@ -20197,6 +20530,58 @@
         "inlinedCount": 0,
         "code": "ZB:function(a){var z,y\nz=a.c\ny=a.b\nif(z==null)this.e=y\nelse z.b=y\nif(y==null)this.f=z\nelse y.c=z;--this.a\nthis.r=this.r+1&67108863}\n",
         "type": "(_LinkedHashSetCell) -> void",
+        "measurements": null
+      },
+      "394009594": {
+        "id": "function/394009594",
+        "kind": "function",
+        "name": "length",
+        "size": 31,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/878983453",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "int",
+        "inferredReturnType": "[subclass=JSInt]",
+        "parameters": [],
+        "sideEffects": "Depends on [] field store static store, Changes nothing.",
+        "inlinedCount": 2,
+        "code": "gA:function(a){return a.length}\n",
+        "type": "() -> int",
+        "measurements": null
+      },
+      "394009595": {
+        "id": "function/394009595",
+        "kind": "function",
+        "name": "length",
+        "size": 70,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/878983453",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "dynamic",
+        "inferredReturnType": "[empty]",
+        "parameters": [
+          {
+            "name": "value",
+            "type": "[subclass=JSInt]",
+            "declaredType": "int"
+          }
+        ],
+        "sideEffects": "Depends on nothing, Changes nothing.",
+        "inlinedCount": 0,
+        "code": "sA:function(a,b){throw H.b(new P.ub(\"Cannot resize immutable List.\"))}\n",
+        "type": "(int) -> dynamic",
         "measurements": null
       },
       "395760836": {
@@ -20442,7 +20827,7 @@
           "external": false
         },
         "returnType": "void",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null]",
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
@@ -20477,7 +20862,7 @@
         "id": "function/407139250",
         "kind": "function",
         "name": "setRange",
-        "size": 263,
+        "size": 262,
         "outputUnit": "outputUnit/987444055",
         "parent": "class/523978038",
         "children": [],
@@ -20513,7 +20898,7 @@
         ],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
-        "code": "YW:function(a,b,c,d,e){var z,y\nthis.C(a,\"set range\")\nP.jB(b,c,a.length,null,null,null)\nz=c-b\nif(z===0)return\nif(e<0)H.Vj(P.TE(e,0,null,\"skipCount\",null))\nif(e+z>d.length)throw H.b(H.ar())\nif(e<b)for(y=z-1;y>=0;--y)a[b+y]=d[e+y]\nelse for(y=0;y<z;++y)a[b+y]=d[e+y]}\n",
+        "code": "YW:function(a,b,c,d,e){var z,y\nthis.C(a,\"setRange\")\nP.jB(b,c,a.length,null,null,null)\nz=c-b\nif(z===0)return\nif(e<0)H.Vj(P.TE(e,0,null,\"skipCount\",null))\nif(e+z>d.length)throw H.b(H.ar())\nif(e<b)for(y=z-1;y>=0;--y)a[b+y]=d[e+y]\nelse for(y=0;y<z;++y)a[b+y]=d[e+y]}\n",
         "type": "(int, int, Iterable<JSArray.E>, [int]) -> void",
         "measurements": null
       },
@@ -20745,7 +21130,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[exact=JSBool]",
         "parameters": [
           {
             "name": "s",
@@ -21226,7 +21611,7 @@
             "declaredType": "EventListener"
           },
           {
-            "name": "capture",
+            "name": "options",
             "type": "Value mask: [false] type: [exact=JSBool]",
             "declaredType": "bool"
           }
@@ -21275,7 +21660,7 @@
           "external": false
         },
         "returnType": "ListMixin.E",
-        "inferredReturnType": "Union of [[null|subclass=Node], [subclass=JSNumber]]",
+        "inferredReturnType": "Union of [[null|exact=Length], [null|exact=Number], [subclass=JSNumber], [subclass=Node]]",
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
@@ -22154,7 +22539,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null|subclass=Object]",
         "parameters": [
           {
             "name": "arg",
@@ -22331,7 +22716,7 @@
         ],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
-        "code": "Tw:function(a){var z,y\nz=document.createElement(\"a\")\ny=new W.mk(z,window.location)\ny=new W.JQ(y)\ny.CY(a)\nreturn y}\n",
+        "code": "Tw:function(a){var z,y\nz=document.createElement(\"a\")\ny=new W.mk(z,window.location)\ny=new W.JQ(y)\ny.j9(a)\nreturn y}\n",
         "type": "({UriPolicy uriPolicy}) -> dynamic",
         "measurements": null
       },
@@ -22510,35 +22895,6 @@
         "inlinedCount": 3,
         "code": "gI:function(a){return a.left}\n",
         "type": "() -> num",
-        "measurements": null
-      },
-      "467834401": {
-        "id": "function/467834401",
-        "kind": "function",
-        "name": "writeClasses",
-        "size": 56,
-        "outputUnit": "outputUnit/987444055",
-        "parent": "class/316719589",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "void",
-        "inferredReturnType": "[null]",
-        "parameters": [
-          {
-            "name": "s",
-            "type": "[subclass=_LinkedHashSet]",
-            "declaredType": "Set"
-          }
-        ],
-        "sideEffects": "Depends on [] field store static store, Changes [] field static.",
-        "inlinedCount": 0,
-        "code": "p5:function(a){this.a.setAttribute(\"class\",a.zV(0,\" \"))}\n",
-        "type": "(Set) -> void",
         "measurements": null
       },
       "468419139": {
@@ -22795,6 +23151,40 @@
         "inlinedCount": 0,
         "code": "bu:function(a){return\"Unsupported operation: \"+this.a}\n",
         "type": "() -> String",
+        "measurements": null
+      },
+      "474768756": {
+        "id": "function/474768756",
+        "kind": "function",
+        "name": "[]=",
+        "size": 82,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/980673591",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "void",
+        "inferredReturnType": "[empty]",
+        "parameters": [
+          {
+            "name": "index",
+            "type": "[null|subclass=JSInt]",
+            "declaredType": "int"
+          },
+          {
+            "name": "value",
+            "type": "[null|exact=Number]",
+            "declaredType": "Number"
+          }
+        ],
+        "sideEffects": "Depends on nothing, Changes nothing.",
+        "inlinedCount": 0,
+        "code": "t:function(a,b,c){throw H.b(new P.ub(\"Cannot assign element of immutable List.\"))}\n",
+        "type": "(int, Number) -> void",
         "measurements": null
       },
       "476044464": {
@@ -23350,35 +23740,6 @@
         "type": "() -> Set<String>",
         "measurements": null
       },
-      "492708773": {
-        "id": "function/492708773",
-        "kind": "function",
-        "name": "_Future.immediate",
-        "size": 0,
-        "outputUnit": "outputUnit/987444055",
-        "parent": "class/784178238",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "dynamic",
-        "inferredReturnType": "[exact=_Future]",
-        "parameters": [
-          {
-            "name": "result",
-            "type": "[null]",
-            "declaredType": "FutureOr<T>"
-          }
-        ],
-        "sideEffects": "Depends on [] field store static store, Changes [] field static.",
-        "inlinedCount": 1,
-        "code": null,
-        "type": "(dynamic) -> dynamic",
-        "measurements": null
-      },
       "494583530": {
         "id": "function/494583530",
         "kind": "function",
@@ -23393,13 +23754,13 @@
           "factory": false,
           "external": false
         },
-        "returnType": "Es6LinkedHashMap<Es6LinkedHashMap.K, Es6LinkedHashMap.V>",
+        "returnType": "dynamic",
         "inferredReturnType": "[exact=Es6LinkedHashMap]",
         "parameters": [],
         "sideEffects": "Depends on nothing, Changes nothing.",
         "inlinedCount": 5,
         "code": null,
-        "type": "() -> Es6LinkedHashMap<Es6LinkedHashMap.K, Es6LinkedHashMap.V>",
+        "type": "() -> dynamic",
         "measurements": null
       },
       "495423396": {
@@ -23435,7 +23796,7 @@
         "id": "function/495950556",
         "kind": "function",
         "name": "createFragment",
-        "size": 911,
+        "size": 977,
         "outputUnit": "outputUnit/987444055",
         "parent": "class/992156986",
         "children": [],
@@ -23466,7 +23827,7 @@
         ],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
-        "code": "r6:[\"DW\",function(a,b,c,d){var z,y,x,w,v\nif(c==null){z=$.lt\nif(z==null){z=H.VM([],[W.kF])\ny=new W.vD(z)\nz.push(W.Tw(null))\nz.push(W.Bl())\n$.lt=y\nd=y}else d=z\nz=$.EU\nif(z==null){z=new W.MM(d)\n$.EU=z\nc=z}else{z.a=d\nc=z}}if($.xo==null){z=document\ny=z.implementation.createHTMLDocument(\"\")\n$.xo=y\n$.BO=y.createRange()\ny=$.xo\ny.toString\nx=y.createElement(\"base\")\nx.href=z.baseURI\n$.xo.head.appendChild(x)}z=$.xo\nif(!!this.$isQP)w=z.body\nelse{y=a.tagName\nz.toString\nw=z.createElement(y)\n$.xo.body.appendChild(w)}if(\"createContextualFragment\" in window.Range.prototype&&!C.Nm.tg(C.Sq,a.tagName)){$.BO.selectNodeContents(w)\nv=$.BO.createContextualFragment(b)}else{w.innerHTML=b\nv=$.xo.createDocumentFragment()\nfor(;z=w.firstChild,z!=null;)v.appendChild(z)}z=$.xo.body\nif(w==null?z!=null:w!==z)J.Ns(w)\nc.Pn(v)\ndocument.adoptNode(v)\nreturn v},function(a,b,c){return this.r6(a,b,c,null)},\"AH\",null,null,\"gkf\",2,5,null,0,0]\n",
+        "code": "r6:[\"DW\",function(a,b,c,d){var z,y,x,w,v\nif(c==null){z=$.lt\nif(z==null){z=H.VM([],[W.kF])\ny=new W.vD(z)\nz.push(W.Tw(null))\nz.push(W.Bl())\n$.lt=y\nd=y}else d=z\nz=$.EU\nif(z==null){z=new W.MM(d)\n$.EU=z\nc=z}else{z.a=d\nc=z}}if($.xo==null){z=document\ny=z.implementation.createHTMLDocument(\"\")\n$.xo=y\n$.BO=y.createRange()\ny=$.xo\ny.toString\nx=y.createElement(\"base\")\nx.href=z.baseURI\n$.xo.head.appendChild(x)}z=$.xo\nif(z.body==null){z.toString\ny=z.createElement(\"body\")\nz.body=y}z=$.xo\nif(!!this.$isQP)w=z.body\nelse{y=a.tagName\nz.toString\nw=z.createElement(y)\n$.xo.body.appendChild(w)}if(\"createContextualFragment\" in window.Range.prototype&&!C.Nm.tg(C.Sq,a.tagName)){$.BO.selectNodeContents(w)\nv=$.BO.createContextualFragment(b)}else{w.innerHTML=b\nv=$.xo.createDocumentFragment()\nfor(;z=w.firstChild,z!=null;)v.appendChild(z)}z=$.xo.body\nif(w==null?z!=null:w!==z)J.Ns(w)\nc.Pn(v)\ndocument.adoptNode(v)\nreturn v},function(a,b,c){return this.r6(a,b,c,null)},\"AH\",null,null,\"gkf\",2,5,null]\n",
         "type": "(String, {NodeTreeSanitizer treeSanitizer, NodeValidator validator}) -> DocumentFragment",
         "measurements": null
       },
@@ -23913,35 +24274,6 @@
         "type": "() -> dynamic",
         "measurements": null
       },
-      "513053773": {
-        "id": "function/513053773",
-        "kind": "function",
-        "name": "Future.value",
-        "size": 0,
-        "outputUnit": "outputUnit/987444055",
-        "parent": "class/438137149",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": true,
-          "external": false
-        },
-        "returnType": "Future<Future.T>",
-        "inferredReturnType": "[exact=_Future]",
-        "parameters": [
-          {
-            "name": "result",
-            "type": "[null]",
-            "declaredType": "FutureOr<T>"
-          }
-        ],
-        "sideEffects": "Depends on [] field store static store, Changes [] field static.",
-        "inlinedCount": 1,
-        "code": null,
-        "type": "([dynamic]) -> Future<Future.T>",
-        "measurements": null
-      },
       "513645986": {
         "id": "function/513645986",
         "kind": "function",
@@ -24243,6 +24575,58 @@
         "inlinedCount": 0,
         "code": "tg:function(a,b){return typeof b===\"string\"&&this.a.classList.contains(b)}\n",
         "type": "(Object) -> bool",
+        "measurements": null
+      },
+      "524476833": {
+        "id": "function/524476833",
+        "kind": "function",
+        "name": "readClasses",
+        "size": 231,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/315700092",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "Set<String>",
+        "inferredReturnType": "[subclass=_LinkedHashSet]",
+        "parameters": [],
+        "sideEffects": "Depends on [] field store static store, Changes [] field static.",
+        "inlinedCount": 0,
+        "code": "DG:function(){var z,y,x,w,v,u\nz=this.a.getAttribute(\"class\")\ny=P.L(null,null,null,P.qU)\nif(z==null)return y\nfor(x=z.split(\" \"),w=x.length,v=0;v<x.length;x.length===w||(0,H.lk)(x),++v){u=J.T0(x[v])\nif(u.length!==0)y.i(0,u)}return y}\n",
+        "type": "() -> Set<String>",
+        "measurements": null
+      },
+      "524861671": {
+        "id": "function/524861671",
+        "kind": "function",
+        "name": "elementAt",
+        "size": 36,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/878983453",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "Length",
+        "inferredReturnType": "[null|exact=Length]",
+        "parameters": [
+          {
+            "name": "index",
+            "type": "[null|subclass=JSInt]",
+            "declaredType": "int"
+          }
+        ],
+        "sideEffects": "Depends on [] field store static store, Changes [] field static.",
+        "inlinedCount": 0,
+        "code": "Zv:function(a,b){return this.q(a,b)}\n",
+        "type": "(int) -> Length",
         "measurements": null
       },
       "526652959": {
@@ -25051,13 +25435,13 @@
           "factory": false,
           "external": false
         },
-        "returnType": "_MainManagerStub",
+        "returnType": "dynamic",
         "inferredReturnType": "[exact=_MainManagerStub]",
         "parameters": [],
         "sideEffects": "Depends on nothing, Changes nothing.",
         "inlinedCount": 1,
         "code": null,
-        "type": "() -> _MainManagerStub",
+        "type": "() -> dynamic",
         "measurements": null
       },
       "551570860": {
@@ -25632,29 +26016,6 @@
         "type": "(Iterable<FixedLengthListMixin.E>) -> void",
         "measurements": null
       },
-      "564769724": {
-        "id": "function/564769724",
-        "kind": "function",
-        "name": "readClasses",
-        "size": 231,
-        "outputUnit": "outputUnit/987444055",
-        "parent": "class/316719589",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "Set<String>",
-        "inferredReturnType": "[subclass=_LinkedHashSet]",
-        "parameters": [],
-        "sideEffects": "Depends on [] field store static store, Changes [] field static.",
-        "inlinedCount": 0,
-        "code": "DG:function(){var z,y,x,w,v,u\nz=this.a.getAttribute(\"class\")\ny=P.L(null,null,null,P.qU)\nif(z==null)return y\nfor(x=z.split(\" \"),w=x.length,v=0;v<x.length;x.length===w||(0,H.lk)(x),++v){u=J.T0(x[v])\nif(u.length!==0)y.i(0,u)}return y}\n",
-        "type": "() -> Set<String>",
-        "measurements": null
-      },
       "564905230": {
         "id": "function/564905230",
         "kind": "function",
@@ -26007,7 +26368,7 @@
         "id": "function/574550003",
         "kind": "function",
         "name": "_completeError",
-        "size": 143,
+        "size": 141,
         "outputUnit": "outputUnit/987444055",
         "parent": "class/784178238",
         "children": [],
@@ -26033,7 +26394,7 @@
         ],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
-        "code": "ZL:[function(a,b){var z=this.ah()\nthis.a=8\nthis.c=new P.OH(a,b)\nP.HZ(this,z)},function(a){return this.ZL(a,null)},\"yk\",\"$2\",\"$1\",\"gFa\",2,2,5,0]\n",
+        "code": "ZL:[function(a,b){var z=this.ah()\nthis.a=8\nthis.c=new P.OH(a,b)\nP.HZ(this,z)},function(a){return this.ZL(a,null)},\"yk\",\"$2\",\"$1\",\"gFa\",2,2,5]\n",
         "type": "(Object, [StackTrace]) -> void",
         "measurements": null
       },
@@ -26156,7 +26517,7 @@
             "declaredType": "EventListener"
           },
           {
-            "name": "capture",
+            "name": "options",
             "type": "Value mask: [false] type: [exact=JSBool]",
             "declaredType": "bool"
           }
@@ -26216,7 +26577,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null]",
         "parameters": [
           {
             "name": "k",
@@ -26420,7 +26781,7 @@
           "external": false
         },
         "returnType": "void",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null]",
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
@@ -26510,7 +26871,7 @@
           "external": false
         },
         "returnType": "void",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null]",
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
@@ -26562,7 +26923,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null]",
         "parameters": [
           {
             "name": "value",
@@ -26570,7 +26931,7 @@
             "declaredType": "T"
           }
         ],
-        "sideEffects": "Depends on [] field store static store, Changes [] field static.",
+        "sideEffects": "Depends on nothing, Changes nothing.",
         "inlinedCount": 0,
         "code": "$1:function(a){var z=this.a\nz.b=!0\nz.a=a}\n",
         "type": "(Stream.T) -> dynamic",
@@ -26591,7 +26952,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null]",
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
@@ -27018,7 +27379,7 @@
         "inferredReturnType": "[null]",
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
-        "inlinedCount": 2,
+        "inlinedCount": 3,
         "code": "wg:function(a){var z=a.parentNode\nif(z!=null)z.removeChild(a)}\n",
         "type": "() -> void",
         "measurements": null
@@ -27038,7 +27399,7 @@
           "external": false
         },
         "returnType": "DomTokenList",
-        "inferredReturnType": "[subclass=DomTokenList]",
+        "inferredReturnType": "[exact=DomTokenList]",
         "parameters": [
           {
             "name": "e",
@@ -27248,6 +27609,35 @@
         "inlinedCount": 13,
         "code": null,
         "type": "(Node) -> dynamic",
+        "measurements": null
+      },
+      "625721805": {
+        "id": "function/625721805",
+        "kind": "function",
+        "name": "writeClasses",
+        "size": 56,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/315700092",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "void",
+        "inferredReturnType": "[null]",
+        "parameters": [
+          {
+            "name": "s",
+            "type": "[subclass=_LinkedHashSet]",
+            "declaredType": "Set"
+          }
+        ],
+        "sideEffects": "Depends on [] field store static store, Changes [] field static.",
+        "inlinedCount": 0,
+        "code": "p5:function(a){this.a.setAttribute(\"class\",a.zV(0,\" \"))}\n",
+        "type": "(Set) -> void",
         "measurements": null
       },
       "627870699": {
@@ -27698,11 +28088,11 @@
           "external": false
         },
         "returnType": "CssClassSet",
-        "inferredReturnType": "[exact=_AttributeClassSet]",
+        "inferredReturnType": "[exact=AttributeClassSet]",
         "parameters": [],
         "sideEffects": "Depends on nothing, Changes nothing.",
         "inlinedCount": 2,
-        "code": "gDD:function(a){return new P.Ci(a)}\n",
+        "code": "gDD:function(a){return new P.Ke(a)}\n",
         "type": "() -> CssClassSet",
         "measurements": null
       },
@@ -28152,6 +28542,40 @@
         "type": "(Zone, ZoneDelegate, Zone, () -> dynamic) -> void",
         "measurements": null
       },
+      "660922452": {
+        "id": "function/660922452",
+        "kind": "function",
+        "name": "[]=",
+        "size": 82,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/878983453",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "void",
+        "inferredReturnType": "[empty]",
+        "parameters": [
+          {
+            "name": "index",
+            "type": "[null|subclass=JSInt]",
+            "declaredType": "int"
+          },
+          {
+            "name": "value",
+            "type": "[null|exact=Length]",
+            "declaredType": "Length"
+          }
+        ],
+        "sideEffects": "Depends on nothing, Changes nothing.",
+        "inlinedCount": 0,
+        "code": "t:function(a,b,c){throw H.b(new P.ub(\"Cannot assign element of immutable List.\"))}\n",
+        "type": "(int, Length) -> void",
+        "measurements": null
+      },
       "662422155": {
         "id": "function/662422155",
         "kind": "function",
@@ -28205,7 +28629,7 @@
         "parameters": [
           {
             "name": "list",
-            "type": "[subclass=DomTokenList]",
+            "type": "[exact=DomTokenList]",
             "declaredType": "DomTokenList"
           },
           {
@@ -28295,7 +28719,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null]",
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
@@ -28616,7 +29040,7 @@
           }
         ],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
-        "inlinedCount": 2,
+        "inlinedCount": 3,
         "code": null,
         "type": "(String, [String]) -> Element",
         "measurements": null
@@ -28636,7 +29060,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null]",
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
@@ -28696,7 +29120,7 @@
             "declaredType": "null"
           }
         ],
-        "sideEffects": "Depends on [] field store static store, Changes [] field static.",
+        "sideEffects": "Depends on static store, Changes nothing.",
         "inlinedCount": 0,
         "code": "P1:function(a){if(a===window)return a\nelse return new W.u3(a)}\n",
         "type": "(dynamic) -> WindowBase",
@@ -28907,7 +29331,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null]",
         "parameters": [
           {
             "name": "s",
@@ -29242,7 +29666,7 @@
         "id": "function/699590184",
         "kind": "function",
         "name": "sanitizeTree",
-        "size": 329,
+        "size": 392,
         "outputUnit": "outputUnit/987444055",
         "parent": "class/154158031",
         "children": [
@@ -29284,7 +29708,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[exact=JSBool]",
         "parameters": [
           {
             "name": "e",
@@ -29292,7 +29716,7 @@
             "declaredType": "null"
           }
         ],
-        "sideEffects": "Depends on [] field store static store, Changes [] field static.",
+        "sideEffects": "Depends on nothing, Changes nothing.",
         "inlinedCount": 0,
         "code": "$1:function(a){return!!J.v(a).$iscv}\n",
         "type": "(dynamic) -> dynamic",
@@ -29491,7 +29915,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null]",
         "parameters": [
           {
             "name": "element",
@@ -29520,7 +29944,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null]",
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
@@ -29543,7 +29967,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null]",
         "parameters": [
           {
             "name": "e",
@@ -29624,7 +30048,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null|exact=JSString]",
         "parameters": [
           {
             "name": "o",
@@ -29653,7 +30077,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null|exact=JSString]",
         "parameters": [
           {
             "name": "o",
@@ -29687,7 +30111,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null|subclass=Object]",
         "parameters": [
           {
             "name": "tag",
@@ -29750,7 +30174,7 @@
           "external": false
         },
         "returnType": "void",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null]",
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
@@ -30221,7 +30645,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null]",
         "parameters": [
           {
             "name": "error",
@@ -30353,7 +30777,7 @@
           "external": false
         },
         "returnType": "String",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[exact=JSString]",
         "parameters": [
           {
             "name": "n",
@@ -30520,7 +30944,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null]",
         "parameters": [
           {
             "name": "_",
@@ -30549,7 +30973,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null]",
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
@@ -31012,7 +31436,7 @@
           }
         ],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
-        "inlinedCount": 1,
+        "inlinedCount": 2,
         "code": "EP:function(a,b){var z\nif(b==null){z=a.parentNode\nif(z!=null)z.removeChild(a)}else b.removeChild(a)}\n",
         "type": "(Node, Node) -> void",
         "measurements": null
@@ -31959,7 +32383,7 @@
         ],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
-        "code": "MI:function(a,b,c,d){var z,y,x,w\nif((this.c&4)!==0){if(c==null)c=P.am()\nz=new P.EM($.X3,0,c,this.$ti)\nz.q1()\nreturn z}z=$.X3\ny=d?1:0\nx=new P.JI(0,null,null,this,null,null,null,z,y,null,null,this.$ti)\nx.CY(a,b,c,d,H.Kp(this,0))\nx.Q=x\nx.z=x\nx.y=this.c&1\nw=this.e\nthis.e=x\nx.z=null\nx.Q=w\nif(w==null)this.d=x\nelse w.z=x\nif(this.d===x)P.ot(this.a)\nreturn x}\n",
+        "code": "MI:function(a,b,c,d){var z,y,x,w\nif((this.c&4)!==0){if(c==null)c=P.am()\nz=new P.EM($.X3,0,c,this.$ti)\nz.q1()\nreturn z}z=$.X3\ny=d?1:0\nx=new P.JI(0,null,null,this,null,null,null,z,y,null,null,this.$ti)\nx.j9(a,b,c,d,H.Kp(this,0))\nx.Q=x\nx.z=x\nx.y=this.c&1\nw=this.e\nthis.e=x\nx.z=null\nx.Q=w\nif(w==null)this.d=x\nelse w.z=x\nif(this.d===x)P.ot(this.a)\nreturn x}\n",
         "type": "((_BroadcastStreamController.T) -> void, Function, () -> void, bool) -> StreamSubscription<_BroadcastStreamController.T>",
         "measurements": null
       },
@@ -32194,7 +32618,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null]",
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
@@ -32298,7 +32722,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null]",
         "parameters": [
           {
             "name": "value",
@@ -32327,7 +32751,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null]",
         "parameters": [
           {
             "name": "error",
@@ -32361,7 +32785,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null]",
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
@@ -32759,7 +33183,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null]",
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
@@ -33049,35 +33473,6 @@
         "type": "(SendPort, Object) -> void",
         "measurements": null
       },
-      "821049294": {
-        "id": "function/821049294",
-        "kind": "function",
-        "name": "_AttributeClassSet",
-        "size": 0,
-        "outputUnit": "outputUnit/987444055",
-        "parent": "class/316719589",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "dynamic",
-        "inferredReturnType": "[exact=_AttributeClassSet]",
-        "parameters": [
-          {
-            "name": "_element",
-            "type": "[subclass=SvgElement]",
-            "declaredType": "null"
-          }
-        ],
-        "sideEffects": "Depends on nothing, Changes nothing.",
-        "inlinedCount": 3,
-        "code": null,
-        "type": "(Element) -> dynamic",
-        "measurements": null
-      },
       "821285776": {
         "id": "function/821285776",
         "kind": "function",
@@ -33324,7 +33719,7 @@
           "external": false
         },
         "returnType": "void",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null]",
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
@@ -33461,7 +33856,7 @@
         "parameters": [
           {
             "name": "list",
-            "type": "[subclass=DomTokenList]",
+            "type": "[exact=DomTokenList]",
             "declaredType": "DomTokenList"
           }
         ],
@@ -33583,13 +33978,13 @@
           "factory": false,
           "external": false
         },
-        "returnType": "_StreamImplEvents<_StreamImplEvents.T>",
+        "returnType": "dynamic",
         "inferredReturnType": "[exact=_StreamImplEvents]",
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 1,
         "code": null,
-        "type": "() -> _StreamImplEvents<_StreamImplEvents.T>",
+        "type": "() -> dynamic",
         "measurements": null
       },
       "837058414": {
@@ -33982,7 +34377,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[exact=JSString]",
         "parameters": [
           {
             "name": "attr",
@@ -33990,7 +34385,7 @@
             "declaredType": "null"
           }
         ],
-        "sideEffects": "Depends on [] field store static store, Changes [] field static.",
+        "sideEffects": "Depends on nothing, Changes [] field static.",
         "inlinedCount": 0,
         "code": "$1:function(a){return\"TEMPLATE::\"+H.d(a)}\n",
         "type": "(dynamic) -> dynamic",
@@ -34112,7 +34507,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null|subclass=Object]",
         "parameters": [
           {
             "name": "each",
@@ -34193,7 +34588,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null]",
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
@@ -34400,13 +34795,13 @@
           "factory": false,
           "external": false
         },
-        "returnType": "_SameOriginUriPolicy",
+        "returnType": "dynamic",
         "inferredReturnType": "[exact=_SameOriginUriPolicy]",
         "parameters": [],
         "sideEffects": "Depends on nothing, Changes nothing.",
         "inlinedCount": 1,
         "code": null,
-        "type": "() -> _SameOriginUriPolicy",
+        "type": "() -> dynamic",
         "measurements": null
       },
       "860159722": {
@@ -34673,7 +35068,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[exact=_Future]",
         "parameters": [
           {
             "name": "_",
@@ -34681,7 +35076,7 @@
             "declaredType": "null"
           }
         ],
-        "sideEffects": "Depends on [] field store static store, Changes [] field static.",
+        "sideEffects": "Depends on nothing, Changes nothing.",
         "inlinedCount": 0,
         "code": "$1:function(a){return this.a}\n",
         "type": "(dynamic) -> dynamic",
@@ -34812,7 +35207,7 @@
           "external": false
         },
         "returnType": "void",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null]",
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
@@ -34835,7 +35230,7 @@
           "external": false
         },
         "returnType": "void",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null]",
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
@@ -35134,7 +35529,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null]",
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
@@ -35680,7 +36075,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null]",
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
@@ -35735,7 +36130,7 @@
           }
         ],
         "sideEffects": "Depends on static store, Changes field.",
-        "inlinedCount": 3,
+        "inlinedCount": 4,
         "code": null,
         "type": "(_Future.T) -> void",
         "measurements": null
@@ -36116,7 +36511,7 @@
             "declaredType": "null"
           }
         ],
-        "sideEffects": "Depends on [] field store static store, Changes [] field static.",
+        "sideEffects": "Depends on static store, Changes nothing.",
         "inlinedCount": 0,
         "code": "qc:function(a){var z\nif(a==null)return\nif(\"postMessage\" in a){z=W.P1(a)\nif(!!J.v(z).$isD0)return z\nreturn}else return a}\n",
         "type": "(dynamic) -> EventTarget",
@@ -36722,7 +37117,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[exact=JSBool]",
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
@@ -36745,7 +37140,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null]",
         "parameters": [
           {
             "name": "isMatch",
@@ -37137,7 +37532,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null]",
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
@@ -37819,13 +38214,13 @@
           "factory": false,
           "external": false
         },
-        "returnType": "NullThrownError",
+        "returnType": "dynamic",
         "inferredReturnType": "[exact=NullThrownError]",
         "parameters": [],
         "sideEffects": "Depends on nothing, Changes nothing.",
         "inlinedCount": 5,
         "code": null,
-        "type": "() -> NullThrownError",
+        "type": "() -> dynamic",
         "measurements": null
       },
       "969026469": {
@@ -37974,7 +38369,7 @@
         "parameters": [
           {
             "name": "list",
-            "type": "[subclass=DomTokenList]",
+            "type": "[exact=DomTokenList]",
             "declaredType": "DomTokenList"
           },
           {
@@ -38302,7 +38697,7 @@
           "external": false
         },
         "returnType": "ListMixin.E",
-        "inferredReturnType": "Union of [[null|subclass=Node], [subclass=JSNumber]]",
+        "inferredReturnType": "Union of [[null|exact=Length], [null|exact=Number], [subclass=JSNumber], [subclass=Node]]",
         "parameters": [
           {
             "name": "index",
@@ -38423,7 +38818,7 @@
           }
         ],
         "sideEffects": "Depends on nothing, Changes nothing.",
-        "inlinedCount": 10,
+        "inlinedCount": 9,
         "code": null,
         "type": "(Element) -> dynamic",
         "measurements": null
@@ -38508,12 +38903,41 @@
           "external": false
         },
         "returnType": "FixedSizeListIterator.T",
-        "inferredReturnType": "[null|subclass=Node]",
+        "inferredReturnType": "Union of [[null|exact=Length], [null|exact=Number], [subclass=Node]]",
         "parameters": [],
         "sideEffects": "Depends on field store, Changes nothing.",
         "inlinedCount": 1,
         "code": "gR:function(){return this.d}\n",
         "type": "() -> FixedSizeListIterator.T",
+        "measurements": null
+      },
+      "991090123": {
+        "id": "function/991090123",
+        "kind": "function",
+        "name": "[]",
+        "size": 98,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/878983453",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "Length",
+        "inferredReturnType": "[null|exact=Length]",
+        "parameters": [
+          {
+            "name": "index",
+            "type": "[null|subclass=JSInt]",
+            "declaredType": "int"
+          }
+        ],
+        "sideEffects": "Depends on [] field store static store, Changes [] field static.",
+        "inlinedCount": 0,
+        "code": "q:function(a,b){if(b>>>0!==b||b>=a.length)throw H.b(P.Cf(b,a,null,null,null))\nreturn a.getItem(b)}\n",
+        "type": "(int) -> Length",
         "measurements": null
       },
       "991909617": {
@@ -39169,7 +39593,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null]",
         "parameters": [
           {
             "name": "subscription",
@@ -39687,7 +40111,7 @@
         "inferredReturnType": "[exact=_ElementAttributeMap]",
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
-        "inlinedCount": 9,
+        "inlinedCount": 8,
         "code": "gQg:function(a){return new W.i7(a)}\n",
         "type": "() -> Map<String, String>",
         "measurements": null
@@ -40096,7 +40520,7 @@
         "id": "function/1055748969",
         "kind": "function",
         "name": "call",
-        "size": 271,
+        "size": 334,
         "outputUnit": "outputUnit/987444055",
         "parent": "closure/953610564",
         "children": [],
@@ -40107,7 +40531,7 @@
           "external": false
         },
         "returnType": "void",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[null]",
         "parameters": [
           {
             "name": "node",
@@ -40122,7 +40546,7 @@
         ],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
-        "code": "$2:function(a,b){var z,y,x,w\nx=this.a\nswitch(a.nodeType){case 1:x.m9(a,b)\nbreak\ncase 8:case 11:case 3:case 4:break\ndefault:x.EP(a,b)}z=a.lastChild\nfor(;null!=z;){y=null\ntry{y=J.mu(z)}catch(w){H.Ru(w)\nx=z\na.removeChild(x)\nz=null\ny=a.lastChild}if(z!=null)this.$2(z,a)\nz=y}}\n",
+        "code": "$2:function(a,b){var z,y,x,w\nswitch(a.nodeType){case 1:this.a.m9(a,b)\nbreak\ncase 8:case 11:case 3:case 4:break\ndefault:if(b==null){x=a.parentNode\nif(x!=null)x.removeChild(a)}else b.removeChild(a)}z=a.lastChild\nfor(;null!=z;){y=null\ntry{y=J.mu(z)}catch(w){H.Ru(w)\nx=z\na.removeChild(x)\nz=null\ny=a.lastChild}if(z!=null)this.$2(z,a)\nz=y}}\n",
         "type": "(Node, Node) -> void",
         "measurements": null
       },
@@ -40175,7 +40599,7 @@
           "external": false
         },
         "returnType": "ListMixin.E",
-        "inferredReturnType": "Union of [[null|subclass=Node], [subclass=JSNumber]]",
+        "inferredReturnType": "Union of [[null|exact=Length], [null|exact=Number], [subclass=JSNumber], [subclass=Node]]",
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
@@ -40415,13 +40839,13 @@
           {
             "name": "node",
             "type": "[exact=_Attr]",
-            "declaredType": "Node"
+            "declaredType": "_Attr"
           }
         ],
         "sideEffects": "Depends on field store, Changes nothing.",
         "inlinedCount": 1,
         "code": null,
-        "type": "(Node) -> bool",
+        "type": "(_Attr) -> bool",
         "measurements": null
       },
       "1066928885": {
@@ -40439,7 +40863,7 @@
           "external": false
         },
         "returnType": "dynamic",
-        "inferredReturnType": "[empty]",
+        "inferredReturnType": "[exact=JSBool]",
         "parameters": [
           {
             "name": "line",
@@ -40580,6 +41004,15 @@
         "parent": "library/1052666095",
         "type": "(Zone, ZoneDelegate, Zone, () -> RunHandler.R) -> RunHandler.R"
       },
+      "63901059": {
+        "id": "typedef/63901059",
+        "kind": "typedef",
+        "name": "IdleRequestCallback",
+        "size": 0,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "library/85591458",
+        "type": "(IdleDeadline) -> void"
+      },
       "67648289": {
         "id": "typedef/67648289",
         "kind": "typedef",
@@ -40642,6 +41075,15 @@
         "outputUnit": "outputUnit/987444055",
         "parent": "library/1052666095",
         "type": "() -> void"
+      },
+      "291642082": {
+        "id": "typedef/291642082",
+        "kind": "typedef",
+        "name": "ScrollStateCallback",
+        "size": 0,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "library/85591458",
+        "type": "(ScrollState) -> void"
       },
       "292840500": {
         "id": "typedef/292840500",
@@ -40849,6 +41291,15 @@
         "outputUnit": "outputUnit/987444055",
         "parent": "library/1052666095",
         "type": "(Zone, ZoneDelegate, Zone, (RegisterBinaryCallbackHandler.T1, RegisterBinaryCallbackHandler.T2) -> RegisterBinaryCallbackHandler.R) -> ZoneBinaryCallback<RegisterBinaryCallbackHandler.R, RegisterBinaryCallbackHandler.T1, RegisterBinaryCallbackHandler.T2>"
+      },
+      "839253121": {
+        "id": "typedef/839253121",
+        "kind": "typedef",
+        "name": "BlobCallback",
+        "size": 0,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "library/85591458",
+        "type": "(Blob) -> void"
       },
       "846856560": {
         "id": "typedef/846856560",
@@ -41098,6 +41549,18 @@
         "code": null,
         "type": "AnimatedLength"
       },
+      "13780890": {
+        "id": "field/13780890",
+        "kind": "field",
+        "name": "baseVal",
+        "size": 0,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/627377357",
+        "children": [],
+        "inferredType": "[null|subclass=JSNumber]",
+        "code": null,
+        "type": "num"
+      },
       "16888485": {
         "id": "field/16888485",
         "kind": "field",
@@ -41158,6 +41621,18 @@
         "inferredType": "[null|exact=JSString]",
         "code": null,
         "type": "String"
+      },
+      "24024104": {
+        "id": "field/24024104",
+        "kind": "field",
+        "name": "source",
+        "size": 0,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/926051357",
+        "children": [],
+        "inferredType": "Union of [[exact=MessagePort], [exact=_ServiceWorker]]",
+        "code": null,
+        "type": "Object"
       },
       "24026359": {
         "id": "field/24026359",
@@ -41674,6 +42149,18 @@
         "code": null,
         "type": "int",
         "const": true
+      },
+      "63365323": {
+        "id": "field/63365323",
+        "kind": "field",
+        "name": "source",
+        "size": 0,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/545711229",
+        "children": [],
+        "inferredType": "Union of [[exact=MessagePort], [exact=_ServiceWorker], [null|subclass=Client]]",
+        "code": null,
+        "type": "Object"
       },
       "63664368": {
         "id": "field/63664368",
@@ -42811,18 +43298,6 @@
         "code": null,
         "type": "TypeErrorDecoder"
       },
-      "189813979": {
-        "id": "field/189813979",
-        "kind": "field",
-        "name": "_element",
-        "size": 2,
-        "outputUnit": "outputUnit/987444055",
-        "parent": "class/316719589",
-        "children": [],
-        "inferredType": "[subclass=SvgElement]",
-        "code": "a\n",
-        "type": "Element"
-      },
       "190317948": {
         "id": "field/190317948",
         "kind": "field",
@@ -42870,6 +43345,18 @@
         "inferredType": "[null|exact=JSString]",
         "code": null,
         "type": "String"
+      },
+      "190775017": {
+        "id": "field/190775017",
+        "kind": "field",
+        "name": "baseVal",
+        "size": 0,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/165790376",
+        "children": [],
+        "inferredType": "[null|subclass=JSInt]",
+        "code": null,
+        "type": "int"
       },
       "190934046": {
         "id": "field/190934046",
@@ -42930,18 +43417,6 @@
         "inferredType": "[null|exact=_RootZone]",
         "code": "d\n",
         "type": "Zone"
-      },
-      "192928109": {
-        "id": "field/192928109",
-        "kind": "field",
-        "name": "value",
-        "size": 0,
-        "outputUnit": "outputUnit/987444055",
-        "parent": "class/388756670",
-        "children": [],
-        "inferredType": "[null|exact=JSString]",
-        "code": null,
-        "type": "String"
       },
       "192950192": {
         "id": "field/192950192",
@@ -43985,6 +44460,18 @@
         "code": "b\n",
         "type": "dynamic"
       },
+      "314115818": {
+        "id": "field/314115818",
+        "kind": "field",
+        "name": "value",
+        "size": 0,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/567359146",
+        "children": [],
+        "inferredType": "[null|subclass=JSNumber]",
+        "code": null,
+        "type": "num"
+      },
       "314423478": {
         "id": "field/314423478",
         "kind": "field",
@@ -44532,6 +45019,18 @@
         "code": null,
         "type": "AnimatedLength"
       },
+      "381796299": {
+        "id": "field/381796299",
+        "kind": "field",
+        "name": "value",
+        "size": 0,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/443301924",
+        "children": [],
+        "inferredType": "[null|exact=JSString]",
+        "code": null,
+        "type": "String"
+      },
       "382974844": {
         "id": "field/382974844",
         "kind": "field",
@@ -44567,6 +45066,18 @@
         "inferredType": "[null|subclass=JSInt]",
         "code": null,
         "type": "int"
+      },
+      "388325704": {
+        "id": "field/388325704",
+        "kind": "field",
+        "name": "baseVal",
+        "size": 0,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/1027609812",
+        "children": [],
+        "inferredType": "[null|exact=Length]",
+        "code": null,
+        "type": "Length"
       },
       "388375902": {
         "id": "field/388375902",
@@ -45192,6 +45703,18 @@
         "type": "EventStreamProvider<MouseEvent>",
         "const": true
       },
+      "452404347": {
+        "id": "field/452404347",
+        "kind": "field",
+        "name": "name",
+        "size": 0,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/19733790",
+        "children": [],
+        "inferredType": "[null|exact=JSString]",
+        "code": null,
+        "type": "String"
+      },
       "453752994": {
         "id": "field/453752994",
         "kind": "field",
@@ -45457,21 +45980,9 @@
         "outputUnit": "outputUnit/987444055",
         "parent": "class/518334415",
         "children": [],
-        "inferredType": "[null|subclass=Node]",
+        "inferredType": "Union of [[null|exact=Length], [null|exact=Number], [subclass=Node]]",
         "code": "d\n",
         "type": "FixedSizeListIterator.T"
-      },
-      "475853821": {
-        "id": "field/475853821",
-        "kind": "field",
-        "name": "client",
-        "size": 0,
-        "outputUnit": "outputUnit/987444055",
-        "parent": "class/484826397",
-        "children": [],
-        "inferredType": "[null|exact=CrossOriginServiceWorkerClient]",
-        "code": null,
-        "type": "CrossOriginServiceWorkerClient"
       },
       "477487248": {
         "id": "field/477487248",
@@ -45523,6 +46034,18 @@
         "inferredType": "[null|exact=AnimatedLength]",
         "code": null,
         "type": "AnimatedLength"
+      },
+      "482655782": {
+        "id": "field/482655782",
+        "kind": "field",
+        "name": "value",
+        "size": 0,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/813969515",
+        "children": [],
+        "inferredType": "[null|subclass=JSNumber]",
+        "code": null,
+        "type": "num"
       },
       "483247773": {
         "id": "field/483247773",
@@ -45632,6 +46155,18 @@
         "inferredType": "[null|exact=AnimatedLength]",
         "code": null,
         "type": "AnimatedLength"
+      },
+      "495052060": {
+        "id": "field/495052060",
+        "kind": "field",
+        "name": "message",
+        "size": 0,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/670647924",
+        "children": [],
+        "inferredType": "[null|exact=JSString]",
+        "code": null,
+        "type": "String"
       },
       "499560688": {
         "id": "field/499560688",
@@ -45937,6 +46472,18 @@
         "inferredType": "[subclass=JSUInt32]",
         "code": "d\n",
         "type": "int"
+      },
+      "522633194": {
+        "id": "field/522633194",
+        "kind": "field",
+        "name": "_namespaceUri",
+        "size": 0,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/992156986",
+        "children": [],
+        "inferredType": "[null|exact=JSString]",
+        "code": null,
+        "type": "String"
       },
       "522872198": {
         "id": "field/522872198",
@@ -46405,18 +46952,6 @@
         "code": null,
         "type": "dynamic"
       },
-      "581913452": {
-        "id": "field/581913452",
-        "kind": "field",
-        "name": "message",
-        "size": 0,
-        "outputUnit": "outputUnit/987444055",
-        "parent": "class/480478891",
-        "children": [],
-        "inferredType": "[null|exact=NativeUint8List]",
-        "code": null,
-        "type": "Uint8List"
-      },
       "584048847": {
         "id": "field/584048847",
         "kind": "field",
@@ -46490,6 +47025,18 @@
         "code": null,
         "type": "JsGetName",
         "const": true
+      },
+      "586613134": {
+        "id": "field/586613134",
+        "kind": "field",
+        "name": "_localName",
+        "size": 0,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/930773876",
+        "children": [],
+        "inferredType": "[null|exact=JSString]",
+        "code": null,
+        "type": "String"
       },
       "590776688": {
         "id": "field/590776688",
@@ -47220,18 +47767,6 @@
         "code": "b\n",
         "type": "int"
       },
-      "667197665": {
-        "id": "field/667197665",
-        "kind": "field",
-        "name": "_namespaceUri",
-        "size": 0,
-        "outputUnit": "outputUnit/987444055",
-        "parent": "class/859163164",
-        "children": [],
-        "inferredType": "[null|exact=JSString]",
-        "code": null,
-        "type": "String"
-      },
       "667376711": {
         "id": "field/667376711",
         "kind": "field",
@@ -47353,6 +47888,18 @@
         "inferredType": "[subtype=Function]",
         "code": "b\n",
         "type": "Function"
+      },
+      "674874365": {
+        "id": "field/674874365",
+        "kind": "field",
+        "name": "baseVal",
+        "size": 0,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/777564756",
+        "children": [],
+        "inferredType": "[null|exact=NumberList]",
+        "code": null,
+        "type": "NumberList"
       },
       "676358556": {
         "id": "field/676358556",
@@ -48031,18 +48578,6 @@
         "code": null,
         "type": "AnimatedLength"
       },
-      "749360488": {
-        "id": "field/749360488",
-        "kind": "field",
-        "name": "message",
-        "size": 0,
-        "outputUnit": "outputUnit/987444055",
-        "parent": "class/442182205",
-        "children": [],
-        "inferredType": "[null|exact=JSString]",
-        "code": null,
-        "type": "String"
-      },
       "749449352": {
         "id": "field/749449352",
         "kind": "field",
@@ -48264,6 +48799,18 @@
         "code": null,
         "type": "String"
       },
+      "762570208": {
+        "id": "field/762570208",
+        "kind": "field",
+        "name": "_namespaceUri",
+        "size": 0,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/930773876",
+        "children": [],
+        "inferredType": "[null|exact=JSString]",
+        "code": null,
+        "type": "String"
+      },
       "763950742": {
         "id": "field/763950742",
         "kind": "field",
@@ -48409,6 +48956,18 @@
         "code": null,
         "type": "Rectangle.T"
       },
+      "780490296": {
+        "id": "field/780490296",
+        "kind": "field",
+        "name": "baseVal",
+        "size": 0,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/134752815",
+        "children": [],
+        "inferredType": "[null|exact=JSString]",
+        "code": null,
+        "type": "String"
+      },
       "782977840": {
         "id": "field/782977840",
         "kind": "field",
@@ -48421,6 +48980,18 @@
         "code": null,
         "type": "int",
         "const": true
+      },
+      "783536444": {
+        "id": "field/783536444",
+        "kind": "field",
+        "name": "ports",
+        "size": 0,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/545711229",
+        "children": [],
+        "inferredType": "[null|subtype=List]",
+        "code": null,
+        "type": "List<MessagePort>"
       },
       "786919906": {
         "id": "field/786919906",
@@ -49082,6 +49653,18 @@
         "code": null,
         "type": "List<Node>"
       },
+      "855437238": {
+        "id": "field/855437238",
+        "kind": "field",
+        "name": "_localName",
+        "size": 0,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/992156986",
+        "children": [],
+        "inferredType": "[null|exact=JSString]",
+        "code": null,
+        "type": "String"
+      },
       "856247106": {
         "id": "field/856247106",
         "kind": "field",
@@ -49336,6 +49919,18 @@
         "code": null,
         "type": "AnimatedLength"
       },
+      "896119921": {
+        "id": "field/896119921",
+        "kind": "field",
+        "name": "_element",
+        "size": 2,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/315700092",
+        "children": [],
+        "inferredType": "[subclass=SvgElement]",
+        "code": "a\n",
+        "type": "Element"
+      },
       "900368147": {
         "id": "field/900368147",
         "kind": "field",
@@ -49570,6 +50165,18 @@
         "code": null,
         "type": "AnimatedLength"
       },
+      "923456332": {
+        "id": "field/923456332",
+        "kind": "field",
+        "name": "baseVal",
+        "size": 0,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/860909130",
+        "children": [],
+        "inferredType": "[null|exact=LengthList]",
+        "code": null,
+        "type": "LengthList"
+      },
       "927766504": {
         "id": "field/927766504",
         "kind": "field",
@@ -49613,6 +50220,18 @@
         "size": 0,
         "outputUnit": "outputUnit/987444055",
         "parent": "class/179381458",
+        "children": [],
+        "inferredType": "[null|exact=JSString]",
+        "code": null,
+        "type": "String"
+      },
+      "929638255": {
+        "id": "field/929638255",
+        "kind": "field",
+        "name": "id",
+        "size": 0,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/784114753",
         "children": [],
         "inferredType": "[null|exact=JSString]",
         "code": null,
@@ -50409,18 +51028,6 @@
         "inferredType": "[null|exact=Range]",
         "code": null,
         "type": "Range"
-      },
-      "1018160733": {
-        "id": "field/1018160733",
-        "kind": "field",
-        "name": "_localName",
-        "size": 0,
-        "outputUnit": "outputUnit/987444055",
-        "parent": "class/859163164",
-        "children": [],
-        "inferredType": "[null|exact=JSString]",
-        "code": null,
-        "type": "String"
       },
       "1018437096": {
         "id": "field/1018437096",
@@ -51843,7 +52450,7 @@
         "id": "closure/953610564",
         "kind": "closure",
         "name": "_ValidatingTreeSanitizer_sanitizeTree_walk",
-        "size": 288,
+        "size": 351,
         "outputUnit": "outputUnit/987444055",
         "parent": "function/699590184",
         "function": "function/1055748969"
@@ -52160,10 +52767,6 @@
         "mask": "[null|exact=JSString]"
       },
       {
-        "id": "function/26920957",
-        "mask": "null"
-      },
-      {
         "id": "function/322845948",
         "mask": "null"
       },
@@ -52298,19 +52901,15 @@
     ],
     "field/1022934707": [
       {
-        "id": "function/460512542",
-        "mask": "null"
-      },
-      {
-        "id": "function/492708773",
-        "mask": "null"
-      },
-      {
-        "id": "function/513053773",
+        "id": "function/289180415",
         "mask": "inlined"
       },
       {
-        "id": "function/513053773",
+        "id": "function/289180415",
+        "mask": "null"
+      },
+      {
+        "id": "function/460512542",
         "mask": "null"
       },
       {
@@ -52350,6 +52949,10 @@
         "mask": "null"
       },
       {
+        "id": "function/48116214",
+        "mask": "null"
+      },
+      {
         "id": "function/642361640",
         "mask": "inlined"
       },
@@ -52367,10 +52970,6 @@
       },
       {
         "id": "function/814364345",
-        "mask": "null"
-      },
-      {
-        "id": "function/821049294",
         "mask": "null"
       },
       {
@@ -52528,10 +53127,6 @@
       {
         "id": "function/1058735230",
         "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/1058735230",
-        "mask": "null"
       },
       {
         "id": "function/11804710",
@@ -52990,11 +53585,19 @@
         "mask": "Union of [[subclass=JSArray], [subclass=ListIterable], [subtype=ListMixin]]"
       },
       {
+        "id": "function/313434709",
+        "mask": "Union of [[subclass=JSArray], [subclass=ListIterable], [subtype=ListMixin]]"
+      },
+      {
         "id": "function/346305693",
         "mask": "null"
       },
       {
         "id": "function/367201536",
+        "mask": "Union of [[subclass=JSArray], [subclass=ListIterable], [subtype=ListMixin]]"
+      },
+      {
+        "id": "function/394009594",
         "mask": "Union of [[subclass=JSArray], [subclass=ListIterable], [subtype=ListMixin]]"
       },
       {
@@ -53223,6 +53826,28 @@
       },
       {
         "id": "function/964635878",
+        "mask": "null"
+      }
+    ],
+    "function/29960022": [
+      {
+        "id": "function/163889622",
+        "mask": "null"
+      },
+      {
+        "id": "function/271556856",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/271556856",
+        "mask": "null"
+      },
+      {
+        "id": "function/394009594",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/394009594",
         "mask": "null"
       }
     ],
@@ -53528,6 +54153,10 @@
         "mask": "null"
       },
       {
+        "id": "function/141703218",
+        "mask": "[null|subtype=List]"
+      },
+      {
         "id": "function/163280100",
         "mask": "[exact=_Deserializer]"
       },
@@ -53550,10 +54179,6 @@
       {
         "id": "function/248588389",
         "mask": "[exact=MappedListIterable]"
-      },
-      {
-        "id": "function/248588389",
-        "mask": "null"
       },
       {
         "id": "function/262809646",
@@ -53614,6 +54239,10 @@
       {
         "id": "function/92331580",
         "mask": "[null|subtype=List]"
+      },
+      {
+        "id": "function/991090123",
+        "mask": "[null|subtype=List]"
       }
     ],
     "function/49746562": [
@@ -53673,10 +54302,6 @@
       },
       {
         "id": "function/427434111",
-        "mask": "null"
-      },
-      {
-        "id": "function/827571674",
         "mask": "null"
       }
     ],
@@ -53904,11 +54529,15 @@
         "mask": "[subclass=CssClassSetImpl]"
       },
       {
-        "id": "function/564769724",
+        "id": "function/524476833",
         "mask": "[subclass=CssClassSetImpl]"
       }
     ],
     "function/73506650": [
+      {
+        "id": "function/141703218",
+        "mask": "[subtype=ListMixin]"
+      },
       {
         "id": "function/156463617",
         "mask": "[subtype=ListMixin]"
@@ -53938,6 +54567,10 @@
         "mask": "[subtype=ListMixin]"
       },
       {
+        "id": "function/313434709",
+        "mask": "[subtype=ListMixin]"
+      },
+      {
         "id": "function/353600390",
         "mask": "[subtype=ListMixin]"
       },
@@ -53947,6 +54580,10 @@
       },
       {
         "id": "function/386488696",
+        "mask": "[subtype=ListMixin]"
+      },
+      {
+        "id": "function/394009594",
         "mask": "[subtype=ListMixin]"
       },
       {
@@ -54003,6 +54640,10 @@
       },
       {
         "id": "function/92331580",
+        "mask": "[subtype=ListMixin]"
+      },
+      {
+        "id": "function/991090123",
         "mask": "[subtype=ListMixin]"
       }
     ],
@@ -54104,6 +54745,10 @@
         "mask": "null"
       },
       {
+        "id": "function/141703218",
+        "mask": "[null|subtype=List]"
+      },
+      {
         "id": "function/203928505",
         "mask": "[null|subtype=List]"
       },
@@ -54170,6 +54815,10 @@
       {
         "id": "function/92331580",
         "mask": "[null|subtype=List]"
+      },
+      {
+        "id": "function/991090123",
+        "mask": "[null|subtype=List]"
       }
     ],
     "function/85205202": [
@@ -54214,7 +54863,7 @@
         "mask": "[subclass=CssClassSetImpl]"
       },
       {
-        "id": "function/564769724",
+        "id": "function/524476833",
         "mask": "[subclass=CssClassSetImpl]"
       }
     ],
@@ -54273,11 +54922,11 @@
       },
       {
         "id": "function/365024155",
-        "mask": "Union of [[exact=_AttributeClassSet], [exact=_ElementCssClassSet]]"
+        "mask": "Union of [[exact=AttributeClassSet], [exact=_ElementCssClassSet]]"
       },
       {
         "id": "function/375786305",
-        "mask": "Union of [[exact=_AttributeClassSet], [exact=_ElementCssClassSet]]"
+        "mask": "Union of [[exact=AttributeClassSet], [exact=_ElementCssClassSet]]"
       },
       {
         "id": "function/437314199",
@@ -54285,7 +54934,7 @@
       },
       {
         "id": "function/553989766",
-        "mask": "Union of [[exact=_AttributeClassSet], [exact=_ElementCssClassSet]]"
+        "mask": "Union of [[exact=AttributeClassSet], [exact=_ElementCssClassSet]]"
       },
       {
         "id": "function/642361640",
@@ -54293,7 +54942,7 @@
       },
       {
         "id": "function/735840107",
-        "mask": "Union of [[exact=_AttributeClassSet], [exact=_ElementCssClassSet]]"
+        "mask": "Union of [[exact=AttributeClassSet], [exact=_ElementCssClassSet]]"
       }
     ],
     "function/92260467": [
@@ -54315,11 +54964,11 @@
       },
       {
         "id": "function/365024155",
-        "mask": "Union of [[exact=_AttributeClassSet], [exact=_ElementCssClassSet]]"
+        "mask": "Union of [[exact=AttributeClassSet], [exact=_ElementCssClassSet]]"
       },
       {
         "id": "function/375786305",
-        "mask": "Union of [[exact=_AttributeClassSet], [exact=_ElementCssClassSet]]"
+        "mask": "Union of [[exact=AttributeClassSet], [exact=_ElementCssClassSet]]"
       },
       {
         "id": "function/437314199",
@@ -54327,7 +54976,7 @@
       },
       {
         "id": "function/553989766",
-        "mask": "Union of [[exact=_AttributeClassSet], [exact=_ElementCssClassSet]]"
+        "mask": "Union of [[exact=AttributeClassSet], [exact=_ElementCssClassSet]]"
       },
       {
         "id": "function/642361640",
@@ -54335,7 +54984,7 @@
       },
       {
         "id": "function/735840107",
-        "mask": "Union of [[exact=_AttributeClassSet], [exact=_ElementCssClassSet]]"
+        "mask": "Union of [[exact=AttributeClassSet], [exact=_ElementCssClassSet]]"
       },
       {
         "id": "function/814364345",
@@ -55638,6 +56287,24 @@
         "mask": "[null|subclass=Object]"
       }
     ],
+    "function/141703218": [
+      {
+        "id": "function/163889622",
+        "mask": "null"
+      },
+      {
+        "id": "function/313434709",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/313434709",
+        "mask": "null"
+      },
+      {
+        "id": "function/985926244",
+        "mask": "null"
+      }
+    ],
     "function/141968770": [
       {
         "id": "field/1040646009",
@@ -55786,10 +56453,6 @@
         "mask": "null"
       },
       {
-        "id": "function/606572177",
-        "mask": "null"
-      },
-      {
         "id": "function/952130975",
         "mask": "null"
       }
@@ -55910,6 +56573,14 @@
       {
         "id": "function/140575206",
         "mask": "null"
+      },
+      {
+        "id": "function/141703218",
+        "mask": "[null|subclass=Object]"
+      },
+      {
+        "id": "function/141703218",
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/144059127",
@@ -56142,6 +56813,14 @@
       {
         "id": "function/954628437",
         "mask": "null"
+      },
+      {
+        "id": "function/991090123",
+        "mask": "[null|subclass=Object]"
+      },
+      {
+        "id": "function/991090123",
+        "mask": "[subclass=Object]"
       }
     ],
     "function/149727803": [
@@ -56302,6 +56981,10 @@
     ],
     "function/162296045": [
       {
+        "id": "function/141703218",
+        "mask": "[subtype=ListMixin]"
+      },
+      {
         "id": "function/156463617",
         "mask": "[subtype=ListMixin]"
       },
@@ -56330,6 +57013,10 @@
         "mask": "[subtype=ListMixin]"
       },
       {
+        "id": "function/313434709",
+        "mask": "[subtype=ListMixin]"
+      },
+      {
         "id": "function/353600390",
         "mask": "[subtype=ListMixin]"
       },
@@ -56339,6 +57026,10 @@
       },
       {
         "id": "function/386488696",
+        "mask": "[subtype=ListMixin]"
+      },
+      {
+        "id": "function/394009594",
         "mask": "[subtype=ListMixin]"
       },
       {
@@ -56395,6 +57086,10 @@
       },
       {
         "id": "function/92331580",
+        "mask": "[subtype=ListMixin]"
+      },
+      {
+        "id": "function/991090123",
         "mask": "[subtype=ListMixin]"
       }
     ],
@@ -56774,10 +57469,6 @@
       {
         "id": "function/427434111",
         "mask": "null"
-      },
-      {
-        "id": "function/679532174",
-        "mask": "null"
       }
     ],
     "function/188335514": [
@@ -56792,6 +57483,12 @@
       {
         "id": "function/544746737",
         "mask": "null"
+      }
+    ],
+    "function/189789546": [
+      {
+        "id": "function/742465483",
+        "mask": "inlined"
       }
     ],
     "function/190514013": [
@@ -56814,20 +57511,20 @@
     ],
     "function/192380826": [
       {
-        "id": "function/467834401",
-        "mask": "Union of [[exact=_AttributeClassSet], [exact=_ElementCssClassSet], [exact=_MultiElementCssClassSet]]"
-      },
-      {
         "id": "function/491220889",
         "mask": "[subclass=CssClassSetImpl]"
       },
       {
-        "id": "function/564769724",
+        "id": "function/524476833",
         "mask": "[subclass=CssClassSetImpl]"
       },
       {
+        "id": "function/625721805",
+        "mask": "Union of [[exact=AttributeClassSet], [exact=_ElementCssClassSet], [exact=_MultiElementCssClassSet]]"
+      },
+      {
         "id": "function/64278659",
-        "mask": "Union of [[exact=_AttributeClassSet], [exact=_ElementCssClassSet], [exact=_MultiElementCssClassSet]]"
+        "mask": "Union of [[exact=AttributeClassSet], [exact=_ElementCssClassSet], [exact=_MultiElementCssClassSet]]"
       }
     ],
     "function/193381988": [
@@ -57419,10 +58116,10 @@
       },
       {
         "id": "function/277142993",
-        "mask": "[exact=_AttributeClassSet]"
+        "mask": "[exact=AttributeClassSet]"
       },
       {
-        "id": "function/277142993",
+        "id": "function/48116214",
         "mask": "null"
       },
       {
@@ -57431,10 +58128,6 @@
       },
       {
         "id": "function/642361640",
-        "mask": "null"
-      },
-      {
-        "id": "function/821049294",
         "mask": "null"
       }
     ],
@@ -57508,10 +58201,6 @@
       {
         "id": "function/268947430",
         "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/268947430",
-        "mask": "null"
       },
       {
         "id": "function/291238918",
@@ -57654,10 +58343,6 @@
         "mask": "[exact=_ElementListEventStreamImpl]"
       },
       {
-        "id": "function/923795486",
-        "mask": "null"
-      },
-      {
         "id": "function/926369256",
         "mask": "null"
       },
@@ -57672,10 +58357,6 @@
       {
         "id": "function/978145676",
         "mask": "Union of [[subclass=DocumentFragment], [subclass=Document], [subclass=Element]]"
-      },
-      {
-        "id": "function/978145676",
-        "mask": "null"
       }
     ],
     "function/237744612": [
@@ -57794,7 +58475,7 @@
         "mask": "[subclass=CssClassSetImpl]"
       },
       {
-        "id": "function/564769724",
+        "id": "function/524476833",
         "mask": "[subclass=CssClassSetImpl]"
       }
     ],
@@ -57810,7 +58491,7 @@
     ],
     "function/240627941": [
       {
-        "id": "field/1018160733",
+        "id": "field/855437238",
         "mask": "null"
       },
       {
@@ -58111,10 +58792,6 @@
       },
       {
         "id": "function/465133022",
-        "mask": "null"
-      },
-      {
-        "id": "function/569071578",
         "mask": "null"
       },
       {
@@ -58740,10 +59417,6 @@
         "mask": "null"
       },
       {
-        "id": "function/553149607",
-        "mask": "null"
-      },
-      {
         "id": "function/556268777",
         "mask": "inlined"
       },
@@ -58932,10 +59605,6 @@
         "mask": "null"
       },
       {
-        "id": "function/467834401",
-        "mask": "Union of [[exact=_AttributeClassSet], [exact=_ElementCssClassSet], [exact=_MultiElementCssClassSet]]"
-      },
-      {
         "id": "function/491220889",
         "mask": "[subclass=CssClassSetImpl]"
       },
@@ -58944,12 +59613,16 @@
         "mask": "[subclass=_LinkedHashSet]"
       },
       {
-        "id": "function/564769724",
+        "id": "function/524476833",
         "mask": "[subclass=CssClassSetImpl]"
       },
       {
+        "id": "function/625721805",
+        "mask": "Union of [[exact=AttributeClassSet], [exact=_ElementCssClassSet], [exact=_MultiElementCssClassSet]]"
+      },
+      {
         "id": "function/64278659",
-        "mask": "Union of [[exact=_AttributeClassSet], [exact=_ElementCssClassSet], [exact=_MultiElementCssClassSet]]"
+        "mask": "Union of [[exact=AttributeClassSet], [exact=_ElementCssClassSet], [exact=_MultiElementCssClassSet]]"
       },
       {
         "id": "function/98156511",
@@ -59010,7 +59683,7 @@
         "mask": "[subclass=CssClassSetImpl]"
       },
       {
-        "id": "function/564769724",
+        "id": "function/524476833",
         "mask": "[subclass=CssClassSetImpl]"
       },
       {
@@ -59067,10 +59740,6 @@
       }
     ],
     "function/287555929": [
-      {
-        "id": "function/312768442",
-        "mask": "null"
-      },
       {
         "id": "function/407995169",
         "mask": "inlined"
@@ -59172,7 +59841,15 @@
         "mask": "[subtype=ListMixin]"
       },
       {
+        "id": "function/313434709",
+        "mask": "[subtype=ListMixin]"
+      },
+      {
         "id": "function/367201536",
+        "mask": "[subtype=ListMixin]"
+      },
+      {
+        "id": "function/394009594",
         "mask": "[subtype=ListMixin]"
       },
       {
@@ -59313,6 +59990,28 @@
     "function/292915674": [
       {
         "id": "field/60719081",
+        "mask": "null"
+      }
+    ],
+    "function/294864442": [
+      {
+        "id": "function/163889622",
+        "mask": "null"
+      },
+      {
+        "id": "function/271556856",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/271556856",
+        "mask": "null"
+      },
+      {
+        "id": "function/313434709",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/313434709",
         "mask": "null"
       }
     ],
@@ -59464,10 +60163,6 @@
         "mask": "null"
       },
       {
-        "id": "function/679532174",
-        "mask": "null"
-      },
-      {
         "id": "function/827571674",
         "mask": "inlined"
       },
@@ -59479,6 +60174,20 @@
     "function/312847150": [
       {
         "id": "field/204326440",
+        "mask": "null"
+      }
+    ],
+    "function/313434710": [
+      {
+        "id": "function/163889622",
+        "mask": "null"
+      },
+      {
+        "id": "function/208283907",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/208283907",
         "mask": "null"
       }
     ],
@@ -59826,16 +60535,8 @@
         "mask": "[null|subclass=Object]"
       },
       {
-        "id": "function/147524116",
-        "mask": "null"
-      },
-      {
         "id": "function/149727803",
         "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/149727803",
-        "mask": "null"
       },
       {
         "id": "function/150705145",
@@ -59852,10 +60553,6 @@
       {
         "id": "function/162825675",
         "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/162825675",
-        "mask": "null"
       },
       {
         "id": "function/163889622",
@@ -59936,6 +60633,14 @@
       {
         "id": "function/291295234",
         "mask": "null"
+      },
+      {
+        "id": "function/294864442",
+        "mask": "[null|subclass=Object]"
+      },
+      {
+        "id": "function/29960022",
+        "mask": "[null|subclass=Object]"
       },
       {
         "id": "function/312847150",
@@ -60144,10 +60849,6 @@
       {
         "id": "function/614839327",
         "mask": "[subclass=SvgElement]"
-      },
-      {
-        "id": "function/614839327",
-        "mask": "null"
       },
       {
         "id": "function/618429333",
@@ -61318,10 +62019,6 @@
     ],
     "function/372712379": [
       {
-        "id": "function/1000283646",
-        "mask": "null"
-      },
-      {
         "id": "function/198550993",
         "mask": "null"
       },
@@ -61600,6 +62297,12 @@
         "mask": "null"
       }
     ],
+    "function/392481975": [
+      {
+        "id": "function/141703218",
+        "mask": "null"
+      }
+    ],
     "function/393152308": [
       {
         "id": "field/295541341",
@@ -61631,6 +62334,20 @@
       },
       {
         "id": "function/616072379",
+        "mask": "null"
+      }
+    ],
+    "function/394009595": [
+      {
+        "id": "function/163889622",
+        "mask": "null"
+      },
+      {
+        "id": "function/208283907",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/208283907",
         "mask": "null"
       }
     ],
@@ -62118,6 +62835,14 @@
         "mask": "[subtype=Iterable]"
       },
       {
+        "id": "function/294864442",
+        "mask": "[subtype=Iterable]"
+      },
+      {
+        "id": "function/29960022",
+        "mask": "[subtype=Iterable]"
+      },
+      {
         "id": "function/346305693",
         "mask": "null"
       },
@@ -62324,6 +63049,10 @@
     ],
     "function/435026267": [
       {
+        "id": "function/141703218",
+        "mask": "[subtype=ListMixin]"
+      },
+      {
         "id": "function/156463617",
         "mask": "[subtype=ListMixin]"
       },
@@ -62356,6 +63085,10 @@
         "mask": "[subtype=ListMixin]"
       },
       {
+        "id": "function/313434709",
+        "mask": "[subtype=ListMixin]"
+      },
+      {
         "id": "function/353600390",
         "mask": "[subtype=ListMixin]"
       },
@@ -62365,6 +63098,10 @@
       },
       {
         "id": "function/386488696",
+        "mask": "[subtype=ListMixin]"
+      },
+      {
+        "id": "function/394009594",
         "mask": "[subtype=ListMixin]"
       },
       {
@@ -62413,6 +63150,10 @@
       },
       {
         "id": "function/92331580",
+        "mask": "[subtype=ListMixin]"
+      },
+      {
+        "id": "function/991090123",
         "mask": "[subtype=ListMixin]"
       }
     ],
@@ -63124,7 +63865,15 @@
     ],
     "function/448129133": [
       {
+        "id": "function/313434709",
+        "mask": "[subtype=ImmutableListMixin]"
+      },
+      {
         "id": "function/367201536",
+        "mask": "[subtype=ImmutableListMixin]"
+      },
+      {
+        "id": "function/394009594",
         "mask": "[subtype=ImmutableListMixin]"
       },
       {
@@ -63624,40 +64373,6 @@
         "mask": "null"
       }
     ],
-    "function/467834401": [
-      {
-        "id": "field/189813979",
-        "mask": "null"
-      },
-      {
-        "id": "function/1040907014",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/1040907014",
-        "mask": "null"
-      },
-      {
-        "id": "function/257963672",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/257963672",
-        "mask": "null"
-      },
-      {
-        "id": "function/470434632",
-        "mask": "null"
-      },
-      {
-        "id": "function/978145676",
-        "mask": "null"
-      },
-      {
-        "id": "function/986866485",
-        "mask": "null"
-      }
-    ],
     "function/468419139": [
       {
         "id": "function/717561594",
@@ -63797,6 +64512,20 @@
     "function/474133145": [
       {
         "id": "field/140571055",
+        "mask": "null"
+      }
+    ],
+    "function/474768756": [
+      {
+        "id": "function/163889622",
+        "mask": "null"
+      },
+      {
+        "id": "function/208283907",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/208283907",
         "mask": "null"
       }
     ],
@@ -64036,10 +64765,6 @@
         "mask": "[null|exact=JSString]"
       },
       {
-        "id": "function/26920957",
-        "mask": "null"
-      },
-      {
         "id": "function/275957193",
         "mask": "[subclass=_LinkedHashSet]"
       },
@@ -64220,10 +64945,6 @@
         "mask": "[null|subclass=Element]"
       },
       {
-        "id": "function/614839327",
-        "mask": "null"
-      },
-      {
         "id": "function/680740898",
         "mask": "inlined"
       },
@@ -64249,10 +64970,6 @@
       },
       {
         "id": "function/808815294",
-        "mask": "null"
-      },
-      {
-        "id": "function/885768717",
         "mask": "null"
       },
       {
@@ -64502,12 +65219,6 @@
         "mask": "null"
       }
     ],
-    "function/513053773": [
-      {
-        "id": "function/492708773",
-        "mask": "inlined"
-      }
-    ],
     "function/514139107": [
       {
         "id": "function/752139918",
@@ -64564,6 +65275,10 @@
         "mask": "null"
       },
       {
+        "id": "function/392481975",
+        "mask": "Union of [[subclass=JSArray], [subclass=ListIterable], [subtype=ListMixin]]"
+      },
+      {
         "id": "function/453686242",
         "mask": "Union of [[subclass=JSArray], [subclass=ListIterable], [subtype=ListMixin]]"
       },
@@ -64573,6 +65288,10 @@
       },
       {
         "id": "function/521621182",
+        "mask": "Union of [[subclass=JSArray], [subclass=ListIterable], [subtype=ListMixin]]"
+      },
+      {
+        "id": "function/524861671",
         "mask": "Union of [[subclass=JSArray], [subclass=ListIterable], [subtype=ListMixin]]"
       },
       {
@@ -64607,6 +65326,66 @@
       },
       {
         "id": "function/974510318",
+        "mask": "null"
+      }
+    ],
+    "function/524476833": [
+      {
+        "id": "field/896119921",
+        "mask": "null"
+      },
+      {
+        "id": "function/1040907014",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/1040907014",
+        "mask": "null"
+      },
+      {
+        "id": "function/128684509",
+        "mask": "null"
+      },
+      {
+        "id": "function/26920957",
+        "mask": "[null|exact=JSString]"
+      },
+      {
+        "id": "function/275957193",
+        "mask": "[subclass=_LinkedHashSet]"
+      },
+      {
+        "id": "function/346305693",
+        "mask": "null"
+      },
+      {
+        "id": "function/544746737",
+        "mask": "null"
+      },
+      {
+        "id": "function/773528822",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/773528822",
+        "mask": "null"
+      },
+      {
+        "id": "function/814364345",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/814364345",
+        "mask": "null"
+      },
+      {
+        "id": "function/986866485",
+        "mask": "null"
+      }
+    ],
+    "function/524861671": [
+      {
+        "id": "function/991090123",
         "mask": "null"
       }
     ],
@@ -64786,10 +65565,6 @@
       {
         "id": "function/495950556",
         "mask": "[null|exact=BodyElement]"
-      },
-      {
-        "id": "function/495950556",
-        "mask": "null"
       },
       {
         "id": "function/497849577",
@@ -65306,64 +66081,6 @@
         "mask": "null"
       }
     ],
-    "function/564769724": [
-      {
-        "id": "field/189813979",
-        "mask": "null"
-      },
-      {
-        "id": "function/1040907014",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/1040907014",
-        "mask": "null"
-      },
-      {
-        "id": "function/128684509",
-        "mask": "null"
-      },
-      {
-        "id": "function/26920957",
-        "mask": "[null|exact=JSString]"
-      },
-      {
-        "id": "function/26920957",
-        "mask": "null"
-      },
-      {
-        "id": "function/275957193",
-        "mask": "[subclass=_LinkedHashSet]"
-      },
-      {
-        "id": "function/346305693",
-        "mask": "null"
-      },
-      {
-        "id": "function/544746737",
-        "mask": "null"
-      },
-      {
-        "id": "function/773528822",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/773528822",
-        "mask": "null"
-      },
-      {
-        "id": "function/814364345",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/814364345",
-        "mask": "null"
-      },
-      {
-        "id": "function/986866485",
-        "mask": "null"
-      }
-    ],
     "function/565005032": [
       {
         "id": "field/1049439349",
@@ -65482,6 +66199,10 @@
         "mask": "null"
       },
       {
+        "id": "function/141703218",
+        "mask": "[subtype=ImmutableListMixin]"
+      },
+      {
         "id": "function/231269804",
         "mask": "[subtype=ImmutableListMixin]"
       },
@@ -65495,6 +66216,10 @@
       },
       {
         "id": "function/92331580",
+        "mask": "[subtype=ImmutableListMixin]"
+      },
+      {
+        "id": "function/991090123",
         "mask": "[subtype=ImmutableListMixin]"
       }
     ],
@@ -65675,10 +66400,6 @@
       },
       {
         "id": "function/257963672",
-        "mask": "null"
-      },
-      {
-        "id": "function/978145676",
         "mask": "null"
       }
     ],
@@ -66384,6 +67105,16 @@
         "mask": "inlined"
       }
     ],
+    "function/625721805": [
+      {
+        "id": "field/896119921",
+        "mask": "null"
+      },
+      {
+        "id": "function/470434632",
+        "mask": "null"
+      }
+    ],
     "function/627870699": [
       {
         "id": "field/261908103",
@@ -66610,11 +67341,11 @@
     ],
     "function/642361640": [
       {
-        "id": "function/821049294",
+        "id": "function/48116214",
         "mask": "inlined"
       },
       {
-        "id": "function/821049294",
+        "id": "function/48116214",
         "mask": "null"
       }
     ],
@@ -66681,10 +67412,6 @@
       },
       {
         "id": "field/774491990",
-        "mask": "null"
-      },
-      {
-        "id": "function/1000283646",
         "mask": "null"
       },
       {
@@ -66813,6 +67540,20 @@
       },
       {
         "id": "function/835692712",
+        "mask": "null"
+      }
+    ],
+    "function/660922452": [
+      {
+        "id": "function/163889622",
+        "mask": "null"
+      },
+      {
+        "id": "function/208283907",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/208283907",
         "mask": "null"
       }
     ],
@@ -67052,6 +67793,14 @@
         "mask": "null"
       },
       {
+        "id": "function/141703218",
+        "mask": "[null|subtype=List]"
+      },
+      {
+        "id": "function/141703218",
+        "mask": "[subtype=List]"
+      },
+      {
         "id": "function/144469777",
         "mask": "[null|subtype=List]"
       },
@@ -67100,6 +67849,10 @@
         "mask": "[subtype=List]"
       },
       {
+        "id": "function/313434709",
+        "mask": "[null|subtype=List]"
+      },
+      {
         "id": "function/346305693",
         "mask": "null"
       },
@@ -67122,6 +67875,10 @@
       {
         "id": "function/386488696",
         "mask": "[subtype=List]"
+      },
+      {
+        "id": "function/394009594",
+        "mask": "[null|subtype=List]"
       },
       {
         "id": "function/411201683",
@@ -67206,6 +67963,14 @@
       {
         "id": "function/92331580",
         "mask": "[subtype=List]"
+      },
+      {
+        "id": "function/991090123",
+        "mask": "[null|subtype=List]"
+      },
+      {
+        "id": "function/991090123",
+        "mask": "[subtype=List]"
       }
     ],
     "function/680740898": [
@@ -67221,6 +67986,14 @@
       }
     ],
     "function/681706609": [
+      {
+        "id": "function/252845871",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/252845871",
+        "mask": "null"
+      },
       {
         "id": "function/698629541",
         "mask": "inlined"
@@ -67716,10 +68489,6 @@
       {
         "id": "function/574550003",
         "mask": "[exact=_Future]"
-      },
-      {
-        "id": "function/574550003",
-        "mask": "null"
       }
     ],
     "function/707502824": [
@@ -67748,11 +68517,19 @@
         "mask": "[subtype=Iterable]"
       },
       {
+        "id": "function/313434709",
+        "mask": "[subtype=Iterable]"
+      },
+      {
         "id": "function/346305693",
         "mask": "null"
       },
       {
         "id": "function/367201536",
+        "mask": "[subtype=Iterable]"
+      },
+      {
+        "id": "function/394009594",
         "mask": "[subtype=Iterable]"
       },
       {
@@ -67884,6 +68661,10 @@
         "mask": "[null|subclass=Object]"
       },
       {
+        "id": "function/313434709",
+        "mask": "[null|subclass=Object]"
+      },
+      {
         "id": "function/346305693",
         "mask": "null"
       },
@@ -67893,6 +68674,10 @@
       },
       {
         "id": "function/367201536",
+        "mask": "[null|subclass=Object]"
+      },
+      {
+        "id": "function/394009594",
         "mask": "[null|subclass=Object]"
       },
       {
@@ -68448,7 +69233,7 @@
         "mask": "[subclass=CssClassSetImpl]"
       },
       {
-        "id": "function/564769724",
+        "id": "function/524476833",
         "mask": "[subclass=CssClassSetImpl]"
       },
       {
@@ -68492,10 +69277,6 @@
         "mask": "null"
       },
       {
-        "id": "function/467834401",
-        "mask": "Union of [[exact=_AttributeClassSet], [exact=_ElementCssClassSet], [exact=_MultiElementCssClassSet]]"
-      },
-      {
         "id": "function/491220889",
         "mask": "[subclass=CssClassSetImpl]"
       },
@@ -68504,12 +69285,16 @@
         "mask": "[subclass=_LinkedHashSet]"
       },
       {
-        "id": "function/564769724",
+        "id": "function/524476833",
         "mask": "[subclass=CssClassSetImpl]"
       },
       {
+        "id": "function/625721805",
+        "mask": "Union of [[exact=AttributeClassSet], [exact=_ElementCssClassSet], [exact=_MultiElementCssClassSet]]"
+      },
+      {
         "id": "function/64278659",
-        "mask": "Union of [[exact=_AttributeClassSet], [exact=_ElementCssClassSet], [exact=_MultiElementCssClassSet]]"
+        "mask": "Union of [[exact=AttributeClassSet], [exact=_ElementCssClassSet], [exact=_MultiElementCssClassSet]]"
       }
     ],
     "function/737146871": [
@@ -68794,7 +69579,7 @@
         "mask": "null"
       },
       {
-        "id": "field/667197665",
+        "id": "field/762570208",
         "mask": "null"
       },
       {
@@ -69464,11 +70249,27 @@
         "mask": "[subtype=ListMixin]"
       },
       {
+        "id": "function/313434709",
+        "mask": "[subtype=ListMixin]"
+      },
+      {
+        "id": "function/313434710",
+        "mask": "[subtype=ListMixin]"
+      },
+      {
         "id": "function/367201536",
         "mask": "[subtype=ListMixin]"
       },
       {
         "id": "function/367201537",
+        "mask": "[subtype=ListMixin]"
+      },
+      {
+        "id": "function/394009594",
+        "mask": "[subtype=ListMixin]"
+      },
+      {
+        "id": "function/394009595",
         "mask": "[subtype=ListMixin]"
       },
       {
@@ -69484,11 +70285,19 @@
         "mask": "[subtype=ListMixin]"
       },
       {
+        "id": "function/474768756",
+        "mask": "[subtype=ListMixin]"
+      },
+      {
         "id": "function/512180782",
         "mask": "[subtype=ListMixin]"
       },
       {
         "id": "function/58126806",
+        "mask": "[subtype=ListMixin]"
+      },
+      {
+        "id": "function/660922452",
         "mask": "[subtype=ListMixin]"
       },
       {
@@ -69886,7 +70695,7 @@
         "mask": "[subclass=CssClassSetImpl]"
       },
       {
-        "id": "function/564769724",
+        "id": "function/524476833",
         "mask": "[subclass=CssClassSetImpl]"
       }
     ],
@@ -70344,10 +71153,6 @@
     ],
     "function/839102113": [
       {
-        "id": "function/1000283646",
-        "mask": "null"
-      },
-      {
         "id": "function/1033028403",
         "mask": "null"
       },
@@ -70748,20 +71553,12 @@
     ],
     "function/873863767": [
       {
-        "id": "function/1000283646",
-        "mask": "null"
-      },
-      {
         "id": "function/204916897",
         "mask": "null"
       },
       {
         "id": "function/312768442",
         "mask": "[exact=JSString]"
-      },
-      {
-        "id": "function/312768442",
-        "mask": "null"
       },
       {
         "id": "function/346305693",
@@ -71010,11 +71807,19 @@
         "mask": "[subclass=Object]"
       },
       {
+        "id": "function/313434709",
+        "mask": "[null|subclass=Object]"
+      },
+      {
         "id": "function/346305693",
         "mask": "null"
       },
       {
         "id": "function/367201536",
+        "mask": "[null|subclass=Object]"
+      },
+      {
+        "id": "function/394009594",
         "mask": "[null|subclass=Object]"
       },
       {
@@ -71372,10 +72177,6 @@
       {
         "id": "function/57895586",
         "mask": "[exact=JSString]"
-      },
-      {
-        "id": "function/57895586",
-        "mask": "null"
       }
     ],
     "function/906797235": [
@@ -71500,6 +72301,10 @@
         "mask": "null"
       },
       {
+        "id": "function/313434709",
+        "mask": "[subtype=ListMixin]"
+      },
+      {
         "id": "function/367201536",
         "mask": "[subtype=ListMixin]"
       },
@@ -71510,6 +72315,10 @@
       {
         "id": "function/372037963",
         "mask": "null"
+      },
+      {
+        "id": "function/394009594",
+        "mask": "[subtype=ListMixin]"
       },
       {
         "id": "function/465133022",
@@ -72040,10 +72849,6 @@
       {
         "id": "function/579004227",
         "mask": "[subclass=EventTarget]"
-      },
-      {
-        "id": "function/579004227",
-        "mask": "null"
       }
     ],
     "function/929099076": [
@@ -72254,6 +73059,14 @@
       {
         "id": "function/128684509",
         "mask": "null"
+      },
+      {
+        "id": "function/141703218",
+        "mask": "[null|subclass=Object]"
+      },
+      {
+        "id": "function/141703218",
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/141968770",
@@ -72568,6 +73381,14 @@
         "mask": "null"
       },
       {
+        "id": "function/991090123",
+        "mask": "[null|subclass=Object]"
+      },
+      {
+        "id": "function/991090123",
+        "mask": "[subclass=Object]"
+      },
+      {
         "id": "function/997194560",
         "mask": "[null|subclass=Object]"
       }
@@ -72602,10 +73423,6 @@
     ],
     "function/950791599": [
       {
-        "id": "function/268947430",
-        "mask": "null"
-      },
-      {
         "id": "function/291295234",
         "mask": "inlined"
       },
@@ -72638,10 +73455,6 @@
       {
         "id": "function/433098641",
         "mask": "[subclass=EventTarget]"
-      },
-      {
-        "id": "function/433098641",
-        "mask": "null"
       }
     ],
     "function/953367126": [
@@ -72848,6 +73661,10 @@
     ],
     "function/983855881": [
       {
+        "id": "function/141703218",
+        "mask": "[subtype=ListMixin]"
+      },
+      {
         "id": "function/203928505",
         "mask": "[subtype=ListMixin]"
       },
@@ -72897,6 +73714,10 @@
       },
       {
         "id": "function/92331580",
+        "mask": "[subtype=ListMixin]"
+      },
+      {
+        "id": "function/991090123",
         "mask": "[subtype=ListMixin]"
       }
     ],
@@ -72954,11 +73775,19 @@
         "mask": "[null|subclass=Object]"
       },
       {
+        "id": "function/313434709",
+        "mask": "[null|subclass=Object]"
+      },
+      {
         "id": "function/346305693",
         "mask": "null"
       },
       {
         "id": "function/367201536",
+        "mask": "[null|subclass=Object]"
+      },
+      {
+        "id": "function/394009594",
         "mask": "[null|subclass=Object]"
       },
       {
@@ -73033,6 +73862,24 @@
     "function/990185847": [
       {
         "id": "field/473746792",
+        "mask": "null"
+      }
+    ],
+    "function/991090123": [
+      {
+        "id": "function/163889622",
+        "mask": "null"
+      },
+      {
+        "id": "function/394009594",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/394009594",
+        "mask": "null"
+      },
+      {
+        "id": "function/985926244",
         "mask": "null"
       }
     ],
@@ -73662,11 +74509,27 @@
         "mask": "[subtype=ListMixin]"
       },
       {
+        "id": "function/313434709",
+        "mask": "[subtype=ListMixin]"
+      },
+      {
+        "id": "function/313434710",
+        "mask": "[subtype=ListMixin]"
+      },
+      {
         "id": "function/367201536",
         "mask": "[subtype=ListMixin]"
       },
       {
         "id": "function/367201537",
+        "mask": "[subtype=ListMixin]"
+      },
+      {
+        "id": "function/394009594",
+        "mask": "[subtype=ListMixin]"
+      },
+      {
+        "id": "function/394009595",
         "mask": "[subtype=ListMixin]"
       },
       {
@@ -73682,11 +74545,19 @@
         "mask": "[subtype=ListMixin]"
       },
       {
+        "id": "function/474768756",
+        "mask": "[subtype=ListMixin]"
+      },
+      {
         "id": "function/512180782",
         "mask": "[subtype=ListMixin]"
       },
       {
         "id": "function/58126806",
+        "mask": "[subtype=ListMixin]"
+      },
+      {
+        "id": "function/660922452",
         "mask": "[subtype=ListMixin]"
       },
       {
@@ -73800,11 +74671,23 @@
         "mask": "Union of [[subclass=ListIterable], [subclass=NativeTypedArray], [subtype=ListMixin]]"
       },
       {
+        "id": "function/313434709",
+        "mask": "Union of [[subclass=ListIterable], [subtype=ListMixin]]"
+      },
+      {
         "id": "function/346305693",
         "mask": "null"
       },
       {
         "id": "function/367201536",
+        "mask": "Union of [[subclass=ListIterable], [subtype=ListMixin]]"
+      },
+      {
+        "id": "function/392481975",
+        "mask": "Union of [[subclass=ListIterable], [subclass=NativeTypedArray], [subtype=ListMixin]]"
+      },
+      {
+        "id": "function/394009594",
         "mask": "Union of [[subclass=ListIterable], [subtype=ListMixin]]"
       },
       {
@@ -73821,6 +74704,10 @@
       },
       {
         "id": "function/521621182",
+        "mask": "Union of [[subclass=ListIterable], [subclass=NativeTypedArray], [subtype=ListMixin]]"
+      },
+      {
+        "id": "function/524861671",
         "mask": "Union of [[subclass=ListIterable], [subclass=NativeTypedArray], [subtype=ListMixin]]"
       },
       {
@@ -73890,6 +74777,10 @@
     ],
     "function/1055748969": [
       {
+        "id": "field/317083285",
+        "mask": "null"
+      },
+      {
         "id": "field/422991396",
         "mask": "null"
       },
@@ -73936,6 +74827,10 @@
     ],
     "function/1056601141": [
       {
+        "id": "function/141703218",
+        "mask": "[subtype=ListMixin]"
+      },
+      {
         "id": "function/156463617",
         "mask": "[subtype=ListMixin]"
       },
@@ -73968,6 +74863,14 @@
         "mask": "[subtype=ListMixin]"
       },
       {
+        "id": "function/313434709",
+        "mask": "[subtype=ListMixin]"
+      },
+      {
+        "id": "function/313434710",
+        "mask": "[subtype=ListMixin]"
+      },
+      {
         "id": "function/353600390",
         "mask": "[subtype=ListMixin]"
       },
@@ -73981,6 +74884,14 @@
       },
       {
         "id": "function/386488696",
+        "mask": "[subtype=ListMixin]"
+      },
+      {
+        "id": "function/394009594",
+        "mask": "[subtype=ListMixin]"
+      },
+      {
+        "id": "function/394009595",
         "mask": "[subtype=ListMixin]"
       },
       {
@@ -74049,6 +74960,10 @@
       },
       {
         "id": "function/92331580",
+        "mask": "[subtype=ListMixin]"
+      },
+      {
+        "id": "function/991090123",
         "mask": "[subtype=ListMixin]"
       }
     ],
@@ -74301,7 +75216,7 @@
       "id": "outputUnit/987444055",
       "kind": "outputUnit",
       "name": null,
-      "size": 137523,
+      "size": 139137,
       "imports": [
         null
       ]
@@ -74312,11 +75227,11 @@
   "dump_minor_version": "0",
   "program": {
     "entrypoint": "function/866901754",
-    "size": 137523,
+    "size": 139137,
     "dart2jsVersion": null,
-    "compilationMoment": "2017-05-18 18:09:34.879007",
-    "compilationDuration": 8751063,
-    "toJsonDuration": 55000,
+    "compilationMoment": "2017-08-03 12:07:29.523310",
+    "compilationDuration": 7296634,
+    "toJsonDuration": 45000,
     "dumpInfoDuration": 0,
     "noSuchMethodEnabled": false,
     "minified": true
