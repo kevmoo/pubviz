@@ -17,20 +17,21 @@ String toDot(VizRoot item,
     ignorePackages = const <String>[];
   }
 
-  var graph = new Graph(
+  var gviz = new Gviz(
       name: 'pubviz',
       nodeProperties: {'fontname': 'Helvetica'},
       edgeProperties: {'fontname': 'Helvetica', 'fontcolor': 'gray'});
 
   for (var pack
       in item.packages.values.where((v) => !ignorePackages.contains(v.name))) {
-    _writeDot(pack, graph, item.root.name, escapeLabels, ignorePackages);
+    gviz.addLine();
+    _writeDot(pack, gviz, item.root.name, escapeLabels, ignorePackages);
   }
 
-  return graph.toString();
+  return gviz.toString();
 }
 
-void _writeDot(VizPackage pkg, Graph graph, String rootName, bool escapeLabels,
+void _writeDot(VizPackage pkg, Gviz gviz, String rootName, bool escapeLabels,
     Iterable<String> ignorePackages) {
   var isRoot = rootName == pkg.name;
 
@@ -66,7 +67,7 @@ void _writeDot(VizPackage pkg, Graph graph, String rootName, bool escapeLabels,
     props['xlabel'] = '${pkg.latestVersion}';
   }
 
-  graph.addNode(pkg.name, properties: props);
+  gviz.addNode(pkg.name, properties: props);
 
   var orderedDeps = pkg.dependencies.toList(growable: false)..sort();
 
@@ -102,7 +103,7 @@ void _writeDot(VizPackage pkg, Graph graph, String rootName, bool escapeLabels,
         edgeProps['constraint'] = 'false';
       }
 
-      graph.addEdge(pkg.name, dep.name, properties: edgeProps);
+      gviz.addEdge(pkg.name, dep.name, properties: edgeProps);
     }
   }
 }
