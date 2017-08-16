@@ -257,8 +257,9 @@
         "id": "library/95666532",
         "kind": "library",
         "name": "web_app",
-        "size": 2924,
+        "size": 3180,
         "children": [
+          "class/879676930",
           "field/414784185",
           "field/430630140",
           "field/581889957",
@@ -337,7 +338,7 @@
         "id": "library/223393735",
         "kind": "library",
         "name": "dart.convert",
-        "size": 976,
+        "size": 972,
         "children": [
           "class/249725143",
           "class/257270881",
@@ -384,7 +385,7 @@
         "id": "library/325218131",
         "kind": "library",
         "name": "_interceptors",
-        "size": 6346,
+        "size": 6652,
         "children": [
           "class/86936801",
           "class/245082925",
@@ -526,13 +527,14 @@
         "id": "library/631335891",
         "kind": "library",
         "name": "dart.core",
-        "size": 5808,
+        "size": 5919,
         "children": [
           "class/36312556",
           "class/56472591",
           "class/70813553",
           "class/93352366",
           "class/143626168",
+          "class/167237017",
           "class/175705485",
           "class/188328408",
           "class/217690375",
@@ -610,7 +612,7 @@
         "id": "library/754126564",
         "kind": "library",
         "name": "dart.collection",
-        "size": 9059,
+        "size": 9051,
         "children": [
           "class/85158740",
           "class/113750884",
@@ -694,7 +696,7 @@
         "id": "library/966364039",
         "kind": "library",
         "name": "_js_helper",
-        "size": 22337,
+        "size": 22683,
         "children": [
           "class/17649844",
           "class/27679401",
@@ -882,7 +884,7 @@
         "id": "library/1052666095",
         "kind": "library",
         "name": "dart.async",
-        "size": 17150,
+        "size": 17171,
         "children": [
           "class/72608649",
           "class/80405414",
@@ -1767,7 +1769,7 @@
         "id": "class/105901179",
         "kind": "class",
         "name": "_BroadcastStreamController",
-        "size": 1678,
+        "size": 1699,
         "outputUnit": "outputUnit/987444055",
         "parent": "library/1052666095",
         "modifiers": {
@@ -2356,6 +2358,30 @@
           "abstract": true
         },
         "children": []
+      },
+      "167237017": {
+        "id": "class/167237017",
+        "kind": "class",
+        "name": "Stopwatch",
+        "size": 18,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "library/631335891",
+        "modifiers": {
+          "abstract": false
+        },
+        "children": [
+          "field/226520886",
+          "field/698979505",
+          "field/763732738",
+          "function/67842662",
+          "function/290250840",
+          "function/389240410",
+          "function/675550447",
+          "function/690312332",
+          "function/724580252",
+          "function/845379732",
+          "function/883559193"
+        ]
       },
       "171867442": {
         "id": "class/171867442",
@@ -3532,16 +3558,20 @@
         "id": "class/354160010",
         "kind": "class",
         "name": "Primitives",
-        "size": 0,
+        "size": 64,
         "outputUnit": "outputUnit/987444055",
         "parent": "library/966364039",
         "modifiers": {
           "abstract": false
         },
         "children": [
+          "field/16313730",
           "field/118657756",
           "field/484040980",
+          "field/882252358",
           "field/1047987212",
+          "function/18345574",
+          "function/246607795",
           "function/353303220",
           "function/476044464",
           "function/507333070",
@@ -3987,7 +4017,7 @@
         "id": "class/429451032",
         "kind": "class",
         "name": "Expando",
-        "size": 353,
+        "size": 351,
         "outputUnit": "outputUnit/987444055",
         "parent": "library/631335891",
         "modifiers": {
@@ -4537,7 +4567,7 @@
         "id": "class/525443093",
         "kind": "class",
         "name": "HtmlEscape",
-        "size": 401,
+        "size": 397,
         "outputUnit": "outputUnit/987444055",
         "parent": "library/223393735",
         "modifiers": {
@@ -5036,7 +5066,7 @@
         "id": "class/591860850",
         "kind": "class",
         "name": "Maps",
-        "size": 132,
+        "size": 128,
         "outputUnit": "outputUnit/987444055",
         "parent": "library/754126564",
         "modifiers": {
@@ -6252,7 +6282,7 @@
         "id": "class/736422208",
         "kind": "class",
         "name": "_BroadcastSubscription",
-        "size": 70,
+        "size": 73,
         "outputUnit": "outputUnit/987444055",
         "parent": "library/1052666095",
         "modifiers": {
@@ -6840,7 +6870,7 @@
         "id": "class/803883908",
         "kind": "class",
         "name": "Duration",
-        "size": 638,
+        "size": 728,
         "outputUnit": "outputUnit/987444055",
         "parent": "library/631335891",
         "modifiers": {
@@ -6861,6 +6891,7 @@
           "function/4148337",
           "function/15461811",
           "function/53379202",
+          "function/77958169",
           "function/288870017",
           "function/357240896",
           "function/364589491",
@@ -7455,6 +7486,18 @@
           "function/660922452",
           "function/991090123"
         ]
+      },
+      "879676930": {
+        "id": "class/879676930",
+        "kind": "class",
+        "name": "VizOptions",
+        "size": 18,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "library/95666532",
+        "modifiers": {
+          "abstract": false
+        },
+        "children": []
       },
       "881282833": {
         "id": "class/881282833",
@@ -8131,7 +8174,7 @@
         "id": "class/961595590",
         "kind": "class",
         "name": "Stream",
-        "size": 1708,
+        "size": 1705,
         "outputUnit": "outputUnit/987444055",
         "parent": "library/1052666095",
         "modifiers": {
@@ -8439,7 +8482,7 @@
         "id": "class/1003011102",
         "kind": "class",
         "name": "JSNumber",
-        "size": 703,
+        "size": 1009,
         "outputUnit": "outputUnit/987444055",
         "parent": "library/325218131",
         "modifiers": {
@@ -8448,9 +8491,11 @@
         "children": [
           "field/717638099",
           "field/1001207931",
+          "function/123113131",
           "function/170831562",
           "function/260463127",
           "function/369349235",
+          "function/384323776",
           "function/440018750",
           "function/499807915",
           "function/738104072",
@@ -9486,6 +9531,31 @@
         "inlinedCount": 5,
         "code": null,
         "type": "() -> dynamic",
+        "measurements": null
+      },
+      "18345574": {
+        "id": "function/18345574",
+        "kind": "function",
+        "name": "initTicker",
+        "size": 288,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/354160010",
+        "children": [
+          "closure/1036807963"
+        ],
+        "modifiers": {
+          "static": true,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "void",
+        "inferredReturnType": "[null]",
+        "parameters": [],
+        "sideEffects": "Depends on [] field store static store, Changes [] field static.",
+        "inlinedCount": 0,
+        "code": "w4:function(){var z,y\nif($.zI!=null)return\n$.zI=1000\n$.lE=H.nX()\nif(typeof window==\"undefined\")return\nz=window\nif(z==null)return\ny=z.performance\nif(y==null)return\nif(typeof y.now!=\"function\")return\n$.zI=1e6\n$.lE=new H.aH(y)}\n",
+        "type": "() -> void",
         "measurements": null
       },
       "18599313": {
@@ -11101,6 +11171,29 @@
         "type": "(StreamSubscription, _Future, dynamic) -> void",
         "measurements": null
       },
+      "67842662": {
+        "id": "function/67842662",
+        "kind": "function",
+        "name": "frequency",
+        "size": 0,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/167237017",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "int",
+        "inferredReturnType": "[null|exact=JSUInt31]",
+        "parameters": [],
+        "sideEffects": "Depends on static store, Changes nothing.",
+        "inlinedCount": 1,
+        "code": null,
+        "type": "() -> int",
+        "measurements": null
+      },
       "68051831": {
         "id": "function/68051831",
         "kind": "function",
@@ -11238,6 +11331,60 @@
         "inlinedCount": 0,
         "code": "aN:function(a,b){var z,y\nz=this.gA(a)\nfor(y=0;y<z;++y){b.$1(this.q(a,y))\nif(z!==this.gA(a))throw H.b(new P.UV(a))}}\n",
         "type": "((ListMixin.E) -> void) -> void",
+        "measurements": null
+      },
+      "77958169": {
+        "id": "function/77958169",
+        "kind": "function",
+        "name": "Duration",
+        "size": 78,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/803883908",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": true,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "dynamic",
+        "inferredReturnType": "[exact=Duration]",
+        "parameters": [
+          {
+            "name": "days",
+            "type": "[exact=JSUInt31]",
+            "declaredType": "int"
+          },
+          {
+            "name": "hours",
+            "type": "[exact=JSUInt31]",
+            "declaredType": "int"
+          },
+          {
+            "name": "minutes",
+            "type": "[exact=JSUInt31]",
+            "declaredType": "int"
+          },
+          {
+            "name": "seconds",
+            "type": "[exact=JSUInt31]",
+            "declaredType": "int"
+          },
+          {
+            "name": "milliseconds",
+            "type": "[exact=JSUInt31]",
+            "declaredType": "int"
+          },
+          {
+            "name": "microseconds",
+            "type": "[subclass=JSInt]",
+            "declaredType": "int"
+          }
+        ],
+        "sideEffects": "Depends on [] field store static store, Changes [] field static.",
+        "inlinedCount": 0,
+        "code": "k5:function(a,b,c,d,e,f){return new P.a6(864e8*a+36e8*b+6e7*e+1e6*f+1000*d+c)}\n",
+        "type": "({int days, int hours, int microseconds, int milliseconds, int minutes, int seconds}) -> dynamic",
         "measurements": null
       },
       "79265776": {
@@ -12474,8 +12621,31 @@
         ],
         "sideEffects": "Depends on nothing, Changes nothing.",
         "inlinedCount": 0,
-        "code": "QE:[function(a){},\"$1\",\"w6\",2,0,18]\n",
+        "code": "QE:[function(a){},\"$1\",\"w6\",2,0,19]\n",
         "type": "(Object) -> void",
+        "measurements": null
+      },
+      "123113131": {
+        "id": "function/123113131",
+        "kind": "function",
+        "name": "floor",
+        "size": 186,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/1003011102",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "int",
+        "inferredReturnType": "[subclass=JSInt]",
+        "parameters": [],
+        "sideEffects": "Depends on [] field store static store, Changes [] field static.",
+        "inlinedCount": 0,
+        "code": "Ap:function(a){var z,y\nif(a>=0){if(a<=2147483647)return a|0}else if(a>=-2147483648){z=a|0\nreturn a===z?z:z-1}y=Math.floor(a)\nif(isFinite(y))return y\nthrow H.b(new P.ub(\"\"+a+\".floor()\"))}\n",
+        "type": "() -> int",
         "measurements": null
       },
       "123959555": {
@@ -13449,7 +13619,7 @@
         "id": "function/159099030",
         "kind": "function",
         "name": "call",
-        "size": 114,
+        "size": 110,
         "outputUnit": "outputUnit/987444055",
         "parent": "closure/448168699",
         "children": [],
@@ -13475,7 +13645,7 @@
         ],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
-        "code": "$2:function(a,b){var z,y\nz=this.a\nif(!z.a)this.b.IN+=\", \"\nz.a=!1\nz=this.b\ny=z.IN+=H.d(a)\nz.IN=y+\": \"\nz.IN+=H.d(b)}\n",
+        "code": "$2:function(a,b){var z,y\nz=this.a\nif(!z.a)this.b.a+=\", \"\nz.a=!1\nz=this.b\ny=z.a+=H.d(a)\nz.a=y+\": \"\nz.a+=H.d(b)}\n",
         "type": "(dynamic, dynamic) -> dynamic",
         "measurements": null
       },
@@ -13876,7 +14046,7 @@
           }
         ],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
-        "inlinedCount": 0,
+        "inlinedCount": 1,
         "code": "K:function(a,b){return(a|0)===a?a/b|0:this.X(a,b)}\n",
         "type": "(num) -> int",
         "measurements": null
@@ -14054,7 +14224,7 @@
         "id": "function/176673639",
         "kind": "function",
         "name": "_convert",
-        "size": 387,
+        "size": 383,
         "outputUnit": "outputUnit/987444055",
         "parent": "class/525443093",
         "children": [],
@@ -14085,7 +14255,7 @@
         ],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
-        "code": "b5:function(a,b,c){var z,y,x,w\nfor(z=b,y=null;z<c;++z){switch(a[z]){case\"&\":x=\"&amp;\"\nbreak\ncase'\"':x=\"&quot;\"\nbreak\ncase\"'\":x=\"&#39;\"\nbreak\ncase\"<\":x=\"&lt;\"\nbreak\ncase\">\":x=\"&gt;\"\nbreak\ncase\"/\":x=\"&#47;\"\nbreak\ndefault:x=null}if(x!=null){if(y==null)y=new P.Rn(\"\")\nif(z>b)y.IN+=C.xB.Nj(a,b,z)\ny.IN+=x\nb=z+1}}if(y==null)return\nif(c>b)y.IN+=J.ld(a,b,c)\nw=y.IN\nreturn w.charCodeAt(0)==0?w:w}\n",
+        "code": "b5:function(a,b,c){var z,y,x,w\nfor(z=b,y=null;z<c;++z){switch(a[z]){case\"&\":x=\"&amp;\"\nbreak\ncase'\"':x=\"&quot;\"\nbreak\ncase\"'\":x=\"&#39;\"\nbreak\ncase\"<\":x=\"&lt;\"\nbreak\ncase\">\":x=\"&gt;\"\nbreak\ncase\"/\":x=\"&#47;\"\nbreak\ndefault:x=null}if(x!=null){if(y==null)y=new P.Rn(\"\")\nif(z>b)y.a+=C.xB.Nj(a,b,z)\ny.a+=x\nb=z+1}}if(y==null)return\nif(c>b)y.a+=J.ld(a,b,c)\nw=y.a\nreturn w.charCodeAt(0)==0?w:w}\n",
         "type": "(String, int, int) -> String",
         "measurements": null
       },
@@ -14799,7 +14969,7 @@
           }
         ],
         "sideEffects": "Depends on nothing, Changes nothing.",
-        "inlinedCount": 32,
+        "inlinedCount": 33,
         "code": null,
         "type": "(String) -> dynamic",
         "measurements": null
@@ -15979,6 +16149,29 @@
         "inlinedCount": 4,
         "code": null,
         "type": "(dynamic) -> bool",
+        "measurements": null
+      },
+      "246607795": {
+        "id": "function/246607795",
+        "kind": "function",
+        "name": "dateNow",
+        "size": 51,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/354160010",
+        "children": [],
+        "modifiers": {
+          "static": true,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "num",
+        "inferredReturnType": "[subclass=JSInt]",
+        "parameters": [],
+        "sideEffects": "Depends on [] field store static store, Changes [] field static.",
+        "inlinedCount": 0,
+        "code": "J4:[function(){return Date.now()},\"$0\",\"nX\",0,0,18]\n",
+        "type": "() -> num",
         "measurements": null
       },
       "247154050": {
@@ -17342,6 +17535,29 @@
         "type": "(_Future.T) -> dynamic",
         "measurements": null
       },
+      "290250840": {
+        "id": "function/290250840",
+        "kind": "function",
+        "name": "start",
+        "size": 0,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/167237017",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "void",
+        "inferredReturnType": "[null]",
+        "parameters": [],
+        "sideEffects": "Depends on [] field store static store, Changes [] field static.",
+        "inlinedCount": 1,
+        "code": null,
+        "type": "() -> void",
+        "measurements": null
+      },
       "291238918": {
         "id": "function/291238918",
         "kind": "function",
@@ -18668,7 +18884,7 @@
         "id": "function/333218610",
         "kind": "function",
         "name": "_process",
-        "size": 777,
+        "size": 1010,
         "outputUnit": "outputUnit/987444055",
         "parent": "library/95666532",
         "children": [
@@ -18685,7 +18901,7 @@
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
-        "code": "W1:function(){var z,y,x,w,v,u,t,s,r\nv=$.v7\nif(v!=null){J.Ns(v)\n$.v7=null}u=H.VM([],[P.qU])\nv=$.$get$Xc()\nv.toString\nt=H.Kp(v,0)\nz=P.PW(new H.U5(v,new G.mH(u),[t]),!0,t)\nif(u.length!==0){if(!J.RM(J.to(z),\"}\"))throw H.b(\"huh?\")\nJ.jK(z)\nJ.Zo(z,\"  subgraph cluster0 {\")\nJ.Zo(z,\"    label=Removed;\")\nJ.Zo(z,\"    style=filled;\")\nJ.Zo(z,'    fillcolor=\"#dddddd\";')\nJ.Ew(z,u)\nJ.Zo(z,\"  }\")\nJ.Zo(z,\"}\")}try{v=J.AK(z,\"\\n\")\ny=self.Viz(v,\"svg\")\nG.ra(y)}catch(s){x=H.Ru(s)\nv=J.Ac(x)\nr=C.oW.b5(v,0,v.length)\nw=\"<pre>\"+H.d(r==null?v:r)+\"</pre>\"\nv=document.body;(v&&C.RY).N0(v,\"beforeend\",w,null,null)}}\n",
+        "code": "W1:function(){var z,y,x,w,v,u,t,s,r,q,p\nu=$.v7\nif(u!=null){J.Ns(u)\n$.v7=null}t=H.VM([],[P.qU])\nu=$.$get$Xc()\nu.toString\ns=H.Kp(u,0)\nz=P.PW(new H.U5(u,new G.mH(t),[s]),!0,s)\nif(t.length!==0){if(!J.RM(J.to(z),\"}\"))throw H.b(\"huh?\")\nJ.jK(z)\nJ.Zo(z,\"  subgraph cluster0 {\")\nJ.Zo(z,\"    label=Removed;\")\nJ.Zo(z,\"    style=filled;\")\nJ.Zo(z,'    fillcolor=\"#dddddd\";')\nJ.Ew(z,t)\nJ.Zo(z,\"  }\")\nJ.Zo(z,\"}\")}r=new P.P1(0,0)\nif($.N8==null){H.w4()\n$.N8=$.zI}u=$.lE.$0()\nr.a=u-0\nr.b=null\ny=r\ntry{u=J.AK(z,\"\\n\")\ns={format:\"svg\",totalMemory:33554432}\nx=self.Viz(u,s)\nG.ra(x)}catch(q){w=H.Ru(q)\nu=J.Ac(w)\np=C.oW.b5(u,0,u.length)\nv=\"<pre>\"+H.d(p==null?u:p)+\"</pre>\"\nu=document.body;(u&&C.RY).N0(u,\"beforeend\",v,null,null)}finally{u=y\ns=u.giJ()\nif(s==null)s=$.lE.$0()\nP.JS(\"Total time: \"+P.k5(0,0,C.jn.xG((s-u.a)*1e6,$.N8),0,0,0).bu(0))}}\n",
         "type": "() -> void",
         "measurements": null
       },
@@ -19907,7 +20123,7 @@
           }
         ],
         "sideEffects": "Depends on nothing, Changes nothing.",
-        "inlinedCount": 1,
+        "inlinedCount": 3,
         "code": null,
         "type": "(dynamic) -> bool",
         "measurements": null
@@ -19991,7 +20207,7 @@
         "id": "function/372037963",
         "kind": "function",
         "name": "toString",
-        "size": 59,
+        "size": 58,
         "outputUnit": "outputUnit/987444055",
         "parent": "class/293821936",
         "children": [],
@@ -20006,7 +20222,7 @@
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 10,
-        "code": "bu:function(a){var z=this.IN\nreturn z.charCodeAt(0)==0?z:z}\n",
+        "code": "bu:function(a){var z=this.a\nreturn z.charCodeAt(0)==0?z:z}\n",
         "type": "() -> String",
         "measurements": null
       },
@@ -20367,6 +20583,35 @@
         "type": "([String]) -> String",
         "measurements": null
       },
+      "384323776": {
+        "id": "function/384323776",
+        "kind": "function",
+        "name": "~/",
+        "size": 116,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/1003011102",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "int",
+        "inferredReturnType": "[subclass=JSInt]",
+        "parameters": [
+          {
+            "name": "other",
+            "type": "[null|subclass=JSPositiveInt]",
+            "declaredType": "num"
+          }
+        ],
+        "sideEffects": "Depends on [] field store static store, Changes [] field static.",
+        "inlinedCount": 0,
+        "code": "xG:function(a,b){if(typeof b!==\"number\")throw H.b(H.tL(b))\nif((a|0)===a)if(b>=1||!1)return a/b|0\nreturn this.X(a,b)}\n",
+        "type": "(num) -> int",
+        "measurements": null
+      },
       "386488696": {
         "id": "function/386488696",
         "kind": "function",
@@ -20394,6 +20639,29 @@
         "inlinedCount": 2,
         "code": "q:function(a,b){return this.a.childNodes[b]}\n",
         "type": "(int) -> Node",
+        "measurements": null
+      },
+      "389240410": {
+        "id": "function/389240410",
+        "kind": "function",
+        "name": "elapsedMicroseconds",
+        "size": 0,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/167237017",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "int",
+        "inferredReturnType": "[subclass=JSInt]",
+        "parameters": [],
+        "sideEffects": "Depends on [] field store static store, Changes [] field static.",
+        "inlinedCount": 1,
+        "code": null,
+        "type": "() -> int",
         "measurements": null
       },
       "391013392": {
@@ -20929,7 +21197,7 @@
         "id": "function/408365484",
         "kind": "function",
         "name": "_forEachListener",
-        "size": 343,
+        "size": 349,
         "outputUnit": "outputUnit/987444055",
         "parent": "class/105901179",
         "children": [],
@@ -20950,8 +21218,31 @@
         ],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
-        "code": "C4:function(a){var z,y,x,w\nz=this.c\nif((z&2)!==0)throw H.b(new P.lj(\"Cannot fire new event. Controller is already firing an event\"))\ny=this.d\nif(y==null)return\nx=z&1\nthis.c=z^3\nfor(;y!=null;){z=y.y\nif((z&1)===x){y.y=z|2\na.$1(y)\nz=y.y^=1\nw=y.z\nif((z&4)!==0)this.fC(y)\ny.y&=4294967293\ny=w}else y=y.z}this.c&=4294967293\nif(this.d==null)this.cR()}\n",
+        "code": "C4:function(a){var z,y,x,w\nz=this.c\nif((z&2)!==0)throw H.b(new P.lj(\"Cannot fire new event. Controller is already firing an event\"))\ny=this.d\nif(y==null)return\nx=z&1\nthis.c=z^3\nfor(;y!=null;){z=y.dx\nif((z&1)===x){y.dx=z|2\na.$1(y)\nz=y.dx^=1\nw=y.dy\nif((z&4)!==0)this.fC(y)\ny.dx&=4294967293\ny=w}else y=y.dy}this.c&=4294967293\nif(this.d==null)this.cR()}\n",
         "type": "((_BufferingStreamSubscription<_BroadcastStreamController.T>) -> void) -> void",
+        "measurements": null
+      },
+      "410557072": {
+        "id": "function/410557072",
+        "kind": "function",
+        "name": "call",
+        "size": 48,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "closure/1036807963",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "dynamic",
+        "inferredReturnType": "[subclass=JSInt]",
+        "parameters": [],
+        "sideEffects": "Depends on [] field store static store, Changes [] field static.",
+        "inlinedCount": 0,
+        "code": "$0:function(){return C.CD.Ap(1000*this.a.now())}\n",
+        "type": "() -> dynamic",
         "measurements": null
       },
       "410956458": {
@@ -24529,7 +24820,7 @@
         "id": "function/521874428",
         "kind": "function",
         "name": "length",
-        "size": 37,
+        "size": 36,
         "outputUnit": "outputUnit/987444055",
         "parent": "class/293821936",
         "children": [],
@@ -24544,7 +24835,7 @@
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
-        "code": "gA:function(a){return this.IN.length}\n",
+        "code": "gA:function(a){return this.a.length}\n",
         "type": "() -> int",
         "measurements": null
       },
@@ -26600,7 +26891,7 @@
         "id": "function/580865640",
         "kind": "function",
         "name": "iterableToFullString",
-        "size": 204,
+        "size": 202,
         "outputUnit": "outputUnit/987444055",
         "parent": "class/812154630",
         "children": [],
@@ -26631,7 +26922,7 @@
         ],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
-        "code": "WE:function(a,b,c){var z,y,x\nif(P.hB(a))return b+\"...\"+c\nz=new P.Rn(b)\ny=$.$get$d2()\ny.push(a)\ntry{x=z\nx.IN=P.vg(x.gIN(),a,\", \")}finally{y.pop()}y=z\ny.IN=y.gIN()+c\ny=z.gIN()\nreturn y.charCodeAt(0)==0?y:y}\n",
+        "code": "WE:function(a,b,c){var z,y,x\nif(P.hB(a))return b+\"...\"+c\nz=new P.Rn(b)\ny=$.$get$d2()\ny.push(a)\ntry{x=z\nx.a=P.vg(x.gIN(),a,\", \")}finally{y.pop()}y=z\ny.a=y.gIN()+c\ny=z.gIN()\nreturn y.charCodeAt(0)==0?y:y}\n",
         "type": "(Iterable, [String, String]) -> String",
         "measurements": null
       },
@@ -28100,7 +28391,7 @@
         "id": "function/643002706",
         "kind": "function",
         "name": "mapToString",
-        "size": 363,
+        "size": 357,
         "outputUnit": "outputUnit/987444055",
         "parent": "class/591860850",
         "children": [
@@ -28123,7 +28414,7 @@
         ],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
-        "code": "vW:function(a){var z,y,x\nz={}\nif(P.hB(a))return\"{...}\"\ny=new P.Rn(\"\")\ntry{$.$get$d2().push(a)\nx=y\nx.IN=x.gIN()+\"{\"\nz.a=!0\na.aN(0,new P.ZQ(z,y))\nz=y\nz.IN=z.gIN()+\"}\"}finally{$.$get$d2().pop()}z=y.gIN()\nreturn z.charCodeAt(0)==0?z:z}\n",
+        "code": "vW:function(a){var z,y,x\nz={}\nif(P.hB(a))return\"{...}\"\ny=new P.Rn(\"\")\ntry{$.$get$d2().push(a)\nx=y\nx.a=x.gIN()+\"{\"\nz.a=!0\na.aN(0,new P.ZQ(z,y))\nz=y\nz.a=z.gIN()+\"}\"}finally{$.$get$d2().pop()}z=y.gIN()\nreturn z.charCodeAt(0)==0?z:z}\n",
         "type": "(Map) -> String",
         "measurements": null
       },
@@ -28867,6 +29158,29 @@
         "type": "(Element) -> dynamic",
         "measurements": null
       },
+      "675550447": {
+        "id": "function/675550447",
+        "kind": "function",
+        "name": "_now",
+        "size": 0,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/167237017",
+        "children": [],
+        "modifiers": {
+          "static": true,
+          "const": false,
+          "factory": false,
+          "external": true
+        },
+        "returnType": "int",
+        "inferredReturnType": "[null|subclass=JSInt]",
+        "parameters": [],
+        "sideEffects": "Depends on [] field store static store, Changes [] field static.",
+        "inlinedCount": 2,
+        "code": null,
+        "type": "() -> int",
+        "measurements": null
+      },
       "676035370": {
         "id": "function/676035370",
         "kind": "function",
@@ -29122,7 +29436,7 @@
         ],
         "sideEffects": "Depends on static store, Changes nothing.",
         "inlinedCount": 0,
-        "code": "P1:function(a){if(a===window)return a\nelse return new W.u3(a)}\n",
+        "code": "nI:function(a){if(a===window)return a\nelse return new W.u3(a)}\n",
         "type": "(dynamic) -> WindowBase",
         "measurements": null
       },
@@ -29397,6 +29711,29 @@
         "type": "((JsLinkedHashMap.K, JsLinkedHashMap.V) -> void) -> void",
         "measurements": null
       },
+      "690312332": {
+        "id": "function/690312332",
+        "kind": "function",
+        "name": "elapsedTicks",
+        "size": 0,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/167237017",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "int",
+        "inferredReturnType": "[subclass=JSInt]",
+        "parameters": [],
+        "sideEffects": "Depends on [] field store static store, Changes [] field static.",
+        "inlinedCount": 1,
+        "code": null,
+        "type": "() -> int",
+        "measurements": null
+      },
       "690550575": {
         "id": "function/690550575",
         "kind": "function",
@@ -29568,7 +29905,7 @@
         "id": "function/696847057",
         "kind": "function",
         "name": "_removeListener",
-        "size": 109,
+        "size": 115,
         "outputUnit": "outputUnit/987444055",
         "parent": "class/105901179",
         "children": [],
@@ -29589,7 +29926,7 @@
         ],
         "sideEffects": "Depends on field store, Changes field.",
         "inlinedCount": 0,
-        "code": "fC:function(a){var z,y\nz=a.Q\ny=a.z\nif(z==null)this.d=y\nelse z.z=y\nif(y==null)this.e=z\nelse y.Q=z\na.Q=a\na.z=a}\n",
+        "code": "fC:function(a){var z,y\nz=a.fr\ny=a.dy\nif(z==null)this.d=y\nelse z.dy=y\nif(y==null)this.e=z\nelse y.fr=z\na.fr=a\na.dy=a}\n",
         "type": "(_BroadcastSubscription<_BroadcastStreamController.T>) -> void",
         "measurements": null
       },
@@ -29904,7 +30241,7 @@
         "id": "function/707188708",
         "kind": "function",
         "name": "call",
-        "size": 147,
+        "size": 145,
         "outputUnit": "outputUnit/987444055",
         "parent": "closure/403207405",
         "children": [],
@@ -29925,7 +30262,7 @@
         ],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
-        "code": "$1:function(a){var z,y,x,w\nx=this.a\nif(!x.b)this.e.IN+=H.d(this.c)\nx.b=!1\ntry{this.e.IN+=H.d(a)}catch(w){z=H.Ru(w)\ny=H.ts(w)\nP.zK(x.a,this.d,z,y)}}\n",
+        "code": "$1:function(a){var z,y,x,w\nx=this.a\nif(!x.b)this.e.a+=H.d(this.c)\nx.b=!1\ntry{this.e.a+=H.d(a)}catch(w){z=H.Ru(w)\ny=H.ts(w)\nP.zK(x.a,this.d,z,y)}}\n",
         "type": "(Stream.T) -> dynamic",
         "measurements": null
       },
@@ -29933,7 +30270,7 @@
         "id": "function/707188709",
         "kind": "function",
         "name": "call",
-        "size": 64,
+        "size": 63,
         "outputUnit": "outputUnit/987444055",
         "parent": "closure/403207407",
         "children": [],
@@ -29948,7 +30285,7 @@
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
-        "code": "$0:function(){var z=this.b.IN\nthis.a.HH(z.charCodeAt(0)==0?z:z)}\n",
+        "code": "$0:function(){var z=this.b.a\nthis.a.HH(z.charCodeAt(0)==0?z:z)}\n",
         "type": "() -> dynamic",
         "measurements": null
       },
@@ -30628,6 +30965,29 @@
         "inlinedCount": 2,
         "code": "oN:function(){var z=$.bf\nif(z==null){z=H.E2(\"self\")\n$.bf=z}return z}\n",
         "type": "() -> String",
+        "measurements": null
+      },
+      "724580252": {
+        "id": "function/724580252",
+        "kind": "function",
+        "name": "_initTicker",
+        "size": 0,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/167237017",
+        "children": [],
+        "modifiers": {
+          "static": true,
+          "const": false,
+          "factory": false,
+          "external": true
+        },
+        "returnType": "void",
+        "inferredReturnType": "[null]",
+        "parameters": [],
+        "sideEffects": "Depends on [] field store static store, Changes [] field static.",
+        "inlinedCount": 1,
+        "code": null,
+        "type": "() -> void",
         "measurements": null
       },
       "725405029": {
@@ -31605,7 +31965,7 @@
         "id": "function/751200407",
         "kind": "function",
         "name": "joinArguments",
-        "size": 205,
+        "size": 203,
         "outputUnit": "outputUnit/987444055",
         "parent": "library/966364039",
         "children": [],
@@ -31636,7 +31996,7 @@
         ],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
-        "code": "ia:function(a,b,c){var z,y,x,w,v,u\nif(a==null)return\"\"\nz=new P.Rn(\"\")\nfor(y=b,x=!0,w=!0,v=\"\";y<a.length;++y){if(x)x=!1\nelse z.IN=v+\", \"\nu=a[y]\nif(u!=null)w=!1\nv=z.IN+=H.Ko(u,c)}return w?\"\":\"<\"+z.bu(0)+\">\"}\n",
+        "code": "ia:function(a,b,c){var z,y,x,w,v,u\nif(a==null)return\"\"\nz=new P.Rn(\"\")\nfor(y=b,x=!0,w=!0,v=\"\";y<a.length;++y){if(x)x=!1\nelse z.a=v+\", \"\nu=a[y]\nif(u!=null)w=!1\nv=z.a+=H.Ko(u,c)}return w?\"\":\"<\"+z.bu(0)+\">\"}\n",
         "type": "(dynamic, int, {(int) -> String onTypeVariable}) -> String",
         "measurements": null
       },
@@ -32185,7 +32545,7 @@
         "id": "function/776802090",
         "kind": "function",
         "name": "[]",
-        "size": 290,
+        "size": 289,
         "outputUnit": "outputUnit/987444055",
         "parent": "class/429451032",
         "children": [],
@@ -32206,7 +32566,7 @@
         ],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
-        "code": "q:function(a,b){var z,y\nz=this.xY\nif(typeof z!==\"string\"){if(b==null||typeof b===\"boolean\"||typeof b===\"number\"||typeof b===\"string\")H.Vj(P.L3(b,\"Expandos are not allowed on strings, numbers, booleans or null\",null))\nreturn z.get(b)}y=H.VK(b,\"expando$values\")\nreturn y==null?null:H.VK(y,z)}\n",
+        "code": "q:function(a,b){var z,y\nz=this.b\nif(typeof z!==\"string\"){if(b==null||typeof b===\"boolean\"||typeof b===\"number\"||typeof b===\"string\")H.Vj(P.L3(b,\"Expandos are not allowed on strings, numbers, booleans or null\",null))\nreturn z.get(b)}y=H.VK(b,\"expando$values\")\nreturn y==null?null:H.VK(y,z)}\n",
         "type": "(Object) -> Expando.T",
         "measurements": null
       },
@@ -32347,7 +32707,7 @@
         "id": "function/784238479",
         "kind": "function",
         "name": "_subscribe",
-        "size": 352,
+        "size": 358,
         "outputUnit": "outputUnit/987444055",
         "parent": "class/105901179",
         "children": [],
@@ -32383,7 +32743,7 @@
         ],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
-        "code": "MI:function(a,b,c,d){var z,y,x,w\nif((this.c&4)!==0){if(c==null)c=P.am()\nz=new P.EM($.X3,0,c,this.$ti)\nz.q1()\nreturn z}z=$.X3\ny=d?1:0\nx=new P.JI(0,null,null,this,null,null,null,z,y,null,null,this.$ti)\nx.j9(a,b,c,d,H.Kp(this,0))\nx.Q=x\nx.z=x\nx.y=this.c&1\nw=this.e\nthis.e=x\nx.z=null\nx.Q=w\nif(w==null)this.d=x\nelse w.z=x\nif(this.d===x)P.ot(this.a)\nreturn x}\n",
+        "code": "MI:function(a,b,c,d){var z,y,x,w\nif((this.c&4)!==0){if(c==null)c=P.am()\nz=new P.EM($.X3,0,c,this.$ti)\nz.q1()\nreturn z}z=$.X3\ny=d?1:0\nx=new P.JI(0,null,null,this,null,null,null,z,y,null,null,this.$ti)\nx.j9(a,b,c,d,H.Kp(this,0))\nx.fr=x\nx.dy=x\nx.dx=this.c&1\nw=this.e\nthis.e=x\nx.dy=null\nx.fr=w\nif(w==null)this.d=x\nelse w.dy=x\nif(this.d===x)P.ot(this.a)\nreturn x}\n",
         "type": "((_BroadcastStreamController.T) -> void, Function, () -> void, bool) -> StreamSubscription<_BroadcastStreamController.T>",
         "measurements": null
       },
@@ -34205,6 +34565,29 @@
         "type": "(Iterable, [String]) -> void",
         "measurements": null
       },
+      "845379732": {
+        "id": "function/845379732",
+        "kind": "function",
+        "name": "elapsed",
+        "size": 0,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/167237017",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "Duration",
+        "inferredReturnType": "[exact=Duration]",
+        "parameters": [],
+        "sideEffects": "Depends on [] field store static store, Changes [] field static.",
+        "inlinedCount": 1,
+        "code": null,
+        "type": "() -> Duration",
+        "measurements": null
+      },
       "847550959": {
         "id": "function/847550959",
         "kind": "function",
@@ -35428,6 +35811,29 @@
         "type": "() -> Future",
         "measurements": null
       },
+      "883559193": {
+        "id": "function/883559193",
+        "kind": "function",
+        "name": "Stopwatch",
+        "size": 0,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/167237017",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "dynamic",
+        "inferredReturnType": "[exact=Stopwatch]",
+        "parameters": [],
+        "sideEffects": "Depends on [] field store static store, Changes [] field static.",
+        "inlinedCount": 1,
+        "code": null,
+        "type": "() -> dynamic",
+        "measurements": null
+      },
       "884615129": {
         "id": "function/884615129",
         "kind": "function",
@@ -35855,7 +36261,7 @@
         "id": "function/895747839",
         "kind": "function",
         "name": "_recordCancel",
-        "size": 131,
+        "size": 134,
         "outputUnit": "outputUnit/987444055",
         "parent": "class/105901179",
         "children": [],
@@ -35876,7 +36282,7 @@
         ],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
-        "code": "rR:function(a){var z\nif(a.z===a)return\nz=a.y\nif((z&2)!==0)a.y=z|4\nelse{this.fC(a)\nif((this.c&2)===0&&this.d==null)this.cR()}return}\n",
+        "code": "rR:function(a){var z\nif(a.dy===a)return\nz=a.dx\nif((z&2)!==0)a.dx=z|4\nelse{this.fC(a)\nif((this.c&2)===0&&this.d==null)this.cR()}return}\n",
         "type": "(StreamSubscription<_BroadcastStreamController.T>) -> Future",
         "measurements": null
       },
@@ -36513,7 +36919,7 @@
         ],
         "sideEffects": "Depends on static store, Changes nothing.",
         "inlinedCount": 0,
-        "code": "qc:function(a){var z\nif(a==null)return\nif(\"postMessage\" in a){z=W.P1(a)\nif(!!J.v(z).$isD0)return z\nreturn}else return a}\n",
+        "code": "qc:function(a){var z\nif(a==null)return\nif(\"postMessage\" in a){z=W.nI(a)\nif(!!J.v(z).$isD0)return z\nreturn}else return a}\n",
         "type": "(dynamic) -> EventTarget",
         "measurements": null
       },
@@ -36818,7 +37224,7 @@
         "id": "function/922165725",
         "kind": "function",
         "name": "join",
-        "size": 541,
+        "size": 538,
         "outputUnit": "outputUnit/987444055",
         "parent": "class/961595590",
         "children": [
@@ -41561,6 +41967,18 @@
         "code": null,
         "type": "num"
       },
+      "16313730": {
+        "id": "field/16313730",
+        "kind": "field",
+        "name": "timerTicks",
+        "size": 0,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/354160010",
+        "children": [],
+        "inferredType": "[null|subtype=Function]",
+        "code": null,
+        "type": "Function"
+      },
       "16888485": {
         "id": "field/16888485",
         "kind": "field",
@@ -43751,12 +44169,12 @@
         "id": "field/222183490",
         "kind": "field",
         "name": "_next",
-        "size": 2,
+        "size": 3,
         "outputUnit": "outputUnit/987444055",
         "parent": "class/736422208",
         "children": [],
         "inferredType": "[null|exact=_BroadcastSubscription]",
-        "code": "z\n",
+        "code": "dy\n",
         "type": "_BroadcastSubscription<_BroadcastSubscription.T>"
       },
       "222551053": {
@@ -43807,6 +44225,18 @@
         "code": null,
         "type": "int"
       },
+      "226520886": {
+        "id": "field/226520886",
+        "kind": "field",
+        "name": "_frequency",
+        "size": 0,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/167237017",
+        "children": [],
+        "inferredType": "[null|exact=JSUInt31]",
+        "code": null,
+        "type": "int"
+      },
       "229586442": {
         "id": "field/229586442",
         "kind": "field",
@@ -43847,12 +44277,12 @@
         "id": "field/233344529",
         "kind": "field",
         "name": "_previous",
-        "size": 2,
+        "size": 3,
         "outputUnit": "outputUnit/987444055",
         "parent": "class/736422208",
         "children": [],
         "inferredType": "[null|exact=_BroadcastSubscription]",
-        "code": "Q\n",
+        "code": "fr\n",
         "type": "_BroadcastSubscription<_BroadcastSubscription.T>"
       },
       "234669340": {
@@ -45902,12 +46332,12 @@
         "id": "field/469630559",
         "kind": "field",
         "name": "_eventState",
-        "size": 2,
+        "size": 3,
         "outputUnit": "outputUnit/987444055",
         "parent": "class/736422208",
         "children": [],
         "inferredType": "[exact=JSUInt31]",
-        "code": "y\n",
+        "code": "dx\n",
         "type": "int"
       },
       "470336699": {
@@ -48046,6 +48476,18 @@
         "type": "dynamic",
         "const": true
       },
+      "698979505": {
+        "id": "field/698979505",
+        "kind": "field",
+        "name": "_stop",
+        "size": 6,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/167237017",
+        "children": [],
+        "inferredType": "[null|exact=JSUInt31]",
+        "code": "iJ:b<\n",
+        "type": "int"
+      },
       "699003202": {
         "id": "field/699003202",
         "kind": "field",
@@ -48810,6 +49252,18 @@
         "inferredType": "[null|exact=JSString]",
         "code": null,
         "type": "String"
+      },
+      "763732738": {
+        "id": "field/763732738",
+        "kind": "field",
+        "name": "_start",
+        "size": 2,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/167237017",
+        "children": [],
+        "inferredType": "[subclass=JSInt]",
+        "code": "a\n",
+        "type": "int"
       },
       "763950742": {
         "id": "field/763950742",
@@ -49786,6 +50240,18 @@
         "inferredType": "[null|exact=AnimatedLength]",
         "code": null,
         "type": "AnimatedLength"
+      },
+      "882252358": {
+        "id": "field/882252358",
+        "kind": "field",
+        "name": "timerFrequency",
+        "size": 0,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/354160010",
+        "children": [],
+        "inferredType": "[null|exact=JSUInt31]",
+        "code": null,
+        "type": "int"
       },
       "882420015": {
         "id": "field/882420015",
@@ -51897,6 +52363,14 @@
         "outputUnit": "outputUnit/987444055",
         "code": "C.xB=J.Dr.prototype"
       },
+      "1035653941": {
+        "id": "constant/1035653941",
+        "kind": "constant",
+        "name": null,
+        "size": 19,
+        "outputUnit": "outputUnit/987444055",
+        "code": "C.CD=J.jX.prototype"
+      },
       "1036088008": {
         "id": "constant/1036088008",
         "kind": "constant",
@@ -52072,7 +52546,7 @@
         "id": "closure/403207405",
         "kind": "closure",
         "name": "Stream_join_closure",
-        "size": 247,
+        "size": 245,
         "outputUnit": "outputUnit/987444055",
         "parent": "function/922165725",
         "function": "function/707188708"
@@ -52090,7 +52564,7 @@
         "id": "closure/403207407",
         "kind": "closure",
         "name": "Stream_join_closure",
-        "size": 82,
+        "size": 81,
         "outputUnit": "outputUnit/987444055",
         "parent": "function/922165725",
         "function": "function/707188709"
@@ -52108,7 +52582,7 @@
         "id": "closure/448168699",
         "kind": "closure",
         "name": "Maps_mapToString_closure",
-        "size": 132,
+        "size": 128,
         "outputUnit": "outputUnit/987444055",
         "parent": "function/643002706",
         "function": "function/159099030"
@@ -52553,6 +53027,15 @@
         "outputUnit": "outputUnit/987444055",
         "parent": "function/309114439",
         "function": "function/336645063"
+      },
+      "1036807963": {
+        "id": "closure/1036807963",
+        "kind": "closure",
+        "name": "Primitives_initTicker_closure",
+        "size": 64,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "function/18345574",
+        "function": "function/410557072"
       },
       "1057601414": {
         "id": "closure/1057601414",
@@ -53311,6 +53794,24 @@
       {
         "id": "function/120716174",
         "mask": "inlined"
+      }
+    ],
+    "function/18345574": [
+      {
+        "id": "field/16313730",
+        "mask": "null"
+      },
+      {
+        "id": "field/882252358",
+        "mask": "null"
+      },
+      {
+        "id": "function/246607795",
+        "mask": "null"
+      },
+      {
+        "id": "function/410557072",
+        "mask": "null"
       }
     ],
     "function/18599313": [
@@ -55429,6 +55930,20 @@
       {
         "id": "function/907479362",
         "mask": "inlined"
+      }
+    ],
+    "function/123113131": [
+      {
+        "id": "function/163889622",
+        "mask": "null"
+      },
+      {
+        "id": "function/208283907",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/208283907",
+        "mask": "null"
       }
     ],
     "function/125474153": [
@@ -59831,6 +60346,12 @@
         "mask": "null"
       }
     ],
+    "function/290250840": [
+      {
+        "id": "function/675550447",
+        "mask": "inlined"
+      }
+    ],
     "function/291238918": [
       {
         "id": "function/156463617",
@@ -60443,11 +60964,35 @@
     ],
     "function/333218610": [
       {
+        "id": "field/16313730",
+        "mask": "null"
+      },
+      {
+        "id": "field/226520886",
+        "mask": "null"
+      },
+      {
         "id": "field/414784185",
         "mask": "null"
       },
       {
+        "id": "field/698979505",
+        "mask": "[null|subclass=Object]"
+      },
+      {
+        "id": "field/698979505",
+        "mask": "null"
+      },
+      {
         "id": "field/744651492",
+        "mask": "null"
+      },
+      {
+        "id": "field/763732738",
+        "mask": "null"
+      },
+      {
+        "id": "field/882252358",
         "mask": "null"
       },
       {
@@ -60583,6 +61128,10 @@
         "mask": "[null|subclass=Object]"
       },
       {
+        "id": "function/18345574",
+        "mask": "null"
+      },
+      {
         "id": "function/233044395",
         "mask": "[null|subclass=Object]"
       },
@@ -60625,6 +61174,18 @@
       {
         "id": "function/288870017",
         "mask": "[null|subclass=Object]"
+      },
+      {
+        "id": "function/288870017",
+        "mask": "null"
+      },
+      {
+        "id": "function/290250840",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/290250840",
+        "mask": "null"
       },
       {
         "id": "function/291295234",
@@ -60699,8 +61260,20 @@
         "mask": "[null|subclass=Object]"
       },
       {
+        "id": "function/384323776",
+        "mask": "null"
+      },
+      {
+        "id": "function/389240410",
+        "mask": "null"
+      },
+      {
         "id": "function/398143772",
         "mask": "[null|subclass=Object]"
+      },
+      {
+        "id": "function/399195151",
+        "mask": "null"
       },
       {
         "id": "function/412092690",
@@ -60875,6 +61448,18 @@
         "mask": "[null|subclass=Object]"
       },
       {
+        "id": "function/675550447",
+        "mask": "null"
+      },
+      {
+        "id": "function/67842662",
+        "mask": "null"
+      },
+      {
+        "id": "function/690312332",
+        "mask": "null"
+      },
+      {
         "id": "function/69767757",
         "mask": "[null|subclass=Object]"
       },
@@ -60897,6 +61482,10 @@
       {
         "id": "function/721062346",
         "mask": "[null|subclass=Object]"
+      },
+      {
+        "id": "function/724580252",
+        "mask": "null"
       },
       {
         "id": "function/726256943",
@@ -60935,6 +61524,10 @@
         "mask": "[null|subclass=Object]"
       },
       {
+        "id": "function/77958169",
+        "mask": "null"
+      },
+      {
         "id": "function/793410068",
         "mask": "[null|subclass=Object]"
       },
@@ -60959,6 +61552,14 @@
         "mask": "[null|subclass=Object]"
       },
       {
+        "id": "function/845379732",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/845379732",
+        "mask": "null"
+      },
+      {
         "id": "function/848267879",
         "mask": "[null|subclass=Object]"
       },
@@ -60977,6 +61578,14 @@
       {
         "id": "function/869103502",
         "mask": "[null|subclass=Object]"
+      },
+      {
+        "id": "function/883559193",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/883559193",
+        "mask": "null"
       },
       {
         "id": "function/892678131",
@@ -62287,6 +62896,36 @@
         "mask": "[subclass=ListIterable]"
       }
     ],
+    "function/384323776": [
+      {
+        "id": "function/163889622",
+        "mask": "null"
+      },
+      {
+        "id": "function/170831562",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/170831562",
+        "mask": "null"
+      },
+      {
+        "id": "function/369349235",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/369349235",
+        "mask": "null"
+      },
+      {
+        "id": "function/679532174",
+        "mask": "null"
+      },
+      {
+        "id": "function/888761076",
+        "mask": "null"
+      }
+    ],
     "function/386488696": [
       {
         "id": "field/291315810",
@@ -62295,6 +62934,16 @@
       {
         "id": "field/752365703",
         "mask": "null"
+      }
+    ],
+    "function/389240410": [
+      {
+        "id": "function/67842662",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/690312332",
+        "mask": "inlined"
       }
     ],
     "function/392481975": [
@@ -62590,6 +63239,12 @@
       },
       {
         "id": "function/963213993",
+        "mask": "null"
+      }
+    ],
+    "function/410557072": [
+      {
+        "id": "function/123113131",
         "mask": "null"
       }
     ],
@@ -68225,6 +68880,12 @@
         "mask": "null"
       }
     ],
+    "function/690312332": [
+      {
+        "id": "function/675550447",
+        "mask": "inlined"
+      }
+    ],
     "function/690550575": [
       {
         "id": "function/740523094",
@@ -71188,6 +71849,12 @@
     "function/839604108": [
       {
         "id": "function/740523094",
+        "mask": "inlined"
+      }
+    ],
+    "function/845379732": [
+      {
+        "id": "function/389240410",
         "mask": "inlined"
       }
     ],
@@ -75216,7 +75883,7 @@
       "id": "outputUnit/987444055",
       "kind": "outputUnit",
       "name": null,
-      "size": 139137,
+      "size": 140233,
       "imports": [
         null
       ]
@@ -75227,11 +75894,11 @@
   "dump_minor_version": "0",
   "program": {
     "entrypoint": "function/866901754",
-    "size": 139137,
+    "size": 140233,
     "dart2jsVersion": null,
-    "compilationMoment": "2017-08-03 12:07:29.523310",
-    "compilationDuration": 7296634,
-    "toJsonDuration": 45000,
+    "compilationMoment": "2017-08-16 10:50:03.433726",
+    "compilationDuration": 7473994,
+    "toJsonDuration": 54000,
     "dumpInfoDuration": 0,
     "noSuchMethodEnabled": false,
     "minified": true
