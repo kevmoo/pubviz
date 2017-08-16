@@ -1,5 +1,3 @@
-library pubviz.viz_package;
-
 import 'dart:async';
 import 'dart:io';
 import 'package:collection/collection.dart';
@@ -10,7 +8,7 @@ import 'package:yaml/yaml.dart' as yaml;
 import 'dependency.dart';
 import 'util.dart';
 
-class VizPackage extends Comparable {
+class VizPackage extends Comparable<VizPackage> {
   final String name;
   final Version version;
   final Set<Dependency> dependencies;
@@ -20,7 +18,7 @@ class VizPackage extends Comparable {
 
   bool get onlyDev => _onlyDev;
 
-  void set onlyDev(bool value) {
+  set onlyDev(bool value) {
     assert(value == false);
     assert(_onlyDev == true);
 
@@ -61,12 +59,15 @@ class VizPackage extends Comparable {
     return package;
   }
 
+  @override
   String toString() => '$name @ $version';
 
+  @override
   int compareTo(VizPackage other) {
     return name.compareTo(other.name);
   }
 
+  @override
   bool operator ==(other) {
     if (other is VizPackage) {
       var match = (name == other.name);
@@ -78,6 +79,7 @@ class VizPackage extends Comparable {
     return false;
   }
 
+  @override
   int get hashCode => name.hashCode;
 
   Future<Version> updateLatestVersion() async {

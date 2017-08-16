@@ -1,5 +1,3 @@
-library pubviz.viz_root;
-
 import 'dart:async';
 import 'dart:collection';
 import 'dart:convert';

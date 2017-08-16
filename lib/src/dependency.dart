@@ -1,5 +1,3 @@
-library pubviz.dependency;
-
 import 'package:pub_semver/pub_semver.dart';
 
 class Dependency implements Comparable<Dependency> {
@@ -12,7 +10,7 @@ class Dependency implements Comparable<Dependency> {
   /// Also true if there is a pre-release version after the latest version
   bool get includesLatest => _includesLatest;
 
-  void set includesLatest(bool value) {
+  set includesLatest(bool value) {
     assert(_includesLatest == null);
     assert(value != null);
     _includesLatest = value;
@@ -48,10 +46,13 @@ class Dependency implements Comparable<Dependency> {
     }
   }
 
+  @override
   bool operator ==(other) => other is Dependency && other.name == name;
 
-  int get hashcode => name.hashCode;
+  @override
+  int get hashCode => name.hashCode;
 
+  @override
   int compareTo(Dependency other) {
     if (other.isDevDependency == isDevDependency) {
       return name.compareTo(other.name);
@@ -62,6 +63,7 @@ class Dependency implements Comparable<Dependency> {
     }
   }
 
+  @override
   String toString() {
     var devStr = isDevDependency ? '(dev)' : '';
     return '$name$devStr $versionConstraint';

@@ -10,7 +10,7 @@ Future<Version> getLatestVersion(String packageName) async {
 
   var retries = 0;
   while (true) {
-    var path = "https://pub.dartlang.org/packages/$packageName.json";
+    var path = 'https://pub.dartlang.org/packages/$packageName.json';
     try {
       response = await http.get(path, headers: {
         HttpHeaders.USER_AGENT: "pubviz - Dart ${Platform.version

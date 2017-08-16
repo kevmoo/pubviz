@@ -1,5 +1,3 @@
-library pubviz.dot;
-
 import 'package:gviz/gviz.dart';
 import 'package:pubviz/pubviz.dart';
 
@@ -73,7 +71,7 @@ void _writeDot(VizPackage pkg, Gviz gviz, String rootName, bool escapeLabels,
 
   for (var dep in orderedDeps.where((d) => !ignorePackages.contains(d.name))) {
     if (!dep.isDevDependency || isRoot) {
-      var edgeProps = {};
+      var edgeProps = <String, String>{};
 
       if (!dep.versionConstraint.isAny) {
         edgeProps['label'] = '${dep.versionConstraint}';

@@ -54,8 +54,8 @@ main(List<String> args) async {
 }
 
 void _printUsage(ArgParser parser) {
-  print('usage: pubviz [--${_formatOption}=<format>] '
-      '[--${_ignoreOption}=<package1>,<package2>] '
+  print('usage: pubviz [--$_formatOption=<format>] '
+      '[--$_ignoreOption=<package1>,<package2>] '
       '(open | print) [<package path>]');
   print('');
   print('  open   Populate a temporary file with the content and open it.');
@@ -119,7 +119,7 @@ void _printContent(VizRoot root, String format, List<String> ignorePackages) {
 
 String _getPath(List<String> args) {
   if (args.length > 1) {
-    print("Only one argument is allowed. You provided ${args.length}.");
+    print('Only one argument is allowed. You provided ${args.length}.');
     exit(1);
   }
 

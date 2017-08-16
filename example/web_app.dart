@@ -49,7 +49,7 @@ void _process() {
 
   if (removedLines.isNotEmpty) {
     if (lines.last != '}') {
-      throw 'huh?';
+      throw new StateError('huh?');
     }
     lines.removeLast();
     lines.add('  subgraph cluster0 {');
@@ -72,7 +72,7 @@ void _process() {
     var output = '<pre>${HTML_ESCAPE.convert(e.toString())}</pre>';
     document.body.appendHtml(output);
   } finally {
-    print("Total time: ${watch.elapsed}");
+    print('Total time: ${watch.elapsed}');
   }
 }
 
