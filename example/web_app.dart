@@ -97,19 +97,40 @@ void _updateBody(String output) {
     element.id = title;
   }
 
-  _root.querySelectorAll('g.node').onClick.listen((MouseEvent event) {
-    var target = event.currentTarget as Element;
-    if (_toIgnore.add(target.id)) {} else {
-      _toIgnore.remove(target.id);
+  for (var node in _root.querySelectorAll('g.node')) {
+    // NOTE: we are assuming the shape of the generated SVG here – be careful!
+    var polygonBorder = node.querySelector('polygon')?.getAttribute('stroke');
+    if (polygonBorder != null &&
+        polygonBorder.toLowerCase().startsWith('#ff')) {
+      node.classes.add('outdated');
     }
-    _process();
-  });
+
+    node.onClick.listen((MouseEvent event) {
+      var target = event.currentTarget as Element;
+      if (_toIgnore.add(target.id)) {
+        // add succeeded – noop
+      } else {
+        _toIgnore.remove(target.id);
+      }
+      _process();
+    });
+  }
 
   for (var node in _root.querySelectorAll('g.edge')) {
     var title = node.querySelector('title').text;
     var things = title.split('->');
     node.setAttribute('x-from', things[0]);
     node.setAttribute('x-to', things[1]);
+
+    // NOTE: we are assuming the shape of the generated SVG here – be careful!
+    var textFill = node.querySelector('text')?.getAttribute('fill');
+    if (textFill != null) {
+      assert(textFill.startsWith('#'));
+      if (textFill.toLowerCase().startsWith('#ff')) {
+        // This is an outdated dependency
+        node.classes.add('outdated');
+      }
+    }
   }
 
   var nodesOfInterest = _root.querySelectorAll('g.edge, g.node');

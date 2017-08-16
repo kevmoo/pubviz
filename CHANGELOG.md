@@ -1,3 +1,7 @@
+## 2.3.11-dev
+
+* Better hover-over behavior for outdated dependencies.
+
 ## 2.3.10
 
 * Update `gviz`.
