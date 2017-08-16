@@ -1,4 +1,4 @@
-## 2.3.11-dev
+## 2.3.11
 
 * Better hover-over behavior for outdated dependencies.
 
