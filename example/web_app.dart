@@ -61,12 +61,18 @@ void _process() {
     lines.add('}');
   }
 
+  var watch = new Stopwatch()..start();
   try {
-    var output = Viz(lines.join('\n'), 'svg');
+    // Default memory: 16,777,216 - 16 MiB
+    // Doubling to 32 MiB
+    var output = Viz(lines.join('\n'),
+        new VizOptions(format: 'svg', totalMemory: 32 * 1024 * 1024));
     _updateBody(output);
   } catch (e) {
     var output = '<pre>${HTML_ESCAPE.convert(e.toString())}</pre>';
     document.body.appendHtml(output);
+  } finally {
+    print("Total time: ${watch.elapsed}");
   }
 }
 
@@ -157,4 +163,13 @@ void _updateOver(svg.GElement element) {
 }
 
 @JS()
-external String Viz(String content, String tag);
+external String Viz(String src, [VizOptions options]);
+
+@JS()
+@anonymous
+class VizOptions {
+  String format;
+  int totalMemory;
+
+  external factory VizOptions({String format, int totalMemory});
+}

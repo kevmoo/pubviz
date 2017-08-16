@@ -119,7 +119,7 @@ const String _DOT_HTML_TEMPLATE = r'''
     <title>pubviz - PACKAGE_TITLE</title>
     <base href="https://kevmoo.github.io/pubviz/">
     <link rel="stylesheet" href="style.css">
-    <script src="viz.js"></script>
+    <script src="viz-lite.js"></script>
   </head>
   <body>
     <button id="zoomBtn">Zoom</button>

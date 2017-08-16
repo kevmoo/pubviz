@@ -1,3 +1,14 @@
+## 2.3.10
+
+* Update `gviz`.
+
+* Support larger dependency graphs.
+
+* Update version of `viz.js`.
+
+* Use `viz-lite.js` – smaller download.
+  * Continue to host `vis.js` so we don't break existing installations.
+
 ## 2.3.9+1
 
 * Use `gviz` package. Get out of the GraphViz formatting business.
