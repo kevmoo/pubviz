@@ -13,6 +13,7 @@ g > * {
     transition-property: stroke, stroke-width, transform, fill, font-size;
     transition-duration: .2s;
 }
+
 g.active > text {
     fill: blue;
     font-size: 100%;
@@ -24,6 +25,19 @@ g.active > polygon, g.active > ellipse, g.active > path {
 g.active.edge > polygon {
     fill: blue;
 }
+
+g.outdated.active > text {
+    fill: red;
+    font-size: 100%;
+}
+g.outdated.active > polygon, g.outdated.active > ellipse, g.outdated.active > path {
+    stroke: red;
+    stroke-width: 3px !important;
+}
+g.outdated.active.edge > polygon {
+    fill: red;
+}
+
 .node ellipse, .node polygon {
     fill: #eee;
 }

@@ -275,7 +275,7 @@ if(j instanceof Array)j=j[0]
 var i=[]
 var h=[]
 processStatics(l,s)
-x.push([p,o,i,h,n,j,k,m])}finishClasses(s)}I.Cq=function(){}
+x.push([p,o,i,h,n,j,k,m])}finishClasses(s)}I.HU=function(){}
 var dart=[["","",,H,{"^":"",FK:{"^":"Mh;a"}}],["","",,J,{"^":"",
 v:function(a){return void 0},
 E:function(a,b,c,d){return{i:a,p:b,e:c,x:d}},
@@ -375,7 +375,7 @@ if(typeof b!=="number"||Math.floor(b)!==b)throw H.b(H.HY(a,b))
 if(b>=a.length||b<0)throw H.b(H.HY(a,b))
 a[b]=c},
 $isDD:1,
-$asDD:I.Cq,
+$asDD:I.HU,
 $isbQ:1,
 $asbQ:null,
 $isz:1,
@@ -465,7 +465,7 @@ gA:function(a){return a.length},
 q:function(a,b){if(b>=a.length||!1)throw H.b(H.HY(a,b))
 return a[b]},
 $isDD:1,
-$asDD:I.Cq,
+$asDD:I.HU,
 $isqU:1,
 static:{
 Ga:function(a){if(a<256)switch(a){case 9:case 10:case 11:case 12:case 13:case 32:case 133:case 160:return!0
@@ -1751,32 +1751,32 @@ if(typeof print=="function"){print(a)
 return}throw"Unable to print message: "+String(a)}}],["","",,H,{"^":"",WZ:{"^":"vB;",$isWZ:1,"%":"ArrayBuffer"},ET:{"^":"vB;",$isET:1,"%":"DataView;ArrayBufferView;b0|fj|Ip|Dg|pb|BU|Pg"},b0:{"^":"ET;",
 gA:function(a){return a.length},
 $isDD:1,
-$asDD:I.Cq,
+$asDD:I.HU,
 $isXj:1,
-$asXj:I.Cq},Dg:{"^":"Ip;",
+$asXj:I.HU},Dg:{"^":"Ip;",
 q:function(a,b){if(b>>>0!==b||b>=a.length)H.Vj(H.HY(a,b))
 return a[b]},
 t:function(a,b,c){if(b>>>0!==b||b>=a.length)H.Vj(H.HY(a,b))
-a[b]=c}},fj:{"^":"b0+lD;",$asDD:I.Cq,$isbQ:1,
+a[b]=c}},fj:{"^":"b0+lD;",$asDD:I.HU,$isbQ:1,
 $asbQ:function(){return[P.CP]},
-$asXj:I.Cq,
+$asXj:I.HU,
 $isz:1,
-$asz:function(){return[P.CP]}},Ip:{"^":"fj+SU;",$asDD:I.Cq,
+$asz:function(){return[P.CP]}},Ip:{"^":"fj+SU;",$asDD:I.HU,
 $asbQ:function(){return[P.CP]},
-$asXj:I.Cq,
+$asXj:I.HU,
 $asz:function(){return[P.CP]}},Pg:{"^":"BU;",
 t:function(a,b,c){if(b>>>0!==b||b>=a.length)H.Vj(H.HY(a,b))
 a[b]=c},
 $isbQ:1,
 $asbQ:function(){return[P.J]},
 $isz:1,
-$asz:function(){return[P.J]}},pb:{"^":"b0+lD;",$asDD:I.Cq,$isbQ:1,
+$asz:function(){return[P.J]}},pb:{"^":"b0+lD;",$asDD:I.HU,$isbQ:1,
 $asbQ:function(){return[P.J]},
-$asXj:I.Cq,
+$asXj:I.HU,
 $isz:1,
-$asz:function(){return[P.J]}},BU:{"^":"pb+SU;",$asDD:I.Cq,
+$asz:function(){return[P.J]}},BU:{"^":"pb+SU;",$asDD:I.HU,
 $asbQ:function(){return[P.J]},
-$asXj:I.Cq,
+$asXj:I.HU,
 $asz:function(){return[P.J]}},zU:{"^":"Dg;",$isbQ:1,
 $asbQ:function(){return[P.CP]},
 $isz:1,
@@ -2001,8 +2001,8 @@ continue}}}}else{this.b=y
 return!0}}return!1}},
 q4:{"^":"mW;a",
 gm:function(a){return new P.GV(this.a(),null,null,null)},
-$asmW:I.Cq,
-$ascX:I.Cq,
+$asmW:I.HU,
+$ascX:I.HU,
 static:{
 zr:function(a){return new P.q4(a)}}},
 Gm:{"^":"u8;a,$ti"},
@@ -3230,6 +3230,7 @@ BV:{"^":"vB+id;"},
 id:{"^":"Mh;"},
 QF:{"^":"KV;",
 Wk:function(a,b){return a.querySelector(b)},
+gVl:function(a){return new W.RO(a,"click",!1,[W.Aj])},
 "%":"Document|HTMLDocument|XMLDocument"},
 hs:{"^":"KV;",
 Wk:function(a,b){return a.querySelector(b)},
@@ -3256,7 +3257,7 @@ gI:function(a){return a.left},
 gT:function(a){return a.top},
 gq9:function(a){return a.width},
 $istn:1,
-$astn:I.Cq,
+$astn:I.HU,
 "%":";DOMRectReadOnly"},
 NQ:{"^":"vB;A:length=",
 i:function(a,b){return a.add(b)},
@@ -3328,6 +3329,7 @@ return v},function(a,b,c){return this.r6(a,b,c,null)},"AH",null,null,"gkf",2,5,n
 ghf:function(a){return a.innerHTML},
 a7:function(a,b,c){return a.setAttribute(b,c)},
 Wk:function(a,b){return a.querySelector(b)},
+gVl:function(a){return new W.Cq(a,"click",!1,[W.Aj])},
 $isvB:1,
 $isMh:1,
 $iscv:1,
@@ -3520,7 +3522,7 @@ x=J.hf(a.width)
 w=J.hf(a.height)
 return W.Up(W.C0(W.C0(W.C0(W.C0(0,z),y),x),w))},
 $istn:1,
-$astn:I.Cq,
+$astn:I.HU,
 "%":"ClientRect"},
 hq:{"^":"KV;",$isvB:1,"%":"DocumentType"},
 AF:{"^":"IB;",
@@ -3593,7 +3595,7 @@ z=a.classList
 for(y=b.gm(b);y.VF();)z.add(y.gR())}}},
 RO:{"^":"qh;a,b,c,$ti",
 X5:function(a,b,c,d){return W.JE(this.a,this.b,a,!1,H.Kp(this,0))}},
-eu:{"^":"RO;a,b,c,$ti"},
+Cq:{"^":"RO;a,b,c,$ti"},
 Uc:{"^":"qh;a,b,c,$ti",
 X5:function(a,b,c,d){var z,y,x,w
 z=H.Kp(this,0)
@@ -3922,6 +3924,7 @@ z=new W.e7(w)
 u=z.gr8(z)
 for(;z=u.firstChild,z!=null;)v.appendChild(z)
 return v},
+gVl:function(a){return new W.Cq(a,"click",!1,[W.Aj])},
 $isvB:1,
 $isD0:1,
 $isd5:1,
@@ -3938,7 +3941,7 @@ u=$.$get$Xc()
 u.toString
 s=H.Kp(u,0)
 z=P.PW(new H.U5(u,new G.mH(t),[s]),!0,s)
-if(t.length!==0){if(!J.RM(J.to(z),"}"))throw H.b("huh?")
+if(t.length!==0){if(!J.RM(J.to(z),"}"))throw H.b(new P.lj("huh?"))
 J.jK(z)
 J.Zo(z,"  subgraph cluster0 {")
 J.Zo(z,"    label=Removed;")
@@ -3963,7 +3966,7 @@ u=document.body;(u&&C.RY).N0(u,"beforeend",v,null,null)}finally{u=y
 s=u.giJ()
 if(s==null)s=$.lE.$0()
 P.JS("Total time: "+P.k5(0,0,C.jn.xG((s-u.a)*1e6,$.N8),0,0,0).bu(0))}},
-ra:function(a){var z,y,x,w,v,u,t,s
+ra:function(a){var z,y,x,w,v,u,t,s,r
 z=P.DF(a,0,null)
 a=new H.U5(z,new G.AR(),[H.i(z,"cX",0)]).zV(0,"\n")
 z=document
@@ -3974,15 +3977,23 @@ z=H.Go(z.querySelector("svg"),"$isd5")
 $.v7=z
 for(y=[null],z=new W.wz(z.querySelectorAll("g.node"),y),z=new H.a7(z,z.gA(z),0,null);z.VF();){x=z.d
 w=J.RE(x)
-w.sjO(x,w.Wk(x,"title").textContent)}z=[W.Aj]
-new W.Uc(new W.wz($.v7.querySelectorAll("g.node"),y),!1,"click",z).yI(new G.lg())
-for(w=new W.wz($.v7.querySelectorAll("g.edge"),y),w=new H.a7(w,w.gA(w),0,null);w.VF();){v=w.d
-u=J.RE(v)
-t=u.Wk(v,"title").textContent.split("->")
-u.a7(v,"x-from",t[0])
-v.setAttribute("x-to",t[1])}s=new W.wz($.v7.querySelectorAll("g.edge, g.node"),y)
-new W.Uc(s,!1,"mouseenter",z).yI(new G.qK())
-new W.Uc(s,!1,"mouseleave",z).yI(new G.jf())},
+w.sjO(x,w.Wk(x,"title").textContent)}for(z=new W.wz($.v7.querySelectorAll("g.node"),y),z=new H.a7(z,z.gA(z),0,null);z.VF();){v=z.d
+w=J.RE(v)
+u=w.Wk(v,"polygon")
+u=u==null?u:u.getAttribute("stroke")
+if(u!=null&&C.xB.nC(u.toLowerCase(),"#ff"))w.gDD(v).i(0,"outdated")
+w=w.gVl(v)
+W.JE(w.a,w.b,new G.lg(),!1,H.Kp(w,0))}for(z=new W.wz($.v7.querySelectorAll("g.edge"),y),z=new H.a7(z,z.gA(z),0,null);z.VF();){v=z.d
+w=J.RE(v)
+t=w.Wk(v,"title").textContent.split("->")
+w.a7(v,"x-from",t[0])
+v.setAttribute("x-to",t[1])
+s=v.querySelector("text")
+s=s==null?s:s.getAttribute("fill")
+if(s!=null)if(C.xB.nC(s.toLowerCase(),"#ff"))w.gDD(v).i(0,"outdated")}r=new W.wz($.v7.querySelectorAll("g.edge, g.node"),y)
+z=[W.Aj]
+new W.Uc(r,!1,"mouseenter",z).yI(new G.qK())
+new W.Uc(r,!1,"mouseleave",z).yI(new G.jf())},
 ws:function(a){var z,y,x
 z=[]
 if(a!=null)if(new P.Ke(a).tg(0,"edge"))C.Nm.Ay(z,[a.getAttribute("x-to"),a.getAttribute("x-from")])
@@ -4351,7 +4362,7 @@ this[t]=z[t]}}Isolate.prototype=a.prototype
 Isolate.prototype.constructor=Isolate
 Isolate.p=z
 Isolate.uL=a.uL
-Isolate.Cq=a.Cq
+Isolate.HU=a.HU
 return Isolate}}!function(){var z=function(a){var t={}
 t[a]=1
 return Object.keys(convertToFastObject(t))[0]}

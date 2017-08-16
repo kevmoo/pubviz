@@ -15,7 +15,7 @@
         "id": "library/85591458",
         "kind": "library",
         "name": "dart.dom.html",
-        "size": 21159,
+        "size": 21269,
         "children": [
           "class/5605510",
           "class/6212434",
@@ -257,7 +257,7 @@
         "id": "library/95666532",
         "kind": "library",
         "name": "web_app",
-        "size": 3180,
+        "size": 3519,
         "children": [
           "class/879676930",
           "field/414784185",
@@ -422,7 +422,7 @@
         "id": "library/470705070",
         "kind": "library",
         "name": "dart.dom.svg",
-        "size": 4706,
+        "size": 4761,
         "children": [
           "class/1889497",
           "class/8054138",
@@ -1680,7 +1680,8 @@
         "children": [
           "field/918125591",
           "function/351273619",
-          "function/740523094"
+          "function/740523094",
+          "function/864673949"
         ]
       },
       "89261345": {
@@ -5995,7 +5996,7 @@
         "id": "class/706131694",
         "kind": "class",
         "name": "SvgElement",
-        "size": 735,
+        "size": 790,
         "outputUnit": "outputUnit/987444055",
         "parent": "library/470705070",
         "modifiers": {
@@ -6007,6 +6008,7 @@
           "field/449798046",
           "field/597823547",
           "field/1061334957",
+          "function/219985239",
           "function/533338385",
           "function/642361640"
         ]
@@ -7571,7 +7573,6 @@
         "children": [
           "field/248336138",
           "function/258125598",
-          "function/292702217",
           "function/353600390",
           "function/690550575",
           "function/810075207",
@@ -8344,7 +8345,7 @@
         "id": "class/992156986",
         "kind": "class",
         "name": "Element",
-        "size": 1766,
+        "size": 1821,
         "outputUnit": "outputUnit/987444055",
         "parent": "library/85591458",
         "modifiers": {
@@ -8539,7 +8540,7 @@
         "id": "class/1005726990",
         "kind": "class",
         "name": "Document",
-        "size": 97,
+        "size": 152,
         "outputUnit": "outputUnit/987444055",
         "parent": "library/85591458",
         "modifiers": {
@@ -8553,6 +8554,7 @@
           "field/910590217",
           "function/268947430",
           "function/323321144",
+          "function/640639160",
           "function/680740898"
         ]
       },
@@ -10850,7 +10852,7 @@
         "parameters": [
           {
             "name": "pattern",
-            "type": "Value mask: [\"on\"] type: [exact=JSString]",
+            "type": "[exact=JSString]",
             "declaredType": "Pattern"
           },
           {
@@ -11428,7 +11430,7 @@
         "inferredReturnType": "[null|subclass=Object]",
         "parameters": [],
         "sideEffects": "Depends on field store, Changes nothing.",
-        "inlinedCount": 3,
+        "inlinedCount": 4,
         "code": "gR:function(){return this.d}\n",
         "type": "() -> ListIterator.E",
         "measurements": null
@@ -15195,6 +15197,29 @@
         "type": "() -> String",
         "measurements": null
       },
+      "219985239": {
+        "id": "function/219985239",
+        "kind": "function",
+        "name": "onClick",
+        "size": 53,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/706131694",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "ElementStream<MouseEvent>",
+        "inferredReturnType": "[exact=_ElementEventStreamImpl]",
+        "parameters": [],
+        "sideEffects": "Depends on [] field store static store, Changes [] field static.",
+        "inlinedCount": 0,
+        "code": "gVl:function(a){return new W.Cq(a,\"click\",!1,[W.Aj])}\n",
+        "type": "() -> ElementStream<MouseEvent>",
+        "measurements": null
+      },
       "222294695": {
         "id": "function/222294695",
         "kind": "function",
@@ -15356,7 +15381,7 @@
           }
         ],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
-        "inlinedCount": 2,
+        "inlinedCount": 3,
         "code": "X5:function(a,b,c,d){return W.JE(this.a,this.b,a,!1,H.Kp(this,0))}\n",
         "type": "((_EventStream.T) -> void, {bool cancelOnError, () -> void onDone, Function onError}) -> StreamSubscription<_EventStream.T>",
         "measurements": null
@@ -15589,7 +15614,7 @@
         "id": "function/235631863",
         "kind": "function",
         "name": "_updateBody",
-        "size": 1150,
+        "size": 1479,
         "outputUnit": "outputUnit/987444055",
         "parent": "library/95666532",
         "children": [
@@ -15615,7 +15640,7 @@
         ],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
-        "code": "ra:function(a){var z,y,x,w,v,u,t,s\nz=P.DF(a,0,null)\na=new H.U5(z,new G.AR(),[H.i(z,\"cX\",0)]).zV(0,\"\\n\")\nz=document\ny=z.body;(y&&C.RY).N0(y,\"beforeend\",a,C.Hv,null)\ny=$.$get$hh().style\ny.display=\"block\"\nz=H.Go(z.querySelector(\"svg\"),\"$isd5\")\n$.v7=z\nfor(y=[null],z=new W.wz(z.querySelectorAll(\"g.node\"),y),z=new H.a7(z,z.gA(z),0,null);z.VF();){x=z.d\nw=J.RE(x)\nw.sjO(x,w.Wk(x,\"title\").textContent)}z=[W.Aj]\nnew W.Uc(new W.wz($.v7.querySelectorAll(\"g.node\"),y),!1,\"click\",z).yI(new G.lg())\nfor(w=new W.wz($.v7.querySelectorAll(\"g.edge\"),y),w=new H.a7(w,w.gA(w),0,null);w.VF();){v=w.d\nu=J.RE(v)\nt=u.Wk(v,\"title\").textContent.split(\"->\")\nu.a7(v,\"x-from\",t[0])\nv.setAttribute(\"x-to\",t[1])}s=new W.wz($.v7.querySelectorAll(\"g.edge, g.node\"),y)\nnew W.Uc(s,!1,\"mouseenter\",z).yI(new G.qK())\nnew W.Uc(s,!1,\"mouseleave\",z).yI(new G.jf())}\n",
+        "code": "ra:function(a){var z,y,x,w,v,u,t,s,r\nz=P.DF(a,0,null)\na=new H.U5(z,new G.AR(),[H.i(z,\"cX\",0)]).zV(0,\"\\n\")\nz=document\ny=z.body;(y&&C.RY).N0(y,\"beforeend\",a,C.Hv,null)\ny=$.$get$hh().style\ny.display=\"block\"\nz=H.Go(z.querySelector(\"svg\"),\"$isd5\")\n$.v7=z\nfor(y=[null],z=new W.wz(z.querySelectorAll(\"g.node\"),y),z=new H.a7(z,z.gA(z),0,null);z.VF();){x=z.d\nw=J.RE(x)\nw.sjO(x,w.Wk(x,\"title\").textContent)}for(z=new W.wz($.v7.querySelectorAll(\"g.node\"),y),z=new H.a7(z,z.gA(z),0,null);z.VF();){v=z.d\nw=J.RE(v)\nu=w.Wk(v,\"polygon\")\nu=u==null?u:u.getAttribute(\"stroke\")\nif(u!=null&&C.xB.nC(u.toLowerCase(),\"#ff\"))w.gDD(v).i(0,\"outdated\")\nw=w.gVl(v)\nW.JE(w.a,w.b,new G.lg(),!1,H.Kp(w,0))}for(z=new W.wz($.v7.querySelectorAll(\"g.edge\"),y),z=new H.a7(z,z.gA(z),0,null);z.VF();){v=z.d\nw=J.RE(v)\nt=w.Wk(v,\"title\").textContent.split(\"->\")\nw.a7(v,\"x-from\",t[0])\nv.setAttribute(\"x-to\",t[1])\ns=v.querySelector(\"text\")\ns=s==null?s:s.getAttribute(\"fill\")\nif(s!=null)if(C.xB.nC(s.toLowerCase(),\"#ff\"))w.gDD(v).i(0,\"outdated\")}r=new W.wz($.v7.querySelectorAll(\"g.edge, g.node\"),y)\nz=[W.Aj]\nnew W.Uc(r,!1,\"mouseenter\",z).yI(new G.qK())\nnew W.Uc(r,!1,\"mouseleave\",z).yI(new G.jf())}\n",
         "type": "(String) -> void",
         "measurements": null
       },
@@ -16914,7 +16939,7 @@
           }
         ],
         "sideEffects": "Depends on nothing, Changes nothing.",
-        "inlinedCount": 17,
+        "inlinedCount": 18,
         "code": null,
         "type": "(String) -> dynamic",
         "measurements": null
@@ -17090,7 +17115,7 @@
         "inferredReturnType": "[exact=JSString]",
         "parameters": [],
         "sideEffects": "Depends on nothing, Changes nothing.",
-        "inlinedCount": 1,
+        "inlinedCount": 3,
         "code": "hc:function(a){return a.toLowerCase()}\n",
         "type": "() -> String",
         "measurements": null
@@ -17576,7 +17601,7 @@
         "inferredReturnType": "[exact=ListIterator]",
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
-        "inlinedCount": 3,
+        "inlinedCount": 4,
         "code": "gm:function(a){return new H.a7(a,this.gA(a),0,null)}\n",
         "type": "() -> Iterator<ListMixin.E>",
         "measurements": null
@@ -17631,29 +17656,6 @@
         "inlinedCount": 0,
         "code": "E2:function(a){var z,y,x,w,v\nz=new H.rT(\"self\",\"target\",\"receiver\",\"name\")\ny=Object.getOwnPropertyNames(z)\ny.fixed$length=Array\nx=y\nfor(y=x.length,w=0;w<y;++w){v=x[w]\nif(z[v]===a)return v}}\n",
         "type": "(String) -> String",
-        "measurements": null
-      },
-      "292702217": {
-        "id": "function/292702217",
-        "kind": "function",
-        "name": "onClick",
-        "size": 0,
-        "outputUnit": "outputUnit/987444055",
-        "parent": "class/896575907",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "ElementStream<MouseEvent>",
-        "inferredReturnType": "[exact=_ElementListEventStreamImpl]",
-        "parameters": [],
-        "sideEffects": "Depends on field store static store, Changes nothing.",
-        "inlinedCount": 1,
-        "code": null,
-        "type": "() -> ElementStream<MouseEvent>",
         "measurements": null
       },
       "292751514": {
@@ -17734,7 +17736,7 @@
           },
           {
             "name": "value",
-            "type": "Value mask: [\"active\"] type: [exact=JSString]",
+            "type": "[exact=JSString]",
             "declaredType": "String"
           }
         ],
@@ -18884,7 +18886,7 @@
         "id": "function/333218610",
         "kind": "function",
         "name": "_process",
-        "size": 1010,
+        "size": 1020,
         "outputUnit": "outputUnit/987444055",
         "parent": "library/95666532",
         "children": [
@@ -18901,7 +18903,7 @@
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
-        "code": "W1:function(){var z,y,x,w,v,u,t,s,r,q,p\nu=$.v7\nif(u!=null){J.Ns(u)\n$.v7=null}t=H.VM([],[P.qU])\nu=$.$get$Xc()\nu.toString\ns=H.Kp(u,0)\nz=P.PW(new H.U5(u,new G.mH(t),[s]),!0,s)\nif(t.length!==0){if(!J.RM(J.to(z),\"}\"))throw H.b(\"huh?\")\nJ.jK(z)\nJ.Zo(z,\"  subgraph cluster0 {\")\nJ.Zo(z,\"    label=Removed;\")\nJ.Zo(z,\"    style=filled;\")\nJ.Zo(z,'    fillcolor=\"#dddddd\";')\nJ.Ew(z,t)\nJ.Zo(z,\"  }\")\nJ.Zo(z,\"}\")}r=new P.P1(0,0)\nif($.N8==null){H.w4()\n$.N8=$.zI}u=$.lE.$0()\nr.a=u-0\nr.b=null\ny=r\ntry{u=J.AK(z,\"\\n\")\ns={format:\"svg\",totalMemory:33554432}\nx=self.Viz(u,s)\nG.ra(x)}catch(q){w=H.Ru(q)\nu=J.Ac(w)\np=C.oW.b5(u,0,u.length)\nv=\"<pre>\"+H.d(p==null?u:p)+\"</pre>\"\nu=document.body;(u&&C.RY).N0(u,\"beforeend\",v,null,null)}finally{u=y\ns=u.giJ()\nif(s==null)s=$.lE.$0()\nP.JS(\"Total time: \"+P.k5(0,0,C.jn.xG((s-u.a)*1e6,$.N8),0,0,0).bu(0))}}\n",
+        "code": "W1:function(){var z,y,x,w,v,u,t,s,r,q,p\nu=$.v7\nif(u!=null){J.Ns(u)\n$.v7=null}t=H.VM([],[P.qU])\nu=$.$get$Xc()\nu.toString\ns=H.Kp(u,0)\nz=P.PW(new H.U5(u,new G.mH(t),[s]),!0,s)\nif(t.length!==0){if(!J.RM(J.to(z),\"}\"))throw H.b(new P.lj(\"huh?\"))\nJ.jK(z)\nJ.Zo(z,\"  subgraph cluster0 {\")\nJ.Zo(z,\"    label=Removed;\")\nJ.Zo(z,\"    style=filled;\")\nJ.Zo(z,'    fillcolor=\"#dddddd\";')\nJ.Ew(z,t)\nJ.Zo(z,\"  }\")\nJ.Zo(z,\"}\")}r=new P.P1(0,0)\nif($.N8==null){H.w4()\n$.N8=$.zI}u=$.lE.$0()\nr.a=u-0\nr.b=null\ny=r\ntry{u=J.AK(z,\"\\n\")\ns={format:\"svg\",totalMemory:33554432}\nx=self.Viz(u,s)\nG.ra(x)}catch(q){w=H.Ru(q)\nu=J.Ac(w)\np=C.oW.b5(u,0,u.length)\nv=\"<pre>\"+H.d(p==null?u:p)+\"</pre>\"\nu=document.body;(u&&C.RY).N0(u,\"beforeend\",v,null,null)}finally{u=y\ns=u.giJ()\nif(s==null)s=$.lE.$0()\nP.JS(\"Total time: \"+P.k5(0,0,C.jn.xG((s-u.a)*1e6,$.N8),0,0,0).bu(0))}}\n",
         "type": "() -> void",
         "measurements": null
       },
@@ -18929,7 +18931,7 @@
           },
           {
             "name": "value",
-            "type": "Value mask: [\"active\"] type: [exact=JSString]",
+            "type": "[exact=JSString]",
             "declaredType": "String"
           }
         ],
@@ -19560,7 +19562,7 @@
           }
         ],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
-        "inlinedCount": 1,
+        "inlinedCount": 3,
         "code": null,
         "type": "(Element, {bool useCapture}) -> ElementStream<EventStreamProvider.T>",
         "measurements": null
@@ -20341,7 +20343,7 @@
         "parameters": [
           {
             "name": "value",
-            "type": "Value mask: [\"active\"] type: [exact=JSString]",
+            "type": "[exact=JSString]",
             "declaredType": "String"
           }
         ],
@@ -25348,7 +25350,7 @@
           }
         ],
         "sideEffects": "Depends on nothing, Changes nothing.",
-        "inlinedCount": 3,
+        "inlinedCount": 2,
         "code": null,
         "type": "(Iterable<Element>, String, bool) -> dynamic",
         "measurements": null
@@ -25981,7 +25983,7 @@
         "parameters": [
           {
             "name": "value",
-            "type": "Value mask: [\"active\"] type: [exact=JSString]",
+            "type": "[exact=JSString]",
             "declaredType": "String"
           }
         ],
@@ -26950,7 +26952,7 @@
           }
         ],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
-        "inlinedCount": 5,
+        "inlinedCount": 6,
         "code": null,
         "type": "(Iterable<ListIterator.E>) -> dynamic",
         "measurements": null
@@ -28232,7 +28234,7 @@
           }
         ],
         "sideEffects": "Depends on nothing, Changes nothing.",
-        "inlinedCount": 1,
+        "inlinedCount": 2,
         "code": null,
         "type": "(EventTarget, String, bool) -> dynamic",
         "measurements": null
@@ -28316,6 +28318,29 @@
         "inlinedCount": 2,
         "code": null,
         "type": "(dynamic) -> dynamic",
+        "measurements": null
+      },
+      "640639160": {
+        "id": "function/640639160",
+        "kind": "function",
+        "name": "onClick",
+        "size": 53,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/1005726990",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "Stream<MouseEvent>",
+        "inferredReturnType": "[exact=_EventStream]",
+        "parameters": [],
+        "sideEffects": "Depends on field store static store, Changes nothing.",
+        "inlinedCount": 0,
+        "code": "gVl:function(a){return new W.RO(a,\"click\",!1,[W.Aj])}\n",
+        "type": "() -> Stream<MouseEvent>",
         "measurements": null
       },
       "640815092": {
@@ -28925,7 +28950,7 @@
           },
           {
             "name": "value",
-            "type": "Value mask: [\"active\"] type: [exact=JSString]",
+            "type": "[exact=JSString]",
             "declaredType": "String"
           }
         ],
@@ -30360,7 +30385,7 @@
         "parameters": [
           {
             "name": "selectors",
-            "type": "Value mask: [\"title\"] type: [exact=JSString]",
+            "type": "[exact=JSString]",
             "declaredType": "String"
           }
         ],
@@ -31762,7 +31787,7 @@
           }
         ],
         "sideEffects": "Depends on field store, Changes nothing.",
-        "inlinedCount": 3,
+        "inlinedCount": 2,
         "code": null,
         "type": "(ElementList, {bool useCapture}) -> ElementStream<EventStreamProvider.T>",
         "measurements": null
@@ -31864,7 +31889,7 @@
           }
         ],
         "sideEffects": "Depends on nothing, Changes nothing.",
-        "inlinedCount": 1,
+        "inlinedCount": 3,
         "code": null,
         "type": "(dynamic, dynamic, dynamic) -> dynamic",
         "measurements": null
@@ -32105,7 +32130,7 @@
         "parameters": [
           {
             "name": "selectors",
-            "type": "Value mask: [\"title\"] type: [exact=JSString]",
+            "type": "[exact=JSString]",
             "declaredType": "String"
           }
         ],
@@ -35285,6 +35310,40 @@
         "type": "() -> dynamic",
         "measurements": null
       },
+      "864673949": {
+        "id": "function/864673949",
+        "kind": "function",
+        "name": "forTarget",
+        "size": 0,
+        "outputUnit": "outputUnit/987444055",
+        "parent": "class/88591903",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "Stream<EventStreamProvider.T>",
+        "inferredReturnType": "[exact=_EventStream]",
+        "parameters": [
+          {
+            "name": "e",
+            "type": "Union of [[exact=Window], [subclass=Document]]",
+            "declaredType": "EventTarget"
+          },
+          {
+            "name": "useCapture",
+            "type": "Value mask: [false] type: [exact=JSBool]",
+            "declaredType": "bool"
+          }
+        ],
+        "sideEffects": "Depends on field store, Changes nothing.",
+        "inlinedCount": 1,
+        "code": null,
+        "type": "(EventTarget, {bool useCapture}) -> Stream<EventStreamProvider.T>",
+        "measurements": null
+      },
       "864829929": {
         "id": "function/864829929",
         "kind": "function",
@@ -37904,7 +37963,7 @@
         "id": "function/946604195",
         "kind": "function",
         "name": "onClick",
-        "size": 0,
+        "size": 53,
         "outputUnit": "outputUnit/987444055",
         "parent": "class/992156986",
         "children": [],
@@ -37919,7 +37978,7 @@
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 1,
-        "code": null,
+        "code": "gVl:function(a){return new W.Cq(a,\"click\",!1,[W.Aj])}\n",
         "type": "() -> ElementStream<MouseEvent>",
         "measurements": null
       },
@@ -58488,6 +58547,20 @@
         "mask": "inlined"
       }
     ],
+    "function/219985239": [
+      {
+        "id": "function/351273619",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/351273619",
+        "mask": "null"
+      },
+      {
+        "id": "function/745214240",
+        "mask": "null"
+      }
+    ],
     "function/223819596": [
       {
         "id": "function/577717062",
@@ -58662,6 +58735,10 @@
     ],
     "function/235631863": [
       {
+        "id": "field/128951796",
+        "mask": "null"
+      },
+      {
         "id": "field/154746101",
         "mask": "null"
       },
@@ -58686,6 +58763,10 @@
         "mask": "null"
       },
       {
+        "id": "field/763950742",
+        "mask": "null"
+      },
+      {
         "id": "field/892375757",
         "mask": "null"
       },
@@ -58695,6 +58776,18 @@
       },
       {
         "id": "function/1047605700",
+        "mask": "null"
+      },
+      {
+        "id": "function/219985239",
+        "mask": "Union of [[subclass=DocumentFragment], [subclass=Document], [subclass=Element]]"
+      },
+      {
+        "id": "function/226045063",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/226045063",
         "mask": "null"
       },
       {
@@ -58718,6 +58811,14 @@
         "mask": "[null|subclass=Object]"
       },
       {
+        "id": "function/275536693",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/275536693",
+        "mask": "null"
+      },
+      {
         "id": "function/291238918",
         "mask": "inlined"
       },
@@ -58731,14 +58832,6 @@
       },
       {
         "id": "function/291295234",
-        "mask": "null"
-      },
-      {
-        "id": "function/292702217",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/292702217",
         "mask": "null"
       },
       {
@@ -58752,6 +58845,18 @@
       {
         "id": "function/359145645",
         "mask": "null"
+      },
+      {
+        "id": "function/375786305",
+        "mask": "Union of [[exact=AttributeClassSet], [exact=_ElementCssClassSet]]"
+      },
+      {
+        "id": "function/437314199",
+        "mask": "Union of [[subclass=DocumentFragment], [subclass=Document], [subclass=Element]]"
+      },
+      {
+        "id": "function/437314199",
+        "mask": "[subclass=Element]"
       },
       {
         "id": "function/437690106",
@@ -58782,8 +58887,20 @@
         "mask": "null"
       },
       {
+        "id": "function/553989766",
+        "mask": "Union of [[exact=AttributeClassSet], [exact=_ElementCssClassSet]]"
+      },
+      {
+        "id": "function/55764546",
+        "mask": "null"
+      },
+      {
         "id": "function/577717062",
         "mask": "null"
+      },
+      {
+        "id": "function/57895586",
+        "mask": "[exact=JSString]"
       },
       {
         "id": "function/580095665",
@@ -58792,6 +58909,18 @@
       {
         "id": "function/581270226",
         "mask": "null"
+      },
+      {
+        "id": "function/640639160",
+        "mask": "Union of [[subclass=DocumentFragment], [subclass=Document], [subclass=Element]]"
+      },
+      {
+        "id": "function/642361640",
+        "mask": "Union of [[subclass=DocumentFragment], [subclass=Document], [subclass=Element]]"
+      },
+      {
+        "id": "function/642361640",
+        "mask": "[subclass=Element]"
       },
       {
         "id": "function/690550575",
@@ -58846,6 +58975,10 @@
         "mask": "null"
       },
       {
+        "id": "function/892678131",
+        "mask": "null"
+      },
+      {
         "id": "function/911382452",
         "mask": "null"
       },
@@ -58860,6 +58993,10 @@
       {
         "id": "function/926369256",
         "mask": "null"
+      },
+      {
+        "id": "function/946604195",
+        "mask": "Union of [[subclass=DocumentFragment], [subclass=Document], [subclass=Element]]"
       },
       {
         "id": "function/950791599",
@@ -60420,12 +60557,6 @@
         "mask": "null"
       }
     ],
-    "function/292702217": [
-      {
-        "id": "function/740523094",
-        "mask": "inlined"
-      }
-    ],
     "function/292751514": [
       {
         "id": "field/1055298109",
@@ -61161,6 +61292,14 @@
       },
       {
         "id": "function/265638794",
+        "mask": "null"
+      },
+      {
+        "id": "function/271556856",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/271556856",
         "mask": "null"
       },
       {
@@ -67994,6 +68133,20 @@
         "mask": "inlined"
       }
     ],
+    "function/640639160": [
+      {
+        "id": "function/637238316",
+        "mask": "null"
+      },
+      {
+        "id": "function/864673949",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/864673949",
+        "mask": "null"
+      }
+    ],
     "function/642361640": [
       {
         "id": "function/48116214",
@@ -72142,6 +72295,12 @@
         "mask": "inlined"
       }
     ],
+    "function/864673949": [
+      {
+        "id": "function/637238316",
+        "mask": "inlined"
+      }
+    ],
     "function/864829929": [
       {
         "id": "field/515098736",
@@ -74064,6 +74223,14 @@
       {
         "id": "function/351273619",
         "mask": "inlined"
+      },
+      {
+        "id": "function/351273619",
+        "mask": "null"
+      },
+      {
+        "id": "function/745214240",
+        "mask": "null"
       }
     ],
     "function/947198569": [
@@ -75883,7 +76050,7 @@
       "id": "outputUnit/987444055",
       "kind": "outputUnit",
       "name": null,
-      "size": 140233,
+      "size": 140737,
       "imports": [
         null
       ]
@@ -75894,11 +76061,11 @@
   "dump_minor_version": "0",
   "program": {
     "entrypoint": "function/866901754",
-    "size": 140233,
+    "size": 140737,
     "dart2jsVersion": null,
-    "compilationMoment": "2017-08-16 10:50:03.433726",
-    "compilationDuration": 7473994,
-    "toJsonDuration": 54000,
+    "compilationMoment": "2017-08-16 13:40:43.520271",
+    "compilationDuration": 7515418,
+    "toJsonDuration": 52000,
     "dumpInfoDuration": 0,
     "noSuchMethodEnabled": false,
     "minified": true
