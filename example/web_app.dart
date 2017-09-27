@@ -136,7 +136,7 @@ void _updateBody(String output) {
   var nodesOfInterest = _root.querySelectorAll('g.edge, g.node');
 
   nodesOfInterest.onMouseEnter.listen((MouseEvent event) {
-    _updateOver(event.currentTarget);
+    _updateOver(event.currentTarget as svg.GElement);
   });
 
   nodesOfInterest.onMouseLeave.listen((MouseEvent event) {
@@ -184,6 +184,7 @@ void _updateOver(svg.GElement element) {
 }
 
 @JS()
+// ignore: non_constant_identifier_names
 external String Viz(String src, [VizOptions options]);
 
 @JS()

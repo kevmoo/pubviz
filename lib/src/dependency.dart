@@ -22,8 +22,10 @@ class Dependency implements Comparable<Dependency> {
   static Set<Dependency> getDependencies(Map<String, dynamic> yaml) {
     var deps = new Set<Dependency>();
 
-    _populateFromSection(yaml['dependencies'], deps, false);
-    _populateFromSection(yaml['dev_dependencies'], deps, true);
+    _populateFromSection(
+        yaml['dependencies'] as Map<String, dynamic>, deps, false);
+    _populateFromSection(
+        yaml['dev_dependencies'] as Map<String, dynamic>, deps, true);
 
     return deps;
   }
@@ -31,14 +33,17 @@ class Dependency implements Comparable<Dependency> {
   static void _populateFromSection(
       Map<String, dynamic> yaml, Set<Dependency> value, bool isDev) {
     if (yaml != null) {
-      yaml.forEach((String key, constraint) {
+      yaml.forEach((String key, Object constraint) {
+        String constraintString;
         if (constraint == null) {
-          constraint = '';
+          constraintString = '';
         } else if (constraint is Map) {
-          constraint = constraint.toString();
+          constraintString = constraint.toString();
+        } else {
+          constraintString = constraint as String;
         }
 
-        var dep = new Dependency._(key, constraint, isDev);
+        var dep = new Dependency._(key, constraintString, isDev);
         assert(!value.contains(dep));
 
         value.add(dep);

@@ -44,7 +44,7 @@ class VizPackage extends Comparable<VizPackage> {
     String packageName = pubspecMap['name'];
     assert(packageName != null && packageName.length > 0);
 
-    var versionString = pubspecMap['version'];
+    var versionString = pubspecMap['version'] as String;
     var version =
         (versionString == null) ? null : new Version.parse(versionString);
 
@@ -94,5 +94,5 @@ class VizPackage extends Comparable<VizPackage> {
 Future<Map<String, dynamic>> _openYaml(String path) async {
   var file = new File(path);
   var value = await file.readAsString();
-  return yaml.loadYaml(value);
+  return yaml.loadYaml(value) as Map<String, dynamic>;
 }

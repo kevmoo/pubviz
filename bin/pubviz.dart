@@ -11,7 +11,7 @@ import 'package:stack_trace/stack_trace.dart';
 main(List<String> args) async {
   var parser = _getParser();
 
-  var result;
+  ArgResults result;
   try {
     result = parser.parse(args);
   } on FormatException catch (e) {
@@ -30,9 +30,9 @@ main(List<String> args) async {
 
   var path = _getPath(command.rest);
 
-  var format = result[_formatOption];
-  var flagOutdated = result['flag-outdated'];
-  var ignorePackages = result['ignore-packages'] != null
+  var format = result[_formatOption] as String;
+  var flagOutdated = result['flag-outdated'] as bool;
+  List<String> ignorePackages = result['ignore-packages'] != null
       ? result[_ignoreOption].map((e) => e.trim()).toList()
       : const [];
 

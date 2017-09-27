@@ -30,7 +30,7 @@ linter:
     - empty_constructor_bodies
     - library_names
     - library_prefixes
-    #- non_constant_identifier_names
+    - non_constant_identifier_names
     - only_throw_errors
     - prefer_final_fields
     - prefer_is_not_empty

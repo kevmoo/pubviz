@@ -38,8 +38,9 @@ Future<Version> getLatestVersion(String packageName) async {
 
   assert(json['name'] == packageName);
 
-  var versions =
-      (json['versions'] as List).map((str) => new Version.parse(str)).toList();
+  var versions = (json['versions'] as List<String>)
+      .map((str) => new Version.parse(str))
+      .toList();
 
   var primary = Version.primary(versions);
 

@@ -102,12 +102,12 @@ Future<Map<String, String>> _getPackageMap(String path) async {
 
   if (result.exitCode != 0) {
     throw new ProcessException(
-        'pub', ['list-package-dirs'], result.stderr, result.exitCode);
+        'pub', ['list-package-dirs'], result.stderr as String, result.exitCode);
   }
 
   var json = JSON.decode(result.stdout as String);
 
-  var packages = json['packages'] as Map;
+  var packages = json['packages'] as Map<String, String>;
 
   packages.forEach((k, v) {
     assert(p.basename(v) == 'lib');
