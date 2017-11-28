@@ -32,12 +32,12 @@ digraph pubviz {
   analyzer -> watcher [label=">=0.9.6 <0.10.0", color=gray];
   analyzer -> yaml [label="^2.1.2", color=gray];
 
-  args [label="args\n1.0.0", shape=box, margin="0.25,0.15", style=bold];
+  args [label="args\n1.1.0", shape=box, margin="0.25,0.15", style=bold];
 
-  async [label="async\n1.13.3", shape=box, margin="0.25,0.15", color=red, xlabel="2.0.0"];
+  async [label="async\n1.13.3", shape=box, margin="0.25,0.15", color=red, xlabel="2.0.1"];
   async -> collection [label="^1.5.0"];
 
-  barback [label="barback\n0.15.2+12"];
+  barback [label="barback\n0.15.2+13"];
   barback -> async [label=">=1.10.0 <3.0.0", color=gray];
   barback -> collection [label="^1.5.0", color=gray];
   barback -> path [label=">=0.9.0 <2.0.0", color=gray];
@@ -49,8 +49,6 @@ digraph pubviz {
   boolean_selector -> collection [label="^1.5.0", color=gray];
   boolean_selector -> source_span [label="^1.0.0", color=gray];
   boolean_selector -> string_scanner [label=">=0.1.1 <2.0.0", color=gray];
-
-  browser [label="browser\n0.10.0+2", style=bold];
 
   charcode [label="charcode\n1.1.1", shape=box, margin="0.25,0.15"];
 
@@ -94,12 +92,11 @@ digraph pubviz {
   html -> source_span [label=">=1.0.0 <2.0.0", color=gray];
   html -> utf [label=">=0.9.0 <0.10.0", color=gray];
 
-  http [label="http\n0.11.3+15", shape=box, margin="0.25,0.15", style=bold];
+  http [label="http\n0.11.3+16", shape=box, margin="0.25,0.15", style=bold];
   http -> async [label=">=1.10.0 <3.0.0"];
   http -> collection [label="^1.5.0"];
   http -> http_parser [label=">=0.0.1 <4.0.0"];
   http -> path [label=">=0.9.0 <2.0.0"];
-  http -> stack_trace [label=">=0.9.1 <2.0.0"];
 
   http_multi_server [label="http_multi_server\n2.0.4"];
   http_multi_server -> async [label=">=1.2.0 <3.0.0", color=gray];
@@ -110,6 +107,11 @@ digraph pubviz {
   http_parser -> source_span [label="^1.0.0"];
   http_parser -> string_scanner [label=">=0.0.0 <2.0.0"];
   http_parser -> typed_data [label="^1.1.0"];
+
+  io [label="io\n0.3.0"];
+  io -> charcode [label="^1.0.0", color=gray];
+  io -> meta [label="^1.0.2", color=gray];
+  io -> string_scanner [label=">=0.1.5 <2.0.0", color=gray];
 
   isolate [label="isolate\n1.1.0"];
 
@@ -126,9 +128,9 @@ digraph pubviz {
   matcher [label="matcher\n0.12.1+4"];
   matcher -> stack_trace [label="^1.2.0", color=gray];
 
-  meta [label="meta\n1.1.1"];
+  meta [label="meta\n1.1.2"];
 
-  mime [label="mime\n0.9.3"];
+  mime [label="mime\n0.9.4"];
 
   node_preamble [label="node_preamble\n1.4.0"];
 
@@ -142,9 +144,9 @@ digraph pubviz {
   package_resolver -> package_config [label=">=0.1.0 <2.0.0", color=gray];
   package_resolver -> path [label="^1.0.0", color=gray];
 
-  path [label="path\n1.4.2", shape=box, margin="0.25,0.15", style=bold];
+  path [label="path\n1.5.1", shape=box, margin="0.25,0.15", style=bold];
 
-  plugin [label="plugin\n0.2.0+1"];
+  plugin [label="plugin\n0.2.0+2"];
 
   pool [label="pool\n1.3.3"];
   pool -> async [label=">=1.4.0 <3.0.0", color=gray];
@@ -153,7 +155,7 @@ digraph pubviz {
   pub_semver [label="pub_semver\n1.3.2", shape=box, margin="0.25,0.15", style=bold];
   pub_semver -> collection [label=">=0.9.0 <2.0.0"];
 
-  pubviz [label="pubviz\n2.3.11", fontsize="18", style=bold, shape=box, margin="0.25,0.15"];
+  pubviz [label="pubviz\n2.4.0", fontsize="18", style=bold, shape=box, margin="0.25,0.15"];
   pubviz -> args [label=">=0.13.0 <2.0.0", penwidth="2"];
   pubviz -> collection [label="^1.0.0", penwidth="2"];
   pubviz -> gviz [label="^0.1.0", penwidth="2"];
@@ -162,11 +164,10 @@ digraph pubviz {
   pubviz -> pub_semver [label="^1.0.0", penwidth="2"];
   pubviz -> stack_trace [label="^1.6.0", penwidth="2"];
   pubviz -> yaml [label="^2.0.0", penwidth="2"];
-  pubviz -> browser [penwidth="2", style=dashed];
   pubviz -> js [label="^0.6.0-beta.5", penwidth="2", style=dashed];
   pubviz -> test [label="^0.12.0", penwidth="2", style=dashed];
 
-  shelf [label="shelf\n0.7.0"];
+  shelf [label="shelf\n0.7.1"];
   shelf -> async [label=">=1.10.0 <3.0.0", color=gray];
   shelf -> collection [label="^1.5.0", color=gray];
   shelf -> http_parser [label="^3.1.0", color=gray];
@@ -181,7 +182,7 @@ digraph pubviz {
   shelf_packages_handler -> shelf [label=">=0.6.0 <0.8.0", color=gray];
   shelf_packages_handler -> shelf_static [label="^0.2.0", color=gray];
 
-  shelf_static [label="shelf_static\n0.2.5"];
+  shelf_static [label="shelf_static\n0.2.6"];
   shelf_static -> convert [label=">=1.0.0 <3.0.0", color=gray];
   shelf_static -> http_parser [label=">=0.0.2+2 <4.0.0", color=gray];
   shelf_static -> mime [label=">=0.9.0 <0.10.0", color=gray];
@@ -206,7 +207,7 @@ digraph pubviz {
   source_span -> charcode [label="^1.0.0"];
   source_span -> path [label=">=1.2.0 <2.0.0"];
 
-  stack_trace [label="stack_trace\n1.8.2", shape=box, margin="0.25,0.15", style=bold];
+  stack_trace [label="stack_trace\n1.9.1", shape=box, margin="0.25,0.15", style=bold];
   stack_trace -> path [label="^1.2.0"];
 
   stream_channel [label="stream_channel\n1.6.2"];
@@ -219,15 +220,16 @@ digraph pubviz {
 
   term_glyph [label="term_glyph\n1.0.0"];
 
-  test [label="test\n0.12.24+6", style=bold, color=red, xlabel="0.12.24+7"];
+  test [label="test\n0.12.28", style=bold];
   test -> analyzer [label=">=0.26.4 <0.32.0", color=gray];
   test -> args [label=">=0.13.1 <2.0.0", color=gray];
-  test -> async [label="^1.13.0", color=pink, fontcolor=red];
+  test -> async [label=">=1.13.0 <3.0.0", color=gray];
   test -> barback [label=">=0.14.0 <0.16.0", color=gray];
   test -> boolean_selector [label="^1.0.0", color=gray];
   test -> collection [label="^1.8.0", color=gray];
   test -> glob [label="^1.0.0", color=gray];
   test -> http_multi_server [label=">=1.0.0 <3.0.0", color=gray];
+  test -> io [label="^0.3.0", color=gray];
   test -> js [label="^0.6.0", color=gray];
   test -> matcher [label=">=0.12.1 <0.12.2", color=gray];
   test -> meta [label="^1.0.0", color=gray];
@@ -238,19 +240,19 @@ digraph pubviz {
   test -> pub_semver [label="^1.0.0", color=gray];
   test -> shelf [label=">=0.6.5 <0.8.0", color=gray];
   test -> shelf_packages_handler [label="^1.0.0", color=gray];
-  test -> shelf_static [label="^0.2.0", color=gray];
+  test -> shelf_static [label="^0.2.6", color=gray];
   test -> shelf_web_socket [label="^0.2.0", color=gray];
   test -> source_map_stack_trace [label="^1.1.4", color=gray];
   test -> source_maps [label="^0.10.2", color=gray];
-  test -> source_span [label="^1.0.0", color=gray];
-  test -> stack_trace [label="^1.2.1", color=gray];
+  test -> source_span [label="^1.4.0", color=gray];
+  test -> stack_trace [label="^1.9.0", color=gray];
   test -> stream_channel [label="^1.6.0", color=gray];
   test -> string_scanner [label=">=0.1.1 <2.0.0", color=gray];
   test -> term_glyph [label="^1.0.0", color=gray];
   test -> web_socket_channel [label="^1.0.0", color=gray];
   test -> yaml [label="^2.0.0", color=gray];
 
-  typed_data [label="typed_data\n1.1.4", shape=box, margin="0.25,0.15"];
+  typed_data [label="typed_data\n1.1.5", shape=box, margin="0.25,0.15"];
 
   utf [label="utf\n0.9.0+3"];
 
