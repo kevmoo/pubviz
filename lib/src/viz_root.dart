@@ -94,11 +94,17 @@ class VizRoot {
   }
 }
 
-Future<Map<String, String>> _getPackageMap(String path) async {
+Future<Map<String, String>> _getPackageMap(
+    String path, bool withFlutter) async {
   var map = new Map<String, String>();
 
-  var result = await Process.run('pub', ['list-package-dirs'],
-      runInShell: true, workingDirectory: path);
+  var proc = withFlutter ? 'flutter' : 'pub';
+  var args = withFlutter
+      ? ['packages', 'pub', 'list-package-dirs']
+      : ['list-package-dirs'];
+
+  var result =
+      await Process.run(proc, args, runInShell: true, workingDirectory: path);
 
   if (result.exitCode != 0) {
     var message = result.stderr as String;
@@ -110,6 +116,7 @@ Future<Map<String, String>> _getPackageMap(String path) async {
     } catch (e) {
       // NOOP
     }
+
     throw new ProcessException(
         'pub', ['list-package-dirs'], message, result.exitCode);
   }
@@ -130,7 +137,14 @@ Future<Map<String, VizPackage>> _getReferencedPackages(
     String path, bool flagOutdated) async {
   var packs = new SplayTreeMap<String, VizPackage>();
 
-  var map = await _getPackageMap(path);
+  Map<String, String> map;
+  try {
+    map = await _getPackageMap(path, false);
+  } on ProcessException catch (e) {
+    if (e.message.startsWith('Flutter is not available.')) {
+      map = await _getPackageMap(path, true);
+    }
+  }
 
   var futures = map.keys.map((packageName) async {
     var subPath = map[packageName];

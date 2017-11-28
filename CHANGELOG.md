@@ -1,3 +1,9 @@
+## 2.4.0
+
+* Better error output if a subprocess fails.
+
+* Try to handle flutter packages. 
+
 ## 2.3.11
 
 * Better hover-over behavior for outdated dependencies.
