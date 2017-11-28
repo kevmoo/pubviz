@@ -101,8 +101,17 @@ Future<Map<String, String>> _getPackageMap(String path) async {
       runInShell: true, workingDirectory: path);
 
   if (result.exitCode != 0) {
+    var message = result.stderr as String;
+    try {
+      var value = JSON.decode(result.stdout) as Map;
+      if (value.containsKey('error')) {
+        message = value['error'];
+      }
+    } catch (e) {
+      // NOOP
+    }
     throw new ProcessException(
-        'pub', ['list-package-dirs'], result.stderr as String, result.exitCode);
+        'pub', ['list-package-dirs'], message, result.exitCode);
   }
 
   var json = JSON.decode(result.stdout as String);
