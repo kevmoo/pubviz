@@ -16,7 +16,6 @@ dependencies:
   yaml: ^2.0.0
 
 dev_dependencies:
-  browser: any
   js: ^0.6.0-beta.5
   test: ^0.12.0
 
