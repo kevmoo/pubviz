@@ -1,5 +1,7 @@
 ## 2.4.1
 
+* Using `nodesep=0.2` on the graph to make it tighter.
+
 * Hosted code
 
   * Much more robust handling of node clicks to add/remove.

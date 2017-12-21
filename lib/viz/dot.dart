@@ -15,10 +15,12 @@ String toDot(VizRoot item,
     ignorePackages = const <String>[];
   }
 
-  var gviz = new Gviz(
-      name: 'pubviz',
-      nodeProperties: {'fontname': 'Helvetica'},
-      edgeProperties: {'fontname': 'Helvetica', 'fontcolor': 'gray'});
+  var gviz = new Gviz(name: 'pubviz', graphProperties: {
+    'fontname': 'Helvetica',
+    'nodesep': '0.2'
+  }, edgeProperties: {
+    'fontcolor': 'gray'
+  });
 
   for (var pack
       in item.packages.values.where((v) => !ignorePackages.contains(v.name))) {
