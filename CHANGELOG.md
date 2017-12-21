@@ -1,3 +1,11 @@
+## 2.4.1
+
+* Hosted code
+
+  * Much more robust handling of node clicks to add/remove.
+
+  * Make it clear that nodes can be clicked by changing the cursor.
+
 ## 2.4.0
 
 * Better error output if a subprocess fails.

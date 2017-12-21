@@ -14,6 +14,10 @@ g > * {
     transition-duration: .2s;
 }
 
+g.node {
+    cursor: pointer;
+}
+
 g.active > text {
     fill: blue;
     font-size: 100%;

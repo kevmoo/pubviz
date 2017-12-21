@@ -32,13 +32,24 @@ void _process() {
     _root = null;
   }
 
-  var removedLines = <String>[];
+  var removedLinesContainingNodeDefinitions = <String>[];
 
   var lines = _dotContent.where((line) {
     for (var item in _toIgnore) {
-      if (line.contains('"$item"')) {
-        if (!line.contains('->')) {
-          removedLines.add(line);
+      if (line == 'digraph $item {') {
+        return true;
+      }
+
+      var comparisonLine = line;
+      // for the purposes of this code, ignore anything after and including [
+      final openBracketIndex = line.indexOf('[');
+      if (openBracketIndex > 0) {
+        comparisonLine = comparisonLine.substring(0, openBracketIndex);
+      }
+
+      if (comparisonLine.contains(' $item ') || comparisonLine.contains('"$item"')) {
+        if (!comparisonLine.contains('->')) {
+          removedLinesContainingNodeDefinitions.add(line);
         }
 
         return false;
@@ -47,7 +58,7 @@ void _process() {
     return true;
   }).toList();
 
-  if (removedLines.isNotEmpty) {
+  if (removedLinesContainingNodeDefinitions.isNotEmpty) {
     if (lines.last != '}') {
       throw new StateError('huh?');
     }
@@ -56,7 +67,7 @@ void _process() {
     lines.add('    label=Removed;');
     lines.add('    style=filled;');
     lines.add('    fillcolor="#dddddd";');
-    lines.addAll(removedLines);
+    lines.addAll(removedLinesContainingNodeDefinitions);
     lines.add('  }');
     lines.add('}');
   }
