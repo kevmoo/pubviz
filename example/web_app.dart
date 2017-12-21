@@ -11,7 +11,7 @@ final zoomBtn = querySelector('#zoomBtn') as ButtonElement;
 
 svg.SvgElement _root;
 
-final List<String> _dotContent = new List.unmodifiable(LineSplitter
+final List<String> _dotContentLines = new List.unmodifiable(LineSplitter
     .split((querySelector('#dot') as ScriptElement).innerHtml.trim()));
 
 final Set<String> _toIgnore = new Set<String>();
@@ -34,43 +34,51 @@ void _process() {
 
   var removedLinesContainingNodeDefinitions = <String>[];
 
-  var lines = _dotContent.where((line) {
-    for (var item in _toIgnore) {
-      if (line == 'digraph $item {') {
-        return true;
-      }
+  List<String> lines;
 
-      var comparisonLine = line;
-      // for the purposes of this code, ignore anything after and including [
-      final openBracketIndex = line.indexOf('[');
-      if (openBracketIndex > 0) {
-        comparisonLine = comparisonLine.substring(0, openBracketIndex);
-      }
-
-      if (comparisonLine.contains(' $item ') ||
-          comparisonLine.contains('"$item"')) {
-        if (!comparisonLine.contains('->')) {
-          removedLinesContainingNodeDefinitions.add(line);
+  if (_toIgnore.isEmpty) {
+    lines = _dotContentLines;
+  } else {
+    print('Ignoring: ${_toIgnore.join(',')}');
+    lines = _dotContentLines.where((line) {
+      for (var item in _toIgnore) {
+        if (line == 'digraph $item {') {
+          return true;
         }
 
-        return false;
-      }
-    }
-    return true;
-  }).toList();
+        var comparisonLine = line;
+        // for the purposes of this code, ignore anything after and including [
+        final openBracketIndex = line.indexOf('[');
+        if (openBracketIndex > 0) {
+          comparisonLine = comparisonLine.substring(0, openBracketIndex);
+        }
 
-  if (removedLinesContainingNodeDefinitions.isNotEmpty) {
-    if (lines.last != '}') {
-      throw new StateError('huh?');
+        if (comparisonLine.contains(new RegExp('\\W$item\\W'))) {
+          if (!comparisonLine.contains('->')) {
+            removedLinesContainingNodeDefinitions.add(line);
+          }
+
+          return false;
+        }
+      }
+      return true;
+    }).toList();
+
+    if (removedLinesContainingNodeDefinitions.isEmpty) {
+      print('Weird - nothing removed?');
+    } else {
+      if (lines.last != '}') {
+        throw new StateError('huh?');
+      }
+      lines.removeLast();
+      lines.add('  subgraph cluster0 {');
+      lines.add('    label=Removed;');
+      lines.add('    style=filled;');
+      lines.add('    fillcolor="#dddddd";');
+      lines.addAll(removedLinesContainingNodeDefinitions);
+      lines.add('  }');
+      lines.add('}');
     }
-    lines.removeLast();
-    lines.add('  subgraph cluster0 {');
-    lines.add('    label=Removed;');
-    lines.add('    style=filled;');
-    lines.add('    fillcolor="#dddddd";');
-    lines.addAll(removedLinesContainingNodeDefinitions);
-    lines.add('  }');
-    lines.add('}');
   }
 
   var watch = new Stopwatch()..start();
@@ -84,7 +92,7 @@ void _process() {
     var output = '<pre>${HTML_ESCAPE.convert(e.toString())}</pre>';
     document.body.appendHtml(output);
   } finally {
-    print('Total time: ${watch.elapsed}');
+    print('Total time generating graph: ${watch.elapsed}');
   }
 }
 
