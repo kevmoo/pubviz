@@ -440,6 +440,9 @@ if(b>=a.length)H.Vj(H.HY(a,b))
 return a.charCodeAt(b)},
 Wd:function(a,b){if(b>=a.length)throw H.b(H.HY(a,b))
 return a.charCodeAt(b)},
+ww:function(a,b,c){if(c>b.length)throw H.b(P.TE(c,0,b.length,null,null))
+return new H.un(b,a,c)},
+dd:function(a,b){return this.ww(a,b,0)},
 Qi:function(a,b,c){var z
 if(c>a.length)throw H.b(P.TE(c,0,a.length,null,null))
 z=c+b.length
@@ -1483,8 +1486,12 @@ $.NF=new H.dC(v)
 $.TX=new H.wN(u)
 $.x7=new H.VX(t)},
 ud:function(a,b){return a(b)||b},
-m2:function(a,b,c){var z=a.indexOf(b,c)
-return z>=0},
+m2:function(a,b,c){var z
+if(typeof b==="string")return a.indexOf(b,c)>=0
+else{z=J.v(b)
+if(!!z.$isVR)return b.b.test(C.xB.yn(a,c))
+else{z=z.dd(b,C.xB.yn(a,c))
+return!z.gl0(z)}}},
 FD:{"^":"j;a,b,c,d,e,f,r,x",static:{
 zh:function(a){var z,y,x
 z=a.$reflectionInfo
@@ -1751,6 +1758,21 @@ VX:{"^":"Tp:11;a",
 $1:function(a){return this.a(a)}},
 VR:{"^":"j;a,b,c,d",
 bu:function(a){return"RegExp/"+this.a+"/"},
+gHc:function(){var z=this.c
+if(z!=null)return z
+z=this.b
+z=H.v4(this.a,z.multiline,!z.ignoreCase,!0)
+this.c=z
+return z},
+ww:function(a,b,c){if(c>b.length)throw H.b(P.TE(c,0,b.length,null,null))
+return new H.KW(this,b,c)},
+dd:function(a,b){return this.ww(a,b,0)},
+UZ:function(a,b){var z,y
+z=this.gHc()
+z.lastIndex=b
+y=z.exec(a)
+if(y==null)return
+return new H.EK(this,y)},
 static:{
 v4:function(a,b,c,d){var z,y,x,w
 z=b?"m":""
@@ -1758,7 +1780,50 @@ y=c?"":"i"
 x=d?"g":""
 w=function(e,f){try{return new RegExp(e,f)}catch(v){return v}}(a,z+y+x)
 if(w instanceof RegExp)return w
-throw H.b(new P.aE("Illegal RegExp pattern ("+String(w)+")",a,null))}}}}],["","",,H,{"^":"",
+throw H.b(new P.aE("Illegal RegExp pattern ("+String(w)+")",a,null))}}},
+EK:{"^":"j;a,b",
+q:function(a,b){return this.b[b]}},
+KW:{"^":"mW;a,b,c",
+gm:function(a){return new H.Pb(this.a,this.b,this.c,null)},
+$asmW:function(){return[P.Od]},
+$ascX:function(){return[P.Od]}},
+Pb:{"^":"j;a,b,c,d",
+gR:function(){return this.d},
+VF:function(){var z,y,x,w
+z=this.b
+if(z==null)return!1
+y=this.c
+if(y<=z.length){x=this.a.UZ(z,y)
+if(x!=null){this.d=x
+z=x.b
+y=z.index
+w=y+z[0].length
+this.c=y===w?w+1:w
+return!0}}this.d=null
+this.b=null
+return!1}},
+tQ:{"^":"j;a,b,c",
+q:function(a,b){if(b!==0)H.Vj(P.O7(b,null,null))
+return this.c}},
+un:{"^":"cX;a,b,c",
+gm:function(a){return new H.Ca(this.a,this.b,this.c,null)},
+$ascX:function(){return[P.Od]}},
+Ca:{"^":"j;a,b,c,d",
+VF:function(){var z,y,x,w,v,u,t
+z=this.c
+y=this.b
+x=y.length
+w=this.a
+v=w.length
+if(z+x>v){this.d=null
+return!1}u=w.indexOf(y,z)
+if(u<0){this.c=v+1
+this.d=null
+return!1}t=u+x
+this.d=new H.tQ(u,w,y)
+this.c=t===this.c?t+1:t
+return!0},
+gR:function(){return this.d}}}],["","",,H,{"^":"",
 kU:function(a){var z=H.VM(a?Object.keys(a):[],[null])
 z.fixed$length=Array
 return z}}],["","",,H,{"^":"",
@@ -3163,6 +3228,7 @@ gk:function(a){var z,y
 z=this.gm(this)
 for(y=0;z.VF();)++y
 return y},
+gl0:function(a){return!this.gm(this).VF()},
 grZ:function(a){var z,y
 z=this.gm(this)
 if(!z.VF())throw H.b(H.Wp())
@@ -3195,6 +3261,7 @@ n:function(a,b){return this===b},
 gA:function(a){return H.e(this)},
 bu:function(a){return H.H9(this)},
 toString:function(){return this.bu(this)}},
+Od:{"^":"j;"},
 Bp:{"^":"j;"},
 P1:{"^":"j;a,iJ:b<"},
 qU:{"^":"j;"},
@@ -3669,7 +3736,7 @@ z=z===":"||z===""}else z=!1
 else z=!1
 else z=!0
 return z},"$4","V4",8,0,9]}},
-Pb:{"^":"j;$ti",
+CS:{"^":"j;$ti",
 gm:function(a){return new W.W9(a,this.gk(a),-1,null)},
 i:function(a,b){throw H.b(new P.ub("Cannot add to immutable List."))},
 Ay:function(a,b){throw H.b(new P.ub("Cannot add to immutable List."))},
@@ -3827,15 +3894,15 @@ hm:{"^":"vB+lD;",$isbQ:1,
 $asbQ:function(){return[W.KV]},
 $isz:1,
 $asz:function(){return[W.KV]}},
-x5:{"^":"yo+Pb;",$isbQ:1,
+x5:{"^":"yo+CS;",$isbQ:1,
 $asbQ:function(){return[W.KV]},
 $isz:1,
 $asz:function(){return[W.KV]}},
-rr:{"^":"dx+Pb;",$isbQ:1,
+rr:{"^":"dx+CS;",$isbQ:1,
 $asbQ:function(){return[W.KV]},
 $isz:1,
 $asz:function(){return[W.KV]}},
-rl:{"^":"hm+Pb;",$isbQ:1,
+rl:{"^":"hm+CS;",$isbQ:1,
 $asbQ:function(){return[W.KV]},
 $isz:1,
 $asz:function(){return[W.KV]}}}],["","",,P,{"^":"",As:{"^":"j;",
@@ -3943,10 +4010,10 @@ $isz:1,
 $asz:function(){return[P.uP]}},zL:{"^":"vB+lD;",$isbQ:1,
 $asbQ:function(){return[P.Xk]},
 $isz:1,
-$asz:function(){return[P.Xk]}},ec:{"^":"nN+Pb;",$isbQ:1,
+$asz:function(){return[P.Xk]}},ec:{"^":"nN+CS;",$isbQ:1,
 $asbQ:function(){return[P.uP]},
 $isz:1,
-$asz:function(){return[P.uP]}},HR:{"^":"zL+Pb;",$isbQ:1,
+$asz:function(){return[P.uP]}},HR:{"^":"zL+CS;",$isbQ:1,
 $asbQ:function(){return[P.Xk]},
 $isz:1,
 $asz:function(){return[P.Xk]}}}],["","",,P,{"^":""}],["","",,P,{"^":""}],["","",,P,{"^":""}],["","",,G,{"^":"",
@@ -3958,11 +4025,16 @@ W1:function(){var z,y,x,w,v,u,t,s,r,q,p
 u=$.v7
 if(u!=null){J.Ns(u)
 $.v7=null}t=H.VM([],[P.qU])
-u=$.$get$Xc()
+z=null
+u=$.$get$UR()
+if(u.a===0)z=$.$get$pt()
+else{P.JS("Ignoring: "+u.zV(0,","))
+u=$.$get$pt()
 u.toString
 s=H.Kp(u,0)
 z=P.PW(new H.U5(u,new G.mH(t),[s]),!0,s)
-if(t.length!==0){if(!J.n(J.to(z),"}"))throw H.b(new P.lj("huh?"))
+if(t.length===0)P.JS("Weird - nothing removed?")
+else{if(!J.n(J.to(z),"}"))throw H.b(new P.lj("huh?"))
 J.jK(z)
 J.Zo(z,"  subgraph cluster0 {")
 J.Zo(z,"    label=Removed;")
@@ -3970,7 +4042,7 @@ J.Zo(z,"    style=filled;")
 J.Zo(z,'    fillcolor="#dddddd";')
 J.Ew(z,t)
 J.Zo(z,"  }")
-J.Zo(z,"}")}r=new P.P1(0,0)
+J.Zo(z,"}")}}r=new P.P1(0,0)
 if($.N8==null){H.w4()
 $.N8=$.zI}u=$.lE.$0()
 r.a=u-0
@@ -3986,7 +4058,7 @@ v="<pre>"+H.d(p==null?u:p)+"</pre>"
 u=document.body;(u&&C.RY).N0(u,"beforeend",v,null,null)}finally{u=y
 s=u.giJ()
 if(s==null)s=$.lE.$0()
-P.JS("Total time: "+P.k5(0,0,C.jn.xG((s-u.a)*1e6,$.N8),0,0,0).bu(0))}},
+P.JS("Total time generating graph: "+P.k5(0,0,C.jn.xG((s-u.a)*1e6,$.N8),0,0,0).bu(0))}},
 ra:function(a){var z,y,x,w,v,u,t,s,r
 z=P.DF(a,0,null)
 a=new H.U5(z,new G.AR(),[H.W8(z,"cX",0)]).zV(0,"\n")
@@ -4034,7 +4106,7 @@ if(z.n(a,"digraph "+H.d(x)+" {"))return!0
 w=z.OY(a,"[")
 v=w>0?z.Nj(a,0,w):a
 u=J.U6(v)
-if(u.tg(v," "+H.d(x)+" ")||u.tg(v,'"'+H.d(x)+'"')){if(!u.tg(v,"->"))this.a.push(a)
+if(u.tg(v,P.nu("\\W"+H.d(x)+"\\W",!0,!1))){if(!u.tg(v,"->"))this.a.push(a)
 return!1}}return!0}},
 AR:{"^":"Tp:1;",
 $1:function(a){var z=J.U6(a)
@@ -4322,7 +4394,7 @@ try{(void 0).$method$($argumentsExpr$)}catch(z){return z.message}}())},"BX","$ge
 z=P.D
 y=new P.vs(0,P.BE(),null,[z])
 y.j9(null,z)
-return y},"d2","$get$d2",function(){return[]},"zX","$get$zX",function(){return P.tM(["A","ABBR","ACRONYM","ADDRESS","AREA","ARTICLE","ASIDE","AUDIO","B","BDI","BDO","BIG","BLOCKQUOTE","BR","BUTTON","CANVAS","CAPTION","CENTER","CITE","CODE","COL","COLGROUP","COMMAND","DATA","DATALIST","DD","DEL","DETAILS","DFN","DIR","DIV","DL","DT","EM","FIELDSET","FIGCAPTION","FIGURE","FONT","FOOTER","FORM","H1","H2","H3","H4","H5","H6","HEADER","HGROUP","HR","I","IFRAME","IMG","INPUT","INS","KBD","LABEL","LEGEND","LI","MAP","MARK","MENU","METER","NAV","NOBR","OL","OPTGROUP","OPTION","OUTPUT","P","PRE","PROGRESS","Q","S","SAMP","SECTION","SELECT","SMALL","SOURCE","SPAN","STRIKE","STRONG","SUB","SUMMARY","SUP","TABLE","TBODY","TD","TEXTAREA","TFOOT","TH","THEAD","TIME","TR","TRACK","TT","U","UL","VAR","VIDEO","WBR"],null)},"or","$get$or",function(){return P.u5()},"X4","$get$X4",function(){return P.nu("^\\S+$",!0,!1)},"hh","$get$hh",function(){return H.Go(W.Z0("#zoomBtn"),"$isIF")},"Xc","$get$Xc",function(){var z,y
+return y},"d2","$get$d2",function(){return[]},"zX","$get$zX",function(){return P.tM(["A","ABBR","ACRONYM","ADDRESS","AREA","ARTICLE","ASIDE","AUDIO","B","BDI","BDO","BIG","BLOCKQUOTE","BR","BUTTON","CANVAS","CAPTION","CENTER","CITE","CODE","COL","COLGROUP","COMMAND","DATA","DATALIST","DD","DEL","DETAILS","DFN","DIR","DIV","DL","DT","EM","FIELDSET","FIGCAPTION","FIGURE","FONT","FOOTER","FORM","H1","H2","H3","H4","H5","H6","HEADER","HGROUP","HR","I","IFRAME","IMG","INPUT","INS","KBD","LABEL","LEGEND","LI","MAP","MARK","MENU","METER","NAV","NOBR","OL","OPTGROUP","OPTION","OUTPUT","P","PRE","PROGRESS","Q","S","SAMP","SECTION","SELECT","SMALL","SOURCE","SPAN","STRIKE","STRONG","SUB","SUMMARY","SUP","TABLE","TBODY","TD","TEXTAREA","TFOOT","TH","THEAD","TIME","TR","TRACK","TT","U","UL","VAR","VIDEO","WBR"],null)},"or","$get$or",function(){return P.u5()},"X4","$get$X4",function(){return P.nu("^\\S+$",!0,!1)},"hh","$get$hh",function(){return H.Go(W.Z0("#zoomBtn"),"$isIF")},"pt","$get$pt",function(){var z,y
 z=H.Go(W.Z0("#dot"),"$isqI")
 y=P.PW(P.DF(J.T0((z&&C.Md).ghf(z)),0,null),!1,null)
 y.fixed$length=Array
