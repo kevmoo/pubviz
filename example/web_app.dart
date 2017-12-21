@@ -47,7 +47,8 @@ void _process() {
         comparisonLine = comparisonLine.substring(0, openBracketIndex);
       }
 
-      if (comparisonLine.contains(' $item ') || comparisonLine.contains('"$item"')) {
+      if (comparisonLine.contains(' $item ') ||
+          comparisonLine.contains('"$item"')) {
         if (!comparisonLine.contains('->')) {
           removedLinesContainingNodeDefinitions.add(line);
         }
