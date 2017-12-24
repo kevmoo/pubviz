@@ -12,11 +12,10 @@ Future<Version> getLatestVersion(String packageName) async {
   while (true) {
     var path = 'https://pub.dartlang.org/packages/$packageName.json';
     try {
-      response = await http.get(path, headers: {
-        HttpHeaders.USER_AGENT: "pubviz - Dart ${Platform.version
-            .split(" ")
-            .first}"
-      });
+      final sdkVersion = Platform.version.split(' ').first;
+      // TODO(kevmoo): use http_retry
+      response = await http.get(path,
+          headers: {HttpHeaders.USER_AGENT: 'pubviz - Dart $sdkVersion'});
       break;
     } catch (e) {
       stderr.writeln(e);
