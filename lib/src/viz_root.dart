@@ -12,9 +12,8 @@ import 'viz_package.dart';
 class VizRoot {
   final VizPackage root;
   final Map<String, VizPackage> packages;
-  final bool flagOutdated;
 
-  VizRoot._(this.root, Map<String, VizPackage> packages, this.flagOutdated)
+  VizRoot._(this.root, Map<String, VizPackage> packages)
       : this.packages = new UnmodifiableMapView(packages);
 
   static Future<VizRoot> forDirectory(String path,
@@ -27,7 +26,7 @@ class VizRoot {
     root = packages[root.name];
     assert(root != null);
 
-    var value = new VizRoot._(root, packages, flagOutdated);
+    var value = new VizRoot._(root, packages);
 
     if (flagOutdated) {
       for (var dep in _allDeps(value, ignorePackages)) {
