@@ -9,8 +9,8 @@
     <button id="zoomBtn">Zoom</button>
     <script type="text/vnd.graphviz" id="dot">
 digraph pubviz {
-  graph [fontname=Helvetica, newrank=true, nodesep="0.2"];
-  edge [fontcolor=gray];
+  node [fontname=Helvetica];
+  edge [fontname=Helvetica, fontcolor=gray];
 
   analyzer [label="analyzer\n0.30.0+4"];
   analyzer -> args [label=">=0.12.1 <2.0.0", color=gray];
