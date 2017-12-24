@@ -17,7 +17,7 @@ String toDot(VizRoot item,
 
   var gviz = new Gviz(
       name: 'pubviz',
-      graphProperties: {'fontname': 'Helvetica', 'nodesep': '0.2'},
+      graphProperties: {'nodesep': '0.2'},
       edgeProperties: {'fontcolor': 'gray'});
 
   for (var pack
