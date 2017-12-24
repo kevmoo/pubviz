@@ -12,6 +12,7 @@ class VizPackage extends Comparable<VizPackage> {
   final String name;
   final Version version;
   final Set<Dependency> dependencies;
+  final VersionConstraint sdkConstraint;
   bool isPrimary = false;
 
   bool _onlyDev = true;
@@ -29,7 +30,8 @@ class VizPackage extends Comparable<VizPackage> {
 
   Version get latestVersion => _latestVersion;
 
-  VizPackage._(this.name, this.version, Set<Dependency> deps)
+  VizPackage._(
+      this.name, this.version, Set<Dependency> deps, this.sdkConstraint)
       : dependencies = new UnmodifiableSetView(deps);
 
   static Future<VizPackage> forDirectory(String path,
@@ -50,7 +52,17 @@ class VizPackage extends Comparable<VizPackage> {
 
     var deps = Dependency.getDependencies(pubspecMap);
 
-    var package = new VizPackage._(packageName, version, deps);
+    VersionConstraint sdkConstraint;
+
+    var environment = pubspecMap['environment'];
+    if (environment != null && environment is Map) {
+      var sdkValue = environment['sdk'] as String;
+      if (sdkValue != null) {
+        sdkConstraint = new VersionConstraint.parse(sdkValue);
+      }
+    }
+
+    var package = new VizPackage._(packageName, version, deps, sdkConstraint);
 
     if (flagOutdated) {
       await package.updateLatestVersion();

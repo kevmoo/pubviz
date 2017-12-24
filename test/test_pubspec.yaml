@@ -1,4 +1,6 @@
 name: test_pubspec
+environment:
+  sdk: '>=1.13.0 <2.0.0'
 dependencies:
   http: ^0.11.2
 dev_dependencies:

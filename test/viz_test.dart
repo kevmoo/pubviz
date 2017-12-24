@@ -1,12 +1,14 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:pub_semver/pub_semver.dart';
 import 'package:pubviz/pubviz.dart';
 import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
 
 Directory _tempDir;
 
+// TODO(kevmoo): use pkg:test_descriptor
 void main() {
   setUp(() async {
     await _initTest();
@@ -30,6 +32,9 @@ void main() {
     expect(vp.root.name, 'test_pubspec');
     expect(vp.packages, contains('http'));
     expect(vp.packages, contains('test'));
+
+    expect(
+        vp.root.sdkConstraint, new VersionConstraint.parse('>=1.13.0 <2.0.0'));
   });
 }
 
