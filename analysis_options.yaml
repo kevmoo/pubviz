@@ -20,6 +20,7 @@ linter:
     - valid_regexps
 
     # Style
+    - prefer_foreach
     - annotate_overrides
     - avoid_init_to_null
     - avoid_return_types_on_setters

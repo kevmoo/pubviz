@@ -85,10 +85,9 @@ class VizRoot {
     if (package.onlyDev) {
       package.onlyDev = false;
 
-      for (var subDep
-          in package.dependencies.where((d) => !d.isDevDependency)) {
-        _updateDevOnly(subDep);
-      }
+      package.dependencies
+          .where((d) => !d.isDevDependency)
+          .forEach(_updateDevOnly);
     }
   }
 }
