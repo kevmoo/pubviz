@@ -176,16 +176,19 @@ void _updateOver(svg.GElement element) {
     }
   }
 
-  _root.querySelectorAll('g.node').forEach((Element node) {
+  for (var node in _root.querySelectorAll('g.node')) {
     if (targetPkg.contains(node.id)) {
       node.classes.add('active');
     } else {
       node.classes.remove('active');
     }
-  });
+  }
 
-  _root.querySelectorAll('g.edge').forEach((Element node) {
+  final fromNodes = <String>[];
+  final toNodes = <String>[];
+  for (var node in _root.querySelectorAll('g.edge')) {
     if (targetPkg.length == 2) {
+      // then the hover-over is on a line!
       if (targetPkg.contains(node.attributes['x-to']) &&
           targetPkg.contains(node.attributes['x-from'])) {
         node.classes.add('active');
@@ -195,12 +198,31 @@ void _updateOver(svg.GElement element) {
     } else {
       if (targetPkg.contains(node.attributes['x-to']) ||
           targetPkg.contains(node.attributes['x-from'])) {
+        if (targetPkg.contains(node.attributes['x-to'])) {
+          fromNodes.add(node.attributes['x-from']);
+        }
+
+        if (targetPkg.contains(node.attributes['x-from'])) {
+          toNodes.add(node.attributes['x-to']);
+        }
+
         node.classes.add('active');
       } else {
         node.classes.remove('active');
       }
     }
-  });
+  }
+
+  if (targetPkg.length == 1) {
+    var lines = [targetPkg.single];
+    if (fromNodes.isNotEmpty) {
+      lines.add('  From: ${fromNodes.join(', ')}');
+    }
+    if (toNodes.isNotEmpty) {
+      lines.add('    To: ${toNodes.join(', ')}');
+    }
+    print(lines.join('\n'));
+  }
 }
 
 @JS()
