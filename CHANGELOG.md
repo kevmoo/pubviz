@@ -1,3 +1,9 @@
+## 2.4.2
+
+* Updated output format.
+
+* And other cleanup...
+
 ## 2.4.1
 
 * Using `nodesep=0.2` on the graph to make it tighter.
