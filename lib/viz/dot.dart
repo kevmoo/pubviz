@@ -4,16 +4,14 @@ import 'package:pubviz/pubviz.dart';
 String toDotHtml(VizRoot root, {List<String> ignorePackages}) {
   var dot = toDot(root, escapeLabels: true, ignorePackages: ignorePackages);
 
-  return _DOT_HTML_TEMPLATE
-      .replaceAll(_DOT_PLACE_HOLDER, dot)
-      .replaceAll(_TITLE_PLACE_HOLDER, root.root.name);
+  return _dotHtmlTemplate
+      .replaceAll(_dotPlaceHolder, dot)
+      .replaceAll(_titlePlaceHolder, root.root.name);
 }
 
 String toDot(VizRoot item,
     {bool escapeLabels: false, Iterable<String> ignorePackages}) {
-  if (ignorePackages == null) {
-    ignorePackages = const <String>[];
-  }
+  ignorePackages ??= const <String>[];
 
   var gviz = new Gviz(
       name: 'pubviz',
@@ -106,11 +104,11 @@ void _writeDot(VizPackage pkg, Gviz gviz, String rootName, bool escapeLabels,
   }
 }
 
-const _DOT_PLACE_HOLDER = 'DOT_HERE';
+const _dotPlaceHolder = 'DOT_HERE';
 
-const _TITLE_PLACE_HOLDER = 'PACKAGE_TITLE';
+const _titlePlaceHolder = 'PACKAGE_TITLE';
 
-const String _DOT_HTML_TEMPLATE = r'''
+const String _dotHtmlTemplate = r'''
 <!DOCTYPE html>
 <html>
   <head>

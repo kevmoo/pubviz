@@ -44,7 +44,7 @@ class VizPackage extends Comparable<VizPackage> {
     Map<String, dynamic> pubspecMap = await _openYaml(pubspecPath);
 
     String packageName = pubspecMap['name'];
-    assert(packageName != null && packageName.length > 0);
+    assert(packageName != null && packageName.isNotEmpty);
 
     var versionString = pubspecMap['version'] as String;
     var version =

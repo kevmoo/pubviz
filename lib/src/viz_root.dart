@@ -44,7 +44,9 @@ class VizRoot {
             // it could be that the versionConstraint is actually *ahead* of
             // latest – with a pre-release version
 
-            if (package.latestVersion.compareTo(dep.versionConstraint) < 0) {
+            // TODO: get rid of the `as` here – this is weird!
+            var constrantAsRange = dep.versionConstraint as VersionRange;
+            if (package.latestVersion.compareTo(constrantAsRange) < 0) {
               allowsLatest = true;
             }
           }
@@ -107,9 +109,9 @@ Future<Map<String, String>> _getPackageMap(
   if (result.exitCode != 0) {
     var message = result.stderr as String;
     try {
-      var value = JSON.decode(result.stdout) as Map;
+      var value = JSON.decode(result.stdout as String) as Map;
       if (value.containsKey('error')) {
-        message = value['error'];
+        message = value['error'] as String;
       }
     } catch (e) {
       // NOOP
@@ -162,7 +164,7 @@ Future<Map<String, VizPackage>> _getReferencedPackages(
 Iterable<Dependency> _allDeps(
     VizRoot root, Iterable<String> ignorePackages) sync* {
   for (var pkg
-      in root.packages.values.where((v) => !ignorePackages.contains(v))) {
+      in root.packages.values.where((v) => !ignorePackages.contains(v.name))) {
     yield* pkg.dependencies;
   }
 }

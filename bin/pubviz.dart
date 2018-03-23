@@ -146,9 +146,9 @@ const _ignoreOption = 'ignore-packages';
 ArgParser _getParser() => new ArgParser(allowTrailingOptions: true)
   ..addOption(_formatOption,
       abbr: 'f',
-      allowed: _FORMAT_HELP.keys.toList(),
+      allowed: _formatHelp.keys.toList(),
       defaultsTo: 'html',
-      allowedHelp: _FORMAT_HELP)
+      allowedHelp: _formatHelp)
   ..addOption(_ignoreOption,
       abbr: 'i',
       help: 'A comma seperated list of packages to exclude in the output.',
@@ -162,7 +162,7 @@ ArgParser _getParser() => new ArgParser(allowTrailingOptions: true)
       help: 'Check pub.dartlang.org for lasted packages and flag those that '
           'are outdated.');
 
-const _FORMAT_HELP = const {
+const _formatHelp = const {
   'dot': 'Generate a GraphViz dot file',
   'html': 'Wrap the GraphViz dot format in an HTML template which renders it.'
 };
