@@ -149,10 +149,9 @@ ArgParser _getParser() => new ArgParser(allowTrailingOptions: true)
       allowed: _formatHelp.keys.toList(),
       defaultsTo: 'html',
       allowedHelp: _formatHelp)
-  ..addOption(_ignoreOption,
+  ..addMultiOption(_ignoreOption,
       abbr: 'i',
-      help: 'A comma seperated list of packages to exclude in the output.',
-      allowMultiple: true)
+      help: 'A comma seperated list of packages to exclude in the output.')
   ..addCommand('open')
   ..addCommand('print')
   ..addFlag('flag-outdated',

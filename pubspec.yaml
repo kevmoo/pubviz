@@ -5,10 +5,10 @@ description: Visualize package dependencies in your Dart project
 homepage: https://github.com/kevmoo/pubviz
 
 environment:
-  sdk: '>=1.13.0 <2.0.0'
+  sdk: '>=2.0.0-dev.23 <2.0.0'
 
 dependencies:
-  args: '>=0.13.0 <2.0.0'
+  args: ^1.4.1
   collection: ^1.0.0
   gviz: ^0.2.0
   http: ^0.11.1+3
