@@ -3,6 +3,8 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:args/args.dart';
+import 'package:io/io.dart';
+import 'package:io/ansi.dart';
 import 'package:path/path.dart' as p;
 import 'package:pubviz/pubviz.dart';
 import 'package:pubviz/viz/dot.dart' as dot;
@@ -15,7 +17,14 @@ main(List<String> args) async {
   try {
     result = parser.parse(args);
   } on FormatException catch (e) {
-    print(e.message);
+    print(yellow.wrap(e.message));
+    print('');
+    _printUsage(parser);
+    exitCode = ExitCode.usage.code;
+    return;
+  }
+
+  if (result['help'] as bool) {
     _printUsage(parser);
     return;
   }
@@ -23,8 +32,10 @@ main(List<String> args) async {
   var command = result.command;
 
   if (command == null) {
-    print("Specify a command: ${parser.commands.keys.join(', ')}");
+    print(yellow.wrap("Specify a command: ${parser.commands.keys.join(', ')}"));
+    print('');
     _printUsage(parser);
+    exitCode = ExitCode.usage.code;
     return;
   }
 
@@ -54,7 +65,7 @@ main(List<String> args) async {
 }
 
 void _printUsage(ArgParser parser) {
-  print('usage: pubviz [--$_formatOption=<format>] '
+  print('Usage: pubviz [--$_formatOption=<format>] '
       '[--$_ignoreOption=<package1>,<package2>] '
       '(open | print) [<package path>]');
   print('');
@@ -159,7 +170,8 @@ ArgParser _getParser() => new ArgParser(allowTrailingOptions: true)
       defaultsTo: false,
       negatable: true,
       help: 'Check pub.dartlang.org for lasted packages and flag those that '
-          'are outdated.');
+          'are outdated.')
+  ..addFlag('help', abbr: 'h', help: 'Print this help content.');
 
 const _formatHelp = const {
   'dot': 'Generate a GraphViz dot file',

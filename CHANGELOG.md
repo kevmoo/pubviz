@@ -1,3 +1,7 @@
+## 2.4.3
+
+* Improvements in CLI error handling and help.
+
 ## 2.4.2
 
 * Updated output format.
