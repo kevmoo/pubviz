@@ -109,7 +109,7 @@ Future<Map<String, String>> _getPackageMap(
   if (result.exitCode != 0) {
     var message = result.stderr as String;
     try {
-      var value = JSON.decode(result.stdout as String) as Map;
+      var value = jsonDecode(result.stdout as String) as Map;
       if (value.containsKey('error')) {
         message = value['error'] as String;
       }
@@ -121,7 +121,7 @@ Future<Map<String, String>> _getPackageMap(
         'pub', ['list-package-dirs'], message, result.exitCode);
   }
 
-  var json = JSON.decode(result.stdout as String);
+  var json = jsonDecode(result.stdout as String);
 
   var packages = json['packages'] as Map<String, String>;
 

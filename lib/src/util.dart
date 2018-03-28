@@ -33,7 +33,7 @@ Future<Version> getLatestVersion(String packageName) async {
     return null;
   }
 
-  var json = JSON.decode(response.body);
+  var json = jsonDecode(response.body);
 
   assert(json['name'] == packageName);
 

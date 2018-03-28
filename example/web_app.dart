@@ -1,7 +1,7 @@
 @JS()
 library web_app;
 
-import 'dart:convert' show HTML_ESCAPE, LineSplitter;
+import 'dart:convert' show htmlEscape, LineSplitter;
 import 'dart:html';
 import 'dart:svg' as svg;
 
@@ -89,7 +89,7 @@ void _process() {
         new VizOptions(format: 'svg', totalMemory: 32 * 1024 * 1024));
     _updateBody(output);
   } catch (e) {
-    var output = '<pre>${HTML_ESCAPE.convert(e.toString())}</pre>';
+    var output = '<pre>${htmlEscape.convert(e.toString())}</pre>';
     document.body.appendHtml(output);
   } finally {
     print('Total time generating graph: ${watch.elapsed}');
