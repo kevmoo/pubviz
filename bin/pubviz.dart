@@ -17,7 +17,7 @@ main(List<String> args) async {
   try {
     result = parser.parse(args);
   } on FormatException catch (e) {
-    print(yellow.wrap(e.message));
+    print(red.wrap(e.message));
     print('');
     _printUsage(parser);
     exitCode = ExitCode.usage.code;
@@ -32,7 +32,7 @@ main(List<String> args) async {
   var command = result.command;
 
   if (command == null) {
-    print(yellow.wrap("Specify a command: ${parser.commands.keys.join(', ')}"));
+    print(red.wrap("Specify a command: ${parser.commands.keys.join(', ')}"));
     print('');
     _printUsage(parser);
     exitCode = ExitCode.usage.code;
