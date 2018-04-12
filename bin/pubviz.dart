@@ -10,8 +10,10 @@ import 'package:pubviz/pubviz.dart';
 import 'package:pubviz/viz/dot.dart' as dot;
 import 'package:stack_trace/stack_trace.dart';
 
+import 'options.dart';
+
 main(List<String> args) async {
-  var parser = _getParser();
+  parser..addCommand('open')..addCommand('print');
 
   ArgResults result;
   try {
@@ -24,7 +26,9 @@ main(List<String> args) async {
     return;
   }
 
-  if (result['help'] as bool) {
+  var options = parseOptionsResult(result);
+
+  if (options.help) {
     _printUsage(parser);
     return;
   }
@@ -41,19 +45,14 @@ main(List<String> args) async {
 
   var path = _getPath(command.rest);
 
-  var format = result[_formatOption] as String;
-  var flagOutdated = result['flag-outdated'] as bool;
-  List<String> ignorePackages = result['ignore-packages'] != null
-      ? result[_ignoreOption].map((e) => e.trim()).toList()
-      : const [];
-
   await Chain.capture(() async {
     var vp = await VizRoot.forDirectory(path,
-        flagOutdated: flagOutdated, ignorePackages: ignorePackages);
+        flagOutdated: options.flagOutdated,
+        ignorePackages: options.ignorePackages);
     if (command.name == 'print') {
-      _printContent(vp, format, ignorePackages);
+      _printContent(vp, options.format, options.ignorePackages);
     } else if (command.name == 'open') {
-      await _open(vp, format, ignorePackages);
+      await _open(vp, options.format, options.ignorePackages);
     } else {
       throw new StateError('Should never get here...');
     }
@@ -77,25 +76,21 @@ void _printUsage(ArgParser parser) {
   print('If <package path> is omitted, the current directory is used.');
 }
 
-String _getContent(VizRoot root, String format, List<String> ignorePackages) {
+String _getContent(
+    VizRoot root, FormatOptions format, List<String> ignorePackages) {
   switch (format) {
-    case 'html':
+    case FormatOptions.html:
       return dot.toDotHtml(root, ignorePackages: ignorePackages);
-    case 'dot':
+    case FormatOptions.dot:
       return dot.toDot(root, ignorePackages: ignorePackages);
-    default:
-      throw new StateError('format "$format" is not supported');
   }
+  throw new StateError('format "$format" is not supported');
 }
 
-String _getExtension(String format) {
-  switch (format) {
-    default:
-      return format;
-  }
-}
+String _getExtension(FormatOptions format) => format.toString().split('.')[1];
 
-Future _open(VizRoot root, String format, List<String> ignorePackages) async {
+Future _open(
+    VizRoot root, FormatOptions format, List<String> ignorePackages) async {
   var extension = _getExtension(format);
   var name = root.root.name;
   var dir = await Directory.systemTemp.createTemp('pubviz_${name}_');
@@ -123,7 +118,8 @@ Future _open(VizRoot root, String format, List<String> ignorePackages) async {
   return Process.run(openCommand, [filePath], runInShell: true);
 }
 
-void _printContent(VizRoot root, String format, List<String> ignorePackages) {
+void _printContent(
+    VizRoot root, FormatOptions format, List<String> ignorePackages) {
   var content = _getContent(root, format, ignorePackages);
   print(content);
 }
@@ -153,27 +149,3 @@ String _getPath(List<String> args) {
 
 const _formatOption = 'format';
 const _ignoreOption = 'ignore-packages';
-
-ArgParser _getParser() => new ArgParser(allowTrailingOptions: true)
-  ..addOption(_formatOption,
-      abbr: 'f',
-      allowed: _formatHelp.keys.toList(),
-      defaultsTo: 'html',
-      allowedHelp: _formatHelp)
-  ..addMultiOption(_ignoreOption,
-      abbr: 'i',
-      help: 'A comma seperated list of packages to exclude in the output.')
-  ..addCommand('open')
-  ..addCommand('print')
-  ..addFlag('flag-outdated',
-      abbr: 'o',
-      defaultsTo: false,
-      negatable: true,
-      help: 'Check pub.dartlang.org for lasted packages and flag those that '
-          'are outdated.')
-  ..addFlag('help', abbr: 'h', help: 'Print this help content.');
-
-const _formatHelp = const {
-  'dot': 'Generate a GraphViz dot file',
-  'html': 'Wrap the GraphViz dot format in an HTML template which renders it.'
-};
