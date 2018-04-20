@@ -12,40 +12,39 @@ Here's an [example](http://kevmoo.github.io/pubviz/) of `pubviz` run on itself.
 ### Installing
 
 Activate `pubviz`.
-```
-~/anypath/> pub global activate pubviz
+```console
+$ pub global activate pubviz
 ```
 
 ### Use
 
-If you have installed Dart v1.7+ and [modified your PATH][path], you can
-run `pubviz` directly.
+If you have [configured your PATH correctly][path], you can run `pubviz`
+directly.
 
-```
-~/proj_path/> pubviz [arguments]
+```console
+$ pubviz
 ```
 
 Otherwise you can use the `pub global` command.
 
-```
-~/proj_path/> pub global run pubviz [arguments]
+```console
+$ pub global run pubviz
 ```
 
 ### Generate and open an html file for the package on the current path.
 
-```
-~/http_package/> pubviz open
+```console
+$ pubviz open
 ```
 
 Should open your default browser to something like:
 
 ![sample](https://raw.github.com/kevmoo/pubviz/master/doc/sample.png)
 
-
 ### Print GraphViz dot format to command line for a package on a specified path.
 
-```
-~/any_path/> pubviz --format=dot print /path/to/http_package
+```console
+$ pubviz --format=dot print /path/to/http_package
 ```
 
 You should see output something like:
@@ -76,17 +75,22 @@ digraph G {
 
 ### pubviz with no arguments prints help
 
-```
-usage: pubviz [--format=<format>] (open | print) [<package path>]
+```console
+$ pubviz -?
+Usage: pubviz [<args>] <command> [<package path>]
 
+Commands:
   open   Populate a temporary file with the content and open it.
   print  Print the output to stdout.
 
--f, --format
-          [dot]             Generate a GraphViz dot file
-          [html]            Wrap the GraphViz dot format in an HTML template which renders it.
+Arguments:
+  -f, --format=<format>
+            [dot]             Generate a GraphViz dot file
+            [html]            Wrap the GraphViz dot format in an HTML template which renders it.
 
--o, --[no-]flag-outdated    Check pub.dartlang.org for lasted packages and flag those that are outdated.
+  -i, --ignore-packages       A comma seperated list of packages to exclude in the output.
+  -o, --[no-]flag-outdated    Check pub.dartlang.org for lasted packages and flag those that are outdated.
+  -?, --help                  Print this help content.
 
 If <package path> is omitted, the current directory is used.
 ```

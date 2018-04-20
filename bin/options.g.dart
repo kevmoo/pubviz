@@ -23,13 +23,19 @@ Options _$parseOptionsResult(ArgResults result) {
 }
 
 ArgParser _$populateOptionsParser(ArgParser parser) => parser
-  ..addOption('format', abbr: 'f', defaultsTo: 'html', allowed: [
-    'dot',
-    'html'
-  ], allowedHelp: <String, String>{
-    'dot': 'Generate a GraphViz dot file',
-    'html': 'Wrap the GraphViz dot format in an HTML template which renders it.'
-  })
+  ..addOption('format',
+      abbr: 'f',
+      valueHelp: 'format',
+      defaultsTo: 'html',
+      allowed: [
+        'dot',
+        'html'
+      ],
+      allowedHelp: <String, String>{
+        'dot': 'Generate a GraphViz dot file',
+        'html':
+            'Wrap the GraphViz dot format in an HTML template which renders it.'
+      })
   ..addMultiOption('ignore-packages',
       abbr: 'i',
       help: 'A comma seperated list of packages to exclude in the output.')
@@ -37,7 +43,8 @@ ArgParser _$populateOptionsParser(ArgParser parser) => parser
       abbr: 'o',
       help:
           'Check pub.dartlang.org for lasted packages and flag those that are outdated.')
-  ..addFlag('help', abbr: 'h', help: 'Print this help content.');
+  ..addFlag('help',
+      abbr: '?', help: 'Print this help content.', negatable: false);
 
 final _$parserForOptions = _$populateOptionsParser(new ArgParser());
 

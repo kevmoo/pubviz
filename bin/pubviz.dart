@@ -1,5 +1,6 @@
 #!/usr/bin/env dart
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:args/args.dart';
@@ -63,17 +64,20 @@ main(List<String> args) async {
   });
 }
 
+String _indent(String input) =>
+    LineSplitter.split(input).map((l) => '  $l'.trimRight()).join('\n');
+
 void _printUsage(ArgParser parser) {
-  print('Usage: pubviz [--$_formatOption=<format>] '
-      '[--$_ignoreOption=<package1>,<package2>] '
-      '(open | print) [<package path>]');
-  print('');
-  print('  open   Populate a temporary file with the content and open it.');
-  print('  print  Print the output to stdout.');
-  print('');
-  print(parser.usage);
-  print('');
-  print('If <package path> is omitted, the current directory is used.');
+  print('''Usage: pubviz [<args>] <command> [<package path>]
+
+${styleBold.wrap('Commands:')}
+  open   Populate a temporary file with the content and open it.
+  print  Print the output to stdout.
+
+${styleBold.wrap('Arguments:')}
+${_indent(parser.usage)}
+
+If <package path> is omitted, the current directory is used.''');
 }
 
 String _getContent(
@@ -146,6 +150,3 @@ String _getPath(List<String> args) {
 
   return path;
 }
-
-const _formatOption = 'format';
-const _ignoreOption = 'ignore-packages';

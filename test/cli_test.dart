@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:test/test.dart';
 import 'package:test_process/test_process.dart';
 
@@ -6,21 +7,7 @@ void main() {
     var proc = await TestProcess.start('dart', ['bin/pubviz.dart', '--help']);
 
     var output = await proc.stdoutStream().join('\n');
-    expect(output,
-        r'''Usage: pubviz [--format=<format>] [--ignore-packages=<package1>,<package2>] (open | print) [<package path>]
-
-  open   Populate a temporary file with the content and open it.
-  print  Print the output to stdout.
-
--f, --format                
-          [dot]             Generate a GraphViz dot file
-          [html]            Wrap the GraphViz dot format in an HTML template which renders it.
-
--i, --ignore-packages       A comma seperated list of packages to exclude in the output.
--o, --[no-]flag-outdated    Check pub.dartlang.org for lasted packages and flag those that are outdated.
--h, --[no-]help             Print this help content.
-
-If <package path> is omitted, the current directory is used.''');
+    expect(output, _usage);
 
     await proc.shouldExit(0);
   });
@@ -29,22 +16,9 @@ If <package path> is omitted, the current directory is used.''');
     var proc = await TestProcess.start('dart', ['bin/pubviz.dart', '--bob']);
 
     var output = await proc.stdoutStream().join('\n');
-    expect(output, r'''Could not find an option named "bob".
+    expect(output, '''Could not find an option named "bob".
 
-Usage: pubviz [--format=<format>] [--ignore-packages=<package1>,<package2>] (open | print) [<package path>]
-
-  open   Populate a temporary file with the content and open it.
-  print  Print the output to stdout.
-
--f, --format                
-          [dot]             Generate a GraphViz dot file
-          [html]            Wrap the GraphViz dot format in an HTML template which renders it.
-
--i, --ignore-packages       A comma seperated list of packages to exclude in the output.
--o, --[no-]flag-outdated    Check pub.dartlang.org for lasted packages and flag those that are outdated.
--h, --[no-]help             Print this help content.
-
-If <package path> is omitted, the current directory is used.''');
+$_usage''');
 
     await proc.shouldExit(64);
   });
@@ -53,23 +27,34 @@ If <package path> is omitted, the current directory is used.''');
     var proc = await TestProcess.start('dart', ['bin/pubviz.dart']);
 
     var output = await proc.stdoutStream().join('\n');
-    expect(output, r'''Specify a command: open, print
+    expect(output, '''Specify a command: open, print
 
-Usage: pubviz [--format=<format>] [--ignore-packages=<package1>,<package2>] (open | print) [<package path>]
-
-  open   Populate a temporary file with the content and open it.
-  print  Print the output to stdout.
-
--f, --format                
-          [dot]             Generate a GraphViz dot file
-          [html]            Wrap the GraphViz dot format in an HTML template which renders it.
-
--i, --ignore-packages       A comma seperated list of packages to exclude in the output.
--o, --[no-]flag-outdated    Check pub.dartlang.org for lasted packages and flag those that are outdated.
--h, --[no-]help             Print this help content.
-
-If <package path> is omitted, the current directory is used.''');
+$_usage''');
 
     await proc.shouldExit(64);
   });
+
+  test('readme', () {
+    var readmeContent = new File('README.md').readAsStringSync();
+
+    expect(readmeContent,
+        contains(['```console', r'$ pubviz -?', _usage, '```'].join('\n')));
+  });
 }
+
+const _usage = r'''Usage: pubviz [<args>] <command> [<package path>]
+
+Commands:
+  open   Populate a temporary file with the content and open it.
+  print  Print the output to stdout.
+
+Arguments:
+  -f, --format=<format>
+            [dot]             Generate a GraphViz dot file
+            [html]            Wrap the GraphViz dot format in an HTML template which renders it.
+
+  -i, --ignore-packages       A comma seperated list of packages to exclude in the output.
+  -o, --[no-]flag-outdated    Check pub.dartlang.org for lasted packages and flag those that are outdated.
+  -?, --help                  Print this help content.
+
+If <package path> is omitted, the current directory is used.''';

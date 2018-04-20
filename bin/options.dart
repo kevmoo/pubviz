@@ -11,7 +11,8 @@ class Options {
   @CliOption(
       abbr: 'f',
       defaultsTo: FormatOptions.html,
-      allowedHelp: _formatOptionsHelp)
+      allowedHelp: _formatOptionsHelp,
+      valueHelp: 'format')
   final FormatOptions format;
 
   @CliOption(
@@ -25,7 +26,7 @@ class Options {
           'Check pub.dartlang.org for lasted packages and flag those that are outdated.')
   final bool flagOutdated;
 
-  @CliOption(abbr: 'h', help: 'Print this help content.')
+  @CliOption(abbr: '?', help: 'Print this help content.', negatable: false)
   final bool help;
 
   Options({this.format, this.ignorePackages, this.flagOutdated, this.help});
