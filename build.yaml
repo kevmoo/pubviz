@@ -4,7 +4,7 @@ targets:
     builders:
       build_cli:
         generate_for:
-        - bin/options.*
+        - lib/src/options.*
       build_web_compilers|entrypoint:
         generate_for:
         - example/**.dart

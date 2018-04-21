@@ -7,11 +7,10 @@ import 'package:args/args.dart';
 import 'package:io/io.dart';
 import 'package:io/ansi.dart';
 import 'package:path/path.dart' as p;
+import 'package:pubviz/src/options.dart';
 import 'package:pubviz/pubviz.dart';
 import 'package:pubviz/viz/dot.dart' as dot;
 import 'package:stack_trace/stack_trace.dart';
-
-import 'options.dart';
 
 main(List<String> args) async {
   parser..addCommand('open')..addCommand('print');

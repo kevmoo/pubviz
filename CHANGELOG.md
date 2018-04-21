@@ -1,3 +1,7 @@
+## 2.4.4
+
+* Fixed code organization to eliminate warning during `pub global activate`.
+
 ## 2.4.3
 
 * Improvements in CLI error handling and help.
