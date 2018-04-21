@@ -19,7 +19,8 @@ Options _$parseOptionsResult(ArgResults result) {
           'FormatOptions', FormatOptions.values, result['format'] as String),
       ignorePackages: result['ignore-packages'] as List<String>,
       flagOutdated: result['flag-outdated'] as bool,
-      help: result['help'] as bool);
+      help: result['help'] as bool,
+      command: result.command);
 }
 
 ArgParser _$populateOptionsParser(ArgParser parser) => parser

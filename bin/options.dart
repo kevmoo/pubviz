@@ -4,8 +4,6 @@ part 'options.g.dart';
 
 ArgParser get parser => _$parserForOptions;
 
-Options parseOptionsResult(ArgResults result) => _$parseOptionsResult(result);
-
 @CliOptions()
 class Options {
   @CliOption(
@@ -29,7 +27,14 @@ class Options {
   @CliOption(abbr: '?', help: 'Print this help content.', negatable: false)
   final bool help;
 
-  Options({this.format, this.ignorePackages, this.flagOutdated, this.help});
+  final ArgResults command;
+
+  Options(
+      {this.format,
+      this.ignorePackages,
+      this.flagOutdated,
+      this.help,
+      this.command});
 }
 
 enum FormatOptions { dot, html }

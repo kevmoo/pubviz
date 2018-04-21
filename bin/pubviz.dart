@@ -16,9 +16,9 @@ import 'options.dart';
 main(List<String> args) async {
   parser..addCommand('open')..addCommand('print');
 
-  ArgResults result;
+  Options options;
   try {
-    result = parser.parse(args);
+    options = parseOptions(args);
   } on FormatException catch (e) {
     print(red.wrap(e.message));
     print('');
@@ -27,14 +27,12 @@ main(List<String> args) async {
     return;
   }
 
-  var options = parseOptionsResult(result);
-
   if (options.help) {
     _printUsage(parser);
     return;
   }
 
-  var command = result.command;
+  var command = options.command;
 
   if (command == null) {
     print(red.wrap("Specify a command: ${parser.commands.keys.join(', ')}"));
