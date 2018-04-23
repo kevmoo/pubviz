@@ -1,7 +1,6 @@
 ### Visualize package dependencies in your Dart project
 
 [![Build Status](https://travis-ci.org/kevmoo/pubviz.svg?branch=master)](https://travis-ci.org/kevmoo/pubviz)
-[![Coverage Status](https://coveralls.io/repos/kevmoo/pubviz/badge.svg?branch=master)](https://coveralls.io/r/kevmoo/pubviz)
 
 *Make sure you run `pub get` or `pub upgrade` in your target project directory.*
 
@@ -73,7 +72,7 @@ digraph G {
 }
 ```
 
-### pubviz with no arguments prints help
+### `pubviz -?` prints help
 
 ```console
 $ pubviz -?
