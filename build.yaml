@@ -2,6 +2,9 @@
 targets:
   $default:
     builders:
+      build_web_compilers|dart2js_archive_extractor:
+        options:
+          filter_outputs: false
       build_cli:
         generate_for:
         - lib/src/options.*
