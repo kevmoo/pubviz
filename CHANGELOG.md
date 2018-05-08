@@ -1,3 +1,7 @@
+## 2.4.5
+
+* Fix for latest Flutter SDK.
+
 ## 2.4.4
 
 * Fixed code organization to eliminate warning during `pub global activate`.

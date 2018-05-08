@@ -141,8 +141,11 @@ Future<Map<String, VizPackage>> _getReferencedPackages(
   try {
     map = await _getPackageMap(path, false);
   } on ProcessException catch (e) {
-    if (e.message.startsWith('Flutter is not available.')) {
+    if (e.message.startsWith('Flutter is not available.') ||
+        e.message.startsWith('The Flutter SDK is not available.')) {
       map = await _getPackageMap(path, true);
+    } else {
+      rethrow;
     }
   }
 
