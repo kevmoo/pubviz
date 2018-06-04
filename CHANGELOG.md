@@ -1,3 +1,7 @@
+## 2.4.6
+
+* Use `pkg:pubspec_parse` package.
+
 ## 2.4.5
 
 * Fix for latest Flutter SDK.

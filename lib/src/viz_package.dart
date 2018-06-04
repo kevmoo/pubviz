@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:collection/collection.dart';
 import 'package:path/path.dart' as p;
 import 'package:pub_semver/pub_semver.dart';
-import 'package:yaml/yaml.dart' as yaml;
+import 'package:pubspec_parse/pubspec_parse.dart' hide Dependency;
 
 import 'dependency.dart';
 import 'util.dart';
@@ -41,28 +41,13 @@ class VizPackage extends Comparable<VizPackage> {
 
     var pubspecPath = p.join(path, 'pubspec.yaml');
 
-    Map<String, dynamic> pubspecMap = await _openYaml(pubspecPath);
+    var pubspec = new Pubspec.parse(new File(pubspecPath).readAsStringSync(),
+        sourceUrl: pubspecPath);
+    var deps = Dependency.getDependencies(pubspec);
+    var sdkConstraint = pubspec.environment['sdk'];
 
-    String packageName = pubspecMap['name'];
-    assert(packageName != null && packageName.isNotEmpty);
-
-    var versionString = pubspecMap['version'] as String;
-    var version =
-        (versionString == null) ? null : new Version.parse(versionString);
-
-    var deps = Dependency.getDependencies(pubspecMap);
-
-    VersionConstraint sdkConstraint;
-
-    var environment = pubspecMap['environment'];
-    if (environment != null && environment is Map) {
-      var sdkValue = environment['sdk'] as String;
-      if (sdkValue != null) {
-        sdkConstraint = new VersionConstraint.parse(sdkValue);
-      }
-    }
-
-    var package = new VizPackage._(packageName, version, deps, sdkConstraint);
+    var package =
+        new VizPackage._(pubspec.name, pubspec.version, deps, sdkConstraint);
 
     if (flagOutdated) {
       await package.updateLatestVersion();
@@ -101,10 +86,4 @@ class VizPackage extends Comparable<VizPackage> {
 
     return _latestVersion;
   }
-}
-
-Future<Map<String, dynamic>> _openYaml(String path) async {
-  var file = new File(path);
-  var value = await file.readAsString();
-  return yaml.loadYaml(value) as Map<String, dynamic>;
 }

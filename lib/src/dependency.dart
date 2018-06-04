@@ -1,4 +1,5 @@
 import 'package:pub_semver/pub_semver.dart';
+import 'package:pubspec_parse/pubspec_parse.dart' as parse;
 
 class Dependency implements Comparable<Dependency> {
   final String name;
@@ -19,36 +20,30 @@ class Dependency implements Comparable<Dependency> {
   Dependency._(this.name, String versionConstraint, this.isDevDependency)
       : this.versionConstraint = _parseOrNull(versionConstraint);
 
-  static Set<Dependency> getDependencies(Map<String, dynamic> yaml) {
+  static Set<Dependency> getDependencies(parse.Pubspec pubspec) {
     var deps = new Set<Dependency>();
 
-    _populateFromSection(
-        yaml['dependencies'] as Map<String, dynamic>, deps, false);
-    _populateFromSection(
-        yaml['dev_dependencies'] as Map<String, dynamic>, deps, true);
+    _populateFromSection(pubspec.dependencies, deps, false);
+    _populateFromSection(pubspec.devDependencies, deps, true);
 
     return deps;
   }
 
   static void _populateFromSection(
-      Map<String, dynamic> yaml, Set<Dependency> value, bool isDev) {
-    if (yaml != null) {
-      yaml.forEach((String key, Object constraint) {
-        String constraintString;
-        if (constraint == null) {
-          constraintString = '';
-        } else if (constraint is Map) {
-          constraintString = constraint.toString();
-        } else {
-          constraintString = constraint as String;
-        }
+      Map<String, parse.Dependency> yaml, Set<Dependency> value, bool isDev) {
+    yaml.forEach((String key, parse.Dependency constraint) {
+      String constraintString;
+      if (constraint is parse.HostedDependency) {
+        constraintString = constraint.version.toString();
+      } else {
+        constraintString = constraint.toString();
+      }
 
-        var dep = new Dependency._(key, constraintString, isDev);
-        assert(!value.contains(dep));
+      var dep = new Dependency._(key, constraintString, isDev);
+      assert(!value.contains(dep));
 
-        value.add(dep);
-      });
-    }
+      value.add(dep);
+    });
   }
 
   @override
