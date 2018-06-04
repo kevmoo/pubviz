@@ -2,6 +2,8 @@
 
 * Use `pkg:pubspec_parse` package.
 
+* Stop using deprecated constants.
+
 ## 2.4.5
 
 * Fix for latest Flutter SDK.

@@ -100,7 +100,7 @@ Future _open(
 
   file = await file.create();
   String content = _getContent(root, format, ignorePackages);
-  await file.writeAsString(content, mode: FileMode.WRITE, flush: true);
+  await file.writeAsString(content, mode: FileMode.write, flush: true);
 
   print('File generated: $filePath');
 

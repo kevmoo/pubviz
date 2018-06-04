@@ -15,7 +15,7 @@ void main() {
   test('validate pub completed', () async {
     var type = await FileSystemEntity.type(p.join(d.sandbox, 'pubspec.lock'));
 
-    expect(type, FileSystemEntityType.FILE);
+    expect(type, FileSystemEntityType.file);
   });
 
   test('generate VizRoot', () async {
