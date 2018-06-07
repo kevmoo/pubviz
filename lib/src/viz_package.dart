@@ -50,7 +50,7 @@ class VizPackage extends Comparable<VizPackage> {
         new VizPackage._(pubspec.name, pubspec.version, deps, sdkConstraint);
 
     if (flagOutdated) {
-      await package.updateLatestVersion();
+      await package._updateLatestVersion();
     }
 
     return package;
@@ -79,10 +79,18 @@ class VizPackage extends Comparable<VizPackage> {
   @override
   int get hashCode => name.hashCode;
 
-  Future<Version> updateLatestVersion() async {
+  Future<Version> _updateLatestVersion() async {
     if (_latestVersion != null) return _latestVersion;
+    if (version == null) {
+      // Likely not published. Don't try.
+      return null;
+    }
 
-    _latestVersion = await getLatestVersion(name);
+    _latestVersion = await getLatestVersion(name, version.isPreRelease);
+
+    if (_latestVersion != null) {
+      assert(_latestVersion.compareTo(version) >= 0);
+    }
 
     return _latestVersion;
   }

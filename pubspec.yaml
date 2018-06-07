@@ -1,5 +1,5 @@
 name: pubviz
-version: 2.4.6-dev
+version: 2.5.0
 author: Kevin Moore <kevmoo@google.com>
 description: Visualize package dependencies in your Dart project
 homepage: https://github.com/kevmoo/pubviz

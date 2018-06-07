@@ -1,8 +1,10 @@
-## 2.4.6
+## 2.5.0
 
 * Use `pkg:pubspec_parse` package.
 
 * Stop using deprecated constants.
+
+* Improve handling of pre-release packages.
 
 ## 2.4.5
 
