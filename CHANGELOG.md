@@ -1,3 +1,7 @@
+## 2.5.1
+
+* Stop using deprecated HTTP constants.
+
 ## 2.5.0
 
 * Use `pkg:pubspec_parse` package.

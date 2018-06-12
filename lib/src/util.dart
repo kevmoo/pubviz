@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:pub_semver/pub_semver.dart';
 
 final _hedears = {
-  HttpHeaders.USER_AGENT: 'pubviz - Dart ${Platform.version.split(' ').first}'
+  'user-agent': 'pubviz - Dart ${Platform.version.split(' ').first}'
 };
 
 Future<Version> getLatestVersion(
