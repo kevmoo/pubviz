@@ -123,11 +123,11 @@ Future<Map<String, String>> _getPackageMap(
 
   var json = jsonDecode(result.stdout as String);
 
-  var packages = json['packages'] as Map<String, String>;
+  var packages = json['packages'] as Map<String, dynamic>;
 
   packages.forEach((k, v) {
-    assert(p.basename(v) == 'lib');
-    map[k] = p.dirname(v);
+    assert(p.basename(v as String) == 'lib');
+    map[k] = p.dirname(v as String);
   });
 
   return map;

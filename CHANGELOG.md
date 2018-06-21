@@ -1,3 +1,7 @@
+## 2.5.2
+
+* Fixes for Dart 2 type system.
+
 ## 2.5.1
 
 * Stop using deprecated HTTP constants.
