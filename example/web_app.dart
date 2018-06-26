@@ -11,8 +11,8 @@ final zoomBtn = querySelector('#zoomBtn') as ButtonElement;
 
 svg.SvgElement _root;
 
-final List<String> _dotContentLines = new List.unmodifiable(LineSplitter
-    .split((querySelector('#dot') as ScriptElement).innerHtml.trim()));
+final List<String> _dotContentLines = new List.unmodifiable(LineSplitter.split(
+    (querySelector('#dot') as ScriptElement).innerHtml.trim()));
 
 final Set<String> _toIgnore = new Set<String>();
 
@@ -99,8 +99,7 @@ void _process() {
 void _updateBody(String output) {
   assert(_root == null);
 
-  output = LineSplitter
-      .split(output)
+  output = LineSplitter.split(output)
       .where((line) =>
           !line.contains('<!--') &&
           !line.contains('-->') &&
