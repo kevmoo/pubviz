@@ -1,3 +1,7 @@
+## 2.5.3
+
+* Support Dart 2 stable.
+
 ## 2.5.2
 
 * Fixes for Dart 2 type system.
