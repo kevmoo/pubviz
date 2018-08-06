@@ -3,7 +3,6 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:args/args.dart';
 import 'package:io/io.dart';
 import 'package:io/ansi.dart';
 import 'package:path/path.dart' as p;
@@ -21,13 +20,13 @@ main(List<String> args) async {
   } on FormatException catch (e) {
     print(red.wrap(e.message));
     print('');
-    _printUsage(parser);
+    _printUsage();
     exitCode = ExitCode.usage.code;
     return;
   }
 
   if (options.help) {
-    _printUsage(parser);
+    _printUsage();
     return;
   }
 
@@ -36,7 +35,7 @@ main(List<String> args) async {
   if (command == null) {
     print(red.wrap("Specify a command: ${parser.commands.keys.join(', ')}"));
     print('');
-    _printUsage(parser);
+    _printUsage();
     exitCode = ExitCode.usage.code;
     return;
   }
@@ -64,7 +63,7 @@ main(List<String> args) async {
 String _indent(String input) =>
     LineSplitter.split(input).map((l) => '  $l'.trimRight()).join('\n');
 
-void _printUsage(ArgParser parser) {
+void _printUsage() {
   print('''Usage: pubviz [<args>] <command> [<package path>]
 
 ${styleBold.wrap('Commands:')}
