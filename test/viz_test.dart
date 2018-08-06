@@ -26,7 +26,7 @@ void main() {
     expect(vp.packages, contains('test'));
 
     expect(
-        vp.root.sdkConstraint, new VersionConstraint.parse('>=1.13.0 <2.0.0'));
+        vp.root.sdkConstraint, new VersionConstraint.parse('>=1.13.0 <3.0.0'));
   });
 }
 
