@@ -1,3 +1,9 @@
+## 2.5.4
+
+* Improve the package description.
+
+* Update some dependencies.
+
 ## 2.5.3
 
 * Support Dart 2 stable.
