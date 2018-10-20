@@ -6,22 +6,20 @@ part of 'options.dart';
 // CliGenerator
 // **************************************************************************
 
-Options _$parseOptionsResult(ArgResults result) {
-  T enumValueHelper<T>(String enumName, List<T> values, String enumValue) =>
-      enumValue == null
-          ? null
-          : values.singleWhere((e) => e.toString() == '$enumName.$enumValue',
-              orElse: () => throw new StateError(
-                  'Could not find the value `$enumValue` in enum `$enumName`.'));
+T _$enumValueHelper<T>(String enumName, List<T> values, String enumValue) =>
+    enumValue == null
+        ? null
+        : values.singleWhere((e) => e.toString() == '$enumName.$enumValue',
+            orElse: () => throw new StateError(
+                'Could not find the value `$enumValue` in enum `$enumName`.'));
 
-  return new Options(
-      format: enumValueHelper(
-          'FormatOptions', FormatOptions.values, result['format'] as String),
-      ignorePackages: result['ignore-packages'] as List<String>,
-      flagOutdated: result['flag-outdated'] as bool,
-      help: result['help'] as bool,
-      command: result.command);
-}
+Options _$parseOptionsResult(ArgResults result) => new Options(
+    format: _$enumValueHelper(
+        'FormatOptions', FormatOptions.values, result['format'] as String),
+    ignorePackages: result['ignore-packages'] as List<String>,
+    flagOutdated: result['flag-outdated'] as bool,
+    help: result['help'] as bool,
+    command: result.command);
 
 ArgParser _$populateOptionsParser(ArgParser parser) => parser
   ..addOption('format',
