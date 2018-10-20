@@ -10,7 +10,7 @@ String toDotHtml(VizRoot root, {List<String> ignorePackages}) {
 }
 
 String toDot(VizRoot item,
-    {bool escapeLabels: false, Iterable<String> ignorePackages}) {
+    {bool escapeLabels = false, Iterable<String> ignorePackages}) {
   ignorePackages ??= const <String>[];
 
   var gviz = new Gviz(

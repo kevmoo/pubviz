@@ -35,7 +35,7 @@ class VizPackage extends Comparable<VizPackage> {
       : dependencies = new UnmodifiableSetView(deps);
 
   static Future<VizPackage> forDirectory(String path,
-      {bool flagOutdated: false}) async {
+      {bool flagOutdated = false}) async {
     var dir = new Directory(path);
     assert(dir.existsSync());
 

@@ -17,7 +17,7 @@ class VizRoot {
       : this.packages = new UnmodifiableMapView(packages);
 
   static Future<VizRoot> forDirectory(String path,
-      {bool flagOutdated: false, Iterable<String> ignorePackages}) async {
+      {bool flagOutdated = false, Iterable<String> ignorePackages}) async {
     var root = await VizPackage.forDirectory(path);
     var packages = await _getReferencedPackages(path, flagOutdated);
 
