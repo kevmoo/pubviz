@@ -5,7 +5,7 @@ description: Visualize package dependencies in your Dart project
 homepage: https://github.com/kevmoo/pubviz
 
 environment:
-  sdk: '>=2.0.0-dev.54 <3.0.0'
+  sdk: '>=2.0.0 <3.0.0'
 
 dependencies:
   args: ^1.4.1
@@ -25,6 +25,7 @@ dev_dependencies:
   build_runner: ^1.0.0
   build_web_compilers: ^0.4.0
   js: ^0.6.1
+  pedantic: ^1.1.0
   test: ^1.0.0
   test_descriptor: ^1.0.3
   test_process: ^1.0.1
