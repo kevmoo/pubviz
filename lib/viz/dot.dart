@@ -13,7 +13,7 @@ String toDot(VizRoot item,
     {bool escapeLabels = false, Iterable<String> ignorePackages}) {
   ignorePackages ??= const <String>[];
 
-  var gviz = new Gviz(
+  var gviz = Gviz(
       name: 'pubviz',
       graphProperties: {'nodesep': '0.2'},
       edgeProperties: {'fontcolor': 'gray'});

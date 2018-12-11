@@ -21,7 +21,7 @@ class Dependency implements Comparable<Dependency> {
       : this.versionConstraint = _parseOrNull(versionConstraint);
 
   static Set<Dependency> getDependencies(parse.Pubspec pubspec) {
-    var deps = new Set<Dependency>();
+    var deps = Set<Dependency>();
 
     _populateFromSection(pubspec.dependencies, deps, false);
     _populateFromSection(pubspec.devDependencies, deps, true);
@@ -39,7 +39,7 @@ class Dependency implements Comparable<Dependency> {
         constraintString = constraint.toString();
       }
 
-      var dep = new Dependency._(key, constraintString, isDev);
+      var dep = Dependency._(key, constraintString, isDev);
       assert(!value.contains(dep));
 
       value.add(dep);
@@ -72,7 +72,7 @@ class Dependency implements Comparable<Dependency> {
 
 VersionConstraint _parseOrNull(String input) {
   try {
-    return new VersionConstraint.parse(input);
+    return VersionConstraint.parse(input);
   } on FormatException {
     return VersionConstraint.empty;
   }

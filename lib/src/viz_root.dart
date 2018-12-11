@@ -14,7 +14,7 @@ class VizRoot {
   final Map<String, VizPackage> packages;
 
   VizRoot._(this.root, Map<String, VizPackage> packages)
-      : this.packages = new UnmodifiableMapView(packages);
+      : this.packages = UnmodifiableMapView(packages);
 
   static Future<VizRoot> forDirectory(String path,
       {bool flagOutdated = false, Iterable<String> ignorePackages}) async {
@@ -26,7 +26,7 @@ class VizRoot {
     root = packages[root.name];
     assert(root != null);
 
-    var value = new VizRoot._(root, packages);
+    var value = VizRoot._(root, packages);
 
     if (flagOutdated) {
       for (var dep in _allDeps(value, ignorePackages)) {
@@ -96,7 +96,7 @@ class VizRoot {
 
 Future<Map<String, String>> _getPackageMap(
     String path, bool withFlutter) async {
-  var map = new Map<String, String>();
+  var map = Map<String, String>();
 
   var proc = withFlutter ? 'flutter' : 'pub';
   var args = withFlutter
@@ -117,7 +117,7 @@ Future<Map<String, String>> _getPackageMap(
       // NOOP
     }
 
-    throw new ProcessException(
+    throw ProcessException(
         'pub', ['list-package-dirs'], message, result.exitCode);
   }
 
@@ -135,7 +135,7 @@ Future<Map<String, String>> _getPackageMap(
 
 Future<Map<String, VizPackage>> _getReferencedPackages(
     String path, bool flagOutdated) async {
-  var packs = new SplayTreeMap<String, VizPackage>();
+  var packs = SplayTreeMap<String, VizPackage>();
 
   Map<String, String> map;
   try {

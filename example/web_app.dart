@@ -11,10 +11,10 @@ final zoomBtn = querySelector('#zoomBtn') as ButtonElement;
 
 svg.SvgElement _root;
 
-final List<String> _dotContentLines = new List.unmodifiable(LineSplitter.split(
+final List<String> _dotContentLines = List.unmodifiable(LineSplitter.split(
     (querySelector('#dot') as ScriptElement).innerHtml.trim()));
 
-final Set<String> _toIgnore = new Set<String>();
+final Set<String> _toIgnore = Set<String>();
 
 void main() {
   _process();
@@ -53,7 +53,7 @@ void _process() {
           comparisonLine = comparisonLine.substring(0, openBracketIndex);
         }
 
-        if (comparisonLine.contains(new RegExp('\\W$item\\W'))) {
+        if (comparisonLine.contains(RegExp('\\W$item\\W'))) {
           if (!comparisonLine.contains('->')) {
             removedLinesContainingNodeDefinitions.add(line);
           }
@@ -68,7 +68,7 @@ void _process() {
       print('Weird - nothing removed?');
     } else {
       if (lines.last != '}') {
-        throw new StateError('huh?');
+        throw StateError('huh?');
       }
       lines.removeLast();
       lines.add('  subgraph cluster0 {');
@@ -81,12 +81,12 @@ void _process() {
     }
   }
 
-  var watch = new Stopwatch()..start();
+  var watch = Stopwatch()..start();
   try {
     // Default memory: 16,777,216 - 16 MiB
     // Doubling to 32 MiB
     var output = Viz(lines.join('\n'),
-        new VizOptions(format: 'svg', totalMemory: 32 * 1024 * 1024));
+        VizOptions(format: 'svg', totalMemory: 32 * 1024 * 1024));
     _updateBody(output);
   } catch (e) {
     var output = '<pre>${htmlEscape.convert(e.toString())}</pre>';

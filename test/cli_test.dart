@@ -35,7 +35,7 @@ $_usage''');
   });
 
   test('readme', () {
-    var readmeContent = new File('README.md').readAsStringSync();
+    var readmeContent = File('README.md').readAsStringSync();
 
     expect(readmeContent,
         contains(['```console', r'$ pubviz -?', _usage, '```'].join('\n')));

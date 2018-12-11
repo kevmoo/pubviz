@@ -25,15 +25,13 @@ void main() {
     expect(vp.packages, contains('http'));
     expect(vp.packages, contains('test'));
 
-    expect(
-        vp.root.sdkConstraint, new VersionConstraint.parse('>=1.13.0 <3.0.0'));
+    expect(vp.root.sdkConstraint, VersionConstraint.parse('>=1.13.0 <3.0.0'));
   });
 }
 
 Future _initTest() async {
   // add pubspec
-  var content =
-      await new File(p.join('test', 'test_pubspec.yaml')).readAsString();
+  var content = await File(p.join('test', 'test_pubspec.yaml')).readAsString();
 
   await d.file('pubspec.yaml', content).create();
 

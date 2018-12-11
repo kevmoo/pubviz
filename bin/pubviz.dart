@@ -51,7 +51,7 @@ main(List<String> args) async {
     } else if (command.name == 'open') {
       await _open(vp, options.format, options.ignorePackages);
     } else {
-      throw new StateError('Should never get here...');
+      throw StateError('Should never get here...');
     }
   }, onError: (error, Chain chain) {
     stderr.writeln(error);
@@ -84,7 +84,7 @@ String _getContent(
     case FormatOptions.dot:
       return dot.toDot(root, ignorePackages: ignorePackages);
   }
-  throw new StateError('format "$format" is not supported');
+  throw StateError('format "$format" is not supported');
 }
 
 String _getExtension(FormatOptions format) => format.toString().split('.')[1];
@@ -95,7 +95,7 @@ Future _open(
   var name = root.root.name;
   var dir = await Directory.systemTemp.createTemp('pubviz_${name}_');
   var filePath = p.join(dir.path, '$name.$extension');
-  var file = new File(filePath);
+  var file = File(filePath);
 
   file = await file.create();
   String content = _getContent(root, format, ignorePackages);

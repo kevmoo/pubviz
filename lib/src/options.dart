@@ -39,7 +39,7 @@ class Options {
 
 enum FormatOptions { dot, html }
 
-const _formatOptionsHelp = const <FormatOptions, String>{
+const _formatOptionsHelp = <FormatOptions, String>{
   FormatOptions.dot: 'Generate a GraphViz dot file',
   FormatOptions.html:
       'Wrap the GraphViz dot format in an HTML template which renders it.'
