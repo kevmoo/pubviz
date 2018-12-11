@@ -14,25 +14,25 @@ class VizRoot {
   final Map<String, VizPackage> packages;
 
   VizRoot._(this.root, Map<String, VizPackage> packages)
-      : this.packages = UnmodifiableMapView(packages);
+      : packages = UnmodifiableMapView(packages);
 
   static Future<VizRoot> forDirectory(String path,
       {bool flagOutdated = false, Iterable<String> ignorePackages}) async {
     var root = await VizPackage.forDirectory(path);
-    var packages = await _getReferencedPackages(path, flagOutdated);
+    final packages = await _getReferencedPackages(path, flagOutdated);
 
     // want to make sure that the root node instance is the same
     // as the instance in the packages collection
     root = packages[root.name];
     assert(root != null);
 
-    var value = VizRoot._(root, packages);
+    final value = VizRoot._(root, packages);
 
     if (flagOutdated) {
       for (var dep in _allDeps(value, ignorePackages)) {
         assert(dep.includesLatest == null);
 
-        var package = packages[dep.name];
+        final package = packages[dep.name];
 
         if (package != null &&
             package.latestVersion != null &&
@@ -45,7 +45,7 @@ class VizRoot {
             // latest – with a pre-release version
 
             // TODO: get rid of the `as` here – this is weird!
-            var constrantAsRange = dep.versionConstraint as VersionRange;
+            final constrantAsRange = dep.versionConstraint as VersionRange;
             if (package.latestVersion.compareTo(constrantAsRange) < 0) {
               allowsLatest = true;
             }
@@ -69,7 +69,7 @@ class VizRoot {
       root.onlyDev = false;
 
       for (var primaryDep in root.dependencies) {
-        var package = packages[primaryDep.name];
+        final package = packages[primaryDep.name];
 
         assert(!package.isPrimary);
         package.isPrimary = true;
@@ -82,7 +82,7 @@ class VizRoot {
   }
 
   void _updateDevOnly(Dependency dep) {
-    var package = packages[dep.name];
+    final package = packages[dep.name];
 
     if (package.onlyDev) {
       package.onlyDev = false;
@@ -96,20 +96,20 @@ class VizRoot {
 
 Future<Map<String, String>> _getPackageMap(
     String path, bool withFlutter) async {
-  var map = Map<String, String>();
+  final map = <String, String>{};
 
-  var proc = withFlutter ? 'flutter' : 'pub';
-  var args = withFlutter
+  final proc = withFlutter ? 'flutter' : 'pub';
+  final args = withFlutter
       ? ['packages', 'pub', 'list-package-dirs']
       : ['list-package-dirs'];
 
-  var result =
+  final result =
       await Process.run(proc, args, runInShell: true, workingDirectory: path);
 
   if (result.exitCode != 0) {
     var message = result.stderr as String;
     try {
-      var value = jsonDecode(result.stdout as String) as Map;
+      final value = jsonDecode(result.stdout as String) as Map;
       if (value.containsKey('error')) {
         message = value['error'] as String;
       }
@@ -121,9 +121,9 @@ Future<Map<String, String>> _getPackageMap(
         'pub', ['list-package-dirs'], message, result.exitCode);
   }
 
-  var json = jsonDecode(result.stdout as String);
+  final json = jsonDecode(result.stdout as String);
 
-  var packages = json['packages'] as Map<String, dynamic>;
+  final packages = json['packages'] as Map<String, dynamic>;
 
   packages.forEach((k, v) {
     assert(p.basename(v as String) == 'lib');
@@ -135,7 +135,7 @@ Future<Map<String, String>> _getPackageMap(
 
 Future<Map<String, VizPackage>> _getReferencedPackages(
     String path, bool flagOutdated) async {
-  var packs = SplayTreeMap<String, VizPackage>();
+  final packs = SplayTreeMap<String, VizPackage>();
 
   Map<String, String> map;
   try {
@@ -149,9 +149,10 @@ Future<Map<String, VizPackage>> _getReferencedPackages(
     }
   }
 
-  var futures = map.keys.map((packageName) async {
-    var subPath = map[packageName];
-    var vp = await VizPackage.forDirectory(subPath, flagOutdated: flagOutdated);
+  final futures = map.keys.map((packageName) async {
+    final subPath = map[packageName];
+    final vp =
+        await VizPackage.forDirectory(subPath, flagOutdated: flagOutdated);
     assert(vp.name == packageName);
 
     assert(!packs.containsKey(vp.name));

@@ -1,21 +1,22 @@
 import 'dart:io';
+
 import 'package:test/test.dart';
 import 'package:test_process/test_process.dart';
 
 void main() {
   test('help', () async {
-    var proc = await TestProcess.start('dart', ['bin/pubviz.dart', '--help']);
+    final proc = await TestProcess.start('dart', ['bin/pubviz.dart', '--help']);
 
-    var output = await proc.stdoutStream().join('\n');
+    final output = await proc.stdoutStream().join('\n');
     expect(output, _usage);
 
     await proc.shouldExit(0);
   });
 
   test('bad flag', () async {
-    var proc = await TestProcess.start('dart', ['bin/pubviz.dart', '--bob']);
+    final proc = await TestProcess.start('dart', ['bin/pubviz.dart', '--bob']);
 
-    var output = await proc.stdoutStream().join('\n');
+    final output = await proc.stdoutStream().join('\n');
     expect(output, '''Could not find an option named "bob".
 
 $_usage''');
@@ -24,9 +25,9 @@ $_usage''');
   });
 
   test('no command', () async {
-    var proc = await TestProcess.start('dart', ['bin/pubviz.dart']);
+    final proc = await TestProcess.start('dart', ['bin/pubviz.dart']);
 
-    var output = await proc.stdoutStream().join('\n');
+    final output = await proc.stdoutStream().join('\n');
     expect(output, '''Specify a command: open, print
 
 $_usage''');
@@ -35,7 +36,7 @@ $_usage''');
   });
 
   test('readme', () {
-    var readmeContent = File('README.md').readAsStringSync();
+    final readmeContent = File('README.md').readAsStringSync();
 
     expect(readmeContent,
         contains(['```console', r'$ pubviz -?', _usage, '```'].join('\n')));

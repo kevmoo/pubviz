@@ -32,7 +32,7 @@ void _process() {
     _root = null;
   }
 
-  var removedLinesContainingNodeDefinitions = <String>[];
+  final removedLinesContainingNodeDefinitions = <String>[];
 
   List<String> lines;
 
@@ -81,15 +81,15 @@ void _process() {
     }
   }
 
-  var watch = Stopwatch()..start();
+  final watch = Stopwatch()..start();
   try {
     // Default memory: 16,777,216 - 16 MiB
     // Doubling to 32 MiB
-    var output = Viz(lines.join('\n'),
+    final output = Viz(lines.join('\n'),
         VizOptions(format: 'svg', totalMemory: 32 * 1024 * 1024));
     _updateBody(output);
   } catch (e) {
-    var output = '<pre>${htmlEscape.convert(e.toString())}</pre>';
+    final output = '<pre>${htmlEscape.convert(e.toString())}</pre>';
     document.body.appendHtml(output);
   } finally {
     print('Total time generating graph: ${watch.elapsed}');
@@ -112,20 +112,20 @@ void _updateBody(String output) {
   _root = querySelector('svg') as svg.SvgElement;
 
   for (var element in _root.querySelectorAll('g.node')) {
-    var title = element.querySelector('title').text;
+    final title = element.querySelector('title').text;
     element.id = title;
   }
 
   for (var node in _root.querySelectorAll('g.node')) {
     // NOTE: we are assuming the shape of the generated SVG here – be careful!
-    var polygonBorder = node.querySelector('polygon')?.getAttribute('stroke');
+    final polygonBorder = node.querySelector('polygon')?.getAttribute('stroke');
     if (polygonBorder != null &&
         polygonBorder.toLowerCase().startsWith('#ff')) {
       node.classes.add('outdated');
     }
 
     node.onClick.listen((MouseEvent event) {
-      var target = event.currentTarget as Element;
+      final target = event.currentTarget as Element;
       if (_toIgnore.add(target.id)) {
         // add succeeded – noop
       } else {
@@ -136,13 +136,13 @@ void _updateBody(String output) {
   }
 
   for (var node in _root.querySelectorAll('g.edge')) {
-    var title = node.querySelector('title').text;
-    var things = title.split('->');
+    final title = node.querySelector('title').text;
+    final things = title.split('->');
     node.setAttribute('x-from', things[0]);
     node.setAttribute('x-to', things[1]);
 
     // NOTE: we are assuming the shape of the generated SVG here – be careful!
-    var textFill = node.querySelector('text')?.getAttribute('fill');
+    final textFill = node.querySelector('text')?.getAttribute('fill');
     if (textFill != null) {
       assert(textFill.startsWith('#'));
       if (textFill.toLowerCase().startsWith('#ff')) {
@@ -152,7 +152,7 @@ void _updateBody(String output) {
     }
   }
 
-  var nodesOfInterest = _root.querySelectorAll('g.edge, g.node');
+  final nodesOfInterest = _root.querySelectorAll('g.edge, g.node');
 
   nodesOfInterest.onMouseEnter.listen((MouseEvent event) {
     _updateOver(event.currentTarget as svg.GElement);
@@ -164,7 +164,7 @@ void _updateBody(String output) {
 }
 
 void _updateOver(svg.GElement element) {
-  var targetPkg = [];
+  final targetPkg = [];
   if (element != null) {
     if (element.classes.contains('edge')) {
       targetPkg
@@ -213,7 +213,7 @@ void _updateOver(svg.GElement element) {
   }
 
   if (targetPkg.length == 1) {
-    var lines = [targetPkg.single];
+    final lines = [targetPkg.single];
     if (fromNodes.isNotEmpty) {
       lines.add('  From: ${fromNodes.join(', ')}');
     }

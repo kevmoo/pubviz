@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+
 import 'package:collection/collection.dart';
 import 'package:path/path.dart' as p;
 import 'package:pub_semver/pub_semver.dart';
@@ -36,17 +37,17 @@ class VizPackage extends Comparable<VizPackage> {
 
   static Future<VizPackage> forDirectory(String path,
       {bool flagOutdated = false}) async {
-    var dir = Directory(path);
+    final dir = Directory(path);
     assert(dir.existsSync());
 
-    var pubspecPath = p.join(path, 'pubspec.yaml');
+    final pubspecPath = p.join(path, 'pubspec.yaml');
 
-    var pubspec = Pubspec.parse(File(pubspecPath).readAsStringSync(),
+    final pubspec = Pubspec.parse(File(pubspecPath).readAsStringSync(),
         sourceUrl: pubspecPath);
-    var deps = Dependency.getDependencies(pubspec);
-    var sdkConstraint = pubspec.environment['sdk'];
+    final deps = Dependency.getDependencies(pubspec);
+    final sdkConstraint = pubspec.environment['sdk'];
 
-    var package =
+    final package =
         VizPackage._(pubspec.name, pubspec.version, deps, sdkConstraint);
 
     if (flagOutdated) {
@@ -67,7 +68,7 @@ class VizPackage extends Comparable<VizPackage> {
   @override
   bool operator ==(Object other) {
     if (other is VizPackage) {
-      var match = (name == other.name);
+      final match = (name == other.name);
       if (match) {
         assert(other.version == version);
         return true;

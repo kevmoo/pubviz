@@ -1,17 +1,16 @@
-import 'package:test/test.dart';
-
 import 'package:pub_semver/pub_semver.dart';
 import 'package:pubviz/src/util.dart';
+import 'package:test/test.dart';
 
 void main() {
   test('existing package', () async {
-    var version = await getLatestVersion('bot', false);
+    final version = await getLatestVersion('bot', false);
 
     expect(version, Version(0, 28, 0));
   });
 
   test('non-existing package', () async {
-    var version = await getLatestVersion('package_no_here', false);
+    final version = await getLatestVersion('package_no_here', false);
 
     expect(version, isNull);
   });

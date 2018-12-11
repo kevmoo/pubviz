@@ -14,8 +14,8 @@ Future<Version> getLatestVersion(
   http.Response response;
 
   var retries = 0;
-  while (true) {
-    var path = 'https://pub.dartlang.org/packages/$packageName.json';
+  for (;;) {
+    final path = 'https://pub.dartlang.org/packages/$packageName.json';
     try {
       // TODO(kevmoo): use http_retry
       response = await http.get(path, headers: _hedears);
@@ -36,15 +36,15 @@ Future<Version> getLatestVersion(
     return null;
   }
 
-  var json = jsonDecode(response.body);
+  final json = jsonDecode(response.body);
 
   assert(json['name'] == packageName);
 
-  var versions = (json['versions'] as List)
+  final versions = (json['versions'] as List)
       .map((str) => Version.parse(str as String))
       .toList();
 
-  var primary = latestVersion(versions, includePreRelease);
+  final primary = latestVersion(versions, includePreRelease);
 
   return primary;
 }

@@ -2,7 +2,7 @@ import 'package:gviz/gviz.dart';
 import 'package:pubviz/pubviz.dart';
 
 String toDotHtml(VizRoot root, {List<String> ignorePackages}) {
-  var dot = toDot(root, escapeLabels: true, ignorePackages: ignorePackages);
+  final dot = toDot(root, escapeLabels: true, ignorePackages: ignorePackages);
 
   return _dotHtmlTemplate
       .replaceAll(_dotPlaceHolder, dot)
@@ -13,7 +13,7 @@ String toDot(VizRoot item,
     {bool escapeLabels = false, Iterable<String> ignorePackages}) {
   ignorePackages ??= const <String>[];
 
-  var gviz = Gviz(
+  final gviz = Gviz(
       name: 'pubviz',
       graphProperties: {'nodesep': '0.2'},
       edgeProperties: {'fontcolor': 'gray'});
@@ -29,16 +29,16 @@ String toDot(VizRoot item,
 
 void _writeDot(VizPackage pkg, Gviz gviz, String rootName, bool escapeLabels,
     Iterable<String> ignorePackages) {
-  var isRoot = rootName == pkg.name;
+  final isRoot = rootName == pkg.name;
 
-  var newLine = (escapeLabels) ? r'\n' : '\n';
+  final newLine = (escapeLabels) ? r'\n' : '\n';
 
   var label = pkg.name;
   if (pkg.version != null) {
-    label = label + '$newLine${pkg.version}';
+    label = '$label$newLine${pkg.version}';
   }
 
-  var props = {'label': label};
+  final props = {'label': label};
 
   if (isRoot) {
     assert(!pkg.onlyDev);
@@ -65,11 +65,11 @@ void _writeDot(VizPackage pkg, Gviz gviz, String rootName, bool escapeLabels,
 
   gviz.addNode(pkg.name, properties: props);
 
-  var orderedDeps = pkg.dependencies.toList(growable: false)..sort();
+  final orderedDeps = pkg.dependencies.toList(growable: false)..sort();
 
   for (var dep in orderedDeps.where((d) => !ignorePackages.contains(d.name))) {
     if (!dep.isDevDependency || isRoot) {
-      var edgeProps = <String, String>{};
+      final edgeProps = <String, String>{};
 
       if (!dep.versionConstraint.isAny) {
         edgeProps['label'] = '${dep.versionConstraint}';

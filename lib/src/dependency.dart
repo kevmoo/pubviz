@@ -18,10 +18,10 @@ class Dependency implements Comparable<Dependency> {
   }
 
   Dependency._(this.name, String versionConstraint, this.isDevDependency)
-      : this.versionConstraint = _parseOrNull(versionConstraint);
+      : versionConstraint = _parseOrNull(versionConstraint);
 
   static Set<Dependency> getDependencies(parse.Pubspec pubspec) {
-    var deps = Set<Dependency>();
+    final deps = Set<Dependency>();
 
     _populateFromSection(pubspec.dependencies, deps, false);
     _populateFromSection(pubspec.devDependencies, deps, true);
@@ -39,7 +39,7 @@ class Dependency implements Comparable<Dependency> {
         constraintString = constraint.toString();
       }
 
-      var dep = Dependency._(key, constraintString, isDev);
+      final dep = Dependency._(key, constraintString, isDev);
       assert(!value.contains(dep));
 
       value.add(dep);
@@ -65,7 +65,7 @@ class Dependency implements Comparable<Dependency> {
 
   @override
   String toString() {
-    var devStr = isDevDependency ? '(dev)' : '';
+    final devStr = isDevDependency ? '(dev)' : '';
     return '$name$devStr $versionConstraint';
   }
 }

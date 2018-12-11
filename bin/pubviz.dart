@@ -3,15 +3,15 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:io/io.dart';
 import 'package:io/ansi.dart';
+import 'package:io/io.dart';
 import 'package:path/path.dart' as p;
-import 'package:pubviz/src/options.dart';
 import 'package:pubviz/pubviz.dart';
+import 'package:pubviz/src/options.dart';
 import 'package:pubviz/viz/dot.dart' as dot;
 import 'package:stack_trace/stack_trace.dart';
 
-main(List<String> args) async {
+void main(List<String> args) async {
   parser..addCommand('open')..addCommand('print');
 
   Options options;
@@ -30,7 +30,7 @@ main(List<String> args) async {
     return;
   }
 
-  var command = options.command;
+  final command = options.command;
 
   if (command == null) {
     print(red.wrap("Specify a command: ${parser.commands.keys.join(', ')}"));
@@ -40,10 +40,10 @@ main(List<String> args) async {
     return;
   }
 
-  var path = _getPath(command.rest);
+  final path = _getPath(command.rest);
 
   await Chain.capture(() async {
-    var vp = await VizRoot.forDirectory(path,
+    final vp = await VizRoot.forDirectory(path,
         flagOutdated: options.flagOutdated,
         ignorePackages: options.ignorePackages);
     if (command.name == 'print') {
@@ -91,14 +91,14 @@ String _getExtension(FormatOptions format) => format.toString().split('.')[1];
 
 Future _open(
     VizRoot root, FormatOptions format, List<String> ignorePackages) async {
-  var extension = _getExtension(format);
-  var name = root.root.name;
-  var dir = await Directory.systemTemp.createTemp('pubviz_${name}_');
-  var filePath = p.join(dir.path, '$name.$extension');
+  final extension = _getExtension(format);
+  final name = root.root.name;
+  final dir = await Directory.systemTemp.createTemp('pubviz_${name}_');
+  final filePath = p.join(dir.path, '$name.$extension');
   var file = File(filePath);
 
   file = await file.create();
-  String content = _getContent(root, format, ignorePackages);
+  final content = _getContent(root, format, ignorePackages);
   await file.writeAsString(content, mode: FileMode.write, flush: true);
 
   print('File generated: $filePath');
@@ -120,7 +120,7 @@ Future _open(
 
 void _printContent(
     VizRoot root, FormatOptions format, List<String> ignorePackages) {
-  var content = _getContent(root, format, ignorePackages);
+  final content = _getContent(root, format, ignorePackages);
   print(content);
 }
 
@@ -130,14 +130,14 @@ String _getPath(List<String> args) {
     exit(1);
   }
 
-  var path = args.isEmpty ? p.current : args.first;
+  final path = args.isEmpty ? p.current : args.first;
 
   if (!FileSystemEntity.isDirectorySync(path)) {
     print('The provided path does not exist or is not a directory: $path');
     exit(1);
   }
 
-  var yamlPath = p.join(path, 'pubspec.yaml');
+  final yamlPath = p.join(path, 'pubspec.yaml');
 
   if (!FileSystemEntity.isFileSync(yamlPath)) {
     print('Could not find a pubspec.yaml in the target path.: $path');
