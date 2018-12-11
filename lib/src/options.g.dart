@@ -10,10 +10,10 @@ T _$enumValueHelper<T>(String enumName, List<T> values, String enumValue) =>
     enumValue == null
         ? null
         : values.singleWhere((e) => e.toString() == '$enumName.$enumValue',
-            orElse: () => throw new StateError(
+            orElse: () => throw StateError(
                 'Could not find the value `$enumValue` in enum `$enumName`.'));
 
-Options _$parseOptionsResult(ArgResults result) => new Options(
+Options _$parseOptionsResult(ArgResults result) => Options(
     format: _$enumValueHelper(
         'FormatOptions', FormatOptions.values, result['format'] as String),
     ignorePackages: result['ignore-packages'] as List<String>,
@@ -45,7 +45,7 @@ ArgParser _$populateOptionsParser(ArgParser parser) => parser
   ..addFlag('help',
       abbr: '?', help: 'Print this help content.', negatable: false);
 
-final _$parserForOptions = _$populateOptionsParser(new ArgParser());
+final _$parserForOptions = _$populateOptionsParser(ArgParser());
 
 Options parseOptions(List<String> args) {
   var result = _$parserForOptions.parse(args);
