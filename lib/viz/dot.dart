@@ -31,7 +31,7 @@ void _writeDot(VizPackage pkg, Gviz gviz, String rootName, bool escapeLabels,
     Iterable<String> ignorePackages) {
   final isRoot = rootName == pkg.name;
 
-  final newLine = (escapeLabels) ? r'\n' : '\n';
+  final newLine = escapeLabels ? r'\n' : '\n';
 
   var label = pkg.name;
   if (pkg.version != null) {

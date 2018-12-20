@@ -68,7 +68,7 @@ class VizPackage extends Comparable<VizPackage> {
   @override
   bool operator ==(Object other) {
     if (other is VizPackage) {
-      final match = (name == other.name);
+      final match = name == other.name;
       if (match) {
         assert(other.version == version);
         return true;
