@@ -14,7 +14,7 @@ svg.SvgElement _root;
 final List<String> _dotContentLines = List.unmodifiable(LineSplitter.split(
     (querySelector('#dot') as ScriptElement).innerHtml.trim()));
 
-final Set<String> _toIgnore = Set<String>();
+final _toIgnore = <String>{};
 
 void main() {
   _process();

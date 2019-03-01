@@ -21,7 +21,7 @@ class Dependency implements Comparable<Dependency> {
       : versionConstraint = _parseOrNull(versionConstraint);
 
   static Set<Dependency> getDependencies(parse.Pubspec pubspec) {
-    final deps = Set<Dependency>();
+    final deps = <Dependency>{};
 
     _populateFromSection(pubspec.dependencies, deps, false);
     _populateFromSection(pubspec.devDependencies, deps, true);
