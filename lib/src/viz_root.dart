@@ -123,12 +123,10 @@ Future<Map<String, String>> _getPackageMap(
 
   final json = jsonDecode(result.stdout as String);
 
-  final packages = json['packages'] as Map<String, dynamic>;
-
-  packages.forEach((k, v) {
-    assert(p.basename(v as String) == 'lib');
-    map[k] = p.dirname(v as String);
-  });
+  for (var entry in (json['packages'] as Map<String, dynamic>).entries) {
+    assert(p.basename(entry.value as String) == 'lib');
+    map[entry.key] = p.dirname(entry.value as String);
+  }
 
   return map;
 }

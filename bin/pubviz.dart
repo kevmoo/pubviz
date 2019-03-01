@@ -54,8 +54,7 @@ void main(List<String> args) async {
       throw StateError('Should never get here...');
     }
   }, onError: (error, Chain chain) {
-    stderr.writeln(error);
-    stderr.writeln(chain.terse);
+    stderr..writeln(error)..writeln(chain.terse);
     exitCode = 1;
   });
 }
