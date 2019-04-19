@@ -20,7 +20,7 @@ String toDot(VizRoot item,
 
   for (var pack
       in item.packages.values.where((v) => !ignorePackages.contains(v.name))) {
-    gviz.addLine();
+    gviz.addBlankLine();
     _writeDot(pack, gviz, item.root.name, escapeLabels, ignorePackages);
   }
 
