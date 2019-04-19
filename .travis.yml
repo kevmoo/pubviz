@@ -1,13 +1,18 @@
 language: dart
 
 dart:
-  - stable
-  - dev
+- 2.2.0
+- dev
 
 dart_task:
-  - test: --run-skipped
-  - dartfmt
-  - dartanalyzer: --fatal-infos --fatal-warnings .
+- test: --run-skipped
+- dartanalyzer: --fatal-warnings --fatal-lints .
+
+matrix:
+  include:
+  # Only validate formatting using the dev release
+  - dart: dev
+    dart_task: dartfmt
 
 # Only building master means that we don't run two builds for each pull request.
 branches:
@@ -15,4 +20,4 @@ branches:
 
 cache:
   directories:
-    - $HOME/.pub-cache
+  - $HOME/.pub-cache
