@@ -14,10 +14,8 @@ targets:
         options:
           dart2js_args:
             - --dump-info
-            - --fast-startup
             - --minify
             - --no-frequency-based-minification
             - --no-source-maps
             - --show-package-warnings
-            - --trust-primitives
-            - --omit-implicit-checks
+            - -O4
