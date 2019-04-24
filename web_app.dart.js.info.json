@@ -422,7 +422,7 @@
           "function/514342432",
           "function/581015071"
         ],
-        "canonicalUri": "file:///private/var/folders/c0/jv6k5x0j57vcwkdx6rcjgj3w0071_k/T/scratch_spaceZrYDnq/example/web_app.dart"
+        "canonicalUri": "file:///private/var/folders/c0/jv6k5x0j57vcwkdx6rcjgj3w0071_k/T/scratch_spacefbgLMK/example/web_app.dart"
       },
       "527944179": {
         "id": "library/527944179",
@@ -19555,7 +19555,7 @@
           },
           {
             "name": "key",
-            "type": "Union([exact=JSString], [exact=_EventStream])",
+            "type": "Union([exact=JSString], [exact=_EventStream], [subclass=JSInt])",
             "declaredType": "dynamic"
           }
         ],
@@ -56400,9 +56400,9 @@
   "program": {
     "entrypoint": "function/514342432",
     "size": 114436,
-    "dart2jsVersion": "2.3.0-dev.0.1",
-    "compilationMoment": "2019-04-23 08:32:58.176130",
-    "compilationDuration": 1489637,
+    "dart2jsVersion": "2.3.0-dev.0.3",
+    "compilationMoment": "2019-04-24 12:16:12.692606",
+    "compilationDuration": 1570639,
     "toJsonDuration": 9000,
     "dumpInfoDuration": 0,
     "noSuchMethodEnabled": false,
