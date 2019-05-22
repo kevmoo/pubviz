@@ -5,7 +5,7 @@
         "id": "library/85591458",
         "kind": "library",
         "name": "dart.dom.html",
-        "size": 15981,
+        "size": 14614,
         "children": [
           "class/5605510",
           "class/6212434",
@@ -292,7 +292,7 @@
         "id": "library/325218131",
         "kind": "library",
         "name": "_interceptors",
-        "size": 7943,
+        "size": 7952,
         "children": [
           "class/86936801",
           "class/245082925",
@@ -410,7 +410,7 @@
         "id": "library/493675312",
         "kind": "library",
         "name": "web_app",
-        "size": 4133,
+        "size": 4147,
         "children": [
           "class/446961848",
           "field/351201098",
@@ -422,7 +422,7 @@
           "function/514342432",
           "function/581015071"
         ],
-        "canonicalUri": "file:///private/var/folders/c0/jv6k5x0j57vcwkdx6rcjgj3w0071_k/T/scratch_spacefbgLMK/example/web_app.dart"
+        "canonicalUri": "file:///private/var/folders/c0/jv6k5x0j57vcwkdx6rcjgj3w0071_k/T/scratch_spaceo8HPt6/example/web_app.dart"
       },
       "527944179": {
         "id": "library/527944179",
@@ -439,7 +439,7 @@
         "id": "library/631335891",
         "kind": "library",
         "name": "dart.core",
-        "size": 6014,
+        "size": 6059,
         "children": [
           "class/36312556",
           "class/56472591",
@@ -465,6 +465,7 @@
           "class/631051714",
           "class/635685670",
           "class/798110488",
+          "class/801355802",
           "class/803883908",
           "class/828047575",
           "class/893386369",
@@ -492,7 +493,7 @@
         "id": "library/689380639",
         "kind": "library",
         "name": "dart._internal",
-        "size": 2027,
+        "size": 1681,
         "children": [
           "class/60704969",
           "class/171867442",
@@ -518,7 +519,7 @@
         "id": "library/754126564",
         "kind": "library",
         "name": "dart.collection",
-        "size": 5552,
+        "size": 4889,
         "children": [
           "class/113750884",
           "class/123522748",
@@ -558,7 +559,7 @@
         "id": "library/919163266",
         "kind": "library",
         "name": "html_common",
-        "size": 954,
+        "size": 748,
         "children": [
           "class/298797380",
           "class/309812059"
@@ -586,7 +587,7 @@
         "id": "library/966364039",
         "kind": "library",
         "name": "_js_helper",
-        "size": 24011,
+        "size": 24235,
         "children": [
           "class/17649844",
           "class/27679401",
@@ -754,7 +755,7 @@
         "id": "library/1052666095",
         "kind": "library",
         "name": "dart.async",
-        "size": 16149,
+        "size": 16070,
         "children": [
           "class/32494041",
           "class/72608649",
@@ -834,7 +835,7 @@
         "id": "class/5605510",
         "kind": "class",
         "name": "_SimpleNodeValidator",
-        "size": 509,
+        "size": 508,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/85591458",
         "modifiers": {
@@ -973,7 +974,7 @@
         "id": "class/32494041",
         "kind": "class",
         "name": "_TimerImpl",
-        "size": 262,
+        "size": 261,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/1052666095",
         "modifiers": {
@@ -1178,7 +1179,7 @@
         "id": "class/70813553",
         "kind": "class",
         "name": "Iterable",
-        "size": 702,
+        "size": 701,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/631335891",
         "modifiers": {
@@ -1352,7 +1353,7 @@
         "id": "class/86936801",
         "kind": "class",
         "name": "Interceptor",
-        "size": 151,
+        "size": 152,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/325218131",
         "modifiers": {
@@ -1436,7 +1437,7 @@
         "id": "class/105901179",
         "kind": "class",
         "name": "_BroadcastStreamController",
-        "size": 1418,
+        "size": 1417,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/1052666095",
         "modifiers": {
@@ -1507,7 +1508,7 @@
         "id": "class/109454374",
         "kind": "class",
         "name": "_NamedNodeMap",
-        "size": 544,
+        "size": 309,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/85591458",
         "modifiers": {
@@ -1516,10 +1517,7 @@
         "children": [
           "function/231269804",
           "function/367201536",
-          "function/367201537",
-          "function/437584423",
-          "function/490219665",
-          "function/1007673050"
+          "function/490219665"
         ]
       },
       "113750884": {
@@ -1582,7 +1580,7 @@
         "id": "class/123522748",
         "kind": "class",
         "name": "_LinkedHashSet",
-        "size": 1641,
+        "size": 1646,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/754126564",
         "modifiers": {
@@ -1650,7 +1648,7 @@
         "id": "class/138211367",
         "kind": "class",
         "name": "BoundClosure",
-        "size": 458,
+        "size": 459,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/966364039",
         "modifiers": {
@@ -1906,7 +1904,7 @@
         "id": "class/172151835",
         "kind": "class",
         "name": "ListMixin",
-        "size": 627,
+        "size": 162,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/754126564",
         "modifiers": {
@@ -1915,13 +1913,8 @@
         "children": [
           "function/291238918",
           "function/400333142",
-          "function/435026267",
           "function/778843282",
-          "function/795995138",
-          "function/912912559",
-          "function/983855881",
-          "function/1043195848",
-          "function/1056601141"
+          "function/983855881"
         ]
       },
       "175705485": {
@@ -1970,7 +1963,7 @@
         "id": "class/182777088",
         "kind": "class",
         "name": "JSSyntaxRegExp",
-        "size": 374,
+        "size": 407,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/966364039",
         "modifiers": {
@@ -1981,6 +1974,7 @@
           "field/61454735",
           "field/204326440",
           "field/854464763",
+          "function/53930291",
           "function/244952367",
           "function/312847150",
           "function/321493163",
@@ -1988,8 +1982,10 @@
           "function/387497873",
           "function/483410957",
           "function/557700166",
+          "function/625818865",
           "function/793142738",
-          "function/861458101"
+          "function/861458101",
+          "function/1007776597"
         ]
       },
       "183853919": {
@@ -2066,17 +2062,14 @@
         "id": "class/189655249",
         "kind": "class",
         "name": "ImmutableListMixin",
-        "size": 291,
+        "size": 86,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/85591458",
         "modifiers": {
           "abstract": true
         },
         "children": [
-          "function/347478885",
-          "function/434798495",
-          "function/448129133",
-          "function/731577469"
+          "function/448129133"
         ]
       },
       "193769732": {
@@ -2277,7 +2270,7 @@
         "id": "class/245082925",
         "kind": "class",
         "name": "JSBool",
-        "size": 123,
+        "size": 124,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/325218131",
         "modifiers": {
@@ -2469,7 +2462,7 @@
         "id": "class/294355530",
         "kind": "class",
         "name": "TypeErrorDecoder",
-        "size": 372,
+        "size": 371,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/966364039",
         "modifiers": {
@@ -2562,7 +2555,7 @@
         "id": "class/309812059",
         "kind": "class",
         "name": "CssClassSetImpl",
-        "size": 906,
+        "size": 700,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/919163266",
         "modifiers": {
@@ -2571,7 +2564,6 @@
         "children": [
           "field/401776253",
           "function/85756709",
-          "function/151843940",
           "function/192380826",
           "function/239544133",
           "function/277142993",
@@ -2579,8 +2571,7 @@
           "function/309663409",
           "function/553989766",
           "function/734266977",
-          "function/735840107",
-          "function/819535657"
+          "function/735840107"
         ]
       },
       "314168330": {
@@ -2711,7 +2702,7 @@
         "id": "class/337756919",
         "kind": "class",
         "name": "_Html5NodeValidator",
-        "size": 357,
+        "size": 356,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/85591458",
         "modifiers": {
@@ -2794,7 +2785,7 @@
         "id": "class/351911148",
         "kind": "class",
         "name": "Null",
-        "size": 124,
+        "size": 126,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/631335891",
         "modifiers": {
@@ -3054,7 +3045,7 @@
         "id": "class/418854932",
         "kind": "class",
         "name": "JSNull",
-        "size": 135,
+        "size": 136,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/325218131",
         "modifiers": {
@@ -3653,7 +3644,7 @@
         "id": "class/523978038",
         "kind": "class",
         "name": "JSArray",
-        "size": 1052,
+        "size": 1054,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/325218131",
         "modifiers": {
@@ -3768,14 +3759,13 @@
         "id": "class/540398347",
         "kind": "class",
         "name": "ListIterable",
-        "size": 481,
+        "size": 135,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/689380639",
         "modifiers": {
           "abstract": true
         },
         "children": [
-          "function/384296947",
           "function/847863703",
           "function/852972506"
         ]
@@ -4199,7 +4189,7 @@
         "id": "class/604138865",
         "kind": "class",
         "name": "_BufferingStreamSubscription",
-        "size": 1590,
+        "size": 1589,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/1052666095",
         "modifiers": {
@@ -4320,7 +4310,7 @@
         "id": "class/619300326",
         "kind": "class",
         "name": "_ChildNodeListLazy",
-        "size": 950,
+        "size": 559,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/85591458",
         "modifiers": {
@@ -4328,14 +4318,9 @@
         },
         "children": [
           "field/752365703",
-          "function/58126806",
           "function/254997155",
-          "function/335135610",
-          "function/356626494",
           "function/386488696",
-          "function/447943952",
           "function/465133022",
-          "function/465133023",
           "function/624178609",
           "function/895218883",
           "function/903253039"
@@ -4381,7 +4366,7 @@
         "id": "class/627219877",
         "kind": "class",
         "name": "Object",
-        "size": 228,
+        "size": 229,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/631335891",
         "modifiers": {
@@ -4913,7 +4898,7 @@
         "id": "class/722522722",
         "kind": "class",
         "name": "JsLinkedHashMap",
-        "size": 2038,
+        "size": 2039,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/966364039",
         "modifiers": {
@@ -5017,7 +5002,7 @@
         "id": "class/730634717",
         "kind": "class",
         "name": "NodeValidatorBuilder",
-        "size": 404,
+        "size": 371,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/85591458",
         "modifiers": {
@@ -5225,16 +5210,14 @@
         "id": "class/758572498",
         "kind": "class",
         "name": "SetMixin",
-        "size": 283,
+        "size": 80,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/754126564",
         "modifiers": {
           "abstract": true
         },
         "children": [
-          "function/115611491",
-          "function/176570718",
-          "function/470434632"
+          "function/176570718"
         ]
       },
       "758827947": {
@@ -5265,7 +5248,7 @@
         "id": "class/766774061",
         "kind": "class",
         "name": "NodeList",
-        "size": 544,
+        "size": 309,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/85591458",
         "modifiers": {
@@ -5274,10 +5257,7 @@
         "children": [
           "function/92331580",
           "function/623281272",
-          "function/676221427",
-          "function/676221428",
-          "function/866824195",
-          "function/918278003"
+          "function/676221427"
         ]
       },
       "767715287": {
@@ -5308,7 +5288,7 @@
         "id": "class/768321595",
         "kind": "class",
         "name": "_AllMatchesIterator",
-        "size": 302,
+        "size": 476,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/966364039",
         "modifiers": {
@@ -5319,6 +5299,8 @@
           "field/67042351",
           "field/687949338",
           "field/1003009060",
+          "function/253251003",
+          "function/275552132",
           "function/625376887",
           "function/943902272",
           "function/1069819234"
@@ -5524,7 +5506,7 @@
         "id": "class/793539876",
         "kind": "class",
         "name": "JSString",
-        "size": 1337,
+        "size": 1339,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/325218131",
         "modifiers": {
@@ -5589,11 +5571,23 @@
         },
         "children": []
       },
+      "801355802": {
+        "id": "class/801355802",
+        "kind": "class",
+        "name": "RegExpMatch",
+        "size": 39,
+        "outputUnit": "outputUnit/669725655",
+        "parent": "library/631335891",
+        "modifiers": {
+          "abstract": true
+        },
+        "children": []
+      },
       "803883908": {
         "id": "class/803883908",
         "kind": "class",
         "name": "Duration",
-        "size": 655,
+        "size": 654,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/631335891",
         "modifiers": {
@@ -5841,7 +5835,7 @@
         "id": "class/851867060",
         "kind": "class",
         "name": "JavaScriptObject",
-        "size": 97,
+        "size": 98,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/325218131",
         "modifiers": {
@@ -6070,7 +6064,7 @@
         "id": "class/896575907",
         "kind": "class",
         "name": "_FrozenElementList",
-        "size": 295,
+        "size": 137,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/85591458",
         "modifiers": {
@@ -6078,13 +6072,10 @@
         },
         "children": [
           "field/248336138",
-          "function/258125598",
           "function/353600390",
           "function/690550575",
-          "function/810075207",
           "function/839604108",
           "function/917746710",
-          "function/917746711",
           "function/926369256"
         ]
       },
@@ -6200,7 +6191,7 @@
         "id": "class/926172034",
         "kind": "class",
         "name": "_ControllerStream",
-        "size": 197,
+        "size": 198,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/1052666095",
         "modifiers": {
@@ -6330,7 +6321,7 @@
         "id": "class/939061945",
         "kind": "class",
         "name": "_ElementCssClassSet",
-        "size": 474,
+        "size": 440,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/85591458",
         "modifiers": {
@@ -6344,14 +6335,12 @@
           "function/334712388",
           "function/365024155",
           "function/375786305",
-          "function/398143772",
           "function/440223505",
           "function/491220889",
           "function/615186453",
           "function/624122426",
           "function/662512044",
           "function/671994397",
-          "function/718604638",
           "function/833331993"
         ]
       },
@@ -6727,7 +6716,7 @@
         "id": "class/992156986",
         "kind": "class",
         "name": "Element",
-        "size": 1633,
+        "size": 1634,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/85591458",
         "modifiers": {
@@ -6849,7 +6838,7 @@
         "id": "class/1003011102",
         "kind": "class",
         "name": "JSNumber",
-        "size": 918,
+        "size": 913,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/325218131",
         "modifiers": {
@@ -7176,7 +7165,7 @@
         "id": "class/1045817757",
         "kind": "class",
         "name": "_StreamImplEvents",
-        "size": 150,
+        "size": 74,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/1052666095",
         "modifiers": {
@@ -7327,7 +7316,7 @@
         "id": "function/4148337",
         "kind": "function",
         "name": "hashCode",
-        "size": 38,
+        "size": 40,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/803883908",
         "children": [],
@@ -7342,7 +7331,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "gM:function(a){return C.jn.gM(this.a)}",
+        "code": "giO:function(a){return C.jn.giO(this.a)}",
         "type": "int Function()"
       },
       "5447158": {
@@ -7538,7 +7527,7 @@
         "id": "function/14519227",
         "kind": "function",
         "name": "add",
-        "size": 75,
+        "size": 0,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/1045817757",
         "children": [],
@@ -7559,7 +7548,7 @@
         ],
         "sideEffects": "SideEffects(reads field; writes field)",
         "inlinedCount": 1,
-        "code": "i:function(a,b){var u=this,t=u.c\nif(t==null)u.b=u.c=b\nelse{t.saw(b)\nu.c=b}}",
+        "code": "",
         "type": "void Function(_DelayedEvent<dynamic>)"
       },
       "15204906": {
@@ -7581,7 +7570,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "$0:function(){var u,t,s,r,q,p,o=this,n=null\ntry{s=o.c\nn=s.b.b.Gr(s.d)}catch(r){u=H.Ru(r)\nt=H.ts(r)\nif(o.d){s=o.a.a.c.a\nq=u\nq=s==null?q==null:s===q\ns=q}else s=!1\nq=o.b\nif(s)q.b=o.a.a.c\nelse q.b=new P.OH(u,t)\nq.a=!0\nreturn}if(!!J.v(n).$ib8){if(n instanceof P.vs&&n.a>=4){if(n.a===8){s=o.b\ns.b=n.c\ns.a=!0}return}p=o.a.a\ns=o.b\ns.b=n.W7(new P.jZ(p),null)\ns.a=!1}}",
+        "code": "$0:function(){var u,t,s,r,q,p,o=this,n=null\ntry{s=o.c\nn=s.b.b.Gr(s.d)}catch(r){u=H.Ru(r)\nt=H.ts(r)\nif(o.d){s=o.a.a.c.a\nq=u\nq=s==null?q==null:s===q\ns=q}else s=!1\nq=o.b\nif(s)q.b=o.a.a.c\nelse q.b=new P.OH(u,t)\nq.a=!0\nreturn}if(!!J.c(n).$ib8){if(n instanceof P.vs&&n.a>=4){if(n.a===8){s=o.b\ns.b=n.c\ns.a=!0}return}p=o.a.a\ns=o.b\ns.b=n.W7(new P.jZ(p),null)\ns.a=!1}}",
         "type": "void Function()"
       },
       "15478302": {
@@ -7804,7 +7793,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "kR:function(a,b,c,d,e,f,g){var u,t,s,r,q,p=this\nif(c){p.EP(a,b)\nwindow\nu=\"Removing element due to corrupted attributes on <\"+d+\">\"\nif(typeof console!=\"undefined\")window.console.warn(u)\nreturn}if(!p.a.i0(a)){p.EP(a,b)\nwindow\nu=\"Removing disallowed element <\"+H.d(e)+\"> from \"+H.d(b)\nif(typeof console!=\"undefined\")window.console.warn(u)\nreturn}if(g!=null)if(!p.a.Eb(a,\"is\",g)){p.EP(a,b)\nwindow\nu=\"Removing disallowed type extension <\"+H.d(e)+' is=\"'+g+'\">'\nif(typeof console!=\"undefined\")window.console.warn(u)\nreturn}u=f.gvc()\nt=H.VM(u.slice(0),[H.Kp(u,0)])\nfor(s=f.gvc().length-1,u=f.a;s>=0;--s){r=t[s]\nif(!p.a.Eb(a,J.cH(r),u.getAttribute(r))){window\nq=\"Removing disallowed attribute <\"+H.d(e)+\" \"+r+'=\"'+H.d(u.getAttribute(r))+'\">'\nif(typeof console!=\"undefined\")window.console.warn(q)\nu.removeAttribute(r)}}if(!!J.v(a).$iyY)p.Pn(a.content)}",
+        "code": "kR:function(a,b,c,d,e,f,g){var u,t,s,r,q,p=this\nif(c){p.EP(a,b)\nwindow\nu=\"Removing element due to corrupted attributes on <\"+d+\">\"\nif(typeof console!=\"undefined\")window.console.warn(u)\nreturn}if(!p.a.i0(a)){p.EP(a,b)\nwindow\nu=\"Removing disallowed element <\"+H.d(e)+\"> from \"+H.d(b)\nif(typeof console!=\"undefined\")window.console.warn(u)\nreturn}if(g!=null)if(!p.a.Eb(a,\"is\",g)){p.EP(a,b)\nwindow\nu=\"Removing disallowed type extension <\"+H.d(e)+' is=\"'+g+'\">'\nif(typeof console!=\"undefined\")window.console.warn(u)\nreturn}u=f.gvc()\nt=H.VM(u.slice(0),[H.Kp(u,0)])\nfor(s=f.gvc().length-1,u=f.a;s>=0;--s){r=t[s]\nif(!p.a.Eb(a,J.cH(r),u.getAttribute(r))){window\nq=\"Removing disallowed attribute <\"+H.d(e)+\" \"+r+'=\"'+H.d(u.getAttribute(r))+'\">'\nif(typeof console!=\"undefined\")window.console.warn(q)\nu.removeAttribute(r)}}if(!!J.c(a).$iyY)p.Pn(a.content)}",
         "type": "void Function(Element,Node,bool,String,String,Map<dynamic,dynamic>,String)"
       },
       "22227107": {
@@ -8252,7 +8241,7 @@
         "id": "function/45216828",
         "kind": "function",
         "name": "_runtimeTypeToString",
-        "size": 479,
+        "size": 478,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/966364039",
         "children": [],
@@ -8278,7 +8267,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "B:function(a,b){if(a==null)return\"dynamic\"\nif(a===-1)return\"void\"\nif(typeof a===\"object\"&&a!==null&&a.constructor===Array)return H.H(a[0].name)+H.XS(a,1,b)\nif(typeof a==\"function\")return H.H(a.name)\nif(a===-2)return\"dynamic\"\nif(typeof a===\"number\"){if(b==null||a<0||a>=b.length)return\"unexpected-generic-index:\"+H.d(a)\nreturn H.d(b[b.length-a-1])}if('func' in a)return H.a(a,b)\nif('futureOr' in a)return\"FutureOr<\"+H.B(\"type\" in a?a.type:null,b)+\">\"\nreturn\"unknown-reified-type\"}",
+        "code": "B:function(a,b){if(a==null)return\"dynamic\"\nif(a===-1)return\"void\"\nif(typeof a===\"object\"&&a!==null&&a.constructor===Array)return H.H(a[0].name)+H.n(a,1,b)\nif(typeof a==\"function\")return H.H(a.name)\nif(a===-2)return\"dynamic\"\nif(typeof a===\"number\"){if(b==null||a<0||a>=b.length)return\"unexpected-generic-index:\"+H.d(a)\nreturn H.d(b[b.length-a-1])}if('func' in a)return H.a(a,b)\nif('futureOr' in a)return\"FutureOr<\"+H.B(\"type\" in a?a.type:null,b)+\">\"\nreturn\"unknown-reified-type\"}",
         "type": "String Function(dynamic,List<String>)"
       },
       "48067114": {
@@ -8474,6 +8463,28 @@
         "code": "",
         "type": "Duration Function()"
       },
+      "53930291": {
+        "id": "function/53930291",
+        "kind": "function",
+        "name": "isUnicode",
+        "size": 0,
+        "outputUnit": "outputUnit/669725655",
+        "parent": "class/182777088",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "bool",
+        "inferredReturnType": "[exact=JSBool]",
+        "parameters": [],
+        "sideEffects": "SideEffects(reads anything; writes nothing)",
+        "inlinedCount": 1,
+        "code": "",
+        "type": "bool Function()"
+      },
       "55621917": {
         "id": "function/55621917",
         "kind": "function",
@@ -8597,39 +8608,6 @@
         "code": "nC:function(a,b){var u=b.length\nif(u>a.length)return!1\nreturn b===a.substring(0,u)}",
         "type": "bool Function(Pattern,[int])"
       },
-      "58126806": {
-        "id": "function/58126806",
-        "kind": "function",
-        "name": "[]=",
-        "size": 66,
-        "outputUnit": "outputUnit/669725655",
-        "parent": "class/619300326",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "void",
-        "inferredReturnType": "[null]",
-        "parameters": [
-          {
-            "name": "index",
-            "type": "[subclass=JSInt]",
-            "declaredType": "int"
-          },
-          {
-            "name": "value",
-            "type": "[empty]",
-            "declaredType": "Node"
-          }
-        ],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 0,
-        "code": "Y5:function(a,b,c){var u=this.a\nu.replaceChild(c,u.childNodes[b])}",
-        "type": "void Function(int,Node)"
-      },
       "58194360": {
         "id": "function/58194360",
         "kind": "function",
@@ -8727,7 +8705,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "p:function(a){this.a.className=a.k(0,\" \")}",
+        "code": "X:function(a){this.a.className=a.k(0,\" \")}",
         "type": "void Function(Set<String>)"
       },
       "64968119": {
@@ -8887,7 +8865,7 @@
         ],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
         "inlinedCount": 0,
-        "code": "K:function(a,b){return new P.OR(this,a,b)}",
+        "code": "P:function(a,b){return new P.OR(this,a,b)}",
         "type": "void Function(#A) Function<#A>(void Function(#A))"
       },
       "74979086": {
@@ -8971,7 +8949,7 @@
         "id": "function/80736041",
         "kind": "function",
         "name": "hashCode",
-        "size": 30,
+        "size": 31,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/523978038",
         "children": [],
@@ -8986,7 +8964,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "gM:function(a){return H.eQ(a)}",
+        "code": "giO:function(a){return H.eQ(a)}",
         "type": "int Function()"
       },
       "81057679": {
@@ -9059,7 +9037,7 @@
         "id": "function/91425461",
         "kind": "function",
         "name": "hashCode",
-        "size": 24,
+        "size": 25,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/851867060",
         "children": [],
@@ -9074,7 +9052,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
         "inlinedCount": 0,
-        "code": "gM:function(a){return 0}",
+        "code": "giO:function(a){return 0}",
         "type": "int Function()"
       },
       "92202521": {
@@ -9109,7 +9087,7 @@
         "id": "function/92331580",
         "kind": "function",
         "name": "[]",
-        "size": 90,
+        "size": 89,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/766774061",
         "children": [],
@@ -9130,7 +9108,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "q:function(a,b){if(b>>>0!==b||b>=a.length)throw H.I(P.Cf(b,a,null,null,null))\nreturn a[b]}",
+        "code": "q:function(a,b){if(b>>>0!==b||b>=a.length)throw H.I(P.m(b,a,null,null,null))\nreturn a[b]}",
         "type": "Node Function(int)"
       },
       "92840770": {
@@ -9286,7 +9264,7 @@
         "id": "function/98156511",
         "kind": "function",
         "name": "contains",
-        "size": 139,
+        "size": 140,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/123522748",
         "children": [],
@@ -9307,7 +9285,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "I:function(a,b){var u,t\nif(typeof b===\"string\"&&b!==\"__proto__\"){u=this.b\nif(u==null)return!1\nreturn u[b]!=null}else{t=this.P(b)\nreturn t}}",
+        "code": "I:function(a,b){var u,t\nif(typeof b===\"string\"&&b!==\"__proto__\"){u=this.b\nif(u==null)return!1\nreturn u[b]!=null}else{t=this.PR(b)\nreturn t}}",
         "type": "bool Function(Object)"
       },
       "98321124": {
@@ -9366,7 +9344,7 @@
         "inferredReturnType": "[exact=_LinkedHashSetIterator]",
         "parameters": [],
         "sideEffects": "SideEffects(reads field; writes field)",
-        "inlinedCount": 4,
+        "inlinedCount": 3,
         "code": "gkz:function(a){return P.rj(this,this.r)}",
         "type": "Iterator<_LinkedHashSet.E> Function()"
       },
@@ -9507,7 +9485,7 @@
         "id": "function/112452456",
         "kind": "function",
         "name": "elementAt",
-        "size": 145,
+        "size": 144,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/70813553",
         "children": [],
@@ -9528,7 +9506,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "E:function(a,b){var u,t,s\nP.k1(b,\"index\")\nfor(u=this.gkz(this),t=0;u.F();){s=u.gl()\nif(b===t)return s;++t}throw H.I(P.Cf(b,this,\"index\",null,t))}",
+        "code": "E:function(a,b){var u,t,s\nP.k1(b,\"index\")\nfor(u=this.gkz(this),t=0;u.F();){s=u.gl()\nif(b===t)return s;++t}throw H.I(P.m(b,this,\"index\",null,t))}",
         "type": "Iterable.E Function(int)"
       },
       "114196840": {
@@ -9585,34 +9563,6 @@
         "inlinedCount": 0,
         "code": "L:function(a,b){return a[this.N(b)]}",
         "type": "List<dynamic> Function(dynamic,dynamic)"
-      },
-      "115611491": {
-        "id": "function/115611491",
-        "kind": "function",
-        "name": "addAll",
-        "size": 62,
-        "outputUnit": "outputUnit/669725655",
-        "parent": "class/758572498",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "void",
-        "inferredReturnType": "[null]",
-        "parameters": [
-          {
-            "name": "elements",
-            "type": "[empty]",
-            "declaredType": "Iterable<SetMixin.E>"
-          }
-        ],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 0,
-        "code": "FV:function(a,b){var u\nfor(u=b.gkz(b);u.F();)this.i(0,u.gl())}",
-        "type": "void Function(Object)"
       },
       "116599339": {
         "id": "function/116599339",
@@ -9811,7 +9761,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "$1:function(a){var u=H.Go(W.qc(a.currentTarget),\"$icv\")\nif(!$.UR.i(0,u.id))$.UR.R(0,u.id)\nG.i()}",
+        "code": "$1:function(a){var u=H.Go(W.qc(a.currentTarget),\"$icv\")\nif(!$.UR.i(0,u.id))$.UR.n(0,u.id)\nG.i()}",
         "type": "Null Function(MouseEvent)"
       },
       "123996961": {
@@ -9940,7 +9890,7 @@
         "id": "function/130131853",
         "kind": "function",
         "name": "_contains",
-        "size": 80,
+        "size": 81,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/123522748",
         "children": [],
@@ -9961,7 +9911,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "P:function(a){var u=this.d\nif(u==null)return!1\nreturn this.DF(this.L(u,a),a)>=0}",
+        "code": "PR:function(a){var u=this.d\nif(u==null)return!1\nreturn this.DF(this.L(u,a),a)>=0}",
         "type": "bool Function(Object)"
       },
       "135722261": {
@@ -10390,36 +10340,6 @@
         "code": "w:function(a){var u=this.a\nreturn u==null?\"Reading static variable during its initialization\":\"Reading static variable '\"+u+\"' during its initialization\"}",
         "type": "String Function()"
       },
-      "151843940": {
-        "id": "function/151843940",
-        "kind": "function",
-        "name": "addAll",
-        "size": 163,
-        "outputUnit": "outputUnit/669725655",
-        "parent": "class/309812059",
-        "children": [
-          "closure/497949797"
-        ],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "void",
-        "inferredReturnType": "[null]",
-        "parameters": [
-          {
-            "name": "iterable",
-            "type": "[empty]",
-            "declaredType": "Iterable<String>"
-          }
-        ],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 0,
-        "code": "FV:function(a,b){this.OS(new P.N7(this,b))}",
-        "type": "void Function(Object)"
-      },
       "156739564": {
         "id": "function/156739564",
         "kind": "function",
@@ -10746,7 +10666,7 @@
         "id": "function/170831562",
         "kind": "function",
         "name": "_tdivFast",
-        "size": 52,
+        "size": 50,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/1003011102",
         "children": [],
@@ -10767,7 +10687,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "BU:function(a,b){return(a|0)===a?a/b|0:this.DJ(a,b)}",
+        "code": "K:function(a,b){return(a|0)===a?a/b|0:this.v(a,b)}",
         "type": "int Function(num)"
       },
       "171287120": {
@@ -10840,7 +10760,7 @@
         "id": "function/175997763",
         "kind": "function",
         "name": "hashCode",
-        "size": 38,
+        "size": 39,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/245082925",
         "children": [],
@@ -10855,7 +10775,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "gM:function(a){return a?519018:218159}",
+        "code": "giO:function(a){return a?519018:218159}",
         "type": "int Function()"
       },
       "176264439": {
@@ -10943,7 +10863,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "b5:function(a,b,c){var u,t,s,r\nfor(u=b,t=null;u<c;++u){switch(a[u]){case\"&\":s=\"&amp;\"\nbreak\ncase'\"':s=\"&quot;\"\nbreak\ncase\"'\":s=\"&#39;\"\nbreak\ncase\"<\":s=\"&lt;\"\nbreak\ncase\">\":s=\"&gt;\"\nbreak\ncase\"/\":s=\"&#47;\"\nbreak\ndefault:s=null}if(s!=null){if(t==null)t=new P.k(\"\")\nif(u>b)t.a+=C.xB.J(a,b,u)\nt.a+=s\nb=u+1}}if(t==null)return\nif(c>b)t.a+=J.ld(a,b,c)\nr=t.a\nreturn r.charCodeAt(0)==0?r:r}",
+        "code": "b5:function(a,b,c){var u,t,s,r\nfor(u=b,t=null;u<c;++u){switch(a[u]){case\"&\":s=\"&amp;\"\nbreak\ncase'\"':s=\"&quot;\"\nbreak\ncase\"'\":s=\"&#39;\"\nbreak\ncase\"<\":s=\"&lt;\"\nbreak\ncase\">\":s=\"&gt;\"\nbreak\ncase\"/\":s=\"&#47;\"\nbreak\ndefault:s=null}if(s!=null){if(t==null)t=new P.k(\"\")\nif(u>b)t.a+=C.xB.C(a,b,u)\nt.a+=s\nb=u+1}}if(t==null)return\nif(c>b)t.a+=J.ld(a,b,c)\nr=t.a\nreturn r.charCodeAt(0)==0?r:r}",
         "type": "String Function(String,int,int)"
       },
       "176842663": {
@@ -11164,7 +11084,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "OS:function(a){var u=this.D(),t=a.$1(u)\nthis.p(u)\nreturn t}",
+        "code": "OS:function(a){var u=this.D(),t=a.$1(u)\nthis.X(u)\nreturn t}",
         "type": "dynamic Function(dynamic Function(Set<String>))"
       },
       "195450967": {
@@ -11465,7 +11385,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "$1:function(a){var u,t,s,r,q\nfor(u=P.rj($.UR,$.UR.r),t=J.rY(a);u.F();){s=u.d\nif(a===\"digraph \"+H.d(s)+\" {\")return!0\nr=t.OY(a,\"[\")\nq=r>0?C.xB.J(a,0,r):a\ns=P.nu(\"\\\\W\"+H.d(s)+\"\\\\W\")\nif(H.m2(q,s,0)){if(!H.m2(q,\"->\",0))this.a.push(a)\nreturn!1}}return!0}",
+        "code": "$1:function(a){var u,t,s,r,q\nfor(u=P.rj($.UR,$.UR.r),t=J.rY(a);u.F();){s=u.d\nif(a===\"digraph \"+H.d(s)+\" {\")return!0\nr=t.OY(a,\"[\")\nq=r>0?C.xB.C(a,0,r):a\ns=P.nu(\"\\\\W\"+H.d(s)+\"\\\\W\")\nif(H.m2(q,s,0)){if(!H.m2(q,\"->\",0))this.a.push(a)\nreturn!1}}return!0}",
         "type": "bool Function(String)"
       },
       "206823989": {
@@ -11548,7 +11468,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads nothing; writes anything)",
-        "inlinedCount": 11,
+        "inlinedCount": 7,
         "code": "",
         "type": "dynamic Function([Object])"
       },
@@ -11610,14 +11530,14 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes nothing)",
         "inlinedCount": 0,
-        "code": "wV:function(a,b){var u\nif(b!=null){u=b.x\nif(u!=null)return u}return!!J.v(a).$iXj}",
+        "code": "wV:function(a,b){var u\nif(b!=null){u=b.x\nif(u!=null)return u}return!!J.c(a).$iXj}",
         "type": "bool Function(dynamic,dynamic)"
       },
       "215002293": {
         "id": "function/215002293",
         "kind": "function",
         "name": "_TemplatingNodeValidator",
-        "size": 258,
+        "size": 257,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/938665676",
         "children": [
@@ -11634,7 +11554,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "Bl:function(){var u=P.q,t=P.tM(C.Qx,u),s=H.VM([\"TEMPLATE\"],[u])\nt=new W.ct(t,P.Ls(u),P.Ls(u),P.Ls(u),null)\nt.PJ(null,new H.A8(C.Qx,new W.tE(),[H.Kp(C.Qx,0),u]),s,null)\nreturn t}",
+        "code": "Bl:function(){var u=P.q,t=P.tM(C.Qx,u),s=H.VM([\"TEMPLATE\"],[u])\nt=new W.ct(t,P.Ls(u),P.Ls(u),P.Ls(u),null)\nt.R(null,new H.A8(C.Qx,new W.tE(),[H.Kp(C.Qx,0),u]),s,null)\nreturn t}",
         "type": "dynamic Function()"
       },
       "217362042": {
@@ -11905,7 +11825,7 @@
         "id": "function/231269804",
         "kind": "function",
         "name": "[]",
-        "size": 90,
+        "size": 89,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/109454374",
         "children": [],
@@ -11926,7 +11846,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "q:function(a,b){if(b>>>0!==b||b>=a.length)throw H.I(P.Cf(b,a,null,null,null))\nreturn a[b]}",
+        "code": "q:function(a,b){if(b>>>0!==b||b>=a.length)throw H.I(P.m(b,a,null,null,null))\nreturn a[b]}",
         "type": "Node Function(int)"
       },
       "231669663": {
@@ -12172,7 +12092,17 @@
             "declaredType": "bool"
           },
           {
+            "name": "dotAll",
+            "type": "Value([exact=JSBool], value: false)",
+            "declaredType": "bool"
+          },
+          {
             "name": "multiLine",
+            "type": "Value([exact=JSBool], value: false)",
+            "declaredType": "bool"
+          },
+          {
+            "name": "unicode",
             "type": "Value([exact=JSBool], value: false)",
             "declaredType": "bool"
           }
@@ -12180,7 +12110,7 @@
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 1,
         "code": "",
-        "type": "dynamic Function(String,{bool caseSensitive,bool multiLine})"
+        "type": "dynamic Function(String,{bool caseSensitive,bool dotAll,bool multiLine,bool unicode})"
       },
       "245651187": {
         "id": "function/245651187",
@@ -12229,7 +12159,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "Ly:function(){return Date.now()}\nu(H,\"nX\",\"Ly\",11)",
+        "code": "Ly:function(){return Date.now()}\nu(H,\"nX\",\"Ly\",10)",
         "type": "int Function()"
       },
       "247154050": {
@@ -12363,6 +12293,34 @@
         "inlinedCount": 1,
         "code": "",
         "type": "void Function(dynamic)"
+      },
+      "253251003": {
+        "id": "function/253251003",
+        "kind": "function",
+        "name": "_isLeadSurrogate",
+        "size": 0,
+        "outputUnit": "outputUnit/669725655",
+        "parent": "class/768321595",
+        "children": [],
+        "modifiers": {
+          "static": true,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "bool",
+        "inferredReturnType": "[exact=JSBool]",
+        "parameters": [
+          {
+            "name": "c",
+            "type": "[exact=JSUInt31]",
+            "declaredType": "int"
+          }
+        ],
+        "sideEffects": "SideEffects(reads field; writes nothing)",
+        "inlinedCount": 1,
+        "code": "",
+        "type": "bool Function(int)"
       },
       "253794122": {
         "id": "function/253794122",
@@ -12499,39 +12457,6 @@
         "inlinedCount": 1,
         "code": "",
         "type": "bool Function(Object)"
-      },
-      "258125598": {
-        "id": "function/258125598",
-        "kind": "function",
-        "name": "[]=",
-        "size": 57,
-        "outputUnit": "outputUnit/669725655",
-        "parent": "class/896575907",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "void",
-        "inferredReturnType": "[empty]",
-        "parameters": [
-          {
-            "name": "index",
-            "type": "[subclass=JSInt]",
-            "declaredType": "int"
-          },
-          {
-            "name": "value",
-            "type": "[empty]",
-            "declaredType": "_FrozenElementList.E"
-          }
-        ],
-        "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 0,
-        "code": "Y5:function(a,b,c){throw H.I(P.L4(\"Cannot modify list\"))}",
-        "type": "void Function(int,Object)"
       },
       "259508125": {
         "id": "function/259508125",
@@ -12735,7 +12660,7 @@
         "id": "function/265638794",
         "kind": "function",
         "name": "unwrapException",
-        "size": 1522,
+        "size": 1511,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/966364039",
         "children": [
@@ -12758,7 +12683,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "Ru:function(a){var u,t,s,r,q,p,o,n,m,l,k,j,i,h,g=null,f=new H.Am(a)\nif(a==null)return\nif(typeof a!==\"object\")return a\nif(\"dartException\" in a)return f.$1(a.dartException)\nelse if(!(\"message\" in a))return a\nu=a.message\nif(\"number\" in a&&typeof a.number==\"number\"){t=a.number\ns=t&65535\nif((C.jn.wG(t,16)&8191)===10)switch(s){case 438:return f.$1(H.T3(H.d(u)+\" (Error \"+s+\")\",g))\ncase 445:case 5007:return f.$1(H.Ij(H.d(u)+\" (Error \"+s+\")\",g))}}if(a instanceof TypeError){r=$.Sn()\nq=$.lq()\np=$.N9()\no=$.iI()\nn=$.Kf()\nm=$.Zh()\nl=$.rN()\n$.c3()\nk=$.HK()\nj=$.r1()\ni=r.qS(u)\nif(i!=null)return f.$1(H.T3(u,i))\nelse{i=q.qS(u)\nif(i!=null){i.method=\"call\"\nreturn f.$1(H.T3(u,i))}else{i=p.qS(u)\nif(i==null){i=o.qS(u)\nif(i==null){i=n.qS(u)\nif(i==null){i=m.qS(u)\nif(i==null){i=l.qS(u)\nif(i==null){i=o.qS(u)\nif(i==null){i=k.qS(u)\nif(i==null){i=j.qS(u)\nh=i!=null}else h=!0}else h=!0}else h=!0}else h=!0}else h=!0}else h=!0}else h=!0\nif(h)return f.$1(H.Ij(u,i))}}return f.$1(new H.vV(typeof u===\"string\"?u:\"\"))}if(a instanceof RangeError){if(typeof u===\"string\"&&u.indexOf(\"call stack\")!==-1)return new P.VS()\nu=function(b){try{return String(b)}catch(e){}return null}(a)\nreturn f.$1(new P.u(!1,g,g,typeof u===\"string\"?u.replace(/^RangeError:\\s*/,\"\"):u))}if(typeof InternalError==\"function\"&&a instanceof InternalError)if(typeof u===\"string\"&&u===\"too much recursion\")return new P.VS()\nreturn a}",
+        "code": "Ru:function(a){var u,t,s,r,q,p,o,n,m,l,k,j,i,h,g=null,f=new H.Am(a)\nif(a==null)return\nif(typeof a!==\"object\")return a\nif(\"dartException\" in a)return f.$1(a.dartException)\nelse if(!(\"message\" in a))return a\nu=a.message\nif(\"number\" in a&&typeof a.number==\"number\"){t=a.number\ns=t&65535\nif((C.jn.J(t,16)&8191)===10)switch(s){case 438:return f.$1(H.T3(H.d(u)+\" (Error \"+s+\")\",g))\ncase 445:case 5007:return f.$1(H.Ij(H.d(u)+\" (Error \"+s+\")\",g))}}if(a instanceof TypeError){r=$.Sn()\nq=$.lq()\np=$.N9()\no=$.iI()\nn=$.Kf()\nm=$.Zh()\nl=$.rN()\n$.c3()\nk=$.HK()\nj=$.r1()\ni=r.j(u)\nif(i!=null)return f.$1(H.T3(u,i))\nelse{i=q.j(u)\nif(i!=null){i.method=\"call\"\nreturn f.$1(H.T3(u,i))}else{i=p.j(u)\nif(i==null){i=o.j(u)\nif(i==null){i=n.j(u)\nif(i==null){i=m.j(u)\nif(i==null){i=l.j(u)\nif(i==null){i=o.j(u)\nif(i==null){i=k.j(u)\nif(i==null){i=j.j(u)\nh=i!=null}else h=!0}else h=!0}else h=!0}else h=!0}else h=!0}else h=!0}else h=!0\nif(h)return f.$1(H.Ij(u,i))}}return f.$1(new H.vV(typeof u===\"string\"?u:\"\"))}if(a instanceof RangeError){if(typeof u===\"string\"&&u.indexOf(\"call stack\")!==-1)return new P.VS()\nu=function(b){try{return String(b)}catch(e){}return null}(a)\nreturn f.$1(new P.u(!1,g,g,typeof u===\"string\"?u.replace(/^RangeError:\\s*/,\"\"):u))}if(typeof InternalError==\"function\"&&a instanceof InternalError)if(typeof u===\"string\"&&u===\"too much recursion\")return new P.VS()\nreturn a}",
         "type": "dynamic Function(dynamic)"
       },
       "268773900": {
@@ -12857,7 +12782,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "HZ:function(a,b){var u,t,s,r,q,p,o,n,m,l,k,j=null,i={},h=i.a=a\nfor(;!0;){u={}\nt=h.a===8\nif(b==null){if(t){s=h.c\nh=h.b\nr=s.a\ns=s.b\nh.toString\nP.L2(j,j,h,r,s)}return}for(;q=b.a,q!=null;b=q){b.a=null\nP.HZ(i.a,b)}h=i.a\np=h.c\nu.a=t\nu.b=p\ns=!t\nif(s){r=b.c\nr=(r&1)!==0||r===8}else r=!0\nif(r){r=b.b\no=r.b\nif(t){n=h.b\nn.toString\nn=n==o\nif(!n)o.toString\nelse n=!0\nn=!n}else n=!1\nif(n){h=h.b\ns=p.a\nr=p.b\nh.toString\nP.L2(j,j,h,s,r)\nreturn}m=$.X3\nif(m!=o)$.X3=o\nelse m=j\nh=b.c\nif(h===8)new P.RT(i,u,b,t).$0()\nelse if(s){if((h&1)!==0)new P.rq(u,b,p).$0()}else if((h&2)!==0)new P.RW(i,u,b).$0()\nif(m!=null)$.X3=m\nh=u.b\nif(!!J.v(h).$ib8){if(h.a>=4){l=r.c\nr.c=null\nb=r.N8(l)\nr.a=h.a\nr.c=h.c\ni.a=h\ncontinue}else P.A9(h,r)\nreturn}}k=b.b\nl=k.c\nk.c=null\nb=k.N8(l)\nh=u.a\ns=u.b\nif(!h){k.a=4\nk.c=s}else{k.a=8\nk.c=s}i.a=k\nh=k}}",
+        "code": "HZ:function(a,b){var u,t,s,r,q,p,o,n,m,l,k,j=null,i={},h=i.a=a\nfor(;!0;){u={}\nt=h.a===8\nif(b==null){if(t){s=h.c\nh=h.b\nr=s.a\ns=s.b\nh.toString\nP.L2(j,j,h,r,s)}return}for(;q=b.a,q!=null;b=q){b.a=null\nP.HZ(i.a,b)}h=i.a\np=h.c\nu.a=t\nu.b=p\ns=!t\nif(s){r=b.c\nr=(r&1)!==0||r===8}else r=!0\nif(r){r=b.b\no=r.b\nif(t){n=h.b\nn.toString\nn=n==o\nif(!n)o.toString\nelse n=!0\nn=!n}else n=!1\nif(n){h=h.b\ns=p.a\nr=p.b\nh.toString\nP.L2(j,j,h,s,r)\nreturn}m=$.X3\nif(m!=o)$.X3=o\nelse m=j\nh=b.c\nif(h===8)new P.RT(i,u,b,t).$0()\nelse if(s){if((h&1)!==0)new P.rq(u,b,p).$0()}else if((h&2)!==0)new P.RW(i,u,b).$0()\nif(m!=null)$.X3=m\nh=u.b\nif(!!J.c(h).$ib8){if(h.a>=4){l=r.c\nr.c=null\nb=r.N8(l)\nr.a=h.a\nr.c=h.c\ni.a=h\ncontinue}else P.A9(h,r)\nreturn}}k=b.b\nl=k.c\nk.c=null\nb=k.N8(l)\nh=u.a\ns=u.b\nif(!h){k.a=4\nk.c=s}else{k.a=8\nk.c=s}i.a=k\nh=k}}",
         "type": "void Function(_Future<dynamic>,_FutureListener<dynamic,dynamic>)"
       },
       "272619287": {
@@ -12998,6 +12923,34 @@
         "code": "hc:function(a){return a.toLowerCase()}",
         "type": "String Function()"
       },
+      "275552132": {
+        "id": "function/275552132",
+        "kind": "function",
+        "name": "_isTrailSurrogate",
+        "size": 0,
+        "outputUnit": "outputUnit/669725655",
+        "parent": "class/768321595",
+        "children": [],
+        "modifiers": {
+          "static": true,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "bool",
+        "inferredReturnType": "[exact=JSBool]",
+        "parameters": [
+          {
+            "name": "c",
+            "type": "[exact=JSUInt31]",
+            "declaredType": "int"
+          }
+        ],
+        "sideEffects": "SideEffects(reads field; writes nothing)",
+        "inlinedCount": 1,
+        "code": "",
+        "type": "bool Function(int)"
+      },
       "275681184": {
         "id": "function/275681184",
         "kind": "function",
@@ -13030,7 +12983,7 @@
         "id": "function/275957193",
         "kind": "function",
         "name": "add",
-        "size": 222,
+        "size": 224,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/123522748",
         "children": [],
@@ -13051,7 +13004,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "i:function(a,b){var u,t,s=this\nif(typeof b===\"string\"&&b!==\"__proto__\"){u=s.b\nreturn s.S(u==null?s.b=P.T2():u,b)}else if(typeof b===\"number\"&&(b&1073741823)===b){t=s.c\nreturn s.S(t==null?s.c=P.T2():t,b)}else return s.B(b)}",
+        "code": "i:function(a,b){var u,t,s=this\nif(typeof b===\"string\"&&b!==\"__proto__\"){u=s.b\nreturn s.bQ(u==null?s.b=P.T2():u,b)}else if(typeof b===\"number\"&&(b&1073741823)===b){t=s.c\nreturn s.bQ(t==null?s.c=P.T2():t,b)}else return s.B(b)}",
         "type": "bool Function(Object)"
       },
       "276643295": {
@@ -13218,7 +13171,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "$1:function(a){if(!!J.v(a).$iGe)if(a.$thrownJsError==null)a.$thrownJsError=this.a\nreturn a}",
+        "code": "$1:function(a){if(!!J.c(a).$iGe)if(a.$thrownJsError==null)a.$thrownJsError=this.a\nreturn a}",
         "type": "dynamic Function(dynamic)"
       },
       "283680912": {
@@ -13275,7 +13228,7 @@
         "id": "function/287555929",
         "kind": "function",
         "name": "stringContainsUnchecked",
-        "size": 177,
+        "size": 178,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/966364039",
         "children": [],
@@ -13306,14 +13259,14 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "m2:function(a,b,c){var u\nif(typeof b===\"string\")return a.indexOf(b,c)>=0\nelse{u=J.v(b)\nif(!!u.$iVR){u=C.xB.G(a,c)\nreturn b.b.test(u)}else{u=u.v(b,C.xB.G(a,c))\nreturn!u.gl0(u)}}}",
+        "code": "m2:function(a,b,c){var u\nif(typeof b===\"string\")return a.indexOf(b,c)>=0\nelse{u=J.c(b)\nif(!!u.$iVR){u=C.xB.G(a,c)\nreturn b.b.test(u)}else{u=u.dd(b,C.xB.G(a,c))\nreturn!u.gl0(u)}}}",
         "type": "dynamic Function(dynamic,dynamic,dynamic)"
       },
       "288870017": {
         "id": "function/288870017",
         "kind": "function",
         "name": "toString",
-        "size": 488,
+        "size": 485,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/803883908",
         "children": [
@@ -13331,7 +13284,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "w:function(a){var u,t,s,r=new P.DW(),q=this.a\nif(q<0)return\"-\"+new P.a6(0-q).w(0)\nu=r.$1(C.jn.BU(q,6e7)%60)\nt=r.$1(C.jn.BU(q,1e6)%60)\ns=new P.P7().$1(q%1e6)\nreturn\"\"+C.jn.BU(q,36e8)+\":\"+H.d(u)+\":\"+H.d(t)+\".\"+H.d(s)}",
+        "code": "w:function(a){var u,t,s,r=new P.DW(),q=this.a\nif(q<0)return\"-\"+new P.a6(0-q).w(0)\nu=r.$1(C.jn.K(q,6e7)%60)\nt=r.$1(C.jn.K(q,1e6)%60)\ns=new P.P7().$1(q%1e6)\nreturn\"\"+C.jn.K(q,36e8)+\":\"+H.d(u)+\":\"+H.d(t)+\".\"+H.d(s)}",
         "type": "String Function()"
       },
       "290250840": {
@@ -13537,7 +13490,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 2,
+        "inlinedCount": 1,
         "code": "",
         "type": "void Function(DomTokenList,String)"
       },
@@ -13759,7 +13712,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "F:function(a){if(a instanceof H.n)return a.w(0)\nreturn\"Instance of '\"+H.l(a)+\"'\"}",
+        "code": "F:function(a){if(a instanceof H.v)return a.w(0)\nreturn\"Instance of '\"+H.l(a)+\"'\"}",
         "type": "String Function(Object)"
       },
       "303222684": {
@@ -13952,7 +13905,7 @@
         "id": "function/309663409",
         "kind": "function",
         "name": "_validateToken",
-        "size": 134,
+        "size": 104,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/309812059",
         "children": [],
@@ -13973,7 +13926,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "V:function(a){var u=$.hG().b\nif(u.test(a))return a\nthrow H.I(P.L3(a,\"value\",\"Not a valid class token\"))}\nn(P.As.prototype,\"guM\",\"V\",10)",
+        "code": "V:function(a){var u=$.hG().b\nif(u.test(a))return a\nthrow H.I(P.L3(a,\"value\",\"Not a valid class token\"))}",
         "type": "String Function(String)"
       },
       "310987574": {
@@ -14001,7 +13954,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "i0:function(a){var u=J.v(a)\nif(!!u.$ij2)return!1\nu=!!u.$id5\nif(u&&W.rS(a)===\"foreignObject\")return!1\nif(u)return!0\nreturn!1}",
+        "code": "i0:function(a){var u=J.c(a)\nif(!!u.$ij2)return!1\nu=!!u.$id5\nif(u&&W.rS(a)===\"foreignObject\")return!1\nif(u)return!0\nreturn!1}",
         "type": "bool Function(Element)"
       },
       "311306250": {
@@ -14056,14 +14009,14 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "J:function(a,b,c){if(c==null)c=a.length\nif(b<0)throw H.I(P.O7(b,null))\nif(b>c)throw H.I(P.O7(b,null))\nif(c>a.length)throw H.I(P.O7(c,null))\nreturn a.substring(b,c)}\nG:function(a,b){return this.J(a,b,null)}",
+        "code": "C:function(a,b,c){if(c==null)c=a.length\nif(b<0)throw H.I(P.O7(b,null))\nif(b>c)throw H.I(P.O7(b,null))\nif(c>a.length)throw H.I(P.O7(c,null))\nreturn a.substring(b,c)}\nG:function(a,b){return this.C(a,b,null)}",
         "type": "String Function(int,[int])"
       },
       "312847150": {
         "id": "function/312847150",
         "kind": "function",
         "name": "toString",
-        "size": 41,
+        "size": 54,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/182777088",
         "children": [],
@@ -14076,9 +14029,9 @@
         "returnType": "String",
         "inferredReturnType": "[exact=JSString]",
         "parameters": [],
-        "sideEffects": "SideEffects(reads field; writes anything)",
+        "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "w:function(a){return\"RegExp/\"+this.a+\"/\"}",
+        "code": "w:function(a){return\"RegExp/\"+this.a+\"/\"+this.b.flags}",
         "type": "String Function()"
       },
       "314686478": {
@@ -14250,7 +14203,7 @@
         "id": "function/321493163",
         "kind": "function",
         "name": "makeNative",
-        "size": 226,
+        "size": 256,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/182777088",
         "children": [],
@@ -14279,6 +14232,16 @@
             "declaredType": "bool"
           },
           {
+            "name": "unicode",
+            "type": "[exact=JSBool]",
+            "declaredType": "bool"
+          },
+          {
+            "name": "dotAll",
+            "type": "[exact=JSBool]",
+            "declaredType": "bool"
+          },
+          {
             "name": "global",
             "type": "[exact=JSBool]",
             "declaredType": "bool"
@@ -14286,8 +14249,8 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "v4:function(a,b,c,d){var u=b?\"m\":\"\",t=c?\"\":\"i\",s=d?\"g\":\"\",r=function(e,f){try{return new RegExp(e,f)}catch(q){return q}}(a,u+t+s)\nif(r instanceof RegExp)return r\nthrow H.I(new P.aE(\"Illegal RegExp pattern (\"+String(r)+\")\",a))}",
-        "type": "dynamic Function(String,bool,bool,bool)"
+        "code": "v4:function(a,b,c,d,e,f){var u=b?\"m\":\"\",t=c?\"\":\"i\",s=d?\"u\":\"\",r=e?\"s\":\"\",q=f?\"g\":\"\",p=function(g,h){try{return new RegExp(g,h)}catch(o){return o}}(a,u+t+s+r+q)\nif(p instanceof RegExp)return p\nthrow H.I(new P.aE(\"Illegal RegExp pattern (\"+String(p)+\")\",a))}",
+        "type": "dynamic Function(String,bool,bool,bool,bool,bool)"
       },
       "322845948": {
         "id": "function/322845948",
@@ -14598,37 +14561,9 @@
           }
         ],
         "sideEffects": "SideEffects(reads field; writes field)",
-        "inlinedCount": 28,
+        "inlinedCount": 21,
         "code": "",
         "type": "void Function(dynamic)"
-      },
-      "335135610": {
-        "id": "function/335135610",
-        "kind": "function",
-        "name": "add",
-        "size": 38,
-        "outputUnit": "outputUnit/669725655",
-        "parent": "class/619300326",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "void",
-        "inferredReturnType": "[null]",
-        "parameters": [
-          {
-            "name": "value",
-            "type": "[empty]",
-            "declaredType": "Node"
-          }
-        ],
-        "sideEffects": "SideEffects(reads field; writes nothing)",
-        "inlinedCount": 0,
-        "code": "i:function(a,b){this.a.appendChild(b)}",
-        "type": "void Function(Object)"
       },
       "336168458": {
         "id": "function/336168458",
@@ -14655,7 +14590,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "rb:function(a){var u=null,t=$.X3\nif(C.NU===t){P.Tk(u,u,C.NU,a)\nreturn}t.toString\nP.Tk(u,u,t,t.GY(a))}",
+        "code": "rb:function(a){var u=null,t=$.X3\nif(C.NU===t){P.Tk(u,u,C.NU,a)\nreturn}t.toString\nP.Tk(u,u,t,t.qS(a))}",
         "type": "void Function(void Function())"
       },
       "336352070": {
@@ -14813,39 +14748,11 @@
         "code": "ks:function(a){var u,t,s,r,q=a[v.dispatchPropertyName]\nif(q==null)if($.Bv==null){H.XD()\nq=a[v.dispatchPropertyName]}if(q!=null){u=q.p\nif(!1===u)return q.i\nif(!0===u)return a\nt=Object.getPrototypeOf(a)\nif(u===t)return q.i\nif(q.e===t)throw H.I(P.SY(\"Return interceptor for \"+H.d(u(a,q))))}s=a.constructor\nr=s==null?null:s[$.UN()]\nif(r!=null)return r\nr=H.w3(a)\nif(r!=null)return r\nif(typeof a==\"function\")return C.DG\nu=Object.getPrototypeOf(a)\nif(u==null)return C.ZQ\nif(u===Object.prototype)return C.ZQ\nif(typeof s==\"function\"){Object.defineProperty(s,$.UN(),{value:C.vB,enumerable:false,writable:true,configurable:true})\nreturn C.vB}return C.vB}",
         "type": "dynamic Function(dynamic)"
       },
-      "347478885": {
-        "id": "function/347478885",
-        "kind": "function",
-        "name": "add",
-        "size": 65,
-        "outputUnit": "outputUnit/669725655",
-        "parent": "class/189655249",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "void",
-        "inferredReturnType": "[empty]",
-        "parameters": [
-          {
-            "name": "value",
-            "type": "[empty]",
-            "declaredType": "ImmutableListMixin.E"
-          }
-        ],
-        "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 0,
-        "code": "i:function(a,b){throw H.I(P.L4(\"Cannot add to immutable List.\"))}",
-        "type": "void Function(Object)"
-      },
       "347974666": {
         "id": "function/347974666",
         "kind": "function",
         "name": "hashCode",
-        "size": 202,
+        "size": 203,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/793539876",
         "children": [],
@@ -14860,7 +14767,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "gM:function(a){var u,t,s\nfor(u=a.length,t=0,s=0;s<u;++s){t=536870911&t+a.charCodeAt(s)\nt=536870911&t+((524287&t)<<10)\nt^=t>>6}t=536870911&t+((67108863&t)<<3)\nt^=t>>11\nreturn 536870911&t+((16383&t)<<15)}",
+        "code": "giO:function(a){var u,t,s\nfor(u=a.length,t=0,s=0;s<u;++s){t=536870911&t+a.charCodeAt(s)\nt=536870911&t+((524287&t)<<10)\nt^=t>>6}t=536870911&t+((67108863&t)<<3)\nt^=t>>11\nreturn 536870911&t+((16383&t)<<15)}",
         "type": "int Function()"
       },
       "349794930": {
@@ -15147,28 +15054,6 @@
         "code": "h:function(a){if(typeof a===\"number\"||typeof a===\"boolean\"||null==a)return J.A(a)\nif(typeof a===\"string\")return JSON.stringify(a)\nreturn P.F(a)}",
         "type": "String Function(Object)"
       },
-      "356626494": {
-        "id": "function/356626494",
-        "kind": "function",
-        "name": "last",
-        "size": 90,
-        "outputUnit": "outputUnit/669725655",
-        "parent": "class/619300326",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "Node",
-        "inferredReturnType": "[subclass=Node]",
-        "parameters": [],
-        "sideEffects": "SideEffects(reads anything; writes nothing)",
-        "inlinedCount": 1,
-        "code": "grZ:function(a){var u=this.a.lastChild\nif(u==null)throw H.I(P.PV(\"No elements\"))\nreturn u}",
-        "type": "Node Function()"
-      },
       "357240896": {
         "id": "function/357240896",
         "kind": "function",
@@ -15215,7 +15100,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads field; writes anything)",
-        "inlinedCount": 28,
+        "inlinedCount": 21,
         "code": "",
         "type": "void Function(Object)"
       },
@@ -15344,7 +15229,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "R:function(a,b){var u=this.a.classList,t=u.contains(b)\nu.remove(b)\nreturn t}",
+        "code": "n:function(a,b){var u=this.a.classList,t=u.contains(b)\nu.remove(b)\nreturn t}",
         "type": "bool Function(Object)"
       },
       "366317401": {
@@ -15391,34 +15276,6 @@
         "code": "gA:function(a){return a.length}",
         "type": "int Function()"
       },
-      "367201537": {
-        "id": "function/367201537",
-        "kind": "function",
-        "name": "length",
-        "size": 66,
-        "outputUnit": "outputUnit/669725655",
-        "parent": "class/109454374",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "void",
-        "inferredReturnType": "[empty]",
-        "parameters": [
-          {
-            "name": "value",
-            "type": "[subclass=JSInt]",
-            "declaredType": "int"
-          }
-        ],
-        "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 0,
-        "code": "sA:function(a,b){throw H.I(P.L4(\"Cannot resize immutable List.\"))}",
-        "type": "void Function(int)"
-      },
       "367762222": {
         "id": "function/367762222",
         "kind": "function",
@@ -15456,7 +15313,7 @@
         "id": "function/368669143",
         "kind": "function",
         "name": "RegExp",
-        "size": 51,
+        "size": 57,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/274441186",
         "children": [],
@@ -15477,8 +15334,8 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "nu:function(a){return new H.VR(a,H.v4(a,!1,!0,!1))}",
-        "type": "RegExp Function(String,{bool caseSensitive,bool multiLine})"
+        "code": "nu:function(a){return new H.VR(a,H.v4(a,!1,!0,!1,!1,!1))}",
+        "type": "RegExp Function(String,{bool caseSensitive,bool dotAll,bool multiLine,bool unicode})"
       },
       "369349235": {
         "id": "function/369349235",
@@ -15584,7 +15441,7 @@
         "id": "function/371026210",
         "kind": "function",
         "name": "_nativeGlobalVersion",
-        "size": 108,
+        "size": 127,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/182777088",
         "children": [],
@@ -15599,7 +15456,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "gHc:function(){var u=this,t=u.c\nif(t!=null)return t\nt=u.b\nreturn u.c=H.v4(u.a,t.multiline,!t.ignoreCase,!0)}",
+        "code": "gHc:function(){var u=this,t=u.c\nif(t!=null)return t\nt=u.b\nreturn u.c=H.v4(u.a,t.multiline,!t.ignoreCase,t.unicode,t.dotAll,!0)}",
         "type": "dynamic Function()"
       },
       "372037963": {
@@ -15620,7 +15477,7 @@
         "inferredReturnType": "[exact=JSString]",
         "parameters": [],
         "sideEffects": "SideEffects(reads field; writes nothing)",
-        "inlinedCount": 10,
+        "inlinedCount": 6,
         "code": "w:function(a){var u=this.a\nreturn u.charCodeAt(0)==0?u:u}",
         "type": "String Function()"
       },
@@ -15912,34 +15769,6 @@
         "code": "",
         "type": "bool Function()"
       },
-      "384296947": {
-        "id": "function/384296947",
-        "kind": "function",
-        "name": "join",
-        "size": 344,
-        "outputUnit": "outputUnit/669725655",
-        "parent": "class/540398347",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "String",
-        "inferredReturnType": "[exact=JSString]",
-        "parameters": [
-          {
-            "name": "separator",
-            "type": "[empty]",
-            "declaredType": "String"
-          }
-        ],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 0,
-        "code": "k:function(a,b){var u,t,s,r=this,q=r.gA(r)\nif(!b.gl0(b)){if(q===0)return\"\"\nu=H.d(r.E(0,0))\nif(q!==r.gA(r))throw H.I(P.a4(r))\nfor(t=u,s=1;s<q;++s){t=t+H.d(b)+H.d(r.E(0,s))\nif(q!==r.gA(r))throw H.I(P.a4(r))}return t.charCodeAt(0)==0?t:t}else{for(s=0,t=\"\";s<q;++s){t+=H.d(r.E(0,s))\nif(q!==r.gA(r))throw H.I(P.a4(r))}return t.charCodeAt(0)==0?t:t}}",
-        "type": "String Function([String])"
-      },
       "386488696": {
         "id": "function/386488696",
         "kind": "function",
@@ -15964,7 +15793,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 2,
+        "inlinedCount": 1,
         "code": "q:function(a,b){return this.a.childNodes[b]}",
         "type": "Node Function(int)"
       },
@@ -15972,7 +15801,7 @@
         "id": "function/387497873",
         "kind": "function",
         "name": "allMatches",
-        "size": 42,
+        "size": 43,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/182777088",
         "children": [],
@@ -15982,7 +15811,7 @@
           "factory": false,
           "external": false
         },
-        "returnType": "Iterable<Match>",
+        "returnType": "Iterable<RegExpMatch>",
         "inferredReturnType": "[exact=_AllMatchesIterable]",
         "parameters": [
           {
@@ -15993,8 +15822,8 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "v:function(a,b){return new H.KW(this,b,0)}",
-        "type": "Iterable<Match> Function(String,[int])"
+        "code": "dd:function(a,b){return new H.KW(this,b,0)}",
+        "type": "Iterable<RegExpMatch> Function(String,[int])"
       },
       "388977016": {
         "id": "function/388977016",
@@ -16078,7 +15907,7 @@
         ],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
         "inlinedCount": 0,
-        "code": "GY:function(a){return new P.Vp(this,a)}",
+        "code": "qS:function(a){return new P.Vp(this,a)}",
         "type": "void Function() Function(void Function())"
       },
       "391013392": {
@@ -16182,7 +16011,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "T:function(a){var u=this,t=a.c,s=a.b\nif(t==null)u.e=s\nelse t.b=s\nif(s==null)u.f=t\nelse s.c=t;--u.a\nu.X()}",
+        "code": "T:function(a){var u=this,t=a.c,s=a.b\nif(t==null)u.e=s\nelse t.b=s\nif(s==null)u.f=t\nelse s.c=t;--u.a\nu.S()}",
         "type": "void Function(_LinkedHashSetCell)"
       },
       "396617359": {
@@ -16232,34 +16061,6 @@
         "inlinedCount": 1,
         "code": "",
         "type": "String Function()"
-      },
-      "398143772": {
-        "id": "function/398143772",
-        "kind": "function",
-        "name": "addAll",
-        "size": 32,
-        "outputUnit": "outputUnit/669725655",
-        "parent": "class/939061945",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "void",
-        "inferredReturnType": "[null]",
-        "parameters": [
-          {
-            "name": "iterable",
-            "type": "[empty]",
-            "declaredType": "Iterable<String>"
-          }
-        ],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 0,
-        "code": "FV:function(a,b){W.TN(this.a,b)}",
-        "type": "void Function(Object)"
       },
       "398913941": {
         "id": "function/398913941",
@@ -16397,7 +16198,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "N6:function(a){var u,t=J.v(a)\nif(!!t.$in){u=H.CS(t)\nif(u!=null)return H.Ko(u)\nreturn\"Closure\"}return H.l(a)}",
+        "code": "N6:function(a){var u,t=J.c(a)\nif(!!t.$iv){u=H.CS(t)\nif(u!=null)return H.Ko(u)\nreturn\"Closure\"}return H.l(a)}",
         "type": "String Function(dynamic)"
       },
       "405266426": {
@@ -17001,50 +16802,6 @@
         "code": "Ci:function(a,b,c,d){return a.removeEventListener(b,H.tR(c,1),!1)}",
         "type": "void Function(String,dynamic Function(Event),[bool])"
       },
-      "434798495": {
-        "id": "function/434798495",
-        "kind": "function",
-        "name": "removeLast",
-        "size": 68,
-        "outputUnit": "outputUnit/669725655",
-        "parent": "class/189655249",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "ImmutableListMixin.E",
-        "inferredReturnType": "[empty]",
-        "parameters": [],
-        "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 0,
-        "code": "C:function(a){throw H.I(P.L4(\"Cannot remove from immutable List.\"))}",
-        "type": "ImmutableListMixin.E Function()"
-      },
-      "435026267": {
-        "id": "function/435026267",
-        "kind": "function",
-        "name": "last",
-        "size": 82,
-        "outputUnit": "outputUnit/669725655",
-        "parent": "class/172151835",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "ListMixin.E",
-        "inferredReturnType": "[subclass=Node]",
-        "parameters": [],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 0,
-        "code": "grZ:function(a){if(this.gA(a)===0)throw H.I(H.Wp())\nreturn this.q(a,this.gA(a)-1)}",
-        "type": "ListMixin.E Function()"
-      },
       "435575019": {
         "id": "function/435575019",
         "kind": "function",
@@ -17138,28 +16895,6 @@
         "inlinedCount": 0,
         "code": "gDD:function(a){return new W.I4(a)}",
         "type": "CssClassSet Function()"
-      },
-      "437584423": {
-        "id": "function/437584423",
-        "kind": "function",
-        "name": "last",
-        "size": 83,
-        "outputUnit": "outputUnit/669725655",
-        "parent": "class/109454374",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "Node",
-        "inferredReturnType": "[subclass=Node]",
-        "parameters": [],
-        "sideEffects": "SideEffects(reads anything; writes nothing)",
-        "inlinedCount": 0,
-        "code": "grZ:function(a){var u=a.length\nif(u>0)return a[u-1]\nthrow H.I(P.PV(\"No elements\"))}",
-        "type": "Node Function()"
       },
       "437690106": {
         "id": "function/437690106",
@@ -17411,28 +17146,6 @@
         "code": "d:function(a){var u\nif(typeof a===\"string\")return a\nif(typeof a===\"number\"){if(a!==0)return\"\"+a}else if(!0===a)return\"true\"\nelse if(!1===a)return\"false\"\nelse if(a==null)return\"null\"\nu=J.A(a)\nif(typeof u!==\"string\")throw H.I(H.G(a))\nreturn u}",
         "type": "String Function(dynamic)"
       },
-      "447943952": {
-        "id": "function/447943952",
-        "kind": "function",
-        "name": "removeLast",
-        "size": 114,
-        "outputUnit": "outputUnit/669725655",
-        "parent": "class/619300326",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "Node",
-        "inferredReturnType": "[null|subclass=Node]",
-        "parameters": [],
-        "sideEffects": "SideEffects(reads anything; writes nothing)",
-        "inlinedCount": 0,
-        "code": "C:function(a){var u=this.a,t=u.lastChild,s=t==null\nif(s)H.vh(P.PV(\"No elements\"))\nif(!s)u.removeChild(t)\nreturn t}",
-        "type": "Node Function()"
-      },
       "448031436": {
         "id": "function/448031436",
         "kind": "function",
@@ -17662,7 +17375,7 @@
         "id": "function/455657724",
         "kind": "function",
         "name": "_updateBody",
-        "size": 1508,
+        "size": 1513,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/493675312",
         "children": [
@@ -17688,7 +17401,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "ra:function(a){var u,t,s,r,q,p,o,n=\"outdated\",m=P.DF(a)\na=new H.U5(m,new G.AR(),[H.Kp(m,0)]).k(0,\"\\n\")\nm=document\nu=m.body;(u&&C.RY).n(u,\"beforeend\",a,C.Hv,null)\nu=$.C().style\nu.display=\"block\"\nm=H.Go(m.querySelector(\"svg\"),\"$id5\")\n$.m=m\nfor(u=[W.cv],m=new W.wz(m.querySelectorAll(\"g.node\"),u),m=new H.a7(m,m.gA(m));m.F();){t=m.d\nt.id=t.querySelector(\"title\").textContent}for(m=new W.wz($.m.querySelectorAll(\"g.node\"),u),m=new H.a7(m,m.gA(m));m.F();){t=m.d\ns=t.querySelector(\"polygon\")\nr=s==null?null:s.getAttribute(\"stroke\")\nif(r!=null&&C.xB.nC(r.toLowerCase(),\"#ff\"))J.dR(t).i(0,n)\nt=J.qF(t)\nW.J(t.a,t.b,new G.lg(),!1)}for(m=new W.wz($.m.querySelectorAll(\"g.edge\"),u),m=new H.a7(m,m.gA(m));m.F();){t=m.d\nq=t.querySelector(\"title\").textContent.split(\"->\")\nt.setAttribute(\"x-from\",q[0])\nt.setAttribute(\"x-to\",q[1])\ns=t.querySelector(\"text\")\np=s==null?null:s.getAttribute(\"fill\")\nif(p!=null)if(C.xB.nC(p.toLowerCase(),\"#ff\"))J.dR(t).i(0,n)}o=new W.wz($.m.querySelectorAll(\"g.edge, g.node\"),u)\nm=[W.Aj]\nnew W.Uc(o,!1,\"mouseenter\",m).yI(new G.qK())\nnew W.Uc(o,!1,\"mouseleave\",m).yI(new G.jf())}",
+        "code": "ra:function(a){var u,t,s,r,q,p,o,n=\"outdated\",m=P.DF(a)\na=new H.U5(m,new G.AR(),[H.Kp(m,0)]).k(0,\"\\n\")\nm=document\nu=m.body;(u&&C.RY).N0(u,\"beforeend\",a,C.Hv,null)\nu=$.C().style\nu.display=\"block\"\nm=H.Go(m.querySelector(\"svg\"),\"$id5\")\n$.v7=m\nfor(u=[W.cv],m=new W.wz(m.querySelectorAll(\"g.node\"),u),m=new H.a7(m,m.gA(m));m.F();){t=m.d\nt.id=t.querySelector(\"title\").textContent}for(m=new W.wz($.v7.querySelectorAll(\"g.node\"),u),m=new H.a7(m,m.gA(m));m.F();){t=m.d\ns=t.querySelector(\"polygon\")\nr=s==null?null:s.getAttribute(\"stroke\")\nif(r!=null&&C.xB.nC(r.toLowerCase(),\"#ff\"))J.dR(t).i(0,n)\nt=J.qF(t)\nW.J(t.a,t.b,new G.lg(),!1)}for(m=new W.wz($.v7.querySelectorAll(\"g.edge\"),u),m=new H.a7(m,m.gA(m));m.F();){t=m.d\nq=t.querySelector(\"title\").textContent.split(\"->\")\nt.setAttribute(\"x-from\",q[0])\nt.setAttribute(\"x-to\",q[1])\ns=t.querySelector(\"text\")\np=s==null?null:s.getAttribute(\"fill\")\nif(p!=null)if(C.xB.nC(p.toLowerCase(),\"#ff\"))J.dR(t).i(0,n)}o=new W.wz($.v7.querySelectorAll(\"g.edge, g.node\"),u)\nm=[W.Aj]\nnew W.Uc(o,!1,\"mouseenter\",m).yI(new G.qK())\nnew W.Uc(o,!1,\"mouseleave\",m).yI(new G.jf())}",
         "type": "void Function(String)"
       },
       "456567103": {
@@ -17767,7 +17480,7 @@
         "id": "function/460663301",
         "kind": "function",
         "name": "_updateOver",
-        "size": 950,
+        "size": 952,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/493675312",
         "children": [],
@@ -17788,7 +17501,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "ws:function(a){var u,t,s,r,q,p,o,n=\"x-to\",m=\"x-from\",l=\"active\",k=[]\nif(a!=null)if(new P.Ke(a).I(0,\"edge\"))C.Nm.FV(k,[a.getAttribute(n),a.getAttribute(m)])\nelse k.push(a.id)\nfor(u=[W.cv],t=new W.wz($.m.querySelectorAll(\"g.node\"),u),t=new H.a7(t,t.gA(t));t.F();){s=t.d\nr=J.RE(s)\nif(C.Nm.I(k,s.id))r.gDD(s).i(0,l)\nelse r.gDD(s).R(0,l)}t=[P.q]\nq=H.VM([],t)\np=H.VM([],t)\nfor(u=new W.wz($.m.querySelectorAll(\"g.edge\"),u),u=new H.a7(u,u.gA(u));u.F();){t=u.d\nif(k.length===2){s=C.Nm.I(k,t.getAttribute(n))&&C.Nm.I(k,t.getAttribute(m))\nr=J.RE(t)\nif(s)r.gDD(t).i(0,l)\nelse r.gDD(t).R(0,l)}else if(C.Nm.I(k,t.getAttribute(n))||C.Nm.I(k,t.getAttribute(m))){if(C.Nm.I(k,t.getAttribute(n)))q.push(t.getAttribute(m))\nif(C.Nm.I(k,t.getAttribute(m)))p.push(t.getAttribute(n))\nJ.dR(t).i(0,l)}else J.dR(t).R(0,l)}if(k.length===1){o=[C.Nm.gr8(k)]\nif(q.length!==0)o.push(\"  From: \"+C.Nm.k(q,\", \"))\nif(p.length!==0)o.push(\"    To: \"+C.Nm.k(p,\", \"))\nP.JS(C.Nm.k(o,\"\\n\"))}}",
+        "code": "ws:function(a){var u,t,s,r,q,p,o,n=\"x-to\",m=\"x-from\",l=\"active\",k=[]\nif(a!=null)if(new P.Ke(a).I(0,\"edge\"))C.Nm.FV(k,[a.getAttribute(n),a.getAttribute(m)])\nelse k.push(a.id)\nfor(u=[W.cv],t=new W.wz($.v7.querySelectorAll(\"g.node\"),u),t=new H.a7(t,t.gA(t));t.F();){s=t.d\nr=J.RE(s)\nif(C.Nm.I(k,s.id))r.gDD(s).i(0,l)\nelse r.gDD(s).n(0,l)}t=[P.q]\nq=H.VM([],t)\np=H.VM([],t)\nfor(u=new W.wz($.v7.querySelectorAll(\"g.edge\"),u),u=new H.a7(u,u.gA(u));u.F();){t=u.d\nif(k.length===2){s=C.Nm.I(k,t.getAttribute(n))&&C.Nm.I(k,t.getAttribute(m))\nr=J.RE(t)\nif(s)r.gDD(t).i(0,l)\nelse r.gDD(t).n(0,l)}else if(C.Nm.I(k,t.getAttribute(n))||C.Nm.I(k,t.getAttribute(m))){if(C.Nm.I(k,t.getAttribute(n)))q.push(t.getAttribute(m))\nif(C.Nm.I(k,t.getAttribute(m)))p.push(t.getAttribute(n))\nJ.dR(t).i(0,l)}else J.dR(t).n(0,l)}if(k.length===1){o=[C.Nm.gr8(k)]\nif(q.length!==0)o.push(\"  From: \"+C.Nm.k(q,\", \"))\nif(p.length!==0)o.push(\"    To: \"+C.Nm.k(p,\", \"))\nP.JS(C.Nm.k(o,\"\\n\"))}}",
         "type": "void Function(GElement)"
       },
       "464290033": {
@@ -17868,39 +17581,11 @@
         "code": "gA:function(a){return this.a.childNodes.length}",
         "type": "int Function()"
       },
-      "465133023": {
-        "id": "function/465133023",
-        "kind": "function",
-        "name": "length",
-        "size": 73,
-        "outputUnit": "outputUnit/669725655",
-        "parent": "class/619300326",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "void",
-        "inferredReturnType": "[empty]",
-        "parameters": [
-          {
-            "name": "value",
-            "type": "[subclass=JSInt]",
-            "declaredType": "int"
-          }
-        ],
-        "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 0,
-        "code": "sA:function(a,b){throw H.I(P.L4(\"Cannot set length on immutable List.\"))}",
-        "type": "void Function(int)"
-      },
       "465286731": {
         "id": "function/465286731",
         "kind": "function",
         "name": "_Html5NodeValidator",
-        "size": 110,
+        "size": 109,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/337756919",
         "children": [],
@@ -17921,7 +17606,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "Tw:function(a){var u=document.createElement(\"a\"),t=new W.mk(u,window.location)\nt=new W.JQ(t)\nt.PJ(a)\nreturn t}",
+        "code": "Tw:function(a){var u=document.createElement(\"a\"),t=new W.mk(u,window.location)\nt=new W.JQ(t)\nt.R(a)\nreturn t}",
         "type": "dynamic Function({UriPolicy uriPolicy})"
       },
       "466117817": {
@@ -18105,34 +17790,6 @@
         "inlinedCount": 0,
         "code": "$1:function(a){var u,t\nthis.a.a=a\nu=this.b\nt=this.c\nu.firstChild?u.removeChild(t):u.appendChild(t)}",
         "type": "Null Function(void Function())"
-      },
-      "470434632": {
-        "id": "function/470434632",
-        "kind": "function",
-        "name": "join",
-        "size": 137,
-        "outputUnit": "outputUnit/669725655",
-        "parent": "class/758572498",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "String",
-        "inferredReturnType": "[exact=JSString]",
-        "parameters": [
-          {
-            "name": "separator",
-            "type": "[empty]",
-            "declaredType": "String"
-          }
-        ],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 0,
-        "code": "k:function(a,b){var u=this.D(),t=P.rj(u,u.r)\nif(!t.F())return\"\"\nu=H.d(t.d)\nfor(;t.F();)u=u+H.d(b)+H.d(t.d)\nreturn u.charCodeAt(0)==0?u:u}",
-        "type": "String Function([String])"
       },
       "470511931": {
         "id": "function/470511931",
@@ -18615,7 +18272,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "R:function(a,b){var u\nif(typeof b===\"string\"&&b!==\"__proto__\")return this.H(this.b,b)\nelse{u=this.j(b)\nreturn u}}",
+        "code": "n:function(a,b){var u\nif(typeof b===\"string\"&&b!==\"__proto__\")return this.H(this.b,b)\nelse{u=this.M(b)\nreturn u}}",
         "type": "bool Function(Object)"
       },
       "495950556": {
@@ -18693,7 +18350,7 @@
         "id": "function/497849577",
         "kind": "function",
         "name": "add",
-        "size": 31,
+        "size": 0,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/730634717",
         "children": [],
@@ -18714,7 +18371,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 5,
-        "code": "i:function(a,b){this.a.push(b)}",
+        "code": "",
         "type": "void Function(NodeValidator)"
       },
       "500288813": {
@@ -18796,7 +18453,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 32,
+        "inlinedCount": 25,
         "code": "",
         "type": "String Function(String,String)"
       },
@@ -18936,7 +18593,7 @@
         "id": "function/514342432",
         "kind": "function",
         "name": "main",
-        "size": 234,
+        "size": 235,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/493675312",
         "children": [
@@ -19104,7 +18761,7 @@
         "id": "function/522093291",
         "kind": "function",
         "name": "allMatches",
-        "size": 39,
+        "size": 40,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/793539876",
         "children": [],
@@ -19125,7 +18782,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "v:function(a,b){return new H.un(b,a,0)}",
+        "code": "dd:function(a,b){return new H.un(b,a,0)}",
         "type": "Iterable<Match> Function(String,[int])"
       },
       "524476833": {
@@ -19293,7 +18950,7 @@
         ],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
         "inlinedCount": 0,
-        "code": "$1:function(a){return!!J.v(a).$icv}",
+        "code": "$1:function(a){return!!J.c(a).$icv}",
         "type": "bool Function(Node)"
       },
       "533338385": {
@@ -19527,7 +19184,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 11,
+        "inlinedCount": 7,
         "code": "",
         "type": "String Function(String)"
       },
@@ -19955,7 +19612,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "Xy:function(a,b){var u\nif(typeof a==\"function\")return!0\nu=H.CS(J.v(a))\nif(u==null)return!1\nreturn H.bO(u,null,b,null)}",
+        "code": "Xy:function(a,b){var u\nif(typeof a==\"function\")return!0\nu=H.CS(J.c(a))\nif(u==null)return!1\nreturn H.bO(u,null,b,null)}",
         "type": "dynamic Function(dynamic,dynamic)"
       },
       "553989766": {
@@ -20052,7 +19709,7 @@
           "factory": false,
           "external": false
         },
-        "returnType": "Match",
+        "returnType": "RegExpMatch",
         "inferredReturnType": "[null|exact=_MatchImplementation]",
         "parameters": [
           {
@@ -20069,7 +19726,7 @@
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
         "code": "UZ:function(a,b){var u,t=this.gHc()\nt.lastIndex=b\nu=t.exec(a)\nif(u==null)return\nreturn new H.EK(u)}",
-        "type": "Match Function(String,int)"
+        "type": "RegExpMatch Function(String,int)"
       },
       "559500000": {
         "id": "function/559500000",
@@ -20141,7 +19798,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "RB:function(a,b,c,d){var u,t\nif(a==null)return!1\nu=H.x(a)\nt=J.v(a)\nif(t[b]==null)return!1\nreturn H.hv(H.Y9(t[d],u),null,c,null)}",
+        "code": "RB:function(a,b,c,d){var u,t\nif(a==null)return!1\nu=H.x(a)\nt=J.c(a)\nif(t[b]==null)return!1\nreturn H.hv(H.Y9(t[d],u),null,c,null)}",
         "type": "bool Function(Object,String,List<dynamic>,String)"
       },
       "561710182": {
@@ -20198,7 +19855,7 @@
         "id": "function/564404904",
         "kind": "function",
         "name": "hashCode",
-        "size": 126,
+        "size": 127,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/138211367",
         "children": [],
@@ -20213,7 +19870,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "gM:function(a){var u,t=this.c\nif(t==null)u=H.eQ(this.a)\nelse u=typeof t!==\"object\"?J.A7(t):H.eQ(t)\nreturn(u^H.eQ(this.b))>>>0}",
+        "code": "giO:function(a){var u,t=this.c\nif(t==null)u=H.eQ(this.a)\nelse u=typeof t!==\"object\"?J.A7(t):H.eQ(t)\nreturn(u^H.eQ(this.b))>>>0}",
         "type": "int Function()"
       },
       "564905230": {
@@ -20394,7 +20051,7 @@
         "id": "function/571605816",
         "kind": "function",
         "name": "internalContainsKey",
-        "size": 98,
+        "size": 99,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/722522722",
         "children": [],
@@ -20415,7 +20072,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "CX:function(a){var u=this.d\nif(u==null)return!1\nreturn this.Fh(this.Bt(u,a.gM(a)&0x3ffffff),a)>=0}",
+        "code": "CX:function(a){var u=this.d\nif(u==null)return!1\nreturn this.Fh(this.Bt(u,a.giO(a)&0x3ffffff),a)>=0}",
         "type": "bool Function(Object)"
       },
       "573775196": {
@@ -20579,7 +20236,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "Go:function(a,b){var u\nif(a!=null)u=(typeof a===\"object\"||typeof a===\"function\")&&J.v(a)[b]\nelse u=!0\nif(u)return a\nH.SE(a,b)}",
+        "code": "Go:function(a,b){var u\nif(a!=null)u=(typeof a===\"object\"||typeof a===\"function\")&&J.c(a)[b]\nelse u=!0\nif(u)return a\nH.SE(a,b)}",
         "type": "dynamic Function(dynamic,dynamic)"
       },
       "580865640": {
@@ -20624,7 +20281,7 @@
         "id": "function/581015071",
         "kind": "function",
         "name": "_process",
-        "size": 1172,
+        "size": 1177,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/493675312",
         "children": [
@@ -20641,7 +20298,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "i:function(){var u,t,s,r,q,p,o,n,m,l,k=$.m\nif(k!=null){J.Lt(k)\n$.m=null}p=H.VM([],[P.q])\nu=null\nif($.UR.a===0)u=$.Mc()\nelse{P.JS(\"Ignoring: \"+$.UR.k(0,\",\"))\nk=$.Mc()\nk.toString\no=H.Kp(k,0)\nu=P.PW(new H.U5(k,new G.mH(p),[o]),!0,o)\nif(p.length===0)P.JS(\"Weird - nothing removed?\")\nelse{if(!J.cf(J.IM(u),\"}\"))throw H.I(P.PV(\"huh?\"))\nk=u\no=J.c(k)\no.C(k)\no.i(k,\"  subgraph cluster0 {\")\no.i(k,\"    label=Removed;\")\no.i(k,\"    style=filled;\")\no.i(k,'    fillcolor=\"#dddddd\";')\no.FV(k,p)\no.i(k,\"  }\")\no.i(k,\"}\")}}n=new P.P1()\nif($.N8==null){H.w4()\n$.N8=$.zI}k=$.lE.$0()\nn.a=k-0\nn.b=null\nt=n\ntry{k=J.AK(u,\"\\n\")\no={format:\"svg\",totalMemory:33554432}\ns=self.Viz(k,o)\nG.ra(s)}catch(m){r=H.Ru(m)\nk=J.A(r)\nl=C.Ph.b5(k,0,k.length)\nq=\"<pre>\"+H.d(l==null?k:l)+\"</pre>\"\nk=document.body;(k&&C.RY).n(k,\"beforeend\",q,null,null)}finally{P.JS(\"Total time generating graph: \"+P.k5(t.gqs(),0).w(0))}}",
+        "code": "i:function(){var u,t,s,r,q,p,o,n,m,l,k=$.v7\nif(k!=null){J.Lt(k)\n$.v7=null}p=H.VM([],[P.q])\nu=null\nif($.UR.a===0)u=$.Mc()\nelse{P.JS(\"Ignoring: \"+$.UR.k(0,\",\"))\nk=$.Mc()\nk.toString\no=H.Kp(k,0)\nu=P.PW(new H.U5(k,new G.mH(p),[o]),!0,o)\nif(p.length===0)P.JS(\"Weird - nothing removed?\")\nelse{if(!J.cf(J.IM(u),\"}\"))throw H.I(P.PV(\"huh?\"))\nk=u\no=J.w1(k)\no.mv(k)\no.i(k,\"  subgraph cluster0 {\")\no.i(k,\"    label=Removed;\")\no.i(k,\"    style=filled;\")\no.i(k,'    fillcolor=\"#dddddd\";')\no.FV(k,p)\no.i(k,\"  }\")\no.i(k,\"}\")}}n=new P.P1()\nif($.N8==null){H.w4()\n$.N8=$.zI}k=$.lE.$0()\nn.a=k-0\nn.b=null\nt=n\ntry{k=J.AK(u,\"\\n\")\no={format:\"svg\",totalMemory:33554432}\ns=self.Viz(k,o)\nG.ra(s)}catch(m){r=H.Ru(m)\nk=J.A(r)\nl=C.Ph.b5(k,0,k.length)\nq=\"<pre>\"+H.d(l==null?k:l)+\"</pre>\"\nk=document.body;(k&&C.RY).N0(k,\"beforeend\",q,null,null)}finally{P.JS(\"Total time generating graph: \"+P.k5(t.gqs(),0).w(0))}}",
         "type": "void Function()"
       },
       "581270226": {
@@ -21279,7 +20936,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads anything; writes nothing)",
-        "inlinedCount": 4,
+        "inlinedCount": 3,
         "code": "",
         "type": "DomTokenList Function(Element)"
       },
@@ -21302,7 +20959,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "X:function(){this.r=1073741823&this.r+1}",
+        "code": "S:function(){this.r=1073741823&this.r+1}",
         "type": "void Function()"
       },
       "620005669": {
@@ -21430,13 +21087,13 @@
           "factory": false,
           "external": false
         },
-        "returnType": "Match",
+        "returnType": "RegExpMatch",
         "inferredReturnType": "[null|exact=_MatchImplementation]",
         "parameters": [],
         "sideEffects": "SideEffects(reads field; writes nothing)",
         "inlinedCount": 0,
         "code": "gl:function(){return this.d}",
-        "type": "Match Function()"
+        "type": "RegExpMatch Function()"
       },
       "625721805": {
         "id": "function/625721805",
@@ -21463,8 +21120,30 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "p:function(a){this.a.setAttribute(\"class\",a.k(0,\" \"))}",
+        "code": "X:function(a){this.a.setAttribute(\"class\",a.k(0,\" \"))}",
         "type": "void Function(Set<dynamic>)"
+      },
+      "625818865": {
+        "id": "function/625818865",
+        "kind": "function",
+        "name": "_isUnicode",
+        "size": 0,
+        "outputUnit": "outputUnit/669725655",
+        "parent": "class/182777088",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "bool",
+        "inferredReturnType": "[exact=JSBool]",
+        "parameters": [],
+        "sideEffects": "SideEffects(reads anything; writes nothing)",
+        "inlinedCount": 2,
+        "code": "",
+        "type": "bool Function()"
       },
       "626059138": {
         "id": "function/626059138",
@@ -22049,7 +21728,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "w:function(a){var u=this.a,t=\"\"!==u?\"FormatException: \"+u:\"FormatException\",s=this.b,r=s.length>78?C.xB.J(s,0,75)+\"...\":s\nreturn t+\"\\n\"+r}",
+        "code": "w:function(a){var u=this.a,t=\"\"!==u?\"FormatException: \"+u:\"FormatException\",s=this.b,r=s.length>78?C.xB.C(s,0,75)+\"...\":s\nreturn t+\"\\n\"+r}",
         "type": "String Function()"
       },
       "648862783": {
@@ -22105,7 +21784,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "Y:function(a){var u,t=this,s=new P.bn(a)\nif(t.e==null)t.e=t.f=s\nelse{u=t.f\ns.c=u\nt.f=u.b=s}++t.a\nt.X()\nreturn s}",
+        "code": "Y:function(a){var u,t=this,s=new P.bn(a)\nif(t.e==null)t.e=t.f=s\nelse{u=t.f\ns.c=u\nt.f=u.b=s}++t.a\nt.S()\nreturn s}",
         "type": "_LinkedHashSetCell Function(Object)"
       },
       "650942169": {
@@ -22214,7 +21893,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "j:function(a){var u,t,s=this,r=s.d\nif(r==null)return!1\nu=s.L(r,a)\nt=s.DF(u,a)\nif(t<0)return!1\ns.T(u.splice(t,1)[0])\nreturn!0}",
+        "code": "M:function(a){var u,t,s=this,r=s.d\nif(r==null)return!1\nu=s.L(r,a)\nt=s.DF(u,a)\nif(t<0)return!1\ns.T(u.splice(t,1)[0])\nreturn!0}",
         "type": "bool Function(Object)"
       },
       "658921946": {
@@ -22257,7 +21936,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "Tk:function(a,b,c,d){var u=C.NU!==c\nif(u)d=!(!u||!1)?c.GY(d):c.ce(d)\nP.IA(d)}",
+        "code": "Tk:function(a,b,c,d){var u=C.NU!==c\nif(u)d=!(!u||!1)?c.qS(d):c.ce(d)\nP.IA(d)}",
         "type": "void Function(Zone,ZoneDelegate,Zone,void Function())"
       },
       "662512044": {
@@ -22619,34 +22298,6 @@
         "code": "gA:function(a){return a.length}",
         "type": "int Function()"
       },
-      "676221428": {
-        "id": "function/676221428",
-        "kind": "function",
-        "name": "length",
-        "size": 66,
-        "outputUnit": "outputUnit/669725655",
-        "parent": "class/766774061",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "void",
-        "inferredReturnType": "[empty]",
-        "parameters": [
-          {
-            "name": "value",
-            "type": "[subclass=JSInt]",
-            "declaredType": "int"
-          }
-        ],
-        "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 0,
-        "code": "sA:function(a,b){throw H.I(P.L4(\"Cannot resize immutable List.\"))}",
-        "type": "void Function(int)"
-      },
       "679532174": {
         "id": "function/679532174",
         "kind": "function",
@@ -22863,34 +22514,6 @@
         "inlinedCount": 1,
         "code": "",
         "type": "dynamic Function(Iterable<MappedListIterable.S>,MappedListIterable.T Function(MappedListIterable.S))"
-      },
-      "687982935": {
-        "id": "function/687982935",
-        "kind": "function",
-        "name": "call",
-        "size": 60,
-        "outputUnit": "outputUnit/669725655",
-        "parent": "closure/497949797",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "void",
-        "inferredReturnType": "[null]",
-        "parameters": [
-          {
-            "name": "s",
-            "type": "[subclass=_LinkedHashSet]",
-            "declaredType": "Set<String>"
-          }
-        ],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 0,
-        "code": "$1:function(a){return a.FV(0,this.b.E2(0,this.a.guM(),P.q))}",
-        "type": "void Function(Set<String>)"
       },
       "687991937": {
         "id": "function/687991937",
@@ -23502,7 +23125,7 @@
         "id": "function/714600619",
         "kind": "function",
         "name": "diagnoseIndexError",
-        "size": 169,
+        "size": 168,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/966364039",
         "children": [],
@@ -23528,7 +23151,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "HY:function(a,b){var u,t=\"index\"\nif(typeof b!==\"number\"||Math.floor(b)!==b)return new P.u(!0,b,t,null)\nu=J.Hm(a)\nif(b<0||b>=u)return P.Cf(b,a,t,null,u)\nreturn P.O7(b,t)}",
+        "code": "HY:function(a,b){var u,t=\"index\"\nif(typeof b!==\"number\"||Math.floor(b)!==b)return new P.u(!0,b,t,null)\nu=J.Hm(a)\nif(b<0||b>=u)return P.m(b,a,t,null,u)\nreturn P.O7(b,t)}",
         "type": "Error Function(dynamic,dynamic)"
       },
       "717021501": {
@@ -23625,39 +23248,6 @@
         "code": "",
         "type": "Iterable<JSArray.E> Function(bool Function(JSArray.E))"
       },
-      "718604638": {
-        "id": "function/718604638",
-        "kind": "function",
-        "name": "_addAll",
-        "size": 73,
-        "outputUnit": "outputUnit/669725655",
-        "parent": "class/939061945",
-        "children": [],
-        "modifiers": {
-          "static": true,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "void",
-        "inferredReturnType": "[null]",
-        "parameters": [
-          {
-            "name": "_element",
-            "type": "[subclass=Element]",
-            "declaredType": "Element"
-          },
-          {
-            "name": "iterable",
-            "type": "[empty]",
-            "declaredType": "Iterable<String>"
-          }
-        ],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 0,
-        "code": "TN:function(a,b){var u,t=a.classList\nfor(u=b.gkz(b);u.F();)t.add(u.gl())}",
-        "type": "void Function(Element,Iterable<String>)"
-      },
       "720351286": {
         "id": "function/720351286",
         "kind": "function",
@@ -23684,7 +23274,7 @@
         "id": "function/721062346",
         "kind": "function",
         "name": "removeLast",
-        "size": 112,
+        "size": 113,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/523978038",
         "children": [],
@@ -23699,7 +23289,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "C:function(a){if(!!a.fixed$length)H.vh(P.L4(\"removeLast\"))\nif(a.length===0)throw H.I(H.HY(a,-1))\nreturn a.pop()}",
+        "code": "mv:function(a){if(!!a.fixed$length)H.vh(P.L4(\"removeLast\"))\nif(a.length===0)throw H.I(H.HY(a,-1))\nreturn a.pop()}",
         "type": "JSArray.E Function()"
       },
       "721944720": {
@@ -23861,7 +23451,7 @@
         "id": "function/725505159",
         "kind": "function",
         "name": "matchTypeError",
-        "size": 275,
+        "size": 274,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/294355530",
         "children": [],
@@ -23882,7 +23472,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "qS:function(a){var u,t,s=this,r=new RegExp(s.a).exec(a)\nif(r==null)return\nu=Object.create(null)\nt=s.b\nif(t!==-1)u.arguments=r[t+1]\nt=s.c\nif(t!==-1)u.argumentsExpr=r[t+1]\nt=s.d\nif(t!==-1)u.expr=r[t+1]\nt=s.e\nif(t!==-1)u.method=r[t+1]\nt=s.f\nif(t!==-1)u.receiver=r[t+1]\nreturn u}",
+        "code": "j:function(a){var u,t,s=this,r=new RegExp(s.a).exec(a)\nif(r==null)return\nu=Object.create(null)\nt=s.b\nif(t!==-1)u.arguments=r[t+1]\nt=s.c\nif(t!==-1)u.argumentsExpr=r[t+1]\nt=s.d\nif(t!==-1)u.expr=r[t+1]\nt=s.e\nif(t!==-1)u.method=r[t+1]\nt=s.f\nif(t!==-1)u.receiver=r[t+1]\nreturn u}",
         "type": "dynamic Function(dynamic)"
       },
       "726344781": {
@@ -24040,34 +23630,6 @@
         "code": "",
         "type": "dynamic Function(Iterable<WhereIterable.E>,bool Function(WhereIterable.E))"
       },
-      "731577469": {
-        "id": "function/731577469",
-        "kind": "function",
-        "name": "addAll",
-        "size": 66,
-        "outputUnit": "outputUnit/669725655",
-        "parent": "class/189655249",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "void",
-        "inferredReturnType": "[empty]",
-        "parameters": [
-          {
-            "name": "iterable",
-            "type": "[empty]",
-            "declaredType": "Iterable<ImmutableListMixin.E>"
-          }
-        ],
-        "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 0,
-        "code": "FV:function(a,b){throw H.I(P.L4(\"Cannot add to immutable List.\"))}",
-        "type": "void Function(Object)"
-      },
       "731794670": {
         "id": "function/731794670",
         "kind": "function",
@@ -24186,7 +23748,7 @@
         "inferredReturnType": "[exact=_LinkedHashSetIterator]",
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 1,
+        "inlinedCount": 0,
         "code": "gkz:function(a){var u=this.D()\nreturn P.rj(u,u.r)}",
         "type": "Iterator<String> Function()"
       },
@@ -24248,7 +23810,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "R:function(a,b){var u,t\nthis.V(b)\nu=this.D()\nt=u.R(0,b)\nthis.p(u)\nreturn t}",
+        "code": "n:function(a,b){var u,t\nthis.V(b)\nu=this.D()\nt=u.n(0,b)\nthis.X(u)\nreturn t}",
         "type": "bool Function(Object)"
       },
       "736875717": {
@@ -24304,7 +23866,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "aF:function(a,b){var u=$.X3\nif(u===C.NU)return a\nreturn u.K(a,b)}",
+        "code": "aF:function(a,b){var u=$.X3\nif(u===C.NU)return a\nreturn u.P(a,b)}",
         "type": "void Function(#A) Function<#A>(void Function(#A))"
       },
       "738554230": {
@@ -24438,7 +24000,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "j:function(a){var u,t,s,r,q,p,o,n=J.v(a),m=n.constructor\nif(typeof m==\"function\"){u=m.name\nt=typeof u===\"string\"?u:null}else t=null\ns=t==null\nif(s||n===C.Ok||!!n.$ikd){r=C.O4(a)\nif(s)t=r\nif(r===\"Object\"){q=a.constructor\nif(typeof q==\"function\"){p=String(q).match(/^\\s*function\\s*([\\w$]*)\\s*\\(/)\no=p==null?null:p[1]\nif(typeof o===\"string\"&&/^\\w+$/.test(o))t=o}}return t}t=t\nreturn H.H(t.length>1&&C.xB.W(t,0)===36?C.xB.G(t,1):t)}",
+        "code": "j:function(a){var u,t,s,r,q,p,o,n=J.c(a),m=n.constructor\nif(typeof m==\"function\"){u=m.name\nt=typeof u===\"string\"?u:null}else t=null\ns=t==null\nif(s||n===C.Ok||!!n.$ikd){r=C.O4(a)\nif(s)t=r\nif(r===\"Object\"){q=a.constructor\nif(typeof q==\"function\"){p=String(q).match(/^\\s*function\\s*([\\w$]*)\\s*\\(/)\no=p==null?null:p[1]\nif(typeof o===\"string\"&&/^\\w+$/.test(o))t=o}}return t}t=t\nreturn H.H(t.length>1&&C.xB.W(t,0)===36?C.xB.G(t,1):t)}",
         "type": "String Function(Object)"
       },
       "742465483": {
@@ -24610,7 +24172,7 @@
         "id": "function/749970393",
         "kind": "function",
         "name": "hashCode",
-        "size": 33,
+        "size": 34,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/627219877",
         "children": [],
@@ -24625,7 +24187,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 1,
-        "code": "gM:function(a){return H.eQ(this)}",
+        "code": "giO:function(a){return H.eQ(this)}",
         "type": "int Function()"
       },
       "751200407": {
@@ -24687,7 +24249,7 @@
         "id": "function/752981084",
         "kind": "function",
         "name": "_shrOtherPositive",
-        "size": 82,
+        "size": 80,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/1003011102",
         "children": [],
@@ -24708,7 +24270,7 @@
         ],
         "sideEffects": "SideEffects(reads field; writes nothing)",
         "inlinedCount": 0,
-        "code": "wG:function(a,b){var u\nif(a>0)u=this.p3(a,b)\nelse{u=b>31?31:b\nu=a>>u>>>0}return u}",
+        "code": "J:function(a,b){var u\nif(a>0)u=this.p(a,b)\nelse{u=b>31?31:b\nu=a>>u>>>0}return u}",
         "type": "num Function(num)"
       },
       "754406414": {
@@ -24996,7 +24558,7 @@
         "id": "function/773230206",
         "kind": "function",
         "name": "_TimerImpl",
-        "size": 139,
+        "size": 138,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/32494041",
         "children": [
@@ -25024,7 +24586,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "QN:function(a,b){var u=new P.W3()\nu.PJ(a,b)\nreturn u}",
+        "code": "QN:function(a,b){var u=new P.W3()\nu.R(a,b)\nreturn u}",
         "type": "dynamic Function(int,void Function())"
       },
       "773528822": {
@@ -25125,7 +24687,7 @@
         "id": "function/784238479",
         "kind": "function",
         "name": "_subscribe",
-        "size": 265,
+        "size": 264,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/105901179",
         "children": [],
@@ -25161,7 +24723,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "MI:function(a,b,c,d){var u,t,s,r=this\nif((r.c&4)!==0){if(c==null)c=P.am()\nu=new P.EM($.X3,c)\nu.q1()\nreturn u}u=$.X3\nt=new P.JI(r,u,d?1:0)\nt.PJ(a,b,c,d)\nt.fr=t\nt.dy=t\nt.dx=r.c&1\ns=r.e\nr.e=t\nt.dy=null\nt.fr=s\nif(s==null)r.d=t\nelse s.dy=t\nif(r.d===t)P.ot(r.a)\nreturn t}",
+        "code": "MI:function(a,b,c,d){var u,t,s,r=this\nif((r.c&4)!==0){if(c==null)c=P.am()\nu=new P.EM($.X3,c)\nu.q1()\nreturn u}u=$.X3\nt=new P.JI(r,u,d?1:0)\nt.R(a,b,c,d)\nt.fr=t\nt.dy=t\nt.dx=r.c&1\ns=r.e\nr.e=t\nt.dy=null\nt.fr=s\nif(s==null)r.d=t\nelse s.dy=t\nif(r.d===t)P.ot(r.a)\nreturn t}",
         "type": "StreamSubscription<_BroadcastStreamController.T> Function(void Function(_BroadcastStreamController.T),Function,void Function(),bool)"
       },
       "784298636": {
@@ -25483,39 +25045,11 @@
         "code": "HR:function(a){if(this.c!==6)return!0\nreturn this.b.b.FI(this.d,a.a)}",
         "type": "bool Function(AsyncError)"
       },
-      "795995138": {
-        "id": "function/795995138",
-        "kind": "function",
-        "name": "add",
-        "size": 63,
-        "outputUnit": "outputUnit/669725655",
-        "parent": "class/172151835",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "void",
-        "inferredReturnType": "[null]",
-        "parameters": [
-          {
-            "name": "element",
-            "type": "[empty]",
-            "declaredType": "ListMixin.E"
-          }
-        ],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 0,
-        "code": "i:function(a,b){var u=this.gA(a)\nthis.sA(a,u+1)\nthis.Y5(a,u,b)}",
-        "type": "void Function(Object)"
-      },
       "796179660": {
         "id": "function/796179660",
         "kind": "function",
         "name": "hashCode",
-        "size": 30,
+        "size": 31,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/86936801",
         "children": [],
@@ -25530,7 +25064,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "gM:function(a){return H.eQ(a)}",
+        "code": "giO:function(a){return H.eQ(a)}",
         "type": "int Function()"
       },
       "797212862": {
@@ -25650,7 +25184,7 @@
         "id": "function/797768684",
         "kind": "function",
         "name": "_joinArguments",
-        "size": 183,
+        "size": 182,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/966364039",
         "children": [],
@@ -25681,7 +25215,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "XS:function(a,b,c){var u,t,s,r,q,p\nif(a==null)return\"\"\nu=new P.k(\"\")\nfor(t=b,s=\"\",r=!0,q=\"\";t<a.length;++t,s=\", \"){u.a=q+s\np=a[t]\nif(p!=null)r=!1\nq=u.a+=H.B(p,c)}return\"<\"+u.w(0)+\">\"}",
+        "code": "n:function(a,b,c){var u,t,s,r,q,p\nif(a==null)return\"\"\nu=new P.k(\"\")\nfor(t=b,s=\"\",r=!0,q=\"\";t<a.length;++t,s=\", \"){u.a=q+s\np=a[t]\nif(p!=null)r=!1\nq=u.a+=H.B(p,c)}return\"<\"+u.w(0)+\">\"}",
         "type": "String Function(dynamic,int,List<String>)"
       },
       "798288240": {
@@ -25878,28 +25412,6 @@
         "code": "",
         "type": "dynamic Function(NodeValidator)"
       },
-      "810075207": {
-        "id": "function/810075207",
-        "kind": "function",
-        "name": "last",
-        "size": 40,
-        "outputUnit": "outputUnit/669725655",
-        "parent": "class/896575907",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "_FrozenElementList.E",
-        "inferredReturnType": "[subclass=Node]",
-        "parameters": [],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 0,
-        "code": "grZ:function(a){return C.t5.grZ(this.a)}",
-        "type": "_FrozenElementList.E Function()"
-      },
       "811310425": {
         "id": "function/811310425",
         "kind": "function",
@@ -26042,13 +25554,13 @@
           "factory": false,
           "external": false
         },
-        "returnType": "Iterator<Match>",
+        "returnType": "Iterator<RegExpMatch>",
         "inferredReturnType": "[exact=_AllMatchesIterator]",
         "parameters": [],
         "sideEffects": "SideEffects(reads field; writes nothing)",
         "inlinedCount": 0,
         "code": "gkz:function(a){return new H.Pb(this.a,this.b,this.c)}",
-        "type": "Iterator<Match> Function()"
+        "type": "Iterator<RegExpMatch> Function()"
       },
       "819505347": {
         "id": "function/819505347",
@@ -26071,34 +25583,6 @@
         "inlinedCount": 1,
         "code": "",
         "type": "Stream<_StreamPool.T> Function()"
-      },
-      "819535657": {
-        "id": "function/819535657",
-        "kind": "function",
-        "name": "join",
-        "size": 39,
-        "outputUnit": "outputUnit/669725655",
-        "parent": "class/309812059",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "String",
-        "inferredReturnType": "[exact=JSString]",
-        "parameters": [
-          {
-            "name": "separator",
-            "type": "[empty]",
-            "declaredType": "String"
-          }
-        ],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 0,
-        "code": "k:function(a,b){return this.D().k(0,b)}",
-        "type": "String Function([String])"
       },
       "820195095": {
         "id": "function/820195095",
@@ -26261,7 +25745,7 @@
         "id": "function/830798781",
         "kind": "function",
         "name": "_shrBothPositive",
-        "size": 37,
+        "size": 36,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/1003011102",
         "children": [],
@@ -26282,7 +25766,7 @@
         ],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
         "inlinedCount": 0,
-        "code": "p3:function(a,b){return b>31?0:a>>>b}",
+        "code": "p:function(a,b){return b>31?0:a>>>b}",
         "type": "num Function(num)"
       },
       "831655802": {
@@ -26353,7 +25837,7 @@
         "inferredReturnType": "[null|subclass=Object]",
         "parameters": [],
         "sideEffects": "SideEffects(reads field; writes nothing)",
-        "inlinedCount": 7,
+        "inlinedCount": 4,
         "code": "gl:function(){return this.d}",
         "type": "_LinkedHashSetIterator.E Function()"
       },
@@ -26586,7 +26070,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 3,
+        "inlinedCount": 2,
         "code": "",
         "type": "void Function(Iterable<dynamic>,[String])"
       },
@@ -26980,7 +26464,7 @@
         "id": "function/854200700",
         "kind": "function",
         "name": "hashCode",
-        "size": 219,
+        "size": 220,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/1003011102",
         "children": [],
@@ -26995,7 +26479,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "gM:function(a){var u,t,s,r,q=a|0\nif(a===q)return 536870911&q\nu=Math.abs(a)\nt=Math.log(u)/0.6931471805599453|0\ns=Math.pow(2,t)\nr=u<1?u/s:s/u\nreturn 536870911&((r*9007199254740992|0)+(r*3542243181176521|0))*599197+t*1259}",
+        "code": "giO:function(a){var u,t,s,r,q=a|0\nif(a===q)return 536870911&q\nu=Math.abs(a)\nt=Math.log(u)/0.6931471805599453|0\ns=Math.pow(2,t)\nr=u<1?u/s:s/u\nreturn 536870911&((r*9007199254740992|0)+(r*3542243181176521|0))*599197+t*1259}",
         "type": "int Function()"
       },
       "855231833": {
@@ -27080,7 +26564,7 @@
         "id": "function/860159722",
         "kind": "function",
         "name": "hashCode",
-        "size": 55,
+        "size": 57,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/351911148",
         "children": [],
@@ -27095,14 +26579,14 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "gM:function(a){return P.E.prototype.gM.call(this,this)}",
+        "code": "giO:function(a){return P.E.prototype.giO.call(this,this)}",
         "type": "int Function()"
       },
       "861403074": {
         "id": "function/861403074",
         "kind": "function",
         "name": "hashCode",
-        "size": 50,
+        "size": 51,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/926172034",
         "children": [],
@@ -27117,7 +26601,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "gM:function(a){return(H.eQ(this.a)^892482866)>>>0}",
+        "code": "giO:function(a){return(H.eQ(this.a)^892482866)>>>0}",
         "type": "int Function()"
       },
       "861458101": {
@@ -27230,39 +26714,6 @@
         "inlinedCount": 1,
         "code": "",
         "type": "dynamic Function(Iterator<WhereIterator.E>,bool Function(WhereIterator.E))"
-      },
-      "866824195": {
-        "id": "function/866824195",
-        "kind": "function",
-        "name": "[]=",
-        "size": 79,
-        "outputUnit": "outputUnit/669725655",
-        "parent": "class/766774061",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "void",
-        "inferredReturnType": "[empty]",
-        "parameters": [
-          {
-            "name": "index",
-            "type": "[subclass=JSInt]",
-            "declaredType": "int"
-          },
-          {
-            "name": "value",
-            "type": "[empty]",
-            "declaredType": "Node"
-          }
-        ],
-        "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 0,
-        "code": "Y5:function(a,b,c){throw H.I(P.L4(\"Cannot assign element of immutable List.\"))}",
-        "type": "void Function(int,Object)"
       },
       "868278724": {
         "id": "function/868278724",
@@ -27402,7 +26853,7 @@
         "id": "function/873863767",
         "kind": "function",
         "name": "objectTypeName",
-        "size": 48,
+        "size": 47,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/354160010",
         "children": [],
@@ -27423,14 +26874,14 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "l:function(a){return H.j(a)+H.XS(H.x(a),0,null)}",
+        "code": "l:function(a){return H.j(a)+H.n(H.x(a),0,null)}",
         "type": "String Function(Object)"
       },
       "878987098": {
         "id": "function/878987098",
         "kind": "function",
         "name": "hashCode",
-        "size": 24,
+        "size": 25,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/418854932",
         "children": [],
@@ -27445,7 +26896,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
         "inlinedCount": 0,
-        "code": "gM:function(a){return 0}",
+        "code": "giO:function(a){return 0}",
         "type": "int Function()"
       },
       "879090965": {
@@ -27663,7 +27114,7 @@
         "id": "function/888761076",
         "kind": "function",
         "name": "_tdivSlow",
-        "size": 227,
+        "size": 226,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/1003011102",
         "children": [],
@@ -27684,7 +27135,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "DJ:function(a,b){var u=a/b\nif(u>=-2147483648&&u<=2147483647)return u|0\nif(u>0){if(u!==1/0)return Math.floor(u)}else if(u>-1/0)return Math.ceil(u)\nthrow H.I(P.L4(\"Result of truncating division is \"+H.d(u)+\": \"+H.d(a)+\" ~/ \"+b))}",
+        "code": "v:function(a,b){var u=a/b\nif(u>=-2147483648&&u<=2147483647)return u|0\nif(u>0){if(u!==1/0)return Math.floor(u)}else if(u>-1/0)return Math.ceil(u)\nthrow H.I(P.L4(\"Result of truncating division is \"+H.d(u)+\": \"+H.d(a)+\" ~/ \"+b))}",
         "type": "int Function(num)"
       },
       "889342435": {
@@ -28281,7 +27732,7 @@
         "id": "function/911382452",
         "kind": "function",
         "name": "insertAdjacentHtml",
-        "size": 404,
+        "size": 405,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/992156986",
         "children": [],
@@ -28317,7 +27768,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "n:function(a,b,c,d,e){var u,t\nif(d instanceof W.Ku)a.insertAdjacentHTML(b,c)\nelse{u=this.r6(a,c,d,e)\nswitch(b.toLowerCase()){case\"beforebegin\":a.parentNode.insertBefore(u,a)\nbreak\ncase\"afterbegin\":t=a.childNodes\na.insertBefore(u,t.length>0?t[0]:null)\nbreak\ncase\"beforeend\":a.appendChild(u)\nbreak\ncase\"afterend\":a.parentNode.insertBefore(u,a.nextSibling)\nbreak\ndefault:H.vh(P.xY(\"Invalid position \"+b))}}}",
+        "code": "N0:function(a,b,c,d,e){var u,t\nif(d instanceof W.Ku)a.insertAdjacentHTML(b,c)\nelse{u=this.r6(a,c,d,e)\nswitch(b.toLowerCase()){case\"beforebegin\":a.parentNode.insertBefore(u,a)\nbreak\ncase\"afterbegin\":t=a.childNodes\na.insertBefore(u,t.length>0?t[0]:null)\nbreak\ncase\"beforeend\":a.appendChild(u)\nbreak\ncase\"afterend\":a.parentNode.insertBefore(u,a.nextSibling)\nbreak\ndefault:H.vh(P.xY(\"Invalid position \"+b))}}}",
         "type": "void Function(String,String,{NodeTreeSanitizer treeSanitizer,NodeValidator validator})"
       },
       "912028763": {
@@ -28376,34 +27827,6 @@
         "code": "qc:function(a){var u\nif(a==null)return\nif(\"postMessage\" in a){u=W.nI(a)\nreturn u}else return a}",
         "type": "EventTarget Function(dynamic)"
       },
-      "912912559": {
-        "id": "function/912912559",
-        "kind": "function",
-        "name": "join",
-        "size": 94,
-        "outputUnit": "outputUnit/669725655",
-        "parent": "class/172151835",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "String",
-        "inferredReturnType": "[exact=JSString]",
-        "parameters": [
-          {
-            "name": "separator",
-            "type": "[empty]",
-            "declaredType": "String"
-          }
-        ],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 0,
-        "code": "k:function(a,b){var u\nif(this.gA(a)===0)return\"\"\nu=P.vg(\"\",a,b)\nreturn u.charCodeAt(0)==0?u:u}",
-        "type": "String Function([String])"
-      },
       "914458783": {
         "id": "function/914458783",
         "kind": "function",
@@ -28439,7 +27862,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "IG:function(a,b,c){return a.apply(b,H.Y9(J.v(b)[\"$a\"+H.d(c)],H.x(b)))}",
+        "code": "IG:function(a,b,c){return a.apply(b,H.Y9(J.c(b)[\"$a\"+H.d(c)],H.x(b)))}",
         "type": "dynamic Function(dynamic,dynamic,dynamic)"
       },
       "917746710": {
@@ -28463,56 +27886,6 @@
         "inlinedCount": 0,
         "code": "gA:function(a){return this.a.length}",
         "type": "int Function()"
-      },
-      "917746711": {
-        "id": "function/917746711",
-        "kind": "function",
-        "name": "length",
-        "size": 55,
-        "outputUnit": "outputUnit/669725655",
-        "parent": "class/896575907",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "void",
-        "inferredReturnType": "[empty]",
-        "parameters": [
-          {
-            "name": "newLength",
-            "type": "[subclass=JSInt]",
-            "declaredType": "int"
-          }
-        ],
-        "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 0,
-        "code": "sA:function(a,b){throw H.I(P.L4(\"Cannot modify list\"))}",
-        "type": "void Function(int)"
-      },
-      "918278003": {
-        "id": "function/918278003",
-        "kind": "function",
-        "name": "last",
-        "size": 83,
-        "outputUnit": "outputUnit/669725655",
-        "parent": "class/766774061",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "Node",
-        "inferredReturnType": "[subclass=Node]",
-        "parameters": [],
-        "sideEffects": "SideEffects(reads anything; writes nothing)",
-        "inlinedCount": 0,
-        "code": "grZ:function(a){var u=a.length\nif(u>0)return a[u-1]\nthrow H.I(P.PV(\"No elements\"))}",
-        "type": "Node Function()"
       },
       "919008289": {
         "id": "function/919008289",
@@ -29980,7 +29353,7 @@
         "id": "function/985926244",
         "kind": "function",
         "name": "IndexError",
-        "size": 94,
+        "size": 93,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/175705485",
         "children": [],
@@ -30021,7 +29394,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "Cf:function(a,b,c,d,e){var u=e==null?J.Hm(b):e\nreturn new P.eY(u,!0,a,c,\"Index out of range\")}",
+        "code": "m:function(a,b,c,d,e){var u=e==null?J.Hm(b):e\nreturn new P.eY(u,!0,a,c,\"Index out of range\")}",
         "type": "dynamic Function(int,dynamic,[String,String,int])"
       },
       "986866485": {
@@ -30386,7 +29759,7 @@
         "id": "function/1002752870",
         "kind": "function",
         "name": "_addHashTableEntry",
-        "size": 63,
+        "size": 64,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/123522748",
         "children": [],
@@ -30412,7 +29785,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "S:function(a,b){if(a[b]!=null)return!1\na[b]=this.Y(b)\nreturn!0}",
+        "code": "bQ:function(a,b){if(a[b]!=null)return!1\na[b]=this.Y(b)\nreturn!0}",
         "type": "bool Function(dynamic,Object)"
       },
       "1006600695": {
@@ -30437,13 +29810,13 @@
         "code": "WN:function(){var u,t=this,s=t.e|=8\nif((s&64)!==0){u=t.r\nif(u.a===1)u.a=3}if((s&32)===0)t.r=null\nt.f=t.cZ()}",
         "type": "void Function()"
       },
-      "1007673050": {
-        "id": "function/1007673050",
+      "1007776597": {
+        "id": "function/1007776597",
         "kind": "function",
-        "name": "[]=",
-        "size": 79,
+        "name": "_isDotAll",
+        "size": 0,
         "outputUnit": "outputUnit/669725655",
-        "parent": "class/109454374",
+        "parent": "class/182777088",
         "children": [],
         "modifiers": {
           "static": false,
@@ -30451,24 +29824,13 @@
           "factory": false,
           "external": false
         },
-        "returnType": "void",
-        "inferredReturnType": "[empty]",
-        "parameters": [
-          {
-            "name": "index",
-            "type": "[subclass=JSInt]",
-            "declaredType": "int"
-          },
-          {
-            "name": "value",
-            "type": "[empty]",
-            "declaredType": "Node"
-          }
-        ],
-        "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 0,
-        "code": "Y5:function(a,b,c){throw H.I(P.L4(\"Cannot assign element of immutable List.\"))}",
-        "type": "void Function(int,Object)"
+        "returnType": "bool",
+        "inferredReturnType": "[exact=JSBool]",
+        "parameters": [],
+        "sideEffects": "SideEffects(reads anything; writes nothing)",
+        "inlinedCount": 1,
+        "code": "",
+        "type": "bool Function()"
       },
       "1008544093": {
         "id": "function/1008544093",
@@ -30996,34 +30358,6 @@
         "code": "",
         "type": "String Function(String)"
       },
-      "1043195848": {
-        "id": "function/1043195848",
-        "kind": "function",
-        "name": "addAll",
-        "size": 110,
-        "outputUnit": "outputUnit/669725655",
-        "parent": "class/172151835",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "void",
-        "inferredReturnType": "[null]",
-        "parameters": [
-          {
-            "name": "iterable",
-            "type": "[empty]",
-            "declaredType": "Iterable<ListMixin.E>"
-          }
-        ],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 0,
-        "code": "FV:function(a,b){var u,t,s,r=this.gA(a)\nfor(u=b.gkz(b);u.F();r=s){t=u.gl()\ns=r+1\nthis.sA(a,s)\nthis.Y5(a,r,t)}}",
-        "type": "void Function(Object)"
-      },
       "1043652784": {
         "id": "function/1043652784",
         "kind": "function",
@@ -31050,7 +30384,7 @@
         "id": "function/1046314999",
         "kind": "function",
         "name": "call",
-        "size": 127,
+        "size": 128,
         "outputUnit": "outputUnit/669725655",
         "parent": "closure/191809178",
         "children": [],
@@ -31071,7 +30405,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "$1:function(a){var u,t,s=\"zoom\",r=$.m\nif(r!=null){r=new P.Ke(r)\nr.V(s)\nu=r.D()\nt=u.I(0,s)\nif(!t)u.i(0,s)\nelse u.R(0,s)\nr.p(u)}}",
+        "code": "$1:function(a){var u,t,s=\"zoom\",r=$.v7\nif(r!=null){r=new P.Ke(r)\nr.V(s)\nu=r.D()\nt=u.I(0,s)\nif(!t)u.i(0,s)\nelse u.n(0,s)\nr.X(u)}}",
         "type": "Null Function(MouseEvent)"
       },
       "1047605700": {
@@ -31294,28 +30628,6 @@
         "code": "$2:function(a,b){var u,t,s,r,q,p=this.a\nswitch(a.nodeType){case 1:p.I4(a,b)\nbreak\ncase 8:case 11:case 3:case 4:break\ndefault:p.EP(a,b)}u=a.lastChild\nfor(p=a==null;null!=u;){t=null\ntry{t=u.previousSibling}catch(s){H.Ru(s)\nr=u\nif(p){q=r.parentNode\nif(q!=null)q.removeChild(r)}else a.removeChild(r)\nu=null\nt=a.lastChild}if(u!=null)this.$2(u,a)\nu=t}}",
         "type": "void Function(Node,Node)"
       },
-      "1056601141": {
-        "id": "function/1056601141",
-        "kind": "function",
-        "name": "removeLast",
-        "size": 106,
-        "outputUnit": "outputUnit/669725655",
-        "parent": "class/172151835",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "ListMixin.E",
-        "inferredReturnType": "[subclass=Node]",
-        "parameters": [],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 0,
-        "code": "C:function(a){var u,t=this\nif(t.gA(a)===0)throw H.I(H.Wp())\nu=t.q(a,t.gA(a)-1)\nt.sA(a,t.gA(a)-1)\nreturn u}",
-        "type": "ListMixin.E Function()"
-      },
       "1057423644": {
         "id": "function/1057423644",
         "kind": "function",
@@ -31486,7 +30798,7 @@
         "id": "function/1069819234",
         "kind": "function",
         "name": "moveNext",
-        "size": 190,
+        "size": 364,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/768321595",
         "children": [],
@@ -31501,7 +30813,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "F:function(){var u,t,s,r=this,q=r.b\nif(q==null)return!1\nu=r.c\nif(u<=q.length){t=r.a.UZ(q,u)\nif(t!=null){r.d=t\nq=t.b\nu=q.index\ns=u+q[0].length\nr.c=u===s?s+1:s\nreturn!0}}r.b=r.d=null\nreturn!1}",
+        "code": "F:function(){var u,t,s,r,q=this,p=q.b\nif(p==null)return!1\nu=q.c\nif(u<=p.length){t=q.a\ns=t.UZ(p,u)\nif(s!=null){q.d=s\np=s.b\nu=p.index\nr=u+p[0].length\nif(u===r){if(t.b.unicode){p=q.c\nu=p+1\nt=q.b\nif(u<t.length){p=J.rY(t).O(t,p)\nif(p>=55296&&p<=56319){p=C.xB.O(t,u)\np=p>=56320&&p<=57343}else p=!1}else p=!1}else p=!1\nr=(p?r+1:r)+1}q.c=r\nreturn!0}}q.b=q.d=null\nreturn!1}",
         "type": "bool Function()"
       }
     },
@@ -31627,7 +30939,7 @@
         "children": [],
         "inferredType": "[null|exact=_MatchImplementation]",
         "code": "",
-        "type": "Match"
+        "type": "RegExpMatch"
       },
       "23408725": {
         "id": "field/23408725",
@@ -33776,12 +33088,12 @@
         "id": "field/423749666",
         "kind": "field",
         "name": "_root",
-        "size": 9,
+        "size": 10,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/493675312",
         "children": [],
         "inferredType": "[null|subclass=SvgElement]",
-        "code": "$.m=null",
+        "code": "$.v7=null",
         "type": "SvgElement"
       },
       "428176798": {
@@ -37048,14 +36360,6 @@
         "outputUnit": "outputUnit/669725655",
         "code": "C.ZQ=J.iC.prototype"
       },
-      "141142919": {
-        "id": "constant/141142919",
-        "kind": "constant",
-        "name": null,
-        "size": 19,
-        "outputUnit": "outputUnit/669725655",
-        "code": "C.t5=W.BH.prototype"
-      },
       "160506003": {
         "id": "constant/160506003",
         "kind": "constant",
@@ -37359,7 +36663,7 @@
         "id": "closure/191809178",
         "kind": "closure",
         "name": "main_closure",
-        "size": 163,
+        "size": 164,
         "outputUnit": "outputUnit/669725655",
         "parent": "function/514342432",
         "function": "function/1046314999"
@@ -37462,15 +36766,6 @@
         "outputUnit": "outputUnit/669725655",
         "parent": "function/288870017",
         "function": "function/729809409"
-      },
-      "497949797": {
-        "id": "closure/497949797",
-        "kind": "closure",
-        "name": "CssClassSetImpl_addAll_closure",
-        "size": 120,
-        "outputUnit": "outputUnit/669725655",
-        "parent": "function/151843940",
-        "function": "function/687982935"
       },
       "504883756": {
         "id": "closure/504883756",
@@ -38958,28 +38253,6 @@
         "mask": "inlined"
       }
     ],
-    "function/14519227": [
-      {
-        "id": "field/113947597",
-        "mask": "Union([exact=_DelayedData], [exact=_DelayedDone], [exact=_DelayedError])"
-      },
-      {
-        "id": "field/509277176",
-        "mask": null
-      },
-      {
-        "id": "field/509277176",
-        "mask": null
-      },
-      {
-        "id": "field/734043239",
-        "mask": null
-      },
-      {
-        "id": "function/939771909",
-        "mask": "Union([exact=_DelayedData], [exact=_DelayedDone], [exact=_DelayedError])"
-      }
-    ],
     "function/15204906": [
       {
         "id": "field/24026359",
@@ -39007,7 +38280,7 @@
       },
       {
         "id": "function/1058735230",
-        "mask": "[null|subclass=Object]"
+        "mask": "[exact=_Future]"
       },
       {
         "id": "function/11804710",
@@ -39930,6 +39203,12 @@
         "mask": "inlined"
       }
     ],
+    "function/53930291": [
+      {
+        "id": "function/625818865",
+        "mask": "inlined"
+      }
+    ],
     "function/55621917": [
       {
         "id": "field/1022934707",
@@ -39955,7 +39234,7 @@
       },
       {
         "id": "function/579004227",
-        "mask": "[null|subclass=Element]"
+        "mask": "[subclass=Element]"
       },
       {
         "id": "function/738448951",
@@ -40003,24 +39282,6 @@
       },
       {
         "id": "function/827571674",
-        "mask": "inlined"
-      }
-    ],
-    "function/58126806": [
-      {
-        "id": "field/291315810",
-        "mask": null
-      },
-      {
-        "id": "field/752365703",
-        "mask": null
-      },
-      {
-        "id": "function/386488696",
-        "mask": null
-      },
-      {
-        "id": "function/386488696",
         "mask": "inlined"
       }
     ],
@@ -40648,16 +39909,6 @@
       {
         "id": "function/336424489",
         "mask": "[subclass=_LinkedHashSet]"
-      }
-    ],
-    "function/115611491": [
-      {
-        "id": "function/375786305",
-        "mask": "[subclass=CssClassSetImpl]"
-      },
-      {
-        "id": "function/553989766",
-        "mask": "[subclass=CssClassSetImpl]"
       }
     ],
     "function/116599339": [
@@ -41449,20 +40700,6 @@
     "function/150705145": [
       {
         "id": "field/944915314",
-        "mask": null
-      }
-    ],
-    "function/151843940": [
-      {
-        "id": "function/192380826",
-        "mask": null
-      },
-      {
-        "id": "function/687982935",
-        "mask": null
-      },
-      {
-        "id": "function/687982935",
         "mask": null
       }
     ],
@@ -42648,16 +41885,6 @@
       {
         "id": "function/991909617",
         "mask": "[subclass=Object]"
-      }
-    ],
-    "function/258125598": [
-      {
-        "id": "function/163889622",
-        "mask": null
-      },
-      {
-        "id": "function/208283907",
-        "mask": null
       }
     ],
     "function/259508125": [
@@ -44042,6 +43269,10 @@
       {
         "id": "field/204326440",
         "mask": null
+      },
+      {
+        "id": "field/61454735",
+        "mask": null
       }
     ],
     "function/316836652": [
@@ -44400,40 +43631,6 @@
       {
         "id": "function/507333070",
         "mask": "inlined"
-      },
-      {
-        "id": "function/507333070",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/507333070",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/507333070",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/507333070",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/507333070",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/507333070",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/507333070",
-        "mask": "inlined"
-      }
-    ],
-    "function/335135610": [
-      {
-        "id": "field/752365703",
-        "mask": null
       }
     ],
     "function/336168458": [
@@ -44680,16 +43877,6 @@
         "mask": "inlined"
       }
     ],
-    "function/347478885": [
-      {
-        "id": "function/163889622",
-        "mask": null
-      },
-      {
-        "id": "function/208283907",
-        "mask": null
-      }
-    ],
     "function/349794930": [
       {
         "id": "field/1022934707",
@@ -44854,265 +44041,51 @@
     ],
     "function/355012434": [
       {
-        "id": "function/1001428478",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/1033661873",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/1042482096",
-        "mask": "inlined"
-      },
-      {
         "id": "function/1042482096",
         "mask": null
       },
       {
-        "id": "function/1051093947",
-        "mask": "[null|subclass=Object]"
+        "id": "function/1042482096",
+        "mask": "inlined"
       },
       {
         "id": "function/109394176",
         "mask": null
       },
       {
-        "id": "function/130041650",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/143741280",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/150705145",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/15478302",
-        "mask": "[null|subclass=Object]"
-      },
-      {
         "id": "function/167405219",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/173208082",
-        "mask": "[null|subclass=Object]"
+        "mask": "Union([null|subclass=JSNumber], [subtype=bool])"
       },
       {
         "id": "function/173469993",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/176570718",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/198373015",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/239544133",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/240627941",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/257019158",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/285148179",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/288870017",
-        "mask": "[null|subclass=Object]"
+        "mask": "Union([null|subclass=JSNumber], [subtype=bool])"
       },
       {
         "id": "function/302617892",
         "mask": null
       },
       {
-        "id": "function/312847150",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/325903689",
-        "mask": "[null|subclass=Object]"
-      },
-      {
         "id": "function/346305693",
         "mask": null
       },
       {
-        "id": "function/369614033",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/372037963",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/380325809",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/412092690",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/41770310",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/431897853",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/436231120",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/439855108",
-        "mask": "[null|subclass=Object]"
-      },
-      {
         "id": "function/440018750",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/449342208",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/464959827",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/474133145",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/550544609",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/565013754",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/58194360",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/613119304",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/636061569",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/646234762",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/647368947",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/66015995",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/730595126",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/745741399",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/778843282",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/793410068",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/848267879",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/891910474",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/93381370",
-        "mask": "[null|subclass=Object]"
+        "mask": "Union([null|subclass=JSNumber], [subtype=bool])"
       },
       {
         "id": "function/944731702",
-        "mask": "[null|subclass=Object]"
+        "mask": "Union([null|subclass=JSNumber], [subtype=bool])"
       },
       {
         "id": "function/962973203",
-        "mask": "[null|subclass=Object]"
+        "mask": "Union([null|subclass=JSNumber], [subtype=bool])"
       },
       {
         "id": "function/991909617",
-        "mask": "[null|subclass=Object]"
-      }
-    ],
-    "function/356626494": [
-      {
-        "id": "field/752365703",
-        "mask": null
-      },
-      {
-        "id": "function/163889622",
-        "mask": null
-      },
-      {
-        "id": "function/271556856",
-        "mask": null
+        "mask": "Union([null|subclass=JSNumber], [subtype=bool])"
       }
     ],
     "function/358340511": [
-      {
-        "id": "function/335045122",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/335045122",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/335045122",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/335045122",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/335045122",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/335045122",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/335045122",
-        "mask": "inlined"
-      },
       {
         "id": "function/335045122",
         "mask": "inlined"
@@ -45306,16 +44279,6 @@
         "mask": "[subtype=Iterator]"
       }
     ],
-    "function/367201537": [
-      {
-        "id": "function/163889622",
-        "mask": null
-      },
-      {
-        "id": "function/208283907",
-        "mask": null
-      }
-    ],
     "function/367762222": [
       {
         "id": "function/357240896",
@@ -45374,8 +44337,24 @@
         "mask": null
       },
       {
+        "id": "function/1007776597",
+        "mask": null
+      },
+      {
+        "id": "function/1007776597",
+        "mask": "inlined"
+      },
+      {
         "id": "function/321493163",
         "mask": null
+      },
+      {
+        "id": "function/625818865",
+        "mask": null
+      },
+      {
+        "id": "function/625818865",
+        "mask": "inlined"
       },
       {
         "id": "function/793142738",
@@ -45402,22 +44381,6 @@
       {
         "id": "function/540949546",
         "mask": null
-      },
-      {
-        "id": "function/540949546",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/540949546",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/540949546",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/540949546",
-        "mask": "inlined"
       },
       {
         "id": "function/540949546",
@@ -45656,88 +44619,6 @@
         "mask": "inlined"
       }
     ],
-    "function/384296947": [
-      {
-        "id": "function/112452456",
-        "mask": "[subclass=ListIterable]"
-      },
-      {
-        "id": "function/163889622",
-        "mask": null
-      },
-      {
-        "id": "function/210296716",
-        "mask": null
-      },
-      {
-        "id": "function/210296716",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/210296716",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/22749633",
-        "mask": "[subclass=ListIterable]"
-      },
-      {
-        "id": "function/335045122",
-        "mask": null
-      },
-      {
-        "id": "function/358340511",
-        "mask": null
-      },
-      {
-        "id": "function/358340511",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/358340511",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/358340511",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/372037963",
-        "mask": null
-      },
-      {
-        "id": "function/372037963",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/372037963",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/430236296",
-        "mask": "[subclass=ListIterable]"
-      },
-      {
-        "id": "function/445547062",
-        "mask": null
-      },
-      {
-        "id": "function/507333070",
-        "mask": null
-      },
-      {
-        "id": "function/521621182",
-        "mask": "[subclass=ListIterable]"
-      },
-      {
-        "id": "function/540949546",
-        "mask": null
-      },
-      {
-        "id": "function/701409225",
-        "mask": null
-      }
-    ],
     "function/386488696": [
       {
         "id": "field/291315810",
@@ -45933,16 +44814,6 @@
       },
       {
         "id": "function/914458783",
-        "mask": null
-      }
-    ],
-    "function/398143772": [
-      {
-        "id": "field/467945521",
-        "mask": null
-      },
-      {
-        "id": "function/718604638",
         "mask": null
       }
     ],
@@ -46300,58 +45171,6 @@
         "mask": null
       }
     ],
-    "function/434798495": [
-      {
-        "id": "function/163889622",
-        "mask": null
-      },
-      {
-        "id": "function/208283907",
-        "mask": null
-      }
-    ],
-    "function/435026267": [
-      {
-        "id": "function/163889622",
-        "mask": null
-      },
-      {
-        "id": "function/231269804",
-        "mask": "[subtype=ListMixin]"
-      },
-      {
-        "id": "function/250127561",
-        "mask": null
-      },
-      {
-        "id": "function/353600390",
-        "mask": "[subtype=ListMixin]"
-      },
-      {
-        "id": "function/367201536",
-        "mask": "[subtype=ListMixin]"
-      },
-      {
-        "id": "function/386488696",
-        "mask": "[subtype=ListMixin]"
-      },
-      {
-        "id": "function/465133022",
-        "mask": "[subtype=ListMixin]"
-      },
-      {
-        "id": "function/676221427",
-        "mask": "[subtype=ListMixin]"
-      },
-      {
-        "id": "function/917746710",
-        "mask": "[subtype=ListMixin]"
-      },
-      {
-        "id": "function/92331580",
-        "mask": "[subtype=ListMixin]"
-      }
-    ],
     "function/435575019": [
       {
         "id": "function/1001428478",
@@ -46610,16 +45429,6 @@
       {
         "id": "function/671994397",
         "mask": "inlined"
-      }
-    ],
-    "function/437584423": [
-      {
-        "id": "function/163889622",
-        "mask": null
-      },
-      {
-        "id": "function/271556856",
-        "mask": null
       }
     ],
     "function/437690106": [
@@ -46921,31 +45730,31 @@
     "function/445547062": [
       {
         "id": "function/1001428478",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/1033661873",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/1051093947",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/130041650",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/143741280",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/150705145",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/15478302",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/163889622",
@@ -46953,51 +45762,51 @@
       },
       {
         "id": "function/167405219",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/173208082",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/173469993",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/176570718",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/198373015",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/239544133",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/240627941",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/257019158",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/285148179",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/288870017",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/312847150",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/325903689",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/346305693",
@@ -47005,83 +45814,83 @@
       },
       {
         "id": "function/369614033",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/372037963",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/380325809",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/412092690",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/41770310",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/431897853",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/436231120",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/439855108",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/440018750",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/449342208",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/464959827",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/474133145",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/550544609",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/565013754",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/58194360",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/613119304",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/636061569",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/646234762",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/647368947",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/66015995",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/679532174",
@@ -47089,65 +45898,39 @@
       },
       {
         "id": "function/730595126",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/745741399",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/778843282",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/793410068",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/848267879",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/891910474",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/93381370",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/944731702",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/962973203",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/991909617",
-        "mask": "[null|subclass=Object]"
-      }
-    ],
-    "function/447943952": [
-      {
-        "id": "field/752365703",
-        "mask": null
-      },
-      {
-        "id": "function/271556856",
-        "mask": null
-      },
-      {
-        "id": "function/308590446",
-        "mask": null
-      },
-      {
-        "id": "function/356626494",
-        "mask": null
-      },
-      {
-        "id": "function/356626494",
-        "mask": "inlined"
+        "mask": "[subclass=Object]"
       }
     ],
     "function/448031436": [
@@ -47621,26 +46404,10 @@
       },
       {
         "id": "function/1009875590",
-        "mask": "inlined"
+        "mask": null
       },
       {
         "id": "function/1009875590",
-        "mask": null
-      },
-      {
-        "id": "function/1040907014",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/1040907014",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/1040907014",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/1040907014",
         "mask": "inlined"
       },
       {
@@ -47650,6 +46417,22 @@
       {
         "id": "function/1040907014",
         "mask": null
+      },
+      {
+        "id": "function/1040907014",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/1040907014",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/1040907014",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/1040907014",
+        "mask": "inlined"
       },
       {
         "id": "function/1040907014",
@@ -47697,11 +46480,11 @@
       },
       {
         "id": "function/291238918",
-        "mask": "inlined"
+        "mask": null
       },
       {
         "id": "function/291238918",
-        "mask": null
+        "mask": "inlined"
       },
       {
         "id": "function/291238918",
@@ -47732,10 +46515,6 @@
         "mask": "[subclass=Element]"
       },
       {
-        "id": "function/437314199",
-        "mask": "[null|subclass=Element]"
-      },
-      {
         "id": "function/478451597",
         "mask": null
       },
@@ -47757,19 +46536,15 @@
       },
       {
         "id": "function/642361640",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/642361640",
         "mask": null
       },
       {
         "id": "function/642361640",
-        "mask": "[null|subclass=Element]"
-      },
-      {
-        "id": "function/642361640",
         "mask": "[subclass=Element]"
-      },
-      {
-        "id": "function/642361640",
-        "mask": "inlined"
       },
       {
         "id": "function/735840107",
@@ -47789,43 +46564,43 @@
       },
       {
         "id": "function/814364345",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/814364345",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/814364345",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/814364345",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/814364345",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/814364345",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/814364345",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/814364345",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/814364345",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/814364345",
         "mask": null
+      },
+      {
+        "id": "function/814364345",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/814364345",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/814364345",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/814364345",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/814364345",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/814364345",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/814364345",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/814364345",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/814364345",
+        "mask": "inlined"
       },
       {
         "id": "function/814364345",
@@ -47938,16 +46713,6 @@
         "mask": null
       }
     ],
-    "function/465133023": [
-      {
-        "id": "function/163889622",
-        "mask": null
-      },
-      {
-        "id": "function/208283907",
-        "mask": null
-      }
-    ],
     "function/465286731": [
       {
         "id": "function/228370509",
@@ -48031,112 +46796,6 @@
       },
       {
         "id": "function/953367126",
-        "mask": null
-      }
-    ],
-    "function/470434632": [
-      {
-        "id": "field/435679137",
-        "mask": null
-      },
-      {
-        "id": "field/646361925",
-        "mask": null
-      },
-      {
-        "id": "function/176842663",
-        "mask": null
-      },
-      {
-        "id": "function/210296716",
-        "mask": null
-      },
-      {
-        "id": "function/210296716",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/335045122",
-        "mask": null
-      },
-      {
-        "id": "function/358340511",
-        "mask": null
-      },
-      {
-        "id": "function/358340511",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/358340511",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/358340511",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/358340511",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/372037963",
-        "mask": null
-      },
-      {
-        "id": "function/372037963",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/445547062",
-        "mask": null
-      },
-      {
-        "id": "function/491220889",
-        "mask": "[subclass=CssClassSetImpl]"
-      },
-      {
-        "id": "function/507333070",
-        "mask": null
-      },
-      {
-        "id": "function/524476833",
-        "mask": "[subclass=CssClassSetImpl]"
-      },
-      {
-        "id": "function/540949546",
-        "mask": null
-      },
-      {
-        "id": "function/676035370",
-        "mask": null
-      },
-      {
-        "id": "function/734266977",
-        "mask": null
-      },
-      {
-        "id": "function/734266977",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/834909172",
-        "mask": null
-      },
-      {
-        "id": "function/834909172",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/834909172",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/834909172",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/99251871",
         "mask": null
       }
     ],
@@ -48233,7 +46892,7 @@
       },
       {
         "id": "function/26920957",
-        "mask": "[null|subclass=Object]"
+        "mask": "[null|exact=JSString]"
       },
       {
         "id": "function/275957193",
@@ -48481,12 +47140,6 @@
       },
       {
         "id": "function/981498696",
-        "mask": null
-      }
-    ],
-    "function/497849577": [
-      {
-        "id": "field/103637844",
         "mask": null
       }
     ],
@@ -48743,7 +47396,7 @@
       },
       {
         "id": "function/26920957",
-        "mask": "[null|subclass=Object]"
+        "mask": "[null|exact=JSString]"
       },
       {
         "id": "function/272619287",
@@ -49679,35 +48332,19 @@
       },
       {
         "id": "function/1001428478",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/1009157688",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/1033661873",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/1043195848",
         "mask": "[subclass=Object]"
       },
       {
         "id": "function/1051093947",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/1056601141",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/115611491",
         "mask": "[subclass=Object]"
       },
       {
         "id": "function/130041650",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/140617653",
@@ -49718,40 +48355,28 @@
         "mask": null
       },
       {
-        "id": "function/143568058",
-        "mask": "[null|subclass=Object]"
-      },
-      {
         "id": "function/143741280",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/14519227",
         "mask": "[subclass=Object]"
       },
       {
         "id": "function/147524116",
-        "mask": "[subclass=Object]"
+        "mask": "Union([exact=JSExtendableArray], [exact=JSFixedArray])"
       },
       {
         "id": "function/149727803",
-        "mask": "[null|subclass=Object]"
+        "mask": "Union([exact=JSExtendableArray], [exact=JSFixedArray])"
       },
       {
         "id": "function/150705145",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/151843940",
         "mask": "[subclass=Object]"
       },
       {
         "id": "function/15478302",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/162825675",
-        "mask": "[null|subclass=Object]"
+        "mask": "Union([exact=JSExtendableArray], [exact=JSFixedArray], [null|exact=JSUnmodifiableArray])"
       },
       {
         "id": "function/163889622",
@@ -49759,19 +48384,19 @@
       },
       {
         "id": "function/167405219",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/173208082",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/173469993",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/176570718",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/176673639",
@@ -49783,35 +48408,27 @@
       },
       {
         "id": "function/198373015",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/205609692",
-        "mask": null
-      },
-      {
-        "id": "function/205609692",
-        "mask": null
-      },
-      {
-        "id": "function/233044395",
         "mask": "[subclass=Object]"
       },
       {
+        "id": "function/205609692",
+        "mask": null
+      },
+      {
+        "id": "function/205609692",
+        "mask": null
+      },
+      {
         "id": "function/239544133",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/240627941",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/254997155",
         "mask": "[subclass=Object]"
       },
       {
         "id": "function/257019158",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/265638794",
@@ -49822,51 +48439,39 @@
         "mask": null
       },
       {
-        "id": "function/275957193",
+        "id": "function/285148179",
         "mask": "[subclass=Object]"
       },
       {
-        "id": "function/285148179",
-        "mask": "[null|subclass=Object]"
-      },
-      {
         "id": "function/288870017",
         "mask": null
       },
       {
         "id": "function/288870017",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/290250840",
-        "mask": "inlined"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/290250840",
         "mask": null
       },
       {
-        "id": "function/291295234",
-        "mask": null
+        "id": "function/290250840",
+        "mask": "inlined"
       },
       {
         "id": "function/291295234",
         "mask": "inlined"
+      },
+      {
+        "id": "function/291295234",
+        "mask": null
       },
       {
         "id": "function/312847150",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/325903689",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/332849406",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/335135610",
         "mask": "[subclass=Object]"
       },
       {
@@ -49874,48 +48479,28 @@
         "mask": null
       },
       {
-        "id": "function/347478885",
+        "id": "function/369614033",
         "mask": "[subclass=Object]"
       },
       {
-        "id": "function/356626494",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/369614033",
-        "mask": "[null|subclass=Object]"
-      },
-      {
         "id": "function/372037963",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/375786305",
         "mask": "[subclass=Object]"
       },
       {
         "id": "function/380325809",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/381082213",
-        "mask": null
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/381082213",
         "mask": "inlined"
       },
       {
-        "id": "function/384296947",
-        "mask": "[null|subclass=Object]"
+        "id": "function/381082213",
+        "mask": null
       },
       {
         "id": "function/389240410",
         "mask": null
-      },
-      {
-        "id": "function/398143772",
-        "mask": "[subclass=Object]"
       },
       {
         "id": "function/399195151",
@@ -49923,7 +48508,7 @@
       },
       {
         "id": "function/412092690",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/412241188",
@@ -49935,59 +48520,35 @@
       },
       {
         "id": "function/41770310",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/425007214",
-        "mask": "[null|subclass=Object]"
+        "mask": "[null|exact=JSString]"
       },
       {
         "id": "function/431897853",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/434798495",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/435026267",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/436110887",
         "mask": "[subclass=Object]"
       },
       {
         "id": "function/436231120",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/437584423",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/437690106",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/439855108",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/440018750",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/445547062",
         "mask": null
       },
       {
-        "id": "function/447943952",
-        "mask": "[null|subclass=Object]"
-      },
-      {
         "id": "function/449342208",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/450815254",
@@ -50003,23 +48564,15 @@
       },
       {
         "id": "function/464959827",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/470434632",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/474133145",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/478451597",
         "mask": null
-      },
-      {
-        "id": "function/497849577",
-        "mask": "[subclass=Object]"
       },
       {
         "id": "function/51963113",
@@ -50031,31 +48584,23 @@
       },
       {
         "id": "function/519947595",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/528771279",
-        "mask": "[subclass=Object]"
+        "mask": "[null|exact=JSString]"
       },
       {
         "id": "function/550544609",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/553989766",
         "mask": "[subclass=Object]"
       },
       {
         "id": "function/565013754",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/58194360",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/613119304",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/614839327",
@@ -50063,39 +48608,35 @@
       },
       {
         "id": "function/636061569",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/646234762",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/647368947",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/66015995",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/675550447",
         "mask": null
       },
       {
-        "id": "function/705889064",
-        "mask": "[null|subclass=Object]"
+        "id": "function/718065618",
+        "mask": null
       },
       {
         "id": "function/718065618",
         "mask": "inlined"
       },
       {
-        "id": "function/718065618",
-        "mask": null
-      },
-      {
         "id": "function/721062346",
-        "mask": "[null|subclass=Object]"
+        "mask": "Union([exact=JSExtendableArray], [exact=JSFixedArray])"
       },
       {
         "id": "function/724580252",
@@ -50103,23 +48644,19 @@
       },
       {
         "id": "function/730595126",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/730901830",
         "mask": null
       },
       {
-        "id": "function/731577469",
+        "id": "function/745741399",
         "mask": "[subclass=Object]"
       },
       {
-        "id": "function/745741399",
-        "mask": "[null|subclass=Object]"
-      },
-      {
         "id": "function/778843282",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/77958169",
@@ -50127,47 +48664,31 @@
       },
       {
         "id": "function/793410068",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/795995138",
         "mask": "[subclass=Object]"
-      },
-      {
-        "id": "function/810075207",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/819535657",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/837956997",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/845379732",
-        "mask": null
       },
       {
         "id": "function/845379732",
         "mask": "inlined"
+      },
+      {
+        "id": "function/845379732",
+        "mask": null
       },
       {
         "id": "function/848267879",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/858285731",
-        "mask": null
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/858285731",
         "mask": "inlined"
       },
       {
+        "id": "function/858285731",
+        "mask": null
+      },
+      {
         "id": "function/869103502",
-        "mask": "[subclass=Object]"
+        "mask": "Union([exact=JSExtendableArray], [exact=JSFixedArray])"
       },
       {
         "id": "function/883559193",
@@ -50179,7 +48700,7 @@
       },
       {
         "id": "function/891910474",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/892678131",
@@ -50190,28 +48711,16 @@
         "mask": null
       },
       {
-        "id": "function/912912559",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/918278003",
-        "mask": "[null|subclass=Object]"
-      },
-      {
         "id": "function/93381370",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/944731702",
-        "mask": "[null|subclass=Object]"
-      },
-      {
-        "id": "function/962973203",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/991909617",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       }
     ],
     "function/583754982": [
@@ -51160,16 +49669,6 @@
         "mask": null
       }
     ],
-    "function/676221428": [
-      {
-        "id": "function/163889622",
-        "mask": null
-      },
-      {
-        "id": "function/208283907",
-        "mask": null
-      }
-    ],
     "function/679532174": [
       {
         "id": "function/606572177",
@@ -51218,16 +49717,6 @@
       {
         "id": "function/966941645",
         "mask": "inlined"
-      }
-    ],
-    "function/687982935": [
-      {
-        "id": "function/309663409",
-        "mask": "[exact=CssClassSetImpl]"
-      },
-      {
-        "id": "function/436110887",
-        "mask": null
       }
     ],
     "function/689271731": [
@@ -51546,24 +50035,6 @@
         "mask": "inlined"
       }
     ],
-    "function/718604638": [
-      {
-        "id": "function/293345642",
-        "mask": null
-      },
-      {
-        "id": "function/293345642",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/615186453",
-        "mask": null
-      },
-      {
-        "id": "function/615186453",
-        "mask": "inlined"
-      }
-    ],
     "function/721062346": [
       {
         "id": "function/163889622",
@@ -51726,16 +50197,6 @@
         "mask": "[subtype=Iterable]"
       }
     ],
-    "function/731577469": [
-      {
-        "id": "function/163889622",
-        "mask": null
-      },
-      {
-        "id": "function/208283907",
-        "mask": null
-      }
-    ],
     "function/731794670": [
       {
         "id": "function/739160294",
@@ -51802,10 +50263,6 @@
       {
         "id": "function/99251871",
         "mask": null
-      },
-      {
-        "id": "function/99251871",
-        "mask": "inlined"
       },
       {
         "id": "function/99251871",
@@ -52592,56 +51049,6 @@
         "mask": "[null|exact=_RootZone]"
       }
     ],
-    "function/795995138": [
-      {
-        "id": "function/1007673050",
-        "mask": "[subtype=ListMixin]"
-      },
-      {
-        "id": "function/258125598",
-        "mask": "[subtype=ListMixin]"
-      },
-      {
-        "id": "function/367201536",
-        "mask": "[subtype=ListMixin]"
-      },
-      {
-        "id": "function/367201537",
-        "mask": "[subtype=ListMixin]"
-      },
-      {
-        "id": "function/465133022",
-        "mask": "[subtype=ListMixin]"
-      },
-      {
-        "id": "function/465133023",
-        "mask": "[subtype=ListMixin]"
-      },
-      {
-        "id": "function/58126806",
-        "mask": "[subtype=ListMixin]"
-      },
-      {
-        "id": "function/676221427",
-        "mask": "[subtype=ListMixin]"
-      },
-      {
-        "id": "function/676221428",
-        "mask": "[subtype=ListMixin]"
-      },
-      {
-        "id": "function/866824195",
-        "mask": "[subtype=ListMixin]"
-      },
-      {
-        "id": "function/917746710",
-        "mask": "[subtype=ListMixin]"
-      },
-      {
-        "id": "function/917746711",
-        "mask": "[subtype=ListMixin]"
-      }
-    ],
     "function/796179660": [
       {
         "id": "function/712365042",
@@ -52870,16 +51277,6 @@
         "mask": null
       }
     ],
-    "function/810075207": [
-      {
-        "id": "field/248336138",
-        "mask": null
-      },
-      {
-        "id": "function/918278003",
-        "mask": null
-      }
-    ],
     "function/811310425": [
       {
         "id": "function/163889622",
@@ -53100,20 +51497,6 @@
       {
         "id": "function/136706883",
         "mask": "inlined"
-      }
-    ],
-    "function/819535657": [
-      {
-        "id": "function/143568058",
-        "mask": null
-      },
-      {
-        "id": "function/491220889",
-        "mask": "[subclass=CssClassSetImpl]"
-      },
-      {
-        "id": "function/524476833",
-        "mask": "[subclass=CssClassSetImpl]"
       }
     ],
     "function/820195095": [
@@ -54090,16 +52473,6 @@
         "mask": "[subclass=_LinkedHashSet]"
       }
     ],
-    "function/866824195": [
-      {
-        "id": "function/163889622",
-        "mask": null
-      },
-      {
-        "id": "function/208283907",
-        "mask": null
-      }
-    ],
     "function/868278724": [
       {
         "id": "function/306374693",
@@ -54608,56 +52981,6 @@
         "mask": null
       }
     ],
-    "function/912912559": [
-      {
-        "id": "function/210296716",
-        "mask": null
-      },
-      {
-        "id": "function/210296716",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/367201536",
-        "mask": "[subtype=ListMixin]"
-      },
-      {
-        "id": "function/372037963",
-        "mask": null
-      },
-      {
-        "id": "function/372037963",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/465133022",
-        "mask": "[subtype=ListMixin]"
-      },
-      {
-        "id": "function/540949546",
-        "mask": null
-      },
-      {
-        "id": "function/676221427",
-        "mask": "[subtype=ListMixin]"
-      },
-      {
-        "id": "function/789545114",
-        "mask": null
-      },
-      {
-        "id": "function/843997665",
-        "mask": null
-      },
-      {
-        "id": "function/843997665",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/917746710",
-        "mask": "[subtype=ListMixin]"
-      }
-    ],
     "function/914458783": [
       {
         "id": "function/1049802380",
@@ -54699,26 +53022,6 @@
     "function/917746710": [
       {
         "id": "field/248336138",
-        "mask": null
-      }
-    ],
-    "function/917746711": [
-      {
-        "id": "function/163889622",
-        "mask": null
-      },
-      {
-        "id": "function/208283907",
-        "mask": null
-      }
-    ],
-    "function/918278003": [
-      {
-        "id": "function/163889622",
-        "mask": null
-      },
-      {
-        "id": "function/271556856",
         "mask": null
       }
     ],
@@ -55620,16 +53923,6 @@
         "mask": "[subclass=_BufferingStreamSubscription]"
       }
     ],
-    "function/1007673050": [
-      {
-        "id": "function/163889622",
-        "mask": null
-      },
-      {
-        "id": "function/208283907",
-        "mask": null
-      }
-    ],
     "function/1008544093": [
       {
         "id": "function/144469777",
@@ -55946,56 +54239,6 @@
         "mask": "inlined"
       }
     ],
-    "function/1043195848": [
-      {
-        "id": "function/1007673050",
-        "mask": "[subtype=ListMixin]"
-      },
-      {
-        "id": "function/258125598",
-        "mask": "[subtype=ListMixin]"
-      },
-      {
-        "id": "function/367201536",
-        "mask": "[subtype=ListMixin]"
-      },
-      {
-        "id": "function/367201537",
-        "mask": "[subtype=ListMixin]"
-      },
-      {
-        "id": "function/465133022",
-        "mask": "[subtype=ListMixin]"
-      },
-      {
-        "id": "function/465133023",
-        "mask": "[subtype=ListMixin]"
-      },
-      {
-        "id": "function/58126806",
-        "mask": "[subtype=ListMixin]"
-      },
-      {
-        "id": "function/676221427",
-        "mask": "[subtype=ListMixin]"
-      },
-      {
-        "id": "function/676221428",
-        "mask": "[subtype=ListMixin]"
-      },
-      {
-        "id": "function/866824195",
-        "mask": "[subtype=ListMixin]"
-      },
-      {
-        "id": "function/917746710",
-        "mask": "[subtype=ListMixin]"
-      },
-      {
-        "id": "function/917746711",
-        "mask": "[subtype=ListMixin]"
-      }
-    ],
     "function/1043652784": [
       {
         "id": "function/1029236821",
@@ -56208,64 +54451,6 @@
         "mask": null
       }
     ],
-    "function/1056601141": [
-      {
-        "id": "function/163889622",
-        "mask": null
-      },
-      {
-        "id": "function/231269804",
-        "mask": "[subtype=ListMixin]"
-      },
-      {
-        "id": "function/250127561",
-        "mask": null
-      },
-      {
-        "id": "function/353600390",
-        "mask": "[subtype=ListMixin]"
-      },
-      {
-        "id": "function/367201536",
-        "mask": "[subtype=ListMixin]"
-      },
-      {
-        "id": "function/367201537",
-        "mask": "[subtype=ListMixin]"
-      },
-      {
-        "id": "function/386488696",
-        "mask": "[subtype=ListMixin]"
-      },
-      {
-        "id": "function/465133022",
-        "mask": "[subtype=ListMixin]"
-      },
-      {
-        "id": "function/465133023",
-        "mask": "[subtype=ListMixin]"
-      },
-      {
-        "id": "function/676221427",
-        "mask": "[subtype=ListMixin]"
-      },
-      {
-        "id": "function/676221428",
-        "mask": "[subtype=ListMixin]"
-      },
-      {
-        "id": "function/917746710",
-        "mask": "[subtype=ListMixin]"
-      },
-      {
-        "id": "function/917746711",
-        "mask": "[subtype=ListMixin]"
-      },
-      {
-        "id": "function/92331580",
-        "mask": "[subtype=ListMixin]"
-      }
-    ],
     "function/1057423644": [
       {
         "id": "function/158020023",
@@ -56346,6 +54531,10 @@
         "mask": null
       },
       {
+        "id": "field/61454735",
+        "mask": null
+      },
+      {
         "id": "field/67042351",
         "mask": null
       },
@@ -56362,6 +54551,18 @@
         "mask": null
       },
       {
+        "id": "function/1000283646",
+        "mask": null
+      },
+      {
+        "id": "function/253251003",
+        "mask": null
+      },
+      {
+        "id": "function/253251003",
+        "mask": "inlined"
+      },
+      {
         "id": "function/265591727",
         "mask": null
       },
@@ -56370,7 +54571,31 @@
         "mask": "inlined"
       },
       {
+        "id": "function/275552132",
+        "mask": null
+      },
+      {
+        "id": "function/275552132",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/346305693",
+        "mask": null
+      },
+      {
+        "id": "function/53930291",
+        "mask": null
+      },
+      {
+        "id": "function/53930291",
+        "mask": "inlined"
+      },
+      {
         "id": "function/557700166",
+        "mask": null
+      },
+      {
+        "id": "function/625818865",
         "mask": null
       },
       {
@@ -56389,7 +54614,7 @@
       "id": "outputUnit/669725655",
       "kind": "outputUnit",
       "name": "main",
-      "size": 114436,
+      "size": 111958,
       "filename": "web_app.dart.js",
       "imports": []
     }
@@ -56399,11 +54624,11 @@
   "dump_minor_version": 1,
   "program": {
     "entrypoint": "function/514342432",
-    "size": 114436,
-    "dart2jsVersion": "2.3.0-dev.0.3",
-    "compilationMoment": "2019-04-24 12:16:12.692606",
-    "compilationDuration": 1570639,
-    "toJsonDuration": 9000,
+    "size": 111958,
+    "dart2jsVersion": "2.3.2-dev.0.0",
+    "compilationMoment": "2019-05-22 10:20:29.151316",
+    "compilationDuration": 1424368,
+    "toJsonDuration": 7000,
     "dumpInfoDuration": 0,
     "noSuchMethodEnabled": false,
     "isRuntimeTypeUsed": false,
