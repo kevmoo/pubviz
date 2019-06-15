@@ -15,7 +15,7 @@ Future<Version> getLatestVersion(
 
   var retries = 0;
   for (;;) {
-    final path = 'https://pub.dartlang.org/packages/$packageName.json';
+    final path = 'https://pub.dev/packages/$packageName.json';
     try {
       // TODO(kevmoo): use http_retry
       response = await http.get(path, headers: _hedears);

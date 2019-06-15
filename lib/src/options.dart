@@ -21,7 +21,7 @@ class Options {
   @CliOption(
       abbr: 'o',
       help:
-          'Check pub.dartlang.org for lasted packages and flag those that are outdated.')
+          'Check pub.dev for lasted packages and flag those that are outdated.')
   final bool flagOutdated;
 
   @CliOption(abbr: '?', help: 'Print this help content.', negatable: false)
