@@ -55,7 +55,7 @@ Arguments:
             [html] (default)    Wrap the GraphViz dot format in an HTML template which renders it.
 
   -i, --ignore-packages         A comma seperated list of packages to exclude in the output.
-  -o, --[no-]flag-outdated      Check pub.dartlang.org for lasted packages and flag those that are outdated.
+  -o, --[no-]flag-outdated      Check pub.dev for lasted packages and flag those that are outdated.
   -?, --help                    Print this help content.
 
 If <package path> is omitted, the current directory is used.''';

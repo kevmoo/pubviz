@@ -51,7 +51,7 @@ ArgParser _$populateOptionsParser(ArgParser parser) => parser
   ..addFlag('flag-outdated',
       abbr: 'o',
       help:
-          'Check pub.dartlang.org for lasted packages and flag those that are outdated.')
+          'Check pub.dev for lasted packages and flag those that are outdated.')
   ..addFlag('help',
       abbr: '?', help: 'Print this help content.', negatable: false);
 
