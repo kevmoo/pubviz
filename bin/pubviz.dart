@@ -51,7 +51,7 @@ void main(List<String> args) async {
     } else if (command.name == 'open') {
       await _open(vp, options.format, options.ignorePackages);
     } else if (command.name == 'archive') {
-      await _generate(vp, options.format, options.ignorePackages);
+      await _archive(vp, options.format, options.ignorePackages);
     } else {
       throw StateError('Should never get here...');
     }
@@ -119,7 +119,7 @@ void _printContent(
   print(content);
 }
 
-Future _generate(
+Future _archive(
     VizRoot root, FormatOptions format, List<String> ignorePackages) {
   final dir = Directory('pubviz');
   final fileName = 'index.html';
