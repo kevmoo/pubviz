@@ -79,8 +79,9 @@ $ pubviz -?
 Usage: pubviz [<args>] <command> [<package path>]
 
 Commands:
-  open   Populate a temporary file with the content and open it.
-  print  Print the output to stdout.
+  open     Populate a temporary file with the content and open it.
+  print    Print the output to stdout.
+  archive  Generates an HTML report in the current directory, under pubviz/index.html.
 
 Arguments:
   -f, --format=<format>

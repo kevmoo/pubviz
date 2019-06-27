@@ -12,7 +12,7 @@ import 'package:pubviz/viz/dot.dart' as dot;
 import 'package:stack_trace/stack_trace.dart';
 
 void main(List<String> args) async {
-  parser..addCommand('open')..addCommand('print');
+  parser..addCommand('open')..addCommand('print')..addCommand('archive');
 
   Options options;
   try {
@@ -50,6 +50,8 @@ void main(List<String> args) async {
       _printContent(vp, options.format, options.ignorePackages);
     } else if (command.name == 'open') {
       await _open(vp, options.format, options.ignorePackages);
+    } else if (command.name == 'archive') {
+      await _generate(vp, options.format, options.ignorePackages);
     } else {
       throw StateError('Should never get here...');
     }
@@ -66,8 +68,9 @@ void _printUsage() {
   print('''Usage: pubviz [<args>] <command> [<package path>]
 
 ${styleBold.wrap('Commands:')}
-  open   Populate a temporary file with the content and open it.
-  print  Print the output to stdout.
+  open     Populate a temporary file with the content and open it.
+  print    Print the output to stdout.
+  archive  Generates an HTML report in the current directory, under pubviz/index.html.
 
 ${styleBold.wrap('Arguments:')}
 ${_indent(parser.usage)}
@@ -91,16 +94,9 @@ String _getExtension(FormatOptions format) => format.toString().split('.')[1];
 Future _open(
     VizRoot root, FormatOptions format, List<String> ignorePackages) async {
   final extension = _getExtension(format);
-  final name = root.root.name;
+  final name = '${root.root.name}.$extension';
   final dir = await Directory.systemTemp.createTemp('pubviz_${name}_');
-  final filePath = p.join(dir.path, '$name.$extension');
-  var file = File(filePath);
-
-  file = await file.create();
-  final content = _getContent(root, format, ignorePackages);
-  await file.writeAsString(content, mode: FileMode.write, flush: true);
-
-  print('File generated: $filePath');
+  final filePath = await _generateFile(dir, name, root, format, ignorePackages);
 
   String openCommand;
   if (Platform.isMacOS) {
@@ -121,6 +117,35 @@ void _printContent(
     VizRoot root, FormatOptions format, List<String> ignorePackages) {
   final content = _getContent(root, format, ignorePackages);
   print(content);
+}
+
+Future _generate(
+    VizRoot root, FormatOptions format, List<String> ignorePackages) {
+  final dir = Directory('pubviz');
+  final fileName = 'index.html';
+  return _generateFile(dir, fileName, root, format, ignorePackages);
+}
+
+Future<String> _generateFile(
+  Directory directory,
+  String fileName,
+  VizRoot root,
+  FormatOptions format,
+  List<String> ignorePackages,
+) async {
+  if (!await directory.exists()) {
+    await directory.create(recursive: true);
+  }
+  final filePath = p.join(directory.path, fileName);
+  var file = File(filePath);
+
+  file = await file.create();
+  final content = _getContent(root, format, ignorePackages);
+  await file.writeAsString(content, mode: FileMode.write, flush: true);
+
+  print('File generated: $filePath');
+
+  return filePath;
 }
 
 String _getPath(List<String> args) {

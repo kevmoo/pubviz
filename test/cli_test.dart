@@ -28,7 +28,7 @@ $_usage''');
     final proc = await TestProcess.start('dart', ['bin/pubviz.dart']);
 
     final output = await proc.stdoutStream().join('\n');
-    expect(output, '''Specify a command: open, print
+    expect(output, '''Specify a command: open, print, archive
 
 $_usage''');
 
@@ -46,8 +46,9 @@ $_usage''');
 const _usage = r'''Usage: pubviz [<args>] <command> [<package path>]
 
 Commands:
-  open   Populate a temporary file with the content and open it.
-  print  Print the output to stdout.
+  open     Populate a temporary file with the content and open it.
+  print    Print the output to stdout.
+  archive  Generates an HTML report in the current directory, under pubviz/index.html.
 
 Arguments:
   -f, --format=<format>
