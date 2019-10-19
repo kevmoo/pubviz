@@ -1,3 +1,7 @@
+## 2.5.5
+
+* Update dependencies.
+
 ## 2.5.4
 
 * Improve the package description.
