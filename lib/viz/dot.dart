@@ -27,8 +27,13 @@ String toDot(VizRoot item,
   return gviz.toString();
 }
 
-void _writeDot(VizPackage pkg, Gviz gviz, String rootName, bool escapeLabels,
-    Iterable<String> ignorePackages) {
+void _writeDot(
+  VizPackage pkg,
+  Gviz gviz,
+  String rootName,
+  bool escapeLabels,
+  Iterable<String> ignorePackages,
+) {
   final isRoot = rootName == pkg.name;
 
   final newLine = escapeLabels ? r'\n' : '\n';
