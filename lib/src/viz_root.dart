@@ -17,12 +17,10 @@ class VizRoot {
   VizRoot._(this.root, Map<String, VizPackage> packages)
       : packages = UnmodifiableMapView(packages);
 
-  static Future<VizRoot> forDirectory(
-    String path, {
-    bool flagOutdated = false,
-    Iterable<String> ignorePackages,
-    bool directDependencies = false,
-  }) async {
+  static Future<VizRoot> forDirectory(String path,
+      {bool flagOutdated = false,
+      Iterable<String> ignorePackages,
+      bool directDependencies = false}) async {
     var root = await VizPackage.forDirectory(path);
     final packages =
         await _getReferencedPackages(path, flagOutdated, directDependencies);
@@ -102,10 +100,7 @@ class VizRoot {
 }
 
 Future<Map<String, String>> _getPackageMap(
-  String path,
-  bool withFlutter,
-  bool directDependencies,
-) async {
+    String path, bool withFlutter, bool directDependencies) async {
   final map = <String, String>{};
 
   final proc = withFlutter ? 'flutter' : 'pub';
@@ -128,11 +123,7 @@ Future<Map<String, String>> _getPackageMap(
     }
 
     throw ProcessException(
-      'pub',
-      ['list-package-dirs'],
-      message,
-      result.exitCode,
-    );
+        'pub', ['list-package-dirs'], message, result.exitCode);
   }
 
   final json = jsonDecode(result.stdout as String);
@@ -154,10 +145,7 @@ Future<Map<String, String>> _getPackageMap(
 }
 
 Future<Map<String, VizPackage>> _getReferencedPackages(
-  String path,
-  bool flagOutdated,
-  bool directDependencies,
-) async {
+    String path, bool flagOutdated, bool directDependencies) async {
   final packs = SplayTreeMap<String, VizPackage>();
 
   Map<String, String> map;
@@ -189,9 +177,7 @@ Future<Map<String, VizPackage>> _getReferencedPackages(
 }
 
 Iterable<Dependency> _allDeps(
-  VizRoot root,
-  Iterable<String> ignorePackages,
-) sync* {
+    VizRoot root, Iterable<String> ignorePackages) sync* {
   for (var pkg
       in root.packages.values.where((v) => !ignorePackages.contains(v.name))) {
     yield* pkg.dependencies;

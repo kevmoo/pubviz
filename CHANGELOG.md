@@ -1,3 +1,7 @@
+## 2.6.0
+
+* Add support for direct dependencies only ([#27](https://github.com/kevmoo/pubviz/issues/27))
+
 ## 2.5.5
 
 * Update dependencies.
