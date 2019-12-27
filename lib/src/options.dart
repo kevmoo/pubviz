@@ -25,7 +25,10 @@ class Options {
   final bool flagOutdated;
 
   @CliOption(
-      abbr: 'd', defaultsTo: false, help: 'Include only direct dependencies.')
+      abbr: 'd',
+      defaultsTo: false,
+      help: 'Include only direct dependencies.',
+      negatable: false)
   final bool directDependencies;
 
   @CliOption(abbr: '?', help: 'Print this help content.', negatable: false)
