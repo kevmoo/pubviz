@@ -24,15 +24,23 @@ class Options {
           'Check pub.dev for lasted packages and flag those that are outdated.')
   final bool flagOutdated;
 
+  @CliOption(
+      abbr: 'd',
+      defaultsTo: false,
+      help: 'Include only direct dependencies.',
+      negatable: false)
+  final bool directDependencies;
+
   @CliOption(abbr: '?', help: 'Print this help content.', negatable: false)
   final bool help;
 
   final ArgResults command;
 
-  Options(
+  const Options(
       {this.format,
       this.ignorePackages,
       this.flagOutdated,
+      this.directDependencies,
       this.help,
       this.command});
 }

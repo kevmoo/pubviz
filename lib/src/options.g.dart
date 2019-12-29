@@ -23,6 +23,7 @@ Options _$parseOptionsResult(ArgResults result) => Options(
         _$enumValueHelper(_$FormatOptionsEnumMap, result['format'] as String),
     ignorePackages: result['ignore-packages'] as List<String>,
     flagOutdated: result['flag-outdated'] as bool,
+    directDependencies: result['direct-dependencies'] as bool,
     help: result['help'] as bool,
     command: result.command);
 
@@ -52,6 +53,11 @@ ArgParser _$populateOptionsParser(ArgParser parser) => parser
       abbr: 'o',
       help:
           'Check pub.dev for lasted packages and flag those that are outdated.')
+  ..addFlag('direct-dependencies',
+      abbr: 'd',
+      help: 'Include only direct dependencies.',
+      defaultsTo: false,
+      negatable: false)
   ..addFlag('help',
       abbr: '?', help: 'Print this help content.', negatable: false);
 

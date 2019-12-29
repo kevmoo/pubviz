@@ -45,7 +45,8 @@ void main(List<String> args) async {
   await Chain.capture(() async {
     final vp = await VizRoot.forDirectory(path,
         flagOutdated: options.flagOutdated,
-        ignorePackages: options.ignorePackages);
+        ignorePackages: options.ignorePackages,
+        directDependencies: options.directDependencies);
     if (command.name == 'print') {
       _printContent(vp, options.format, options.ignorePackages);
     } else if (command.name == 'open') {

@@ -1,3 +1,7 @@
+## 2.6.0
+
+* Add support for direct dependencies only with `--direct-dependencies` (`-d`).
+
 ## 2.5.5
 
 * Update dependencies.

@@ -5,6 +5,7 @@ import 'dart:io';
 
 import 'package:path/path.dart' as p;
 import 'package:pub_semver/pub_semver.dart';
+import 'package:yaml/yaml.dart';
 
 import 'dependency.dart';
 import 'viz_package.dart';
@@ -17,9 +18,12 @@ class VizRoot {
       : packages = UnmodifiableMapView(packages);
 
   static Future<VizRoot> forDirectory(String path,
-      {bool flagOutdated = false, Iterable<String> ignorePackages}) async {
+      {bool flagOutdated = false,
+      Iterable<String> ignorePackages,
+      bool directDependencies = false}) async {
     var root = await VizPackage.forDirectory(path);
-    final packages = await _getReferencedPackages(path, flagOutdated);
+    final packages =
+        await _getReferencedPackages(path, flagOutdated, directDependencies);
 
     // want to make sure that the root node instance is the same
     // as the instance in the packages collection
@@ -70,6 +74,7 @@ class VizRoot {
 
       for (var primaryDep in root.dependencies) {
         final package = packages[primaryDep.name];
+        if (package == null) continue;
 
         assert(!package.isPrimary);
         package.isPrimary = true;
@@ -84,18 +89,18 @@ class VizRoot {
   void _updateDevOnly(Dependency dep) {
     final package = packages[dep.name];
 
-    if (package.onlyDev) {
+    if (package?.onlyDev == true) {
       package.onlyDev = false;
 
-      package.dependencies
-          .where((d) => !d.isDevDependency)
-          .forEach(_updateDevOnly);
+      package?.dependencies
+          ?.where((d) => !d.isDevDependency)
+          ?.forEach(_updateDevOnly);
     }
   }
 }
 
 Future<Map<String, String>> _getPackageMap(
-    String path, bool withFlutter) async {
+    String path, bool withFlutter, bool directDependencies) async {
   final map = <String, String>{};
 
   final proc = withFlutter ? 'flutter' : 'pub';
@@ -122,8 +127,16 @@ Future<Map<String, String>> _getPackageMap(
   }
 
   final json = jsonDecode(result.stdout as String);
+  var packageEntries = (json['packages'] as Map<String, dynamic>).entries;
 
-  for (var entry in (json['packages'] as Map<String, dynamic>).entries) {
+  if (directDependencies) {
+    final yaml = loadYaml(File('$path/pubspec.yaml').readAsStringSync());
+    final directDependencies = yaml['dependencies'].value.keys as Iterable;
+    packageEntries = packageEntries.where((entry) =>
+        directDependencies.contains(entry.key) || entry.key == yaml['name']);
+  }
+
+  for (var entry in packageEntries) {
     assert(p.basename(entry.value as String) == 'lib');
     map[entry.key] = p.dirname(entry.value as String);
   }
@@ -132,16 +145,16 @@ Future<Map<String, String>> _getPackageMap(
 }
 
 Future<Map<String, VizPackage>> _getReferencedPackages(
-    String path, bool flagOutdated) async {
+    String path, bool flagOutdated, bool directDependencies) async {
   final packs = SplayTreeMap<String, VizPackage>();
 
   Map<String, String> map;
   try {
-    map = await _getPackageMap(path, false);
+    map = await _getPackageMap(path, false, directDependencies);
   } on ProcessException catch (e) {
     if (e.message.startsWith('Flutter is not available.') ||
         e.message.startsWith('The Flutter SDK is not available.')) {
-      map = await _getPackageMap(path, true);
+      map = await _getPackageMap(path, true, directDependencies);
     } else {
       rethrow;
     }

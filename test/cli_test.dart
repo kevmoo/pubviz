@@ -56,6 +56,7 @@ Arguments:
 
   -i, --ignore-packages         A comma seperated list of packages to exclude in the output.
   -o, --[no-]flag-outdated      Check pub.dev for lasted packages and flag those that are outdated.
+  -d, --direct-dependencies     Include only direct dependencies.
   -?, --help                    Print this help content.
 
 If <package path> is omitted, the current directory is used.''';
