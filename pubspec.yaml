@@ -1,6 +1,5 @@
 name: pubviz
 version: 2.6.0
-author: Kevin Moore <kevmoo@google.com>
 description: >-
   A tool to visualize package dependencies and version constraints in your Dart
   project.
