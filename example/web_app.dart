@@ -11,8 +11,11 @@ final zoomBtn = querySelector('#zoomBtn') as ButtonElement;
 
 svg.SvgElement _root;
 
-final List<String> _dotContentLines = List.unmodifiable(LineSplitter.split(
-    (querySelector('#dot') as ScriptElement).innerHtml.trim()));
+final List<String> _dotContentLines = List.unmodifiable(
+  LineSplitter.split(
+    (querySelector('#dot') as ScriptElement).innerHtml.trim(),
+  ),
+);
 
 final _toIgnore = <String>{};
 
