@@ -1,5 +1,6 @@
 import 'package:gviz/gviz.dart';
-import 'package:pubviz/pubviz.dart';
+
+import '../pubviz.dart';
 
 String toDotHtml(VizRoot root, {List<String> ignorePackages}) {
   final dot = toDot(root, escapeLabels: true, ignorePackages: ignorePackages);

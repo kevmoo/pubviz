@@ -61,9 +61,7 @@ class VizPackage extends Comparable<VizPackage> {
   String toString() => '$name @ $version';
 
   @override
-  int compareTo(VizPackage other) {
-    return name.compareTo(other.name);
-  }
+  int compareTo(VizPackage other) => name.compareTo(other.name);
 
   @override
   bool operator ==(Object other) {

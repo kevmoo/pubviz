@@ -11,7 +11,7 @@ import 'package:pubviz/src/options.dart';
 import 'package:pubviz/viz/dot.dart' as dot;
 import 'package:stack_trace/stack_trace.dart';
 
-void main(List<String> args) async {
+Future<void> main(List<String> args) async {
   parser..addCommand('open')..addCommand('print');
 
   Options options;
