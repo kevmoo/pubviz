@@ -30,7 +30,10 @@ class Dependency implements Comparable<Dependency> {
   }
 
   static void _populateFromSection(
-      Map<String, parse.Dependency> yaml, Set<Dependency> value, bool isDev) {
+    Map<String, parse.Dependency> yaml,
+    Set<Dependency> value,
+    bool isDev,
+  ) {
     yaml.forEach((String key, parse.Dependency constraint) {
       String constraintString;
       if (constraint is parse.HostedDependency) {
@@ -40,7 +43,6 @@ class Dependency implements Comparable<Dependency> {
       }
 
       final dep = Dependency._(key, constraintString, isDev);
-      assert(!value.contains(dep));
 
       value.add(dep);
     });
