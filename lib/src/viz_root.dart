@@ -132,8 +132,8 @@ Map<String, String> _getPackageMap(
     }
 
     throw ProcessException(
-      'pub',
-      ['list-package-dirs'],
+      proc,
+      args,
       message,
       result.exitCode,
     );
