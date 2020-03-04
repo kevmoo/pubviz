@@ -8,6 +8,7 @@ import 'package:io/io.dart';
 import 'package:path/path.dart' as p;
 import 'package:pubviz/pubviz.dart';
 import 'package:pubviz/src/options.dart';
+import 'package:pubviz/src/pub_data_service.dart';
 import 'package:pubviz/viz/dot.dart' as dot;
 import 'package:stack_trace/stack_trace.dart';
 
@@ -43,16 +44,24 @@ Future<void> main(List<String> args) async {
   final path = _getPath(command.rest);
 
   await Chain.capture(() async {
-    final vp = await VizRoot.forDirectory(path,
+    final service = PubDataService();
+    try {
+      final vp = await VizRoot.forDirectory(
+        service,
+        path,
         flagOutdated: options.flagOutdated,
         ignorePackages: options.ignorePackages,
-        directDependencies: options.directDependencies);
-    if (command.name == 'print') {
-      _printContent(vp, options.format, options.ignorePackages);
-    } else if (command.name == 'open') {
-      await _open(vp, options.format, options.ignorePackages);
-    } else {
-      throw StateError('Should never get here...');
+        directDependencies: options.directDependencies,
+      );
+      if (command.name == 'print') {
+        _printContent(vp, options.format, options.ignorePackages);
+      } else if (command.name == 'open') {
+        await _open(vp, options.format, options.ignorePackages);
+      } else {
+        throw StateError('Should never get here...');
+      }
+    } finally {
+      service.close();
     }
   }, onError: (error, Chain chain) {
     stderr..writeln(error)..writeln(chain.terse);

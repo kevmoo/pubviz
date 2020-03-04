@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:path/path.dart' as p;
 import 'package:pub_semver/pub_semver.dart';
 import 'package:pubviz/pubviz.dart';
+import 'package:pubviz/src/pub_data_service.dart';
 import 'package:test/test.dart';
 import 'package:test_descriptor/test_descriptor.dart' as d;
 
@@ -18,24 +19,42 @@ void main() {
     expect(type, FileSystemEntityType.file);
   });
 
-  test('generate VizRoot', () async {
-    final vp = await VizRoot.forDirectory(d.sandbox);
+  group('generate VizRoot', () {
+    PubDataService service;
 
-    expect(vp.root.name, 'test_pubspec');
-    expect(vp.packages, contains('http'));
-    expect(vp.packages, contains('test'));
+    setUpAll(() {
+      service = PubDataService();
+    });
 
-    expect(vp.root.sdkConstraint, VersionConstraint.parse('>=2.0.0 <3.0.0'));
-  });
+    tearDownAll(() {
+      if (service != null) {
+        service.close();
+      }
+    });
 
-  test('generate VizRoot - direct dependencies only', () async {
-    final vp = await VizRoot.forDirectory(d.sandbox, directDependencies: true);
+    test('generate VizRoot', () async {
+      final vp = await VizRoot.forDirectory(service, d.sandbox);
 
-    expect(vp.root.name, 'test_pubspec');
-    expect(vp.packages, contains('http'));
-    expect(vp.packages, isNot(contains('test')));
+      expect(vp.root.name, 'test_pubspec');
+      expect(vp.packages, contains('http'));
+      expect(vp.packages, contains('test'));
 
-    expect(vp.root.sdkConstraint, VersionConstraint.parse('>=2.0.0 <3.0.0'));
+      expect(vp.root.sdkConstraint, VersionConstraint.parse('>=2.0.0 <3.0.0'));
+    });
+
+    test('generate VizRoot - direct dependencies only', () async {
+      final vp = await VizRoot.forDirectory(
+        service,
+        d.sandbox,
+        directDependencies: true,
+      );
+
+      expect(vp.root.name, 'test_pubspec');
+      expect(vp.packages, contains('http'));
+      expect(vp.packages, isNot(contains('test')));
+
+      expect(vp.root.sdkConstraint, VersionConstraint.parse('>=2.0.0 <3.0.0'));
+    });
   });
 }
 

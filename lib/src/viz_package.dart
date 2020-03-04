@@ -1,13 +1,10 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:collection/collection.dart';
-import 'package:path/path.dart' as p;
 import 'package:pub_semver/pub_semver.dart';
-import 'package:pubspec_parse/pubspec_parse.dart' hide Dependency;
 
 import 'dependency.dart';
-import 'util.dart';
+import 'service.dart';
 
 class VizPackage extends Comparable<VizPackage> {
   final String name;
@@ -32,22 +29,18 @@ class VizPackage extends Comparable<VizPackage> {
   Version get latestVersion => _latestVersion;
 
   VizPackage._(
-      this.name, this.version, Set<Dependency> deps, this.sdkConstraint)
-      : dependencies = UnmodifiableSetView(deps);
+    this.name,
+    this.version,
+    Set<Dependency> deps,
+    this.sdkConstraint,
+  ) : dependencies = UnmodifiableSetView(deps);
 
   static Future<VizPackage> forDirectory(
+    Service service,
     String path, {
     bool flagOutdated = false,
   }) async {
-    final dir = Directory(path);
-    assert(dir.existsSync());
-
-    final pubspecPath = p.join(path, 'pubspec.yaml');
-
-    final pubspec = Pubspec.parse(
-      File(pubspecPath).readAsStringSync(),
-      sourceUrl: pubspecPath,
-    );
+    final pubspec = service.pubspecForDirectory(path);
     final deps = Dependency.getDependencies(pubspec);
     final sdkConstraint = pubspec.environment['sdk'];
 
@@ -59,7 +52,7 @@ class VizPackage extends Comparable<VizPackage> {
     );
 
     if (flagOutdated) {
-      await package._updateLatestVersion();
+      await package._updateLatestVersion(service);
     }
 
     return package;
@@ -86,14 +79,17 @@ class VizPackage extends Comparable<VizPackage> {
   @override
   int get hashCode => name.hashCode;
 
-  Future<Version> _updateLatestVersion() async {
+  Future<Version> _updateLatestVersion(
+    Service service,
+  ) async {
     if (_latestVersion != null) return _latestVersion;
     if (version == null) {
       // Likely not published. Don't try.
       return null;
     }
 
-    _latestVersion = await getLatestVersion(name, version.isPreRelease);
+    _latestVersion =
+        await service.queryLatestVersion(name, version.isPreRelease);
 
     if (_latestVersion != null) {
       assert(_latestVersion.compareTo(version) >= 0);

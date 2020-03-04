@@ -1,13 +1,10 @@
 import 'dart:async';
 import 'dart:collection';
-import 'dart:convert';
-import 'dart:io';
 
-import 'package:path/path.dart' as p;
 import 'package:pub_semver/pub_semver.dart';
-import 'package:yaml/yaml.dart';
 
 import 'dependency.dart';
+import 'service.dart';
 import 'viz_package.dart';
 
 class VizRoot {
@@ -18,14 +15,19 @@ class VizRoot {
       : packages = UnmodifiableMapView(packages);
 
   static Future<VizRoot> forDirectory(
+    Service service,
     String path, {
     bool flagOutdated = false,
     Iterable<String> ignorePackages,
     bool directDependencies = false,
   }) async {
-    var root = await VizPackage.forDirectory(path);
-    final packages =
-        await _getReferencedPackages(path, flagOutdated, directDependencies);
+    var root = await VizPackage.forDirectory(service, path);
+    final packages = await _getReferencedPackages(
+      path,
+      flagOutdated,
+      directDependencies,
+      service,
+    );
 
     // want to make sure that the root node instance is the same
     // as the instance in the packages collection
@@ -101,88 +103,23 @@ class VizRoot {
   }
 }
 
-Map<String, String> _getPackageMap(
-  String path,
-  bool withFlutter,
-  bool directDependencies,
-) {
-  final map = <String, String>{};
-
-  final proc = withFlutter ? 'flutter' : 'pub';
-  final args = withFlutter
-      ? ['packages', 'pub', 'list-package-dirs']
-      : ['list-package-dirs'];
-
-  final result = Process.runSync(
-    proc,
-    args,
-    runInShell: true,
-    workingDirectory: path,
-  );
-
-  if (result.exitCode != 0) {
-    var message = result.stderr as String;
-    try {
-      final value = jsonDecode(result.stdout as String) as Map;
-      if (value.containsKey('error')) {
-        message = value['error'] as String;
-      }
-    } catch (e) {
-      // NOOP
-    }
-
-    throw ProcessException(
-      proc,
-      args,
-      message,
-      result.exitCode,
-    );
-  }
-
-  final json = jsonDecode(result.stdout as String);
-  var packageEntries = (json['packages'] as Map<String, dynamic>).entries;
-
-  if (directDependencies) {
-    final yaml = loadYaml(File('$path/pubspec.yaml').readAsStringSync());
-    final directDependencies = yaml['dependencies'].value.keys as Iterable;
-    packageEntries = packageEntries.where(
-      (entry) =>
-          directDependencies.contains(entry.key) || entry.key == yaml['name'],
-    );
-  }
-
-  for (var entry in packageEntries) {
-    assert(p.basename(entry.value as String) == 'lib');
-    map[entry.key] = p.dirname(entry.value as String);
-  }
-
-  return map;
-}
-
 Future<Map<String, VizPackage>> _getReferencedPackages(
   String path,
   bool flagOutdated,
   bool directDependencies,
+  Service service,
 ) async {
   final packs = SplayTreeMap<String, VizPackage>();
-
-  Map<String, String> map;
-  try {
-    map = _getPackageMap(path, false, directDependencies);
-  } on ProcessException catch (e) {
-    if (e.message.startsWith('Flutter is not available.') ||
-        e.message.startsWith('The Flutter SDK is not available.')) {
-      map = _getPackageMap(path, true, directDependencies);
-    } else {
-      rethrow;
-    }
-  }
+  final map = service.packageMap(path, false, directDependencies);
 
   // TODO(kevmoo): consider a pool here!
   final futures = map.keys.map((packageName) async {
     final subPath = map[packageName];
-    final vp =
-        await VizPackage.forDirectory(subPath, flagOutdated: flagOutdated);
+    final vp = await VizPackage.forDirectory(
+      service,
+      subPath,
+      flagOutdated: flagOutdated,
+    );
     assert(vp.name == packageName);
 
     assert(!packs.containsKey(vp.name));
