@@ -5,7 +5,7 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:pub_semver/pub_semver.dart';
 
-final _hedears = {
+final _headers = {
   'user-agent': 'pubviz - Dart ${Platform.version.split(' ').first}'
 };
 
@@ -18,7 +18,7 @@ Future<Version> getLatestVersion(
     final path = 'https://pub.dev/packages/$packageName.json';
     try {
       // TODO(kevmoo): use http_retry
-      response = await http.get(path, headers: _hedears);
+      response = await http.get(path, headers: _headers);
       break;
     } catch (e) {
       stderr.writeln(e);
