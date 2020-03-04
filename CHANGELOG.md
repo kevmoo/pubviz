@@ -1,3 +1,7 @@
+## 2.7.0-dev
+
+* Bumped min Dart SDK to 2.3.
+
 ## 2.6.0
 
 * Add support for direct dependencies only with `--direct-dependencies` (`-d`).
