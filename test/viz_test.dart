@@ -67,8 +67,11 @@ Future<void> _initTest() async {
 
   // NOTE: since all dependencies in the the sample pubspec are in pubviz
   //       we can use offline to improve speed.
-  final pr = await Process.run('pub', ['get', '--offline'],
-      workingDirectory: d.sandbox);
+  final pr = await Process.run(
+    'pub',
+    ['get', '--offline'],
+    workingDirectory: d.sandbox,
+  );
 
   if (pr.exitCode != 0) {
     fail([pr.stdout, pr.stderr].join('\n'));
