@@ -11,6 +11,10 @@ import 'service.dart';
 import 'util.dart';
 
 class PubDataService extends Service {
+  final bool _debug;
+
+  PubDataService({bool debug = false}) : _debug = debug ?? false;
+
   final _client = http.Client();
 
   void close() => _client.close();
@@ -20,6 +24,8 @@ class PubDataService extends Service {
     assert(Directory(directory).existsSync());
 
     final pubspecPath = p.join(directory, 'pubspec.yaml');
+
+    _print('open pubspec: $pubspecPath');
 
     return Pubspec.parse(
       File(pubspecPath).readAsStringSync(),
@@ -56,6 +62,9 @@ class PubDataService extends Service {
     final args = withFlutter
         ? ['packages', 'pub', 'list-package-dirs']
         : ['list-package-dirs'];
+
+    _print(['list-package-dirs:', proc, ...args].join(' '));
+    _print('  in path `$path`');
 
     final result = Process.runSync(
       proc,
@@ -108,13 +117,29 @@ class PubDataService extends Service {
     String packageName,
     bool includePreRelease,
   ) async {
+    final body = await _retryGet('https://pub.dev/packages/$packageName.json');
+
+    final json = jsonDecode(body);
+
+    assert(json['name'] == packageName);
+
+    final versions = (json['versions'] as List)
+        .map((str) => Version.parse(str as String))
+        .toList();
+
+    final primary = primaryVersion(versions, includePreRelease);
+
+    return primary;
+  }
+
+  Future<String> _retryGet(String path) async {
     http.Response response;
 
     var retries = 0;
     for (;;) {
-      final path = 'https://pub.dev/packages/$packageName.json';
       try {
         // TODO(kevmoo): use http_retry
+        _print('requesting package json: $path');
         response = await _client.get(path, headers: _headers);
         break;
       } catch (e) {
@@ -133,17 +158,13 @@ class PubDataService extends Service {
       return null;
     }
 
-    final json = jsonDecode(response.body);
+    return response.body;
+  }
 
-    assert(json['name'] == packageName);
-
-    final versions = (json['versions'] as List)
-        .map((str) => Version.parse(str as String))
-        .toList();
-
-    final primary = primaryVersion(versions, includePreRelease);
-
-    return primary;
+  void _print(Object value) {
+    if (_debug) {
+      stderr.writeln('  $value');
+    }
   }
 }
 
