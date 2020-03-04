@@ -32,7 +32,7 @@ void main() {
       }
     });
 
-    test('generate VizRoot', () async {
+    test('all dependencies', () async {
       final vp = await VizRoot.forDirectory(service, d.sandbox);
 
       expect(vp.root.name, 'test_pubspec');
@@ -42,7 +42,7 @@ void main() {
       expect(vp.root.sdkConstraint, VersionConstraint.parse('>=2.0.0 <3.0.0'));
     });
 
-    test('generate VizRoot - direct dependencies only', () async {
+    test('direct dependencies only', () async {
       final vp = await VizRoot.forDirectory(
         service,
         d.sandbox,
@@ -58,7 +58,7 @@ void main() {
   });
 }
 
-Future _initTest() async {
+Future<void> _initTest() async {
   // add pubspec
   final content =
       await File(p.join('test', 'test_pubspec.yaml')).readAsString();
