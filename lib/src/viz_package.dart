@@ -35,20 +35,28 @@ class VizPackage extends Comparable<VizPackage> {
       this.name, this.version, Set<Dependency> deps, this.sdkConstraint)
       : dependencies = UnmodifiableSetView(deps);
 
-  static Future<VizPackage> forDirectory(String path,
-      {bool flagOutdated = false}) async {
+  static Future<VizPackage> forDirectory(
+    String path, {
+    bool flagOutdated = false,
+  }) async {
     final dir = Directory(path);
     assert(dir.existsSync());
 
     final pubspecPath = p.join(path, 'pubspec.yaml');
 
-    final pubspec = Pubspec.parse(File(pubspecPath).readAsStringSync(),
-        sourceUrl: pubspecPath);
+    final pubspec = Pubspec.parse(
+      File(pubspecPath).readAsStringSync(),
+      sourceUrl: pubspecPath,
+    );
     final deps = Dependency.getDependencies(pubspec);
     final sdkConstraint = pubspec.environment['sdk'];
 
-    final package =
-        VizPackage._(pubspec.name, pubspec.version, deps, sdkConstraint);
+    final package = VizPackage._(
+      pubspec.name,
+      pubspec.version,
+      deps,
+      sdkConstraint,
+    );
 
     if (flagOutdated) {
       await package._updateLatestVersion();

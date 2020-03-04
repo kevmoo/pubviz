@@ -17,10 +17,12 @@ class VizRoot {
   VizRoot._(this.root, Map<String, VizPackage> packages)
       : packages = UnmodifiableMapView(packages);
 
-  static Future<VizRoot> forDirectory(String path,
-      {bool flagOutdated = false,
-      Iterable<String> ignorePackages,
-      bool directDependencies = false}) async {
+  static Future<VizRoot> forDirectory(
+    String path, {
+    bool flagOutdated = false,
+    Iterable<String> ignorePackages,
+    bool directDependencies = false,
+  }) async {
     var root = await VizPackage.forDirectory(path);
     final packages =
         await _getReferencedPackages(path, flagOutdated, directDependencies);
@@ -49,8 +51,8 @@ class VizRoot {
             // latest – with a pre-release version
 
             // TODO: get rid of the `as` here – this is weird!
-            final constrantAsRange = dep.versionConstraint as VersionRange;
-            if (package.latestVersion.compareTo(constrantAsRange) < 0) {
+            final constraintAsRange = dep.versionConstraint as VersionRange;
+            if (package.latestVersion.compareTo(constraintAsRange) < 0) {
               allowsLatest = true;
             }
           }
@@ -99,8 +101,11 @@ class VizRoot {
   }
 }
 
-Future<Map<String, String>> _getPackageMap(
-    String path, bool withFlutter, bool directDependencies) async {
+Map<String, String> _getPackageMap(
+  String path,
+  bool withFlutter,
+  bool directDependencies,
+) {
   final map = <String, String>{};
 
   final proc = withFlutter ? 'flutter' : 'pub';
@@ -108,8 +113,12 @@ Future<Map<String, String>> _getPackageMap(
       ? ['packages', 'pub', 'list-package-dirs']
       : ['list-package-dirs'];
 
-  final result =
-      await Process.run(proc, args, runInShell: true, workingDirectory: path);
+  final result = Process.runSync(
+    proc,
+    args,
+    runInShell: true,
+    workingDirectory: path,
+  );
 
   if (result.exitCode != 0) {
     var message = result.stderr as String;
@@ -123,7 +132,11 @@ Future<Map<String, String>> _getPackageMap(
     }
 
     throw ProcessException(
-        'pub', ['list-package-dirs'], message, result.exitCode);
+      'pub',
+      ['list-package-dirs'],
+      message,
+      result.exitCode,
+    );
   }
 
   final json = jsonDecode(result.stdout as String);
@@ -132,8 +145,10 @@ Future<Map<String, String>> _getPackageMap(
   if (directDependencies) {
     final yaml = loadYaml(File('$path/pubspec.yaml').readAsStringSync());
     final directDependencies = yaml['dependencies'].value.keys as Iterable;
-    packageEntries = packageEntries.where((entry) =>
-        directDependencies.contains(entry.key) || entry.key == yaml['name']);
+    packageEntries = packageEntries.where(
+      (entry) =>
+          directDependencies.contains(entry.key) || entry.key == yaml['name'],
+    );
   }
 
   for (var entry in packageEntries) {
@@ -145,21 +160,25 @@ Future<Map<String, String>> _getPackageMap(
 }
 
 Future<Map<String, VizPackage>> _getReferencedPackages(
-    String path, bool flagOutdated, bool directDependencies) async {
+  String path,
+  bool flagOutdated,
+  bool directDependencies,
+) async {
   final packs = SplayTreeMap<String, VizPackage>();
 
   Map<String, String> map;
   try {
-    map = await _getPackageMap(path, false, directDependencies);
+    map = _getPackageMap(path, false, directDependencies);
   } on ProcessException catch (e) {
     if (e.message.startsWith('Flutter is not available.') ||
         e.message.startsWith('The Flutter SDK is not available.')) {
-      map = await _getPackageMap(path, true, directDependencies);
+      map = _getPackageMap(path, true, directDependencies);
     } else {
       rethrow;
     }
   }
 
+  // TODO(kevmoo): consider a pool here!
   final futures = map.keys.map((packageName) async {
     final subPath = map[packageName];
     final vp =
