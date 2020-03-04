@@ -27,6 +27,16 @@ void main() {
 
     expect(vp.root.sdkConstraint, VersionConstraint.parse('>=2.0.0 <3.0.0'));
   });
+
+  test('generate VizRoot - direct dependencies only', () async {
+    final vp = await VizRoot.forDirectory(d.sandbox, directDependencies: true);
+
+    expect(vp.root.name, 'test_pubspec');
+    expect(vp.packages, contains('http'));
+    expect(vp.packages, isNot(contains('test')));
+
+    expect(vp.root.sdkConstraint, VersionConstraint.parse('>=2.0.0 <3.0.0'));
+  });
 }
 
 Future _initTest() async {
