@@ -25,7 +25,8 @@ Options _$parseOptionsResult(ArgResults result) => Options(
     flagOutdated: result['flag-outdated'] as bool,
     directDependencies: result['direct-dependencies'] as bool,
     help: result['help'] as bool,
-    command: result.command);
+    command: result.command,
+    version: result['version'] as bool);
 
 const _$FormatOptionsEnumMap = <FormatOptions, String>{
   FormatOptions.dot: 'dot',
@@ -57,6 +58,10 @@ ArgParser _$populateOptionsParser(ArgParser parser) => parser
       abbr: 'd',
       help: 'Include only direct dependencies.',
       defaultsTo: false,
+      negatable: false)
+  ..addFlag('version',
+      abbr: 'v',
+      help: 'Print the version of pubviz and exit.',
       negatable: false)
   ..addFlag('help',
       abbr: '?', help: 'Print this help content.', negatable: false);

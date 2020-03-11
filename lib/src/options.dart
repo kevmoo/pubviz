@@ -14,35 +14,50 @@ class Options {
   final FormatOptions format;
 
   @CliOption(
-      abbr: 'i',
-      help: 'A comma seperated list of packages to exclude in the output.')
+    abbr: 'i',
+    help: 'A comma seperated list of packages to exclude in the output.',
+  )
   final List<String> ignorePackages;
 
   @CliOption(
-      abbr: 'o',
-      help:
-          'Check pub.dev for lasted packages and flag those that are outdated.')
+    abbr: 'o',
+    help: 'Check pub.dev for lasted packages and flag those that are outdated.',
+  )
   final bool flagOutdated;
 
   @CliOption(
-      abbr: 'd',
-      defaultsTo: false,
-      help: 'Include only direct dependencies.',
-      negatable: false)
+    abbr: 'd',
+    defaultsTo: false,
+    help: 'Include only direct dependencies.',
+    negatable: false,
+  )
   final bool directDependencies;
 
-  @CliOption(abbr: '?', help: 'Print this help content.', negatable: false)
+  @CliOption(
+    abbr: 'v',
+    help: 'Print the version of pubviz and exit.',
+    negatable: false,
+  )
+  final bool version;
+
+  @CliOption(
+    abbr: '?',
+    help: 'Print this help content.',
+    negatable: false,
+  )
   final bool help;
 
   final ArgResults command;
 
-  const Options(
-      {this.format,
-      this.ignorePackages,
-      this.flagOutdated,
-      this.directDependencies,
-      this.help,
-      this.command});
+  const Options({
+    this.format,
+    this.ignorePackages,
+    this.flagOutdated,
+    this.directDependencies,
+    this.help,
+    this.command,
+    this.version,
+  });
 }
 
 enum FormatOptions { dot, html }
