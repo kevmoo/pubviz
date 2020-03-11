@@ -1,4 +1,4 @@
-## 2.7.0-dev
+## 2.7.0
 
 * Added `--version` to CLI.
 * Bumped min Dart SDK to 2.3.
