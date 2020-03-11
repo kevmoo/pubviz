@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:pubviz/src/version.dart';
 import 'package:test/test.dart';
 import 'package:test_process/test_process.dart';
 
@@ -9,6 +10,16 @@ void main() {
 
     final output = await proc.stdoutStream().join('\n');
     expect(output, _usage);
+
+    await proc.shouldExit(0);
+  });
+
+  test('version', () async {
+    final proc =
+        await TestProcess.start('dart', ['bin/pubviz.dart', '--version']);
+
+    final output = await proc.stdoutStream().join('\n');
+    expect(output, packageVersion);
 
     await proc.shouldExit(0);
   });
@@ -57,6 +68,7 @@ Arguments:
   -i, --ignore-packages         A comma seperated list of packages to exclude in the output.
   -o, --[no-]flag-outdated      Check pub.dev for lasted packages and flag those that are outdated.
   -d, --direct-dependencies     Include only direct dependencies.
+  -v, --version                 Print the version of pubviz and exit.
   -?, --help                    Print this help content.
 
 If <package path> is omitted, the current directory is used.''';
