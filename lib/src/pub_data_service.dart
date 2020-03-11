@@ -9,6 +9,7 @@ import 'package:yaml/yaml.dart';
 
 import 'service.dart';
 import 'util.dart';
+import 'version.dart';
 
 class PubDataService extends Service {
   final bool _debug;
@@ -169,5 +170,7 @@ class PubDataService extends Service {
 }
 
 final _headers = {
-  'user-agent': 'pubviz - Dart ${Platform.version.split(' ').first}'
+  'user-agent': 'pubviz/$packageVersion '
+      '(Dart/${Platform.version.split(' ').first}; '
+      'https://pub.dev/packages/pubviz)'
 };
