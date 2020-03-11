@@ -6,7 +6,7 @@
 
 ### Example
 
-Here's an [example](http://kevmoo.github.io/pubviz/) of `pubviz` run on itself.
+Here's an [example](https://kevmoo.github.io/pubviz/) of `pubviz` run on itself.
 
 ### Installing
 
