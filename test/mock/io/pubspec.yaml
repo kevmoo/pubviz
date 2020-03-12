@@ -1,0 +1,20 @@
+name: io
+description: >
+  Utilities for the Dart VM Runtime.
+version: 0.3.3
+author: Dart Team <misc@dartlang.org>
+homepage: https://github.com/dart-lang/io
+
+environment:
+  sdk: ">=2.0.0-dev.54 <3.0.0"
+
+dependencies:
+  charcode: ^1.0.0
+  meta: ^1.0.2
+  path: ^1.5.1
+  string_scanner: ">=0.1.5 <2.0.0"
+
+dev_dependencies:
+  dart_style: ^1.0.7
+  test: ^1.0.0
+  test_descriptor: ^1.0.0

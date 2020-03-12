@@ -1,0 +1,16 @@
+name: archive
+version: 2.0.13
+description: Provides encoders and decoders for various archive and compression formats such as zip, tar, bzip2, gzip, and zlib.
+homepage: https://github.com/brendan-duncan/archive
+environment:
+  sdk: '>=2.0.0-dev.49.0 <3.0.0'
+documentation: https://github.com/brendan-duncan/archive/wiki
+dependencies:
+  crypto: '>=2.0.0 <3.0.0'
+  args: '>=1.4.0 <2.0.0'
+  path: '>=1.5.1 <2.0.0'
+dev_dependencies:
+  test: '>=0.12.13 <2.0.0'
+  build_web_compilers: '>=0.3.6 <2.0.0'
+  build_runner: '>=0.8.10 <2.0.0'
+  pedantic: ^1.0.0

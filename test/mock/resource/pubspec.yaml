@@ -1,0 +1,13 @@
+name: resource
+version: 2.1.6
+description: Reading resource data from (package and other) files.
+author: Dart Team <misc@dartlang.org>
+homepage: https://github.com/dart-lang/resource
+
+environment:
+  sdk: '>=2.0.0-dev.61.0 <3.0.0'
+
+dependencies:
+  typed_data: "^1.0.0"
+dev_dependencies:
+  test: ^1.0.0

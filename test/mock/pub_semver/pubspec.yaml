@@ -1,0 +1,16 @@
+name: pub_semver
+version: 1.4.3
+
+description: >-
+ Versions and version constraints implementing pub's versioning policy. This
+ is very similar to vanilla semver, with a few corner cases.
+homepage: https://github.com/dart-lang/pub_semver
+
+environment:
+ sdk: '>=2.0.0 <3.0.0'
+
+dependencies:
+  collection: ^1.0.0
+
+dev_dependencies:
+  test: ^1.0.0

@@ -1,0 +1,20 @@
+name: package_config
+version: 1.9.1
+description: Support for working with Package Configuration files.
+homepage: https://github.com/dart-lang/package_config
+
+environment:
+  sdk: '>=2.7.0 <3.0.0'
+
+dependencies:
+  path: ^1.6.4
+  charcode: ^1.1.0
+
+dev_dependencies:
+  test: ^1.6.4
+  matcher: ^0.12.5
+  pedantic: ^1.8.0
+
+  build_runner: ^1.0.0
+  build_web_compilers: ^2.0.0
+  build_test: ^0.10.0

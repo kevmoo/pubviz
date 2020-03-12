@@ -1,0 +1,16 @@
+name: http_throttle
+version: 1.0.4
+
+description: HTTP client middleware that throttles requests.
+author: Dart Team <misc@dartlang.org>
+homepage: https://github.com/dart-lang/http_throttle
+
+environment:
+  sdk: '>=2.0.0 <3.0.0'
+
+dependencies:
+  http: '>=0.9.0 <0.13.0'
+  pool: '>=1.0.0 <2.0.0'
+
+dev_dependencies:
+  test: '>=0.12.0 <2.0.0'
