@@ -9,11 +9,14 @@ import 'viz_package.dart';
 import 'worker.dart';
 
 class VizRoot {
-  final VizPackage root;
+  final String rootPackageName;
   final Map<String, VizPackage> packages;
 
-  VizRoot._(this.root, Map<String, VizPackage> packages)
-      : packages = UnmodifiableMapView(packages);
+  VizRoot._(this.rootPackageName, Map<String, VizPackage> packages)
+      : assert(packages.containsKey(rootPackageName)),
+        packages = UnmodifiableMapView(packages);
+
+  VizPackage get root => packages[rootPackageName];
 
   static Future<VizRoot> forDirectory(
     Service service,
@@ -22,7 +25,7 @@ class VizRoot {
     Iterable<String> ignorePackages,
     bool directDependencies = false,
   }) async {
-    var root = await VizPackage.forDirectory(service, path);
+    final rootPubspec = service.pubspecForDirectory(path);
 
     final packages = await Worker(service).getReferencedPackages(
       path,
@@ -30,12 +33,7 @@ class VizRoot {
       directDependencies,
     );
 
-    // want to make sure that the root node instance is the same
-    // as the instance in the packages collection
-    root = packages[root.name];
-    assert(root != null);
-
-    final value = VizRoot._(root, packages).._update();
+    final value = VizRoot._(rootPubspec.name, packages).._update();
 
     if (flagOutdated) {
       for (var dep in _allDeps(value, ignorePackages)) {
