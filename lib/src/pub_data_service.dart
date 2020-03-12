@@ -2,12 +2,8 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:http/http.dart' as http;
-import 'package:path/path.dart' as p;
-import 'package:pub_semver/pub_semver.dart';
-import 'package:pubspec_parse/pubspec_parse.dart';
 
 import 'service.dart';
-import 'util.dart';
 import 'version.dart';
 
 class PubDataService extends Service {
@@ -20,44 +16,20 @@ class PubDataService extends Service {
   void close() => _client.close();
 
   @override
-  Pubspec pubspecForDirectory(String directory) {
-    assert(Directory(directory).existsSync());
-
-    final pubspecPath = p.join(directory, 'pubspec.yaml');
-
-    _print('open pubspec: $pubspecPath');
-
-    return Pubspec.parse(
-      File(pubspecPath).readAsStringSync(),
-      sourceUrl: pubspecPath,
-    );
-  }
-
-  @override
-  Map<String, String> packageMap(
-    String path,
-    bool withFlutter,
-    bool directDependencies,
-  ) {
+  Map<String, dynamic> listPackageDirs(String directory) {
     try {
-      return _packageMap(path, false, directDependencies);
+      return _listPackageDirs(directory, false);
     } on ProcessException catch (e) {
       if (e.message.startsWith('Flutter is not available.') ||
           e.message.startsWith('The Flutter SDK is not available.')) {
-        return _packageMap(path, true, directDependencies);
+        return _listPackageDirs(directory, true);
       } else {
         rethrow;
       }
     }
   }
 
-  Map<String, String> _packageMap(
-    String path,
-    bool withFlutter,
-    bool directDependencies,
-  ) {
-    final map = <String, String>{};
-
+  Map<String, dynamic> _listPackageDirs(String path, bool withFlutter) {
     final proc = withFlutter ? 'flutter' : 'pub';
     final args = withFlutter
         ? ['packages', 'pub', 'list-package-dirs']
@@ -92,45 +64,18 @@ class PubDataService extends Service {
       );
     }
 
-    final json = jsonDecode(result.stdout as String);
-    var packageEntries = (json['packages'] as Map<String, dynamic>).entries;
-
-    if (directDependencies) {
-      final pubspec = pubspecForDirectory(path);
-
-      packageEntries = packageEntries.where(
-        (entry) =>
-            pubspec.dependencies.containsKey(entry.key) ||
-            entry.key == pubspec.name,
-      );
-    }
-
-    for (var entry in packageEntries) {
-      assert(p.basename(entry.value as String) == 'lib');
-      map[entry.key] = p.dirname(entry.value as String);
-    }
-
-    return map;
+    return jsonDecode(result.stdout as String) as Map<String, dynamic>;
   }
 
   @override
-  Future<Version> queryLatestVersion(
-    String packageName,
-    bool includePreRelease,
-  ) async {
+  Future<List<String>> queryVersions(String packageName) async {
     final body = await _retryGet('https://pub.dev/packages/$packageName.json');
 
     final json = jsonDecode(body);
 
     assert(json['name'] == packageName);
 
-    final versions = (json['versions'] as List)
-        .map((str) => Version.parse(str as String))
-        .toList();
-
-    final primary = primaryVersion(versions, includePreRelease);
-
-    return primary;
+    return (json['versions'] as List).cast<String>();
   }
 
   Future<String> _retryGet(String path) async {

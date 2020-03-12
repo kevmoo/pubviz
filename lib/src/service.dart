@@ -1,17 +1,21 @@
-import 'package:pub_semver/pub_semver.dart';
+import 'dart:io';
+
+import 'package:path/path.dart' as p;
 import 'package:pubspec_parse/pubspec_parse.dart';
 
 abstract class Service {
-  Pubspec pubspecForDirectory(String directory);
+  Pubspec pubspecForDirectory(String directory) {
+    assert(Directory(directory).existsSync(), '`$directory` does not exist.');
 
-  Map<String, String> packageMap(
-    String path,
-    bool withFlutter,
-    bool directDependencies,
-  );
+    final pubspecPath = p.join(directory, 'pubspec.yaml');
 
-  Future<Version> queryLatestVersion(
-    String packageName,
-    bool includePreRelease,
-  );
+    return Pubspec.parse(
+      File(pubspecPath).readAsStringSync(),
+      sourceUrl: pubspecPath,
+    );
+  }
+
+  Map<String, dynamic> listPackageDirs(String directory);
+
+  Future<List<String>> queryVersions(String packageName);
 }
