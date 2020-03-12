@@ -5,7 +5,6 @@ import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as p;
 import 'package:pub_semver/pub_semver.dart';
 import 'package:pubspec_parse/pubspec_parse.dart';
-import 'package:yaml/yaml.dart';
 
 import 'service.dart';
 import 'util.dart';
@@ -97,11 +96,12 @@ class PubDataService extends Service {
     var packageEntries = (json['packages'] as Map<String, dynamic>).entries;
 
     if (directDependencies) {
-      final yaml = loadYaml(File('$path/pubspec.yaml').readAsStringSync());
-      final directDependencies = yaml['dependencies'].value.keys as Iterable;
+      final pubspec = pubspecForDirectory(path);
+
       packageEntries = packageEntries.where(
         (entry) =>
-            directDependencies.contains(entry.key) || entry.key == yaml['name'],
+            pubspec.dependencies.containsKey(entry.key) ||
+            entry.key == pubspec.name,
       );
     }
 
