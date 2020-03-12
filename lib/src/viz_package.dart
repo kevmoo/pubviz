@@ -25,15 +25,14 @@ class VizPackage extends Comparable<VizPackage> {
     _onlyDev = value;
   }
 
-  Version _latestVersion;
-
-  Version get latestVersion => _latestVersion;
+  final Version latestVersion;
 
   VizPackage._(
     this.name,
     this.version,
     Set<Dependency> deps,
     this.sdkConstraint,
+    this.latestVersion,
   ) : dependencies = UnmodifiableSetView(deps);
 
   static Future<VizPackage> forDirectory(
@@ -45,16 +44,20 @@ class VizPackage extends Comparable<VizPackage> {
     final deps = Dependency.getDependencies(pubspec);
     final sdkConstraint = pubspec.environment['sdk'];
 
+    Version latestVersion;
+
+    if (flagOutdated) {
+      latestVersion =
+          await _latestVersion(service, pubspec.name, pubspec.version);
+    }
+
     final package = VizPackage._(
       pubspec.name,
       pubspec.version,
       deps,
       sdkConstraint,
+      latestVersion,
     );
-
-    if (flagOutdated) {
-      await package._updateLatestVersion(service);
-    }
 
     return package;
   }
@@ -80,24 +83,27 @@ class VizPackage extends Comparable<VizPackage> {
   @override
   int get hashCode => name.hashCode;
 
-  Future<Version> _updateLatestVersion(
+  static Future<Version> _latestVersion(
     Service service,
+    String name,
+    Version definedVersion,
   ) async {
-    if (_latestVersion != null) return _latestVersion;
-    if (version == null) {
+    if (definedVersion == null) {
       // Likely not published. Don't try.
       return null;
     }
 
     final versions = await service.queryVersions(name);
 
+    Version _latestVersion;
     if (versions != null) {
       _latestVersion = primaryVersion(
-          versions.map((e) => Version.parse(e)).toList(), version.isPreRelease);
+          versions.map((e) => Version.parse(e)).toList(),
+          definedVersion.isPreRelease);
     }
 
     if (_latestVersion != null) {
-      assert(_latestVersion.compareTo(version) >= 0);
+      assert(_latestVersion.compareTo(definedVersion) >= 0);
     }
 
     return _latestVersion;
