@@ -71,6 +71,10 @@ class PubDataService extends Service {
   Future<List<String>> queryVersions(String packageName) async {
     final body = await _retryGet('https://pub.dev/packages/$packageName.json');
 
+    if (body == null) {
+      return null;
+    }
+
     final json = jsonDecode(body);
 
     assert(json['name'] == packageName);
