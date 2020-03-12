@@ -92,7 +92,10 @@ If <package path> is omitted, the current directory is used.''');
 }
 
 String _getContent(
-    VizRoot root, FormatOptions format, List<String> ignorePackages) {
+  VizRoot root,
+  FormatOptions format,
+  List<String> ignorePackages,
+) {
   switch (format) {
     case FormatOptions.html:
       return dot.toDotHtml(root, ignorePackages: ignorePackages);
@@ -105,7 +108,10 @@ String _getContent(
 String _getExtension(FormatOptions format) => format.toString().split('.')[1];
 
 Future _open(
-    VizRoot root, FormatOptions format, List<String> ignorePackages) async {
+  VizRoot root,
+  FormatOptions format,
+  List<String> ignorePackages,
+) async {
   final extension = _getExtension(format);
   final name = root.root.name;
   final dir = await Directory.systemTemp.createTemp('pubviz_${name}_');
@@ -134,7 +140,10 @@ Future _open(
 }
 
 void _printContent(
-    VizRoot root, FormatOptions format, List<String> ignorePackages) {
+  VizRoot root,
+  FormatOptions format,
+  List<String> ignorePackages,
+) {
   final content = _getContent(root, format, ignorePackages);
   print(content);
 }

@@ -1,6 +1,7 @@
 import 'package:gviz/gviz.dart';
 
-import '../pubviz.dart';
+import '../src/viz_package.dart';
+import '../src/viz_root.dart';
 
 String toDotHtml(VizRoot root, {List<String> ignorePackages}) {
   final dot = toDot(root, escapeLabels: true, ignorePackages: ignorePackages);
@@ -10,8 +11,11 @@ String toDotHtml(VizRoot root, {List<String> ignorePackages}) {
       .replaceAll(_titlePlaceHolder, root.root.name);
 }
 
-String toDot(VizRoot item,
-    {bool escapeLabels = false, Iterable<String> ignorePackages}) {
+String toDot(
+  VizRoot item, {
+  bool escapeLabels = false,
+  Iterable<String> ignorePackages,
+}) {
   ignorePackages ??= const <String>[];
 
   final gviz = Gviz(
@@ -28,8 +32,13 @@ String toDot(VizRoot item,
   return gviz.toString();
 }
 
-void _writeDot(VizPackage pkg, Gviz gviz, String rootName, bool escapeLabels,
-    Iterable<String> ignorePackages) {
+void _writeDot(
+  VizPackage pkg,
+  Gviz gviz,
+  String rootName,
+  bool escapeLabels,
+  Iterable<String> ignorePackages,
+) {
   final isRoot = rootName == pkg.name;
 
   final newLine = escapeLabels ? r'\n' : '\n';

@@ -35,7 +35,7 @@ class VizRoot {
     root = packages[root.name];
     assert(root != null);
 
-    final value = VizRoot._(root, packages);
+    final value = VizRoot._(root, packages).._update();
 
     if (flagOutdated) {
       for (var dep in _allDeps(value, ignorePackages)) {
@@ -64,8 +64,6 @@ class VizRoot {
         }
       }
     }
-
-    value._update();
 
     return value;
   }

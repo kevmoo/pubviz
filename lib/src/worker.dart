@@ -15,7 +15,7 @@ class Worker {
     bool flagOutdated,
     bool directDependencies,
   ) async {
-    final packs = SplayTreeMap<String, VizPackage>();
+    final packages = SplayTreeMap<String, VizPackage>();
 
     final map = _packageMap(path, directDependencies);
 
@@ -29,14 +29,14 @@ class Worker {
       );
       assert(vp.name == packageName);
 
-      assert(!packs.containsKey(vp.name));
-      assert(!packs.containsValue(vp));
-      packs[vp.name] = vp;
+      assert(!packages.containsKey(vp.name));
+      assert(!packages.containsValue(vp));
+      packages[vp.name] = vp;
     });
 
     await Future.wait(futures);
 
-    return packs;
+    return packages;
   }
 
   Map<String, String> _packageMap(String path, bool directDependencies) {
