@@ -1,0 +1,19 @@
+name: timing
+version: 0.1.1+2
+description: >-
+  A simple package for tracking the performance of synchronous and asynchronous
+  actions.
+author: Dart Team <misc@dartlang.org>
+homepage: https://github.com/dart-lang/timing
+
+environment:
+  sdk: ">=2.2.0 <3.0.0"
+
+dependencies:
+  json_annotation: '>=1.0.0 <4.0.0'
+
+dev_dependencies:
+  build_runner: ^1.0.0
+  json_serializable: ^3.1.0
+  pedantic: ^1.1.0
+  test: ^1.0.0

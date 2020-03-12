@@ -1,0 +1,17 @@
+name: node_interop
+description: Provides Dart bindings and utility functions for core Node.js modules.
+version: 1.0.3
+homepage: https://github.com/pulyaevskiy/node-interop
+author: Anatoly Pulyaevskiy <anatoly.pulyaevskiy@gmail.com>
+
+environment:
+  sdk: '>=2.0.0-dev <3.0.0'
+
+dependencies:
+  js: ^0.6.1
+
+dev_dependencies:
+  test: ^1.0.0
+  build_runner: ^1.0.0
+  build_node_compilers: ^0.2.0
+  build_test:

@@ -1,0 +1,19 @@
+name: tuple
+version: 1.0.3
+authors:
+- Dart Team <misc@dartlang.org>
+- Boris Kaul <localvoid@gmail.com>
+- Kwang Yul Seo <kwangyul.seo@gmail.com>
+
+description: Tuple data structure
+homepage: https://github.com/dart-lang/tuple
+
+environment:
+  sdk: '>=2.0.0 <3.0.0'
+
+dependencies:
+  quiver: '>=0.22.0 <3.0.0'
+
+dev_dependencies:
+  pedantic: ^1.2.0
+  test: '>=1.0.0 <2.0.0'

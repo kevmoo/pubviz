@@ -1,0 +1,16 @@
+name: bazel_worker
+version: 0.1.21
+
+description: Tools for creating a bazel persistent worker.
+author: Dart Team <misc@dartlang.org>
+homepage: https://github.com/dart-lang/bazel_worker
+
+environment:
+  sdk: '>=2.0.0-dev.17.0 <3.0.0'
+
+dependencies:
+  async: '>1.9.0 <3.0.0'
+  protobuf: '>=0.10.4 <0.14.0'
+
+dev_dependencies:
+  test: ^1.2.0
