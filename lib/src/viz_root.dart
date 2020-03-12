@@ -6,6 +6,7 @@ import 'package:pub_semver/pub_semver.dart';
 import 'dependency.dart';
 import 'service.dart';
 import 'viz_package.dart';
+import 'worker.dart';
 
 class VizRoot {
   final VizPackage root;
@@ -22,11 +23,11 @@ class VizRoot {
     bool directDependencies = false,
   }) async {
     var root = await VizPackage.forDirectory(service, path);
-    final packages = await _getReferencedPackages(
+
+    final packages = await Worker(service).getReferencedPackages(
       path,
       flagOutdated,
       directDependencies,
-      service,
     );
 
     // want to make sure that the root node instance is the same
@@ -103,37 +104,11 @@ class VizRoot {
   }
 }
 
-Future<Map<String, VizPackage>> _getReferencedPackages(
-  String path,
-  bool flagOutdated,
-  bool directDependencies,
-  Service service,
-) async {
-  final packs = SplayTreeMap<String, VizPackage>();
-  final map = service.packageMap(path, false, directDependencies);
-
-  // TODO(kevmoo): consider a pool here!
-  final futures = map.keys.map((packageName) async {
-    final subPath = map[packageName];
-    final vp = await VizPackage.forDirectory(
-      service,
-      subPath,
-      flagOutdated: flagOutdated,
-    );
-    assert(vp.name == packageName);
-
-    assert(!packs.containsKey(vp.name));
-    assert(!packs.containsValue(vp));
-    packs[vp.name] = vp;
-  });
-
-  await Future.wait(futures);
-
-  return packs;
-}
-
 Iterable<Dependency> _allDeps(
-    VizRoot root, Iterable<String> ignorePackages) sync* {
+  VizRoot root,
+  Iterable<String> ignorePackages,
+) sync* {
+  ignorePackages ??= const [];
   for (var pkg
       in root.packages.values.where((v) => !ignorePackages.contains(v.name))) {
     yield* pkg.dependencies;

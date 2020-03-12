@@ -5,6 +5,7 @@ import 'package:pub_semver/pub_semver.dart';
 
 import 'dependency.dart';
 import 'service.dart';
+import 'util.dart';
 
 class VizPackage extends Comparable<VizPackage> {
   final String name;
@@ -88,8 +89,12 @@ class VizPackage extends Comparable<VizPackage> {
       return null;
     }
 
-    _latestVersion =
-        await service.queryLatestVersion(name, version.isPreRelease);
+    final versions = await service.queryVersions(name);
+
+    if (versions != null) {
+      _latestVersion = primaryVersion(
+          versions.map((e) => Version.parse(e)).toList(), version.isPreRelease);
+    }
 
     if (_latestVersion != null) {
       assert(_latestVersion.compareTo(version) >= 0);
