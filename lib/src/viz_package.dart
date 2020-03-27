@@ -5,7 +5,6 @@ import 'package:pub_semver/pub_semver.dart';
 
 import 'dependency.dart';
 import 'service.dart';
-import 'util.dart';
 
 class VizPackage extends Comparable<VizPackage> {
   final String name;
@@ -47,8 +46,7 @@ class VizPackage extends Comparable<VizPackage> {
     Version latestVersion;
 
     if (flagOutdated) {
-      latestVersion =
-          await _latestVersion(service, pubspec.name, pubspec.version);
+      latestVersion = service.latest(pubspec.name);
     }
 
     final package = VizPackage._(
@@ -82,30 +80,4 @@ class VizPackage extends Comparable<VizPackage> {
 
   @override
   int get hashCode => name.hashCode;
-
-  static Future<Version> _latestVersion(
-    Service service,
-    String name,
-    Version definedVersion,
-  ) async {
-    if (definedVersion == null) {
-      // Likely not published. Don't try.
-      return null;
-    }
-
-    final versions = await service.queryVersions(name);
-
-    Version _latestVersion;
-    if (versions != null) {
-      _latestVersion = primaryVersion(
-          versions.map((e) => Version.parse(e)).toList(),
-          definedVersion.isPreRelease);
-    }
-
-    if (_latestVersion != null) {
-      assert(_latestVersion.compareTo(definedVersion) >= 0);
-    }
-
-    return _latestVersion;
-  }
 }

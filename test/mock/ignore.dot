@@ -361,7 +361,7 @@ digraph pubviz {
 3.0.1", shape=box, margin="0.25,0.15", style=bold];
 
   json_serializable [label="json_serializable
-3.2.3", style=bold, color=red, xlabel="3.2.5"];
+3.2.3", style=bold, color=red, xlabel="3.3.0"];
   json_serializable -> analyzer [label=">=0.37.1 <0.39.0", color=pink, fontcolor=red];
   json_serializable -> build [label=">=0.12.6 <2.0.0", color=gray];
   json_serializable -> build_config [label=">=0.2.6 <0.5.0", color=gray];
@@ -416,7 +416,7 @@ digraph pubviz {
   package_resolver -> path [label="^1.0.0"];
 
   pana [label="pana
-0.12.20", shape=box, margin="0.25,0.15", style=bold, color=red, xlabel="0.13.5"];
+0.12.20", shape=box, margin="0.25,0.15", style=bold, color=red, xlabel="0.13.7"];
   pana -> analyzer [label="^0.37.0", fontcolor=red, color=red];
   pana -> args [label=">=0.13.7 <2.0.0"];
   pana -> async [label=">=1.13.3 <3.0.0"];

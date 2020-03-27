@@ -1,41 +1,49 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:http/http.dart' as http;
-
 import 'service.dart';
-import 'version.dart';
 
 class PubDataService extends Service {
+  @override
+  final String rootPackageDir;
   final bool _debug;
 
-  PubDataService({bool debug = false}) : _debug = debug ?? false;
-
-  final _client = http.Client();
-
-  void close() => _client.close();
+  PubDataService(this.rootPackageDir, {bool debug = false})
+      : _debug = debug ?? false;
 
   @override
-  Map<String, dynamic> listPackageDirs(String directory) {
+  Map<String, dynamic> listPackageDirs(String directory) =>
+      _pubJsonCommand(directory, ['list-package-dirs']);
+
+  @override
+  Map<String, dynamic> outdated() =>
+      _pubJsonCommand(rootPackageDir, ['outdated', '--format=json']);
+
+  Map<String, dynamic> _pubJsonCommand(String path, List<String> commandArgs) {
     try {
-      return _listPackageDirs(directory, false);
+      return _pubJsonCommandCore(path, commandArgs, false);
     } on ProcessException catch (e) {
       if (e.message.startsWith('Flutter is not available.') ||
           e.message.startsWith('The Flutter SDK is not available.')) {
-        return _listPackageDirs(directory, true);
+        return _pubJsonCommandCore(path, commandArgs, true);
       } else {
         rethrow;
       }
     }
   }
 
-  Map<String, dynamic> _listPackageDirs(String path, bool withFlutter) {
+  Map<String, dynamic> _pubJsonCommandCore(
+    String path,
+    List<String> commandArgs,
+    bool withFlutter,
+  ) {
     final proc = withFlutter ? 'flutter' : 'pub';
-    final args = withFlutter
-        ? ['packages', 'pub', 'list-package-dirs']
-        : ['list-package-dirs'];
+    final args = [
+      if (withFlutter) ...['packages', 'pub'],
+      ...commandArgs
+    ];
 
-    _print(['list-package-dirs:', proc, ...args].join(' '));
+    _print([proc, ...args].join(' '));
     _print('  in path `$path`');
 
     final result = Process.runSync(
@@ -64,51 +72,18 @@ class PubDataService extends Service {
       );
     }
 
-    return jsonDecode(result.stdout as String) as Map<String, dynamic>;
-  }
-
-  @override
-  Future<List<String>> queryVersions(String packageName) async {
-    final body = await _retryGet('https://pub.dev/packages/$packageName.json');
-
-    if (body == null) {
-      return null;
+    try {
+      return jsonDecode(result.stdout as String) as Map<String, dynamic>;
+    } on FormatException {
+      stderr
+        ..writeln('JSON output from `pub` command was invalid.')
+        ..writeln(
+          LineSplitter.split(result.stdout as String)
+              .map((e) => '  $e\n')
+              .join(),
+        );
+      rethrow;
     }
-
-    final json = jsonDecode(body);
-
-    assert(json['name'] == packageName);
-
-    return (json['versions'] as List).cast<String>();
-  }
-
-  Future<String> _retryGet(String path) async {
-    http.Response response;
-
-    var retries = 0;
-    for (;;) {
-      try {
-        // TODO(kevmoo): use http_retry
-        _print('requesting package json: $path');
-        response = await _client.get(path, headers: _headers);
-        break;
-      } catch (e) {
-        stderr.writeln(e);
-
-        retries++;
-        if (retries > 3) {
-          rethrow;
-        } else {
-          stderr.writeln('Retrying `$path`.');
-        }
-      }
-    }
-
-    if (response.statusCode != 200) {
-      return null;
-    }
-
-    return response.body;
   }
 
   void _print(Object value) {
@@ -117,9 +92,3 @@ class PubDataService extends Service {
     }
   }
 }
-
-final _headers = {
-  'user-agent': 'pubviz/$packageVersion '
-      '(Dart/${Platform.version.split(' ').first}; '
-      'https://pub.dev/packages/pubviz)'
-};

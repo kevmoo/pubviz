@@ -50,24 +50,20 @@ Future<void> main(List<String> args) async {
   final path = _getPath(command.rest);
 
   await Chain.capture(() async {
-    final service = PubDataService();
-    try {
-      final vp = await VizRoot.forDirectory(
-        service,
-        path,
-        flagOutdated: options.flagOutdated,
-        ignorePackages: options.ignorePackages,
-        directDependencies: options.directDependencies,
-      );
-      if (command.name == 'print') {
-        _printContent(vp, options.format, options.ignorePackages);
-      } else if (command.name == 'open') {
-        await _open(vp, options.format, options.ignorePackages);
-      } else {
-        throw StateError('Should never get here...');
-      }
-    } finally {
-      service.close();
+    final service = PubDataService(path);
+    final vp = await VizRoot.forDirectory(
+      service,
+      path,
+      flagOutdated: options.flagOutdated,
+      ignorePackages: options.ignorePackages,
+      directDependencies: options.directDependencies,
+    );
+    if (command.name == 'print') {
+      _printContent(vp, options.format, options.ignorePackages);
+    } else if (command.name == 'open') {
+      await _open(vp, options.format, options.ignorePackages);
+    } else {
+      throw StateError('Should never get here...');
     }
   }, onError: (error, Chain chain) {
     stderr..writeln(error)..writeln(chain.terse);

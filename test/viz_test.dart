@@ -23,13 +23,7 @@ void main() {
     PubDataService service;
 
     setUpAll(() {
-      service = PubDataService();
-    });
-
-    tearDownAll(() {
-      if (service != null) {
-        service.close();
-      }
+      service = PubDataService(d.sandbox);
     });
 
     test('all dependencies', () async {

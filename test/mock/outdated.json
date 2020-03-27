@@ -1,0 +1,95 @@
+{
+  "packages": [
+    {
+      "package": "angular",
+      "current": "6.0.0-alpha+1",
+      "upgradable": "6.0.0-alpha+1",
+      "resolvable": "6.0.0-alpha+1",
+      "latest": "5.3.1"
+    },
+    {
+      "package": "angular_components",
+      "current": "0.14.0-alpha+1",
+      "upgradable": "0.14.0-alpha+1",
+      "resolvable": "0.14.0-alpha+1",
+      "latest": "0.13.0+1"
+    },
+    {
+      "package": "pana",
+      "current": "0.12.20",
+      "upgradable": "0.12.20",
+      "resolvable": "0.12.20",
+      "latest": "0.13.7"
+    },
+    {
+      "package": "json_serializable",
+      "current": "3.2.3",
+      "upgradable": "3.2.3",
+      "resolvable": "3.2.3",
+      "latest": "3.3.0"
+    },
+    {
+      "package": "analyzer",
+      "current": "0.37.1+1",
+      "upgradable": "0.37.1+1",
+      "resolvable": "0.37.1+1",
+      "latest": "0.39.4"
+    },
+    {
+      "package": "bazel_worker",
+      "current": "0.1.21",
+      "upgradable": "0.1.21",
+      "resolvable": "0.1.21",
+      "latest": "0.1.23+1"
+    },
+    {
+      "package": "build_resolvers",
+      "current": "1.2.1",
+      "upgradable": "1.2.1",
+      "resolvable": "1.2.1",
+      "latest": "1.3.3"
+    },
+    {
+      "package": "dart_style",
+      "current": "1.2.10",
+      "upgradable": "1.2.10",
+      "resolvable": "1.2.10",
+      "latest": "1.3.3"
+    },
+    {
+      "package": "front_end",
+      "current": "0.1.21+1",
+      "upgradable": "0.1.21+1",
+      "resolvable": "0.1.21+1",
+      "latest": "0.1.29"
+    },
+    {
+      "package": "intl",
+      "current": "0.15.8",
+      "upgradable": "0.15.8",
+      "resolvable": "0.15.8",
+      "latest": "0.16.1"
+    },
+    {
+      "package": "kernel",
+      "current": "0.3.21+1",
+      "upgradable": "0.3.21+1",
+      "resolvable": "0.3.21+1",
+      "latest": "0.3.29"
+    },
+    {
+      "package": "protobuf",
+      "current": "0.13.16+1",
+      "upgradable": "0.13.16+1",
+      "resolvable": "0.13.16+1",
+      "latest": "1.0.1"
+    },
+    {
+      "package": "source_gen",
+      "current": "0.9.4+6",
+      "upgradable": "0.9.4+6",
+      "resolvable": "0.9.4+6",
+      "latest": "0.9.5"
+    }
+  ]
+}
