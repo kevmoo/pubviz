@@ -46,11 +46,25 @@ class PubDataService extends Service {
     _print([proc, ...args].join(' '));
     _print('  in path `$path`');
 
+    final pubEnv = [];
+    if (Platform.environment.containsKey(_pubEnvironment)) {
+      final value = Platform.environment[_pubEnvironment].trim();
+      if (value.isNotEmpty) {
+        pubEnv.add(value);
+      }
+    }
+    pubEnv.add('pkg.pubviz');
+
+    final environment = <String, String>{
+      _pubEnvironment: pubEnv.join(':'),
+    };
+
     final result = Process.runSync(
       proc,
       args,
       runInShell: true,
       workingDirectory: path,
+      environment: environment,
     );
 
     if (result.exitCode != 0) {
@@ -92,3 +106,5 @@ class PubDataService extends Service {
     }
   }
 }
+
+const _pubEnvironment = 'PUB_ENVIRONMENT';
