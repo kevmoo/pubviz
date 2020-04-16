@@ -53,7 +53,6 @@ Future<void> main(List<String> args) async {
     final service = PubDataService(path);
     final vp = await VizRoot.forDirectory(
       service,
-      path,
       flagOutdated: options.flagOutdated,
       ignorePackages: options.ignorePackages,
       directDependencies: options.directDependencies,

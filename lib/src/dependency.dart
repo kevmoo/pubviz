@@ -17,7 +17,7 @@ class Dependency implements Comparable<Dependency> {
     _includesLatest = value;
   }
 
-  Dependency._(this.name, String versionConstraint, this.isDevDependency)
+  Dependency(this.name, String versionConstraint, this.isDevDependency)
       : versionConstraint = _parseOrNull(versionConstraint);
 
   static Set<Dependency> getDependencies(parse.Pubspec pubspec) {
@@ -42,7 +42,7 @@ class Dependency implements Comparable<Dependency> {
         constraintString = constraint.toString();
       }
 
-      final dep = Dependency._(key, constraintString, isDev);
+      final dep = Dependency(key, constraintString, isDev);
 
       value.add(dep);
     });

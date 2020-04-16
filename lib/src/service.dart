@@ -1,18 +1,24 @@
+import 'dart:collection';
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
 import 'package:pub_semver/pub_semver.dart';
-import 'package:pubspec_parse/pubspec_parse.dart';
+import 'package:pubspec_parse/pubspec_parse.dart' hide Dependency;
+
+import 'dependency.dart';
+import 'deps_list.dart';
+import 'viz_package.dart';
 
 abstract class Service {
   Map<String, dynamic> _outdatedCache;
 
   String get rootPackageDir;
 
-  Pubspec pubspecForDirectory(String directory) {
-    assert(Directory(directory).existsSync(), '`$directory` does not exist.');
+  Pubspec rootPubspec() {
+    assert(Directory(rootPackageDir).existsSync(),
+        '`$rootPackageDir` does not exist.');
 
-    final pubspecPath = p.join(directory, 'pubspec.yaml');
+    final pubspecPath = p.join(rootPackageDir, 'pubspec.yaml');
 
     return Pubspec.parse(
       File(pubspecPath).readAsStringSync(),
@@ -20,7 +26,73 @@ abstract class Service {
     );
   }
 
-  Map<String, dynamic> listPackageDirs(String directory);
+  DepsList rootDeps();
+
+  Future<Map<String, VizPackage>> getReferencedPackages(
+    bool flagOutdated,
+    bool directDependencies,
+  ) async {
+    final pubspec = rootPubspec();
+
+    final map = SplayTreeMap<String, VizPackage>();
+
+    map[pubspec.name] = VizPackage(
+      pubspec.name,
+      null,
+      Dependency.getDependencies(pubspec),
+      null,
+    );
+
+    final visitedTransitiveDeps = <String>{};
+
+    void addPkg(VersionedEntry key, Map<String, VersionConstraint> value) {
+      final pkg = VizPackage(
+        key.name,
+        key.version,
+        SplayTreeSet.of(
+          value.entries.map(
+            (entry) => Dependency(entry.key, entry.value.toString(), false),
+          ),
+        ),
+        flagOutdated ? latest(key.name) : null,
+      );
+      map[pkg.name] = pkg;
+
+      visitedTransitiveDeps.addAll(
+        pkg.dependencies
+            .map((e) => e.name)
+            .where((element) => !map.containsKey(element)),
+      );
+    }
+
+    void addSectionValues(
+      Map<VersionedEntry, Map<String, VersionConstraint>> section,
+    ) {
+      for (var entry in section.entries) {
+        addPkg(entry.key, entry.value);
+      }
+    }
+
+    final deps = rootDeps();
+
+    addSectionValues(deps.sections['dependencies'] ?? const {});
+
+    if (!directDependencies) {
+      addSectionValues(deps.sections['dev dependencies'] ?? const {});
+
+      while (visitedTransitiveDeps.isNotEmpty) {
+        final next = visitedTransitiveDeps.first;
+        final removed = visitedTransitiveDeps.remove(next);
+        assert(removed, 'it should be removed');
+        final entry = deps.allEntries.entries
+            .singleWhere((element) => element.key.name == next);
+
+        addPkg(entry.key, entry.value);
+      }
+    }
+
+    return map;
+  }
 
   Version latest(String package) {
     final list = (_outdatedCache ??= outdated())['packages'] as List;

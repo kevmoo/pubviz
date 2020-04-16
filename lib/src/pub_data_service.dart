@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'deps_list.dart';
 import 'service.dart';
 import 'util.dart';
 
@@ -13,28 +14,41 @@ class PubDataService extends Service {
       : _debug = debug ?? false;
 
   @override
-  Map<String, dynamic> listPackageDirs(String directory) =>
-      _pubJsonCommand(directory, ['list-package-dirs']);
+  Map<String, dynamic> outdated() {
+    final commandOutput = _pubCommand(['outdated', '--json']);
+
+    try {
+      return jsonDecode(commandOutput) as Map<String, dynamic>;
+    } on FormatException {
+      stderr
+        ..writeln('JSON output from `pub` command was invalid.')
+        ..writeln(
+          LineSplitter.split(commandOutput).map((e) => '  $e\n').join(),
+        );
+      rethrow;
+    }
+  }
 
   @override
-  Map<String, dynamic> outdated() =>
-      _pubJsonCommand(rootPackageDir, ['outdated', '--json']);
+  DepsList rootDeps() {
+    final commandOutput = _pubCommand(['deps', '-s', 'list']);
+    return DepsList.parse(commandOutput);
+  }
 
-  Map<String, dynamic> _pubJsonCommand(String path, List<String> commandArgs) {
+  String _pubCommand(List<String> commandArgs) {
     try {
-      return _pubJsonCommandCore(path, commandArgs, false);
+      return _pubCommandCore(commandArgs, false);
     } on ProcessException catch (e) {
       if (e.message.startsWith('Flutter is not available.') ||
           e.message.startsWith('The Flutter SDK is not available.')) {
-        return _pubJsonCommandCore(path, commandArgs, true);
+        return _pubCommandCore(commandArgs, true);
       } else {
         rethrow;
       }
     }
   }
 
-  Map<String, dynamic> _pubJsonCommandCore(
-    String path,
+  String _pubCommandCore(
     List<String> commandArgs,
     bool withFlutter,
   ) {
@@ -45,7 +59,7 @@ class PubDataService extends Service {
     ];
 
     _print([proc, ...args].join(' '));
-    _print('  in path `$path`');
+    _print('  in path `$rootPackageDir`');
 
     final pubEnv = [];
     if (Platform.environment.containsKey(_pubEnvironment)) {
@@ -64,7 +78,7 @@ class PubDataService extends Service {
       proc,
       args,
       runInShell: true,
-      workingDirectory: path,
+      workingDirectory: rootPackageDir,
       environment: environment,
     );
 
@@ -87,18 +101,7 @@ class PubDataService extends Service {
       );
     }
 
-    try {
-      return jsonDecode(result.stdout as String) as Map<String, dynamic>;
-    } on FormatException {
-      stderr
-        ..writeln('JSON output from `pub` command was invalid.')
-        ..writeln(
-          LineSplitter.split(result.stdout as String)
-              .map((e) => '  $e\n')
-              .join(),
-        );
-      rethrow;
-    }
+    return result.stdout as String;
   }
 
   void _print(Object value) {

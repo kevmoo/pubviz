@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
-import 'package:pub_semver/pub_semver.dart';
 import 'package:pubviz/pubviz.dart';
 import 'package:pubviz/src/service.dart';
 import 'package:pubviz/viz/dot.dart';
@@ -12,14 +11,6 @@ import 'mock_data_service.dart';
 final _mockPath = p.join('test', 'mock');
 
 void main() {
-  test("don't generate by default", () {
-    expect(
-      populateFiles,
-      false,
-      reason: 'Should only be true during development.',
-    );
-  });
-
   group('generate VizRoot', () {
     Service service;
 
@@ -28,10 +19,9 @@ void main() {
     });
 
     test('all dependencies', () async {
-      final vp = await VizRoot.forDirectory(service, _mockPath);
+      final vp = await VizRoot.forDirectory(service);
 
       expect(vp.root.name, 'repo_manager');
-      expect(vp.root.sdkConstraint, VersionConstraint.parse('>=2.6.0 <3.0.0'));
       expect(vp.packages, hasLength(90));
 
       expect(
@@ -51,12 +41,10 @@ void main() {
     test('direct dependencies only', () async {
       final vp = await VizRoot.forDirectory(
         service,
-        _mockPath,
         directDependencies: true,
       );
 
       expect(vp.root.name, 'repo_manager');
-      expect(vp.root.sdkConstraint, VersionConstraint.parse('>=2.6.0 <3.0.0'));
       expect(vp.packages, hasLength(22));
 
       expect(
@@ -76,12 +64,10 @@ void main() {
     test('outdated', () async {
       final vp = await VizRoot.forDirectory(
         service,
-        _mockPath,
         flagOutdated: true,
       );
 
       expect(vp.root.name, 'repo_manager');
-      expect(vp.root.sdkConstraint, VersionConstraint.parse('>=2.6.0 <3.0.0'));
       expect(vp.packages, hasLength(90));
 
       expect(
@@ -102,13 +88,11 @@ void main() {
       final ignoredPackages = ['markdown', 'shelf', 'build_runner'];
       final vp = await VizRoot.forDirectory(
         service,
-        _mockPath,
         flagOutdated: true,
         ignorePackages: ignoredPackages,
       );
 
       expect(vp.root.name, 'repo_manager');
-      expect(vp.root.sdkConstraint, VersionConstraint.parse('>=2.6.0 <3.0.0'));
       expect(vp.packages, hasLength(90));
 
       expect(

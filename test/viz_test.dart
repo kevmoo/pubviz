@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
-import 'package:pub_semver/pub_semver.dart';
 import 'package:pubviz/pubviz.dart';
 import 'package:pubviz/src/pub_data_service.dart';
 import 'package:pubviz/src/util.dart';
@@ -28,27 +27,22 @@ void main() {
     });
 
     test('all dependencies', () async {
-      final vp = await VizRoot.forDirectory(service, d.sandbox);
+      final vp = await VizRoot.forDirectory(service);
 
       expect(vp.root.name, 'test_pubspec');
       expect(vp.packages, contains('http'));
       expect(vp.packages, contains('test'));
-
-      expect(vp.root.sdkConstraint, VersionConstraint.parse('>=2.0.0 <3.0.0'));
     });
 
     test('direct dependencies only', () async {
       final vp = await VizRoot.forDirectory(
         service,
-        d.sandbox,
         directDependencies: true,
       );
 
       expect(vp.root.name, 'test_pubspec');
       expect(vp.packages, contains('http'));
       expect(vp.packages, isNot(contains('test')));
-
-      expect(vp.root.sdkConstraint, VersionConstraint.parse('>=2.0.0 <3.0.0'));
     });
   });
 }
