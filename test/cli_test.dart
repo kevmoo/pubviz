@@ -1,12 +1,16 @@
 import 'dart:io';
 
+import 'package:path/path.dart' as p;
+import 'package:pubviz/src/util.dart';
 import 'package:pubviz/src/version.dart';
 import 'package:test/test.dart';
 import 'package:test_process/test_process.dart';
 
+final _entryPoint = p.join('bin', 'pubviz.dart');
+
 void main() {
   test('help', () async {
-    final proc = await TestProcess.start('dart', ['bin/pubviz.dart', '--help']);
+    final proc = await TestProcess.start(dartPath, [_entryPoint, '--help']);
 
     final output = await proc.stdoutStream().join('\n');
     expect(output, _usage);
@@ -15,8 +19,7 @@ void main() {
   });
 
   test('version', () async {
-    final proc =
-        await TestProcess.start('dart', ['bin/pubviz.dart', '--version']);
+    final proc = await TestProcess.start(dartPath, [_entryPoint, '--version']);
 
     final output = await proc.stdoutStream().join('\n');
     expect(output, packageVersion);
@@ -25,7 +28,7 @@ void main() {
   });
 
   test('bad flag', () async {
-    final proc = await TestProcess.start('dart', ['bin/pubviz.dart', '--bob']);
+    final proc = await TestProcess.start(dartPath, [_entryPoint, '--bob']);
 
     final output = await proc.stdoutStream().join('\n');
     expect(output, '''Could not find an option named "bob".
@@ -36,7 +39,7 @@ $_usage''');
   });
 
   test('no command', () async {
-    final proc = await TestProcess.start('dart', ['bin/pubviz.dart']);
+    final proc = await TestProcess.start(dartPath, [_entryPoint]);
 
     final output = await proc.stdoutStream().join('\n');
     expect(output, '''Specify a command: open, print
