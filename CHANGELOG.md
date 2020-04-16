@@ -1,3 +1,7 @@
+## 2.7.1-dev
+
+* Implementation: use new `pub outdated` command.
+
 ## 2.7.0
 
 * Added `--version` to CLI.

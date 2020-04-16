@@ -49,6 +49,28 @@ $_usage''');
     await proc.shouldExit(64);
   });
 
+  test('print dot', () async {
+    final process = await TestProcess.start(
+      dartPath,
+      [_entryPoint, '-f', 'dot', 'print'],
+    );
+
+    await expectLater(process.stdout, emits('digraph pubviz {'));
+
+    await process.shouldExit(0);
+  });
+
+  test('print dot with outdated', () async {
+    final process = await TestProcess.start(
+      dartPath,
+      [_entryPoint, '-o', '-f', 'dot', 'print'],
+    );
+
+    await expectLater(process.stdout, emits('digraph pubviz {'));
+
+    await process.shouldExit(0);
+  });
+
   test('readme', () {
     final readmeContent = File('README.md').readAsStringSync();
 

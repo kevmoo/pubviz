@@ -18,7 +18,7 @@ class PubDataService extends Service {
 
   @override
   Map<String, dynamic> outdated() =>
-      _pubJsonCommand(rootPackageDir, ['outdated', '--format=json']);
+      _pubJsonCommand(rootPackageDir, ['outdated', '--json']);
 
   Map<String, dynamic> _pubJsonCommand(String path, List<String> commandArgs) {
     try {
