@@ -127,6 +127,8 @@ void main() {
   });
 }
 
+const _writeOutput = false;
+
 void _verifyDotOutput(
   VizRoot root,
   String name, {
@@ -134,9 +136,15 @@ void _verifyDotOutput(
 }) {
   final dotOutput = toDot(root, ignorePackages: ignoredPackages);
 
+  final filePath = p.join(_mockPath, '$name.dot');
+
+  if (_writeOutput) {
+    File(filePath).writeAsStringSync(dotOutput);
+    fail('Set `_writeOutput` to false!');
+  }
+
   printOnFailure(dotOutput);
 
-  final filePath = p.join(_mockPath, '$name.dot');
   final fileContent = File(filePath).readAsStringSync();
 
   expect(dotOutput, fileContent);
