@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'service.dart';
+import 'util.dart';
 
 class PubDataService extends Service {
   @override
@@ -37,7 +38,7 @@ class PubDataService extends Service {
     List<String> commandArgs,
     bool withFlutter,
   ) {
-    final proc = withFlutter ? 'flutter' : 'pub';
+    final proc = withFlutter ? 'flutter' : pubPath;
     final args = [
       if (withFlutter) ...['packages', 'pub'],
       ...commandArgs
