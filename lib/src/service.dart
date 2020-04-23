@@ -7,6 +7,7 @@ import 'package:pubspec_parse/pubspec_parse.dart' hide Dependency;
 
 import 'dependency.dart';
 import 'deps_list.dart';
+import 'outdated_info.dart';
 import 'viz_package.dart';
 
 abstract class Service {
@@ -54,7 +55,7 @@ abstract class Service {
             (entry) => Dependency(entry.key, entry.value.toString(), false),
           ),
         ),
-        flagOutdated ? latest(key.name) : null,
+        flagOutdated ? _latest(key.name) : null,
       );
       map[pkg.name] = pkg;
 
@@ -94,7 +95,7 @@ abstract class Service {
     return map;
   }
 
-  Version latest(String package) {
+  Version _latest(String package) {
     final list = (_outdatedCache ??= outdated())['packages'] as List;
     final map = list.cast<Map<String, dynamic>>().singleWhere(
         (element) => element['package'] == package,
@@ -110,28 +111,3 @@ abstract class Service {
 
   Map<String, dynamic> outdated();
 }
-
-class OutdatedInfo {
-  final String package;
-  final Version current, upgradable, resolvable, latest;
-
-  OutdatedInfo(
-    this.package,
-    this.current,
-    this.upgradable,
-    this.resolvable,
-    this.latest,
-  );
-
-  factory OutdatedInfo.fromJson(Map<String, dynamic> json) => OutdatedInfo(
-        json['package'] as String,
-        _version(json, 'current'),
-        _version(json, 'upgradable'),
-        _version(json, 'resolvable'),
-        _version(json, 'latest'),
-      );
-}
-
-Version _version(Map<String, dynamic> json, String key) => Version.parse(
-      (json[key] as Map<String, dynamic>)['version'] as String,
-    );
