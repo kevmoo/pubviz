@@ -6,7 +6,6 @@ import 'package:pub_semver/pub_semver.dart';
 import 'dependency.dart';
 import 'service.dart';
 import 'viz_package.dart';
-import 'worker.dart';
 
 class VizRoot {
   final String rootPackageName;
@@ -19,16 +18,14 @@ class VizRoot {
   VizPackage get root => packages[rootPackageName];
 
   static Future<VizRoot> forDirectory(
-    Service service,
-    String path, {
+    Service service, {
     bool flagOutdated = false,
     Iterable<String> ignorePackages,
     bool directDependencies = false,
   }) async {
-    final rootPubspec = service.pubspecForDirectory(path);
+    final rootPubspec = service.rootPubspec();
 
-    final packages = await Worker(service).getReferencedPackages(
-      path,
+    final packages = await service.getReferencedPackages(
       flagOutdated,
       directDependencies,
     );
