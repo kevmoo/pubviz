@@ -85,8 +85,19 @@ abstract class Service {
         final next = visitedTransitiveDeps.first;
         final removed = visitedTransitiveDeps.remove(next);
         assert(removed, 'it should be removed');
-        final entry = deps.allEntries.entries
-            .singleWhere((element) => element.key.name == next);
+        final entry = deps.allEntries.entries.singleWhere(
+          (element) => element.key.name == next,
+          orElse: () => null,
+        );
+
+        if (entry == null) {
+          if (next == 'sky_engine') {
+            // This is dart:ui – skip
+            continue;
+          }
+
+          throw StateError('Could not find an entry for `$next`.');
+        }
 
         addPkg(entry.key, entry.value);
       }
