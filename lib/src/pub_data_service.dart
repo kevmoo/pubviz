@@ -40,7 +40,7 @@ class PubDataService extends Service {
       return _pubCommandCore(commandArgs, false);
     } on ProcessException catch (e) {
       if (e.message.startsWith('Flutter is not available.') ||
-          e.message.startsWith('The Flutter SDK is not available.')) {
+          e.message.contains('Flutter SDK is not available')) {
         return _pubCommandCore(commandArgs, true);
       } else {
         rethrow;
