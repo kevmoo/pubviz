@@ -37,7 +37,7 @@ void main() {
     test('direct dependencies only', () async {
       final vp = await VizRoot.forDirectory(
         service,
-        directDependencies: true,
+        directDependenciesOnly: true,
       );
 
       expect(vp.root.name, 'test_pubspec');
