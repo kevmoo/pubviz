@@ -155,11 +155,6 @@ digraph pubviz {
   repo_manager -> stack_trace [label="^1.7.3", penwidth="2"];
   repo_manager -> stats [label="^1.0.0", penwidth="2"];
   repo_manager -> yaml [label="^2.1.12", penwidth="2"];
-  repo_manager -> build_runner [label="^1.0.0", penwidth="2", style=dashed];
-  repo_manager -> build_web_compilers [label="^2.0.0", penwidth="2", style=dashed];
-  repo_manager -> json_serializable [label="^3.0.0", penwidth="2", style=dashed];
-  repo_manager -> pedantic [label="^1.2.0", penwidth="2", style=dashed];
-  repo_manager -> preload [label="^1.0.0", penwidth="2", style=dashed];
 
   stack_trace [label="stack_trace
 1.9.3", shape=box, margin="0.25,0.15", style=bold];

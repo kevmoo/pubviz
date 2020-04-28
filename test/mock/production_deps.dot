@@ -88,23 +88,12 @@ digraph pubviz {
   angular_forms -> angular [label="^6.0.0-alpha+1"];
   angular_forms -> meta [label="^1.1.4"];
 
-  archive [label="archive
-2.0.13"];
-  archive -> args [label=">=1.4.0 <2.0.0", color=gray];
-  archive -> crypto [label=">=2.0.0 <3.0.0", color=gray];
-  archive -> path [label=">=1.5.1 <2.0.0", color=gray];
-
   args [label="args
 1.6.0", shape=box, margin="0.25,0.15", style=bold];
 
   async [label="async
 2.4.1", shape=box, margin="0.25,0.15"];
   async -> collection [label="^1.5.0"];
-
-  bazel_worker [label="bazel_worker
-0.1.21"];
-  bazel_worker -> async [label=">1.9.0 <3.0.0", color=gray];
-  bazel_worker -> protobuf [label=">=0.10.4 <0.14.0", color=gray];
 
   build [label="build
 1.2.2", shape=box, margin="0.25,0.15"];
@@ -125,127 +114,6 @@ digraph pubviz {
   build_config -> path [label="^1.4.0"];
   build_config -> pubspec_parse [label="^0.1.5"];
   build_config -> yaml [label="^2.1.11"];
-
-  build_daemon [label="build_daemon
-2.1.4"];
-  build_daemon -> built_collection [label="^4.1.0", color=gray];
-  build_daemon -> built_value [label="^7.0.0", color=gray];
-  build_daemon -> http_multi_server [label="^2.0.0", color=gray];
-  build_daemon -> logging [label="^0.11.0", color=gray];
-  build_daemon -> path [label="^1.6.2", color=gray];
-  build_daemon -> pedantic [label="^1.0.0", color=gray];
-  build_daemon -> pool [label="^1.3.6", color=gray];
-  build_daemon -> shelf [label="^0.7.4", color=gray];
-  build_daemon -> shelf_web_socket [label="^0.2.2+4", color=gray];
-  build_daemon -> stream_transform [label=">=0.0.20 <2.0.0", color=gray];
-  build_daemon -> watcher [label="^0.9.7", color=gray];
-  build_daemon -> web_socket_channel [label="^1.0.9", color=gray];
-
-  build_modules [label="build_modules
-2.9.0"];
-  build_modules -> analyzer [label=">0.35.0 <0.40.0", color=gray];
-  build_modules -> async [label="^2.0.0", color=gray];
-  build_modules -> bazel_worker [label="^0.1.20", color=gray];
-  build_modules -> build [label=">=1.2.0 <2.0.0", color=gray];
-  build_modules -> build_config [label=">=0.3.0 <0.5.0", color=gray];
-  build_modules -> collection [label="^1.0.0", color=gray];
-  build_modules -> crypto [label="^2.0.0", color=gray];
-  build_modules -> glob [label="^1.0.0", color=gray];
-  build_modules -> graphs [label="^0.2.0", color=gray];
-  build_modules -> json_annotation [label=">=1.2.0 <4.0.0", color=gray];
-  build_modules -> logging [label="^0.11.2", color=gray];
-  build_modules -> meta [label="^1.1.0", color=gray];
-  build_modules -> path [label="^1.4.2", color=gray];
-  build_modules -> pedantic [label="^1.0.0", color=gray];
-  build_modules -> scratch_space [label="^0.0.4", color=gray];
-
-  build_resolvers [label="build_resolvers
-1.2.1"];
-  build_resolvers -> analyzer [label=">=0.35.0 <0.39.0", color=gray];
-  build_resolvers -> build [label=">=1.1.0 <1.3.0", color=gray];
-  build_resolvers -> crypto [label="^2.0.0", color=gray];
-  build_resolvers -> graphs [label="^0.2.0", color=gray];
-  build_resolvers -> logging [label="^0.11.2", color=gray];
-  build_resolvers -> package_resolver [label="^1.0.0", color=gray];
-  build_resolvers -> path [label="^1.1.0", color=gray];
-  build_resolvers -> yaml [label="^2.0.0", color=gray];
-
-  build_runner [label="build_runner
-1.8.1", style=bold];
-  build_runner -> args [label=">=1.4.0 <2.0.0", color=gray];
-  build_runner -> async [label=">=1.13.3 <3.0.0", color=gray];
-  build_runner -> build [label=">=1.0.0 <1.3.0", color=gray];
-  build_runner -> build_config [label=">=0.4.1 <0.4.3", color=gray];
-  build_runner -> build_daemon [label="^2.1.0", color=gray];
-  build_runner -> build_resolvers [label="^1.0.0", color=gray];
-  build_runner -> build_runner_core [label="^5.0.0", color=gray];
-  build_runner -> code_builder [label=">2.3.0 <4.0.0", color=gray];
-  build_runner -> collection [label="^1.14.0", color=gray];
-  build_runner -> crypto [label=">=0.9.2 <3.0.0", color=gray];
-  build_runner -> dart_style [label="^1.0.0", color=gray];
-  build_runner -> glob [label="^1.1.0", color=gray];
-  build_runner -> graphs [label="^0.2.0", color=gray];
-  build_runner -> http_multi_server [label="^2.1.0", color=gray];
-  build_runner -> io [label="^0.3.0", color=gray];
-  build_runner -> js [label="^0.6.1+1", color=gray];
-  build_runner -> logging [label="^0.11.2", color=gray];
-  build_runner -> meta [label="^1.1.0", color=gray];
-  build_runner -> mime [label="^0.9.3+3", color=gray];
-  build_runner -> path [label="^1.1.0", color=gray];
-  build_runner -> pedantic [label="^1.0.0", color=gray];
-  build_runner -> pool [label="^1.0.0", color=gray];
-  build_runner -> pub_semver [label="^1.4.0", color=gray];
-  build_runner -> pubspec_parse [label="^0.1.0", color=gray];
-  build_runner -> shelf [label=">=0.6.5 <0.8.0", color=gray];
-  build_runner -> shelf_web_socket [label="^0.2.2+4", color=gray];
-  build_runner -> stack_trace [label="^1.9.0", color=gray];
-  build_runner -> stream_transform [label=">=0.0.20 <2.0.0", color=gray];
-  build_runner -> timing [label="^0.1.1", color=gray];
-  build_runner -> watcher [label="^0.9.7", color=gray];
-  build_runner -> web_socket_channel [label="^1.0.9", color=gray];
-  build_runner -> yaml [label="^2.1.0", color=gray];
-
-  build_runner_core [label="build_runner_core
-5.0.0"];
-  build_runner_core -> async [label=">=1.13.3 <3.0.0", color=gray];
-  build_runner_core -> build [label=">=1.2.0 <1.3.0", color=gray];
-  build_runner_core -> build_config [label=">=0.4.2 <0.4.3", color=gray];
-  build_runner_core -> build_resolvers [label="^1.0.0", color=gray];
-  build_runner_core -> collection [label="^1.14.0", color=gray];
-  build_runner_core -> convert [label="^2.0.1", color=gray];
-  build_runner_core -> crypto [label=">=0.9.2 <3.0.0", color=gray];
-  build_runner_core -> glob [label="^1.1.0", color=gray];
-  build_runner_core -> graphs [label="^0.2.0", color=gray];
-  build_runner_core -> json_annotation [label=">=1.0.0 <4.0.0", color=gray];
-  build_runner_core -> logging [label="^0.11.2", color=gray];
-  build_runner_core -> meta [label="^1.1.0", color=gray];
-  build_runner_core -> package_config [label="^1.9.0", color=gray];
-  build_runner_core -> path [label="^1.1.0", color=gray];
-  build_runner_core -> pedantic [label="^1.0.0", color=gray];
-  build_runner_core -> pool [label="^1.0.0", color=gray];
-  build_runner_core -> timing [label="^0.1.1", color=gray];
-  build_runner_core -> watcher [label="^0.9.7", color=gray];
-  build_runner_core -> yaml [label="^2.1.0", color=gray];
-
-  build_web_compilers [label="build_web_compilers
-2.10.0", style=bold];
-  build_web_compilers -> analyzer [label=">=0.30.0 <0.40.0", color=gray];
-  build_web_compilers -> archive [label="^2.0.0", color=gray];
-  build_web_compilers -> bazel_worker [label="^0.1.18", color=gray];
-  build_web_compilers -> build [label=">=1.2.0 <2.0.0", color=gray];
-  build_web_compilers -> build_config [label=">=0.3.0 <0.5.0", color=gray];
-  build_web_compilers -> build_modules [label="^2.9.0", color=gray];
-  build_web_compilers -> collection [label="^1.0.0", color=gray];
-  build_web_compilers -> glob [label="^1.1.0", color=gray];
-  build_web_compilers -> js [label="^0.6.1", color=gray];
-  build_web_compilers -> logging [label="^0.11.2", color=gray];
-  build_web_compilers -> meta [label="^1.1.0", color=gray];
-  build_web_compilers -> path [label="^1.4.2", color=gray];
-  build_web_compilers -> pool [label="^1.3.0", color=gray];
-  build_web_compilers -> scratch_space [label="^0.0.2", color=gray];
-  build_web_compilers -> source_maps [label="^0.10.4", color=gray];
-  build_web_compilers -> source_span [label="^1.4.0", color=gray];
-  build_web_compilers -> stack_trace [label="^1.9.2", color=gray];
 
   built_collection [label="built_collection
 4.3.2", shape=box, margin="0.25,0.15"];
@@ -339,9 +207,6 @@ digraph pubviz {
   glob -> pedantic [label="^1.2.0"];
   glob -> string_scanner [label=">=0.1.0 <2.0.0"];
 
-  graphs [label="graphs
-0.2.0"];
-
   gviz [label="gviz
 0.3.0", shape=box, margin="0.25,0.15", style=bold];
 
@@ -356,10 +221,6 @@ digraph pubviz {
   http -> http_parser [label=">=0.0.1 <4.0.0"];
   http -> path [label=">=0.9.0 <2.0.0"];
   http -> pedantic [label="^1.0.0"];
-
-  http_multi_server [label="http_multi_server
-2.2.0"];
-  http_multi_server -> async [label=">=1.2.0 <3.0.0", color=gray];
 
   http_parser [label="http_parser
 3.1.4", shape=box, margin="0.25,0.15"];
@@ -396,16 +257,6 @@ digraph pubviz {
   json_annotation [label="json_annotation
 3.0.1", shape=box, margin="0.25,0.15", style=bold];
 
-  json_serializable [label="json_serializable
-3.2.3", style=bold];
-  json_serializable -> analyzer [label=">=0.37.1 <0.39.0", color=gray];
-  json_serializable -> build [label=">=0.12.6 <2.0.0", color=gray];
-  json_serializable -> build_config [label=">=0.2.6 <0.5.0", color=gray];
-  json_serializable -> json_annotation [label=">=3.0.0 <3.1.0", color=gray];
-  json_serializable -> meta [label="^1.1.0", color=gray];
-  json_serializable -> path [label="^1.3.2", color=gray];
-  json_serializable -> source_gen [label="^0.9.0", color=gray];
-
   kernel [label="kernel
 0.3.21+1", shape=box, margin="0.25,0.15"];
   kernel -> args [label=">=0.13.4 <2.0.0"];
@@ -424,9 +275,6 @@ digraph pubviz {
 
   meta [label="meta
 1.1.8", shape=box, margin="0.25,0.15", style=bold];
-
-  mime [label="mime
-0.9.6+3"];
 
   node_interop [label="node_interop
 1.0.3", shape=box, margin="0.25,0.15"];
@@ -483,19 +331,12 @@ digraph pubviz {
 1.7.0", shape=box, margin="0.25,0.15", style=bold];
 
   pedantic [label="pedantic
-1.9.0", shape=box, margin="0.25,0.15", style=bold];
+1.9.0", shape=box, margin="0.25,0.15"];
 
   pool [label="pool
 1.4.0", shape=box, margin="0.25,0.15", style=bold];
   pool -> async [label=">=1.4.0 <3.0.0"];
   pool -> stack_trace [label=">=0.9.2 <2.0.0"];
-
-  preload [label="preload
-1.1.6", style=bold];
-  preload -> build [label=">=0.12.1 <2.0.0", color=gray];
-  preload -> build_config [label=">=0.3.0 <5.0.0", color=gray];
-  preload -> glob [label="^1.0.0", color=gray];
-  preload -> path [label="^1.0.0", color=gray];
 
   protobuf [label="protobuf
 0.13.16+1", shape=box, margin="0.25,0.15"];
@@ -539,11 +380,6 @@ digraph pubviz {
   repo_manager -> stack_trace [label="^1.7.3", penwidth="2"];
   repo_manager -> stats [label="^1.0.0", penwidth="2"];
   repo_manager -> yaml [label="^2.1.12", penwidth="2"];
-  repo_manager -> build_runner [label="^1.0.0", penwidth="2", style=dashed];
-  repo_manager -> build_web_compilers [label="^2.0.0", penwidth="2", style=dashed];
-  repo_manager -> json_serializable [label="^3.0.0", penwidth="2", style=dashed];
-  repo_manager -> pedantic [label="^1.2.0", penwidth="2", style=dashed];
-  repo_manager -> preload [label="^1.0.0", penwidth="2", style=dashed];
 
   resource [label="resource
 2.1.6", shape=box, margin="0.25,0.15"];
@@ -574,29 +410,6 @@ digraph pubviz {
   sass_builder -> build_config [label=">=0.3.0 <0.5.0"];
   sass_builder -> path [label="^1.4.1"];
   sass_builder -> sass [label=">=1.11.0 <2.0.0"];
-
-  scratch_space [label="scratch_space
-0.0.4+2"];
-  scratch_space -> build [label=">=0.10.0 <2.0.0", color=gray];
-  scratch_space -> crypto [label=">=2.0.3 <3.0.0", color=gray];
-  scratch_space -> path [label="^1.1.0", color=gray];
-  scratch_space -> pedantic [label="^1.0.0", color=gray];
-  scratch_space -> pool [label="^1.0.0", color=gray];
-
-  shelf [label="shelf
-0.7.5"];
-  shelf -> async [label="^2.0.7", color=gray];
-  shelf -> collection [label="^1.5.0", color=gray];
-  shelf -> http_parser [label="^3.1.0", color=gray];
-  shelf -> path [label="^1.0.0", color=gray];
-  shelf -> stack_trace [label="^1.0.0", color=gray];
-  shelf -> stream_channel [label=">=1.0.0 <3.0.0", color=gray];
-
-  shelf_web_socket [label="shelf_web_socket
-0.2.3"];
-  shelf_web_socket -> shelf [label="^0.7.0", color=gray];
-  shelf_web_socket -> stream_channel [label=">1.4.0 <3.0.0", color=gray];
-  shelf_web_socket -> web_socket_channel [label="^1.0.0", color=gray];
 
   source_gen [label="source_gen
 0.9.4+6", shape=box, margin="0.25,0.15"];
@@ -630,10 +443,6 @@ digraph pubviz {
 1.0.0", shape=box, margin="0.25,0.15", style=bold];
   stats -> json_annotation [label="^3.0.0"];
 
-  stream_channel [label="stream_channel
-2.0.0"];
-  stream_channel -> async [label=">=1.11.0 <3.0.0", color=gray];
-
   stream_transform [label="stream_transform
 1.2.0", shape=box, margin="0.25,0.15"];
 
@@ -645,10 +454,6 @@ digraph pubviz {
 
   term_glyph [label="term_glyph
 1.1.0", shape=box, margin="0.25,0.15"];
-
-  timing [label="timing
-0.1.1+2"];
-  timing -> json_annotation [label=">=1.0.0 <4.0.0", color=gray];
 
   tuple [label="tuple
 1.0.3", shape=box, margin="0.25,0.15"];
@@ -662,12 +467,6 @@ digraph pubviz {
   watcher -> async [label="^2.0.0"];
   watcher -> path [label="^1.0.0"];
   watcher -> pedantic [label="^1.1.0"];
-
-  web_socket_channel [label="web_socket_channel
-1.1.0"];
-  web_socket_channel -> async [label=">=1.3.0 <3.0.0", color=gray];
-  web_socket_channel -> crypto [label=">=0.9.2 <3.0.0", color=gray];
-  web_socket_channel -> stream_channel [label=">=1.2.0 <3.0.0", color=gray];
 
   yaml [label="yaml
 2.2.0", shape=box, margin="0.25,0.15", style=bold];

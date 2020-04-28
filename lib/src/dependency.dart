@@ -20,12 +20,16 @@ class Dependency implements Comparable<Dependency> {
   Dependency(this.name, String versionConstraint, this.isDevDependency)
       : versionConstraint = _parseOrNull(versionConstraint);
 
-  static Set<Dependency> getDependencies(parse.Pubspec pubspec) {
+  static Set<Dependency> getDependencies(
+    parse.Pubspec pubspec, {
+    bool includeDevDependencies = true,
+  }) {
     final deps = <Dependency>{};
 
     _populateFromSection(pubspec.dependencies, deps, false);
-    _populateFromSection(pubspec.devDependencies, deps, true);
-
+    if (includeDevDependencies) {
+      _populateFromSection(pubspec.devDependencies, deps, true);
+    }
     return deps;
   }
 
