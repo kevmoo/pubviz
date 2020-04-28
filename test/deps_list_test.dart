@@ -11,6 +11,7 @@ void main() {
   const depsList = [
     ['deps', 'knarly_deps'],
     ['deps', 'empty_deps'],
+    ['deps', 'flutter_gallery'],
     ['mock', 'pub_deps_list']
   ];
 

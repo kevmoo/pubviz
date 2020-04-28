@@ -47,6 +47,8 @@ class DepsList extends VersionedEntry {
       sections[section.key] = section.value;
     }
 
+    assert(_scanner.isDone, '${_scanner.position} of ${input.length}');
+
     return DepsList._(
       sourcePackage,
       sdks,
@@ -74,8 +76,8 @@ class DepsList extends VersionedEntry {
 }
 
 final _sectionHeaderLine = RegExp(r'([a-zA-Z ]+):\n');
-final _usageLine = RegExp(r'- ([a-zA-Z_]+) (.+)\n');
-final _depLine = RegExp(r'  - ([a-zA-Z_]+) (.+)\n');
+final _usageLine = RegExp(r'- ([a-zA-Z0-9_]+) (.+)\n');
+final _depLine = RegExp(r'  - ([a-zA-Z0-9_]+) (.+)\n');
 
 MapEntry<String, Map<VersionedEntry, Map<String, VersionConstraint>>>
     _scanSection(StringScanner scanner) {
