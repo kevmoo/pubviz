@@ -45,11 +45,11 @@ void main() {
       );
 
       expect(vp.root.name, 'repo_manager');
-      expect(vp.packages, hasLength(22));
+      expect(vp.packages, hasLength(27));
 
       expect(
         vp.packages.values.where((element) => element.isPrimary),
-        hasLength(22),
+        hasLength(27),
         reason: 'Only primary',
       );
       expect(
