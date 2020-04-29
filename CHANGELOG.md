@@ -2,6 +2,8 @@
 
 * Add new `--production-dependencies` flag to only output packages needed for
   production.
+* Updated `--direct-dependencies` behavior to treat `dev_dependencies` the same
+  as `dependencies`.
 * Implementation: use new `pub outdated` command.
 
 ## 2.7.0

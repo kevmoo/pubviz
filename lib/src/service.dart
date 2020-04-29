@@ -82,7 +82,7 @@ abstract class Service {
 
     addSectionValues(deps.sections['dependencies'] ?? const {});
 
-    if (!directDependenciesOnly && !productionDependenciesOnly) {
+    if (!productionDependenciesOnly) {
       addSectionValues(deps.sections['dev dependencies'] ?? const {});
     }
 

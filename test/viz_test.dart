@@ -32,6 +32,7 @@ void main() {
       expect(vp.root.name, 'test_pubspec');
       expect(vp.packages, contains('http'));
       expect(vp.packages, contains('test'));
+      expect(vp.packages, contains('test_core'));
     });
 
     test('direct dependencies only', () async {
@@ -42,7 +43,8 @@ void main() {
 
       expect(vp.root.name, 'test_pubspec');
       expect(vp.packages, contains('http'));
-      expect(vp.packages, isNot(contains('test')));
+      expect(vp.packages, contains('test'));
+      expect(vp.packages, isNot(contains('test_core')));
     });
   });
 }
