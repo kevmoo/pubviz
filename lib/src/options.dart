@@ -34,6 +34,14 @@ class Options {
   final bool directDependencies;
 
   @CliOption(
+    abbr: 'p',
+    defaultsTo: false,
+    help: 'Include only production (non-dev) dependencies.',
+    negatable: false,
+  )
+  final bool productionDependencies;
+
+  @CliOption(
     abbr: 'v',
     help: 'Print the version of pubviz and exit.',
     negatable: false,
@@ -54,6 +62,7 @@ class Options {
     this.ignorePackages,
     this.flagOutdated,
     this.directDependencies,
+    this.productionDependencies,
     this.help,
     this.command,
     this.version,

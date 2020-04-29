@@ -24,6 +24,7 @@ Options _$parseOptionsResult(ArgResults result) => Options(
     ignorePackages: result['ignore-packages'] as List<String>,
     flagOutdated: result['flag-outdated'] as bool,
     directDependencies: result['direct-dependencies'] as bool,
+    productionDependencies: result['production-dependencies'] as bool,
     help: result['help'] as bool,
     command: result.command,
     version: result['version'] as bool);
@@ -57,6 +58,11 @@ ArgParser _$populateOptionsParser(ArgParser parser) => parser
   ..addFlag('direct-dependencies',
       abbr: 'd',
       help: 'Include only direct dependencies.',
+      defaultsTo: false,
+      negatable: false)
+  ..addFlag('production-dependencies',
+      abbr: 'p',
+      help: 'Include only production (non-dev) dependencies.',
       defaultsTo: false,
       negatable: false)
   ..addFlag('version',
