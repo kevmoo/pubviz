@@ -4,6 +4,7 @@
   production.
 * Updated `--direct-dependencies` behavior to treat `dev_dependencies` the same
   as `dependencies`.
+* Don't include `sky_engine` in output ever – it's just `dart:ui`.
 * Implementation: use new `pub outdated` command.
 
 ## 2.7.0

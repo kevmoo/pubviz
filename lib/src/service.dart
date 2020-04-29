@@ -55,9 +55,11 @@ abstract class Service {
         key.name,
         key.version,
         SplayTreeSet.of(
-          value.entries.map(
-            (entry) => Dependency(entry.key, entry.value.toString(), false),
-          ),
+          value.entries
+              .where((element) => !_ignoredPackages.contains(element.key))
+              .map(
+                (entry) => Dependency(entry.key, entry.value.toString(), false),
+              ),
         ),
         flagOutdated ? _latest(key.name) : null,
       );
@@ -92,18 +94,9 @@ abstract class Service {
         final removed = visitedTransitiveDeps.remove(next);
         assert(removed, 'it should be removed');
         final entry = deps.allEntries.entries.singleWhere(
-          (element) => element.key.name == next,
-          orElse: () => null,
-        );
-
-        if (entry == null) {
-          if (next == 'sky_engine') {
-            // This is dart:ui – skip
-            continue;
-          }
-
-          throw StateError('Could not find an entry for `$next`.');
-        }
+            (element) => element.key.name == next,
+            orElse: () =>
+                throw StateError('Could not find an entry for `$next`.'));
 
         addPkg(entry.key, entry.value);
       }
@@ -128,3 +121,7 @@ abstract class Service {
 
   Map<String, dynamic> outdated();
 }
+
+const _ignoredPackages = {
+  'sky_engine', // maps to `dart:ui` in Flutter – not useful
+};
