@@ -1,5 +1,7 @@
-## 2.7.1-dev
+## 2.8.0-dev
 
+* Add new `--production-dependencies` flag to only output packages needed for
+  production.
 * Implementation: use new `pub outdated` command.
 
 ## 2.7.0

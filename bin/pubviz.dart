@@ -56,7 +56,8 @@ Future<void> main(List<String> args) async {
       service,
       flagOutdated: options.flagOutdated,
       ignorePackages: options.ignorePackages,
-      directDependencies: options.directDependencies,
+      directDependenciesOnly: options.directDependencies,
+      productionDependenciesOnly: options.productionDependencies,
     );
     if (command.name == 'print') {
       _printContent(vp, options.format, options.ignorePackages);

@@ -31,7 +31,8 @@ abstract class Service {
 
   Future<Map<String, VizPackage>> getReferencedPackages(
     bool flagOutdated,
-    bool directDependencies,
+    bool directDependenciesOnly,
+    bool productionDependenciesOnly,
   ) async {
     final pubspec = rootPubspec();
 
@@ -40,7 +41,10 @@ abstract class Service {
     map[pubspec.name] = VizPackage(
       pubspec.name,
       null,
-      Dependency.getDependencies(pubspec),
+      Dependency.getDependencies(
+        pubspec,
+        includeDevDependencies: !productionDependenciesOnly,
+      ),
       null,
     );
 
@@ -78,9 +82,11 @@ abstract class Service {
 
     addSectionValues(deps.sections['dependencies'] ?? const {});
 
-    if (!directDependencies) {
+    if (!directDependenciesOnly && !productionDependenciesOnly) {
       addSectionValues(deps.sections['dev dependencies'] ?? const {});
+    }
 
+    if (!directDependenciesOnly) {
       while (visitedTransitiveDeps.isNotEmpty) {
         final next = visitedTransitiveDeps.first;
         final removed = visitedTransitiveDeps.remove(next);

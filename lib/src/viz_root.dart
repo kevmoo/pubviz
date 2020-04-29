@@ -21,13 +21,15 @@ class VizRoot {
     Service service, {
     bool flagOutdated = false,
     Iterable<String> ignorePackages,
-    bool directDependencies = false,
+    bool directDependenciesOnly = false,
+    bool productionDependenciesOnly = false,
   }) async {
     final rootPubspec = service.rootPubspec();
 
     final packages = await service.getReferencedPackages(
       flagOutdated,
-      directDependencies,
+      directDependenciesOnly,
+      productionDependenciesOnly,
     );
 
     final value = VizRoot._(rootPubspec.name, packages).._update();

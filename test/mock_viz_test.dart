@@ -41,7 +41,7 @@ void main() {
     test('direct dependencies only', () async {
       final vp = await VizRoot.forDirectory(
         service,
-        directDependencies: true,
+        directDependenciesOnly: true,
       );
 
       expect(vp.root.name, 'repo_manager');
@@ -59,6 +59,53 @@ void main() {
       );
 
       _verifyDotOutput(vp, 'direct_deps');
+    });
+
+    test('prod dependencies only', () async {
+      final vp = await VizRoot.forDirectory(
+        service,
+        productionDependenciesOnly: true,
+      );
+
+      expect(vp.root.name, 'repo_manager');
+      expect(vp.packages, hasLength(71));
+
+      expect(
+        vp.packages.values.where((element) => element.isPrimary),
+        hasLength(22),
+        reason: 'Only primary',
+      );
+      expect(
+        vp.packages.values.where((element) => !element.isPrimary),
+        hasLength(49),
+        reason: 'Only non-primary',
+      );
+
+      _verifyDotOutput(vp, 'production_deps');
+    });
+
+    test('prod + direct dependencies only', () async {
+      final vp = await VizRoot.forDirectory(
+        service,
+        directDependenciesOnly: true,
+        productionDependenciesOnly: true,
+      );
+
+      expect(vp.root.name, 'repo_manager');
+      expect(vp.packages, hasLength(22));
+
+      expect(
+        vp.packages.values.where((element) => element.isPrimary),
+        hasLength(22),
+        reason: 'Only primary',
+      );
+      expect(
+        vp.packages.values.where((element) => !element.isPrimary),
+        isEmpty,
+        reason: 'Only non-primary',
+      );
+
+      _verifyDotOutput(vp, 'direct_production_deps');
     });
 
     test('outdated', () async {
