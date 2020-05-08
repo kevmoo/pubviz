@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'deps_list.dart';
+import 'pubspek.dart';
 import 'service.dart';
 import 'util.dart';
 
@@ -9,9 +10,11 @@ class PubDataService extends Service {
   @override
   final String rootPackageDir;
   final bool _debug;
+  final bool _isFlutterPkg;
 
   PubDataService(this.rootPackageDir, {bool debug = false})
-      : _debug = debug ?? false;
+      : _debug = debug ?? false,
+        _isFlutterPkg = isFlutterPackage(rootPackageDir);
 
   @override
   Map<String, dynamic> outdated() {
@@ -36,25 +39,9 @@ class PubDataService extends Service {
   }
 
   String _pubCommand(List<String> commandArgs) {
-    try {
-      return _pubCommandCore(commandArgs, false);
-    } on ProcessException catch (e) {
-      if (e.message.startsWith('Flutter is not available.') ||
-          e.message.contains('Flutter SDK is not available')) {
-        return _pubCommandCore(commandArgs, true);
-      } else {
-        rethrow;
-      }
-    }
-  }
-
-  String _pubCommandCore(
-    List<String> commandArgs,
-    bool withFlutter,
-  ) {
-    final proc = withFlutter ? 'flutter' : pubPath;
+    final proc = _isFlutterPkg ? 'flutter' : pubPath;
     final args = [
-      if (withFlutter) ...['packages', 'pub'],
+      if (_isFlutterPkg) ...['packages', 'pub'],
       ...commandArgs
     ];
 
