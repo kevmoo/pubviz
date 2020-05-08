@@ -1,12 +1,12 @@
 name: pubviz
-version: 2.8.0-dev
+version: 2.8.0
 description: >-
   A tool to visualize package dependencies and version constraints in your Dart
   project.
 homepage: https://github.com/kevmoo/pubviz
 
 environment:
-  sdk: '>=2.8.0-dev.20.0 <3.0.0'
+  sdk: '>=2.8.1 <3.0.0'
 
 dependencies:
   args: ^1.4.1
