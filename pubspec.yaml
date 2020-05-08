@@ -20,6 +20,7 @@ dependencies:
   pub_semver: ^1.0.0
   stack_trace: ^1.6.0
   string_scanner: ^1.0.0
+  yaml: ^2.2.1
 
 dev_dependencies:
   build_cli: ^1.2.1
