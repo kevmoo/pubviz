@@ -1,0 +1,15 @@
+{
+ "name": "with.dots",
+ "version": "2.3.0+020300",
+ "sdks": {
+  "Dart": "2.9.0-3.0.dev.flutter-a69cb6d700",
+  "Flutter": "1.18.0-9.0.pre.46"
+ },
+ "sections": {
+  "dependencies": {
+   "other.dots @ 0.0.0": {
+    "dep.dots": "1.14.12"
+   }
+  }
+ }
+}

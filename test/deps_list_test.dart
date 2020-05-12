@@ -12,6 +12,7 @@ void main() {
     ['deps', 'knarly_deps'],
     ['deps', 'empty_deps'],
     ['deps', 'flutter_gallery'],
+    ['deps', 'with_dots'],
     ['mock', 'pub_deps_list']
   ];
 

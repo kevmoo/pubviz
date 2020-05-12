@@ -4,7 +4,7 @@ import 'package:string_scanner/string_scanner.dart';
 
 class DepsList extends VersionedEntry {
   static final _sdkLine = RegExp(r'(\w+) SDK (.+)\n');
-  static final _sourcePackageLine = RegExp(r'([a-zA-Z_]+) (.+)\n');
+  static final _sourcePackageLine = RegExp('($_pkgName) (.+)\n');
   static final _emptyLine = RegExp(r'\n');
 
   final Map<String, Version> sdks;
@@ -75,9 +75,21 @@ class DepsList extends VersionedEntry {
       };
 }
 
+/// A regular expression matching a Dart identifier.
+///
+/// This also matches a package name, since they must be Dart identifiers.
+const _identifierRegExp = r'[a-zA-Z_]\w*';
+
+/// A regular expression matching allowed package names.
+///
+/// This allows dot-separated valid Dart identifiers. The dots are there for
+/// compatibility with Google's internal Dart packages, but they may not be used
+/// when publishing a package to pub.dartlang.org.
+const _pkgName = '$_identifierRegExp(?:\\.$_identifierRegExp)*';
+
 final _sectionHeaderLine = RegExp(r'([a-zA-Z ]+):\n');
-final _usageLine = RegExp(r'- ([a-zA-Z0-9_]+) (.+)\n');
-final _depLine = RegExp(r'  - ([a-zA-Z0-9_]+) (.+)\n');
+final _usageLine = RegExp('- ($_pkgName) (.+)\n');
+final _depLine = RegExp('  - ($_pkgName) (.+)\n');
 
 MapEntry<String, Map<VersionedEntry, Map<String, VersionConstraint>>>
     _scanSection(StringScanner scanner) {
