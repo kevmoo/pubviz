@@ -1,3 +1,8 @@
+## 2.8.1
+
+* Copy valid package name parsing logic from `pub` tool.
+  * Packages with `.` in their name are now allowed.
+
 ## 2.8.0
 
 * Add new `--production-dependencies` flag to only output packages needed for
