@@ -1,3 +1,7 @@
+## 2.8.2
+
+* Handle a `null` output from `pub` without crashing.
+
 ## 2.8.1
 
 * Copy valid package name parsing logic from `pub` tool.

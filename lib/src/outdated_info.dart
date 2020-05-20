@@ -21,6 +21,11 @@ class OutdatedInfo {
       );
 }
 
-Version _version(Map<String, dynamic> json, String key) => Version.parse(
-      (json[key] as Map<String, dynamic>)['version'] as String,
-    );
+Version _version(Map<String, dynamic> json, String key) {
+  final value = json[key];
+  if (value == null) return null;
+
+  return Version.parse(
+    (json[key] as Map<String, dynamic>)['version'] as String,
+  );
+}

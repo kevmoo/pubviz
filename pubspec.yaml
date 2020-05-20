@@ -1,5 +1,5 @@
 name: pubviz
-version: 2.8.1
+version: 2.8.2
 description: >-
   A tool to visualize package dependencies and version constraints in your Dart
   project.
