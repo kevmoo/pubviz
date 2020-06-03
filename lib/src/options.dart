@@ -27,7 +27,6 @@ class Options {
 
   @CliOption(
     abbr: 'd',
-    defaultsTo: false,
     help: 'Include only direct dependencies.',
     negatable: false,
   )
@@ -35,7 +34,6 @@ class Options {
 
   @CliOption(
     abbr: 'p',
-    defaultsTo: false,
     help: 'Include only production (non-dev) dependencies.',
     negatable: false,
   )

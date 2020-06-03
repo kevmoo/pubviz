@@ -56,14 +56,10 @@ ArgParser _$populateOptionsParser(ArgParser parser) => parser
       help:
           'Check pub.dev for lasted packages and flag those that are outdated.')
   ..addFlag('direct-dependencies',
-      abbr: 'd',
-      help: 'Include only direct dependencies.',
-      defaultsTo: false,
-      negatable: false)
+      abbr: 'd', help: 'Include only direct dependencies.', negatable: false)
   ..addFlag('production-dependencies',
       abbr: 'p',
       help: 'Include only production (non-dev) dependencies.',
-      defaultsTo: false,
       negatable: false)
   ..addFlag('version',
       abbr: 'v',
