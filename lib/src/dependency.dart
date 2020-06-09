@@ -51,7 +51,7 @@ class Dependency implements Comparable<Dependency> {
   }
 
   @override
-  bool operator ==(other) => other is Dependency && other.name == name;
+  bool operator ==(Object other) => other is Dependency && other.name == name;
 
   @override
   int get hashCode => name.hashCode;

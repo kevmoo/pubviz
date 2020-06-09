@@ -65,6 +65,7 @@ linter:
     - sort_pub_dependencies
     - test_types_in_equals
     - throw_in_finally
+    - type_annotate_public_apis
     - unnecessary_await_in_return
     - unnecessary_brace_in_string_interps
     - unnecessary_getters_setters
@@ -74,5 +75,6 @@ linter:
     - unnecessary_parenthesis
     - unnecessary_statements
     - unnecessary_string_interpolations
+    - use_is_even_rather_than_modulo
     - use_string_buffers
     - void_checks
