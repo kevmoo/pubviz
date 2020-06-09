@@ -6,13 +6,18 @@ dart:
 
 dart_task:
 - test: --run-skipped
-- dartanalyzer: --fatal-warnings --fatal-lints .
 
-matrix:
+jobs:
   include:
   # Only validate formatting using the dev release
   - dart: dev
     dart_task: dartfmt
+  - dart: dev
+    dart_task:
+      dartanalyzer: --fatal-infos --fatal-warnings .
+  - dart: 2.8.4
+    dart_task:
+      dartanalyzer: --fatal-warnings .
 
 # Only building master means that we don't run two builds for each pull request.
 branches:
