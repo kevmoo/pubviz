@@ -1,5 +1,6 @@
 ### Visualize package dependencies in your Dart project
 
+[![Pub Package](https://img.shields.io/pub/v/pubviz.svg)](https://pub.dev/packages/pubviz)
 [![Build Status](https://travis-ci.org/kevmoo/pubviz.svg?branch=master)](https://travis-ci.org/kevmoo/pubviz)
 
 *Make sure you run `pub get` or `pub upgrade` in your target project directory.*
