@@ -72,6 +72,33 @@ digraph G {
 }
 ```
 
+### Generate PDF, PNG and other files
+
+[GraphViz](https://graphviz.org/about/) tool allows dot format to be converted to various types of outputs like PNG, PDF or SVG. 
+
+In order to export `pubviz` data to PNG file you need to install GraphViz package on your machine ([see detailed installation instructions](https://graphviz.org/doc/info/output.html)). 
+
+On macOS:
+
+```sh
+brew install graphviz
+```
+
+On Windows:
+
+```sh
+winget install graphviz
+```
+
+Then you can save the `pubviz` output to a file and convert it with `dot` command to desired output type, e.g.:
+
+```sh
+pubviz --format=dot print > output.dot
+dot -Tpdf output.dot -o output.pdf
+```
+
+The full list of possible output types is available on [the GraphViz website](https://graphviz.org/doc/info/output.html).
+
 ### `pubviz -?` prints help
 
 ```console
