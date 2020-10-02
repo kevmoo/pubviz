@@ -1,3 +1,7 @@
+## 2.8.2+1
+
+* Update README with instructions how to generate PDF, PNG or other files
+
 ## 2.8.2
 
 * Handle a `null` output from `pub` without crashing.
