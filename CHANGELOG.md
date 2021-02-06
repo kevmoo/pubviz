@@ -1,3 +1,8 @@
+## 2.8.3-dev
+
+- require at least Dart 2.10
+- Allow latest `pkg:http`.
+
 ## 2.8.2+1
 
 * Update README with instructions how to generate PDF, PNG or other files
