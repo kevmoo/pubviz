@@ -12,8 +12,8 @@ import 'package:yaml/yaml.dart' as yaml;
 bool isFlutterPackage(String packageDir) {
   final path = p.join(packageDir, 'pubspec.yaml');
 
-  final map =
-      yaml.loadYaml(File(path).readAsStringSync(), sourceUrl: path) as Map;
+  final map = yaml.loadYaml(File(path).readAsStringSync(),
+      sourceUrl: Uri.parse(path)) as Map;
 
   final pubspec = _Pubspec(map);
 
@@ -24,7 +24,7 @@ class _Pubspec {
   final pubspek.Pubspec _inner;
   final Map _content;
 
-  Set<String> _dependentSdks;
+  Set<String>? _dependentSdks;
 
   _Pubspec(Map content)
       : _inner = pubspek.Pubspec.fromJson(content, lenient: true),
@@ -35,15 +35,15 @@ class _Pubspec {
   Map<String, Dependency> get devDependencies => _inner.devDependencies;
 
   bool dependsOnPackage(String package) =>
-      (dependencies?.containsKey(package) ?? false) ||
-      (devDependencies?.containsKey(package) ?? false);
+      (dependencies.containsKey(package)) ||
+      (devDependencies.containsKey(package));
 
   bool get hasFlutterKey => _content.containsKey('flutter');
 
   bool get hasFlutterPluginKey =>
       hasFlutterKey &&
       _content['flutter'] is Map &&
-      _content['flutter']['plugin'] != null;
+      (_content['flutter'] as Map)['plugin'] != null;
 
   bool get dependsOnFlutterSdk => dependentSdks.contains('flutter');
 
@@ -56,22 +56,22 @@ class _Pubspec {
     if (_dependentSdks == null) {
       _dependentSdks = SplayTreeSet();
       // ignore: avoid_function_literals_in_foreach_calls
-      dependencies?.values?.forEach((value) {
+      dependencies.values.forEach((value) {
         if (value is SdkDependency) {
-          _dependentSdks.add(value.sdk);
+          _dependentSdks!.add(value.sdk);
         }
       });
       // ignore: avoid_function_literals_in_foreach_calls
-      devDependencies?.values?.forEach((value) {
+      devDependencies.values.forEach((value) {
         if (value is SdkDependency) {
-          _dependentSdks.add(value.sdk);
+          _dependentSdks!.add(value.sdk);
         }
       });
       if (_inner.environment != null) {
-        final keys = _inner.environment.keys.toList()..remove('sdk');
-        _dependentSdks.addAll(keys);
+        final keys = _inner.environment!.keys.toList()..remove('sdk');
+        _dependentSdks!.addAll(keys);
       }
     }
-    return _dependentSdks;
+    return _dependentSdks!;
   }
 }

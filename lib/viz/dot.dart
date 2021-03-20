@@ -3,7 +3,7 @@ import 'package:gviz/gviz.dart';
 import '../src/viz_package.dart';
 import '../src/viz_root.dart';
 
-String toDotHtml(VizRoot root, {List<String> ignorePackages}) {
+String toDotHtml(VizRoot root, {List<String> ignorePackages = const []}) {
   final dot = toDot(root, escapeLabels: true, ignorePackages: ignorePackages);
 
   return _dotHtmlTemplate
@@ -14,10 +14,8 @@ String toDotHtml(VizRoot root, {List<String> ignorePackages}) {
 String toDot(
   VizRoot item, {
   bool escapeLabels = false,
-  Iterable<String> ignorePackages,
+  Iterable<String> ignorePackages = const [],
 }) {
-  ignorePackages ??= const <String>[];
-
   final gviz = Gviz(
       name: 'pubviz',
       graphProperties: {'nodesep': '0.2'},
@@ -68,7 +66,7 @@ void _writeDot(
   if (!isRoot &&
       pkg.version != null &&
       pkg.latestVersion != null &&
-      pkg.latestVersion.compareTo(pkg.version) > 0) {
+      pkg.latestVersion!.compareTo(pkg.version!) > 0) {
     props['color'] = 'red';
     props['xlabel'] = '${pkg.latestVersion}';
   }
@@ -95,7 +93,7 @@ void _writeDot(
         edgeProps['color'] = 'gray';
       }
 
-      if (dep.includesLatest != null && !dep.includesLatest) {
+      if (dep.includesLatest != null && !dep.includesLatest!) {
         edgeProps['fontcolor'] = 'red';
         if (edgeProps['color'] == 'gray') {
           edgeProps['color'] = 'pink';

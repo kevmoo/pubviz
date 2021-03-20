@@ -15,12 +15,12 @@ class VizRoot {
       : assert(packages.containsKey(rootPackageName)),
         packages = UnmodifiableMapView(packages);
 
-  VizPackage get root => packages[rootPackageName];
+  VizPackage get root => packages[rootPackageName]!;
 
   static Future<VizRoot> forDirectory(
     Service service, {
     bool flagOutdated = false,
-    Iterable<String> ignorePackages,
+    Iterable<String>? ignorePackages,
     bool directDependenciesOnly = false,
     bool productionDependenciesOnly = false,
   }) async {
@@ -44,7 +44,7 @@ class VizRoot {
             package.latestVersion != null &&
             dep.versionConstraint != VersionConstraint.empty) {
           var allowsLatest =
-              dep.versionConstraint.allows(package.latestVersion);
+              dep.versionConstraint.allows(package.latestVersion!);
 
           if (!allowsLatest) {
             // it could be that the versionConstraint is actually *ahead* of
@@ -52,7 +52,7 @@ class VizRoot {
 
             // TODO: get rid of the `as` here – this is weird!
             final constraintAsRange = dep.versionConstraint as VersionRange;
-            if (package.latestVersion.compareTo(constraintAsRange) < 0) {
+            if (package.latestVersion!.compareTo(constraintAsRange) < 0) {
               allowsLatest = true;
             }
           }
@@ -90,22 +90,22 @@ class VizRoot {
     final package = packages[dep.name];
 
     if (package?.onlyDev == true) {
-      package.onlyDev = false;
+      package!.onlyDev = false;
 
-      package?.dependencies
-          ?.where((d) => !d.isDevDependency)
-          ?.forEach(_updateDevOnly);
+      package.dependencies
+          .where((d) => !d.isDevDependency)
+          .forEach(_updateDevOnly);
     }
   }
 }
 
 Iterable<Dependency> _allDeps(
   VizRoot root,
-  Iterable<String> ignorePackages,
+  Iterable<String>? ignorePackages,
 ) sync* {
   ignorePackages ??= const [];
   for (var pkg
-      in root.packages.values.where((v) => !ignorePackages.contains(v.name))) {
+      in root.packages.values.where((v) => !ignorePackages!.contains(v.name))) {
     yield* pkg.dependencies;
   }
 }

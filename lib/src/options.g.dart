@@ -6,30 +6,26 @@ part of 'options.dart';
 // CliGenerator
 // **************************************************************************
 
-T _$enumValueHelper<T>(Map<T, String> enumValues, String source) {
-  if (source == null) {
-    return null;
-  }
-  return enumValues.entries
-      .singleWhere((e) => e.value == source,
-          orElse: () => throw ArgumentError(
-              '`$source` is not one of the supported values: '
-              '${enumValues.values.join(', ')}'))
-      .key;
-}
+T _$enumValueHelper<T>(Map<T, String> enumValues, String source) => enumValues
+    .entries
+    .singleWhere((e) => e.value == source,
+        orElse: () =>
+            throw ArgumentError('`$source` is not one of the supported values: '
+                '${enumValues.values.join(', ')}'))
+    .key;
 
 Options _$parseOptionsResult(ArgResults result) => Options(
-    format:
-        _$enumValueHelper(_$FormatOptionsEnumMap, result['format'] as String),
+    format: _$enumValueHelper(
+        _$FormatOptionsEnumMapBuildCli, result['format'] as String),
     ignorePackages: result['ignore-packages'] as List<String>,
     flagOutdated: result['flag-outdated'] as bool,
-    directDependencies: result['direct-dependencies'] as bool,
+    directDependencies: result['direct-dependencies'] as bool?,
     productionDependencies: result['production-dependencies'] as bool,
     help: result['help'] as bool,
     command: result.command,
     version: result['version'] as bool);
 
-const _$FormatOptionsEnumMap = <FormatOptions, String>{
+const _$FormatOptionsEnumMapBuildCli = <FormatOptions, String>{
   FormatOptions.dot: 'dot',
   FormatOptions.html: 'html'
 };
@@ -50,13 +46,16 @@ ArgParser _$populateOptionsParser(ArgParser parser) => parser
       })
   ..addMultiOption('ignore-packages',
       abbr: 'i',
-      help: 'A comma seperated list of packages to exclude in the output.')
+      help: 'A comma separated list of packages to exclude in the output.')
   ..addFlag('flag-outdated',
       abbr: 'o',
       help:
           'Check pub.dev for lasted packages and flag those that are outdated.')
   ..addFlag('direct-dependencies',
-      abbr: 'd', help: 'Include only direct dependencies.', negatable: false)
+      abbr: 'd',
+      help: 'Include only direct dependencies.',
+      defaultsTo: null,
+      negatable: false)
   ..addFlag('production-dependencies',
       abbr: 'p',
       help: 'Include only production (non-dev) dependencies.',

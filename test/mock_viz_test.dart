@@ -12,7 +12,7 @@ final _mockPath = p.join('test', 'mock');
 
 void main() {
   group('generate VizRoot', () {
-    Service service;
+    late Service service;
 
     setUpAll(() {
       service = MockDataService(_mockPath);
@@ -163,7 +163,7 @@ const _writeOutput = false;
 void _verifyDotOutput(
   VizRoot root,
   String name, {
-  Iterable<String> ignoredPackages,
+  Iterable<String> ignoredPackages = const [],
 }) {
   final dotOutput = toDot(root, ignorePackages: ignoredPackages);
 

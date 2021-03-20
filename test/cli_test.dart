@@ -90,7 +90,7 @@ Arguments:
             [dot]                  Generate a GraphViz dot file
             [html] (default)       Wrap the GraphViz dot format in an HTML template which renders it.
 
-  -i, --ignore-packages            A comma seperated list of packages to exclude in the output.
+  -i, --ignore-packages            A comma separated list of packages to exclude in the output.
   -o, --[no-]flag-outdated         Check pub.dev for lasted packages and flag those that are outdated.
   -d, --direct-dependencies        Include only direct dependencies.
   -p, --production-dependencies    Include only production (non-dev) dependencies.
