@@ -6,15 +6,14 @@ class Dependency implements Comparable<Dependency> {
   final VersionConstraint versionConstraint;
   final bool isDevDependency;
 
-  bool _includesLatest;
+  bool? _includesLatest;
 
   /// Also true if there is a pre-release version after the latest version
-  bool get includesLatest => _includesLatest;
+  bool? get includesLatest => _includesLatest;
 
-  set includesLatest(bool value) {
+  set includesLatest(bool? value) {
     assert(_includesLatest == null);
-    assert(value != null);
-    _includesLatest = value;
+    _includesLatest = value!;
   }
 
   Dependency(this.name, String versionConstraint, this.isDevDependency)

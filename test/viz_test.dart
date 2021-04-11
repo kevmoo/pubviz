@@ -20,7 +20,7 @@ void main() {
   });
 
   group('generate VizRoot', () {
-    PubDataService service;
+    late PubDataService service;
 
     setUpAll(() {
       service = PubDataService(d.sandbox);

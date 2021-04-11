@@ -15,7 +15,7 @@ class Options {
 
   @CliOption(
     abbr: 'i',
-    help: 'A comma seperated list of packages to exclude in the output.',
+    help: 'A comma separated list of packages to exclude in the output.',
   )
   final List<String> ignorePackages;
 
@@ -30,7 +30,7 @@ class Options {
     help: 'Include only direct dependencies.',
     negatable: false,
   )
-  final bool directDependencies;
+  final bool? directDependencies;
 
   @CliOption(
     abbr: 'p',
@@ -53,18 +53,18 @@ class Options {
   )
   final bool help;
 
-  final ArgResults command;
+  final ArgResults? command;
 
   const Options({
-    this.format,
-    this.ignorePackages,
-    this.flagOutdated,
+    required this.format,
+    List<String>? ignorePackages,
+    required this.flagOutdated,
     this.directDependencies,
-    this.productionDependencies,
-    this.help,
+    required this.productionDependencies,
+    required this.help,
     this.command,
-    this.version,
-  });
+    required this.version,
+  }) : ignorePackages = ignorePackages ?? const [];
 }
 
 enum FormatOptions { dot, html }

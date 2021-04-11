@@ -13,7 +13,7 @@ class PubDataService extends Service {
   final bool _isFlutterPkg;
 
   PubDataService(this.rootPackageDir, {bool debug = false})
-      : _debug = debug ?? false,
+      : _debug = debug,
         _isFlutterPkg = isFlutterPackage(rootPackageDir);
 
   @override
@@ -50,7 +50,7 @@ class PubDataService extends Service {
 
     final pubEnv = [];
     if (Platform.environment.containsKey(_pubEnvironment)) {
-      final value = Platform.environment[_pubEnvironment].trim();
+      final value = Platform.environment[_pubEnvironment]!.trim();
       if (value.isNotEmpty) {
         pubEnv.add(value);
       }

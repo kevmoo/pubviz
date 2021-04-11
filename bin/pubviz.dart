@@ -56,7 +56,7 @@ Future<void> main(List<String> args) async {
       service,
       flagOutdated: options.flagOutdated,
       ignorePackages: options.ignorePackages,
-      directDependenciesOnly: options.directDependencies,
+      directDependenciesOnly: options.directDependencies ?? false,
       productionDependenciesOnly: options.productionDependencies,
     );
     if (command.name == 'print') {
@@ -99,7 +99,6 @@ String _getContent(
     case FormatOptions.dot:
       return dot.toDot(root, ignorePackages: ignorePackages);
   }
-  throw StateError('format "$format" is not supported');
 }
 
 String _getExtension(FormatOptions format) => format.toString().split('.')[1];
@@ -117,7 +116,7 @@ Future _open(
 
   file = await file.create();
   final content = _getContent(root, format, ignorePackages);
-  await file.writeAsString(content, mode: FileMode.write, flush: true);
+  await file.writeAsString(content, flush: true);
 
   print('File generated: $filePath');
 

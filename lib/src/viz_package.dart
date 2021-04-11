@@ -5,7 +5,7 @@ import 'dependency.dart';
 
 class VizPackage extends Comparable<VizPackage> {
   final String name;
-  final Version version;
+  final Version? version;
   final Set<Dependency> dependencies;
   bool isPrimary = false;
 
@@ -20,7 +20,7 @@ class VizPackage extends Comparable<VizPackage> {
     _onlyDev = value;
   }
 
-  final Version latestVersion;
+  final Version? latestVersion;
 
   VizPackage(
     this.name,

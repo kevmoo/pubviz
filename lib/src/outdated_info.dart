@@ -2,7 +2,7 @@ import 'package:pub_semver/pub_semver.dart';
 
 class OutdatedInfo {
   final String package;
-  final Version current, upgradable, resolvable, latest;
+  final Version? current, upgradable, resolvable, latest;
 
   OutdatedInfo(
     this.package,
@@ -21,7 +21,7 @@ class OutdatedInfo {
       );
 }
 
-Version _version(Map<String, dynamic> json, String key) {
+Version? _version(Map<String, dynamic> json, String key) {
   final value = json[key];
   if (value == null) return null;
 

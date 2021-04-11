@@ -27,7 +27,7 @@ class DepsList extends VersionedEntry {
 
     void scanSdk() {
       _scanner.expect(_sdkLine, name: 'SDK');
-      final entry = VersionedEntry.fromMatch(_scanner.lastMatch);
+      final entry = VersionedEntry.fromMatch(_scanner.lastMatch!);
       assert(!sdks.containsKey(entry.name));
       sdks[entry.name] = entry.version;
     }
@@ -37,7 +37,7 @@ class DepsList extends VersionedEntry {
     } while (_scanner.matches(_sdkLine));
 
     _scanner.expect(_sourcePackageLine, name: 'Source package');
-    final sourcePackage = VersionedEntry.fromMatch(_scanner.lastMatch);
+    final sourcePackage = VersionedEntry.fromMatch(_scanner.lastMatch!);
 
     final sections =
         <String, Map<VersionedEntry, Map<String, VersionConstraint>>>{};
@@ -94,20 +94,20 @@ final _depLine = RegExp('  - ($_pkgName) (.+)\n');
 MapEntry<String, Map<VersionedEntry, Map<String, VersionConstraint>>>
     _scanSection(StringScanner scanner) {
   scanner.expect(_sectionHeaderLine, name: 'section header');
-  final header = scanner.lastMatch[1];
+  final header = scanner.lastMatch![1]!;
 
   final entries = <VersionedEntry, Map<String, VersionConstraint>>{};
 
   void scanUsage() {
     scanner.expect(_usageLine, name: 'dependency');
-    final entry = VersionedEntry.fromMatch(scanner.lastMatch);
+    final entry = VersionedEntry.fromMatch(scanner.lastMatch!);
     assert(!entries.containsKey(entry.name));
 
     final deps = entries[entry] = {};
 
     while (scanner.scan(_depLine)) {
-      deps[scanner.lastMatch[1]] =
-          VersionConstraint.parse(scanner.lastMatch[2]);
+      deps[scanner.lastMatch![1]!] =
+          VersionConstraint.parse(scanner.lastMatch![2]!);
     }
   }
 
@@ -129,8 +129,8 @@ class VersionedEntry {
         version = other.version;
 
   factory VersionedEntry.fromMatch(Match match) => VersionedEntry(
-        match[1],
-        Version.parse(match[2]),
+        match[1]!,
+        Version.parse(match[2]!),
       );
 
   @override
