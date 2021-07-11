@@ -15,7 +15,9 @@ import 'package:pubviz/viz/dot.dart' as dot;
 import 'package:stack_trace/stack_trace.dart';
 
 Future<void> main(List<String> args) async {
-  parser..addCommand('open')..addCommand('print');
+  parser
+    ..addCommand('open')
+    ..addCommand('print');
 
   Options options;
   try {
@@ -67,7 +69,9 @@ Future<void> main(List<String> args) async {
       throw StateError('Should never get here...');
     }
   }, onError: (error, Chain chain) {
-    stderr..writeln(error)..writeln(chain.terse);
+    stderr
+      ..writeln(error)
+      ..writeln(chain.terse);
     exitCode = 1;
   });
 }

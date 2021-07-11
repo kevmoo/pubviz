@@ -142,7 +142,9 @@ void _updateBody(String output) {
   for (var node in _root.querySelectorAll('g.edge')) {
     final title = node.querySelector('title')!.text!;
     final things = title.split('->');
-    node..setAttribute('x-from', things[0])..setAttribute('x-to', things[1]);
+    node
+      ..setAttribute('x-from', things[0])
+      ..setAttribute('x-to', things[1]);
 
     // NOTE: we are assuming the shape of the generated SVG here – be careful!
     final textFill = node.querySelector('text')?.getAttribute('fill');
