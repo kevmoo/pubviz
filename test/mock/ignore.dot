@@ -3,16 +3,16 @@ digraph pubviz {
   edge [fontcolor=gray];
 
   analyzer [label="analyzer
-0.37.1+1", shape=box, margin="0.25,0.15", color=red, xlabel="0.39.7"];
+0.38.5", shape=box, margin="0.25,0.15", color=red, xlabel="0.39.7"];
   analyzer -> args [label=">=0.12.1 <2.0.0"];
   analyzer -> charcode [label="^1.1.0"];
   analyzer -> collection [label="^1.10.1"];
   analyzer -> convert [label="^2.0.0"];
   analyzer -> crypto [label=">=1.1.1 <3.0.0"];
-  analyzer -> front_end [label="0.1.21+1", fontcolor=red, color=red];
+  analyzer -> front_end [label="0.1.27", fontcolor=red, color=red];
   analyzer -> glob [label="^1.0.3"];
   analyzer -> html [label=">=0.13.4+1 <0.15.0"];
-  analyzer -> kernel [label="0.3.21+1", fontcolor=red, color=red];
+  analyzer -> kernel [label="0.3.27", fontcolor=red, color=red];
   analyzer -> meta [label="^1.0.2"];
   analyzer -> package_config [label=">=0.1.5 <2.0.0"];
   analyzer -> path [label=">=0.9.0 <2.0.0"];
@@ -20,73 +20,6 @@ digraph pubviz {
   analyzer -> source_span [label="^1.2.0"];
   analyzer -> watcher [label=">=0.9.6 <0.10.0"];
   analyzer -> yaml [label="^2.1.2"];
-
-  angular [label="angular
-6.0.0-alpha+1", shape=box, margin="0.25,0.15", style=bold];
-  angular -> analyzer [label="^0.37.0", fontcolor=red, color=red];
-  angular -> angular_ast [label="0.5.11"];
-  angular -> angular_compiler [label="0.4.5"];
-  angular -> build [label=">=1.1.0 <2.0.0"];
-  angular -> build_config [label=">=0.2.6 <2.0.0"];
-  angular -> code_builder [label="^3.0.1"];
-  angular -> collection [label="^1.14.5"];
-  angular -> csslib [label="^0.16.0"];
-  angular -> intl [label=">=0.13.0 <0.16.0", fontcolor=red, color=red];
-  angular -> js [label="^0.6.0"];
-  angular -> logging [label=">=0.9.0 <0.12.0"];
-  angular -> meta [label="^1.1.4"];
-  angular -> path [label="^1.6.1"];
-  angular -> source_gen [label=">=0.9.1 <0.10.0"];
-  angular -> source_span [label="^1.4.0"];
-  angular -> stack_trace [label="^1.9.1"];
-
-  angular_ast [label="angular_ast
-0.5.11", shape=box, margin="0.25,0.15"];
-  angular_ast -> analyzer [label="^0.37.0", fontcolor=red, color=red];
-  angular_ast -> charcode [label="^1.1.0"];
-  angular_ast -> collection [label="^1.14.5"];
-  angular_ast -> meta [label="^1.1.4"];
-  angular_ast -> source_span [label="^1.4.0"];
-  angular_ast -> string_scanner [label="^1.0.1"];
-
-  angular_compiler [label="angular_compiler
-0.4.5", shape=box, margin="0.25,0.15"];
-  angular_compiler -> analyzer [label="^0.37.0", fontcolor=red, color=red];
-  angular_compiler -> args [label="^1.3.0"];
-  angular_compiler -> build [label=">=1.1.0 <2.0.0"];
-  angular_compiler -> code_builder [label="^3.0.1"];
-  angular_compiler -> collection [label="^1.14.5"];
-  angular_compiler -> dart_style [label="^1.0.9"];
-  angular_compiler -> logging [label=">=0.9.0 <0.12.0"];
-  angular_compiler -> meta [label="^1.1.4"];
-  angular_compiler -> path [label="^1.6.1"];
-  angular_compiler -> source_gen [label=">=0.9.1 <0.10.0"];
-  angular_compiler -> source_span [label="^1.4.0"];
-  angular_compiler -> stack_trace [label="^1.9.1"];
-
-  angular_components [label="angular_components
-0.14.0-alpha+1", shape=box, margin="0.25,0.15", style=bold];
-  angular_components -> angular [label="^6.0.0-alpha+1"];
-  angular_components -> angular_forms [label="^2.1.0"];
-  angular_components -> async [label="^2.1.0"];
-  angular_components -> build [label=">=0.11.1 <2.0.0"];
-  angular_components -> build_config [label=">=0.2.6 <0.5.0"];
-  angular_components -> built_collection [label="^4.0.0"];
-  angular_components -> collection [label="^1.14.10"];
-  angular_components -> fixnum [label="^0.10.7"];
-  angular_components -> intl [label=">=0.14.0 <0.17.0"];
-  angular_components -> js [label="^0.6.1"];
-  angular_components -> logging [label="^0.11.2"];
-  angular_components -> meta [label="^1.0.4"];
-  angular_components -> observable [label="^0.22.2"];
-  angular_components -> protobuf [label="^0.13.6", fontcolor=red, color=red];
-  angular_components -> quiver [label=">=0.24.0 <3.0.0"];
-  angular_components -> sass_builder [label="^2.0.2"];
-
-  angular_forms [label="angular_forms
-2.1.4", shape=box, margin="0.25,0.15", style=bold];
-  angular_forms -> angular [label="^6.0.0-alpha+1"];
-  angular_forms -> meta [label="^1.1.4"];
 
   archive [label="archive
 2.0.13"];
@@ -98,47 +31,49 @@ digraph pubviz {
 1.6.0", shape=box, margin="0.25,0.15", style=bold];
 
   async [label="async
-2.4.1", shape=box, margin="0.25,0.15"];
-  async -> collection [label="^1.5.0"];
+2.8.2", shape=box, margin="0.25,0.15"];
+  async -> collection [label="^1.15.0"];
+  async -> meta [label="^1.1.7"];
 
   bazel_worker [label="bazel_worker
-0.1.21", color=red, xlabel="0.1.23+1"];
+0.1.25"];
   bazel_worker -> async [label=">1.9.0 <3.0.0", color=gray];
-  bazel_worker -> protobuf [label=">=0.10.4 <0.14.0", color=pink, fontcolor=red];
+  bazel_worker -> pedantic [label="^1.8.0", color=gray];
+  bazel_worker -> protobuf [label=">=0.14.4 <2.0.0", color=gray];
 
   build [label="build
-1.2.2", shape=box, margin="0.25,0.15"];
-  build -> analyzer [label=">=0.35.0 <0.40.0"];
-  build -> async [label=">=1.13.3 <3.0.0"];
-  build -> convert [label="^2.0.0"];
-  build -> crypto [label=">=0.9.2 <3.0.0"];
-  build -> glob [label="^1.1.0"];
-  build -> logging [label="^0.11.2"];
-  build -> meta [label="^1.1.0"];
-  build -> path [label="^1.1.0"];
+1.2.2"];
+  build -> analyzer [label=">=0.35.0 <0.40.0", color=gray];
+  build -> async [label=">=1.13.3 <3.0.0", color=gray];
+  build -> convert [label="^2.0.0", color=gray];
+  build -> crypto [label=">=0.9.2 <3.0.0", color=gray];
+  build -> glob [label="^1.1.0", color=gray];
+  build -> logging [label="^0.11.2", color=gray];
+  build -> meta [label="^1.1.0", color=gray];
+  build -> path [label="^1.1.0", color=gray];
 
   build_config [label="build_config
-0.4.2", shape=box, margin="0.25,0.15"];
-  build_config -> checked_yaml [label="^1.0.0"];
-  build_config -> json_annotation [label=">=1.0.0 <4.0.0"];
-  build_config -> meta [label="^1.1.0"];
-  build_config -> path [label="^1.4.0"];
-  build_config -> pubspec_parse [label="^0.1.5"];
-  build_config -> yaml [label="^2.1.11"];
+0.4.2"];
+  build_config -> checked_yaml [label="^1.0.0", color=gray];
+  build_config -> json_annotation [label=">=1.0.0 <4.0.0", color=gray];
+  build_config -> meta [label="^1.1.0", color=gray];
+  build_config -> path [label="^1.4.0", color=gray];
+  build_config -> pubspec_parse [label="^0.1.5", color=gray];
+  build_config -> yaml [label="^2.1.11", color=gray];
 
   build_daemon [label="build_daemon
-2.1.4"];
-  build_daemon -> built_collection [label="^4.1.0", color=gray];
-  build_daemon -> built_value [label="^7.0.0", color=gray];
-  build_daemon -> http_multi_server [label="^2.0.0", color=gray];
-  build_daemon -> logging [label="^0.11.0", color=gray];
+2.1.10"];
+  build_daemon -> built_collection [label=">=4.1.0 <6.0.0", color=gray];
+  build_daemon -> built_value [label=">=7.0.0 <9.0.0", color=gray];
+  build_daemon -> http_multi_server [label=">=2.0.0 <4.0.0", color=gray];
+  build_daemon -> logging [label=">=0.11.0 <2.0.0", color=gray];
   build_daemon -> path [label="^1.6.2", color=gray];
   build_daemon -> pedantic [label="^1.0.0", color=gray];
   build_daemon -> pool [label="^1.3.6", color=gray];
-  build_daemon -> shelf_web_socket [label="^0.2.2+4", color=gray];
-  build_daemon -> stream_transform [label=">=0.0.20 <2.0.0", color=gray];
-  build_daemon -> watcher [label="^0.9.7", color=gray];
-  build_daemon -> web_socket_channel [label="^1.0.9", color=gray];
+  build_daemon -> shelf_web_socket [label=">=0.2.2+4 <2.0.0", color=gray];
+  build_daemon -> stream_transform [label=">=0.0.20 <3.0.0", color=gray];
+  build_daemon -> watcher [label=">=0.9.7 <2.0.0", color=gray];
+  build_daemon -> web_socket_channel [label=">=1.0.9 <3.0.0", color=gray];
 
   build_modules [label="build_modules
 2.9.0"];
@@ -170,7 +105,7 @@ digraph pubviz {
   build_resolvers -> yaml [label="^2.0.0", color=gray];
 
   build_runner_core [label="build_runner_core
-5.0.0"];
+5.1.0"];
   build_runner_core -> async [label=">=1.13.3 <3.0.0", color=gray];
   build_runner_core -> build [label=">=1.2.0 <1.3.0", color=gray];
   build_runner_core -> build_config [label=">=0.4.2 <0.4.3", color=gray];
@@ -212,45 +147,43 @@ digraph pubviz {
   build_web_compilers -> stack_trace [label="^1.9.2", color=gray];
 
   built_collection [label="built_collection
-4.3.2", shape=box, margin="0.25,0.15"];
-  built_collection -> collection [label="^1.7.0"];
-  built_collection -> quiver [label=">=0.21.0 <3.0.0"];
+4.3.2"];
+  built_collection -> collection [label="^1.7.0", color=gray];
+  built_collection -> quiver [label=">=0.21.0 <3.0.0", color=gray];
 
   built_value [label="built_value
-7.0.9", shape=box, margin="0.25,0.15"];
-  built_value -> built_collection [label=">=2.0.0 <5.0.0"];
-  built_value -> collection [label="^1.0.0"];
-  built_value -> fixnum [label="^0.10.0"];
-  built_value -> quiver [label=">=0.21.0 <3.0.0"];
+7.1.0"];
+  built_value -> built_collection [label=">=2.0.0 <5.0.0", color=gray];
+  built_value -> collection [label="^1.0.0", color=gray];
+  built_value -> fixnum [label="^0.10.0", color=gray];
+  built_value -> quiver [label=">=0.21.0 <3.0.0", color=gray];
 
   charcode [label="charcode
-1.1.3", shape=box, margin="0.25,0.15"];
+1.3.1", shape=box, margin="0.25,0.15"];
 
   checked_yaml [label="checked_yaml
-1.0.2", shape=box, margin="0.25,0.15"];
-  checked_yaml -> json_annotation [label=">=2.2.0 <4.0.0"];
+1.0.4", shape=box, margin="0.25,0.15"];
+  checked_yaml -> json_annotation [label=">=2.2.0 <5.0.0"];
   checked_yaml -> source_span [label="^1.0.0"];
-  checked_yaml -> yaml [label="^2.1.13"];
-
-  cli_repl [label="cli_repl
-0.2.0+1", shape=box, margin="0.25,0.15"];
-  cli_repl -> async [label=">=1.13.3 <3.0.0"];
-  cli_repl -> js [label="^0.6.1"];
+  checked_yaml -> yaml [label=">=2.1.13 <4.0.0"];
 
   cli_util [label="cli_util
-0.1.3+2", shape=box, margin="0.25,0.15"];
+0.1.4", shape=box, margin="0.25,0.15"];
   cli_util -> path [label=">=1.0.0 <2.0.0"];
 
+  clock [label="clock
+1.1.0", shape=box, margin="0.25,0.15"];
+
   code_builder [label="code_builder
-3.2.1", shape=box, margin="0.25,0.15"];
-  code_builder -> built_collection [label=">=3.0.0 <5.0.0"];
-  code_builder -> built_value [label="^7.0.0"];
-  code_builder -> collection [label="^1.14.0"];
-  code_builder -> matcher [label="^0.12.0"];
-  code_builder -> meta [label="^1.0.5"];
+3.7.0"];
+  code_builder -> built_collection [label=">=3.0.0 <6.0.0", color=gray];
+  code_builder -> built_value [label=">=7.0.0 <9.0.0", color=gray];
+  code_builder -> collection [label="^1.14.0", color=gray];
+  code_builder -> matcher [label="^0.12.0", color=gray];
+  code_builder -> meta [label="^1.0.5", color=gray];
 
   collection [label="collection
-1.14.12", shape=box, margin="0.25,0.15", style=bold];
+1.15.0", shape=box, margin="0.25,0.15", style=bold];
 
   convert [label="convert
 2.1.1", shape=box, margin="0.25,0.15"];
@@ -258,37 +191,39 @@ digraph pubviz {
   convert -> typed_data [label="^1.1.0"];
 
   crypto [label="crypto
-2.1.4", shape=box, margin="0.25,0.15"];
+2.1.5", shape=box, margin="0.25,0.15"];
   crypto -> collection [label="^1.0.0"];
   crypto -> convert [label=">=1.0.0 <3.0.0"];
   crypto -> typed_data [label="^1.0.0"];
 
   csslib [label="csslib
-0.16.1", shape=box, margin="0.25,0.15"];
+0.16.2", shape=box, margin="0.25,0.15"];
   csslib -> source_span [label="^1.4.0"];
 
-  dart_internal [label="dart_internal
-0.1.9", shape=box, margin="0.25,0.15"];
-
   dart_style [label="dart_style
-1.2.10", shape=box, margin="0.25,0.15", color=red, xlabel="1.3.4"];
-  dart_style -> analyzer [label=">=0.37.0 <0.39.0", fontcolor=red, color=red];
-  dart_style -> args [label=">=0.12.1 <2.0.0"];
-  dart_style -> path [label="^1.0.0"];
-  dart_style -> source_span [label="^1.4.0"];
+1.3.3", color=red, xlabel="1.3.4"];
+  dart_style -> analyzer [label=">=0.38.3 <0.40.0", color=gray];
+  dart_style -> args [label="^1.0.0", color=gray];
+  dart_style -> path [label="^1.0.0", color=gray];
+  dart_style -> source_span [label="^1.4.0", color=gray];
+
+  file [label="file
+5.2.1", shape=box, margin="0.25,0.15"];
+  file -> intl [label=">=0.14.0 <1.0.0"];
+  file -> meta [label="^1.1.2"];
+  file -> path [label="^1.5.1"];
 
   fixnum [label="fixnum
-0.10.11", shape=box, margin="0.25,0.15"];
+0.10.11"];
 
   front_end [label="front_end
-0.1.21+1", shape=box, margin="0.25,0.15", color=red, xlabel="0.1.29"];
-  front_end -> kernel [label="0.3.21+1", fontcolor=red, color=red];
-  front_end -> package_config [label="^1.0.1"];
-  front_end -> path [label="^1.3.9"];
-  front_end -> yaml [label="^2.1.12"];
+0.1.27", shape=box, margin="0.25,0.15", color=red, xlabel="0.1.29"];
+  front_end -> kernel [label="0.3.27", fontcolor=red, color=red];
+  front_end -> meta [label="^1.0.2"];
+  front_end -> package_config [label="^1.1.0"];
 
   github [label="github
-6.2.0", shape=box, margin="0.25,0.15", style=bold];
+6.2.3", shape=box, margin="0.25,0.15", style=bold];
   github -> http [label="^0.12.0"];
   github -> http_parser [label="^3.1.1"];
   github -> json_annotation [label=">=2.0.0 <4.0.0"];
@@ -310,13 +245,12 @@ digraph pubviz {
 0.3.0", shape=box, margin="0.25,0.15", style=bold];
 
   html [label="html
-0.14.0+3", shape=box, margin="0.25,0.15"];
+0.14.0+4", shape=box, margin="0.25,0.15"];
   html -> csslib [label=">=0.13.2 <0.17.0"];
   html -> source_span [label=">=1.0.0 <2.0.0"];
 
   http [label="http
-0.12.0+4", shape=box, margin="0.25,0.15", style=bold];
-  http -> async [label=">=1.10.0 <3.0.0"];
+0.12.2", shape=box, margin="0.25,0.15", style=bold];
   http -> http_parser [label=">=0.0.1 <4.0.0"];
   http -> path [label=">=0.9.0 <2.0.0"];
   http -> pedantic [label="^1.0.0"];
@@ -344,18 +278,18 @@ digraph pubviz {
   http_throttle -> pool [label=">=1.0.0 <2.0.0"];
 
   intl [label="intl
-0.15.8", shape=box, margin="0.25,0.15", color=red, xlabel="0.16.1"];
-  intl -> path [label=">=0.9.0 <2.0.0"];
+0.17.0", shape=box, margin="0.25,0.15"];
+  intl -> clock [label="^1.1.0"];
+  intl -> path [label="^1.8.0"];
 
   io [label="io
-0.3.4", shape=box, margin="0.25,0.15", style=bold];
-  io -> charcode [label="^1.0.0"];
+0.3.5", shape=box, margin="0.25,0.15", style=bold];
   io -> meta [label="^1.0.2"];
   io -> path [label="^1.5.1"];
   io -> string_scanner [label=">=0.1.5 <2.0.0"];
 
   js [label="js
-0.6.1+1", shape=box, margin="0.25,0.15"];
+0.6.3", shape=box, margin="0.25,0.15"];
 
   json_annotation [label="json_annotation
 3.0.1", shape=box, margin="0.25,0.15", style=bold];
@@ -371,37 +305,35 @@ digraph pubviz {
   json_serializable -> source_gen [label="^0.9.0", color=gray];
 
   kernel [label="kernel
-0.3.21+1", shape=box, margin="0.25,0.15", color=red, xlabel="0.3.29"];
+0.3.27", shape=box, margin="0.25,0.15", color=red, xlabel="0.3.29"];
   kernel -> args [label=">=0.13.4 <2.0.0"];
+  kernel -> meta [label="^1.0.0"];
+
+  lints [label="lints
+1.0.1", shape=box, margin="0.25,0.15", style=bold];
 
   logging [label="logging
 0.11.4", shape=box, margin="0.25,0.15"];
 
   matcher [label="matcher
-0.12.6", shape=box, margin="0.25,0.15"];
-  matcher -> stack_trace [label="^1.2.0"];
+0.12.11", shape=box, margin="0.25,0.15"];
+  matcher -> stack_trace [label="^1.10.0"];
 
   meta [label="meta
-1.1.8", shape=box, margin="0.25,0.15", style=bold];
+1.7.0", shape=box, margin="0.25,0.15", style=bold];
 
   mime [label="mime
-0.9.6+3"];
+0.9.7"];
 
   node_interop [label="node_interop
-1.0.3", shape=box, margin="0.25,0.15"];
+1.2.1", shape=box, margin="0.25,0.15"];
   node_interop -> js [label="^0.6.1"];
 
   node_io [label="node_io
-1.0.1+2", shape=box, margin="0.25,0.15"];
-  node_io -> node_interop [label="^1.0.1"];
+1.2.0", shape=box, margin="0.25,0.15"];
+  node_io -> file [label="^5.0.0"];
+  node_io -> node_interop [label="^1.2.1"];
   node_io -> path [label="^1.6.2"];
-
-  observable [label="observable
-0.22.2", shape=box, margin="0.25,0.15"];
-  observable -> collection [label="^1.11.0"];
-  observable -> dart_internal [label="^0.1.1"];
-  observable -> meta [label="^1.0.4"];
-  observable -> quiver [label=">=0.24.0 <3.0.0"];
 
   package_config [label="package_config
 1.9.3", shape=box, margin="0.25,0.15"];
@@ -409,15 +341,15 @@ digraph pubviz {
   package_config -> path [label="^1.6.4"];
 
   package_resolver [label="package_resolver
-1.0.10", shape=box, margin="0.25,0.15"];
-  package_resolver -> collection [label="^1.9.0"];
-  package_resolver -> http [label=">0.11.0 <0.13.0"];
-  package_resolver -> package_config [label=">=0.1.0 <2.0.0"];
-  package_resolver -> path [label="^1.0.0"];
+1.0.10"];
+  package_resolver -> collection [label="^1.9.0", color=gray];
+  package_resolver -> http [label=">0.11.0 <0.13.0", color=gray];
+  package_resolver -> package_config [label=">=0.1.0 <2.0.0", color=gray];
+  package_resolver -> path [label="^1.0.0", color=gray];
 
   pana [label="pana
-0.12.20", shape=box, margin="0.25,0.15", style=bold, color=red, xlabel="0.13.7"];
-  pana -> analyzer [label="^0.37.0", fontcolor=red, color=red];
+0.12.21", shape=box, margin="0.25,0.15", style=bold, color=red, xlabel="0.13.7"];
+  pana -> analyzer [label="^0.38.0", fontcolor=red, color=red];
   pana -> args [label=">=0.13.7 <2.0.0"];
   pana -> async [label=">=1.13.3 <3.0.0"];
   pana -> cli_util [label="^0.1.3"];
@@ -438,15 +370,15 @@ digraph pubviz {
   pana -> yaml [label="^2.1.15"];
 
   path [label="path
-1.7.0", shape=box, margin="0.25,0.15", style=bold];
+1.8.0", shape=box, margin="0.25,0.15", style=bold];
 
   pedantic [label="pedantic
-1.9.0", shape=box, margin="0.25,0.15", style=bold];
+1.11.1", shape=box, margin="0.25,0.15", style=bold];
 
   pool [label="pool
-1.4.0", shape=box, margin="0.25,0.15", style=bold];
-  pool -> async [label=">=1.4.0 <3.0.0"];
-  pool -> stack_trace [label=">=0.9.2 <2.0.0"];
+1.5.0", shape=box, margin="0.25,0.15", style=bold];
+  pool -> async [label="^2.5.0"];
+  pool -> stack_trace [label="^1.10.0"];
 
   preload [label="preload
 1.1.6", style=bold];
@@ -456,29 +388,26 @@ digraph pubviz {
   preload -> path [label="^1.0.0", color=gray];
 
   protobuf [label="protobuf
-0.13.16+1", shape=box, margin="0.25,0.15", color=red, xlabel="1.0.1"];
-  protobuf -> fixnum [label="^0.10.9"];
+1.1.4"];
+  protobuf -> fixnum [label="^0.10.9", color=gray];
 
   pub_semver [label="pub_semver
 1.4.4", shape=box, margin="0.25,0.15", style=bold];
   pub_semver -> collection [label="^1.0.0"];
 
   pubspec_parse [label="pubspec_parse
-0.1.5", shape=box, margin="0.25,0.15", style=bold];
+0.1.8", shape=box, margin="0.25,0.15", style=bold];
   pubspec_parse -> checked_yaml [label="^1.0.0"];
-  pubspec_parse -> json_annotation [label=">=1.0.0 <4.0.0"];
-  pubspec_parse -> pub_semver [label="^1.3.2"];
-  pubspec_parse -> yaml [label="^2.1.12"];
+  pubspec_parse -> json_annotation [label=">=1.0.0 <5.0.0"];
+  pubspec_parse -> pub_semver [label=">=1.3.2 <3.0.0"];
+  pubspec_parse -> yaml [label=">=2.1.12 <4.0.0"];
 
   quiver [label="quiver
-2.1.3", shape=box, margin="0.25,0.15"];
+2.1.5", shape=box, margin="0.25,0.15"];
   quiver -> matcher [label=">=0.12.5 <0.13.0"];
   quiver -> meta [label=">=1.0.0 <2.0.0"];
 
   repo_manager [label=repo_manager, fontsize="18", style=bold, shape=box, margin="0.25,0.15"];
-  repo_manager -> angular [label="^6.0.0-alpha+1", penwidth="2"];
-  repo_manager -> angular_components [penwidth="2"];
-  repo_manager -> angular_forms [label="^2.0.0", penwidth="2"];
   repo_manager -> args [label="^1.4.3", penwidth="2"];
   repo_manager -> collection [label="^1.11.0", penwidth="2"];
   repo_manager -> github [label="^6.0.2", penwidth="2"];
@@ -488,6 +417,7 @@ digraph pubviz {
   repo_manager -> http_throttle [label="^1.0.4", penwidth="2"];
   repo_manager -> io [label="^0.3.1", penwidth="2"];
   repo_manager -> json_annotation [label="^3.0.0", penwidth="2"];
+  repo_manager -> lints [label="^1.0.0", penwidth="2"];
   repo_manager -> meta [penwidth="2"];
   repo_manager -> pana [label="^0.12.2", penwidth="2", fontcolor=red, color=red];
   repo_manager -> path [label="^1.4.1", penwidth="2"];
@@ -503,121 +433,89 @@ digraph pubviz {
   repo_manager -> preload [label="^1.0.0", penwidth="2", style=dashed];
 
   resource [label="resource
-2.1.6", shape=box, margin="0.25,0.15"];
+2.1.7", shape=box, margin="0.25,0.15"];
   resource -> typed_data [label="^1.0.0"];
 
-  sass [label="sass
-1.26.3", shape=box, margin="0.25,0.15"];
-  sass -> args [label=">=1.4.0 <2.0.0"];
-  sass -> async [label=">=1.10.0 <3.0.0"];
-  sass -> charcode [label="^1.1.0"];
-  sass -> cli_repl [label=">=0.1.3 <0.3.0"];
-  sass -> collection [label="^1.8.0"];
-  sass -> meta [label="^1.1.7"];
-  sass -> package_resolver [label="^1.0.0"];
-  sass -> path [label="^1.6.0"];
-  sass -> source_maps [label="^0.10.5"];
-  sass -> source_span [label="^1.6.0"];
-  sass -> stack_trace [label=">=0.9.0 <2.0.0"];
-  sass -> stream_transform [label=">=0.0.20 <2.0.0"];
-  sass -> string_scanner [label=">=0.1.5 <2.0.0"];
-  sass -> term_glyph [label="^1.0.0"];
-  sass -> tuple [label="^1.0.0"];
-  sass -> watcher [label="^0.9.6"];
-
-  sass_builder [label="sass_builder
-2.1.3", shape=box, margin="0.25,0.15"];
-  sass_builder -> build [label=">=0.12.5 <2.0.0"];
-  sass_builder -> build_config [label=">=0.3.0 <0.5.0"];
-  sass_builder -> path [label="^1.4.1"];
-  sass_builder -> sass [label=">=1.11.0 <2.0.0"];
-
   scratch_space [label="scratch_space
-0.0.4+2"];
+0.0.4+3"];
   scratch_space -> build [label=">=0.10.0 <2.0.0", color=gray];
-  scratch_space -> crypto [label=">=2.0.3 <3.0.0", color=gray];
+  scratch_space -> crypto [label=">=2.0.3 <4.0.0", color=gray];
   scratch_space -> path [label="^1.1.0", color=gray];
   scratch_space -> pedantic [label="^1.0.0", color=gray];
   scratch_space -> pool [label="^1.0.0", color=gray];
 
   shelf_web_socket [label="shelf_web_socket
-0.2.3"];
+0.2.4+1"];
   shelf_web_socket -> stream_channel [label=">1.4.0 <3.0.0", color=gray];
-  shelf_web_socket -> web_socket_channel [label="^1.0.0", color=gray];
+  shelf_web_socket -> web_socket_channel [label=">=1.0.0 <3.0.0", color=gray];
 
   source_gen [label="source_gen
-0.9.4+6", shape=box, margin="0.25,0.15", color=red, xlabel="0.9.5"];
-  source_gen -> analyzer [label=">=0.37.1 <0.40.0"];
-  source_gen -> async [label="^2.0.7"];
-  source_gen -> build [label="^1.0.0"];
-  source_gen -> dart_style [label="^1.0.0"];
-  source_gen -> glob [label="^1.1.0"];
-  source_gen -> meta [label="^1.1.0"];
-  source_gen -> path [label="^1.3.2"];
-  source_gen -> pedantic [label="^1.0.0"];
-  source_gen -> source_span [label="^1.4.0"];
+0.9.4+6", color=red, xlabel="0.9.5"];
+  source_gen -> analyzer [label=">=0.37.1 <0.40.0", color=gray];
+  source_gen -> async [label="^2.0.7", color=gray];
+  source_gen -> build [label="^1.0.0", color=gray];
+  source_gen -> dart_style [label="^1.0.0", color=gray];
+  source_gen -> glob [label="^1.1.0", color=gray];
+  source_gen -> meta [label="^1.1.0", color=gray];
+  source_gen -> path [label="^1.3.2", color=gray];
+  source_gen -> pedantic [label="^1.0.0", color=gray];
+  source_gen -> source_span [label="^1.4.0", color=gray];
 
   source_maps [label="source_maps
-0.10.9", shape=box, margin="0.25,0.15"];
-  source_maps -> source_span [label="^1.3.0"];
+0.10.10"];
+  source_maps -> source_span [label="^1.8.0", color=gray];
 
   source_span [label="source_span
-1.7.0", shape=box, margin="0.25,0.15"];
-  source_span -> charcode [label="^1.0.0"];
-  source_span -> collection [label="^1.8.0"];
-  source_span -> meta [label=">=0.9.0 <2.0.0"];
-  source_span -> path [label=">=1.2.0 <2.0.0"];
-  source_span -> term_glyph [label="^1.0.0"];
+1.8.1", shape=box, margin="0.25,0.15"];
+  source_span -> collection [label="^1.15.0"];
+  source_span -> path [label="^1.8.0"];
+  source_span -> term_glyph [label="^1.2.0"];
 
   stack_trace [label="stack_trace
-1.9.3", shape=box, margin="0.25,0.15", style=bold];
-  stack_trace -> path [label="^1.2.0"];
+1.10.0", shape=box, margin="0.25,0.15", style=bold];
+  stack_trace -> path [label="^1.8.0"];
 
   stats [label="stats
-1.0.0", shape=box, margin="0.25,0.15", style=bold];
-  stats -> json_annotation [label="^3.0.0"];
+1.0.1", shape=box, margin="0.25,0.15", style=bold];
+  stats -> json_annotation [label=">=3.0.0 <5.0.0"];
 
   stream_channel [label="stream_channel
-2.0.0"];
-  stream_channel -> async [label=">=1.11.0 <3.0.0", color=gray];
+2.1.0"];
+  stream_channel -> async [label="^2.5.0", color=gray];
 
   stream_transform [label="stream_transform
-1.2.0", shape=box, margin="0.25,0.15"];
+1.2.0"];
 
   string_scanner [label="string_scanner
-1.0.5", shape=box, margin="0.25,0.15"];
-  string_scanner -> charcode [label="^1.1.0"];
-  string_scanner -> meta [label="^1.1.0"];
-  string_scanner -> source_span [label="^1.4.0"];
+1.1.0", shape=box, margin="0.25,0.15"];
+  string_scanner -> charcode [label="^1.2.0"];
+  string_scanner -> source_span [label="^1.8.0"];
 
   term_glyph [label="term_glyph
-1.1.0", shape=box, margin="0.25,0.15"];
+1.2.0", shape=box, margin="0.25,0.15"];
 
   timing [label="timing
-0.1.1+2"];
-  timing -> json_annotation [label=">=1.0.0 <4.0.0", color=gray];
-
-  tuple [label="tuple
-1.0.3", shape=box, margin="0.25,0.15"];
-  tuple -> quiver [label=">=0.22.0 <3.0.0"];
+0.1.1+3"];
+  timing -> json_annotation [label=">=1.0.0 <5.0.0", color=gray];
 
   typed_data [label="typed_data
-1.1.6", shape=box, margin="0.25,0.15"];
+1.3.0", shape=box, margin="0.25,0.15"];
+  typed_data -> collection [label="^1.15.0"];
 
   watcher [label="watcher
-0.9.7+14", shape=box, margin="0.25,0.15"];
+0.9.7+15", shape=box, margin="0.25,0.15"];
   watcher -> async [label="^2.0.0"];
   watcher -> path [label="^1.0.0"];
   watcher -> pedantic [label="^1.1.0"];
 
   web_socket_channel [label="web_socket_channel
-1.1.0"];
+1.2.0"];
   web_socket_channel -> async [label=">=1.3.0 <3.0.0", color=gray];
-  web_socket_channel -> crypto [label=">=0.9.2 <3.0.0", color=gray];
+  web_socket_channel -> crypto [label=">=0.9.2 <4.0.0", color=gray];
   web_socket_channel -> stream_channel [label=">=1.2.0 <3.0.0", color=gray];
 
   yaml [label="yaml
-2.2.0", shape=box, margin="0.25,0.15", style=bold];
+2.2.1", shape=box, margin="0.25,0.15", style=bold];
   yaml -> charcode [label="^1.1.0"];
   yaml -> collection [label=">=1.1.0 <2.0.0"];
   yaml -> source_span [label=">=1.0.0 <2.0.0"];

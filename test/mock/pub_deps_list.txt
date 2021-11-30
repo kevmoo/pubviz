@@ -1,54 +1,16 @@
-Dart SDK 2.8.0-dev.20.7
+Dart SDK 2.16.0-42.0.dev
 repo_manager 0.0.0
 
 dependencies:
-- angular 6.0.0-alpha+1
-  - collection ^1.14.5
-  - intl >=0.13.0 <0.16.0
-  - js ^0.6.0
-  - logging >=0.9.0 <0.12.0
-  - meta ^1.1.4
-  - stack_trace ^1.9.1
-  - analyzer ^0.37.0
-  - angular_ast 0.5.11
-  - angular_compiler 0.4.5
-  - build >=1.1.0 <2.0.0
-  - build_config >=0.2.6 <2.0.0
-  - code_builder ^3.0.1
-  - csslib ^0.16.0
-  - path ^1.6.1
-  - source_gen >=0.9.1 <0.10.0
-  - source_span ^1.4.0
-- angular_components 0.14.0-alpha+1
-  - angular ^6.0.0-alpha+1
-  - angular_forms ^2.1.0
-  - async ^2.1.0
-  - build >=0.11.1 <2.0.0
-  - build_config >=0.2.6 <0.5.0
-  - built_collection ^4.0.0
-  - collection ^1.14.10
-  - fixnum ^0.10.7
-  - intl >=0.14.0 <0.17.0
-  - js ^0.6.1
-  - logging ^0.11.2
-  - meta ^1.0.4
-  - observable ^0.22.2
-  - protobuf ^0.13.6
-  - quiver >=0.24.0 <3.0.0
-  - sass_builder ^2.0.2
-- angular_forms 2.1.4
-  - angular ^6.0.0-alpha+1
-  - meta ^1.1.4
 - args 1.6.0
-- collection 1.14.12
-- github 6.2.0
+- collection 1.15.0
+- github 6.2.3
   - http ^0.12.0
   - http_parser ^3.1.1
   - json_annotation >=2.0.0 <4.0.0
   - meta ^1.1.0
 - gviz 0.3.0
-- http 0.12.0+4
-  - async >=1.10.0 <3.0.0
+- http 0.12.2
   - http_parser >=0.0.1 <4.0.0
   - path >=0.9.0 <2.0.0
   - pedantic ^1.0.0
@@ -58,16 +20,15 @@ dependencies:
 - http_throttle 1.0.4
   - http >=0.9.0 <0.13.0
   - pool >=1.0.0 <2.0.0
-- io 0.3.4
-  - charcode ^1.0.0
+- io 0.3.5
   - meta ^1.0.2
   - path ^1.5.1
   - string_scanner >=0.1.5 <2.0.0
 - json_annotation 3.0.1
-- meta 1.1.8
-- path 1.7.0
-- pana 0.12.20
-  - analyzer ^0.37.0
+- lints 1.0.1
+- meta 1.7.0
+- pana 0.12.21
+  - analyzer ^0.38.0
   - args >=0.13.7 <2.0.0
   - async >=1.13.3 <3.0.0
   - cli_util ^0.1.3
@@ -87,35 +48,36 @@ dependencies:
   - quiver >=0.24.0 <3.0.0
   - resource ^2.1.5
   - yaml ^2.1.15
-- pool 1.4.0
-  - async >=1.4.0 <3.0.0
-  - stack_trace >=0.9.2 <2.0.0
-- pubspec_parse 0.1.5
-  - checked_yaml ^1.0.0
-  - json_annotation >=1.0.0 <4.0.0
-  - pub_semver ^1.3.2
-  - yaml ^2.1.12
+- path 1.8.0
+- pool 1.5.0
+  - async ^2.5.0
+  - stack_trace ^1.10.0
 - pub_semver 1.4.4
   - collection ^1.0.0
-- stack_trace 1.9.3
-  - path ^1.2.0
-- stats 1.0.0
-  - json_annotation ^3.0.0
-- yaml 2.2.0
+- pubspec_parse 0.1.8
+  - checked_yaml ^1.0.0
+  - json_annotation >=1.0.0 <5.0.0
+  - pub_semver >=1.3.2 <3.0.0
+  - yaml >=2.1.12 <4.0.0
+- stack_trace 1.10.0
+  - path ^1.8.0
+- stats 1.0.1
+  - json_annotation >=3.0.0 <5.0.0
+- yaml 2.2.1
   - charcode ^1.1.0
   - collection >=1.1.0 <2.0.0
   - string_scanner >=0.1.4 <2.0.0
   - source_span >=1.0.0 <2.0.0
 
 dev dependencies:
-- build_runner 1.8.1
+- build_runner 1.9.0
   - args >=1.4.0 <2.0.0
   - async >=1.13.3 <3.0.0
   - build >=1.0.0 <1.3.0
   - build_config >=0.4.1 <0.4.3
   - build_daemon ^2.1.0
   - build_resolvers ^1.0.0
-  - build_runner_core ^5.0.0
+  - build_runner_core ^5.1.0
   - code_builder >2.3.0 <4.0.0
   - collection ^1.14.0
   - crypto >=0.9.2 <3.0.0
@@ -167,31 +129,24 @@ dev dependencies:
   - meta ^1.1.0
   - path ^1.3.2
   - source_gen ^0.9.0
-- pedantic 1.9.0
+- pedantic 1.11.1
 - preload 1.1.6
   - build >=0.12.1 <2.0.0
   - build_config >=0.3.0 <5.0.0
   - glob ^1.0.0
   - path ^1.0.0
 
-dependency overrides:
-- github 6.2.0
-  - http ^0.12.0
-  - http_parser ^3.1.1
-  - json_annotation >=2.0.0 <4.0.0
-  - meta ^1.1.0
-
 transitive dependencies:
-- analyzer 0.37.1+1
+- analyzer 0.38.5
   - args >=0.12.1 <2.0.0
   - charcode ^1.1.0
   - collection ^1.10.1
   - convert ^2.0.0
   - crypto >=1.1.1 <3.0.0
-  - front_end 0.1.21+1
+  - front_end 0.1.27
   - glob ^1.0.3
   - html >=0.13.4+1 <0.15.0
-  - kernel 0.3.21+1
+  - kernel 0.3.27
   - meta ^1.0.2
   - package_config >=0.1.5 <2.0.0
   - path >=0.9.0 <2.0.0
@@ -199,35 +154,17 @@ transitive dependencies:
   - source_span ^1.2.0
   - watcher >=0.9.6 <0.10.0
   - yaml ^2.1.2
-- angular_ast 0.5.11
-  - analyzer ^0.37.0
-  - charcode ^1.1.0
-  - collection ^1.14.5
-  - string_scanner ^1.0.1
-  - meta ^1.1.4
-  - source_span ^1.4.0
-- angular_compiler 0.4.5
-  - analyzer ^0.37.0
-  - args ^1.3.0
-  - build >=1.1.0 <2.0.0
-  - code_builder ^3.0.1
-  - collection ^1.14.5
-  - dart_style ^1.0.9
-  - logging >=0.9.0 <0.12.0
-  - meta ^1.1.4
-  - path ^1.6.1
-  - source_gen >=0.9.1 <0.10.0
-  - source_span ^1.4.0
-  - stack_trace ^1.9.1
 - archive 2.0.13
   - crypto >=2.0.0 <3.0.0
   - args >=1.4.0 <2.0.0
   - path >=1.5.1 <2.0.0
-- async 2.4.1
-  - collection ^1.5.0
-- bazel_worker 0.1.21
+- async 2.8.2
+  - collection ^1.15.0
+  - meta ^1.1.7
+- bazel_worker 0.1.25
   - async >1.9.0 <3.0.0
-  - protobuf >=0.10.4 <0.14.0
+  - pedantic ^1.8.0
+  - protobuf >=0.14.4 <2.0.0
 - build 1.2.2
   - analyzer >=0.35.0 <0.40.0
   - async >=1.13.3 <3.0.0
@@ -244,19 +181,19 @@ transitive dependencies:
   - path ^1.4.0
   - pubspec_parse ^0.1.5
   - yaml ^2.1.11
-- build_daemon 2.1.4
-  - built_collection ^4.1.0
-  - built_value ^7.0.0
-  - http_multi_server ^2.0.0
-  - logging ^0.11.0
+- build_daemon 2.1.10
+  - built_collection >=4.1.0 <6.0.0
+  - built_value >=7.0.0 <9.0.0
+  - http_multi_server >=2.0.0 <4.0.0
+  - logging >=0.11.0 <2.0.0
   - pedantic ^1.0.0
   - path ^1.6.2
   - pool ^1.3.6
-  - shelf ^0.7.4
-  - shelf_web_socket ^0.2.2+4
-  - stream_transform >=0.0.20 <2.0.0
-  - watcher ^0.9.7
-  - web_socket_channel ^1.0.9
+  - shelf >=0.7.4 <2.0.0
+  - shelf_web_socket >=0.2.2+4 <2.0.0
+  - stream_transform >=0.0.20 <3.0.0
+  - watcher >=0.9.7 <2.0.0
+  - web_socket_channel >=1.0.9 <3.0.0
 - build_modules 2.9.0
   - analyzer >0.35.0 <0.40.0
   - async ^2.0.0
@@ -282,7 +219,7 @@ transitive dependencies:
   - package_resolver ^1.0.0
   - path ^1.1.0
   - yaml ^2.0.0
-- build_runner_core 5.0.0
+- build_runner_core 5.1.0
   - async >=1.13.3 <3.0.0
   - build >=1.2.0 <1.3.0
   - build_config >=0.4.2 <0.4.3
@@ -305,48 +242,48 @@ transitive dependencies:
 - built_collection 4.3.2
   - collection ^1.7.0
   - quiver >=0.21.0 <3.0.0
-- built_value 7.0.9
+- built_value 7.1.0
   - built_collection >=2.0.0 <5.0.0
   - collection ^1.0.0
   - fixnum ^0.10.0
   - quiver >=0.21.0 <3.0.0
-- charcode 1.1.3
-- checked_yaml 1.0.2
-  - json_annotation >=2.2.0 <4.0.0
+- charcode 1.3.1
+- checked_yaml 1.0.4
+  - json_annotation >=2.2.0 <5.0.0
   - source_span ^1.0.0
-  - yaml ^2.1.13
-- cli_repl 0.2.0+1
-  - async >=1.13.3 <3.0.0
-  - js ^0.6.1
-- cli_util 0.1.3+2
+  - yaml >=2.1.13 <4.0.0
+- cli_util 0.1.4
   - path >=1.0.0 <2.0.0
-- code_builder 3.2.1
-  - built_collection >=3.0.0 <5.0.0
-  - built_value ^7.0.0
+- clock 1.1.0
+- code_builder 3.7.0
+  - built_collection >=3.0.0 <6.0.0
+  - built_value >=7.0.0 <9.0.0
   - collection ^1.14.0
   - matcher ^0.12.0
   - meta ^1.0.5
 - convert 2.1.1
   - charcode ^1.1.0
   - typed_data ^1.1.0
-- crypto 2.1.4
+- crypto 2.1.5
   - collection ^1.0.0
   - convert >=1.0.0 <3.0.0
   - typed_data ^1.0.0
-- csslib 0.16.1
+- csslib 0.16.2
   - source_span ^1.4.0
-- dart_internal 0.1.9
-- dart_style 1.2.10
-  - analyzer >=0.37.0 <0.39.0
-  - args >=0.12.1 <2.0.0
+- dart_style 1.3.3
+  - analyzer >=0.38.3 <0.40.0
+  - args ^1.0.0
   - path ^1.0.0
   - source_span ^1.4.0
+- file 5.2.1
+  - intl >=0.14.0 <1.0.0
+  - meta ^1.1.2
+  - path ^1.5.1
 - fixnum 0.10.11
-- front_end 0.1.21+1
-  - kernel 0.3.21+1
-  - package_config ^1.0.1
-  - path ^1.3.9
-  - yaml ^2.1.12
+- front_end 0.1.27
+  - kernel 0.3.27
+  - package_config ^1.1.0
+  - meta ^1.0.2
 - glob 1.2.0
   - async >=1.2.0 <3.0.0
   - collection ^1.1.0
@@ -355,7 +292,7 @@ transitive dependencies:
   - pedantic ^1.2.0
   - string_scanner >=0.1.0 <2.0.0
 - graphs 0.2.0
-- html 0.14.0+3
+- html 0.14.0+4
   - csslib >=0.13.2 <0.17.0
   - source_span >=1.0.0 <2.0.0
 - http_multi_server 2.2.0
@@ -366,28 +303,27 @@ transitive dependencies:
   - source_span ^1.0.0
   - string_scanner >=0.0.0 <2.0.0
   - typed_data ^1.1.0
-- intl 0.15.8
-  - path >=0.9.0 <2.0.0
-- js 0.6.1+1
-- kernel 0.3.21+1
+- intl 0.17.0
+  - clock ^1.1.0
+  - path ^1.8.0
+- js 0.6.3
+- kernel 0.3.27
   - args >=0.13.4 <2.0.0
+  - meta ^1.0.0
 - logging 0.11.4
-- markdown 2.1.3
+- markdown 2.1.8
   - args ^1.0.0
   - charcode ^1.1.0
-- matcher 0.12.6
-  - stack_trace ^1.2.0
-- mime 0.9.6+3
-- node_interop 1.0.3
+  - meta ^1.0.0
+- matcher 0.12.11
+  - stack_trace ^1.10.0
+- mime 0.9.7
+- node_interop 1.2.1
   - js ^0.6.1
-- node_io 1.0.1+2
-  - node_interop ^1.0.1
+- node_io 1.2.0
+  - file ^5.0.0
+  - node_interop ^1.2.1
   - path ^1.6.2
-- observable 0.22.2
-  - collection ^1.11.0
-  - dart_internal ^0.1.1
-  - meta ^1.0.4
-  - quiver >=0.24.0 <3.0.0
 - package_config 1.9.3
   - path ^1.6.4
   - charcode ^1.1.0
@@ -396,52 +332,30 @@ transitive dependencies:
   - http >0.11.0 <0.13.0
   - package_config >=0.1.0 <2.0.0
   - path ^1.0.0
-- protobuf 0.13.16+1
+- protobuf 1.1.4
   - fixnum ^0.10.9
-- quiver 2.1.3
+- quiver 2.1.5
   - matcher >=0.12.5 <0.13.0
   - meta >=1.0.0 <2.0.0
-- resource 2.1.6
+- resource 2.1.7
   - typed_data ^1.0.0
-- sass 1.26.3
-  - args >=1.4.0 <2.0.0
-  - async >=1.10.0 <3.0.0
-  - charcode ^1.1.0
-  - cli_repl >=0.1.3 <0.3.0
-  - collection ^1.8.0
-  - meta ^1.1.7
-  - package_resolver ^1.0.0
-  - path ^1.6.0
-  - source_maps ^0.10.5
-  - source_span ^1.6.0
-  - stack_trace >=0.9.0 <2.0.0
-  - stream_transform >=0.0.20 <2.0.0
-  - string_scanner >=0.1.5 <2.0.0
-  - term_glyph ^1.0.0
-  - tuple ^1.0.0
-  - watcher ^0.9.6
-- sass_builder 2.1.3
-  - build >=0.12.5 <2.0.0
-  - build_config >=0.3.0 <0.5.0
-  - path ^1.4.1
-  - sass >=1.11.0 <2.0.0
-- scratch_space 0.0.4+2
+- scratch_space 0.0.4+3
   - build >=0.10.0 <2.0.0
-  - crypto >=2.0.3 <3.0.0
+  - crypto >=2.0.3 <4.0.0
   - path ^1.1.0
   - pedantic ^1.0.0
   - pool ^1.0.0
-- shelf 0.7.5
+- shelf 0.7.9
   - async ^2.0.7
   - collection ^1.5.0
   - http_parser ^3.1.0
   - path ^1.0.0
   - stack_trace ^1.0.0
   - stream_channel >=1.0.0 <3.0.0
-- shelf_web_socket 0.2.3
-  - shelf ^0.7.0
-  - web_socket_channel ^1.0.0
+- shelf_web_socket 0.2.4+1
+  - shelf >=0.7.0 <2.0.0
   - stream_channel >1.4.0 <3.0.0
+  - web_socket_channel >=1.0.0 <3.0.0
 - source_gen 0.9.4+6
   - analyzer >=0.37.1 <0.40.0
   - async ^2.0.7
@@ -452,32 +366,28 @@ transitive dependencies:
   - path ^1.3.2
   - pedantic ^1.0.0
   - source_span ^1.4.0
-- source_maps 0.10.9
-  - source_span ^1.3.0
-- source_span 1.7.0
-  - charcode ^1.0.0
-  - collection ^1.8.0
-  - meta >=0.9.0 <2.0.0
-  - path >=1.2.0 <2.0.0
-  - term_glyph ^1.0.0
-- stream_channel 2.0.0
-  - async >=1.11.0 <3.0.0
+- source_maps 0.10.10
+  - source_span ^1.8.0
+- source_span 1.8.1
+  - collection ^1.15.0
+  - path ^1.8.0
+  - term_glyph ^1.2.0
+- stream_channel 2.1.0
+  - async ^2.5.0
 - stream_transform 1.2.0
-- string_scanner 1.0.5
-  - charcode ^1.1.0
-  - meta ^1.1.0
-  - source_span ^1.4.0
-- term_glyph 1.1.0
-- timing 0.1.1+2
-  - json_annotation >=1.0.0 <4.0.0
-- tuple 1.0.3
-  - quiver >=0.22.0 <3.0.0
-- typed_data 1.1.6
-- watcher 0.9.7+14
+- string_scanner 1.1.0
+  - charcode ^1.2.0
+  - source_span ^1.8.0
+- term_glyph 1.2.0
+- timing 0.1.1+3
+  - json_annotation >=1.0.0 <5.0.0
+- typed_data 1.3.0
+  - collection ^1.15.0
+- watcher 0.9.7+15
   - async ^2.0.0
   - path ^1.0.0
   - pedantic ^1.1.0
-- web_socket_channel 1.1.0
+- web_socket_channel 1.2.0
   - async >=1.3.0 <3.0.0
-  - crypto >=0.9.2 <3.0.0
+  - crypto >=0.9.2 <4.0.0
   - stream_channel >=1.2.0 <3.0.0
