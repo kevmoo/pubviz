@@ -48,7 +48,7 @@ class PubDataService extends Service {
     _print([proc, ...args].join(' '));
     _print('  in path `$rootPackageDir`');
 
-    final pubEnv = [];
+    final pubEnv = <String>[];
     if (Platform.environment.containsKey(_pubEnvironment)) {
       final value = Platform.environment[_pubEnvironment]!.trim();
       if (value.isNotEmpty) {

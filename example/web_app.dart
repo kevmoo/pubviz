@@ -169,7 +169,7 @@ void _updateBody(String output) {
 }
 
 void _updateOver(svg.GElement? element) {
-  final targetPkg = [];
+  final targetPkg = <String?>[];
   if (element != null) {
     if (element.classes.contains('edge')) {
       targetPkg

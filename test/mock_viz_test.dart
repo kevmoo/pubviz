@@ -22,16 +22,16 @@ void main() {
       final vp = await VizRoot.forDirectory(service);
 
       expect(vp.root.name, 'repo_manager');
-      expect(vp.packages, hasLength(90));
+      expect(vp.packages, hasLength(82));
 
       expect(
         vp.packages.values.where((element) => element.isPrimary),
-        hasLength(27),
+        hasLength(25),
         reason: 'Only primary',
       );
       expect(
         vp.packages.values.where((element) => !element.isPrimary),
-        hasLength(63),
+        hasLength(57),
         reason: 'Only non-primary',
       );
 
@@ -45,11 +45,11 @@ void main() {
       );
 
       expect(vp.root.name, 'repo_manager');
-      expect(vp.packages, hasLength(27));
+      expect(vp.packages, hasLength(25));
 
       expect(
         vp.packages.values.where((element) => element.isPrimary),
-        hasLength(27),
+        hasLength(25),
         reason: 'Only primary',
       );
       expect(
@@ -68,16 +68,16 @@ void main() {
       );
 
       expect(vp.root.name, 'repo_manager');
-      expect(vp.packages, hasLength(71));
+      expect(vp.packages, hasLength(51));
 
       expect(
         vp.packages.values.where((element) => element.isPrimary),
-        hasLength(22),
+        hasLength(20),
         reason: 'Only primary',
       );
       expect(
         vp.packages.values.where((element) => !element.isPrimary),
-        hasLength(49),
+        hasLength(31),
         reason: 'Only non-primary',
       );
 
@@ -92,11 +92,11 @@ void main() {
       );
 
       expect(vp.root.name, 'repo_manager');
-      expect(vp.packages, hasLength(22));
+      expect(vp.packages, hasLength(20));
 
       expect(
         vp.packages.values.where((element) => element.isPrimary),
-        hasLength(22),
+        hasLength(20),
         reason: 'Only primary',
       );
       expect(
@@ -115,16 +115,16 @@ void main() {
       );
 
       expect(vp.root.name, 'repo_manager');
-      expect(vp.packages, hasLength(90));
+      expect(vp.packages, hasLength(82));
 
       expect(
         vp.packages.values.where((element) => element.isPrimary),
-        hasLength(27),
+        hasLength(25),
         reason: 'Only primary',
       );
       expect(
         vp.packages.values.where((element) => !element.isPrimary),
-        hasLength(63),
+        hasLength(57),
         reason: 'Only non-primary',
       );
 
@@ -140,16 +140,16 @@ void main() {
       );
 
       expect(vp.root.name, 'repo_manager');
-      expect(vp.packages, hasLength(90));
+      expect(vp.packages, hasLength(82));
 
       expect(
         vp.packages.values.where((element) => element.isPrimary),
-        hasLength(27),
+        hasLength(25),
         reason: 'Only primary',
       );
       expect(
         vp.packages.values.where((element) => !element.isPrimary),
-        hasLength(63),
+        hasLength(57),
         reason: 'Only non-primary',
       );
 
