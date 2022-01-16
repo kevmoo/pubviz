@@ -12,8 +12,10 @@ import 'package:yaml/yaml.dart' as yaml;
 bool isFlutterPackage(String packageDir) {
   final path = p.join(packageDir, 'pubspec.yaml');
 
-  final map = yaml.loadYaml(File(path).readAsStringSync(),
-      sourceUrl: Uri.parse(path)) as Map;
+  final map = yaml.loadYaml(
+    File(path).readAsStringSync(),
+    sourceUrl: Uri.parse(path),
+  ) as Map;
 
   final pubspec = _Pubspec(map);
 

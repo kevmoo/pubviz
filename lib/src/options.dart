@@ -7,10 +7,11 @@ ArgParser get parser => _$parserForOptions;
 @CliOptions()
 class Options {
   @CliOption(
-      abbr: 'f',
-      defaultsTo: FormatOptions.html,
-      allowedHelp: _formatOptionsHelp,
-      valueHelp: 'format')
+    abbr: 'f',
+    defaultsTo: FormatOptions.html,
+    allowedHelp: _formatOptionsHelp,
+    valueHelp: 'format',
+  )
   final FormatOptions format;
 
   @CliOption(

@@ -52,35 +52,39 @@ Future<void> main(List<String> args) async {
 
   final path = _getPath(command.rest);
 
-  await Chain.capture(() async {
-    final service = PubDataService(path);
-    final vp = await VizRoot.forDirectory(
-      service,
-      flagOutdated: options.flagOutdated,
-      ignorePackages: options.ignorePackages,
-      directDependenciesOnly: options.directDependencies ?? false,
-      productionDependenciesOnly: options.productionDependencies,
-    );
-    if (command.name == 'print') {
-      _printContent(vp, options.format, options.ignorePackages);
-    } else if (command.name == 'open') {
-      await _open(vp, options.format, options.ignorePackages);
-    } else {
-      throw StateError('Should never get here...');
-    }
-  }, onError: (error, Chain chain) {
-    stderr
-      ..writeln(error)
-      ..writeln(chain.terse);
-    exitCode = 1;
-  });
+  await Chain.capture(
+    () async {
+      final service = PubDataService(path);
+      final vp = await VizRoot.forDirectory(
+        service,
+        flagOutdated: options.flagOutdated,
+        ignorePackages: options.ignorePackages,
+        directDependenciesOnly: options.directDependencies ?? false,
+        productionDependenciesOnly: options.productionDependencies,
+      );
+      if (command.name == 'print') {
+        _printContent(vp, options.format, options.ignorePackages);
+      } else if (command.name == 'open') {
+        await _open(vp, options.format, options.ignorePackages);
+      } else {
+        throw StateError('Should never get here...');
+      }
+    },
+    onError: (error, Chain chain) {
+      stderr
+        ..writeln(error)
+        ..writeln(chain.terse);
+      exitCode = 1;
+    },
+  );
 }
 
 String _indent(String input) =>
     LineSplitter.split(input).map((l) => '  $l'.trimRight()).join('\n');
 
 void _printUsage() {
-  print('''Usage: pubviz [<args>] <command> [<package path>]
+  print(
+    '''Usage: pubviz [<args>] <command> [<package path>]
 
 ${styleBold.wrap('Commands:')}
   open   Populate a temporary file with the content and open it.
@@ -89,7 +93,8 @@ ${styleBold.wrap('Commands:')}
 ${styleBold.wrap('Arguments:')}
 ${_indent(parser.usage)}
 
-If <package path> is omitted, the current directory is used.''');
+If <package path> is omitted, the current directory is used.''',
+  );
 }
 
 String _getContent(
