@@ -31,9 +31,12 @@ void main() {
     final proc = await TestProcess.start(dartPath, [_entryPoint, '--bob']);
 
     final output = await proc.stdoutStream().join('\n');
-    expect(output, '''Could not find an option named "bob".
+    expect(
+      output,
+      '''Could not find an option named "bob".
 
-$_usage''');
+$_usage''',
+    );
 
     await proc.shouldExit(64);
   });
@@ -42,9 +45,12 @@ $_usage''');
     final proc = await TestProcess.start(dartPath, [_entryPoint]);
 
     final output = await proc.stdoutStream().join('\n');
-    expect(output, '''Specify a command: open, print
+    expect(
+      output,
+      '''Specify a command: open, print
 
-$_usage''');
+$_usage''',
+    );
 
     await proc.shouldExit(64);
   });
@@ -74,8 +80,10 @@ $_usage''');
   test('readme', () {
     final readmeContent = File('README.md').readAsStringSync();
 
-    expect(readmeContent,
-        contains(['```console', r'$ pubviz -?', _usage, '```'].join('\n')));
+    expect(
+      readmeContent,
+      contains(['```console', r'$ pubviz -?', _usage, '```'].join('\n')),
+    );
   });
 }
 

@@ -89,8 +89,10 @@ void _process() {
   try {
     // Default memory: 16,777,216 - 16 MiB
     // Doubling to 32 MiB
-    final output = Viz(lines.join('\n'),
-        VizOptions(format: 'svg', totalMemory: 32 * 1024 * 1024));
+    final output = Viz(
+      lines.join('\n'),
+      VizOptions(format: 'svg', totalMemory: 32 * 1024 * 1024),
+    );
     _updateBody(output);
   } catch (e) {
     final output = '<pre>${htmlEscape.convert(e.toString())}</pre>';
@@ -104,10 +106,12 @@ void _updateBody(String output) {
   assert(__root == null);
 
   output = LineSplitter.split(output)
-      .where((line) =>
-          !line.contains('<!--') &&
-          !line.contains('-->') &&
-          !line.contains('?xml'))
+      .where(
+        (line) =>
+            !line.contains('<!--') &&
+            !line.contains('-->') &&
+            !line.contains('?xml'),
+      )
       .join('\n');
 
   document.body!.appendHtml(output, treeSanitizer: NodeTreeSanitizer.trusted);

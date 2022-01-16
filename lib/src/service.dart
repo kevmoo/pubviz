@@ -17,8 +17,10 @@ abstract class Service {
   String get rootPackageDir;
 
   Pubspec rootPubspec() {
-    assert(Directory(rootPackageDir).existsSync(),
-        '`$rootPackageDir` does not exist.');
+    assert(
+      Directory(rootPackageDir).existsSync(),
+      '`$rootPackageDir` does not exist.',
+    );
 
     final pubspecPath = p.join(rootPackageDir, 'pubspec.yaml');
 
@@ -95,9 +97,10 @@ abstract class Service {
         final removed = visitedTransitiveDeps.remove(next);
         assert(removed, 'it should be removed');
         final entry = deps.allEntries.entries.singleWhere(
-            (element) => element.key.name == next,
-            orElse: () =>
-                throw StateError('Could not find an entry for `$next`.'));
+          (element) => element.key.name == next,
+          orElse: () =>
+              throw StateError('Could not find an entry for `$next`.'),
+        );
 
         addPkg(entry.key, entry.value);
       }

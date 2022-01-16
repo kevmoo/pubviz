@@ -17,9 +17,10 @@ String toDot(
   Iterable<String> ignorePackages = const [],
 }) {
   final gviz = Gviz(
-      name: 'pubviz',
-      graphProperties: {'nodesep': '0.2'},
-      edgeProperties: {'fontcolor': 'gray'});
+    name: 'pubviz',
+    graphProperties: {'nodesep': '0.2'},
+    edgeProperties: {'fontcolor': 'gray'},
+  );
 
   for (var pack
       in item.packages.values.where((v) => !ignorePackages.contains(v.name))) {
