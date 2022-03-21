@@ -59,8 +59,8 @@ Future<void> _initTest() async {
   // NOTE: since all dependencies in the the sample pubspec are in pubviz
   //       we can use offline to improve speed.
   final pr = await Process.run(
-    pubPath,
-    ['get', '--offline'],
+    dartPath,
+    ['pub', 'get', '--offline'],
     workingDirectory: d.sandbox,
   );
 

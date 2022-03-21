@@ -4,7 +4,6 @@ import 'dart:io';
 import 'deps_list.dart';
 import 'pubspek.dart';
 import 'service.dart';
-import 'util.dart';
 
 class PubDataService extends Service {
   @override
@@ -39,9 +38,9 @@ class PubDataService extends Service {
   }
 
   String _pubCommand(List<String> commandArgs) {
-    final proc = _isFlutterPkg ? 'flutter' : pubPath;
+    final proc = _isFlutterPkg ? 'flutter' : 'dart';
     final args = [
-      if (_isFlutterPkg) ...['packages', 'pub'],
+      ...['pub'],
       ...commandArgs
     ];
 

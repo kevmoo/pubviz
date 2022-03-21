@@ -21,33 +21,33 @@ class DepsList extends VersionedEntry {
   ) : super.copy(entry);
 
   factory DepsList.parse(String input) {
-    final _scanner = StringScanner(input);
+    final scanner = StringScanner(input);
 
     final sdks = <String, Version>{};
 
     void scanSdk() {
-      _scanner.expect(_sdkLine, name: 'SDK');
-      final entry = VersionedEntry.fromMatch(_scanner.lastMatch!);
+      scanner.expect(_sdkLine, name: 'SDK');
+      final entry = VersionedEntry.fromMatch(scanner.lastMatch!);
       assert(!sdks.containsKey(entry.name));
       sdks[entry.name] = entry.version;
     }
 
     do {
       scanSdk();
-    } while (_scanner.matches(_sdkLine));
+    } while (scanner.matches(_sdkLine));
 
-    _scanner.expect(_sourcePackageLine, name: 'Source package');
-    final sourcePackage = VersionedEntry.fromMatch(_scanner.lastMatch!);
+    scanner.expect(_sourcePackageLine, name: 'Source package');
+    final sourcePackage = VersionedEntry.fromMatch(scanner.lastMatch!);
 
     final sections =
         <String, Map<VersionedEntry, Map<String, VersionConstraint>>>{};
 
-    while (_scanner.scan(_emptyLine)) {
-      final section = _scanSection(_scanner);
+    while (scanner.scan(_emptyLine)) {
+      final section = _scanSection(scanner);
       sections[section.key] = section.value;
     }
 
-    assert(_scanner.isDone, '${_scanner.position} of ${input.length}');
+    assert(scanner.isDone, '${scanner.position} of ${input.length}');
 
     return DepsList._(
       sourcePackage,
