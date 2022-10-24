@@ -15,10 +15,10 @@ class DepsList extends VersionedEntry {
       CombinedMapView(sections.values);
 
   DepsList._(
-    VersionedEntry entry,
+    super.entry,
     this.sdks,
     this.sections,
-  ) : super.copy(entry);
+  ) : super.copy();
 
   factory DepsList.parse(String input) {
     final scanner = StringScanner(input);

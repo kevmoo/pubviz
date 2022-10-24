@@ -89,7 +89,7 @@ class VizRoot {
   void _updateDevOnly(Dependency dep) {
     final package = packages[dep.name];
 
-    if (package?.onlyDev == true) {
+    if (package?.onlyDev ?? false) {
       package!.onlyDev = false;
 
       package.dependencies
