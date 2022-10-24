@@ -1,6 +1,6 @@
 ## 3.0.0-dev
 
-- require at least Dart 2.16
+- require at least Dart 2.18
 - Allow latest `pkg:http`.
 
 ## 2.8.2+1

@@ -59,5 +59,8 @@ linter:
     - unnecessary_nullable_for_final_variable_declarations
     - unnecessary_parenthesis
     - unnecessary_statements
+    - use_if_null_to_convert_nulls_to_bools
     - use_is_even_rather_than_modulo
+    - use_raw_strings
     - use_string_buffers
+    - use_super_parameters

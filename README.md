@@ -1,6 +1,7 @@
 ### Visualize package dependencies in your Dart project
 
 [![Pub Package](https://img.shields.io/pub/v/pubviz.svg)](https://pub.dev/packages/pubviz)
+[![package publisher](https://img.shields.io/pub/publisher/pubviz.svg)](https://pub.dev/packages/pubviz/publisher)
 [![CI](https://github.com/kevmoo/pubviz/workflows/CI/badge.svg?branch=master)](https://github.com/kevmoo/pubviz/actions?query=workflow%3ACI+branch%3Amaster)
 
 *Make sure you run `pub get` or `pub upgrade` in your target project directory.*
@@ -13,7 +14,7 @@ Here's an [example](https://kevmoo.github.io/pubviz/) of `pubviz` run on itself.
 
 Activate `pubviz`.
 ```console
-$ pub global activate pubviz
+$ dart pub global activate pubviz
 ```
 
 ### Use
@@ -25,10 +26,10 @@ directly.
 $ pubviz
 ```
 
-Otherwise you can use the `pub global` command.
+Otherwise, you can use the `pub global` command.
 
 ```console
-$ pub global run pubviz
+$ dart pub global run pubviz
 ```
 
 ### Generate and open an html file for the package on the current path.
