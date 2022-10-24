@@ -112,7 +112,7 @@ String _getContent(
 
 String _getExtension(FormatOptions format) => format.toString().split('.')[1];
 
-Future _open(
+Future<void> _open(
   VizRoot root,
   FormatOptions format,
   List<String> ignorePackages,
@@ -141,7 +141,7 @@ Future _open(
     exit(1);
   }
 
-  return Process.run(openCommand, [filePath], runInShell: true);
+  await Process.run(openCommand, [filePath], runInShell: true);
 }
 
 void _printContent(

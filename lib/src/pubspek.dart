@@ -15,7 +15,7 @@ bool isFlutterPackage(String packageDir) {
   final map = yaml.loadYaml(
     File(path).readAsStringSync(),
     sourceUrl: Uri.parse(path),
-  ) as Map;
+  ) as yaml.YamlMap;
 
   final pubspec = _Pubspec(map);
 
@@ -24,13 +24,12 @@ bool isFlutterPackage(String packageDir) {
 
 class _Pubspec {
   final pubspek.Pubspec _inner;
-  final Map _content;
+  final yaml.YamlMap _content;
 
   Set<String>? _dependentSdks;
 
-  _Pubspec(Map content)
-      : _inner = pubspek.Pubspec.fromJson(content, lenient: true),
-        _content = content;
+  _Pubspec(this._content)
+      : _inner = pubspek.Pubspec.fromJson(_content, lenient: true);
 
   Map<String, Dependency> get dependencies => _inner.dependencies;
 
