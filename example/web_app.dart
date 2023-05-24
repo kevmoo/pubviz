@@ -1,7 +1,7 @@
 @JS()
 library web_app;
 
-import 'dart:convert' show htmlEscape, LineSplitter;
+import 'dart:convert' show LineSplitter, htmlEscape;
 import 'dart:html';
 import 'dart:svg' as svg;
 

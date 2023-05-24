@@ -101,14 +101,11 @@ String _getContent(
   VizRoot root,
   FormatOptions format,
   List<String> ignorePackages,
-) {
-  switch (format) {
-    case FormatOptions.html:
-      return dot.toDotHtml(root, ignorePackages: ignorePackages);
-    case FormatOptions.dot:
-      return dot.toDot(root, ignorePackages: ignorePackages);
-  }
-}
+) =>
+    switch (format) {
+      FormatOptions.html => dot.toDotHtml(root, ignorePackages: ignorePackages),
+      FormatOptions.dot => dot.toDot(root, ignorePackages: ignorePackages)
+    };
 
 String _getExtension(FormatOptions format) => format.toString().split('.')[1];
 
