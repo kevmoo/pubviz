@@ -3,7 +3,7 @@ import 'package:pub_semver/pub_semver.dart';
 
 import 'dependency.dart';
 
-class VizPackage extends Comparable<VizPackage> {
+class VizPackage implements Comparable<VizPackage> {
   final String name;
   final Version? version;
   final Set<Dependency> dependencies;

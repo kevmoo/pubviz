@@ -455,7 +455,7 @@ digraph pubviz {
   repo_manager -> collection [label="^1.11.0", penwidth="2"];
   repo_manager -> github [label="^6.0.2", penwidth="2"];
   repo_manager -> gviz [label="^0.3.0", penwidth="2"];
-  repo_manager -> http [label=">=0.12.0 <0.14.0", penwidth="2"];
+  repo_manager -> http [label=">=0.12.0 <2.0.0", penwidth="2"];
   repo_manager -> http_retry [label="^0.1.0", penwidth="2"];
   repo_manager -> http_throttle [label="^1.0.4", penwidth="2"];
   repo_manager -> io [label="^0.3.1", penwidth="2"];
