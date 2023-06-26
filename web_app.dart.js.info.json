@@ -3,12 +3,12 @@
   "dump_minor_version": 1,
   "program": {
     "entrypoint": "function/org-dartlang-app:///example/web_app.dart::main",
-    "size": 121243,
-    "ramUsage": "230.141 MB",
-    "dart2jsVersion": "3.1.0-139.0.dev",
-    "compilationMoment": "2023-05-24 10:44:37.179603",
-    "compilationDuration": 863644,
-    "toJsonDuration": 2000,
+    "size": 121271,
+    "ramUsage": "234.984 MB",
+    "dart2jsVersion": "3.1.0-246.0.dev",
+    "compilationMoment": "2023-06-26 10:36:46.363970",
+    "compilationDuration": 815746,
+    "toJsonDuration": 4000,
     "dumpInfoDuration": 0,
     "noSuchMethodEnabled": false,
     "isRuntimeTypeUsed": true,
@@ -100,7 +100,7 @@
         "id": "library/dart:_js_helper::",
         "kind": "library",
         "name": "_js_helper",
-        "size": 17826,
+        "size": 17838,
         "children": [
           "class/dart:_js_helper::BoundClosure",
           "class/dart:_js_helper::Closure",
@@ -244,7 +244,7 @@
         "id": "library/dart:_rti::",
         "kind": "library",
         "name": "rti",
-        "size": 17659,
+        "size": 17675,
         "children": [
           "class/dart:_rti::Rti",
           "class/dart:_rti::TypeRule",
@@ -2117,6 +2117,7 @@
           "function/dart:_rti::Rti._setPrimary",
           "function/dart:_rti::Rti._setRest",
           "function/dart:_rti::Rti._setSpecializedTestResource",
+          "function/dart:_rti::Rti._unstar",
           "function/dart:_rti::Rti.allocate",
           "function/dart:_rti::Rti.getLegacyErasedRecipe"
         ],
@@ -12894,7 +12895,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "Y5(a,b,c){var s,r,q,p,o,n,m=this\nif(typeof b==\"string\"){s=m.b\nm.EH(s==null?m.b=m.zK():s,b,c)}else if(typeof b==\"number\"&&(b&0x3fffffff)===b){r=m.c\nm.EH(r==null?m.c=m.zK():r,b,c)}else{q=m.d\nif(q==null)q=m.d=m.zK()\np=J.jg(b)&0x3fffffff\no=q[p]\nif(o==null)q[p]=[m.Hn(b,c)]\nelse{n=m.Fh(o,b)\nif(n>=0)o[n].b=c\nelse o.push(m.Hn(b,c))}}}",
+        "code": "Y5(a,b,c){var s,r,q,p,o,n,m=this\nif(typeof b==\"string\"){s=m.b\nm.EH(s==null?m.b=m.zK():s,b,c)}else if(typeof b==\"number\"&&(b&0x3fffffff)===b){r=m.c\nm.EH(r==null?m.c=m.zK():r,b,c)}else{q=m.d\nif(q==null)q=m.d=m.zK()\np=J.jg(b)&1073741823\no=q[p]\nif(o==null)q[p]=[m.Hn(b,c)]\nelse{n=m.Fh(o,b)\nif(n>=0)o[n].b=c\nelse o.push(m.Hn(b,c))}}}",
         "type": "void Function(Object?,Object?)",
         "functionKind": 2
       },
@@ -12995,7 +12996,7 @@
           },
           {
             "name": "key",
-            "type": "Union([exact=JSString], [exact=_EventStream], [subclass=JSInt])",
+            "type": "Union([exact=JSString], [exact=JSUInt31], [exact=_EventStream])",
             "declaredType": "dynamic"
           }
         ],
@@ -13063,7 +13064,7 @@
           },
           {
             "name": "key",
-            "type": "[subclass=JSInt]",
+            "type": "[exact=JSUInt31]",
             "declaredType": "dynamic"
           }
         ],
@@ -13380,7 +13381,7 @@
           "external": false
         },
         "returnType": "int",
-        "inferredReturnType": "[subclass=JSInt]",
+        "inferredReturnType": "[exact=JSUInt31]",
         "parameters": [
           {
             "name": "key",
@@ -13419,7 +13420,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "CX(a){var s=this.d\nif(s==null)return!1\nreturn this.Fh(s[a.giO(a)&0x3fffffff],a)>=0}",
+        "code": "CX(a){var s=this.d\nif(s==null)return!1\nreturn this.Fh(s[a.giO(a)&1073741823],a)>=0}",
         "type": "bool Function(Object?)",
         "functionKind": 2
       },
@@ -13482,7 +13483,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "aa(a){var s,r,q=this.d\nif(q==null)return null\ns=q[J.jg(a)&0x3fffffff]\nr=this.Fh(s,a)\nif(r<0)return null\nreturn s[r].b}",
+        "code": "aa(a){var s,r,q=this.d\nif(q==null)return null\ns=q[J.jg(a)&1073741823]\nr=this.Fh(s,a)\nif(r<0)return null\nreturn s[r].b}",
         "type": "JsLinkedHashMap.V? Function(Object?)",
         "functionKind": 2
       },
@@ -14251,13 +14252,13 @@
           {
             "name": "object",
             "type": "[subclass=Object]",
-            "declaredType": "dynamic"
+            "declaredType": "Object?"
           }
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
         "code": "eQ(a){var s,r=$.xu\nif(r==null)r=$.xu=Symbol(\"identityHashCode\")\ns=a[r]\nif(s==null){s=Math.random()*0x3fffffff|0\na[r]=s}return s}",
-        "type": "int Function(dynamic)",
+        "type": "int Function(Object?)",
         "functionKind": 0
       },
       "dart:_js_helper::Primitives.objectToHumanReadableString": {
@@ -16473,7 +16474,7 @@
         "id": "function/dart:_js_helper::objectHashCode",
         "kind": "function",
         "name": "objectHashCode",
-        "size": 72,
+        "size": 84,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:_js_helper::",
         "children": [],
@@ -16489,13 +16490,13 @@
           {
             "name": "object",
             "type": "[null|subclass=Object]",
-            "declaredType": "dynamic"
+            "declaredType": "Object?"
           }
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "CU(a){if(a==null||typeof a!=\"object\")return J.jg(a)\nelse return A.eQ(a)}",
-        "type": "int Function(dynamic)",
+        "code": "CU(a){if(a==null)return J.jg(a)\nif(typeof a==\"object\")return A.eQ(a)\nreturn J.jg(a)}",
+        "type": "int Function(Object?)",
         "functionKind": 0
       },
       "dart:_js_helper::patchInstance": {
@@ -17918,7 +17919,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads field; writes nothing)",
-        "inlinedCount": 29,
+        "inlinedCount": 30,
         "code": "",
         "type": "int Function(Rti)",
         "functionKind": 0
@@ -17976,7 +17977,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads field; writes nothing)",
-        "inlinedCount": 54,
+        "inlinedCount": 55,
         "code": "",
         "type": "Object? Function(Rti)",
         "functionKind": 0
@@ -18213,7 +18214,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads field; writes nothing)",
-        "inlinedCount": 9,
+        "inlinedCount": 10,
         "code": "",
         "type": "Rti Function(Rti)",
         "functionKind": 0
@@ -18653,6 +18654,35 @@
         "inlinedCount": 1,
         "code": "",
         "type": "void Function(Rti,Object?)",
+        "functionKind": 0
+      },
+      "dart:_rti::Rti._unstar": {
+        "id": "function/dart:_rti::Rti._unstar",
+        "kind": "function",
+        "name": "_unstar",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:_rti::Rti",
+        "children": [],
+        "modifiers": {
+          "static": true,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "Rti",
+        "inferredReturnType": "[exact=Rti]",
+        "parameters": [
+          {
+            "name": "rti",
+            "type": "[exact=Rti]",
+            "declaredType": "Rti"
+          }
+        ],
+        "sideEffects": "SideEffects(reads field; writes nothing)",
+        "inlinedCount": 2,
+        "code": "",
+        "type": "Rti Function(Rti)",
         "functionKind": 0
       },
       "dart:_rti::Rti.allocate": {
@@ -22691,7 +22721,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 44,
+        "inlinedCount": 45,
         "code": "",
         "type": "int Function(Object?)",
         "functionKind": 0
@@ -22778,7 +22808,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 103,
+        "inlinedCount": 104,
         "code": "",
         "type": "Rti Function(Object?)",
         "functionKind": 0
@@ -24580,7 +24610,7 @@
         "id": "function/dart:_rti::_isFutureOr",
         "kind": "function",
         "name": "_isFutureOr",
-        "size": 62,
+        "size": 78,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:_rti::",
         "children": [],
@@ -24601,7 +24631,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "fg(a){var s=this\nreturn s.y.b(a)||A.xZ(v.typeUniverse,s).b(a)}",
+        "code": "fg(a){var s=this,r=s.x===6?s.y:s\nreturn r.y.b(a)||A.xZ(v.typeUniverse,r).b(a)}",
         "type": "bool Function(Object?)",
         "functionKind": 0
       },
@@ -38059,13 +38089,13 @@
           {
             "name": "_window",
             "type": "[subclass=Object]",
-            "declaredType": "dynamic"
+            "declaredType": "Object"
           }
         ],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
         "inlinedCount": 1,
         "code": "",
-        "type": "dynamic Function(dynamic)",
+        "type": "dynamic Function(Object)",
         "functionKind": 3
       },
       "dart:html::_DOMWindowCrossFrame._createSafe": {
@@ -44116,7 +44146,7 @@
         "children": [],
         "inferredType": "[subclass=Object]",
         "code": "",
-        "type": "dynamic"
+        "type": "Object"
       },
       "dart:html::_ElementCssClassSet._element": {
         "id": "field/dart:html::_ElementCssClassSet._element",
@@ -51583,61 +51613,61 @@
     "function/dart:_js_helper::objectHashCode": [
       {
         "id": "function/dart:_interceptors::Interceptor.hashCode",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/dart:_interceptors::JSArray.hashCode",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/dart:_interceptors::JSBool.hashCode",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/dart:_interceptors::JSNull.hashCode",
-        "mask": "[null|subclass=Object]"
+        "mask": "[null]"
       },
       {
         "id": "function/dart:_interceptors::JSNumber.hashCode",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/dart:_interceptors::JSString.hashCode",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/dart:_interceptors::LegacyJavaScriptObject.hashCode",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/dart:_interceptors::getNativeInterceptor"
       },
       {
         "id": "function/dart:_js_helper::BoundClosure.hashCode",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/dart:_js_helper::Primitives.objectHashCode"
       },
       {
         "id": "function/dart:async::_ControllerStream.hashCode",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/dart:core::Duration.hashCode",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/dart:core::Null.hashCode",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/dart:core::Object.hashCode",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/dart:core::bool.hashCode",
-        "mask": "[null|subclass=Object]"
+        "mask": "[subclass=Object]"
       }
     ],
     "function/dart:_js_helper::patchInstance": [
@@ -52743,6 +52773,10 @@
       {
         "id": "function/dart:_rti::_Utils.asInt",
         "mask": "inlined"
+      },
+      {
+        "id": "function/dart:_rti::_Utils.asInt",
+        "mask": "inlined"
       }
     ],
     "function/dart:_rti::Rti._getQuestionArgument": [
@@ -52951,6 +52985,14 @@
         "mask": "inlined"
       },
       {
+        "id": "function/dart:_rti::Rti._getPrimary",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:_rti::_Utils.asRti",
+        "mask": "inlined"
+      },
+      {
         "id": "function/dart:_rti::_Utils.asRti",
         "mask": "inlined"
       },
@@ -53020,6 +53062,24 @@
       },
       {
         "id": "function/dart:_rti::_Utils.asRti"
+      }
+    ],
+    "function/dart:_rti::Rti._unstar": [
+      {
+        "id": "function/dart:_rti::Rti._getKind",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:_rti::Rti._getKind",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:_rti::Rti._getStarArgument",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:_rti::Rti._getStarArgument",
+        "mask": "inlined"
       }
     ],
     "function/dart:_rti::Rti.allocate": [
@@ -57423,10 +57483,6 @@
         "mask": "inlined"
       },
       {
-        "id": "function/dart:_rti::Rti._getKind",
-        "mask": "inlined"
-      },
-      {
         "id": "function/dart:_rti::Rti._getKind"
       },
       {
@@ -57442,10 +57498,6 @@
         "id": "function/dart:_rti::Rti._getRest"
       },
       {
-        "id": "function/dart:_rti::Rti._getStarArgument",
-        "mask": "inlined"
-      },
-      {
         "id": "function/dart:_rti::Rti._getStarArgument"
       },
       {
@@ -57454,6 +57506,13 @@
       },
       {
         "id": "function/dart:_rti::Rti._setSpecializedTestResource"
+      },
+      {
+        "id": "function/dart:_rti::Rti._unstar",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:_rti::Rti._unstar"
       },
       {
         "id": "function/dart:_rti::_Utils.asInt"
@@ -57875,6 +57934,9 @@
     ],
     "function/dart:_rti::_isFutureOr": [
       {
+        "id": "field/dart:_rti::Rti._kind"
+      },
+      {
         "id": "field/dart:_rti::Rti._primary"
       },
       {
@@ -57888,7 +57950,13 @@
         "id": "function/dart:_rti::Rti._getFutureOrArgument"
       },
       {
+        "id": "function/dart:_rti::Rti._getKind"
+      },
+      {
         "id": "function/dart:_rti::Rti._getPrimary"
+      },
+      {
+        "id": "function/dart:_rti::Rti._getStarArgument"
       },
       {
         "id": "function/dart:_rti::Rti._isCheck",
@@ -57900,6 +57968,16 @@
       },
       {
         "id": "function/dart:_rti::Rti._isCheck"
+      },
+      {
+        "id": "function/dart:_rti::Rti._unstar",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:_rti::Rti._unstar"
+      },
+      {
+        "id": "function/dart:_rti::_Utils.asInt"
       },
       {
         "id": "function/dart:_rti::_Utils.asRti",
@@ -72468,7 +72546,7 @@
       "id": "outputUnit/main",
       "kind": "outputUnit",
       "name": "main",
-      "size": 121243,
+      "size": 121271,
       "filename": "web_app.dart.js",
       "imports": []
     }

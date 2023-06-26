@@ -213,8 +213,9 @@ if(a==null)return new A.XO(a)
 s=a.$cachedTrace
 if(s!=null)return s
 return a.$cachedTrace=new A.XO(a)},
-CU(a){if(a==null||typeof a!="object")return J.jg(a)
-else return A.eQ(a)},
+CU(a){if(a==null)return J.jg(a)
+if(typeof a=="object")return A.eQ(a)
+return J.jg(a)},
 ft(a,b,c,d,e,f){switch(b){case 0:return a.$0()
 case 1:return a.$1(c)
 case 2:return a.$2(c,d)
@@ -625,8 +626,8 @@ m4(a,b){throw A.I(A.Zc(A.p(a,A.m(b,null))))},
 p(a,b){return A.h(a)+": type '"+A.m(A.G(a),null)+"' is not a subtype of type '"+b+"'"},
 Zc(a){return new A.x("TypeError: "+a)},
 B(a,b){return new A.x("TypeError: "+A.p(a,b))},
-fg(a){var s=this
-return s.y.b(a)||A.xZ(v.typeUniverse,s).b(a)},
+fg(a){var s=this,r=s.x===6?s.y:s
+return r.y.b(a)||A.xZ(v.typeUniverse,r).b(a)},
 ke(a){return a!=null},
 Ti(a){if(a!=null)return a
 throw A.I(A.B(a,"Object"))},
@@ -2225,7 +2226,7 @@ x4(a){var s=this.CX(a)
 return s},
 CX(a){var s=this.d
 if(s==null)return!1
-return this.Fh(s[a.giO(a)&0x3fffffff],a)>=0},
+return this.Fh(s[a.giO(a)&1073741823],a)>=0},
 q(a,b){var s,r,q,p,o=null
 if(typeof b=="string"){s=this.b
 if(s==null)return o
@@ -2238,7 +2239,7 @@ q=r==null?o:r.b
 return q}else return this.aa(b)},
 aa(a){var s,r,q=this.d
 if(q==null)return null
-s=q[J.jg(a)&0x3fffffff]
+s=q[J.jg(a)&1073741823]
 r=this.Fh(s,a)
 if(r<0)return null
 return s[r].b},
@@ -2247,7 +2248,7 @@ if(typeof b=="string"){s=m.b
 m.EH(s==null?m.b=m.zK():s,b,c)}else if(typeof b=="number"&&(b&0x3fffffff)===b){r=m.c
 m.EH(r==null?m.c=m.zK():r,b,c)}else{q=m.d
 if(q==null)q=m.d=m.zK()
-p=J.jg(b)&0x3fffffff
+p=J.jg(b)&1073741823
 o=q[p]
 if(o==null)q[p]=[m.Hn(b,c)]
 else{n=m.Fh(o,b)
