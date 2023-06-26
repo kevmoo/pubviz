@@ -1,5 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
+// ignore_for_file: require_trailing_commas
+
 part of 'options.dart';
 
 // **************************************************************************
@@ -33,7 +35,7 @@ Options _$parseOptionsResult(ArgResults result) => Options(
 
 const _$FormatOptionsEnumMapBuildCli = <FormatOptions, String>{
   FormatOptions.dot: 'dot',
-  FormatOptions.html: 'html',
+  FormatOptions.html: 'html'
 };
 
 ArgParser _$populateOptionsParser(ArgParser parser) => parser
@@ -46,7 +48,7 @@ ArgParser _$populateOptionsParser(ArgParser parser) => parser
     allowedHelp: <String, String>{
       'dot': 'Generate a GraphViz dot file',
       'html':
-          'Wrap the GraphViz dot format in an HTML template which renders it.',
+          'Wrap the GraphViz dot format in an HTML template which renders it.'
     },
   )
   ..addMultiOption(
