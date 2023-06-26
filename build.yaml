@@ -8,3 +8,7 @@ targets:
       build_web_compilers|entrypoint:
         generate_for:
         - example/**.dart
+      source_gen|combining_builder:
+        options:
+          ignore_for_file:
+            - require_trailing_commas
