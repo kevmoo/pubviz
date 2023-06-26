@@ -41,7 +41,7 @@ class PubDataService extends Service {
     final proc = _isFlutterPkg ? 'flutter' : 'dart';
     final args = [
       ...['pub'],
-      ...commandArgs
+      ...commandArgs,
     ];
 
     _print([proc, ...args].join(' '));

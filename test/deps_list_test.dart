@@ -13,7 +13,7 @@ void main() {
     ['deps', 'empty_deps'],
     ['deps', 'flutter_gallery'],
     ['deps', 'with_dots'],
-    ['mock', 'pub_deps_list']
+    ['mock', 'pub_deps_list'],
   ];
 
   for (var path in depsList.map((e) => p.joinAll(['test', ...e]))) {
