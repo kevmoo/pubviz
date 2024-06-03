@@ -1,7 +1,7 @@
 // ignore_for_file: unreachable_from_main
 
 @JS()
-library web_app;
+library;
 
 import 'dart:convert' show LineSplitter, htmlEscape;
 import 'dart:html';
