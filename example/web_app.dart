@@ -4,20 +4,22 @@
 library;
 
 import 'dart:convert' show LineSplitter, htmlEscape;
-import 'dart:html';
-import 'dart:svg' as svg;
+import 'dart:js_interop';
 
-import 'package:js/js.dart';
+import 'package:web/web.dart';
 
-final zoomBtn = querySelector('#zoomBtn') as ButtonElement;
+final zoomBtn = document.querySelector('#zoomBtn') as HTMLButtonElement;
 
-svg.SvgElement? __root;
+SVGElement? __root;
 
-svg.SvgElement get _root => __root!;
+SVGElement get _root => __root!;
 
 final List<String> _dotContentLines = List.unmodifiable(
   LineSplitter.split(
-    (querySelector('#dot') as ScriptElement).innerHtml!.trim(),
+    ((document.querySelector('#dot') as HTMLScriptElement).innerHTML
+            as JSString)
+        .toDart
+        .trim(),
   ),
 );
 
@@ -27,7 +29,7 @@ void main() {
   _process();
 
   zoomBtn.onClick.listen((_) {
-    __root?.classes.toggle('zoom');
+    __root?.classList.toggle('zoom');
   });
 }
 
@@ -98,7 +100,7 @@ void _process() {
     _updateBody(output);
   } catch (e) {
     final output = '<pre>${htmlEscape.convert(e.toString())}</pre>';
-    document.body!.appendHtml(output);
+    document.body!.append(output.toJS);
   } finally {
     print('Total time generating graph: ${watch.elapsed}');
   }
@@ -116,22 +118,22 @@ void _updateBody(String output) {
       )
       .join('\n');
 
-  document.body!.appendHtml(output, treeSanitizer: NodeTreeSanitizer.trusted);
+  document.body!.insertAdjacentHTML('beforeend', output.toJS);
   zoomBtn.style.display = 'block';
 
-  __root = querySelector('svg') as svg.SvgElement;
+  __root = document.querySelector('svg') as SVGElement;
 
-  for (var element in _root.querySelectorAll('g.node')) {
-    final title = element.querySelector('title')!.text!;
+  for (var element in _root.querySelectorAll('g.node').elements) {
+    final title = element.querySelector('title')!.textContent!;
     element.id = title;
   }
 
-  for (var node in _root.querySelectorAll('g.node')) {
+  for (var node in _root.querySelectorAll('g.node').elements) {
     // NOTE: we are assuming the shape of the generated SVG here – be careful!
     final polygonBorder = node.querySelector('polygon')?.getAttribute('stroke');
     if (polygonBorder != null &&
         polygonBorder.toLowerCase().startsWith('#ff')) {
-      node.classes.add('outdated');
+      node.classList.add('outdated');
     }
 
     node.onClick.listen((MouseEvent event) {
@@ -145,8 +147,8 @@ void _updateBody(String output) {
     });
   }
 
-  for (var node in _root.querySelectorAll('g.edge')) {
-    final title = node.querySelector('title')!.text!;
+  for (var node in _root.querySelectorAll('g.edge').elements) {
+    final title = node.querySelector('title')!.textContent!;
     final things = title.split('->');
     node
       ..setAttribute('x-from', things[0])
@@ -158,67 +160,69 @@ void _updateBody(String output) {
       assert(textFill.startsWith('#'));
       if (textFill.toLowerCase().startsWith('#ff')) {
         // This is an outdated dependency
-        node.classes.add('outdated');
+        node.classList.add('outdated');
       }
     }
   }
 
   final nodesOfInterest = _root.querySelectorAll('g.edge, g.node');
 
-  nodesOfInterest.onMouseEnter.listen((MouseEvent event) {
-    _updateOver(event.currentTarget as svg.GElement);
-  });
+  for (var interest in nodesOfInterest.elements) {
+    interest.onMouseEnter.listen((MouseEvent event) {
+      _updateOver(event.currentTarget as SVGGElement);
+    });
 
-  nodesOfInterest.onMouseLeave.listen((MouseEvent event) {
-    _updateOver(null);
-  });
+    interest.onMouseLeave.listen((MouseEvent event) {
+      _updateOver(null);
+    });
+  }
 }
 
-void _updateOver(svg.GElement? element) {
+void _updateOver(SVGGElement? element) {
   final targetPkg = <String?>[];
   if (element != null) {
-    if (element.classes.contains('edge')) {
+    if (element.classList.contains('edge')) {
       targetPkg
           .addAll([element.attributes['x-to'], element.attributes['x-from']]);
     } else {
-      assert(element.classes.contains('node'));
+      assert(element.classList.contains('node'));
       targetPkg.add(element.id);
     }
   }
 
-  for (var node in _root.querySelectorAll('g.node')) {
+  for (var node in _root.querySelectorAll('g.node').elements) {
     if (targetPkg.contains(node.id)) {
-      node.classes.add('active');
+      node.classList.add('active');
     } else {
-      node.classes.remove('active');
+      node.classList.remove('active');
     }
   }
 
   final fromNodes = <String>[];
   final toNodes = <String>[];
-  for (var node in _root.querySelectorAll('g.edge')) {
+  for (var node in _root.querySelectorAll('g.edge').elements) {
+    final nodeXTo = node.attributes['x-to']!;
+    final nodeXFrom = node.attributes['x-from']!;
     if (targetPkg.length == 2) {
       // then the hover-over is on a line!
-      if (targetPkg.contains(node.attributes['x-to']) &&
-          targetPkg.contains(node.attributes['x-from'])) {
-        node.classes.add('active');
+      if (targetPkg.contains(nodeXTo) && targetPkg.contains(nodeXFrom)) {
+        node.classList.add('active');
       } else {
-        node.classes.remove('active');
+        node.classList.remove('active');
       }
     } else {
-      if (targetPkg.contains(node.attributes['x-to']) ||
-          targetPkg.contains(node.attributes['x-from'])) {
-        if (targetPkg.contains(node.attributes['x-to'])) {
-          fromNodes.add(node.attributes['x-from']!);
+      if (targetPkg.contains(nodeXTo) || targetPkg.contains(nodeXFrom)) {
+        if (targetPkg.contains(nodeXTo)) {
+          fromNodes.add(nodeXFrom);
         }
 
-        if (targetPkg.contains(node.attributes['x-from'])) {
-          toNodes.add(node.attributes['x-to']!);
+        if (targetPkg.contains(nodeXFrom)) {
+          toNodes.add(nodeXTo);
         }
 
-        node.classes.add('active');
+        node.classList.add('active');
       } else {
-        node.classes.remove('active');
+        node.classList.remove('active');
       }
     }
   }
@@ -239,11 +243,21 @@ void _updateOver(svg.GElement? element) {
 // ignore: non_constant_identifier_names
 external String Viz(String src, [VizOptions options]);
 
-@JS()
-@anonymous
-class VizOptions {
+extension type VizOptions._(JSObject _) implements JSObject {
+  external VizOptions({String format, int totalMemory});
+
   external String format;
   external int totalMemory;
+}
 
-  external factory VizOptions({String format, int totalMemory});
+extension on NodeList {
+  Iterable<Element> get elements sync* {
+    for (var i = 0; i < length; i++) {
+      yield item(i)! as Element;
+    }
+  }
+}
+
+extension on NamedNodeMap {
+  String? operator [](String key) => getNamedItem(key)?.value;
 }
