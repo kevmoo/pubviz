@@ -1,7 +1,6 @@
 ## 3.0.1-wip
 
 - require at least Dart 3.4
-- Allow latest `pkg:http`.
 
 ## 3.0.0
 
