@@ -33,7 +33,7 @@ void main() {
     final output = await proc.stdoutStream().join('\n');
     expect(
       output,
-      '''Could not find an option named "bob".
+      '''Could not find an option named "--bob".
 
 $_usage''',
     );
