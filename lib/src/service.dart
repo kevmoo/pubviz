@@ -30,7 +30,7 @@ abstract class Service {
     );
   }
 
-  DepsList rootDeps();
+  DepsPackageEntry rootDeps();
 
   Future<Map<String, VizPackage>> getReferencedPackages(
     bool flagOutdated,

@@ -1,3 +1,8 @@
+## 4.0.0
+
+- Support (Dart 3.6) workspaces.
+- API refactoring to support workspaces.
+
 ## 3.0.1
 
 - require at least Dart 3.5

@@ -18,8 +18,9 @@ class MockDataService extends Service {
   }
 
   @override
-  DepsList rootDeps() {
+  DepsPackageEntry rootDeps() {
     final depsFile = File(p.join(rootPackageDir, 'pub_deps_list.txt'));
-    return DepsList.parse(depsFile.readAsStringSync());
+    final list = DepsList.parse(depsFile.readAsStringSync());
+    return list.packages['repo_manager']!;
   }
 }
