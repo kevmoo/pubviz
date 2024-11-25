@@ -9,11 +9,14 @@ class PubDataService extends Service {
   @override
   final String rootPackageDir;
   final bool _debug;
-  final bool _isFlutterPkg;
+  late final bool _isFlutterPkg;
+  late final String packageName;
 
-  PubDataService(this.rootPackageDir, {bool debug = false})
-      : _debug = debug,
-        _isFlutterPkg = isFlutterPackage(rootPackageDir);
+  PubDataService(this.rootPackageDir, {bool debug = false}) : _debug = debug {
+    final details = packageDeets(rootPackageDir);
+    _isFlutterPkg = details.isFlutterPackage;
+    packageName = details.packageName;
+  }
 
   @override
   Map<String, dynamic> outdated() {
@@ -32,9 +35,11 @@ class PubDataService extends Service {
   }
 
   @override
-  DepsList rootDeps() {
+  DepsPackageEntry rootDeps() {
     final commandOutput = _pubCommand(['deps', '-s', 'list']);
-    return DepsList.parse(commandOutput);
+    final list = DepsList.parse(commandOutput);
+
+    return list.packages[packageName]!;
   }
 
   String _pubCommand(List<String> commandArgs) {

@@ -1,464 +1,469 @@
 {
- "name": "repo_manager",
- "version": "0.0.0",
  "sdks": {
   "Dart": "2.16.0-42.0.dev"
  },
- "sections": {
-  "dependencies": {
-   "args @ 1.6.0": {},
-   "collection @ 1.15.0": {},
-   "github @ 6.2.3": {
-    "http": "^0.12.0",
-    "http_parser": "^3.1.1",
-    "json_annotation": ">=2.0.0 <4.0.0",
-    "meta": "^1.1.0"
-   },
-   "gviz @ 0.3.0": {},
-   "http @ 0.12.2": {
-    "http_parser": ">=0.0.1 <4.0.0",
-    "path": ">=0.9.0 <2.0.0",
-    "pedantic": "^1.0.0"
-   },
-   "http_retry @ 0.1.1+3": {
-    "async": "^2.0.7",
-    "http": ">=0.11.0 <0.13.0"
-   },
-   "http_throttle @ 1.0.4": {
-    "http": ">=0.9.0 <0.13.0",
-    "pool": ">=1.0.0 <2.0.0"
-   },
-   "io @ 0.3.5": {
-    "meta": "^1.0.2",
-    "path": "^1.5.1",
-    "string_scanner": ">=0.1.5 <2.0.0"
-   },
-   "json_annotation @ 3.0.1": {},
-   "lints @ 1.0.1": {},
-   "meta @ 1.7.0": {},
-   "pana @ 0.12.21": {
-    "analyzer": "^0.38.0",
-    "args": ">=0.13.7 <2.0.0",
-    "async": ">=1.13.3 <3.0.0",
-    "cli_util": "^0.1.3",
-    "html": ">=0.13.3 <0.15.0",
-    "http": ">=0.11.3 <0.13.0",
-    "io": "^0.3.3",
-    "json_annotation": ">=2.0.0 <4.0.0",
-    "logging": "^0.11.3+1",
-    "markdown": "^2.0.2",
-    "meta": "^1.1.7",
-    "package_config": ">=0.1.5 <2.0.0",
-    "path": "^1.6.2",
-    "pedantic": "^1.4.0",
-    "pool": "^1.3.6",
-    "pub_semver": "^1.4.2",
-    "pubspec_parse": "^0.1.4",
-    "quiver": ">=0.24.0 <3.0.0",
-    "resource": "^2.1.5",
-    "yaml": "^2.1.15"
-   },
-   "path @ 1.8.0": {},
-   "pool @ 1.5.0": {
-    "async": "^2.5.0",
-    "stack_trace": "^1.10.0"
-   },
-   "pub_semver @ 1.4.4": {
-    "collection": "^1.0.0"
-   },
-   "pubspec_parse @ 0.1.8": {
-    "checked_yaml": "^1.0.0",
-    "json_annotation": ">=1.0.0 <5.0.0",
-    "pub_semver": ">=1.3.2 <3.0.0",
-    "yaml": ">=2.1.12 <4.0.0"
-   },
-   "stack_trace @ 1.10.0": {
-    "path": "^1.8.0"
-   },
-   "stats @ 1.0.1": {
-    "json_annotation": ">=3.0.0 <5.0.0"
-   },
-   "yaml @ 2.2.1": {
-    "charcode": "^1.1.0",
-    "collection": ">=1.1.0 <2.0.0",
-    "string_scanner": ">=0.1.4 <2.0.0",
-    "source_span": ">=1.0.0 <2.0.0"
+ "packages": {
+  "repo_manager": {
+   "name": "repo_manager",
+   "version": "0.0.0",
+   "sections": {
+    "dependencies": {
+     "args @ 1.6.0": {},
+     "collection @ 1.15.0": {},
+     "github @ 6.2.3": {
+      "http": "^0.12.0",
+      "http_parser": "^3.1.1",
+      "json_annotation": ">=2.0.0 <4.0.0",
+      "meta": "^1.1.0"
+     },
+     "gviz @ 0.3.0": {},
+     "http @ 0.12.2": {
+      "http_parser": ">=0.0.1 <4.0.0",
+      "path": ">=0.9.0 <2.0.0",
+      "pedantic": "^1.0.0"
+     },
+     "http_retry @ 0.1.1+3": {
+      "async": "^2.0.7",
+      "http": ">=0.11.0 <0.13.0"
+     },
+     "http_throttle @ 1.0.4": {
+      "http": ">=0.9.0 <0.13.0",
+      "pool": ">=1.0.0 <2.0.0"
+     },
+     "io @ 0.3.5": {
+      "meta": "^1.0.2",
+      "path": "^1.5.1",
+      "string_scanner": ">=0.1.5 <2.0.0"
+     },
+     "json_annotation @ 3.0.1": {},
+     "lints @ 1.0.1": {},
+     "meta @ 1.7.0": {},
+     "pana @ 0.12.21": {
+      "analyzer": "^0.38.0",
+      "args": ">=0.13.7 <2.0.0",
+      "async": ">=1.13.3 <3.0.0",
+      "cli_util": "^0.1.3",
+      "html": ">=0.13.3 <0.15.0",
+      "http": ">=0.11.3 <0.13.0",
+      "io": "^0.3.3",
+      "json_annotation": ">=2.0.0 <4.0.0",
+      "logging": "^0.11.3+1",
+      "markdown": "^2.0.2",
+      "meta": "^1.1.7",
+      "package_config": ">=0.1.5 <2.0.0",
+      "path": "^1.6.2",
+      "pedantic": "^1.4.0",
+      "pool": "^1.3.6",
+      "pub_semver": "^1.4.2",
+      "pubspec_parse": "^0.1.4",
+      "quiver": ">=0.24.0 <3.0.0",
+      "resource": "^2.1.5",
+      "yaml": "^2.1.15"
+     },
+     "path @ 1.8.0": {},
+     "pool @ 1.5.0": {
+      "async": "^2.5.0",
+      "stack_trace": "^1.10.0"
+     },
+     "pub_semver @ 1.4.4": {
+      "collection": "^1.0.0"
+     },
+     "pubspec_parse @ 0.1.8": {
+      "checked_yaml": "^1.0.0",
+      "json_annotation": ">=1.0.0 <5.0.0",
+      "pub_semver": ">=1.3.2 <3.0.0",
+      "yaml": ">=2.1.12 <4.0.0"
+     },
+     "stack_trace @ 1.10.0": {
+      "path": "^1.8.0"
+     },
+     "stats @ 1.0.1": {
+      "json_annotation": ">=3.0.0 <5.0.0"
+     },
+     "yaml @ 2.2.1": {
+      "charcode": "^1.1.0",
+      "collection": ">=1.1.0 <2.0.0",
+      "string_scanner": ">=0.1.4 <2.0.0",
+      "source_span": ">=1.0.0 <2.0.0"
+     }
+    },
+    "dev dependencies": {
+     "build_runner @ 1.9.0": {
+      "args": ">=1.4.0 <2.0.0",
+      "async": ">=1.13.3 <3.0.0",
+      "build": ">=1.0.0 <1.3.0",
+      "build_config": ">=0.4.1 <0.4.3",
+      "build_daemon": "^2.1.0",
+      "build_resolvers": "^1.0.0",
+      "build_runner_core": "^5.1.0",
+      "code_builder": ">2.3.0 <4.0.0",
+      "collection": "^1.14.0",
+      "crypto": ">=0.9.2 <3.0.0",
+      "dart_style": "^1.0.0",
+      "glob": "^1.1.0",
+      "graphs": "^0.2.0",
+      "http_multi_server": "^2.1.0",
+      "io": "^0.3.0",
+      "js": "^0.6.1+1",
+      "logging": "^0.11.2",
+      "meta": "^1.1.0",
+      "mime": "^0.9.3+3",
+      "path": "^1.1.0",
+      "pedantic": "^1.0.0",
+      "pool": "^1.0.0",
+      "pub_semver": "^1.4.0",
+      "pubspec_parse": "^0.1.0",
+      "shelf": ">=0.6.5 <0.8.0",
+      "shelf_web_socket": "^0.2.2+4",
+      "stack_trace": "^1.9.0",
+      "stream_transform": ">=0.0.20 <2.0.0",
+      "timing": "^0.1.1",
+      "watcher": "^0.9.7",
+      "web_socket_channel": "^1.0.9",
+      "yaml": "^2.1.0"
+     },
+     "build_web_compilers @ 2.10.0": {
+      "analyzer": ">=0.30.0 <0.40.0",
+      "archive": "^2.0.0",
+      "bazel_worker": "^0.1.18",
+      "build": ">=1.2.0 <2.0.0",
+      "build_config": ">=0.3.0 <0.5.0",
+      "build_modules": "^2.9.0",
+      "collection": "^1.0.0",
+      "glob": "^1.1.0",
+      "js": "^0.6.1",
+      "logging": "^0.11.2",
+      "meta": "^1.1.0",
+      "path": "^1.4.2",
+      "pool": "^1.3.0",
+      "scratch_space": "^0.0.2",
+      "source_maps": "^0.10.4",
+      "source_span": "^1.4.0",
+      "stack_trace": "^1.9.2"
+     },
+     "json_serializable @ 3.2.3": {
+      "analyzer": ">=0.37.1 <0.39.0",
+      "build": ">=0.12.6 <2.0.0",
+      "build_config": ">=0.2.6 <0.5.0",
+      "json_annotation": ">=3.0.0 <3.1.0",
+      "meta": "^1.1.0",
+      "path": "^1.3.2",
+      "source_gen": "^0.9.0"
+     },
+     "pedantic @ 1.11.1": {},
+     "preload @ 1.1.6": {
+      "build": ">=0.12.1 <2.0.0",
+      "build_config": ">=0.3.0 <5.0.0",
+      "glob": "^1.0.0",
+      "path": "^1.0.0"
+     }
+    }
    }
+  }
+ },
+ "transitiveDependencies": {
+  "analyzer @ 0.38.5": {
+   "args": ">=0.12.1 <2.0.0",
+   "charcode": "^1.1.0",
+   "collection": "^1.10.1",
+   "convert": "^2.0.0",
+   "crypto": ">=1.1.1 <3.0.0",
+   "front_end": "0.1.27",
+   "glob": "^1.0.3",
+   "html": ">=0.13.4+1 <0.15.0",
+   "kernel": "0.3.27",
+   "meta": "^1.0.2",
+   "package_config": ">=0.1.5 <2.0.0",
+   "path": ">=0.9.0 <2.0.0",
+   "pub_semver": "^1.4.2",
+   "source_span": "^1.2.0",
+   "watcher": ">=0.9.6 <0.10.0",
+   "yaml": "^2.1.2"
   },
-  "dev dependencies": {
-   "build_runner @ 1.9.0": {
-    "args": ">=1.4.0 <2.0.0",
-    "async": ">=1.13.3 <3.0.0",
-    "build": ">=1.0.0 <1.3.0",
-    "build_config": ">=0.4.1 <0.4.3",
-    "build_daemon": "^2.1.0",
-    "build_resolvers": "^1.0.0",
-    "build_runner_core": "^5.1.0",
-    "code_builder": ">2.3.0 <4.0.0",
-    "collection": "^1.14.0",
-    "crypto": ">=0.9.2 <3.0.0",
-    "dart_style": "^1.0.0",
-    "glob": "^1.1.0",
-    "graphs": "^0.2.0",
-    "http_multi_server": "^2.1.0",
-    "io": "^0.3.0",
-    "js": "^0.6.1+1",
-    "logging": "^0.11.2",
-    "meta": "^1.1.0",
-    "mime": "^0.9.3+3",
-    "path": "^1.1.0",
-    "pedantic": "^1.0.0",
-    "pool": "^1.0.0",
-    "pub_semver": "^1.4.0",
-    "pubspec_parse": "^0.1.0",
-    "shelf": ">=0.6.5 <0.8.0",
-    "shelf_web_socket": "^0.2.2+4",
-    "stack_trace": "^1.9.0",
-    "stream_transform": ">=0.0.20 <2.0.0",
-    "timing": "^0.1.1",
-    "watcher": "^0.9.7",
-    "web_socket_channel": "^1.0.9",
-    "yaml": "^2.1.0"
-   },
-   "build_web_compilers @ 2.10.0": {
-    "analyzer": ">=0.30.0 <0.40.0",
-    "archive": "^2.0.0",
-    "bazel_worker": "^0.1.18",
-    "build": ">=1.2.0 <2.0.0",
-    "build_config": ">=0.3.0 <0.5.0",
-    "build_modules": "^2.9.0",
-    "collection": "^1.0.0",
-    "glob": "^1.1.0",
-    "js": "^0.6.1",
-    "logging": "^0.11.2",
-    "meta": "^1.1.0",
-    "path": "^1.4.2",
-    "pool": "^1.3.0",
-    "scratch_space": "^0.0.2",
-    "source_maps": "^0.10.4",
-    "source_span": "^1.4.0",
-    "stack_trace": "^1.9.2"
-   },
-   "json_serializable @ 3.2.3": {
-    "analyzer": ">=0.37.1 <0.39.0",
-    "build": ">=0.12.6 <2.0.0",
-    "build_config": ">=0.2.6 <0.5.0",
-    "json_annotation": ">=3.0.0 <3.1.0",
-    "meta": "^1.1.0",
-    "path": "^1.3.2",
-    "source_gen": "^0.9.0"
-   },
-   "pedantic @ 1.11.1": {},
-   "preload @ 1.1.6": {
-    "build": ">=0.12.1 <2.0.0",
-    "build_config": ">=0.3.0 <5.0.0",
-    "glob": "^1.0.0",
-    "path": "^1.0.0"
-   }
+  "archive @ 2.0.13": {
+   "crypto": ">=2.0.0 <3.0.0",
+   "args": ">=1.4.0 <2.0.0",
+   "path": ">=1.5.1 <2.0.0"
   },
-  "transitive dependencies": {
-   "analyzer @ 0.38.5": {
-    "args": ">=0.12.1 <2.0.0",
-    "charcode": "^1.1.0",
-    "collection": "^1.10.1",
-    "convert": "^2.0.0",
-    "crypto": ">=1.1.1 <3.0.0",
-    "front_end": "0.1.27",
-    "glob": "^1.0.3",
-    "html": ">=0.13.4+1 <0.15.0",
-    "kernel": "0.3.27",
-    "meta": "^1.0.2",
-    "package_config": ">=0.1.5 <2.0.0",
-    "path": ">=0.9.0 <2.0.0",
-    "pub_semver": "^1.4.2",
-    "source_span": "^1.2.0",
-    "watcher": ">=0.9.6 <0.10.0",
-    "yaml": "^2.1.2"
-   },
-   "archive @ 2.0.13": {
-    "crypto": ">=2.0.0 <3.0.0",
-    "args": ">=1.4.0 <2.0.0",
-    "path": ">=1.5.1 <2.0.0"
-   },
-   "async @ 2.8.2": {
-    "collection": "^1.15.0",
-    "meta": "^1.1.7"
-   },
-   "bazel_worker @ 0.1.25": {
-    "async": ">1.9.0 <3.0.0",
-    "pedantic": "^1.8.0",
-    "protobuf": ">=0.14.4 <2.0.0"
-   },
-   "build @ 1.2.2": {
-    "analyzer": ">=0.35.0 <0.40.0",
-    "async": ">=1.13.3 <3.0.0",
-    "convert": "^2.0.0",
-    "crypto": ">=0.9.2 <3.0.0",
-    "logging": "^0.11.2",
-    "meta": "^1.1.0",
-    "path": "^1.1.0",
-    "glob": "^1.1.0"
-   },
-   "build_config @ 0.4.2": {
-    "checked_yaml": "^1.0.0",
-    "json_annotation": ">=1.0.0 <4.0.0",
-    "meta": "^1.1.0",
-    "path": "^1.4.0",
-    "pubspec_parse": "^0.1.5",
-    "yaml": "^2.1.11"
-   },
-   "build_daemon @ 2.1.10": {
-    "built_collection": ">=4.1.0 <6.0.0",
-    "built_value": ">=7.0.0 <9.0.0",
-    "http_multi_server": ">=2.0.0 <4.0.0",
-    "logging": ">=0.11.0 <2.0.0",
-    "pedantic": "^1.0.0",
-    "path": "^1.6.2",
-    "pool": "^1.3.6",
-    "shelf": ">=0.7.4 <2.0.0",
-    "shelf_web_socket": ">=0.2.2+4 <2.0.0",
-    "stream_transform": ">=0.0.20 <3.0.0",
-    "watcher": ">=0.9.7 <2.0.0",
-    "web_socket_channel": ">=1.0.9 <3.0.0"
-   },
-   "build_modules @ 2.9.0": {
-    "analyzer": ">0.35.0 <0.40.0",
-    "async": "^2.0.0",
-    "bazel_worker": "^0.1.20",
-    "build": ">=1.2.0 <2.0.0",
-    "build_config": ">=0.3.0 <0.5.0",
-    "collection": "^1.0.0",
-    "crypto": "^2.0.0",
-    "glob": "^1.0.0",
-    "graphs": "^0.2.0",
-    "json_annotation": ">=1.2.0 <4.0.0",
-    "logging": "^0.11.2",
-    "meta": "^1.1.0",
-    "path": "^1.4.2",
-    "pedantic": "^1.0.0",
-    "scratch_space": "^0.0.4"
-   },
-   "build_resolvers @ 1.2.1": {
-    "analyzer": ">=0.35.0 <0.39.0",
-    "build": ">=1.1.0 <1.3.0",
-    "crypto": "^2.0.0",
-    "graphs": "^0.2.0",
-    "logging": "^0.11.2",
-    "package_resolver": "^1.0.0",
-    "path": "^1.1.0",
-    "yaml": "^2.0.0"
-   },
-   "build_runner_core @ 5.1.0": {
-    "async": ">=1.13.3 <3.0.0",
-    "build": ">=1.2.0 <1.3.0",
-    "build_config": ">=0.4.2 <0.4.3",
-    "build_resolvers": "^1.0.0",
-    "collection": "^1.14.0",
-    "convert": "^2.0.1",
-    "crypto": ">=0.9.2 <3.0.0",
-    "glob": "^1.1.0",
-    "graphs": "^0.2.0",
-    "json_annotation": ">=1.0.0 <4.0.0",
-    "logging": "^0.11.2",
-    "meta": "^1.1.0",
-    "path": "^1.1.0",
-    "package_config": "^1.9.0",
-    "pedantic": "^1.0.0",
-    "pool": "^1.0.0",
-    "timing": "^0.1.1",
-    "watcher": "^0.9.7",
-    "yaml": "^2.1.0"
-   },
-   "built_collection @ 4.3.2": {
-    "collection": "^1.7.0",
-    "quiver": ">=0.21.0 <3.0.0"
-   },
-   "built_value @ 7.1.0": {
-    "built_collection": ">=2.0.0 <5.0.0",
-    "collection": "^1.0.0",
-    "fixnum": "^0.10.0",
-    "quiver": ">=0.21.0 <3.0.0"
-   },
-   "charcode @ 1.3.1": {},
-   "checked_yaml @ 1.0.4": {
-    "json_annotation": ">=2.2.0 <5.0.0",
-    "source_span": "^1.0.0",
-    "yaml": ">=2.1.13 <4.0.0"
-   },
-   "cli_util @ 0.1.4": {
-    "path": ">=1.0.0 <2.0.0"
-   },
-   "clock @ 1.1.0": {},
-   "code_builder @ 3.7.0": {
-    "built_collection": ">=3.0.0 <6.0.0",
-    "built_value": ">=7.0.0 <9.0.0",
-    "collection": "^1.14.0",
-    "matcher": "^0.12.0",
-    "meta": "^1.0.5"
-   },
-   "convert @ 2.1.1": {
-    "charcode": "^1.1.0",
-    "typed_data": "^1.1.0"
-   },
-   "crypto @ 2.1.5": {
-    "collection": "^1.0.0",
-    "convert": ">=1.0.0 <3.0.0",
-    "typed_data": "^1.0.0"
-   },
-   "csslib @ 0.16.2": {
-    "source_span": "^1.4.0"
-   },
-   "dart_style @ 1.3.3": {
-    "analyzer": ">=0.38.3 <0.40.0",
-    "args": "^1.0.0",
-    "path": "^1.0.0",
-    "source_span": "^1.4.0"
-   },
-   "file @ 5.2.1": {
-    "intl": ">=0.14.0 <1.0.0",
-    "meta": "^1.1.2",
-    "path": "^1.5.1"
-   },
-   "fixnum @ 0.10.11": {},
-   "front_end @ 0.1.27": {
-    "kernel": "0.3.27",
-    "package_config": "^1.1.0",
-    "meta": "^1.0.2"
-   },
-   "glob @ 1.2.0": {
-    "async": ">=1.2.0 <3.0.0",
-    "collection": "^1.1.0",
-    "node_io": "^1.0.0",
-    "path": "^1.3.0",
-    "pedantic": "^1.2.0",
-    "string_scanner": ">=0.1.0 <2.0.0"
-   },
-   "graphs @ 0.2.0": {},
-   "html @ 0.14.0+4": {
-    "csslib": ">=0.13.2 <0.17.0",
-    "source_span": ">=1.0.0 <2.0.0"
-   },
-   "http_multi_server @ 2.2.0": {
-    "async": ">=1.2.0 <3.0.0"
-   },
-   "http_parser @ 3.1.4": {
-    "charcode": "^1.1.0",
-    "collection": ">=0.9.1 <2.0.0",
-    "source_span": "^1.0.0",
-    "string_scanner": ">=0.0.0 <2.0.0",
-    "typed_data": "^1.1.0"
-   },
-   "intl @ 0.17.0": {
-    "clock": "^1.1.0",
-    "path": "^1.8.0"
-   },
-   "js @ 0.6.3": {},
-   "kernel @ 0.3.27": {
-    "args": ">=0.13.4 <2.0.0",
-    "meta": "^1.0.0"
-   },
-   "logging @ 0.11.4": {},
-   "markdown @ 2.1.8": {
-    "args": "^1.0.0",
-    "charcode": "^1.1.0",
-    "meta": "^1.0.0"
-   },
-   "matcher @ 0.12.11": {
-    "stack_trace": "^1.10.0"
-   },
-   "mime @ 0.9.7": {},
-   "node_interop @ 1.2.1": {
-    "js": "^0.6.1"
-   },
-   "node_io @ 1.2.0": {
-    "file": "^5.0.0",
-    "node_interop": "^1.2.1",
-    "path": "^1.6.2"
-   },
-   "package_config @ 1.9.3": {
-    "path": "^1.6.4",
-    "charcode": "^1.1.0"
-   },
-   "package_resolver @ 1.0.10": {
-    "collection": "^1.9.0",
-    "http": ">0.11.0 <0.13.0",
-    "package_config": ">=0.1.0 <2.0.0",
-    "path": "^1.0.0"
-   },
-   "protobuf @ 1.1.4": {
-    "fixnum": "^0.10.9"
-   },
-   "quiver @ 2.1.5": {
-    "matcher": ">=0.12.5 <0.13.0",
-    "meta": ">=1.0.0 <2.0.0"
-   },
-   "resource @ 2.1.7": {
-    "typed_data": "^1.0.0"
-   },
-   "scratch_space @ 0.0.4+3": {
-    "build": ">=0.10.0 <2.0.0",
-    "crypto": ">=2.0.3 <4.0.0",
-    "path": "^1.1.0",
-    "pedantic": "^1.0.0",
-    "pool": "^1.0.0"
-   },
-   "shelf @ 0.7.9": {
-    "async": "^2.0.7",
-    "collection": "^1.5.0",
-    "http_parser": "^3.1.0",
-    "path": "^1.0.0",
-    "stack_trace": "^1.0.0",
-    "stream_channel": ">=1.0.0 <3.0.0"
-   },
-   "shelf_web_socket @ 0.2.4+1": {
-    "shelf": ">=0.7.0 <2.0.0",
-    "stream_channel": ">1.4.0 <3.0.0",
-    "web_socket_channel": ">=1.0.0 <3.0.0"
-   },
-   "source_gen @ 0.9.4+6": {
-    "analyzer": ">=0.37.1 <0.40.0",
-    "async": "^2.0.7",
-    "build": "^1.0.0",
-    "dart_style": "^1.0.0",
-    "glob": "^1.1.0",
-    "meta": "^1.1.0",
-    "path": "^1.3.2",
-    "pedantic": "^1.0.0",
-    "source_span": "^1.4.0"
-   },
-   "source_maps @ 0.10.10": {
-    "source_span": "^1.8.0"
-   },
-   "source_span @ 1.8.1": {
-    "collection": "^1.15.0",
-    "path": "^1.8.0",
-    "term_glyph": "^1.2.0"
-   },
-   "stream_channel @ 2.1.0": {
-    "async": "^2.5.0"
-   },
-   "stream_transform @ 1.2.0": {},
-   "string_scanner @ 1.1.0": {
-    "charcode": "^1.2.0",
-    "source_span": "^1.8.0"
-   },
-   "term_glyph @ 1.2.0": {},
-   "timing @ 0.1.1+3": {
-    "json_annotation": ">=1.0.0 <5.0.0"
-   },
-   "typed_data @ 1.3.0": {
-    "collection": "^1.15.0"
-   },
-   "watcher @ 0.9.7+15": {
-    "async": "^2.0.0",
-    "path": "^1.0.0",
-    "pedantic": "^1.1.0"
-   },
-   "web_socket_channel @ 1.2.0": {
-    "async": ">=1.3.0 <3.0.0",
-    "crypto": ">=0.9.2 <4.0.0",
-    "stream_channel": ">=1.2.0 <3.0.0"
-   }
+  "async @ 2.8.2": {
+   "collection": "^1.15.0",
+   "meta": "^1.1.7"
+  },
+  "bazel_worker @ 0.1.25": {
+   "async": ">1.9.0 <3.0.0",
+   "pedantic": "^1.8.0",
+   "protobuf": ">=0.14.4 <2.0.0"
+  },
+  "build @ 1.2.2": {
+   "analyzer": ">=0.35.0 <0.40.0",
+   "async": ">=1.13.3 <3.0.0",
+   "convert": "^2.0.0",
+   "crypto": ">=0.9.2 <3.0.0",
+   "logging": "^0.11.2",
+   "meta": "^1.1.0",
+   "path": "^1.1.0",
+   "glob": "^1.1.0"
+  },
+  "build_config @ 0.4.2": {
+   "checked_yaml": "^1.0.0",
+   "json_annotation": ">=1.0.0 <4.0.0",
+   "meta": "^1.1.0",
+   "path": "^1.4.0",
+   "pubspec_parse": "^0.1.5",
+   "yaml": "^2.1.11"
+  },
+  "build_daemon @ 2.1.10": {
+   "built_collection": ">=4.1.0 <6.0.0",
+   "built_value": ">=7.0.0 <9.0.0",
+   "http_multi_server": ">=2.0.0 <4.0.0",
+   "logging": ">=0.11.0 <2.0.0",
+   "pedantic": "^1.0.0",
+   "path": "^1.6.2",
+   "pool": "^1.3.6",
+   "shelf": ">=0.7.4 <2.0.0",
+   "shelf_web_socket": ">=0.2.2+4 <2.0.0",
+   "stream_transform": ">=0.0.20 <3.0.0",
+   "watcher": ">=0.9.7 <2.0.0",
+   "web_socket_channel": ">=1.0.9 <3.0.0"
+  },
+  "build_modules @ 2.9.0": {
+   "analyzer": ">0.35.0 <0.40.0",
+   "async": "^2.0.0",
+   "bazel_worker": "^0.1.20",
+   "build": ">=1.2.0 <2.0.0",
+   "build_config": ">=0.3.0 <0.5.0",
+   "collection": "^1.0.0",
+   "crypto": "^2.0.0",
+   "glob": "^1.0.0",
+   "graphs": "^0.2.0",
+   "json_annotation": ">=1.2.0 <4.0.0",
+   "logging": "^0.11.2",
+   "meta": "^1.1.0",
+   "path": "^1.4.2",
+   "pedantic": "^1.0.0",
+   "scratch_space": "^0.0.4"
+  },
+  "build_resolvers @ 1.2.1": {
+   "analyzer": ">=0.35.0 <0.39.0",
+   "build": ">=1.1.0 <1.3.0",
+   "crypto": "^2.0.0",
+   "graphs": "^0.2.0",
+   "logging": "^0.11.2",
+   "package_resolver": "^1.0.0",
+   "path": "^1.1.0",
+   "yaml": "^2.0.0"
+  },
+  "build_runner_core @ 5.1.0": {
+   "async": ">=1.13.3 <3.0.0",
+   "build": ">=1.2.0 <1.3.0",
+   "build_config": ">=0.4.2 <0.4.3",
+   "build_resolvers": "^1.0.0",
+   "collection": "^1.14.0",
+   "convert": "^2.0.1",
+   "crypto": ">=0.9.2 <3.0.0",
+   "glob": "^1.1.0",
+   "graphs": "^0.2.0",
+   "json_annotation": ">=1.0.0 <4.0.0",
+   "logging": "^0.11.2",
+   "meta": "^1.1.0",
+   "path": "^1.1.0",
+   "package_config": "^1.9.0",
+   "pedantic": "^1.0.0",
+   "pool": "^1.0.0",
+   "timing": "^0.1.1",
+   "watcher": "^0.9.7",
+   "yaml": "^2.1.0"
+  },
+  "built_collection @ 4.3.2": {
+   "collection": "^1.7.0",
+   "quiver": ">=0.21.0 <3.0.0"
+  },
+  "built_value @ 7.1.0": {
+   "built_collection": ">=2.0.0 <5.0.0",
+   "collection": "^1.0.0",
+   "fixnum": "^0.10.0",
+   "quiver": ">=0.21.0 <3.0.0"
+  },
+  "charcode @ 1.3.1": {},
+  "checked_yaml @ 1.0.4": {
+   "json_annotation": ">=2.2.0 <5.0.0",
+   "source_span": "^1.0.0",
+   "yaml": ">=2.1.13 <4.0.0"
+  },
+  "cli_util @ 0.1.4": {
+   "path": ">=1.0.0 <2.0.0"
+  },
+  "clock @ 1.1.0": {},
+  "code_builder @ 3.7.0": {
+   "built_collection": ">=3.0.0 <6.0.0",
+   "built_value": ">=7.0.0 <9.0.0",
+   "collection": "^1.14.0",
+   "matcher": "^0.12.0",
+   "meta": "^1.0.5"
+  },
+  "convert @ 2.1.1": {
+   "charcode": "^1.1.0",
+   "typed_data": "^1.1.0"
+  },
+  "crypto @ 2.1.5": {
+   "collection": "^1.0.0",
+   "convert": ">=1.0.0 <3.0.0",
+   "typed_data": "^1.0.0"
+  },
+  "csslib @ 0.16.2": {
+   "source_span": "^1.4.0"
+  },
+  "dart_style @ 1.3.3": {
+   "analyzer": ">=0.38.3 <0.40.0",
+   "args": "^1.0.0",
+   "path": "^1.0.0",
+   "source_span": "^1.4.0"
+  },
+  "file @ 5.2.1": {
+   "intl": ">=0.14.0 <1.0.0",
+   "meta": "^1.1.2",
+   "path": "^1.5.1"
+  },
+  "fixnum @ 0.10.11": {},
+  "front_end @ 0.1.27": {
+   "kernel": "0.3.27",
+   "package_config": "^1.1.0",
+   "meta": "^1.0.2"
+  },
+  "glob @ 1.2.0": {
+   "async": ">=1.2.0 <3.0.0",
+   "collection": "^1.1.0",
+   "node_io": "^1.0.0",
+   "path": "^1.3.0",
+   "pedantic": "^1.2.0",
+   "string_scanner": ">=0.1.0 <2.0.0"
+  },
+  "graphs @ 0.2.0": {},
+  "html @ 0.14.0+4": {
+   "csslib": ">=0.13.2 <0.17.0",
+   "source_span": ">=1.0.0 <2.0.0"
+  },
+  "http_multi_server @ 2.2.0": {
+   "async": ">=1.2.0 <3.0.0"
+  },
+  "http_parser @ 3.1.4": {
+   "charcode": "^1.1.0",
+   "collection": ">=0.9.1 <2.0.0",
+   "source_span": "^1.0.0",
+   "string_scanner": ">=0.0.0 <2.0.0",
+   "typed_data": "^1.1.0"
+  },
+  "intl @ 0.17.0": {
+   "clock": "^1.1.0",
+   "path": "^1.8.0"
+  },
+  "js @ 0.6.3": {},
+  "kernel @ 0.3.27": {
+   "args": ">=0.13.4 <2.0.0",
+   "meta": "^1.0.0"
+  },
+  "logging @ 0.11.4": {},
+  "markdown @ 2.1.8": {
+   "args": "^1.0.0",
+   "charcode": "^1.1.0",
+   "meta": "^1.0.0"
+  },
+  "matcher @ 0.12.11": {
+   "stack_trace": "^1.10.0"
+  },
+  "mime @ 0.9.7": {},
+  "node_interop @ 1.2.1": {
+   "js": "^0.6.1"
+  },
+  "node_io @ 1.2.0": {
+   "file": "^5.0.0",
+   "node_interop": "^1.2.1",
+   "path": "^1.6.2"
+  },
+  "package_config @ 1.9.3": {
+   "path": "^1.6.4",
+   "charcode": "^1.1.0"
+  },
+  "package_resolver @ 1.0.10": {
+   "collection": "^1.9.0",
+   "http": ">0.11.0 <0.13.0",
+   "package_config": ">=0.1.0 <2.0.0",
+   "path": "^1.0.0"
+  },
+  "protobuf @ 1.1.4": {
+   "fixnum": "^0.10.9"
+  },
+  "quiver @ 2.1.5": {
+   "matcher": ">=0.12.5 <0.13.0",
+   "meta": ">=1.0.0 <2.0.0"
+  },
+  "resource @ 2.1.7": {
+   "typed_data": "^1.0.0"
+  },
+  "scratch_space @ 0.0.4+3": {
+   "build": ">=0.10.0 <2.0.0",
+   "crypto": ">=2.0.3 <4.0.0",
+   "path": "^1.1.0",
+   "pedantic": "^1.0.0",
+   "pool": "^1.0.0"
+  },
+  "shelf @ 0.7.9": {
+   "async": "^2.0.7",
+   "collection": "^1.5.0",
+   "http_parser": "^3.1.0",
+   "path": "^1.0.0",
+   "stack_trace": "^1.0.0",
+   "stream_channel": ">=1.0.0 <3.0.0"
+  },
+  "shelf_web_socket @ 0.2.4+1": {
+   "shelf": ">=0.7.0 <2.0.0",
+   "stream_channel": ">1.4.0 <3.0.0",
+   "web_socket_channel": ">=1.0.0 <3.0.0"
+  },
+  "source_gen @ 0.9.4+6": {
+   "analyzer": ">=0.37.1 <0.40.0",
+   "async": "^2.0.7",
+   "build": "^1.0.0",
+   "dart_style": "^1.0.0",
+   "glob": "^1.1.0",
+   "meta": "^1.1.0",
+   "path": "^1.3.2",
+   "pedantic": "^1.0.0",
+   "source_span": "^1.4.0"
+  },
+  "source_maps @ 0.10.10": {
+   "source_span": "^1.8.0"
+  },
+  "source_span @ 1.8.1": {
+   "collection": "^1.15.0",
+   "path": "^1.8.0",
+   "term_glyph": "^1.2.0"
+  },
+  "stream_channel @ 2.1.0": {
+   "async": "^2.5.0"
+  },
+  "stream_transform @ 1.2.0": {},
+  "string_scanner @ 1.1.0": {
+   "charcode": "^1.2.0",
+   "source_span": "^1.8.0"
+  },
+  "term_glyph @ 1.2.0": {},
+  "timing @ 0.1.1+3": {
+   "json_annotation": ">=1.0.0 <5.0.0"
+  },
+  "typed_data @ 1.3.0": {
+   "collection": "^1.15.0"
+  },
+  "watcher @ 0.9.7+15": {
+   "async": "^2.0.0",
+   "path": "^1.0.0",
+   "pedantic": "^1.1.0"
+  },
+  "web_socket_channel @ 1.2.0": {
+   "async": ">=1.3.0 <3.0.0",
+   "crypto": ">=0.9.2 <4.0.0",
+   "stream_channel": ">=1.2.0 <3.0.0"
   }
  }
 }
+

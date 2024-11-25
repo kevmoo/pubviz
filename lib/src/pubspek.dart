@@ -9,7 +9,7 @@ import 'package:pubspec_parse/pubspec_parse.dart' as pubspek show Pubspec;
 import 'package:pubspec_parse/pubspec_parse.dart' hide Pubspec;
 import 'package:yaml/yaml.dart' as yaml;
 
-bool isFlutterPackage(String packageDir) {
+({String packageName, bool isFlutterPackage}) packageDeets(String packageDir) {
   final path = p.join(packageDir, 'pubspec.yaml');
 
   final map = yaml.loadYaml(
@@ -19,7 +19,10 @@ bool isFlutterPackage(String packageDir) {
 
   final pubspec = _Pubspec(map);
 
-  return pubspec.usesFlutter;
+  return (
+    packageName: pubspec._inner.name,
+    isFlutterPackage: pubspec.usesFlutter,
+  );
 }
 
 class _Pubspec {

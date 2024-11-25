@@ -2,23 +2,19 @@ import 'package:collection/collection.dart';
 import 'package:pub_semver/pub_semver.dart';
 import 'package:string_scanner/string_scanner.dart';
 
-class DepsList extends VersionedEntry {
+class DepsList {
   static final _sdkLine = RegExp(r'(\w+) SDK (.+)\n');
-  static final _sourcePackageLine = RegExp('($_pkgName) (.+)\n');
-  static final _emptyLine = RegExp(r'\n');
 
   final Map<String, Version> sdks;
-  final Map<String, Map<VersionedEntry, Map<String, VersionConstraint>>>
-      sections;
+  final Map<String, DepsPackageEntry> packages;
+  final Map<VersionedEntry, Map<String, VersionConstraint>>
+      transitiveDependencies;
 
-  Map<VersionedEntry, Map<String, VersionConstraint>> get allEntries =>
-      CombinedMapView(sections.values);
-
-  DepsList._(
-    super.entry,
-    this.sdks,
-    this.sections,
-  ) : super.copy();
+  DepsList._(this.sdks, this.packages, {required this.transitiveDependencies}) {
+    for (var entry in packages.values) {
+      entry._parent = this;
+    }
+  }
 
   factory DepsList.parse(String input) {
     final scanner = StringScanner(input);
@@ -36,22 +32,70 @@ class DepsList extends VersionedEntry {
       scanSdk();
     } while (scanner.matches(_sdkLine));
 
-    scanner.expect(_sourcePackageLine, name: 'Source package');
+    final pkgs = <String, DepsPackageEntry>{};
+    while (scanner.matches(_packageLine)) {
+      final entry = DepsPackageEntry._parse(scanner);
+      pkgs[entry.name] = entry;
+    }
+
+    final section = scanner.matches(_transitiveDepsHeaderLine)
+        ? _scanSection(scanner, headerPattern: _transitiveDepsHeaderLine)
+            .entries
+        : <VersionedEntry, Map<String, VersionConstraint>>{};
+
+    return DepsList._(
+      sdks,
+      pkgs,
+      transitiveDependencies: section,
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+        'sdks': sdks,
+        'packages': packages,
+        'transitiveDependencies':
+            transitiveDependencies.map((k, v) => MapEntry(k.toString(), v)),
+      };
+}
+
+class DepsPackageEntry extends VersionedEntry {
+  static final _emptyLine = RegExp(r'\n');
+
+  final Map<String, Map<VersionedEntry, Map<String, VersionConstraint>>>
+      sections;
+
+  late final DepsList _parent;
+
+  Map<VersionedEntry, Map<String, VersionConstraint>> get allEntries =>
+      CombinedMapView([
+        ..._parent.packages.values.expand((e) => e.sections.values),
+        _parent.transitiveDependencies,
+      ]);
+
+  DepsPackageEntry._(
+    super.entry,
+    this.sections,
+  ) : super.copy();
+
+  factory DepsPackageEntry._parse(StringScanner scanner) {
+    scanner.expect(_packageLine, name: 'Source package');
+
     final sourcePackage = VersionedEntry.fromMatch(scanner.lastMatch!);
 
     final sections =
         <String, Map<VersionedEntry, Map<String, VersionConstraint>>>{};
 
     while (scanner.scan(_emptyLine)) {
-      final section = _scanSection(scanner);
-      sections[section.key] = section.value;
+      if (!scanner.matches(_sectionHeaderLine)) {
+        break;
+      }
+
+      final section = _scanSection(scanner, headerPattern: _sectionHeaderLine);
+      sections[section.name] = section.entries;
     }
 
-    assert(scanner.isDone, '${scanner.position} of ${input.length}');
-
-    return DepsList._(
+    return DepsPackageEntry._(
       sourcePackage,
-      sdks,
       sections,
     );
   }
@@ -59,9 +103,6 @@ class DepsList extends VersionedEntry {
   Map<String, dynamic> toJson() => {
         'name': name,
         'version': version.toString(),
-        'sdks': {
-          for (var sdk in sdks.entries) sdk.key: sdk.value.toString(),
-        },
         'sections': {
           for (var section in sections.entries)
             section.key: {
@@ -87,13 +128,15 @@ const _identifierRegExp = r'[a-zA-Z_]\w*';
 /// when publishing a package to pub.dev.
 const _pkgName = '$_identifierRegExp(?:\\.$_identifierRegExp)*';
 
-final _sectionHeaderLine = RegExp(r'([a-zA-Z ]+):\n');
+final _sectionHeaderLine = RegExp(r'(dependencies|dev dependencies):\n');
+final _transitiveDepsHeaderLine = RegExp(r'(transitive dependencies):\n');
+final _packageLine = RegExp('($_pkgName) (\\d.+)\n');
 final _usageLine = RegExp('- ($_pkgName) (.+)\n');
 final _depLine = RegExp('  - ($_pkgName) (.+)\n');
 
-MapEntry<String, Map<VersionedEntry, Map<String, VersionConstraint>>>
-    _scanSection(StringScanner scanner) {
-  scanner.expect(_sectionHeaderLine, name: 'section header');
+({String name, Map<VersionedEntry, Map<String, VersionConstraint>> entries})
+    _scanSection(StringScanner scanner, {required Pattern headerPattern}) {
+  scanner.expect(headerPattern, name: 'section header');
   final header = scanner.lastMatch![1]!;
 
   final entries = <VersionedEntry, Map<String, VersionConstraint>>{};
@@ -115,7 +158,7 @@ MapEntry<String, Map<VersionedEntry, Map<String, VersionConstraint>>>
     scanUsage();
   } while (scanner.matches(_usageLine));
 
-  return MapEntry(header, entries);
+  return (name: header, entries: entries);
 }
 
 class VersionedEntry {
