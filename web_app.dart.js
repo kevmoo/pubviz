@@ -1615,8 +1615,8 @@ if(q.length!==0)n.push("    To: "+B.Nm.h(q,", "))
 A.JS(B.Nm.h(n,"\n"))}},
 it(a){return new A.q4(A.ld(a),u.d)},
 ld(a){return function(){var t=a
-var s=0,r=1,q,p,o
-return function $async$it(b,c,d){if(c===1){q=d
+var s=0,r=1,q=[],p,o
+return function $async$it(b,c,d){if(c===1){q.push(d)
 s=r}while(true)switch(s){case 0:p=0
 case 2:if(!(p<t.length)){s=4
 break}o=t.item(p)
@@ -1627,7 +1627,7 @@ case 5:case 3:++p
 s=2
 break
 case 4:return 0
-case 1:return b.c=q,3}}}},
+case 1:return b.c=q.at(-1),3}}}},
 E8(a,b){var t=a.getNamedItem(b)
 return t==null?null:t.value},
 e:function e(){},

@@ -3,11 +3,11 @@
   "dump_minor_version": 1,
   "program": {
     "entrypoint": "function/org-dartlang-app:///example/web_app.dart::main",
-    "size": 76033,
+    "size": 76049,
     "ramUsage": "N/A MB",
-    "dart2jsVersion": "3.7.0-50.0.dev",
-    "compilationMoment": "2024-10-23 15:36:11.013937",
-    "compilationDuration": 714277,
+    "dart2jsVersion": "3.7.0-164.0.dev",
+    "compilationMoment": "2024-11-24 21:21:48.559917",
+    "compilationDuration": 739536,
     "toJsonDuration": 0,
     "dumpInfoDuration": 0,
     "noSuchMethodEnabled": false,
@@ -530,7 +530,7 @@
         "id": "library/org-dartlang-app:///example/web_app.dart::",
         "kind": "library",
         "name": "<unnamed>",
-        "size": 4423,
+        "size": 4439,
         "children": [
           "field/org-dartlang-app:///example/web_app.dart::__root",
           "field/org-dartlang-app:///example/web_app.dart::_dotContentLines",
@@ -46460,7 +46460,7 @@
       "id": "outputUnit/main",
       "kind": "outputUnit",
       "name": "main",
-      "size": 76033,
+      "size": 76049,
       "filename": "web_app.dart.js",
       "imports": []
     }
