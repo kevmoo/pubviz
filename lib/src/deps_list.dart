@@ -128,7 +128,8 @@ const _identifierRegExp = r'[a-zA-Z_]\w*';
 /// when publishing a package to pub.dev.
 const _pkgName = '$_identifierRegExp(?:\\.$_identifierRegExp)*';
 
-final _sectionHeaderLine = RegExp(r'(dependencies|dev dependencies):\n');
+final _sectionHeaderLine =
+    RegExp(r'(dependencies|dev dependencies|dependency overrides):\n');
 final _transitiveDepsHeaderLine = RegExp(r'(transitive dependencies):\n');
 final _packageLine = RegExp('($_pkgName) (\\d.+)\n');
 final _usageLine = RegExp('- ($_pkgName) (.+)\n');
