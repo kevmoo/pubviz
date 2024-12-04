@@ -11,12 +11,13 @@ const _write = false;
 
 void main() {
   const depsList = [
-    ['deps', 'knarly_deps'],
     ['deps', 'empty_deps'],
     ['deps', 'flutter_gallery'],
+    ['deps', 'knarly_deps'],
     ['deps', 'with_dots'],
-    ['mock', 'pub_deps_list'],
+    ['deps', 'with_overrides'],
     ['mock', 'json_serial'],
+    ['mock', 'pub_deps_list'],
   ];
 
   for (var path in depsList.map((e) => p.joinAll(['test', ...e]))) {

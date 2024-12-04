@@ -1,3 +1,7 @@
+## 4.0.1
+
+- Fix issue when package has dependency overrides.
+
 ## 4.0.0
 
 - Support (Dart 3.6) workspaces.
