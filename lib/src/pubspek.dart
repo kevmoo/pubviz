@@ -71,10 +71,8 @@ class _Pubspec {
           _dependentSdks!.add(value.sdk);
         }
       });
-      if (_inner.environment != null) {
-        final keys = _inner.environment!.keys.toList()..remove('sdk');
-        _dependentSdks!.addAll(keys);
-      }
+      final keys = _inner.environment.keys.toList()..remove('sdk');
+      _dependentSdks!.addAll(keys);
     }
     return _dependentSdks!;
   }
