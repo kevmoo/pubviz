@@ -47,11 +47,7 @@ class Options {
   )
   final bool version;
 
-  @CliOption(
-    abbr: '?',
-    help: 'Print this help content.',
-    negatable: false,
-  )
+  @CliOption(abbr: '?', help: 'Print this help content.', negatable: false)
   final bool help;
 
   final ArgResults? command;

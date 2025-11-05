@@ -51,18 +51,19 @@ void main() {
 
 Future<void> _initTest() async {
   // add pubspec
-  final content =
-      await File(p.join('test', 'test_pubspec.yaml')).readAsString();
+  final content = await File(
+    p.join('test', 'test_pubspec.yaml'),
+  ).readAsString();
 
   await d.file('pubspec.yaml', content).create();
 
   // NOTE: since all dependencies in the the sample pubspec are in pubviz
   //       we can use offline to improve speed.
-  final pr = await Process.run(
-    dartPath,
-    ['pub', 'get', '--offline'],
-    workingDirectory: d.sandbox,
-  );
+  final pr = await Process.run(dartPath, [
+    'pub',
+    'get',
+    '--offline',
+  ], workingDirectory: d.sandbox);
 
   if (pr.exitCode != 0) {
     fail([pr.stdout, pr.stderr].join('\n'));

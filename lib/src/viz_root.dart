@@ -12,8 +12,8 @@ class VizRoot {
   final Map<String, VizPackage> packages;
 
   VizRoot._(this.rootPackageName, Map<String, VizPackage> packages)
-      : assert(packages.containsKey(rootPackageName)),
-        packages = UnmodifiableMapView(packages);
+    : assert(packages.containsKey(rootPackageName)),
+      packages = UnmodifiableMapView(packages);
 
   VizPackage get root => packages[rootPackageName]!;
 
@@ -43,8 +43,9 @@ class VizRoot {
         if (package != null &&
             package.latestVersion != null &&
             dep.versionConstraint != VersionConstraint.empty) {
-          var allowsLatest =
-              dep.versionConstraint.allows(package.latestVersion!);
+          var allowsLatest = dep.versionConstraint.allows(
+            package.latestVersion!,
+          );
 
           if (!allowsLatest) {
             // it could be that the versionConstraint is actually *ahead* of
@@ -104,8 +105,9 @@ Iterable<Dependency> _allDeps(
   Iterable<String>? ignorePackages,
 ) sync* {
   ignorePackages ??= const [];
-  for (var pkg
-      in root.packages.values.where((v) => !ignorePackages!.contains(v.name))) {
+  for (var pkg in root.packages.values.where(
+    (v) => !ignorePackages!.contains(v.name),
+  )) {
     yield* pkg.dependencies;
   }
 }

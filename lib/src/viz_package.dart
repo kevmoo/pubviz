@@ -22,12 +22,8 @@ class VizPackage implements Comparable<VizPackage> {
 
   final Version? latestVersion;
 
-  VizPackage(
-    this.name,
-    this.version,
-    Set<Dependency> deps,
-    this.latestVersion,
-  ) : dependencies = UnmodifiableSetView(deps);
+  VizPackage(this.name, this.version, Set<Dependency> deps, this.latestVersion)
+    : dependencies = UnmodifiableSetView(deps);
 
   @override
   String toString() => '$name @ $version';

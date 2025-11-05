@@ -17,7 +17,7 @@ class Dependency implements Comparable<Dependency> {
   }
 
   Dependency(this.name, String versionConstraint, this.isDevDependency)
-      : versionConstraint = _parseOrNull(versionConstraint);
+    : versionConstraint = _parseOrNull(versionConstraint);
 
   static Set<Dependency> getDependencies(
     parse.Pubspec pubspec, {

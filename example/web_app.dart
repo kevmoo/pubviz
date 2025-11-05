@@ -182,8 +182,10 @@ void _updateOver(SVGGElement? element) {
   final targetPkg = <String?>[];
   if (element != null) {
     if (element.classList.contains('edge')) {
-      targetPkg
-          .addAll([element.attributes['x-to'], element.attributes['x-from']]);
+      targetPkg.addAll([
+        element.attributes['x-to'],
+        element.attributes['x-from'],
+      ]);
     } else {
       assert(element.classList.contains('node'));
       targetPkg.add(element.id);

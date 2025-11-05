@@ -22,8 +22,9 @@ String toDot(
     edgeProperties: {'fontcolor': 'gray'},
   );
 
-  for (var pack
-      in item.packages.values.where((v) => !ignorePackages.contains(v.name))) {
+  for (var pack in item.packages.values.where(
+    (v) => !ignorePackages.contains(v.name),
+  )) {
     gviz.addBlankLine();
     _writeDot(pack, gviz, item.root.name, escapeLabels, ignorePackages);
   }

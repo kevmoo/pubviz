@@ -61,9 +61,7 @@ class PubDataService extends Service {
     }
     pubEnv.add('pkg.pubviz');
 
-    final environment = <String, String>{
-      _pubEnvironment: pubEnv.join(':'),
-    };
+    final environment = <String, String>{_pubEnvironment: pubEnv.join(':')};
 
     final result = Process.runSync(
       proc,
@@ -84,12 +82,7 @@ class PubDataService extends Service {
         // NOOP
       }
 
-      throw ProcessException(
-        proc,
-        args,
-        message,
-        result.exitCode,
-      );
+      throw ProcessException(proc, args, message, result.exitCode);
     }
 
     return result.stdout as String;
