@@ -109,10 +109,7 @@ void main() {
     });
 
     test('outdated', () async {
-      final vp = await VizRoot.forDirectory(
-        service,
-        flagOutdated: true,
-      );
+      final vp = await VizRoot.forDirectory(service, flagOutdated: true);
 
       expect(vp.root.name, 'repo_manager');
       expect(vp.packages, hasLength(82));

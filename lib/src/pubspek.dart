@@ -12,10 +12,9 @@ import 'package:yaml/yaml.dart' as yaml;
 ({String packageName, bool isFlutterPackage}) packageDeets(String packageDir) {
   final path = p.join(packageDir, 'pubspec.yaml');
 
-  final map = yaml.loadYaml(
-    File(path).readAsStringSync(),
-    sourceUrl: Uri.parse(path),
-  ) as yaml.YamlMap;
+  final map =
+      yaml.loadYaml(File(path).readAsStringSync(), sourceUrl: Uri.parse(path))
+          as yaml.YamlMap;
 
   final pubspec = _Pubspec(map);
 
@@ -32,7 +31,7 @@ class _Pubspec {
   Set<String>? _dependentSdks;
 
   _Pubspec(this._content)
-      : _inner = pubspek.Pubspec.fromJson(_content, lenient: true);
+    : _inner = pubspek.Pubspec.fromJson(_content, lenient: true);
 
   Map<String, Dependency> get dependencies => _inner.dependencies;
 

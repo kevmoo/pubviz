@@ -83,8 +83,7 @@ String _indent(String input) =>
     LineSplitter.split(input).map((l) => '  $l'.trimRight()).join('\n');
 
 void _printUsage() {
-  print(
-    '''Usage: pubviz [<args>] <command> [<package path>]
+  print('''Usage: pubviz [<args>] <command> [<package path>]
 
 ${styleBold.wrap('Commands:')}
   open   Populate a temporary file with the content and open it.
@@ -93,19 +92,17 @@ ${styleBold.wrap('Commands:')}
 ${styleBold.wrap('Arguments:')}
 ${_indent(parser.usage)}
 
-If <package path> is omitted, the current directory is used.''',
-  );
+If <package path> is omitted, the current directory is used.''');
 }
 
 String _getContent(
   VizRoot root,
   FormatOptions format,
   List<String> ignorePackages,
-) =>
-    switch (format) {
-      FormatOptions.html => dot.toDotHtml(root, ignorePackages: ignorePackages),
-      FormatOptions.dot => dot.toDot(root, ignorePackages: ignorePackages)
-    };
+) => switch (format) {
+  FormatOptions.html => dot.toDotHtml(root, ignorePackages: ignorePackages),
+  FormatOptions.dot => dot.toDot(root, ignorePackages: ignorePackages),
+};
 
 String _getExtension(FormatOptions format) => format.toString().split('.')[1];
 

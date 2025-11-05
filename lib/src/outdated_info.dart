@@ -13,12 +13,12 @@ class OutdatedInfo {
   );
 
   factory OutdatedInfo.fromJson(Map<String, dynamic> json) => OutdatedInfo(
-        json['package'] as String,
-        _version(json, 'current'),
-        _version(json, 'upgradable'),
-        _version(json, 'resolvable'),
-        _version(json, 'latest'),
-      );
+    json['package'] as String,
+    _version(json, 'current'),
+    _version(json, 'upgradable'),
+    _version(json, 'resolvable'),
+    _version(json, 'latest'),
+  );
 }
 
 Version? _version(Map<String, dynamic> json, String key) {

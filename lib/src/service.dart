@@ -111,9 +111,9 @@ abstract class Service {
 
   Version? _latest(String package) {
     final list = (_outdatedCache ??= outdated())['packages'] as List;
-    final map = list
-        .cast<Map<String, dynamic>>()
-        .singleWhereOrNull((element) => element['package'] == package);
+    final map = list.cast<Map<String, dynamic>>().singleWhereOrNull(
+      (element) => element['package'] == package,
+    );
 
     if (map == null) {
       return null;

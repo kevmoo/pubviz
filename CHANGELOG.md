@@ -1,3 +1,7 @@
+## 4.0.2-wip
+
+- Require `sdk: ^3.9.0`.
+
 ## 4.0.1
 
 - Fix issue when package has dependency overrides.

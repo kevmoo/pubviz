@@ -31,12 +31,9 @@ void main() {
     final proc = await TestProcess.start(dartPath, [_entryPoint, '--bob']);
 
     final output = await proc.stdoutStream().join('\n');
-    expect(
-      output,
-      '''Could not find an option named "--bob".
+    expect(output, '''Could not find an option named "--bob".
 
-$_usage''',
-    );
+$_usage''');
 
     await proc.shouldExit(64);
   });
@@ -45,21 +42,20 @@ $_usage''',
     final proc = await TestProcess.start(dartPath, [_entryPoint]);
 
     final output = await proc.stdoutStream().join('\n');
-    expect(
-      output,
-      '''Specify a command: open, print
+    expect(output, '''Specify a command: open, print
 
-$_usage''',
-    );
+$_usage''');
 
     await proc.shouldExit(64);
   });
 
   test('print dot', () async {
-    final process = await TestProcess.start(
-      dartPath,
-      [_entryPoint, '-f', 'dot', 'print'],
-    );
+    final process = await TestProcess.start(dartPath, [
+      _entryPoint,
+      '-f',
+      'dot',
+      'print',
+    ]);
 
     await expectLater(process.stdout, emits('digraph pubviz {'));
 
@@ -67,10 +63,13 @@ $_usage''',
   });
 
   test('print dot with outdated', () async {
-    final process = await TestProcess.start(
-      dartPath,
-      [_entryPoint, '-o', '-f', 'dot', 'print'],
-    );
+    final process = await TestProcess.start(dartPath, [
+      _entryPoint,
+      '-o',
+      '-f',
+      'dot',
+      'print',
+    ]);
 
     await expectLater(process.stdout, emits('digraph pubviz {'));
 
