@@ -2,7 +2,7 @@
 
 [![Pub Package](https://img.shields.io/pub/v/pubviz.svg)](https://pub.dev/packages/pubviz)
 [![package publisher](https://img.shields.io/pub/publisher/pubviz.svg)](https://pub.dev/packages/pubviz/publisher)
-[![CI](https://github.com/kevmoo/pubviz/workflows/CI/badge.svg?branch=master)](https://github.com/kevmoo/pubviz/actions?query=workflow%3ACI+branch%3Amaster)
+[![CI](https://github.com/kevmoo/pubviz/actions/workflows/ci.yml/badge.svg)](https://github.com/kevmoo/pubviz/actions/workflows/ci.yml)
 
 *Make sure you run `pub get` or `pub upgrade` in your target project directory.*
 
