@@ -1,5 +1,5 @@
 digraph pubviz {
-  graph [nodesep="0.2"];
+  graph [nodesep=0.2];
   edge [fontcolor=gray];
 
   args [label="args
@@ -91,26 +91,26 @@ digraph pubviz {
   pubspec_parse -> pub_semver [label=">=1.3.2 <3.0.0"];
   pubspec_parse -> yaml [label=">=2.1.12 <4.0.0"];
 
-  repo_manager [label=repo_manager, fontsize="18", style=bold, shape=box, margin="0.25,0.15"];
-  repo_manager -> args [label="^1.4.3", penwidth="2"];
-  repo_manager -> collection [label="^1.11.0", penwidth="2"];
-  repo_manager -> github [label="^6.0.2", penwidth="2"];
-  repo_manager -> gviz [label="^0.3.0", penwidth="2"];
-  repo_manager -> http [label=">=0.12.0 <2.0.0", penwidth="2"];
-  repo_manager -> http_retry [label="^0.1.0", penwidth="2"];
-  repo_manager -> http_throttle [label="^1.0.4", penwidth="2"];
-  repo_manager -> io [label="^0.3.1", penwidth="2"];
-  repo_manager -> json_annotation [label="^3.0.0", penwidth="2"];
-  repo_manager -> lints [label="^1.0.0", penwidth="2"];
-  repo_manager -> meta [penwidth="2"];
-  repo_manager -> pana [label="^0.12.2", penwidth="2"];
-  repo_manager -> path [label="^1.4.1", penwidth="2"];
-  repo_manager -> pool [label="^1.4.0", penwidth="2"];
-  repo_manager -> pub_semver [label="^1.3.0", penwidth="2"];
-  repo_manager -> pubspec_parse [label="^0.1.3", penwidth="2"];
-  repo_manager -> stack_trace [label="^1.7.3", penwidth="2"];
-  repo_manager -> stats [label="^1.0.0", penwidth="2"];
-  repo_manager -> yaml [label="^2.1.12", penwidth="2"];
+  repo_manager [label=repo_manager, fontsize=18, style=bold, shape=box, margin="0.25,0.15"];
+  repo_manager -> args [label="^1.4.3", penwidth=2];
+  repo_manager -> collection [label="^1.11.0", penwidth=2];
+  repo_manager -> github [label="^6.0.2", penwidth=2];
+  repo_manager -> gviz [label="^0.3.0", penwidth=2];
+  repo_manager -> http [label=">=0.12.0 <2.0.0", penwidth=2];
+  repo_manager -> http_retry [label="^0.1.0", penwidth=2];
+  repo_manager -> http_throttle [label="^1.0.4", penwidth=2];
+  repo_manager -> io [label="^0.3.1", penwidth=2];
+  repo_manager -> json_annotation [label="^3.0.0", penwidth=2];
+  repo_manager -> lints [label="^1.0.0", penwidth=2];
+  repo_manager -> meta [penwidth=2];
+  repo_manager -> pana [label="^0.12.2", penwidth=2];
+  repo_manager -> path [label="^1.4.1", penwidth=2];
+  repo_manager -> pool [label="^1.4.0", penwidth=2];
+  repo_manager -> pub_semver [label="^1.3.0", penwidth=2];
+  repo_manager -> pubspec_parse [label="^0.1.3", penwidth=2];
+  repo_manager -> stack_trace [label="^1.7.3", penwidth=2];
+  repo_manager -> stats [label="^1.0.0", penwidth=2];
+  repo_manager -> yaml [label="^2.1.12", penwidth=2];
 
   stack_trace [label="stack_trace
 1.10.0", shape=box, margin="0.25,0.15", style=bold];
