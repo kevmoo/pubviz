@@ -1,7 +1,6 @@
 import 'dart:collection';
 import 'dart:io';
 
-import 'package:collection/collection.dart';
 import 'package:path/path.dart' as p;
 import 'package:pub_semver/pub_semver.dart';
 import 'package:pubspec_parse/pubspec_parse.dart' hide Dependency;
@@ -12,7 +11,7 @@ import 'outdated_info.dart';
 import 'viz_package.dart';
 
 abstract class Service {
-  Map<String, dynamic>? _outdatedCache;
+  Map<String, Map<String, dynamic>>? _outdatedCache;
 
   String get rootPackageDir;
 
@@ -110,11 +109,18 @@ abstract class Service {
   }
 
   Version? _latest(String package) {
-    final list = (_outdatedCache ??= outdated())['packages'] as List;
-    final map = list.cast<Map<String, dynamic>>().singleWhereOrNull(
-      (element) => element['package'] == package,
-    );
+    if (_outdatedCache == null) {
+      _outdatedCache = {};
+      final list = outdated()['packages'] as List;
+      for (final map in list.cast<Map<String, dynamic>>()) {
+        final pkg = map['package'] as String?;
+        if (pkg != null) {
+          _outdatedCache![pkg] = map;
+        }
+      }
+    }
 
+    final map = _outdatedCache![package];
     if (map == null) {
       return null;
     }
