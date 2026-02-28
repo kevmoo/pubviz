@@ -66,7 +66,6 @@ class PubDataService extends Service {
     final result = Process.runSync(
       proc,
       args,
-      runInShell: true,
       workingDirectory: rootPackageDir,
       environment: environment,
     );
