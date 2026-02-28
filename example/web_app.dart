@@ -252,14 +252,3 @@ extension type VizOptions._(JSObject _) implements JSObject {
   external int totalMemory;
 }
 
-extension on NodeList {
-  Iterable<Element> get elements sync* {
-    for (var i = 0; i < length; i++) {
-      yield item(i)! as Element;
-    }
-  }
-}
-
-extension on NamedNodeMap {
-  String? operator [](String key) => getNamedItem(key)?.value;
-}
