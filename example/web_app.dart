@@ -252,3 +252,20 @@ extension type VizOptions._(JSObject _) implements JSObject {
   external int totalMemory;
 }
 
+extension on NodeList {
+  // The analyzer erroneously flags this as unused when it cannot resolve the
+  // types from `package:web`, but it is used throughout this file.
+  // ignore: unused_element
+  Iterable<Element> get elements sync* {
+    for (var i = 0; i < length; i++) {
+      yield item(i)! as Element;
+    }
+  }
+}
+
+extension on NamedNodeMap {
+  // The analyzer erroneously flags this as unused when it cannot resolve the
+  // types from `package:web`, but it is used throughout this file.
+  // ignore: unused_element
+  String? operator [](String key) => getNamedItem(key)?.value;
+}
