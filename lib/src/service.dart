@@ -109,16 +109,11 @@ abstract class Service {
   }
 
   Version? _latest(String package) {
-    if (_outdatedCache == null) {
-      _outdatedCache = {};
-      final list = outdated()['packages'] as List;
-      for (final map in list.cast<Map<String, dynamic>>()) {
-        final pkg = map['package'] as String?;
-        if (pkg != null) {
-          _outdatedCache![pkg] = map;
-        }
-      }
-    }
+    _outdatedCache ??= {
+      for (final map
+          in (outdated()['packages'] as List).cast<Map<String, dynamic>>())
+        if (map['package'] is String) map['package'] as String: map,
+    };
 
     final map = _outdatedCache![package];
     if (map == null) {
