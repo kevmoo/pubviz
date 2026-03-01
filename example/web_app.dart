@@ -123,7 +123,8 @@ void _updateBody(String output) {
 
   __root = document.querySelector('svg') as SVGElement;
 
-  final nodes = _root.querySelectorAll('g.node').elements.map((element) {
+  final nodes = _root.querySelectorAll('g.node').elements.map((e) {
+    final element = e as SVGGElement;
     final title = element.querySelector('title')!.textContent!;
     element.id = title;
 
@@ -148,7 +149,8 @@ void _updateBody(String output) {
     return (element: element, id: title);
   }).toList();
 
-  final edges = _root.querySelectorAll('g.edge').elements.map((node) {
+  final edges = _root.querySelectorAll('g.edge').elements.map((e) {
+    final node = e as SVGGElement;
     final title = node.querySelector('title')!.textContent!;
     final things = title.split('->');
     final from = things[0];
@@ -168,15 +170,22 @@ void _updateBody(String output) {
     return (element: node, from: from, to: to);
   }).toList();
 
-  for (var element in [
-    ...nodes.map((n) => n.element),
-    ...edges.map((e) => e.element)
-  ]) {
-    element.onMouseEnter.listen((MouseEvent event) {
+  for (var entry in nodes) {
+    entry.element.onMouseEnter.listen((MouseEvent event) {
       _updateOver(event.currentTarget as SVGGElement, nodes, edges);
     });
 
-    element.onMouseLeave.listen((MouseEvent event) {
+    entry.element.onMouseLeave.listen((MouseEvent event) {
+      _updateOver(null, nodes, edges);
+    });
+  }
+
+  for (var entry in edges) {
+    entry.element.onMouseEnter.listen((MouseEvent event) {
+      _updateOver(event.currentTarget as SVGGElement, nodes, edges);
+    });
+
+    entry.element.onMouseLeave.listen((MouseEvent event) {
       _updateOver(null, nodes, edges);
     });
   }
@@ -184,8 +193,8 @@ void _updateBody(String output) {
 
 void _updateOver(
   SVGGElement? element,
-  Iterable<({Element element, String id})> nodes,
-  Iterable<({Element element, String from, String to})> edges,
+  Iterable<({SVGGElement element, String id})> nodes,
+  Iterable<({SVGGElement element, String from, String to})> edges,
 ) {
   final targetPkg = <String?>[];
   if (element != null) {
