@@ -129,13 +129,13 @@ Future<void> _open(
   } else if (Platform.isLinux) {
     openCommand = 'xdg-open';
   } else if (Platform.isWindows) {
-    openCommand = 'start';
+    openCommand = 'explorer';
   } else {
     print("We don't know how to open a file in ${Platform.operatingSystem}");
     exit(1);
   }
 
-  await Process.run(openCommand, [filePath], runInShell: true);
+  await Process.run(openCommand, [filePath]);
 }
 
 void _printContent(
