@@ -129,8 +129,9 @@ void _updateBody(String output) {
     element.id = title;
 
     // NOTE: we are assuming the shape of the generated SVG here – be careful!
-    final polygonBorder =
-        element.querySelector('polygon')?.getAttribute('stroke');
+    final polygonBorder = element
+        .querySelector('polygon')
+        ?.getAttribute('stroke');
     if (polygonBorder != null &&
         polygonBorder.toLowerCase().startsWith('#ff')) {
       element.classList.add('outdated');
