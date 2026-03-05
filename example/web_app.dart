@@ -123,20 +123,21 @@ void _updateBody(String output) {
 
   __root = document.querySelector('svg') as SVGElement;
 
-  for (var element in _root.querySelectorAll('g.node').elements) {
+  final nodes = _root.querySelectorAll('g.node').elements.map((e) {
+    final element = e as SVGGElement;
     final title = element.querySelector('title')!.textContent!;
     element.id = title;
-  }
 
-  for (var node in _root.querySelectorAll('g.node').elements) {
     // NOTE: we are assuming the shape of the generated SVG here – be careful!
-    final polygonBorder = node.querySelector('polygon')?.getAttribute('stroke');
+    final polygonBorder = element
+        .querySelector('polygon')
+        ?.getAttribute('stroke');
     if (polygonBorder != null &&
         polygonBorder.toLowerCase().startsWith('#ff')) {
-      node.classList.add('outdated');
+      element.classList.add('outdated');
     }
 
-    node.onClick.listen((MouseEvent event) {
+    element.onClick.listen((MouseEvent event) {
       final target = event.currentTarget as Element;
       if (_toIgnore.add(target.id)) {
         // add succeeded – noop
@@ -145,40 +146,57 @@ void _updateBody(String output) {
       }
       _process();
     });
-  }
 
-  for (var node in _root.querySelectorAll('g.edge').elements) {
+    return (element: element, id: title);
+  }).toList();
+
+  final edges = _root.querySelectorAll('g.edge').elements.map((e) {
+    final node = e as SVGGElement;
     final title = node.querySelector('title')!.textContent!;
     final things = title.split('->');
+    final from = things[0];
+    final to = things[1];
     node
-      ..setAttribute('x-from', things[0])
-      ..setAttribute('x-to', things[1]);
+      ..setAttribute('x-from', from)
+      ..setAttribute('x-to', to);
 
     // NOTE: we are assuming the shape of the generated SVG here – be careful!
     final textFill = node.querySelector('text')?.getAttribute('fill');
     if (textFill != null) {
-      assert(textFill.startsWith('#'));
       if (textFill.toLowerCase().startsWith('#ff')) {
         // This is an outdated dependency
         node.classList.add('outdated');
       }
     }
-  }
+    return (element: node, from: from, to: to);
+  }).toList();
 
-  final nodesOfInterest = _root.querySelectorAll('g.edge, g.node');
-
-  for (var interest in nodesOfInterest.elements) {
-    interest.onMouseEnter.listen((MouseEvent event) {
-      _updateOver(event.currentTarget as SVGGElement);
+  for (var entry in nodes) {
+    entry.element.onMouseEnter.listen((MouseEvent event) {
+      _updateOver(event.currentTarget as SVGGElement, nodes, edges);
     });
 
-    interest.onMouseLeave.listen((MouseEvent event) {
-      _updateOver(null);
+    entry.element.onMouseLeave.listen((MouseEvent event) {
+      _updateOver(null, nodes, edges);
+    });
+  }
+
+  for (var entry in edges) {
+    entry.element.onMouseEnter.listen((MouseEvent event) {
+      _updateOver(event.currentTarget as SVGGElement, nodes, edges);
+    });
+
+    entry.element.onMouseLeave.listen((MouseEvent event) {
+      _updateOver(null, nodes, edges);
     });
   }
 }
 
-void _updateOver(SVGGElement? element) {
+void _updateOver(
+  SVGGElement? element,
+  Iterable<({SVGGElement element, String id})> nodes,
+  Iterable<({SVGGElement element, String from, String to})> edges,
+) {
   final targetPkg = <String?>[];
   if (element != null) {
     if (element.classList.contains('edge')) {
@@ -192,25 +210,25 @@ void _updateOver(SVGGElement? element) {
     }
   }
 
-  for (var node in _root.querySelectorAll('g.node').elements) {
+  for (var node in nodes) {
     if (targetPkg.contains(node.id)) {
-      node.classList.add('active');
+      node.element.classList.add('active');
     } else {
-      node.classList.remove('active');
+      node.element.classList.remove('active');
     }
   }
 
   final fromNodes = <String>[];
   final toNodes = <String>[];
-  for (var node in _root.querySelectorAll('g.edge').elements) {
-    final nodeXTo = node.attributes['x-to']!;
-    final nodeXFrom = node.attributes['x-from']!;
+  for (var edge in edges) {
+    final nodeXTo = edge.to;
+    final nodeXFrom = edge.from;
     if (targetPkg.length == 2) {
       // then the hover-over is on a line!
       if (targetPkg.contains(nodeXTo) && targetPkg.contains(nodeXFrom)) {
-        node.classList.add('active');
+        edge.element.classList.add('active');
       } else {
-        node.classList.remove('active');
+        edge.element.classList.remove('active');
       }
     } else {
       if (targetPkg.contains(nodeXTo) || targetPkg.contains(nodeXFrom)) {
@@ -222,9 +240,9 @@ void _updateOver(SVGGElement? element) {
           toNodes.add(nodeXTo);
         }
 
-        node.classList.add('active');
+        edge.element.classList.add('active');
       } else {
-        node.classList.remove('active');
+        edge.element.classList.remove('active');
       }
     }
   }
