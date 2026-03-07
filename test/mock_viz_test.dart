@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
+import 'package:pub_semver/pub_semver.dart';
 import 'package:pubviz/pubviz.dart';
 import 'package:pubviz/src/service.dart';
 import 'package:pubviz/src/update_order.dart';
@@ -166,7 +167,39 @@ void main() {
         'pana',
       ]);
     });
+
+    test('update order handles a cycle', () {
+      final pkgA = VizPackage('a', Version(1, 0, 0), {
+        Dependency('b', 'any', false)..includesLatest = false,
+      }, Version(2, 0, 0));
+
+      final pkgB = VizPackage('b', Version(1, 0, 0), {
+        Dependency('a', 'any', false)..includesLatest = false,
+      }, Version(2, 0, 0));
+
+      final root = _MockVizRoot({
+        'root': VizPackage('root', Version(1, 0, 0), {}, Version(1, 0, 0)),
+        'a': pkgA,
+        'b': pkgB,
+      });
+
+      final updateOrder = computeUpdateOrder(root);
+
+      expect(updateOrder.map((e) => e.name), ['b', 'a']);
+    });
   });
+}
+
+class _MockVizRoot implements VizRoot {
+  @override
+  final String rootPackageName;
+  @override
+  final Map<String, VizPackage> packages;
+
+  @override
+  VizPackage get root => packages[rootPackageName]!;
+
+  _MockVizRoot(this.packages) : rootPackageName = 'root';
 }
 
 const _writeOutput = false;

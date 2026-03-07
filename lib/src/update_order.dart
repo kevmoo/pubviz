@@ -32,6 +32,11 @@ List<VizPackage> computeUpdateOrder(VizRoot root) {
 
   void visit(VizPackage pkg) {
     if (visited.contains(pkg.name)) return;
+
+    // We intentionally don't throw on cycle detection here.
+    // Circular dependencies (especially involving dev_dependencies)
+    // are common in Dart monorepos. Returning here breaks the cycle
+    // gracefully and provides a best-effort topological sort.
     if (visiting.contains(pkg.name)) return;
 
     visiting.add(pkg.name);
