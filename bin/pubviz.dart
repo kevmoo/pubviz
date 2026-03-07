@@ -10,6 +10,7 @@ import 'package:path/path.dart' as p;
 import 'package:pubviz/pubviz.dart';
 import 'package:pubviz/src/options.dart';
 import 'package:pubviz/src/pub_data_service.dart';
+import 'package:pubviz/src/update_order.dart';
 import 'package:pubviz/src/version.dart';
 import 'package:pubviz/viz/dot.dart' as dot;
 import 'package:stack_trace/stack_trace.dart';
@@ -62,6 +63,18 @@ Future<void> main(List<String> args) async {
         directDependenciesOnly: options.directDependencies ?? false,
         productionDependenciesOnly: options.productionDependencies,
       );
+      if (options.flagOutdated) {
+        final updateOrder = computeUpdateOrder(vp);
+        if (updateOrder.isNotEmpty) {
+          stderr
+            ..writeln()
+            ..writeln(styleBold.wrap('Outdated package update order:'));
+          for (final pkg in updateOrder) {
+            stderr.writeln('  ${pkg.name}');
+          }
+          stderr.writeln();
+        }
+      }
       if (command.name == 'print') {
         _printContent(vp, options.format, options.ignorePackages);
       } else if (command.name == 'open') {
