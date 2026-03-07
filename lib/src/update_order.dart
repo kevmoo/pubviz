@@ -16,7 +16,7 @@ List<VizPackage> computeUpdateOrder(VizRoot root) {
     if (pkg.name == root.rootPackageName) continue;
 
     final hasOutdatedDep = pkg.dependencies.any(
-      (dep) => dep.includesLatest != null && !dep.includesLatest!,
+      (dep) => dep.includesLatest == false,
     );
 
     if (hasOutdatedDep) {
