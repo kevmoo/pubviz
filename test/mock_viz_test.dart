@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:path/path.dart' as p;
 import 'package:pubviz/pubviz.dart';
 import 'package:pubviz/src/service.dart';
+import 'package:pubviz/src/update_order.dart';
 import 'package:pubviz/viz/dot.dart';
 import 'package:test/test.dart';
 
@@ -151,6 +152,19 @@ void main() {
       );
 
       _verifyDotOutput(vp, 'ignore', ignoredPackages: ignoredPackages);
+    });
+
+    test('update order', () async {
+      final vp = await VizRoot.forDirectory(service, flagOutdated: true);
+      final updateOrder = computeUpdateOrder(vp);
+
+      expect(updateOrder.map((e) => e.name), [
+        'front_end',
+        'analyzer',
+        'build_resolvers',
+        'json_serializable',
+        'pana',
+      ]);
     });
   });
 }

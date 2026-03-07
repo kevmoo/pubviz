@@ -1,5 +1,7 @@
-## 4.0.2-wip
+## 4.1.0-wip
 
+- Added a printed output to `pubviz` when using the `-o` flag that provides a
+  topologically sorted update order for outdated packages.
 - Require `sdk: ^3.9.0`.
 
 ## 4.0.1
