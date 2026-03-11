@@ -1,5 +1,5 @@
 name: pubviz
-version: 4.1.0-wip
+version: 4.1.0
 description: >-
   A tool to visualize package dependencies and version constraints in your Dart
   project.

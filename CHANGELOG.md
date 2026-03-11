@@ -1,4 +1,4 @@
-## 4.1.0-wip
+## 4.1.0
 
 - Added a printed output to `pubviz` when using the `-o` flag that provides a
   topologically sorted update order for outdated packages.
