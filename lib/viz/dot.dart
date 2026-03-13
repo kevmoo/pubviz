@@ -125,7 +125,7 @@ const String _dotHtmlTemplate = r'''
     <title>pubviz - PACKAGE_TITLE</title>
     <base href="https://kevmoo.github.io/pubviz/">
     <link rel="stylesheet" href="style.css">
-    <script src="viz-lite.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@viz-js/viz@3.25.0/dist/viz-global.js"></script>
   </head>
   <body>
     <button id="zoomBtn">Zoom</button>
