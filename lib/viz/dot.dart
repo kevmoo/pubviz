@@ -133,6 +133,6 @@ const String _dotHtmlTemplate = r'''
 DOT_HERE
     </script>
   </body>
-  <script deferred src="web_app.dart.js"></script>
+  <script defer src="web_app.dart.js"></script>
 </html>
 ''';
