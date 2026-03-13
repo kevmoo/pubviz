@@ -35,7 +35,7 @@ void main() {
   });
 }
 
-void _process() async {
+Future<void> _process() async {
   if (__root != null) {
     _root.remove();
     __root = null;
@@ -262,6 +262,7 @@ void _updateOver(
 }
 
 @JS()
+// ignore: non_constant_identifier_names
 external VizClass get Viz;
 
 extension type VizClass._(JSObject _) implements JSObject {
