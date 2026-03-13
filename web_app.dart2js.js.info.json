@@ -6,9 +6,9 @@
     "size": 79245,
     "ramUsage": "N/A MB",
     "dart2jsVersion": "3.12.0-232.0.dev",
-    "compilationMoment": "2026-03-12 11:56:30.390676",
-    "compilationDuration": 616979,
-    "toJsonDuration": 2000,
+    "compilationMoment": "2026-03-13 11:11:41.910152",
+    "compilationDuration": 653399,
+    "toJsonDuration": 1000,
     "dumpInfoDuration": 0,
     "noSuchMethodEnabled": false,
     "isRuntimeTypeUsed": true,
@@ -46380,7 +46380,7 @@
       "kind": "outputUnit",
       "name": "main",
       "size": 79245,
-      "filename": "web_app.dart.js",
+      "filename": "web_app.dart2js.js",
       "imports": []
     }
   ],
