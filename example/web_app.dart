@@ -10,6 +10,8 @@ import 'package:web/web.dart';
 
 final zoomBtn = document.querySelector('#zoomBtn') as HTMLButtonElement;
 
+VizInstance? _vizInstance;
+
 SVGElement? __root;
 
 SVGElement get _root => __root!;
@@ -33,7 +35,7 @@ void main() {
   });
 }
 
-void _process() {
+void _process() async {
   if (__root != null) {
     _root.remove();
     __root = null;
@@ -91,11 +93,11 @@ void _process() {
 
   final watch = Stopwatch()..start();
   try {
-    // Default memory: 16,777,216 - 16 MiB
-    // Doubling to 32 MiB
-    final output = Viz(
+    _vizInstance ??= await Viz.instance().toDart;
+
+    final output = _vizInstance!.renderString(
       lines.join('\n'),
-      VizOptions(format: 'svg', totalMemory: 32 * 1024 * 1024),
+      RenderOptions(format: 'svg'),
     );
     _updateBody(output);
   } catch (e) {
@@ -260,14 +262,20 @@ void _updateOver(
 }
 
 @JS()
-// ignore: non_constant_identifier_names
-external String Viz(String src, [VizOptions options]);
+external VizClass get Viz;
 
-extension type VizOptions._(JSObject _) implements JSObject {
-  external VizOptions({String format, int totalMemory});
+extension type VizClass._(JSObject _) implements JSObject {
+  external JSPromise<VizInstance> instance();
+}
+
+extension type VizInstance._(JSObject _) implements JSObject {
+  external String renderString(String src, [RenderOptions options]);
+}
+
+extension type RenderOptions._(JSObject _) implements JSObject {
+  external factory RenderOptions({String format});
 
   external String format;
-  external int totalMemory;
 }
 
 extension on NodeList {
