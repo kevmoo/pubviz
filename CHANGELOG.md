@@ -1,3 +1,7 @@
+## 4.1.2-wip
+
+- Fixed hover behavior over outdated packages.
+
 ## 4.1.1
 
 - Fix issue with `script` tag.

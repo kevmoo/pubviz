@@ -2,6 +2,7 @@ import 'package:gviz/gviz.dart';
 
 import '../src/viz_package.dart';
 import '../src/viz_root.dart';
+import 'colors.dart';
 
 String toDotHtml(VizRoot root, {List<String> ignorePackages = const []}) {
   final dot = toDot(root, escapeLabels: true, ignorePackages: ignorePackages);
@@ -69,7 +70,7 @@ void _writeDot(
       pkg.version != null &&
       pkg.latestVersion != null &&
       pkg.latestVersion!.compareTo(pkg.version!) > 0) {
-    props['color'] = 'red';
+    props['color'] = colorRed;
     props['xlabel'] = '${pkg.latestVersion}';
   }
 
@@ -96,11 +97,11 @@ void _writeDot(
       }
 
       if (dep.includesLatest != null && !dep.includesLatest!) {
-        edgeProps['fontcolor'] = 'red';
+        edgeProps['fontcolor'] = colorRed;
         if (edgeProps['color'] == 'gray') {
-          edgeProps['color'] = 'pink';
+          edgeProps['color'] = colorPink;
         } else {
-          edgeProps['color'] = 'red';
+          edgeProps['color'] = colorRed;
         }
       }
 
