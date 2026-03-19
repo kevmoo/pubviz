@@ -79,36 +79,43 @@ abstract class Service {
     final rootDepsEntry = rootDeps();
 
     if (includeWorkspace) {
-      final workspaceMembers = allDeps().toList();
-      final workspaceMemberNames = workspaceMembers.map((e) => e.name).toSet();
+      final memberPubspecs = <String, Pubspec>{
+        pubspec.name: pubspec,
+      };
 
-      for (var entry in workspaceMembers) {
-        final dependencies = <Dependency>{};
-        final sections = [
-          'dependencies',
-          if (!productionDependenciesOnly) 'dev dependencies',
-        ];
-        for (final sectionName in sections) {
-          final section = entry.sections[sectionName];
-          if (section == null) continue;
-          for (final depEntry in section.keys) {
-            if (_ignoredPackages.contains(depEntry.name)) continue;
-            dependencies.add(
-              Dependency(
-                depEntry.name,
-                depEntry.version.toString(),
-                sectionName == 'dev dependencies',
-              ),
-            );
-          }
+      final workspace = pubspec.workspace;
+      if (workspace != null && workspace.isNotEmpty) {
+        for (final memberDir in workspace) {
+          final memberPubspecPath =
+              p.join(rootPackageDir, memberDir, 'pubspec.yaml');
+          if (!File(memberPubspecPath).existsSync()) continue;
+          final memberPubspec = Pubspec.parse(
+            File(memberPubspecPath).readAsStringSync(),
+            sourceUrl: Uri.file(memberPubspecPath),
+          );
+          memberPubspecs[memberPubspec.name] = memberPubspec;
         }
+      }
+
+      final workspaceMemberNames = memberPubspecs.keys.toSet();
+
+      final workspacePackageEntries =
+          allDeps().where((d) => workspaceMemberNames.contains(d.name));
+
+      for (var entry in workspacePackageEntries) {
+        final memberPubspec = memberPubspecs[entry.name]!;
+
+        final dependencies = Dependency.getDependencies(
+          memberPubspec,
+          includeDevDependencies: !productionDependenciesOnly,
+        ).where((d) => !_ignoredPackages.contains(d.name)).toSet();
 
         map[entry.name] = VizPackage(
           entry.name,
           entry.name == pubspec.name ? null : entry.version,
           SplayTreeSet.of(dependencies),
           flagOutdated ? _latest(entry.name) : null,
-          isPrimary: workspaceMemberNames.contains(entry.name),
+          isPrimary: true,
         );
         map[entry.name]!.onlyDev = false;
 
@@ -119,6 +126,7 @@ abstract class Service {
         );
       }
     } else {
+
       map[pubspec.name] = VizPackage(
         pubspec.name,
         null,
