@@ -206,6 +206,39 @@ void main() {
       expect(updateOrder.map((e) => e.name), ['b', 'a']);
     });
   });
+
+  group('generate VizRoot (real workspace)', () {
+    late Service service;
+
+    setUpAll(() {
+      service = MockDataService(p.join('test', 'mock_workspace'));
+    });
+
+    test('workspace', () async {
+      final vp = await VizRoot.forDirectory(service, includeWorkspace: true);
+
+      expect(vp.root.name, 'my_workspace');
+      expect(vp.packages, hasLength(4));
+
+      final primaryPackages = vp.packages.values.where(
+        (element) => element.isPrimary,
+      );
+      expect(
+        primaryPackages.map((e) => e.name),
+        unorderedEquals(['my_workspace', 'member_a', 'member_b']),
+        reason: 'Workspace members should be primary',
+      );
+
+      final nonPrimaryPackages = vp.packages.values.where(
+        (element) => !element.isPrimary,
+      );
+      expect(
+        nonPrimaryPackages.map((e) => e.name),
+        ['args'],
+        reason: 'Transitive dependencies should not be primary',
+      );
+    });
+  });
 }
 
 class _MockVizRoot implements VizRoot {

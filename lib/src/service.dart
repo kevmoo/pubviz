@@ -80,8 +80,7 @@ abstract class Service {
 
     if (includeWorkspace) {
       final workspaceMembers = allDeps().toList();
-      final workspaceMemberNames =
-          workspaceMembers.map((e) => e.name).toSet();
+      final workspaceMemberNames = workspaceMembers.map((e) => e.name).toSet();
 
       for (var entry in workspaceMembers) {
         final dependencies = <Dependency>{};

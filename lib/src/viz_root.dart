@@ -34,8 +34,8 @@ class VizRoot {
       includeWorkspace: includeWorkspace,
     );
 
-    final value =
-        VizRoot._(rootPubspec.name, packages).._update(includeWorkspace);
+    final value = VizRoot._(rootPubspec.name, packages)
+      .._update(includeWorkspace);
 
     if (flagOutdated) {
       for (var dep in _allDeps(value, ignorePackages)) {
