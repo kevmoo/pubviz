@@ -163,12 +163,12 @@ void main() {
 
       expect(
         vp.packages.values.where((element) => element.isPrimary),
-        hasLength(25),
+        hasLength(1),
         reason: 'Only primary',
       );
       expect(
         vp.packages.values.where((element) => !element.isPrimary),
-        hasLength(57),
+        hasLength(81),
         reason: 'Only non-primary',
       );
     });

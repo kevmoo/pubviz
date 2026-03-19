@@ -78,7 +78,11 @@ abstract class Service {
     final rootDepsEntry = rootDeps();
 
     if (includeWorkspace) {
-      for (var entry in allDeps()) {
+      final workspaceMembers = allDeps().toList();
+      final workspaceMemberNames =
+          workspaceMembers.map((e) => e.name).toSet();
+
+      for (var entry in workspaceMembers) {
         final dependencies = <Dependency>{};
         final sections = [
           'dependencies',
@@ -104,7 +108,7 @@ abstract class Service {
           entry.name == pubspec.name ? null : entry.version,
           SplayTreeSet.of(dependencies),
           flagOutdated ? _latest(entry.name) : null,
-          isPrimary: true,
+          isPrimary: workspaceMemberNames.contains(entry.name),
         );
         map[entry.name]!.onlyDev = false;
 

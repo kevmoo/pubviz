@@ -34,7 +34,8 @@ class VizRoot {
       includeWorkspace: includeWorkspace,
     );
 
-    final value = VizRoot._(rootPubspec.name, packages).._update();
+    final value =
+        VizRoot._(rootPubspec.name, packages).._update(includeWorkspace);
 
     if (flagOutdated) {
       for (var dep in _allDeps(value, ignorePackages)) {
@@ -68,7 +69,7 @@ class VizRoot {
     return value;
   }
 
-  void _update() {
+  void _update(bool includeWorkspace) {
     // Collect primary packages at the start.
     // If none are set (normal case), mark root as primary.
     if (packages.values.every((v) => !v.isPrimary)) {
@@ -84,7 +85,9 @@ class VizRoot {
         final package = packages[primaryDep.name];
         if (package == null) continue;
 
-        package.isPrimary = true;
+        if (!includeWorkspace) {
+          package.isPrimary = true;
+        }
 
         if (!primaryDep.isDevDependency) {
           _updateDevOnly(primaryDep);
