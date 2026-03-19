@@ -6,6 +6,7 @@ library;
 import 'dart:convert' show LineSplitter, htmlEscape;
 import 'dart:js_interop';
 
+import 'package:pubviz/viz/colors.dart';
 import 'package:web/web.dart';
 
 final zoomBtn = document.querySelector('#zoomBtn') as HTMLButtonElement;
@@ -131,11 +132,12 @@ void _updateBody(String output) {
     element.id = title;
 
     // NOTE: we are assuming the shape of the generated SVG here – be careful!
-    final polygonBorder = element
-        .querySelector('polygon')
-        ?.getAttribute('stroke');
-    if (polygonBorder != null &&
-        polygonBorder.toLowerCase().startsWith('#ff')) {
+    final nodeStroke =
+        element.querySelector('ellipse')?.getAttribute('stroke') ??
+        element.querySelector('polygon')?.getAttribute('stroke') ??
+        element.querySelector('path')?.getAttribute('stroke');
+
+    if (isOutdatedColor(nodeStroke)) {
       element.classList.add('outdated');
     }
 
@@ -164,11 +166,13 @@ void _updateBody(String output) {
 
     // NOTE: we are assuming the shape of the generated SVG here – be careful!
     final textFill = node.querySelector('text')?.getAttribute('fill');
-    if (textFill != null) {
-      if (textFill.toLowerCase().startsWith('#ff')) {
-        // This is an outdated dependency
-        node.classList.add('outdated');
-      }
+    final edgeStroke =
+        node.getAttribute('stroke') ??
+        node.querySelector('path')?.getAttribute('stroke') ??
+        node.querySelector('polygon')?.getAttribute('stroke');
+
+    if (isOutdatedColor(textFill) || isOutdatedColor(edgeStroke)) {
+      node.classList.add('outdated');
     }
     return (element: node, from: from, to: to);
   }).toList();
