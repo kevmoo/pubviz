@@ -125,7 +125,7 @@ final _sectionHeaderLine = RegExp(
   r'(dependencies|dev dependencies|dependency overrides):\n',
 );
 final _transitiveDepsHeaderLine = RegExp(r'(transitive dependencies):\n');
-final _packageLine = RegExp('($_pkgName) (\\d.+)\n');
+final _packageLine = RegExp('^($_pkgName) (\\d.+)\n', multiLine: true);
 final _usageLine = RegExp('- ($_pkgName) (.+)\n');
 final _depLine = RegExp('  - ($_pkgName) (.+)\n');
 

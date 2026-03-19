@@ -121,6 +121,7 @@ Arguments:
   -d, --direct-dependencies        Include only direct dependencies.
   -p, --production-dependencies    Include only production (non-dev) dependencies.
   -v, --version                    Print the version of pubviz and exit.
+  -w, --workspace                  Include all packages in the workspace.
   -?, --help                       Print this help content.
 
 If <package path> is omitted, the current directory is used.

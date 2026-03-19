@@ -155,6 +155,24 @@ void main() {
       _verifyDotOutput(vp, 'ignore', ignoredPackages: ignoredPackages);
     });
 
+    test('workspace', () async {
+      final vp = await VizRoot.forDirectory(service, includeWorkspace: true);
+
+      expect(vp.root.name, 'repo_manager');
+      expect(vp.packages, hasLength(82));
+
+      expect(
+        vp.packages.values.where((element) => element.isPrimary),
+        hasLength(1),
+        reason: 'Only primary',
+      );
+      expect(
+        vp.packages.values.where((element) => !element.isPrimary),
+        hasLength(81),
+        reason: 'Only non-primary',
+      );
+    });
+
     test('update order', () async {
       final vp = await VizRoot.forDirectory(service, flagOutdated: true);
       final updateOrder = computeUpdateOrder(vp);
@@ -186,6 +204,47 @@ void main() {
       final updateOrder = computeUpdateOrder(root);
 
       expect(updateOrder.map((e) => e.name), ['b', 'a']);
+    });
+  });
+
+  group('generate VizRoot (real workspace)', () {
+    late Service service;
+
+    setUpAll(() {
+      service = MockDataService(p.join('test', 'mock_workspace'));
+    });
+
+    test('workspace', () async {
+      final vp = await VizRoot.forDirectory(service, includeWorkspace: true);
+
+      expect(vp.root.name, 'my_workspace');
+      expect(vp.packages, hasLength(4));
+
+      final primaryPackages = vp.packages.values.where(
+        (element) => element.isPrimary,
+      );
+      expect(
+        primaryPackages.map((e) => e.name),
+        unorderedEquals(['my_workspace', 'member_a', 'member_b']),
+        reason: 'Workspace members should be primary',
+      );
+
+      final memberA = vp.packages['member_a']!;
+      final argsDep = memberA.dependencies.firstWhere((d) => d.name == 'args');
+      expect(
+        argsDep.versionConstraint.toString(),
+        '^2.0.0',
+        reason: 'Should load constraint from member pubspec',
+      );
+
+      final nonPrimaryPackages = vp.packages.values.where(
+        (element) => !element.isPrimary,
+      );
+      expect(
+        nonPrimaryPackages.map((e) => e.name),
+        ['args'],
+        reason: 'Transitive dependencies should not be primary',
+      );
     });
   });
 }

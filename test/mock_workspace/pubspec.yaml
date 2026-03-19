@@ -1,0 +1,4 @@
+name: my_workspace
+workspace:
+  - member_a
+  - member_b

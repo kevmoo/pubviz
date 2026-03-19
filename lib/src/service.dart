@@ -31,28 +31,27 @@ abstract class Service {
 
   DepsPackageEntry rootDeps();
 
+  Iterable<DepsPackageEntry> allDeps();
+
   Future<Map<String, VizPackage>> getReferencedPackages(
     bool flagOutdated,
     bool directDependenciesOnly,
-    bool productionDependenciesOnly,
-  ) async {
+    bool productionDependenciesOnly, {
+    bool includeWorkspace = false,
+  }) async {
     final pubspec = rootPubspec();
 
     final map = SplayTreeMap<String, VizPackage>();
 
-    map[pubspec.name] = VizPackage(
-      pubspec.name,
-      null,
-      Dependency.getDependencies(
-        pubspec,
-        includeDevDependencies: !productionDependenciesOnly,
-      ),
-      null,
-    );
-
     final visitedTransitiveDeps = <String>{};
 
+    /// Adds a package to the [map] and marks its dependencies for transitive
+    /// resolution.
+    ///
+    /// If the package already exists in the [map], it is skipped to avoid
+    /// overwriting primary status or previously loaded constraints.
     void addPkg(VersionedEntry key, Map<String, VersionConstraint> value) {
+      if (map.containsKey(key.name)) return;
       final pkg = VizPackage(
         key.name,
         key.version,
@@ -74,6 +73,7 @@ abstract class Service {
       );
     }
 
+    /// Adds all packages in a given [section] (e.g., 'dependencies').
     void addSectionValues(
       Map<VersionedEntry, Map<String, VersionConstraint>> section,
     ) {
@@ -82,20 +82,90 @@ abstract class Service {
       }
     }
 
-    final deps = rootDeps();
+    final rootDepsEntry = rootDeps();
 
-    addSectionValues(deps.sections['dependencies'] ?? const {});
+    if (includeWorkspace) {
+      // In workspace mode, we want to treat all workspace members as primary
+      // nodes. We load their individual pubspecs to get original version
+      // constraints (resolved versions from `pub deps` are not sufficient
+      // for outdated analysis).
+      final memberPubspecs = <String, Pubspec>{pubspec.name: pubspec};
 
-    if (!productionDependenciesOnly) {
-      addSectionValues(deps.sections['dev dependencies'] ?? const {});
+      final workspace = pubspec.workspace;
+      if (workspace != null && workspace.isNotEmpty) {
+        for (final memberDir in workspace) {
+          final memberPubspecPath = p.join(
+            rootPackageDir,
+            memberDir,
+            'pubspec.yaml',
+          );
+          if (!File(memberPubspecPath).existsSync()) continue;
+          final memberPubspec = Pubspec.parse(
+            File(memberPubspecPath).readAsStringSync(),
+            sourceUrl: Uri.file(memberPubspecPath),
+          );
+          memberPubspecs[memberPubspec.name] = memberPubspec;
+        }
+      }
+
+      final workspaceMemberNames = memberPubspecs.keys.toSet();
+
+      // Filter the full dependency list to only include actual workspace
+      // members as primary entries.
+      for (var entry in allDeps().where(
+        (d) => workspaceMemberNames.contains(d.name),
+      )) {
+        final memberPubspec = memberPubspecs[entry.name]!;
+
+        // Use the actual constraints from the member's pubspec.
+        final dependencies = Dependency.getDependencies(
+          memberPubspec,
+          includeDevDependencies: !productionDependenciesOnly,
+        ).where((d) => !_ignoredPackages.contains(d.name)).toSet();
+
+        map[entry.name] = VizPackage(
+          entry.name,
+          entry.name == pubspec.name ? null : entry.version,
+          SplayTreeSet.of(dependencies),
+          flagOutdated ? _latest(entry.name) : null,
+          isPrimary: true,
+        );
+        map[entry.name]!.onlyDev = false;
+
+        visitedTransitiveDeps.addAll(
+          dependencies
+              .map((d) => d.name)
+              .where((name) => !map.containsKey(name)),
+        );
+      }
+    } else {
+      // Standard non-workspace mode: treat only the root package as primary.
+      map[pubspec.name] = VizPackage(
+        pubspec.name,
+        null,
+        Dependency.getDependencies(
+          pubspec,
+          includeDevDependencies: !productionDependenciesOnly,
+        ),
+        null,
+      );
+
+      addSectionValues(rootDepsEntry.sections['dependencies'] ?? const {});
+
+      if (!productionDependenciesOnly) {
+        addSectionValues(
+          rootDepsEntry.sections['dev dependencies'] ?? const {},
+        );
+      }
     }
 
+    // Resolve transitive dependencies.
     if (!directDependenciesOnly) {
       while (visitedTransitiveDeps.isNotEmpty) {
         final next = visitedTransitiveDeps.first;
         final removed = visitedTransitiveDeps.remove(next);
         assert(removed, 'it should be removed');
-        final entry = deps.allEntries.entries.singleWhere(
+        final entry = rootDepsEntry.allEntries.entries.singleWhere(
           (element) => element.key.name == next,
           orElse: () =>
               throw StateError('Could not find an entry for `$next`.'),

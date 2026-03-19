@@ -1,5 +1,7 @@
-## 4.1.2-wip
+## 4.2.0-wip
 
+- Added `--workspace` (`-w`) flag to visualize all packages in a workspace.
+- Added a warning when running on a workspace root without the `--workspace` flag.
 - Fixed hover behavior over outdated packages.
 
 ## 4.1.1
