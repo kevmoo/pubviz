@@ -107,6 +107,12 @@ abstract class Service {
           isPrimary: true,
         );
         map[entry.name]!.onlyDev = false;
+
+        visitedTransitiveDeps.addAll(
+          dependencies
+              .map((d) => d.name)
+              .where((name) => !map.containsKey(name)),
+        );
       }
     } else {
       map[pubspec.name] = VizPackage(
@@ -118,13 +124,13 @@ abstract class Service {
         ),
         null,
       );
-    }
 
-    for (var entry in (includeWorkspace ? allDeps() : [rootDepsEntry])) {
-      addSectionValues(entry.sections['dependencies'] ?? const {});
+      addSectionValues(rootDepsEntry.sections['dependencies'] ?? const {});
 
       if (!productionDependenciesOnly) {
-        addSectionValues(entry.sections['dev dependencies'] ?? const {});
+        addSectionValues(
+          rootDepsEntry.sections['dev dependencies'] ?? const {},
+        );
       }
     }
 
