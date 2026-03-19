@@ -67,7 +67,8 @@ Future<void> _main(List<String> args) async {
         stderr.writeln(
           yellow.wrap(
             'This package is a workspace root. '
-            'To visualize all packages in the workspace, use the --workspace flag.',
+            'To visualize all packages in the workspace, use the --workspace '
+            'flag.',
           ),
         );
       }

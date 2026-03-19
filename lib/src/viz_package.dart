@@ -9,13 +9,7 @@ class VizPackage implements Comparable<VizPackage> {
   final Set<Dependency> dependencies;
   bool isPrimary;
 
-  bool _onlyDev = true;
-
-  bool get onlyDev => _onlyDev;
-
-  set onlyDev(bool value) {
-    _onlyDev = value;
-  }
+  bool onlyDev = true;
 
   final Version? latestVersion;
 

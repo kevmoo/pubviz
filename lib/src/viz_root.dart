@@ -75,8 +75,7 @@ class VizRoot {
       packages[rootPackageName]!.isPrimary = true;
     }
 
-    final primaryPackages =
-        packages.values.where((v) => v.isPrimary).toList();
+    final primaryPackages = packages.values.where((v) => v.isPrimary).toList();
 
     for (var pkg in primaryPackages) {
       pkg.onlyDev = false;
