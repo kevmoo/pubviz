@@ -32,4 +32,19 @@ class MockDataService extends Service {
 
   @override
   Iterable<DepsPackageEntry> allDeps() => _getDepsList().packages.values;
+
+  @override
+  Future<Map<String, String>> workspaceMembers() async {
+    final file = File(p.join(rootPackageDir, 'workspace_list.json'));
+    if (!file.existsSync()) {
+      return {rootPubspec().name: rootPackageDir};
+    }
+
+    final json = jsonDecode(file.readAsStringSync()) as Map<String, dynamic>;
+    final packages = json['packages'] as List;
+    return {
+      for (var p in packages.cast<Map<String, dynamic>>())
+        p['name'] as String: p['path'] as String,
+    };
+  }
 }

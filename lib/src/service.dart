@@ -33,6 +33,8 @@ abstract class Service {
 
   Iterable<DepsPackageEntry> allDeps();
 
+  Future<Map<String, String>> workspaceMembers();
+
   Future<Map<String, VizPackage>> getReferencedPackages(
     bool flagOutdated,
     bool directDependenciesOnly,
@@ -89,23 +91,18 @@ abstract class Service {
       // nodes. We load their individual pubspecs to get original version
       // constraints (resolved versions from `pub deps` are not sufficient
       // for outdated analysis).
-      final memberPubspecs = <String, Pubspec>{pubspec.name: pubspec};
+      final members = await workspaceMembers();
+      final memberPubspecs = <String, Pubspec>{};
 
-      final workspace = pubspec.workspace;
-      if (workspace != null && workspace.isNotEmpty) {
-        for (final memberDir in workspace) {
-          final memberPubspecPath = p.join(
-            rootPackageDir,
-            memberDir,
-            'pubspec.yaml',
-          );
-          if (!File(memberPubspecPath).existsSync()) continue;
-          final memberPubspec = Pubspec.parse(
-            File(memberPubspecPath).readAsStringSync(),
-            sourceUrl: Uri.file(memberPubspecPath),
-          );
-          memberPubspecs[memberPubspec.name] = memberPubspec;
-        }
+      for (var entry in members.entries) {
+        final memberPubspecPath = p.join(entry.value, 'pubspec.yaml');
+        final file = File(memberPubspecPath);
+        if (!file.existsSync()) continue;
+        final memberPubspec = Pubspec.parse(
+          file.readAsStringSync(),
+          sourceUrl: Uri.file(memberPubspecPath),
+        );
+        memberPubspecs[memberPubspec.name] = memberPubspec;
       }
 
       final workspaceMemberNames = memberPubspecs.keys.toSet();

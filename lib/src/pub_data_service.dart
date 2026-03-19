@@ -45,6 +45,17 @@ class PubDataService extends Service {
   @override
   Iterable<DepsPackageEntry> allDeps() => _getDepsList().packages.values;
 
+  @override
+  Future<Map<String, String>> workspaceMembers() async {
+    final commandOutput = _pubCommand(['workspace', 'list', '--json']);
+    final json = jsonDecode(commandOutput) as Map<String, dynamic>;
+    final packages = json['packages'] as List;
+    return {
+      for (var p in packages.cast<Map<String, dynamic>>())
+        p['name'] as String: p['path'] as String,
+    };
+  }
+
   String _pubCommand(List<String> commandArgs) {
     final proc = _isFlutterPkg ? 'flutter' : 'dart';
     final args = [
