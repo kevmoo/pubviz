@@ -17,10 +17,19 @@ class MockDataService extends Service {
     return jsonDecode(file.readAsStringSync()) as Map<String, dynamic>;
   }
 
-  @override
-  DepsPackageEntry rootDeps() {
-    final depsFile = File(p.join(rootPackageDir, 'pub_deps_list.txt'));
-    final list = DepsList.parse(depsFile.readAsStringSync());
-    return list.packages['repo_manager']!;
+  DepsList? _depsListCache;
+
+  DepsList _getDepsList() {
+    if (_depsListCache == null) {
+      final depsFile = File(p.join(rootPackageDir, 'pub_deps_list.txt'));
+      _depsListCache = DepsList.parse(depsFile.readAsStringSync());
+    }
+    return _depsListCache!;
   }
+
+  @override
+  DepsPackageEntry rootDeps() => _getDepsList().packages['repo_manager']!;
+
+  @override
+  Iterable<DepsPackageEntry> allDeps() => _getDepsList().packages.values;
 }

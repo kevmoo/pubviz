@@ -34,13 +34,16 @@ class PubDataService extends Service {
     }
   }
 
-  @override
-  DepsPackageEntry rootDeps() {
-    final commandOutput = _pubCommand(['deps', '-s', 'list']);
-    final list = DepsList.parse(commandOutput);
+  DepsList? _depsListCache;
 
-    return list.packages[packageName]!;
-  }
+  DepsList _getDepsList() =>
+      _depsListCache ??= DepsList.parse(_pubCommand(['deps', '-s', 'list']));
+
+  @override
+  DepsPackageEntry rootDeps() => _getDepsList().packages[packageName]!;
+
+  @override
+  Iterable<DepsPackageEntry> allDeps() => _getDepsList().packages.values;
 
   String _pubCommand(List<String> commandArgs) {
     final proc = _isFlutterPkg ? 'flutter' : 'dart';

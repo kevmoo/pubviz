@@ -155,6 +155,24 @@ void main() {
       _verifyDotOutput(vp, 'ignore', ignoredPackages: ignoredPackages);
     });
 
+    test('workspace', () async {
+      final vp = await VizRoot.forDirectory(service, includeWorkspace: true);
+
+      expect(vp.root.name, 'repo_manager');
+      expect(vp.packages, hasLength(82));
+
+      expect(
+        vp.packages.values.where((element) => element.isPrimary),
+        hasLength(25),
+        reason: 'Only primary',
+      );
+      expect(
+        vp.packages.values.where((element) => !element.isPrimary),
+        hasLength(57),
+        reason: 'Only non-primary',
+      );
+    });
+
     test('update order', () async {
       final vp = await VizRoot.forDirectory(service, flagOutdated: true);
       final updateOrder = computeUpdateOrder(vp);

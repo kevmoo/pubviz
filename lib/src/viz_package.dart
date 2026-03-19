@@ -7,23 +7,25 @@ class VizPackage implements Comparable<VizPackage> {
   final String name;
   final Version? version;
   final Set<Dependency> dependencies;
-  bool isPrimary = false;
+  bool isPrimary;
 
   bool _onlyDev = true;
 
   bool get onlyDev => _onlyDev;
 
   set onlyDev(bool value) {
-    assert(value == false);
-    assert(_onlyDev == true);
-
     _onlyDev = value;
   }
 
   final Version? latestVersion;
 
-  VizPackage(this.name, this.version, Set<Dependency> deps, this.latestVersion)
-    : dependencies = UnmodifiableSetView(deps);
+  VizPackage(
+    this.name,
+    this.version,
+    Set<Dependency> deps,
+    this.latestVersion, {
+    this.isPrimary = false,
+  }) : dependencies = UnmodifiableSetView(deps);
 
   @override
   String toString() => '$name @ $version';

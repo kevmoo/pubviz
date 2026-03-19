@@ -16,6 +16,12 @@ import 'package:pubviz/viz/dot.dart' as dot;
 import 'package:stack_trace/stack_trace.dart';
 
 Future<void> main(List<String> args) async {
+  await overrideAnsiOutput(stderr.supportsAnsiEscapes, () async {
+    await _main(args);
+  });
+}
+
+Future<void> _main(List<String> args) async {
   parser
     ..addCommand('open')
     ..addCommand('print');
@@ -56,12 +62,23 @@ Future<void> main(List<String> args) async {
   await Chain.capture(
     () async {
       final service = PubDataService(path);
+
+      if (!options.workspace && service.rootPubspec().workspace != null) {
+        stderr.writeln(
+          yellow.wrap(
+            'This package is a workspace root. '
+            'To visualize all packages in the workspace, use the --workspace flag.',
+          ),
+        );
+      }
+
       final vp = await VizRoot.forDirectory(
         service,
         flagOutdated: options.flagOutdated,
         ignorePackages: options.ignorePackages,
         directDependenciesOnly: options.directDependencies ?? false,
         productionDependenciesOnly: options.productionDependencies,
+        includeWorkspace: options.workspace,
       );
       if (options.flagOutdated) {
         final updateOrder = computeUpdateOrder(vp);

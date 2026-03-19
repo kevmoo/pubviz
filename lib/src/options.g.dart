@@ -31,6 +31,7 @@ Options _$parseOptionsResult(ArgResults result) => Options(
   help: result['help'] as bool,
   command: result.command,
   version: result['version'] as bool,
+  workspace: result['workspace'] as bool,
 );
 
 const _$FormatOptionsEnumMapBuildCli = <FormatOptions, String>{
@@ -78,6 +79,12 @@ ArgParser _$populateOptionsParser(ArgParser parser) => parser
     'version',
     abbr: 'v',
     help: 'Print the version of pubviz and exit.',
+    negatable: false,
+  )
+  ..addFlag(
+    'workspace',
+    abbr: 'w',
+    help: 'Include all packages in the workspace.',
     negatable: false,
   )
   ..addFlag(

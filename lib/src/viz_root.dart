@@ -23,6 +23,7 @@ class VizRoot {
     Iterable<String>? ignorePackages,
     bool directDependenciesOnly = false,
     bool productionDependenciesOnly = false,
+    bool includeWorkspace = false,
   }) async {
     final rootPubspec = service.rootPubspec();
 
@@ -30,6 +31,7 @@ class VizRoot {
       flagOutdated,
       directDependenciesOnly,
       productionDependenciesOnly,
+      includeWorkspace: includeWorkspace,
     );
 
     final value = VizRoot._(rootPubspec.name, packages).._update();
@@ -67,17 +69,22 @@ class VizRoot {
   }
 
   void _update() {
-    if (root.isPrimary == false) {
-      root.isPrimary = true;
+    // Collect primary packages at the start.
+    // If none are set (normal case), mark root as primary.
+    if (packages.values.every((v) => !v.isPrimary)) {
+      packages[rootPackageName]!.isPrimary = true;
+    }
 
-      assert(root.onlyDev);
-      root.onlyDev = false;
+    final primaryPackages =
+        packages.values.where((v) => v.isPrimary).toList();
 
-      for (var primaryDep in root.dependencies) {
+    for (var pkg in primaryPackages) {
+      pkg.onlyDev = false;
+
+      for (var primaryDep in pkg.dependencies) {
         final package = packages[primaryDep.name];
         if (package == null) continue;
 
-        assert(!package.isPrimary);
         package.isPrimary = true;
 
         if (!primaryDep.isDevDependency) {

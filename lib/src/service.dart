@@ -31,24 +31,17 @@ abstract class Service {
 
   DepsPackageEntry rootDeps();
 
+  Iterable<DepsPackageEntry> allDeps();
+
   Future<Map<String, VizPackage>> getReferencedPackages(
     bool flagOutdated,
     bool directDependenciesOnly,
-    bool productionDependenciesOnly,
-  ) async {
+    bool productionDependenciesOnly, {
+    bool includeWorkspace = false,
+  }) async {
     final pubspec = rootPubspec();
 
     final map = SplayTreeMap<String, VizPackage>();
-
-    map[pubspec.name] = VizPackage(
-      pubspec.name,
-      null,
-      Dependency.getDependencies(
-        pubspec,
-        includeDevDependencies: !productionDependenciesOnly,
-      ),
-      null,
-    );
 
     final visitedTransitiveDeps = <String>{};
 
@@ -82,12 +75,57 @@ abstract class Service {
       }
     }
 
-    final deps = rootDeps();
+    final rootDepsEntry = rootDeps();
 
-    addSectionValues(deps.sections['dependencies'] ?? const {});
+    if (includeWorkspace) {
+      for (var entry in allDeps()) {
+        final dependencies = <Dependency>{};
+        final sections = [
+          'dependencies',
+          if (!productionDependenciesOnly) 'dev dependencies',
+        ];
+        for (final sectionName in sections) {
+          final section = entry.sections[sectionName];
+          if (section == null) continue;
+          for (final depEntry in section.keys) {
+            if (_ignoredPackages.contains(depEntry.name)) continue;
+            dependencies.add(
+              Dependency(
+                depEntry.name,
+                depEntry.version.toString(),
+                sectionName == 'dev dependencies',
+              ),
+            );
+          }
+        }
 
-    if (!productionDependenciesOnly) {
-      addSectionValues(deps.sections['dev dependencies'] ?? const {});
+        map[entry.name] = VizPackage(
+          entry.name,
+          entry.name == pubspec.name ? null : entry.version,
+          SplayTreeSet.of(dependencies),
+          flagOutdated ? _latest(entry.name) : null,
+          isPrimary: true,
+        );
+        map[entry.name]!.onlyDev = false;
+      }
+    } else {
+      map[pubspec.name] = VizPackage(
+        pubspec.name,
+        null,
+        Dependency.getDependencies(
+          pubspec,
+          includeDevDependencies: !productionDependenciesOnly,
+        ),
+        null,
+      );
+    }
+
+    for (var entry in (includeWorkspace ? allDeps() : [rootDepsEntry])) {
+      addSectionValues(entry.sections['dependencies'] ?? const {});
+
+      if (!productionDependenciesOnly) {
+        addSectionValues(entry.sections['dev dependencies'] ?? const {});
+      }
     }
 
     if (!directDependenciesOnly) {
@@ -95,7 +133,7 @@ abstract class Service {
         final next = visitedTransitiveDeps.first;
         final removed = visitedTransitiveDeps.remove(next);
         assert(removed, 'it should be removed');
-        final entry = deps.allEntries.entries.singleWhere(
+        final entry = rootDepsEntry.allEntries.entries.singleWhere(
           (element) => element.key.name == next,
           orElse: () =>
               throw StateError('Could not find an entry for `$next`.'),
