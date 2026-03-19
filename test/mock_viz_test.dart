@@ -220,8 +220,9 @@ void main() {
       expect(vp.root.name, 'my_workspace');
       expect(vp.packages, hasLength(4));
 
-      final primaryPackages =
-          vp.packages.values.where((element) => element.isPrimary);
+      final primaryPackages = vp.packages.values.where(
+        (element) => element.isPrimary,
+      );
       expect(
         primaryPackages.map((e) => e.name),
         unorderedEquals(['my_workspace', 'member_a', 'member_b']),
@@ -236,8 +237,9 @@ void main() {
         reason: 'Should load constraint from member pubspec',
       );
 
-      final nonPrimaryPackages =
-          vp.packages.values.where((element) => !element.isPrimary);
+      final nonPrimaryPackages = vp.packages.values.where(
+        (element) => !element.isPrimary,
+      );
       expect(
         nonPrimaryPackages.map((e) => e.name),
         ['args'],
