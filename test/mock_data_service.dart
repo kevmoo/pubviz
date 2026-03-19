@@ -28,7 +28,7 @@ class MockDataService extends Service {
   }
 
   @override
-  DepsPackageEntry rootDeps() => _getDepsList().packages.values.first;
+  DepsPackageEntry rootDeps() => _getDepsList().packages[rootPubspec().name]!;
 
   @override
   Iterable<DepsPackageEntry> allDeps() => _getDepsList().packages.values;
