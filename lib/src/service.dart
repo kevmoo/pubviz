@@ -46,6 +46,7 @@ abstract class Service {
     final visitedTransitiveDeps = <String>{};
 
     void addPkg(VersionedEntry key, Map<String, VersionConstraint> value) {
+      if (map.containsKey(key.name)) return;
       final pkg = VizPackage(
         key.name,
         key.version,
