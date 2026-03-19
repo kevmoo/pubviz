@@ -45,6 +45,11 @@ abstract class Service {
 
     final visitedTransitiveDeps = <String>{};
 
+    /// Adds a package to the [map] and marks its dependencies for transitive
+    /// resolution.
+    ///
+    /// If the package already exists in the [map], it is skipped to avoid
+    /// overwriting primary status or previously loaded constraints.
     void addPkg(VersionedEntry key, Map<String, VersionConstraint> value) {
       if (map.containsKey(key.name)) return;
       final pkg = VizPackage(
@@ -68,6 +73,7 @@ abstract class Service {
       );
     }
 
+    /// Adds all packages in a given [section] (e.g., 'dependencies').
     void addSectionValues(
       Map<VersionedEntry, Map<String, VersionConstraint>> section,
     ) {
@@ -79,6 +85,10 @@ abstract class Service {
     final rootDepsEntry = rootDeps();
 
     if (includeWorkspace) {
+      // In workspace mode, we want to treat all workspace members as primary
+      // nodes. We load their individual pubspecs to get original version
+      // constraints (resolved versions from `pub deps` are not sufficient
+      // for outdated analysis).
       final memberPubspecs = <String, Pubspec>{pubspec.name: pubspec};
 
       final workspace = pubspec.workspace;
@@ -100,13 +110,14 @@ abstract class Service {
 
       final workspaceMemberNames = memberPubspecs.keys.toSet();
 
-      final workspacePackageEntries = allDeps().where(
+      // Filter the full dependency list to only include actual workspace
+      // members as primary entries.
+      for (var entry in allDeps().where(
         (d) => workspaceMemberNames.contains(d.name),
-      );
-
-      for (var entry in workspacePackageEntries) {
+      )) {
         final memberPubspec = memberPubspecs[entry.name]!;
 
+        // Use the actual constraints from the member's pubspec.
         final dependencies = Dependency.getDependencies(
           memberPubspec,
           includeDevDependencies: !productionDependenciesOnly,
@@ -128,6 +139,7 @@ abstract class Service {
         );
       }
     } else {
+      // Standard non-workspace mode: treat only the root package as primary.
       map[pubspec.name] = VizPackage(
         pubspec.name,
         null,
@@ -147,6 +159,7 @@ abstract class Service {
       }
     }
 
+    // Resolve transitive dependencies.
     if (!directDependenciesOnly) {
       while (visitedTransitiveDeps.isNotEmpty) {
         final next = visitedTransitiveDeps.first;
