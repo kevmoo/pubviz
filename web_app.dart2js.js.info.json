@@ -3,11 +3,11 @@
   "dump_minor_version": 1,
   "program": {
     "entrypoint": "function/org-dartlang-app:///example/web_app.dart::main",
-    "size": 88800,
+    "size": 89121,
     "ramUsage": "N/A MB",
-    "dart2jsVersion": "3.12.0-232.0.dev",
-    "compilationMoment": "2026-03-13 12:24:03.152977",
-    "compilationDuration": 655115,
+    "dart2jsVersion": "3.12.0-261.0.dev",
+    "compilationMoment": "2026-03-18 17:37:49.089865",
+    "compilationDuration": 729171,
     "toJsonDuration": 1000,
     "dumpInfoDuration": 0,
     "noSuchMethodEnabled": false,
@@ -33,7 +33,7 @@
         "id": "library/dart:_interceptors::",
         "kind": "library",
         "name": "_interceptors",
-        "size": 7581,
+        "size": 7505,
         "children": [
           "class/dart:_interceptors::ArrayIterator",
           "class/dart:_interceptors::Interceptor",
@@ -585,7 +585,7 @@
         "id": "library/org-dartlang-app:///example/web_app.dart::",
         "kind": "library",
         "name": "<unnamed>",
-        "size": 5340,
+        "size": 5656,
         "children": [
           "field/org-dartlang-app:///example/web_app.dart::__root",
           "field/org-dartlang-app:///example/web_app.dart::_dotContentLines",
@@ -601,6 +601,16 @@
           "function/org-dartlang-app:///example/web_app.dart::main"
         ],
         "canonicalUri": "org-dartlang-app:///example/web_app.dart"
+      },
+      "package:pubviz/viz/colors.dart::": {
+        "id": "library/package:pubviz/viz/colors.dart::",
+        "kind": "library",
+        "name": "<unnamed>",
+        "size": 79,
+        "children": [
+          "function/package:pubviz/viz/colors.dart::isOutdatedColor"
+        ],
+        "canonicalUri": "package:pubviz/viz/colors.dart"
       },
       "package:web/src/helpers/events/events.dart::": {
         "id": "library/package:web/src/helpers/events/events.dart::",
@@ -846,7 +856,7 @@
         "id": "class/dart:_interceptors::JSString",
         "kind": "class",
         "name": "JSString",
-        "size": 1034,
+        "size": 958,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:_interceptors::",
         "modifiers": {
@@ -865,7 +875,6 @@
           "function/dart:_interceptors::JSString.length",
           "function/dart:_interceptors::JSString.padLeft",
           "function/dart:_interceptors::JSString.runtimeType",
-          "function/dart:_interceptors::JSString.startsWith",
           "function/dart:_interceptors::JSString.substring",
           "function/dart:_interceptors::JSString.toLowerCase",
           "function/dart:_interceptors::JSString.toString",
@@ -5615,35 +5624,6 @@
         "type": "Type Function()",
         "functionKind": 2
       },
-      "dart:_interceptors::JSString.startsWith": {
-        "id": "function/dart:_interceptors::JSString.startsWith",
-        "kind": "function",
-        "name": "startsWith",
-        "size": 74,
-        "outputUnit": "outputUnit/main",
-        "parent": "class/dart:_interceptors::JSString",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "bool",
-        "inferredReturnType": "[exact=JSBool|powerset={I}{O}{N}]",
-        "parameters": [
-          {
-            "name": "pattern",
-            "type": "Value([exact=JSString|powerset={I}{O}{I}], value: \"#ff\", powerset: {I}{O}{I})",
-            "declaredType": "Pattern"
-          }
-        ],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 0,
-        "code": "nC(a,b){var s=b.length\nif(s>a.length)return!1\nreturn b===a.substring(0,s)}",
-        "type": "bool Function(Pattern,[int])",
-        "functionKind": 2
-      },
       "dart:_interceptors::JSString.substring": {
         "id": "function/dart:_interceptors::JSString.substring",
         "kind": "function",
@@ -5696,7 +5676,7 @@
         "inferredReturnType": "[exact=JSString|powerset={I}{O}{I}]",
         "parameters": [],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 2,
+        "inlinedCount": 1,
         "code": "",
         "type": "String Function()",
         "functionKind": 2
@@ -11859,7 +11839,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 4,
+        "inlinedCount": 3,
         "code": "",
         "type": "int Function(dynamic)",
         "functionKind": 0
@@ -30991,7 +30971,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 22,
+        "inlinedCount": 31,
         "code": "aJ(a,b,c){return a[b](c)}",
         "type": "#A Function<#A extends Object?>(Object,Object,Object?)",
         "functionKind": 0
@@ -31425,7 +31405,7 @@
         "id": "function/org-dartlang-app:///example/web_app.dart::_updateBody",
         "kind": "function",
         "name": "_updateBody",
-        "size": 2106,
+        "size": 2422,
         "outputUnit": "outputUnit/main",
         "parent": "library/org-dartlang-app:///example/web_app.dart::",
         "children": [
@@ -31521,7 +31501,7 @@
         "id": "function/org-dartlang-app:///example/web_app.dart::_updateBody._updateBody_closure.call%0",
         "kind": "function",
         "name": "call",
-        "size": 261,
+        "size": 401,
         "outputUnit": "outputUnit/main",
         "parent": "closure/org-dartlang-app:///example/web_app.dart::_updateBody._updateBody_closure%0",
         "children": [],
@@ -31542,7 +31522,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "$1(a){var s,r,q=a.querySelector(\"title\").textContent\nq.toString\na.id=q\ns=a.querySelector(\"polygon\")\nr=s==null?null:s.getAttribute(\"stroke\")\nif(r!=null&&B.xB.nC(r.toLowerCase(),\"#ff\"))a.classList.add(\"outdated\")\nA.J(a,\"click\",new A.ix(),!1)\nreturn new A.Pl(a,q)}",
+        "code": "$1(a){var s,r,q=a.querySelector(\"title\").textContent\nq.toString\na.id=q\ns=a.querySelector(\"ellipse\")\ns=s==null?null:s.getAttribute(\"stroke\")\nif(s==null){s=a.querySelector(\"polygon\")\ns=s==null?null:s.getAttribute(\"stroke\")\nr=s}else r=s\nif(r==null){s=a.querySelector(\"path\")\nr=s==null?null:s.getAttribute(\"stroke\")}if(A.Nn(r))a.classList.add(\"outdated\")\nA.J(a,\"click\",new A.ix(),!1)\nreturn new A.Pl(a,q)}",
         "type": "({JSObject element,String id}) Function(JSObject)",
         "functionKind": 2
       },
@@ -31550,7 +31530,7 @@
         "id": "function/org-dartlang-app:///example/web_app.dart::_updateBody._updateBody_closure.call%1",
         "kind": "function",
         "name": "call",
-        "size": 310,
+        "size": 486,
         "outputUnit": "outputUnit/main",
         "parent": "closure/org-dartlang-app:///example/web_app.dart::_updateBody._updateBody_closure%1",
         "children": [],
@@ -31571,7 +31551,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "$1(a){var s,r,q,p,o=a.querySelector(\"title\").textContent\no.toString\ns=o.split(\"->\")\nr=s[0]\nq=s[1]\na.setAttribute(\"x-from\",r)\na.setAttribute(\"x-to\",q)\no=a.querySelector(\"text\")\np=o==null?null:o.getAttribute(\"fill\")\nif(p!=null)if(B.xB.nC(p.toLowerCase(),\"#ff\"))a.classList.add(\"outdated\")\nreturn new A.SN(a,r,q)}",
+        "code": "$1(a){var s,r,q,p,o,n=a.querySelector(\"title\").textContent\nn.toString\ns=n.split(\"->\")\nr=s[0]\nq=s[1]\na.setAttribute(\"x-from\",r)\na.setAttribute(\"x-to\",q)\nn=a.querySelector(\"text\")\np=n==null?null:n.getAttribute(\"fill\")\nn=a.getAttribute(\"stroke\")\nif(n==null){n=a.querySelector(\"path\")\nn=n==null?null:n.getAttribute(\"stroke\")\no=n}else o=n\nif(o==null){n=a.querySelector(\"polygon\")\no=n==null?null:n.getAttribute(\"stroke\")}if(A.Nn(p)||A.Nn(o))a.classList.add(\"outdated\")\nreturn new A.SN(a,r,q)}",
         "type": "({JSObject element,String from,String to}) Function(JSObject)",
         "functionKind": 2
       },
@@ -31783,6 +31763,35 @@
         "code": "$1(a){var s=$.oa\nif(s!=null)s.classList.toggle(\"zoom\")}",
         "type": "void Function(JSObject)",
         "functionKind": 2
+      },
+      "package:pubviz/viz/colors.dart::isOutdatedColor": {
+        "id": "function/package:pubviz/viz/colors.dart::isOutdatedColor",
+        "kind": "function",
+        "name": "isOutdatedColor",
+        "size": 79,
+        "outputUnit": "outputUnit/main",
+        "parent": "library/package:pubviz/viz/colors.dart::",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "bool",
+        "inferredReturnType": "[exact=JSBool|powerset={I}{O}{N}]",
+        "parameters": [
+          {
+            "name": "color",
+            "type": "[null|exact=JSString|powerset={null}{I}{O}{I}]",
+            "declaredType": "String?"
+          }
+        ],
+        "sideEffects": "SideEffects(reads nothing; writes nothing)",
+        "inlinedCount": 0,
+        "code": "Nn(a){var s\nif(a==null)return!1\ns=a.toLowerCase()\nreturn s===\"red\"||s===\"pink\"}",
+        "type": "bool Function(String?)",
+        "functionKind": 0
       },
       "package:web/src/helpers/events/events.dart::ElementEventGetters|get#onClick": {
         "id": "function/package:web/src/helpers/events/events.dart::ElementEventGetters|get#onClick",
@@ -35382,7 +35391,7 @@
         "id": "closure/org-dartlang-app:///example/web_app.dart::_updateBody._updateBody_closure%0",
         "kind": "closure",
         "name": "_updateBody_closure",
-        "size": 308,
+        "size": 448,
         "outputUnit": "outputUnit/main",
         "parent": "function/org-dartlang-app:///example/web_app.dart::_updateBody",
         "function": "function/org-dartlang-app:///example/web_app.dart::_updateBody._updateBody_closure.call%0"
@@ -35391,7 +35400,7 @@
         "id": "closure/org-dartlang-app:///example/web_app.dart::_updateBody._updateBody_closure%1",
         "kind": "closure",
         "name": "_updateBody_closure",
-        "size": 357,
+        "size": 533,
         "outputUnit": "outputUnit/main",
         "parent": "function/org-dartlang-app:///example/web_app.dart::_updateBody",
         "function": "function/org-dartlang-app:///example/web_app.dart::_updateBody._updateBody_closure.call%1"
@@ -36862,15 +36871,6 @@
       },
       {
         "id": "function/dart:_rti::findType"
-      }
-    ],
-    "function/dart:_interceptors::JSString.startsWith": [
-      {
-        "id": "function/dart:_js_helper::checkInt",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/dart:_js_helper::checkInt"
       }
     ],
     "function/dart:_interceptors::JSString.substring": [
@@ -52578,16 +52578,6 @@
     ],
     "function/org-dartlang-app:///example/web_app.dart::_updateBody._updateBody_closure.call%0": [
       {
-        "id": "function/dart:_interceptors::JSString.startsWith"
-      },
-      {
-        "id": "function/dart:_interceptors::JSString.toLowerCase",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/dart:_interceptors::JSString.toLowerCase"
-      },
-      {
         "id": "function/dart:_rti::_setArrayType"
       },
       {
@@ -52615,6 +52605,9 @@
         "id": "function/org-dartlang-app:///example/web_app.dart::_updateBody._updateBody__closure.call"
       },
       {
+        "id": "function/package:pubviz/viz/colors.dart::isOutdatedColor"
+      },
+      {
         "id": "function/package:web/src/helpers/events/events.dart::ElementEventGetters|get#onClick",
         "mask": "inlined"
       },
@@ -52640,16 +52633,6 @@
     ],
     "function/org-dartlang-app:///example/web_app.dart::_updateBody._updateBody_closure.call%1": [
       {
-        "id": "function/dart:_interceptors::JSString.startsWith"
-      },
-      {
-        "id": "function/dart:_interceptors::JSString.toLowerCase",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/dart:_interceptors::JSString.toLowerCase"
-      },
-      {
         "id": "function/dart:js_util::_callMethodUnchecked1",
         "mask": "inlined"
       },
@@ -52669,6 +52652,9 @@
       },
       {
         "id": "function/dart:js_util::getProperty"
+      },
+      {
+        "id": "function/package:pubviz/viz/colors.dart::isOutdatedColor"
       }
     ],
     "function/org-dartlang-app:///example/web_app.dart::_updateBody._updateBody_closure.call%2": [
@@ -52835,6 +52821,15 @@
         "id": "function/dart:js_util::getProperty"
       }
     ],
+    "function/package:pubviz/viz/colors.dart::isOutdatedColor": [
+      {
+        "id": "function/dart:_interceptors::JSString.toLowerCase",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:_interceptors::JSString.toLowerCase"
+      }
+    ],
     "function/package:web/src/helpers/events/events.dart::ElementEventGetters|get#onClick": [
       {
         "id": "function/package:web/src/helpers/events/streams.dart::EventStreamProvider.forElement",
@@ -52959,7 +52954,7 @@
       "id": "outputUnit/main",
       "kind": "outputUnit",
       "name": "main",
-      "size": 88800,
+      "size": 89121,
       "filename": "web_app.dart2js.js",
       "imports": []
     }

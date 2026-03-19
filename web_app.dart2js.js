@@ -1856,7 +1856,11 @@ qw(a){if(typeof dartPrint=="function"){dartPrint(a)
 return}if(typeof console=="object"&&typeof console.log!="undefined"){console.log(a)
 return}if(typeof print=="function"){print(a)
 return}throw"Unable to print message: "+String(a)},
-pR(a){throw A.j(new A.n("Field '"+a+"' has been assigned during initialization."),new Error())}},B={}
+pR(a){throw A.j(new A.n("Field '"+a+"' has been assigned during initialization."),new Error())},
+Nn(a){var s
+if(a==null)return!1
+s=a.toLowerCase()
+return s==="red"||s==="pink"}},B={}
 var w=[A,J,B]
 var $={}
 A.FK.prototype={}
@@ -1981,9 +1985,6 @@ gbx(a){return A.I(t.i)},
 $iy5:1}
 J.Dr.prototype={
 dd(a,b){return new A.un(b,a,0)},
-nC(a,b){var s=b.length
-if(s>a.length)return!1
-return b===a.substring(0,s)},
 Nj(a,b,c){return a.substring(b,A.jB(b,c,a.length))},
 yn(a,b){return this.Nj(a,b,null)},
 bS(a){var s,r,q,p=a.trim(),o=p.length
@@ -2817,9 +2818,13 @@ A.lg.prototype={
 $1(a){var s,r,q=a.querySelector("title").textContent
 q.toString
 a.id=q
-s=a.querySelector("polygon")
-r=s==null?null:s.getAttribute("stroke")
-if(r!=null&&B.xB.nC(r.toLowerCase(),"#ff"))a.classList.add("outdated")
+s=a.querySelector("ellipse")
+s=s==null?null:s.getAttribute("stroke")
+if(s==null){s=a.querySelector("polygon")
+s=s==null?null:s.getAttribute("stroke")
+r=s}else r=s
+if(r==null){s=a.querySelector("path")
+r=s==null?null:s.getAttribute("stroke")}if(A.Nn(r))a.classList.add("outdated")
 A.J(a,"click",new A.ix(),!1)
 return new A.Pl(a,q)},
 $S:15}
@@ -2830,16 +2835,21 @@ if(!$.UR.i(0,s.id))$.UR.Rz(0,s.id)
 A.i()},
 $S:1}
 A.qK.prototype={
-$1(a){var s,r,q,p,o=a.querySelector("title").textContent
-o.toString
-s=o.split("->")
+$1(a){var s,r,q,p,o,n=a.querySelector("title").textContent
+n.toString
+s=n.split("->")
 r=s[0]
 q=s[1]
 a.setAttribute("x-from",r)
 a.setAttribute("x-to",q)
-o=a.querySelector("text")
-p=o==null?null:o.getAttribute("fill")
-if(p!=null)if(B.xB.nC(p.toLowerCase(),"#ff"))a.classList.add("outdated")
+n=a.querySelector("text")
+p=n==null?null:n.getAttribute("fill")
+n=a.getAttribute("stroke")
+if(n==null){n=a.querySelector("path")
+n=n==null?null:n.getAttribute("stroke")
+o=n}else o=n
+if(o==null){n=a.querySelector("polygon")
+o=n==null?null:n.getAttribute("stroke")}if(A.Nn(p)||A.Nn(o))a.classList.add("outdated")
 return new A.SN(a,r,q)},
 $S:16}
 A.jf.prototype={
