@@ -79,15 +79,16 @@ abstract class Service {
     final rootDepsEntry = rootDeps();
 
     if (includeWorkspace) {
-      final memberPubspecs = <String, Pubspec>{
-        pubspec.name: pubspec,
-      };
+      final memberPubspecs = <String, Pubspec>{pubspec.name: pubspec};
 
       final workspace = pubspec.workspace;
       if (workspace != null && workspace.isNotEmpty) {
         for (final memberDir in workspace) {
-          final memberPubspecPath =
-              p.join(rootPackageDir, memberDir, 'pubspec.yaml');
+          final memberPubspecPath = p.join(
+            rootPackageDir,
+            memberDir,
+            'pubspec.yaml',
+          );
           if (!File(memberPubspecPath).existsSync()) continue;
           final memberPubspec = Pubspec.parse(
             File(memberPubspecPath).readAsStringSync(),
@@ -99,8 +100,9 @@ abstract class Service {
 
       final workspaceMemberNames = memberPubspecs.keys.toSet();
 
-      final workspacePackageEntries =
-          allDeps().where((d) => workspaceMemberNames.contains(d.name));
+      final workspacePackageEntries = allDeps().where(
+        (d) => workspaceMemberNames.contains(d.name),
+      );
 
       for (var entry in workspacePackageEntries) {
         final memberPubspec = memberPubspecs[entry.name]!;
@@ -126,7 +128,6 @@ abstract class Service {
         );
       }
     } else {
-
       map[pubspec.name] = VizPackage(
         pubspec.name,
         null,
