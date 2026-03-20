@@ -126,7 +126,9 @@ abstract class Service {
 
         map[entry.name] = VizPackage(
           entry.name,
-          entry.name == pubspec.name ? null : entry.version,
+          entry.name == pubspec.name || memberPubspec.publishTo == 'none'
+              ? null
+              : entry.version,
           SplayTreeSet.of(dependencies),
           flagOutdated ? _latest(entry.name) : null,
           isPrimary: true,
