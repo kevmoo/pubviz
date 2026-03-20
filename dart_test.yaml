@@ -1,3 +1,8 @@
 tags:
   presubmit-only:
-    skip: "Should only be run during presubmit"
+
+exclude_tags: presubmit-only
+
+presets:
+  presubmit:
+    include_tags: presubmit-only

@@ -58,5 +58,5 @@ jobs:
         run: dart pub get
       - run: dart test
         if: always() && steps.install.outcome == 'success'
-      - run: dart test --run-skipped test/ensure_build_test.dart
+      - run: dart test -P presubmit -j 1
         if: always() && steps.install.outcome == 'success' && matrix.sdk == 'dev'
