@@ -28,12 +28,12 @@ void main() {
 
       expect(
         vp.packages.values.where((element) => element.isPrimary),
-        hasLength(25),
+        hasLength(1),
         reason: 'Only primary',
       );
       expect(
         vp.packages.values.where((element) => !element.isPrimary),
-        hasLength(57),
+        hasLength(81),
         reason: 'Only non-primary',
       );
 
@@ -51,12 +51,12 @@ void main() {
 
       expect(
         vp.packages.values.where((element) => element.isPrimary),
-        hasLength(25),
+        hasLength(1),
         reason: 'Only primary',
       );
       expect(
         vp.packages.values.where((element) => !element.isPrimary),
-        isEmpty,
+        hasLength(24),
         reason: 'Only non-primary',
       );
 
@@ -74,12 +74,12 @@ void main() {
 
       expect(
         vp.packages.values.where((element) => element.isPrimary),
-        hasLength(20),
+        hasLength(1),
         reason: 'Only primary',
       );
       expect(
         vp.packages.values.where((element) => !element.isPrimary),
-        hasLength(31),
+        hasLength(50),
         reason: 'Only non-primary',
       );
 
@@ -98,12 +98,12 @@ void main() {
 
       expect(
         vp.packages.values.where((element) => element.isPrimary),
-        hasLength(20),
+        hasLength(1),
         reason: 'Only primary',
       );
       expect(
         vp.packages.values.where((element) => !element.isPrimary),
-        isEmpty,
+        hasLength(19),
         reason: 'Only non-primary',
       );
 
@@ -118,12 +118,12 @@ void main() {
 
       expect(
         vp.packages.values.where((element) => element.isPrimary),
-        hasLength(25),
+        hasLength(1),
         reason: 'Only primary',
       );
       expect(
         vp.packages.values.where((element) => !element.isPrimary),
-        hasLength(57),
+        hasLength(81),
         reason: 'Only non-primary',
       );
 
@@ -143,12 +143,12 @@ void main() {
 
       expect(
         vp.packages.values.where((element) => element.isPrimary),
-        hasLength(25),
+        hasLength(1),
         reason: 'Only primary',
       );
       expect(
         vp.packages.values.where((element) => !element.isPrimary),
-        hasLength(57),
+        hasLength(81),
         reason: 'Only non-primary',
       );
 
