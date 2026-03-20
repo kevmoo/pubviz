@@ -56,5 +56,7 @@ jobs:
       - id: install
         name: Install dependencies
         run: dart pub get
-      - run: dart test --run-skipped
+      - run: dart test
         if: always() && steps.install.outcome == 'success'
+      - run: dart test --run-skipped test/ensure_build_test.dart
+        if: always() && steps.install.outcome == 'success' && matrix.sdk == 'dev'
