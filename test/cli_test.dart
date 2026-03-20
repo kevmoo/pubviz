@@ -42,7 +42,7 @@ $_usage''');
     final proc = await TestProcess.start(dartPath, [_entryPoint]);
 
     final output = await proc.stdoutStream().join('\n');
-    expect(output, '''Specify a command: open, print
+    expect(output, '''Specify a command: open, create, print
 
 $_usage''');
 
@@ -109,6 +109,7 @@ $_usage''');
 const _usage = r'''Usage: pubviz [<args>] <command> [<package path>]
 
 Commands:
+  create Populate a temporary file with the content and print the path.
   open   Populate a temporary file with the content and open it.
   print  Print the output to stdout.
 

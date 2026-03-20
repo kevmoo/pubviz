@@ -24,6 +24,7 @@ Future<void> main(List<String> args) async {
 Future<void> _main(List<String> args) async {
   parser
     ..addCommand('open')
+    ..addCommand('create')
     ..addCommand('print');
 
   Options options;
@@ -96,7 +97,19 @@ Future<void> _main(List<String> args) async {
       if (command.name == 'print') {
         _printContent(vp, options.format, options.ignorePackages);
       } else if (command.name == 'open') {
-        await _open(vp, options.format, options.ignorePackages);
+        await _createOrOpen(
+          vp,
+          options.format,
+          options.ignorePackages,
+          openFile: true,
+        );
+      } else if (command.name == 'create') {
+        await _createOrOpen(
+          vp,
+          options.format,
+          options.ignorePackages,
+          openFile: false,
+        );
       } else {
         throw StateError('Should never get here...');
       }
@@ -117,6 +130,7 @@ void _printUsage() {
   print('''Usage: pubviz [<args>] <command> [<package path>]
 
 ${styleBold.wrap('Commands:')}
+  create Populate a temporary file with the content and print the path.
   open   Populate a temporary file with the content and open it.
   print  Print the output to stdout.
 
@@ -137,11 +151,12 @@ String _getContent(
 
 String _getExtension(FormatOptions format) => format.toString().split('.')[1];
 
-Future<void> _open(
+Future<void> _createOrOpen(
   VizRoot root,
   FormatOptions format,
-  List<String> ignorePackages,
-) async {
+  List<String> ignorePackages, {
+  required bool openFile,
+}) async {
   final extension = _getExtension(format);
   final name = root.root.name;
   final dir = await Directory.systemTemp.createTemp('pubviz_${name}_');
@@ -154,19 +169,21 @@ Future<void> _open(
 
   print('File generated: $filePath');
 
-  String openCommand;
-  if (Platform.isMacOS) {
-    openCommand = 'open';
-  } else if (Platform.isLinux) {
-    openCommand = 'xdg-open';
-  } else if (Platform.isWindows) {
-    openCommand = 'explorer';
-  } else {
-    print("We don't know how to open a file in ${Platform.operatingSystem}");
-    exit(1);
-  }
+  if (openFile) {
+    String openCommand;
+    if (Platform.isMacOS) {
+      openCommand = 'open';
+    } else if (Platform.isLinux) {
+      openCommand = 'xdg-open';
+    } else if (Platform.isWindows) {
+      openCommand = 'explorer';
+    } else {
+      print("We don't know how to open a file in ${Platform.operatingSystem}");
+      exit(1);
+    }
 
-  await Process.run(openCommand, [filePath]);
+    await Process.run(openCommand, [filePath]);
+  }
 }
 
 void _printContent(

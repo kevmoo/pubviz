@@ -9,7 +9,12 @@ import 'dart:js_interop';
 import 'package:pubviz/viz/colors.dart';
 import 'package:web/web.dart';
 
-final zoomBtn = document.querySelector('#zoomBtn') as HTMLButtonElement;
+final hamburgerBtn =
+    document.querySelector('#hamburgerBtn') as HTMLButtonElement;
+final controlsPanel =
+    document.querySelector('#controls-panel') as HTMLDivElement;
+final zoomCheckbox =
+    document.querySelector('#zoomCheckbox') as HTMLInputElement;
 
 VizInstance? _vizInstance;
 
@@ -31,8 +36,23 @@ final _toIgnore = <String>{};
 void main() {
   _process();
 
-  zoomBtn.onClick.listen((_) {
+  hamburgerBtn.onClick.listen((_) {
+    controlsPanel.classList.toggle('collapsed');
+  });
+
+  void toggleZoom() {
+    zoomCheckbox.checked = !zoomCheckbox.checked;
     __root?.classList.toggle('zoom');
+  }
+
+  zoomCheckbox.onChange.listen((_) {
+    __root?.classList.toggle('zoom');
+  });
+
+  window.onKeyDown.listen((KeyboardEvent event) {
+    if (event.key == 'z' || event.key == 'Z') {
+      toggleZoom();
+    }
   });
 }
 
@@ -103,7 +123,7 @@ Future<void> _process() async {
     _updateBody(output);
   } catch (e) {
     final output = '<pre>${htmlEscape.convert(e.toString())}</pre>';
-    document.body!.append(output.toJS);
+    document.querySelector('#graph-container')!.append(output.toJS);
   } finally {
     print('Total time generating graph: ${watch.elapsed}');
   }
@@ -121,8 +141,9 @@ void _updateBody(String output) {
       )
       .join('\n');
 
-  document.body!.insertAdjacentHTML('beforeend', output.toJS);
-  zoomBtn.style.display = 'block';
+  document
+      .querySelector('#graph-container')!
+      .insertAdjacentHTML('beforeend', output.toJS);
 
   __root = document.querySelector('svg') as SVGElement;
 
