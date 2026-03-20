@@ -1,3 +1,6 @@
 name: member_b
+environment:
+  sdk: ^3.5.0
+resolution: workspace
 dependencies:
   member_a: any
