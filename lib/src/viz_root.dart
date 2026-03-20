@@ -85,10 +85,6 @@ class VizRoot {
         final package = packages[primaryDep.name];
         if (package == null) continue;
 
-        if (!includeWorkspace) {
-          package.isPrimary = true;
-        }
-
         if (!primaryDep.isDevDependency) {
           _updateDevOnly(primaryDep);
         }
