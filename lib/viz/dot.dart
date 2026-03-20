@@ -131,10 +131,24 @@ const String _dotHtmlTemplate = r'''
     <script src="https://cdn.jsdelivr.net/npm/@viz-js/viz@3.25.0/dist/viz-global.js"></script>
   </head>
   <body>
-    <button id="zoomBtn">Zoom</button>
-    <script type="text/vnd.graphviz" id="dot">
+    <div id="app-layout">
+      <button id="hamburgerBtn" title="Toggle Controls">&#9776;</button>
+      <div id="controls-panel" class="collapsed">
+        <div id="controls-header">
+          <span id="controls-title">Controls</span>
+        </div>
+        <div id="controls-content">
+          <label>
+            <input type="checkbox" id="zoomCheckbox"> Zoom (z)
+          </label>
+        </div>
+      </div>
+      <div id="graph-container">
+        <script type="text/vnd.graphviz" id="dot">
 DOT_HERE
-    </script>
+        </script>
+      </div>
+    </div>
   </body>
   <script defer src="web_app.dart.js"></script>
 </html>

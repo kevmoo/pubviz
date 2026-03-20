@@ -5,6 +5,10 @@
 - Fixed hover behavior over outdated packages.
 - Added a distinct background color to primary nodes.
 - Hide version numbers for primary nodes marked as `publish_to: none`.
+- Added `create` command which generates the HTML visualization without automatically opening the browser.
+- Redesigned the interactive web interface, introducing a collapsible sidebar for controls.
+- Improved UI elements with sans-serif typography and a floating hamburger menu.
+- Added a `z` keyboard shortcut to toggle graph zoom.
 
 ## 4.1.1
 

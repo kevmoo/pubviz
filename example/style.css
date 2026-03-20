@@ -5,13 +5,64 @@ text {
 *, *:before, *:after {
     -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
 }
-button {
-    position: fixed;
-    padding: 10px;
-    top: 5px;
-    left: 5px;
-    opacity: 0.8;
+#controls-panel {
+    width: 250px;
+    flex-shrink: 0;
+    background: #f8f9fa;
+    border-right: 1px solid #ddd;
+    transition: width 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+#controls-panel.collapsed {
+    width: 0px;
+    border-right: none;
+}
+#controls-panel.collapsed #controls-title,
+#controls-panel.collapsed #controls-content {
     display: none;
+}
+#controls-header {
+    display: flex;
+    align-items: center;
+    padding: 15px 15px 15px 65px;
+    border-bottom: 1px solid #ddd;
+    min-height: 50px;
+}
+#hamburgerBtn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 100;
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 8px 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    transition: background 0.2s, box-shadow 0.2s;
+}
+
+#hamburgerBtn:hover {
+    background: #f8f9fa;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+#controls-title {
+    font-weight: bold;
+    white-space: nowrap;
+}
+#controls-content {
+    padding: 15px;
+    white-space: nowrap;
+}
+#graph-container {
+    flex-grow: 1;
+    overflow: auto;
+    position: relative;
+    height: 100%;
 }
 g > * {
     transition-property: stroke, stroke-width, transform, fill, font-size;
@@ -51,6 +102,8 @@ g.node > [fill="none"] {
   fill: #eee;
 }
 
-html, body { margin:10px; padding:0; }
-svg {  height:100%; width:100%; }
-svg.zoom {height: inherit; width: inherit;}
+html, body { margin: 0; padding: 0; height: 100vh; width: 100vw; overflow: hidden; font-family: sans-serif; }
+button, input { font-family: inherit; }
+#app-layout { display: flex; width: 100%; height: 100%; }
+svg { display: block; height: auto; width: auto; max-width: 100%; max-height: 100%; margin: auto; }
+svg.zoom { max-width: none; max-height: none; }

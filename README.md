@@ -108,6 +108,7 @@ $ pubviz -?
 Usage: pubviz [<args>] <command> [<package path>]
 
 Commands:
+  create Populate a temporary file with the content and print the path.
   open   Populate a temporary file with the content and open it.
   print  Print the output to stdout.
 
