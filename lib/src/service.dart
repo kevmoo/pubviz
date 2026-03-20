@@ -95,7 +95,11 @@ abstract class Service {
       final memberPubspecs = <String, Pubspec>{};
 
       for (var entry in members.entries) {
-        final memberPubspecPath = p.join(entry.value, 'pubspec.yaml');
+        final memberPubspecPath = p.join(
+          rootPackageDir,
+          entry.value,
+          'pubspec.yaml',
+        );
         final file = File(memberPubspecPath);
         if (!file.existsSync()) continue;
         final memberPubspec = Pubspec.parse(
