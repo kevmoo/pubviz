@@ -43,8 +43,11 @@ class MockDataService extends Service {
     final json = jsonDecode(file.readAsStringSync()) as Map<String, dynamic>;
     final packages = json['packages'] as List;
     return {
-      for (var p in packages.cast<Map<String, dynamic>>())
-        p['name'] as String: p['path'] as String,
+      for (var pkgEntry in packages.cast<Map<String, dynamic>>())
+        pkgEntry['name'] as String: p.canonicalize(p.join(
+          rootPackageDir,
+          pkgEntry['path'] as String,
+        )),
     };
   }
 }

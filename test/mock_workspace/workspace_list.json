@@ -2,15 +2,15 @@
   "packages": [
     {
       "name": "my_workspace",
-      "path": "/Users/kevmoo/github/kevmoo/pubviz/test/mock_workspace"
+      "path": "."
     },
     {
       "name": "member_a",
-      "path": "/Users/kevmoo/github/kevmoo/pubviz/test/mock_workspace/member_a"
+      "path": "member_a"
     },
     {
       "name": "member_b",
-      "path": "/Users/kevmoo/github/kevmoo/pubviz/test/mock_workspace/member_b"
+      "path": "member_b"
     }
   ]
 }
