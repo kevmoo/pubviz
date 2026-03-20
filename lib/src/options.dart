@@ -7,12 +7,12 @@ ArgParser get parser => _$parserForOptions;
 @CliOptions()
 class Options {
   @CliOption(
-    abbr: 'f',
-    defaultsTo: FormatOptions.html,
-    allowedHelp: _formatOptionsHelp,
-    valueHelp: 'format',
+    abbr: 'a',
+    defaultsTo: Action.open,
+    allowedHelp: _actionHelp,
+    valueHelp: 'action',
   )
-  final FormatOptions format;
+  final Action action;
 
   @CliOption(
     abbr: 'i',
@@ -25,6 +25,13 @@ class Options {
     help: 'Check pub.dev for lasted packages and flag those that are outdated.',
   )
   final bool flagOutdated;
+
+  @CliOption(
+    help:
+        'A directory to write the generated HTML file and its localized '
+        'assets. (HTML format only)',
+  )
+  final String? outDir;
 
   @CliOption(
     abbr: 'd',
@@ -57,25 +64,27 @@ class Options {
   @CliOption(abbr: '?', help: 'Print this help content.', negatable: false)
   final bool help;
 
-  final ArgResults? command;
+  final List<String> rest;
 
   const Options({
-    required this.format,
+    required this.action,
     List<String>? ignorePackages,
     required this.flagOutdated,
+    this.outDir,
     this.directDependencies,
     required this.productionDependencies,
     required this.help,
-    this.command,
+    required this.rest,
     required this.version,
     required this.workspace,
   }) : ignorePackages = ignorePackages ?? const [];
 }
 
-enum FormatOptions { dot, html }
+enum Action { create, open, print, serve }
 
-const _formatOptionsHelp = <FormatOptions, String>{
-  FormatOptions.dot: 'Generate a GraphViz dot file',
-  FormatOptions.html:
-      'Wrap the GraphViz dot format in an HTML template which renders it.',
+const _actionHelp = <Action, String>{
+  Action.create: 'Generate the HTML web app in a directory.',
+  Action.open: 'Like "serve" but also opens the browser.',
+  Action.print: 'Print the raw DOT output to stdout.',
+  Action.serve: 'Like "create" but also hosts the app on a local server.',
 };

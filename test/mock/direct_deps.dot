@@ -2,11 +2,9 @@ digraph pubviz {
   graph [nodesep=0.2];
   edge [fontcolor=gray];
 
-  args [label="args
-1.6.0", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
+  args [label="args\n1.6.0", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
 
-  build_runner [label="build_runner
-1.9.0", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
+  build_runner [label="build_runner\n1.9.0", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
   build_runner -> args [label=">=1.4.0 <2.0.0", color=gray];
   build_runner -> async [label=">=1.13.3 <3.0.0", color=gray];
   build_runner -> build [label=">=1.0.0 <1.3.0", color=gray];
@@ -40,8 +38,7 @@ digraph pubviz {
   build_runner -> web_socket_channel [label="^1.0.9", color=gray];
   build_runner -> yaml [label="^2.1.0", color=gray];
 
-  build_web_compilers [label="build_web_compilers
-2.10.0", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
+  build_web_compilers [label="build_web_compilers\n2.10.0", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
   build_web_compilers -> analyzer [label=">=0.30.0 <0.40.0", color=gray];
   build_web_compilers -> archive [label="^2.0.0", color=gray];
   build_web_compilers -> bazel_worker [label="^0.1.18", color=gray];
@@ -60,46 +57,37 @@ digraph pubviz {
   build_web_compilers -> source_span [label="^1.4.0", color=gray];
   build_web_compilers -> stack_trace [label="^1.9.2", color=gray];
 
-  collection [label="collection
-1.15.0", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
+  collection [label="collection\n1.15.0", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
 
-  github [label="github
-6.2.3", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
+  github [label="github\n6.2.3", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
   github -> http [label="^0.12.0"];
   github -> http_parser [label="^3.1.1"];
   github -> json_annotation [label=">=2.0.0 <4.0.0"];
   github -> meta [label="^1.1.0"];
 
-  gviz [label="gviz
-0.3.0", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
+  gviz [label="gviz\n0.3.0", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
 
-  http [label="http
-0.12.2", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
+  http [label="http\n0.12.2", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
   http -> http_parser [label=">=0.0.1 <4.0.0"];
   http -> path [label=">=0.9.0 <2.0.0"];
   http -> pedantic [label="^1.0.0"];
 
-  http_retry [label="http_retry
-0.1.1+3", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
+  http_retry [label="http_retry\n0.1.1+3", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
   http_retry -> async [label="^2.0.7"];
   http_retry -> http [label=">=0.11.0 <0.13.0"];
 
-  http_throttle [label="http_throttle
-1.0.4", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
+  http_throttle [label="http_throttle\n1.0.4", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
   http_throttle -> http [label=">=0.9.0 <0.13.0"];
   http_throttle -> pool [label=">=1.0.0 <2.0.0"];
 
-  io [label="io
-0.3.5", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
+  io [label="io\n0.3.5", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
   io -> meta [label="^1.0.2"];
   io -> path [label="^1.5.1"];
   io -> string_scanner [label=">=0.1.5 <2.0.0"];
 
-  json_annotation [label="json_annotation
-3.0.1", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
+  json_annotation [label="json_annotation\n3.0.1", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
 
-  json_serializable [label="json_serializable
-3.2.3", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
+  json_serializable [label="json_serializable\n3.2.3", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
   json_serializable -> analyzer [label=">=0.37.1 <0.39.0", color=gray];
   json_serializable -> build [label=">=0.12.6 <2.0.0", color=gray];
   json_serializable -> build_config [label=">=0.2.6 <0.5.0", color=gray];
@@ -108,14 +96,11 @@ digraph pubviz {
   json_serializable -> path [label="^1.3.2", color=gray];
   json_serializable -> source_gen [label="^0.9.0", color=gray];
 
-  lints [label="lints
-1.0.1", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
+  lints [label="lints\n1.0.1", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
 
-  meta [label="meta
-1.7.0", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
+  meta [label="meta\n1.7.0", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
 
-  pana [label="pana
-0.12.21", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
+  pana [label="pana\n0.12.21", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
   pana -> analyzer [label="^0.38.0"];
   pana -> args [label=">=0.13.7 <2.0.0"];
   pana -> async [label=">=1.13.3 <3.0.0"];
@@ -137,30 +122,24 @@ digraph pubviz {
   pana -> resource [label="^2.1.5"];
   pana -> yaml [label="^2.1.15"];
 
-  path [label="path
-1.8.0", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
+  path [label="path\n1.8.0", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
 
-  pedantic [label="pedantic
-1.11.1", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
+  pedantic [label="pedantic\n1.11.1", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
 
-  pool [label="pool
-1.5.0", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
+  pool [label="pool\n1.5.0", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
   pool -> async [label="^2.5.0"];
   pool -> stack_trace [label="^1.10.0"];
 
-  preload [label="preload
-1.1.6", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
+  preload [label="preload\n1.1.6", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
   preload -> build [label=">=0.12.1 <2.0.0", color=gray];
   preload -> build_config [label=">=0.3.0 <5.0.0", color=gray];
   preload -> glob [label="^1.0.0", color=gray];
   preload -> path [label="^1.0.0", color=gray];
 
-  pub_semver [label="pub_semver
-1.4.4", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
+  pub_semver [label="pub_semver\n1.4.4", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
   pub_semver -> collection [label="^1.0.0"];
 
-  pubspec_parse [label="pubspec_parse
-0.1.8", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
+  pubspec_parse [label="pubspec_parse\n0.1.8", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
   pubspec_parse -> checked_yaml [label="^1.0.0"];
   pubspec_parse -> json_annotation [label=">=1.0.0 <5.0.0"];
   pubspec_parse -> pub_semver [label=">=1.3.2 <3.0.0"];
@@ -192,16 +171,13 @@ digraph pubviz {
   repo_manager -> pedantic [label="^1.2.0", penwidth=2, style=dashed];
   repo_manager -> preload [label="^1.0.0", penwidth=2, style=dashed];
 
-  stack_trace [label="stack_trace
-1.10.0", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
+  stack_trace [label="stack_trace\n1.10.0", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
   stack_trace -> path [label="^1.8.0"];
 
-  stats [label="stats
-1.0.1", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
+  stats [label="stats\n1.0.1", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
   stats -> json_annotation [label=">=3.0.0 <5.0.0"];
 
-  yaml [label="yaml
-2.2.1", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
+  yaml [label="yaml\n2.2.1", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
   yaml -> charcode [label="^1.1.0"];
   yaml -> collection [label=">=1.1.0 <2.0.0"];
   yaml -> source_span [label=">=1.0.0 <2.0.0"];

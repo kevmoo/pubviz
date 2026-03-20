@@ -3,13 +3,16 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'dart:isolate';
 
+import 'package:dhttpd/dhttpd.dart';
 import 'package:io/ansi.dart';
 import 'package:io/io.dart';
 import 'package:path/path.dart' as p;
 import 'package:pubviz/pubviz.dart';
 import 'package:pubviz/src/options.dart';
 import 'package:pubviz/src/pub_data_service.dart';
+import 'package:pubviz/src/terminate.dart';
 import 'package:pubviz/src/update_order.dart';
 import 'package:pubviz/src/version.dart';
 import 'package:pubviz/viz/dot.dart' as dot;
@@ -22,11 +25,6 @@ Future<void> main(List<String> args) async {
 }
 
 Future<void> _main(List<String> args) async {
-  parser
-    ..addCommand('open')
-    ..addCommand('create')
-    ..addCommand('print');
-
   Options options;
   try {
     options = parseOptions(args);
@@ -48,17 +46,15 @@ Future<void> _main(List<String> args) async {
     return;
   }
 
-  final command = options.command;
-
-  if (command == null) {
-    print(red.wrap("Specify a command: ${parser.commands.keys.join(', ')}"));
-    print('');
-    _printUsage();
-    exitCode = ExitCode.usage.code;
+  String path;
+  try {
+    path = _getPath(options.rest);
+    // ignore: avoid_catching_errors
+  } on StateError catch (e) {
+    stderr.writeln(e.message);
+    exitCode = 1;
     return;
   }
-
-  final path = _getPath(command.rest);
 
   await Chain.capture(
     () async {
@@ -94,24 +90,13 @@ Future<void> _main(List<String> args) async {
           stderr.writeln();
         }
       }
-      if (command.name == 'print') {
-        _printContent(vp, options.format, options.ignorePackages);
-      } else if (command.name == 'open') {
-        await _createOrOpen(
-          vp,
-          options.format,
-          options.ignorePackages,
-          openFile: true,
-        );
-      } else if (command.name == 'create') {
-        await _createOrOpen(
-          vp,
-          options.format,
-          options.ignorePackages,
-          openFile: false,
-        );
-      } else {
-        throw StateError('Should never get here...');
+      switch (options.action) {
+        case Action.print:
+          _printContent(vp, options.ignorePackages);
+        case Action.open:
+        case Action.serve:
+        case Action.create:
+          await _createOrOpen(vp, options);
       }
     },
     onError: (error, Chain chain) {
@@ -127,12 +112,7 @@ String _indent(String input) =>
     LineSplitter.split(input).map((l) => '  $l'.trimRight()).join('\n');
 
 void _printUsage() {
-  print('''Usage: pubviz [<args>] <command> [<package path>]
-
-${styleBold.wrap('Commands:')}
-  create Populate a temporary file with the content and print the path.
-  open   Populate a temporary file with the content and open it.
-  print  Print the output to stdout.
+  print('''Usage: pubviz [<args>] [<package path>]
 
 ${styleBold.wrap('Arguments:')}
 ${_indent(parser.usage)}
@@ -140,79 +120,137 @@ ${_indent(parser.usage)}
 If <package path> is omitted, the current directory is used.''');
 }
 
-String _getContent(
+String _getContentDot(VizRoot root, List<String> ignorePackages) =>
+    dot.toDot(root, ignorePackages: ignorePackages);
+
+Future<String> _getContentHtml(
   VizRoot root,
-  FormatOptions format,
   List<String> ignorePackages,
-) => switch (format) {
-  FormatOptions.html => dot.toDotHtml(root, ignorePackages: ignorePackages),
-  FormatOptions.dot => dot.toDot(root, ignorePackages: ignorePackages),
-};
+) async {
+  final indexUri = await Isolate.resolvePackageUri(
+    Uri.parse('package:pubviz/assets/index.html'),
+  );
+  if (indexUri == null) {
+    throw StateError('Could not resolve package:pubviz/assets/index.html');
+  }
+  final htmlTemplate = await File.fromUri(indexUri).readAsString();
+  return dot.toDotHtml(htmlTemplate, root, ignorePackages: ignorePackages);
+}
 
-String _getExtension(FormatOptions format) => format.toString().split('.')[1];
+Future<void> _prepareHtmlAssets(Directory targetDir) async {
+  final assetsUri = await Isolate.resolvePackageUri(
+    Uri.parse('package:pubviz/assets/'),
+  );
+  if (assetsUri == null) {
+    throw StateError('Could not resolve package:pubviz/assets/');
+  }
+  final assetsDir = Directory.fromUri(assetsUri);
 
-Future<void> _createOrOpen(
-  VizRoot root,
-  FormatOptions format,
-  List<String> ignorePackages, {
-  required bool openFile,
-}) async {
-  final extension = _getExtension(format);
+  if (!targetDir.existsSync()) {
+    targetDir.createSync(recursive: true);
+  }
+
+  void copyDir(Directory source, Directory destination) {
+    for (var entity in source.listSync()) {
+      if (entity is Directory) {
+        final newDir = Directory(
+          p.join(destination.path, p.basename(entity.path)),
+        )..createSync();
+        copyDir(entity, newDir);
+      } else if (entity is File) {
+        if (p.basename(entity.path) == 'index.html') continue;
+        entity.copySync(p.join(destination.path, p.basename(entity.path)));
+      }
+    }
+  }
+
+  copyDir(assetsDir, targetDir);
+}
+
+Future<void> _createOrOpen(VizRoot root, Options options) async {
   final name = root.root.name;
-  final dir = await Directory.systemTemp.createTemp('pubviz_${name}_');
-  final filePath = p.join(dir.path, '$name.$extension');
-  var file = File(filePath);
 
+  final isTempDir = options.outDir == null;
+  Directory targetDir;
+  if (!isTempDir) {
+    targetDir = Directory(options.outDir!);
+    if (!targetDir.existsSync()) targetDir.createSync(recursive: true);
+  } else {
+    targetDir = await Directory.systemTemp.createTemp('pubviz_${name}_');
+  }
+
+  await _prepareHtmlAssets(targetDir);
+
+  final filePath = p.join(targetDir.path, 'index.html');
+
+  var file = File(filePath);
   file = await file.create();
-  final content = _getContent(root, format, ignorePackages);
+
+  final content = await _getContentHtml(root, options.ignorePackages);
   await file.writeAsString(content, flush: true);
 
   print('File generated: $filePath');
 
-  if (openFile) {
-    String openCommand;
-    if (Platform.isMacOS) {
-      openCommand = 'open';
-    } else if (Platform.isLinux) {
-      openCommand = 'xdg-open';
-    } else if (Platform.isWindows) {
-      openCommand = 'explorer';
-    } else {
-      print("We don't know how to open a file in ${Platform.operatingSystem}");
-      exit(1);
+  if (options.action == Action.serve || options.action == Action.open) {
+    final server = await Dhttpd.start(path: targetDir.path, port: 0);
+    final serverUrl = 'http://localhost:${server.port}/';
+    print('Serving pubviz on $serverUrl');
+
+    if (options.action == Action.open) {
+      String openCommand;
+      if (Platform.isMacOS) {
+        openCommand = 'open';
+      } else if (Platform.isLinux) {
+        openCommand = 'xdg-open';
+      } else if (Platform.isWindows) {
+        openCommand = 'explorer';
+      } else {
+        print(
+          "We don't know how to open a file in ${Platform.operatingSystem}",
+        );
+        exitCode = 1;
+        return;
+      }
+      await Process.run(openCommand, [serverUrl]);
     }
 
-    await Process.run(openCommand, [filePath]);
+    print('Press "q" (or "Q") or Ctrl+C to stop.');
+    await waitForTerminate();
+    await server.destroy();
+
+    if (isTempDir) {
+      targetDir.deleteSync(recursive: true);
+      print('Deleted temp directory: ${targetDir.path}');
+    }
   }
 }
 
-void _printContent(
-  VizRoot root,
-  FormatOptions format,
-  List<String> ignorePackages,
-) {
-  final content = _getContent(root, format, ignorePackages);
+void _printContent(VizRoot root, List<String> ignorePackages) {
+  final content = _getContentDot(root, ignorePackages);
   print(content);
 }
 
 String _getPath(List<String> args) {
   if (args.length > 1) {
-    print('Only one argument is allowed. You provided ${args.length}.');
-    exit(1);
+    throw StateError(
+      'Only one argument is allowed. You provided ${args.length}.',
+    );
   }
 
   final path = args.isEmpty ? p.current : args.first;
 
   if (!FileSystemEntity.isDirectorySync(path)) {
-    print('The provided path does not exist or is not a directory: $path');
-    exit(1);
+    throw StateError(
+      'The provided path does not exist or is not a directory: $path',
+    );
   }
 
   final yamlPath = p.join(path, 'pubspec.yaml');
 
   if (!FileSystemEntity.isFileSync(yamlPath)) {
-    print('Could not find a pubspec.yaml in the target path.: $path');
-    exit(1);
+    throw StateError(
+      'Could not find a pubspec.yaml in the target path.: $path',
+    );
   }
 
   return path;

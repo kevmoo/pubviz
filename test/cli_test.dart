@@ -38,22 +38,19 @@ $_usage''');
     await proc.shouldExit(64);
   });
 
-  test('no command', () async {
-    final proc = await TestProcess.start(dartPath, [_entryPoint]);
+  test('too many args', () async {
+    final proc = await TestProcess.start(dartPath, [_entryPoint, 'a', 'b']);
 
-    final output = await proc.stdoutStream().join('\n');
-    expect(output, '''Specify a command: open, create, print
+    final output = await proc.stderrStream().join('\n');
+    expect(output, 'Only one argument is allowed. You provided 2.');
 
-$_usage''');
-
-    await proc.shouldExit(64);
+    await proc.shouldExit(1);
   });
 
   test('print dot', () async {
     final process = await TestProcess.start(dartPath, [
       _entryPoint,
-      '-f',
-      'dot',
+      '-a',
       'print',
     ]);
 
@@ -66,8 +63,7 @@ $_usage''');
     final process = await TestProcess.start(dartPath, [
       _entryPoint,
       '-o',
-      '-f',
-      'dot',
+      '-a',
       'print',
     ]);
 
@@ -79,6 +75,7 @@ $_usage''');
   test('workspace warning', () async {
     final process = await TestProcess.start(dartPath, [
       _entryPoint,
+      '-a',
       'print',
       p.join('test', 'mock_workspace'),
     ]);
@@ -96,6 +93,110 @@ $_usage''');
     await process.shouldExit(0);
   });
 
+  test('serve action deletes temp dir when q is pressed', () async {
+    final process = await TestProcess.start(dartPath, [
+      _entryPoint,
+      '-a',
+      'serve',
+    ]);
+
+    late String generatedFilePath;
+    await expectLater(
+      process.stdout,
+      emitsThrough(
+        predicate<String>((line) {
+          if (line.startsWith('File generated: ')) {
+            generatedFilePath = line
+                .substring('File generated: '.length)
+                .trim();
+          }
+          return line.contains('Press "q"');
+        }),
+      ),
+    );
+
+    final targetDir = File(generatedFilePath).parent;
+    expect(targetDir.existsSync(), isTrue);
+
+    process.stdin.writeln('q');
+
+    await expectLater(
+      process.stdout,
+      emitsThrough('Deleted temp directory: ${targetDir.path}'),
+    );
+
+    await process.shouldExit(0);
+    expect(targetDir.existsSync(), isFalse);
+  });
+
+  test('serve action does not delete provided out-dir', () async {
+    final tempDir = Directory.systemTemp.createTempSync('pubviz_test_out_');
+    addTearDown(() => tempDir.deleteSync(recursive: true));
+
+    final process = await TestProcess.start(dartPath, [
+      _entryPoint,
+      '-a',
+      'serve',
+      '--out-dir',
+      tempDir.path,
+    ]);
+
+    late String generatedFilePath;
+    await expectLater(
+      process.stdout,
+      emitsThrough(
+        predicate<String>((line) {
+          if (line.startsWith('File generated: ')) {
+            generatedFilePath = line
+                .substring('File generated: '.length)
+                .trim();
+          }
+          return line.contains('Press "q"');
+        }),
+      ),
+    );
+
+    final targetDir = File(generatedFilePath).parent;
+    expect(targetDir.path, equals(tempDir.path));
+
+    process.stdin.writeln('q');
+
+    await process.shouldExit(0);
+    expect(tempDir.existsSync(), isTrue);
+  });
+
+  test('create action does not delete temp dir', () async {
+    final process = await TestProcess.start(dartPath, [
+      _entryPoint,
+      '-a',
+      'create',
+    ]);
+
+    late String generatedFilePath;
+    await expectLater(
+      process.stdout,
+      emitsThrough(
+        predicate<String>((line) {
+          if (line.startsWith('File generated: ')) {
+            generatedFilePath = line
+                .substring('File generated: '.length)
+                .trim();
+            return true;
+          }
+          return false;
+        }),
+      ),
+    );
+
+    await process.shouldExit(0);
+
+    final targetDir = File(generatedFilePath).parent;
+    expect(targetDir.existsSync(), isTrue);
+
+    // clean up after the test
+    targetDir.deleteSync(recursive: true);
+  });
+
   test('readme', () {
     final readmeContent = File('README.md').readAsStringSync();
 
@@ -106,20 +207,18 @@ $_usage''');
   });
 }
 
-const _usage = r'''Usage: pubviz [<args>] <command> [<package path>]
-
-Commands:
-  create Populate a temporary file with the content and print the path.
-  open   Populate a temporary file with the content and open it.
-  print  Print the output to stdout.
+const _usage = r'''Usage: pubviz [<args>] [<package path>]
 
 Arguments:
-  -f, --format=<format>
-            [dot]                  Generate a GraphViz dot file
-            [html] (default)       Wrap the GraphViz dot format in an HTML template which renders it.
+  -a, --action=<action>
+            [create]               Generate the HTML web app in a directory.
+            [open] (default)       Like "serve" but also opens the browser.
+            [print]                Print the raw DOT output to stdout.
+            [serve]                Like "create" but also hosts the app on a local server.
 
   -i, --ignore-packages            A comma separated list of packages to exclude in the output.
   -o, --[no-]flag-outdated         Check pub.dev for lasted packages and flag those that are outdated.
+      --out-dir                    A directory to write the generated HTML file and its localized assets. (HTML format only)
   -d, --direct-dependencies        Include only direct dependencies.
   -p, --production-dependencies    Include only production (non-dev) dependencies.
   -v, --version                    Print the version of pubviz and exit.

@@ -4,19 +4,28 @@ import '../src/viz_package.dart';
 import '../src/viz_root.dart';
 import 'colors.dart';
 
-String toDotHtml(VizRoot root, {List<String> ignorePackages = const []}) {
-  final dot = toDot(root, escapeLabels: true, ignorePackages: ignorePackages);
-
-  return _dotHtmlTemplate
-      .replaceAll(_dotPlaceHolder, dot)
-      .replaceAll(_titlePlaceHolder, root.root.name);
+String toDotHtml(
+  String htmlTemplate,
+  VizRoot root, {
+  List<String> ignorePackages = const [],
+}) {
+  final dot = toDot(root, ignorePackages: ignorePackages);
+  final regex = RegExp(
+    r'(<script type="text/vnd\.graphviz" id="dot">)(.*?)(</script>)',
+    dotAll: true,
+  );
+  return htmlTemplate
+      .replaceFirstMapped(
+        regex,
+        (match) => '${match.group(1)}\n$dot\n      ${match.group(3)}',
+      )
+      .replaceFirst(
+        RegExp(r'<title>pubviz - .*?</title>'),
+        '<title>pubviz - ${root.root.name}</title>',
+      );
 }
 
-String toDot(
-  VizRoot item, {
-  bool escapeLabels = false,
-  Iterable<String> ignorePackages = const [],
-}) {
+String toDot(VizRoot item, {Iterable<String> ignorePackages = const []}) {
   final gviz = Gviz(
     name: 'pubviz',
     graphProperties: {'nodesep': '0.2'},
@@ -27,7 +36,7 @@ String toDot(
     (v) => !ignorePackages.contains(v.name),
   )) {
     gviz.addBlankLine();
-    _writeDot(pack, gviz, item.root.name, escapeLabels, ignorePackages);
+    _writeDot(pack, gviz, item.root.name, ignorePackages);
   }
 
   return gviz.toString();
@@ -37,16 +46,13 @@ void _writeDot(
   VizPackage pkg,
   Gviz gviz,
   String rootName,
-  bool escapeLabels,
   Iterable<String> ignorePackages,
 ) {
   final isRoot = rootName == pkg.name;
 
-  final newLine = escapeLabels ? r'\n' : '\n';
-
   var label = pkg.name;
   if (pkg.version != null) {
-    label = '$label$newLine${pkg.version}';
+    label = '$label\\n${pkg.version}';
   }
 
   final props = {'label': label};
@@ -116,40 +122,3 @@ void _writeDot(
     }
   }
 }
-
-const _dotPlaceHolder = 'DOT_HERE';
-
-const _titlePlaceHolder = 'PACKAGE_TITLE';
-
-const String _dotHtmlTemplate = r'''
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>pubviz - PACKAGE_TITLE</title>
-    <base href="https://kevmoo.github.io/pubviz/">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/@viz-js/viz@3.25.0/dist/viz-global.js"></script>
-  </head>
-  <body>
-    <div id="app-layout">
-      <button id="hamburgerBtn" title="Toggle Controls">&#9776;</button>
-      <div id="controls-panel" class="collapsed">
-        <div id="controls-header">
-          <span id="controls-title">Controls</span>
-        </div>
-        <div id="controls-content">
-          <label>
-            <input type="checkbox" id="zoomCheckbox"> Zoom (z)
-          </label>
-        </div>
-      </div>
-      <div id="graph-container">
-        <script type="text/vnd.graphviz" id="dot">
-DOT_HERE
-        </script>
-      </div>
-    </div>
-  </body>
-  <script defer src="web_app.dart.js"></script>
-</html>
-''';

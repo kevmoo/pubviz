@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-// ignore_for_file: require_trailing_commas
+// ignore_for_file: lines_longer_than_80_chars
 
 part of 'options.dart';
 
@@ -20,36 +20,40 @@ T _$enumValueHelper<T>(Map<T, String> enumValues, String source) => enumValues
     .key;
 
 Options _$parseOptionsResult(ArgResults result) => Options(
-  format: _$enumValueHelper(
-    _$FormatOptionsEnumMapBuildCli,
-    result['format'] as String,
+  action: _$enumValueHelper(
+    _$ActionEnumMapBuildCli,
+    result['action'] as String,
   ),
   ignorePackages: result['ignore-packages'] as List<String>,
   flagOutdated: result['flag-outdated'] as bool,
+  outDir: result['out-dir'] as String?,
   directDependencies: result['direct-dependencies'] as bool?,
   productionDependencies: result['production-dependencies'] as bool,
   help: result['help'] as bool,
-  command: result.command,
+  rest: result.rest,
   version: result['version'] as bool,
   workspace: result['workspace'] as bool,
 );
 
-const _$FormatOptionsEnumMapBuildCli = <FormatOptions, String>{
-  FormatOptions.dot: 'dot',
-  FormatOptions.html: 'html',
+const _$ActionEnumMapBuildCli = <Action, String>{
+  Action.create: 'create',
+  Action.open: 'open',
+  Action.print: 'print',
+  Action.serve: 'serve',
 };
 
 ArgParser _$populateOptionsParser(ArgParser parser) => parser
   ..addOption(
-    'format',
-    abbr: 'f',
-    valueHelp: 'format',
-    defaultsTo: 'html',
-    allowed: ['dot', 'html'],
+    'action',
+    abbr: 'a',
+    valueHelp: 'action',
+    defaultsTo: 'open',
+    allowed: ['create', 'open', 'print', 'serve'],
     allowedHelp: <String, String>{
-      'dot': 'Generate a GraphViz dot file',
-      'html':
-          'Wrap the GraphViz dot format in an HTML template which renders it.',
+      'create': 'Generate the HTML web app in a directory.',
+      'open': 'Like "serve" but also opens the browser.',
+      'print': 'Print the raw DOT output to stdout.',
+      'serve': 'Like "create" but also hosts the app on a local server.',
     },
   )
   ..addMultiOption(
@@ -61,6 +65,11 @@ ArgParser _$populateOptionsParser(ArgParser parser) => parser
     'flag-outdated',
     abbr: 'o',
     help: 'Check pub.dev for lasted packages and flag those that are outdated.',
+  )
+  ..addOption(
+    'out-dir',
+    help:
+        'A directory to write the generated HTML file and its localized assets. (HTML format only)',
   )
   ..addFlag(
     'direct-dependencies',
