@@ -1,13 +1,19 @@
 # See https://github.com/dart-lang/build/tree/master/build_web_compilers#configuration
 targets:
   $default:
+    sources:
+      - _example_src/**
+      - pubspec.*
+      - build.yaml
+      - $package$
+      - lib/**
     builders:
       build_cli:
         generate_for:
         - lib/src/options.*
       build_web_compilers|entrypoint:
         generate_for:
-        - example/**.dart
+        - _example_src/**.dart
         release_options:
           compilers:
             dart2wasm:
@@ -27,4 +33,4 @@ targets:
       source_gen|combining_builder:
         options:
           ignore_for_file:
-            - require_trailing_commas
+            - lines_longer_than_80_chars

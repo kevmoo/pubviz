@@ -32,10 +32,10 @@ Otherwise, you can use the `pub global` command.
 $ dart pub global run pubviz
 ```
 
-### Generate and open an html file for the package on the current path.
+### Generate and open an HTML file for the package on the current path.
 
 ```console
-$ pubviz open
+$ pubviz
 ```
 
 Should open your default browser to something like:
@@ -45,7 +45,7 @@ Should open your default browser to something like:
 ### Print GraphViz dot format to command line for a package on a specified path.
 
 ```console
-$ pubviz --format=dot print /path/to/http_package
+$ pubviz -a print /path/to/http_package
 ```
 
 You should see output something like:
@@ -95,7 +95,7 @@ winget install graphviz
 Then you can save the `pubviz` output to a file and convert it with `dot` command to desired output type, e.g.:
 
 ```sh
-pubviz --format=dot print > output.dot
+pubviz -a print > output.dot
 dot -Tpdf output.dot -o output.pdf
 ```
 
@@ -105,20 +105,18 @@ The full list of possible output types is available on [the GraphViz website](ht
 
 ```console
 $ pubviz -?
-Usage: pubviz [<args>] <command> [<package path>]
-
-Commands:
-  create Populate a temporary file with the content and print the path.
-  open   Populate a temporary file with the content and open it.
-  print  Print the output to stdout.
+Usage: pubviz [<args>] [<package path>]
 
 Arguments:
-  -f, --format=<format>
-            [dot]                  Generate a GraphViz dot file
-            [html] (default)       Wrap the GraphViz dot format in an HTML template which renders it.
+  -a, --action=<action>
+            [create]               Generate the HTML web app in a directory.
+            [open] (default)       Like "serve" but also opens the browser.
+            [print]                Print the raw DOT output to stdout.
+            [serve]                Like "create" but also hosts the app on a local server.
 
   -i, --ignore-packages            A comma separated list of packages to exclude in the output.
   -o, --[no-]flag-outdated         Check pub.dev for lasted packages and flag those that are outdated.
+      --out-dir                    A directory to write the generated HTML file and its localized assets. (HTML format only)
   -d, --direct-dependencies        Include only direct dependencies.
   -p, --production-dependencies    Include only production (non-dev) dependencies.
   -v, --version                    Print the version of pubviz and exit.

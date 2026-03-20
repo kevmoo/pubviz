@@ -1,14 +1,24 @@
-## 4.2.0-wip
+## 5.0.0-wip
 
-- Added `--workspace` (`-w`) flag to visualize all packages in a workspace.
-- Added a warning when running on a workspace root without the `--workspace` flag.
-- Fixed hover behavior over outdated packages.
-- Added a distinct background color to primary nodes.
-- Hide version numbers for primary nodes marked as `publish_to: none`.
-- Added `create` command which generates the HTML visualization without automatically opening the browser.
-- Redesigned the interactive web interface, introducing a collapsible sidebar for controls.
-- Improved UI elements with sans-serif typography and a floating hamburger menu.
-- Added a `z` keyboard shortcut to toggle graph zoom.
+### Breaking Changes
+- Replaced positional commands (`open`, `create`, `print`) and the `--format` option with a unified `--action` (`-a`) flag.
+- Default execution (`pubviz`) now functions identically to `pubviz -a open`.
+
+### New Features
+- **Workspaces:** Added the `--workspace` (`-w`) flag to visualize all linked packages within a Dart workspace.
+- **Output Controls:** Added the `--out-dir` option to specify a target destination for generated HTML and offline capabilities.
+- **Serve Mode & Offline Support:** Added the `serve` action which hosts the web app locally via `dhttpd` without booting up a new browser window. The `open` action now uses this local server to bypass strict `file://` CORS restrictions internally. Additionally, the package now supports complete offline functionality by bundling compiled Dart web application assets (JS and WASM) directly inside the package.
+
+### Web UI Overhaul
+- Completely redesigned the interactive web interface, adding a collapsible sidebar for cleaner zooming and display control.
+- Added a `z` keyboard shortcut to easily toggle graph zoom capabilities.
+- Improved graph styling: Primary packages now utilize a distinct background color to distinguish them easily.
+
+### Other Improvements & Fixes
+- Modernized workspace discovery inside the codebase by utilizing structured JSON data directly from `pub` tool invocations.
+- Hide version labels for primary node packages intentionally marked `publish_to: none`.
+- Display a helpful warning message if `pubviz` runs inside a workspace root missing the `--workspace` flag.
+- Fixed a bug causing wrong colors on hover interactions over outdated packages.
 
 ## 4.1.1
 
