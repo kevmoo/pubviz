@@ -44,10 +44,9 @@ class MockDataService extends Service {
     final packages = json['packages'] as List;
     return {
       for (var pkgEntry in packages.cast<Map<String, dynamic>>())
-        pkgEntry['name'] as String: p.canonicalize(p.join(
-          rootPackageDir,
-          pkgEntry['path'] as String,
-        )),
+        pkgEntry['name'] as String: p.canonicalize(
+          p.join(rootPackageDir, pkgEntry['path'] as String),
+        ),
     };
   }
 }
