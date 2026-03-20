@@ -45,6 +45,19 @@ class PubDataService extends Service {
   @override
   Iterable<DepsPackageEntry> allDeps() => _getDepsList().packages.values;
 
+  @override
+  Future<Map<String, String>> workspaceMembers() async {
+    final commandOutput = _pubCommand(['workspace', 'list', '--json']);
+    return switch (jsonDecode(commandOutput)) {
+      {'packages': final List<dynamic> packages} => {
+        for (final p in packages)
+          if (p case {'name': final String name, 'path': final String path})
+            name: path,
+      },
+      _ => throw StateError('Unexpected output from `pub workspace list`.'),
+    };
+  }
+
   String _pubCommand(List<String> commandArgs) {
     final proc = _isFlutterPkg ? 'flutter' : 'dart';
     final args = [

@@ -76,6 +76,26 @@ $_usage''');
     await process.shouldExit(0);
   });
 
+  test('workspace warning', () async {
+    final process = await TestProcess.start(dartPath, [
+      _entryPoint,
+      'print',
+      p.join('test', 'mock_workspace'),
+    ]);
+
+    await expectLater(
+      process.stderr,
+      emits(
+        contains(
+          'This package is a workspace root. To visualize all packages in '
+          'the workspace, use the --workspace flag.',
+        ),
+      ),
+    );
+
+    await process.shouldExit(0);
+  });
+
   test('readme', () {
     final readmeContent = File('README.md').readAsStringSync();
 

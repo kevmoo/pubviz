@@ -1,0 +1,16 @@
+{
+  "packages": [
+    {
+      "name": "my_workspace",
+      "path": "."
+    },
+    {
+      "name": "member_a",
+      "path": "member_a"
+    },
+    {
+      "name": "member_b",
+      "path": "member_b"
+    }
+  ]
+}
