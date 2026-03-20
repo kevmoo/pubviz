@@ -63,7 +63,9 @@ void _writeDot(
   }
 
   if (pkg.isPrimary) {
-    props['style'] = 'bold';
+    props['style'] = 'filled,bold';
+    props['color'] = colorPrimary;
+    props['fillcolor'] = colorBackgroundPrimary;
   }
 
   if (!isRoot &&

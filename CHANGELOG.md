@@ -3,6 +3,8 @@
 - Added `--workspace` (`-w`) flag to visualize all packages in a workspace.
 - Added a warning when running on a workspace root without the `--workspace` flag.
 - Fixed hover behavior over outdated packages.
+- Added a distinct background color to primary nodes.
+- Hide version numbers for primary nodes marked as `publish_to: none`.
 
 ## 4.1.1
 
