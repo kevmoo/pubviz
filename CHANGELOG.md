@@ -20,6 +20,8 @@
 - Display a helpful warning message if `pubviz` runs inside a workspace root missing the `--workspace` flag.
 - Fixed a bug causing wrong colors on hover interactions over outdated packages.
 
+- Require `sdk: ^3.10.0`.
+
 ## 4.1.1
 
 - Fix issue with `script` tag.
