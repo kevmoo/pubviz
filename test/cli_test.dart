@@ -41,7 +41,7 @@ $_usage''');
   test('too many args', () async {
     final proc = await TestProcess.start(dartPath, [_entryPoint, 'a', 'b']);
 
-    final output = await proc.stdoutStream().join('\n');
+    final output = await proc.stderrStream().join('\n');
     expect(output, 'Only one argument is allowed. You provided 2.');
 
     await proc.shouldExit(1);

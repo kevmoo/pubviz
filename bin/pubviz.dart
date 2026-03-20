@@ -46,7 +46,15 @@ Future<void> _main(List<String> args) async {
     return;
   }
 
-  final path = _getPath(options.rest);
+  String path;
+  try {
+    path = _getPath(options.rest);
+    // ignore: avoid_catching_errors
+  } on StateError catch (e) {
+    stderr.writeln(e.message);
+    exitCode = 1;
+    return;
+  }
 
   await Chain.capture(
     () async {
@@ -224,22 +232,25 @@ void _printContent(VizRoot root, List<String> ignorePackages) {
 
 String _getPath(List<String> args) {
   if (args.length > 1) {
-    print('Only one argument is allowed. You provided ${args.length}.');
-    exit(1);
+    throw StateError(
+      'Only one argument is allowed. You provided ${args.length}.',
+    );
   }
 
   final path = args.isEmpty ? p.current : args.first;
 
   if (!FileSystemEntity.isDirectorySync(path)) {
-    print('The provided path does not exist or is not a directory: $path');
-    exit(1);
+    throw StateError(
+      'The provided path does not exist or is not a directory: $path',
+    );
   }
 
   final yamlPath = p.join(path, 'pubspec.yaml');
 
   if (!FileSystemEntity.isFileSync(yamlPath)) {
-    print('Could not find a pubspec.yaml in the target path.: $path');
-    exit(1);
+    throw StateError(
+      'Could not find a pubspec.yaml in the target path.: $path',
+    );
   }
 
   return path;

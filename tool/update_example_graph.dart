@@ -4,16 +4,17 @@ void main() async {
   print('Running pubviz to generate dot graph...');
   final result = await Process.run('dart', [
     'bin/pubviz.dart',
+    '--action',
     'print',
-    '-f',
-    'dot',
   ]);
 
   if (result.exitCode != 0) {
     stderr
       ..writeln('Failed to generate graph:')
+      ..writeln(result.stdout)
       ..writeln(result.stderr);
-    exit(1);
+    exitCode = 1;
+    return;
   }
 
   final dotOutput = result.stdout as String;
@@ -36,7 +37,8 @@ void main() async {
     stderr.writeln(
       'Could not find the target script tag in index.html to update.',
     );
-    exit(1);
+    exitCode = 1;
+    return;
   }
 
   htmlContent = htmlContent.replaceFirstMapped(

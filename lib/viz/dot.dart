@@ -9,7 +9,7 @@ String toDotHtml(
   VizRoot root, {
   List<String> ignorePackages = const [],
 }) {
-  final dot = toDot(root, escapeLabels: true, ignorePackages: ignorePackages);
+  final dot = toDot(root, ignorePackages: ignorePackages);
   final regex = RegExp(
     r'(<script type="text/vnd\.graphviz" id="dot">)(.*?)(</script>)',
     dotAll: true,
@@ -25,11 +25,7 @@ String toDotHtml(
       );
 }
 
-String toDot(
-  VizRoot item, {
-  bool escapeLabels = false,
-  Iterable<String> ignorePackages = const [],
-}) {
+String toDot(VizRoot item, {Iterable<String> ignorePackages = const []}) {
   final gviz = Gviz(
     name: 'pubviz',
     graphProperties: {'nodesep': '0.2'},
@@ -40,7 +36,7 @@ String toDot(
     (v) => !ignorePackages.contains(v.name),
   )) {
     gviz.addBlankLine();
-    _writeDot(pack, gviz, item.root.name, escapeLabels, ignorePackages);
+    _writeDot(pack, gviz, item.root.name, ignorePackages);
   }
 
   return gviz.toString();
@@ -50,16 +46,13 @@ void _writeDot(
   VizPackage pkg,
   Gviz gviz,
   String rootName,
-  bool escapeLabels,
   Iterable<String> ignorePackages,
 ) {
   final isRoot = rootName == pkg.name;
 
-  final newLine = escapeLabels ? r'\n' : '\n';
-
   var label = pkg.name;
   if (pkg.version != null) {
-    label = '$label$newLine${pkg.version}';
+    label = '$label\\n${pkg.version}';
   }
 
   final props = {'label': label};
