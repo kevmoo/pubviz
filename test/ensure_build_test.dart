@@ -1,5 +1,5 @@
 @Timeout.factor(2)
-@Tags(['presubmit-only'])
+@Tags(['presubmit'])
 library;
 
 import 'package:build_verify/build_verify.dart';
