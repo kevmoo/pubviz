@@ -2,6 +2,8 @@
 library;
 
 import 'dart:io';
+
+import 'package:collection/collection.dart';
 import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
 
@@ -18,8 +20,7 @@ void main() {
       if (sourceFile.existsSync() && assetFile.existsSync()) {
         final sourceBytes = sourceFile.readAsBytesSync();
         final assetBytes = assetFile.readAsBytesSync();
-        if (sourceBytes.length != assetBytes.length ||
-            !_listsEqual(sourceBytes, assetBytes)) {
+        if (!(const ListEquality<int>().equals(sourceBytes, assetBytes))) {
           fail(
             '`lib/assets/$filename` does not match `_example_src/$filename`.\n'
             'Please run `dart tool/update_assets.dart` and commit the updated files.',
@@ -78,14 +79,6 @@ void main() {
       );
     }
   });
-}
-
-bool _listsEqual(List<int> a, List<int> b) {
-  if (a.length != b.length) return false;
-  for (var i = 0; i < a.length; i++) {
-    if (a[i] != b[i]) return false;
-  }
-  return true;
 }
 
 DateTime _gitCommitTime(String path) {
