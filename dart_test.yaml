@@ -1,8 +1,8 @@
 tags:
-  presubmit-only:
+  presubmit:
 
-exclude_tags: presubmit-only
+exclude_tags: presubmit
 
 presets:
   presubmit:
-    include_tags: presubmit-only
+    include_tags: presubmit

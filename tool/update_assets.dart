@@ -4,21 +4,19 @@ import 'package:path/path.dart' as p;
 void main() async {
   print('Building web assets via build_runner...');
 
-  final buildResult = await Process.run('dart', [
+  final buildResult = await Process.start('dart', [
     'run',
     'build_runner',
     'build',
     '--release',
     '-o',
     '_example_src:build/assets_temp',
-  ]);
+  ], mode: ProcessStartMode.inheritStdio);
 
-  if (buildResult.exitCode != 0) {
-    stderr
-      ..writeln('Build failed:')
-      ..writeln(buildResult.stdout)
-      ..writeln(buildResult.stderr);
-    exit(1);
+  if (await buildResult.exitCode != 0) {
+    stderr.writeln('Build failed:');
+    exitCode = 1;
+    return;
   }
 
   print('Copying built assets to lib/assets/...');
@@ -31,7 +29,8 @@ void main() async {
   final tempDir = Directory('build/assets_temp');
   if (!tempDir.existsSync()) {
     stderr.writeln('Error: build/assets_temp directory not found after build.');
-    exit(1);
+    exitCode = 1;
+    return;
   }
 
   void copyDirectory(
@@ -59,6 +58,11 @@ void main() async {
   }
 
   copyDirectory(tempDir, assetsDir, isRoot: true);
+
+  File(
+    p.join(assetsDir.path, 'build_version.txt'),
+  ).writeAsStringSync('${DateTime.now().toUtc().toIso8601String()}\n');
+
   print('Successfully updated lib/assets/!');
 }
 
