@@ -246,8 +246,31 @@ void _updateOver(
     }
   }
 
-  final fromDeps = <({String name, String constraint, bool isDev})>[];
-  final toDeps = <({String name, String constraint, bool isDev})>[];
+  final nodeOutdatedMap = {
+    for (var node in nodes)
+      node.id: node.element.classList.contains('outdated'),
+  };
+
+  final fromDeps =
+      <
+        ({
+          String name,
+          String constraint,
+          bool isDev,
+          bool isNodeOutdated,
+          bool isEdgeOutdated,
+        })
+      >[];
+  final toDeps =
+      <
+        ({
+          String name,
+          String constraint,
+          bool isDev,
+          bool isNodeOutdated,
+          bool isEdgeOutdated,
+        })
+      >[];
   for (var edge in edges) {
     final nodeXTo = edge.to;
     final nodeXFrom = edge.from;
@@ -265,6 +288,8 @@ void _updateOver(
             name: nodeXFrom,
             constraint: edge.constraint,
             isDev: edge.isDev,
+            isNodeOutdated: nodeOutdatedMap[nodeXFrom] ?? false,
+            isEdgeOutdated: edge.element.classList.contains('outdated'),
           ));
         }
 
@@ -273,6 +298,8 @@ void _updateOver(
             name: nodeXTo,
             constraint: edge.constraint,
             isDev: edge.isDev,
+            isNodeOutdated: nodeOutdatedMap[nodeXTo] ?? false,
+            isEdgeOutdated: edge.element.classList.contains('outdated'),
           ));
         }
 
@@ -294,12 +321,30 @@ void _updateOver(
     toDeps.sort((a, b) => a.name.compareTo(b.name));
 
     String buildTable(
-      Iterable<({String name, String constraint, bool isDev})> deps,
+      Iterable<
+        ({
+          String name,
+          String constraint,
+          bool isDev,
+          bool isNodeOutdated,
+          bool isEdgeOutdated,
+        })
+      >
+      deps,
     ) {
       final rows = deps.map((d) {
         final nameHtml = htmlEscape.convert(d.name);
-        final nameCell = d.isDev ? '<i>$nameHtml</i>' : nameHtml;
-        return '<tr><td>$nameCell</td><td>${htmlEscape.convert(d.constraint)}</td></tr>';
+        var nameCell = d.isDev ? '<i>$nameHtml</i>' : nameHtml;
+        if (d.isNodeOutdated) {
+          nameCell = '<span class="outdated-node">$nameCell</span>';
+        }
+
+        var constraintCell = htmlEscape.convert(d.constraint);
+        if (d.isEdgeOutdated) {
+          constraintCell = '<span class="outdated-edge">$constraintCell</span>';
+        }
+
+        return '<tr><td>$nameCell</td><td>$constraintCell</td></tr>';
       }).join();
       return '<table class="deps-table"><thead><tr><th>Name</th><th>Constraint</th></tr></thead><tbody>$rows</tbody></table>';
     }
@@ -307,7 +352,16 @@ void _updateOver(
     void updateHudBox(
       HTMLDivElement box,
       String title,
-      List<({String name, String constraint, bool isDev})> deps,
+      List<
+        ({
+          String name,
+          String constraint,
+          bool isDev,
+          bool isNodeOutdated,
+          bool isEdgeOutdated,
+        })
+      >
+      deps,
     ) {
       if (deps.isNotEmpty) {
         box.style.display = 'flex';
