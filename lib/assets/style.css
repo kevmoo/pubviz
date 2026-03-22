@@ -89,7 +89,6 @@ text {
     border-radius: 6px;
     padding: 12px;
     z-index: 1000;
-    pointer-events: auto; 
     line-height: 1.4;
     overflow: hidden;
 }
