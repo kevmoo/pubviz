@@ -192,7 +192,11 @@ Future<void> _createOrOpen(VizRoot root, Options options) async {
   print('File generated: $filePath');
 
   if (options.action == Action.serve || options.action == Action.open) {
-    final server = await Dhttpd.start(path: targetDir.path, port: 0);
+    final server = await Dhttpd.start(
+      path: targetDir.path,
+      port: 0,
+      quiet: true,
+    );
     final serverUrl = 'http://localhost:${server.port}/';
     print('Serving pubviz on $serverUrl');
 
