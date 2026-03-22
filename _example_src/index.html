@@ -30,12 +30,12 @@ digraph pubviz {
   graph [nodesep=0.2];
   edge [fontcolor=gray];
 
-  _fe_analyzer_shared [label="_fe_analyzer_shared\n96.0.0"];
+  _fe_analyzer_shared [label="_fe_analyzer_shared\n98.0.0"];
   _fe_analyzer_shared -> meta [label="^1.9.0", color=gray];
   _fe_analyzer_shared -> source_span [label="^1.10.0", color=gray];
 
-  analyzer [label="analyzer\n10.2.0"];
-  analyzer -> _fe_analyzer_shared [label="^96.0.0", color=gray];
+  analyzer [label="analyzer\n12.0.0"];
+  analyzer -> _fe_analyzer_shared [label="^98.0.0", color=gray];
   analyzer -> collection [label="^1.19.0", color=gray];
   analyzer -> convert [label="^3.0.0", color=gray];
   analyzer -> crypto [label="^3.0.0", color=gray];
@@ -52,7 +52,7 @@ digraph pubviz {
   archive -> path [label="^1.8.0", color=gray];
   archive -> posix [label="^6.0.2", color=gray];
 
-  args [label="args\n2.7.0", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
+  args [label="args\n2.7.0", shape=box, margin="0.25,0.15"];
 
   async [label="async\n2.13.0", shape=box, margin="0.25,0.15"];
   async -> collection [label="^1.15.0"];
@@ -74,17 +74,17 @@ digraph pubviz {
   build -> package_config [label="^2.1.0", color=gray];
   build -> path [label="^1.8.0", color=gray];
 
-  build_cli [label="build_cli\n2.2.10", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
-  build_cli -> analyzer [label=">=9.0.0 <11.0.0", color=gray];
-  build_cli -> build [label="^4.0.3", color=gray];
+  build_cli [label="build_cli\n2.2.11"];
+  build_cli -> analyzer [label=">=10.0.0 <13.0.0", color=gray];
+  build_cli -> build [label="^4.0.4", color=gray];
   build_cli -> build_cli_annotations [label=">=2.1.1 <2.2.0", color=gray];
   build_cli -> build_config [label="^1.2.0", color=gray];
   build_cli -> pub_semver [label="^2.1.4", color=gray];
-  build_cli -> source_gen [label="^4.1.1", color=gray];
-  build_cli -> source_helper [label="^1.3.9", color=gray];
+  build_cli -> source_gen [label="^4.1.2", color=gray];
+  build_cli -> source_helper [label="^1.3.10", color=gray];
   build_cli -> yaml [label="^3.1.3", color=gray];
 
-  build_cli_annotations [label="build_cli_annotations\n2.1.1", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
+  build_cli_annotations [label="build_cli_annotations\n2.1.1", shape=box, margin="0.25,0.15"];
   build_cli_annotations -> args [label="^2.6.0"];
   build_cli_annotations -> meta [label="^1.16.0"];
 
@@ -125,7 +125,7 @@ digraph pubviz {
   build_modules -> stream_transform [label="^2.0.0", color=gray];
   build_modules -> uuid [label="^4.4.2", color=gray];
 
-  build_runner [label="build_runner\n2.13.1", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
+  build_runner [label="build_runner\n2.13.1"];
   build_runner -> analyzer [label=">=8.0.0 <13.0.0", color=gray];
   build_runner -> args [label="^2.5.0", color=gray];
   build_runner -> async [label="^2.5.0", color=gray];
@@ -158,17 +158,17 @@ digraph pubviz {
   build_runner -> web_socket_channel [label=">=2.3.0 <4.0.0", color=gray];
   build_runner -> yaml [label="^3.0.0", color=gray];
 
-  build_verify [label="build_verify\n3.1.1", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
+  build_verify [label="build_verify\n3.1.1"];
   build_verify -> io [label="^1.0.0", color=gray];
   build_verify -> path [label="^1.8.0", color=gray];
   build_verify -> test [label="^1.16.6", color=gray];
 
-  build_version [label="build_version\n2.1.3", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
+  build_version [label="build_version\n2.1.3"];
   build_version -> build [label=">=3.0.0 <5.0.0", color=gray];
   build_version -> build_config [label="^1.1.0", color=gray];
   build_version -> pubspec_parse [label="^1.0.0", color=gray];
 
-  build_web_compilers [label="build_web_compilers\n4.4.16", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
+  build_web_compilers [label="build_web_compilers\n4.4.16"];
   build_web_compilers -> analyzer [label=">=5.1.0 <13.0.0", color=gray];
   build_web_compilers -> archive [label=">=3.0.0 <5.0.0", color=gray];
   build_web_compilers -> bazel_worker [label="^1.0.0", color=gray];
@@ -209,7 +209,7 @@ digraph pubviz {
   code_builder -> matcher [label="^0.12.16+1", color=gray];
   code_builder -> meta [label="^1.16.0", color=gray];
 
-  collection [label="collection\n1.19.1", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
+  collection [label="collection\n1.19.1", shape=box, margin="0.25,0.15"];
 
   convert [label="convert\n3.1.2", shape=box, margin="0.25,0.15"];
   convert -> typed_data [label="^1.3.0"];
@@ -230,11 +230,11 @@ digraph pubviz {
   crypto [label="crypto\n3.0.7"];
   crypto -> typed_data [label="^1.3.0", color=gray];
 
-  dart_flutter_team_lints [label="dart_flutter_team_lints\n3.5.2", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
+  dart_flutter_team_lints [label="dart_flutter_team_lints\n3.5.2"];
   dart_flutter_team_lints -> lints [label="^6.0.0", color=gray];
 
-  dart_style [label="dart_style\n3.1.7"];
-  dart_style -> analyzer [label=">=10.0.0 <12.0.0", color=gray];
+  dart_style [label="dart_style\n3.1.8"];
+  dart_style -> analyzer [label="^12.0.0", color=gray];
   dart_style -> args [label="^2.5.0", color=gray];
   dart_style -> collection [label="^1.19.0", color=gray];
   dart_style -> package_config [label="^2.1.0", color=gray];
@@ -243,7 +243,7 @@ digraph pubviz {
   dart_style -> source_span [label="^1.8.0", color=gray];
   dart_style -> yaml [label="^3.1.2", color=gray];
 
-  dhttpd [label="dhttpd\n4.2.0", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
+  dhttpd [label="dhttpd\n4.2.0", shape=box, margin="0.25,0.15"];
   dhttpd -> args [label="^2.0.0"];
   dhttpd -> build_cli_annotations [label="^2.0.0"];
   dhttpd -> shelf [label="^1.0.0"];
@@ -271,9 +271,9 @@ digraph pubviz {
   graphs [label="graphs\n2.3.2"];
   graphs -> collection [label="^1.15.0", color=gray];
 
-  gviz [label="gviz\n0.4.2", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
+  gviz [label="gviz\n0.4.2", shape=box, margin="0.25,0.15"];
 
-  http [label="http\n1.6.0", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
+  http [label="http\n1.6.0", shape=box, margin="0.25,0.15"];
   http -> async [label="^2.5.0"];
   http -> http_parser [label="^4.0.0"];
   http -> meta [label="^1.3.0"];
@@ -288,7 +288,7 @@ digraph pubviz {
   http_parser -> string_scanner [label="^1.1.0"];
   http_parser -> typed_data [label="^1.3.0"];
 
-  io [label="io\n1.0.5", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
+  io [label="io\n1.0.5", shape=box, margin="0.25,0.15"];
   io -> meta [label="^1.3.0"];
   io -> path [label="^1.8.0"];
   io -> string_scanner [label="^1.1.0"];
@@ -316,7 +316,7 @@ digraph pubviz {
   package_config [label="package_config\n2.2.0"];
   package_config -> path [label="^1.8.0", color=gray];
 
-  path [label="path\n1.9.1", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
+  path [label="path\n1.9.1", shape=box, margin="0.25,0.15"];
 
   pool [label="pool\n1.5.2"];
   pool -> async [label="^2.5.0", color=gray];
@@ -332,10 +332,10 @@ digraph pubviz {
   protobuf -> fixnum [label="^1.0.0", color=gray];
   protobuf -> meta [label="^1.7.0", color=gray];
 
-  pub_semver [label="pub_semver\n2.2.0", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
+  pub_semver [label="pub_semver\n2.2.0", shape=box, margin="0.25,0.15"];
   pub_semver -> collection [label="^1.15.0"];
 
-  pubspec_parse [label="pubspec_parse\n1.5.0", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
+  pubspec_parse [label="pubspec_parse\n1.5.0", shape=box, margin="0.25,0.15"];
   pubspec_parse -> checked_yaml [label="^2.0.1"];
   pubspec_parse -> collection [label="^1.19.0"];
   pubspec_parse -> json_annotation [label="^4.9.0"];
@@ -426,7 +426,7 @@ digraph pubviz {
   source_span -> path [label="^1.8.0"];
   source_span -> term_glyph [label="^1.2.0"];
 
-  stack_trace [label="stack_trace\n1.12.1", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
+  stack_trace [label="stack_trace\n1.12.1", shape=box, margin="0.25,0.15"];
   stack_trace -> path [label="^1.8.0"];
 
   stream_channel [label="stream_channel\n2.1.4", shape=box, margin="0.25,0.15"];
@@ -434,12 +434,12 @@ digraph pubviz {
 
   stream_transform [label="stream_transform\n2.1.1"];
 
-  string_scanner [label="string_scanner\n1.4.1", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
+  string_scanner [label="string_scanner\n1.4.1", shape=box, margin="0.25,0.15"];
   string_scanner -> source_span [label="^1.8.0"];
 
   term_glyph [label="term_glyph\n1.2.2", shape=box, margin="0.25,0.15"];
 
-  test [label="test\n1.31.0", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
+  test [label="test\n1.31.0"];
   test -> analyzer [label=">=8.0.0 <13.0.0", color=gray];
   test -> async [label="^2.5.0", color=gray];
   test -> boolean_selector [label="^2.1.0", color=gray];
@@ -500,14 +500,14 @@ digraph pubviz {
   test_core -> vm_service [label=">=6.0.0 <16.0.0", color=gray];
   test_core -> yaml [label="^3.0.0", color=gray];
 
-  test_descriptor [label="test_descriptor\n2.0.2", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
+  test_descriptor [label="test_descriptor\n2.0.2"];
   test_descriptor -> async [label="^2.5.0", color=gray];
   test_descriptor -> collection [label="^1.15.0", color=gray];
   test_descriptor -> path [label="^1.8.0", color=gray];
   test_descriptor -> term_glyph [label="^1.2.0", color=gray];
   test_descriptor -> test [label="^1.16.6", color=gray];
 
-  test_process [label="test_process\n2.1.1", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
+  test_process [label="test_process\n2.1.1"];
   test_process -> async [label="^2.5.0", color=gray];
   test_process -> meta [label="^1.3.0", color=gray];
   test_process -> path [label="^1.8.0", color=gray];
@@ -526,7 +526,7 @@ digraph pubviz {
   watcher -> async [label="^2.5.0", color=gray];
   watcher -> path [label="^1.8.0", color=gray];
 
-  web [label="web\n1.1.1", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
+  web [label="web\n1.1.1", shape=box, margin="0.25,0.15"];
 
   web_socket [label="web_socket\n1.0.1"];
   web_socket -> web [label=">=0.5.0 <2.0.0", color=gray];
@@ -541,7 +541,7 @@ digraph pubviz {
   webkit_inspection_protocol [label="webkit_inspection_protocol\n1.2.1"];
   webkit_inspection_protocol -> logging [label="^1.0.0", color=gray];
 
-  yaml [label="yaml\n3.1.3", shape=box, margin="0.25,0.15", style="filled,bold", color="#0175C2", fillcolor="#e3f2fd"];
+  yaml [label="yaml\n3.1.3", shape=box, margin="0.25,0.15"];
   yaml -> collection [label="^1.15.0"];
   yaml -> source_span [label="^1.8.0"];
   yaml -> string_scanner [label="^1.2.0"];
