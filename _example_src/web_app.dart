@@ -31,8 +31,6 @@ final List<String> _dotContentLines = List.unmodifiable(
   ),
 );
 
-final _toIgnore = <String>{};
-
 void main() {
   _process();
 
@@ -69,62 +67,12 @@ Future<void> _process() async {
     __root = null;
   }
 
-  final removedLinesContainingNodeDefinitions = <String>[];
-
-  List<String> lines;
-
-  if (_toIgnore.isEmpty) {
-    lines = _dotContentLines;
-  } else {
-    print('Ignoring: ${_toIgnore.join(',')}');
-    lines = _dotContentLines.where((line) {
-      for (var item in _toIgnore) {
-        if (line == 'digraph $item {') {
-          return true;
-        }
-
-        var comparisonLine = line;
-        // for the purposes of this code, ignore anything after and including [
-        final openBracketIndex = line.indexOf('[');
-        if (openBracketIndex > 0) {
-          comparisonLine = comparisonLine.substring(0, openBracketIndex);
-        }
-
-        if (comparisonLine.contains(RegExp('\\W$item\\W'))) {
-          if (!comparisonLine.contains('->')) {
-            removedLinesContainingNodeDefinitions.add(line);
-          }
-
-          return false;
-        }
-      }
-      return true;
-    }).toList();
-
-    if (removedLinesContainingNodeDefinitions.isEmpty) {
-      print('Weird - nothing removed?');
-    } else {
-      if (lines.last != '}') {
-        throw StateError('huh?');
-      }
-      lines
-        ..removeLast()
-        ..add('  subgraph cluster0 {')
-        ..add('    label=Removed;')
-        ..add('    style=filled;')
-        ..add('    fillcolor="#dddddd";')
-        ..addAll(removedLinesContainingNodeDefinitions)
-        ..add('  }')
-        ..add('}');
-    }
-  }
-
   final watch = Stopwatch()..start();
   try {
     _vizInstance ??= await Viz.instance().toDart;
 
     final output = _vizInstance!.renderString(
-      lines.join('\n'),
+      _dotContentLines.join('\n'),
       RenderOptions(format: 'svg'),
     );
     _updateBody(output);
@@ -168,16 +116,6 @@ void _updateBody(String output) {
     if (isOutdatedColor(nodeStroke)) {
       element.classList.add('outdated');
     }
-
-    element.onClick.listen((MouseEvent event) {
-      final target = event.currentTarget as Element;
-      if (_toIgnore.add(target.id)) {
-        // add succeeded – noop
-      } else {
-        _toIgnore.remove(target.id);
-      }
-      _process();
-    });
 
     return (element: element, id: title);
   }).toList();
