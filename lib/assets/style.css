@@ -21,15 +21,15 @@ text {
 }
 #controls-panel.collapsed #controls-title,
 #controls-panel.collapsed #controls-content,
+#controls-panel.collapsed #controls-footer {
+    display: none;
+}
+
 #controls-footer {
     margin-top: auto;
     white-space: nowrap;
     padding: 15px;
     text-align: center;
-}
-
-#controls-panel.collapsed #controls-footer {
-    display: none;
 }
 #controls-header {
     display: flex;

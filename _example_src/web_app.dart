@@ -289,7 +289,7 @@ void _updateOver(
     }
   }
 
-  if (targetPkg.length == 1 && (fromDeps.isNotEmpty || toDeps.isNotEmpty)) {
+  if (targetPkg.length == 1) {
     fromDeps.sort((a, b) => a.name.compareTo(b.name));
     toDeps.sort((a, b) => a.name.compareTo(b.name));
 
@@ -304,23 +304,23 @@ void _updateOver(
       return '<table class="deps-table"><thead><tr><th>Name</th><th>Constraint</th></tr></thead><tbody>$rows</tbody></table>';
     }
 
-    if (fromDeps.isNotEmpty) {
-      depsInBox.style.display = 'flex';
-      depsInBox.innerHTML =
-          '<h3>INCOMING</h3><div class="table-scroll">${buildTable(fromDeps)}</div>'
-              .toJS;
-    } else {
-      depsInBox.style.display = 'none';
+    void updateHudBox(
+      HTMLDivElement box,
+      String title,
+      List<({String name, String constraint, bool isDev})> deps,
+    ) {
+      if (deps.isNotEmpty) {
+        box.style.display = 'flex';
+        box.innerHTML =
+            '<h3>$title</h3><div class="table-scroll">${buildTable(deps)}</div>'
+                .toJS;
+      } else {
+        box.style.display = 'none';
+      }
     }
 
-    if (toDeps.isNotEmpty) {
-      depsOutBox.style.display = 'flex';
-      depsOutBox.innerHTML =
-          '<h3>OUTGOING</h3><div class="table-scroll">${buildTable(toDeps)}</div>'
-              .toJS;
-    } else {
-      depsOutBox.style.display = 'none';
-    }
+    updateHudBox(depsInBox, 'INCOMING', fromDeps);
+    updateHudBox(depsOutBox, 'OUTGOING', toDeps);
   } else {
     depsInBox.style.display = 'none';
     depsOutBox.style.display = 'none';
