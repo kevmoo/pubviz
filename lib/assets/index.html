@@ -21,7 +21,10 @@
           <a href="https://pub.dev/packages/pubviz" target="_blank" rel="noopener noreferrer">package:pubviz</a>
         </div>
       </div>
-      <div id="graph-container">
+      <div id="graph-wrapper">
+        <div id="deps-in-box" class="hud-box" style="display: none;"></div>
+        <div id="deps-out-box" class="hud-box" style="display: none;"></div>
+        <div id="graph-container">
         <script type="text/vnd.graphviz" id="dot">
 digraph pubviz {
   graph [nodesep=0.2];
@@ -545,6 +548,7 @@ digraph pubviz {
 }
 
       </script>
+        </div>
       </div>
     </div>
   </body>
