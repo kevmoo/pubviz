@@ -36,8 +36,12 @@ final _toIgnore = <String>{};
 void main() {
   _process();
 
-  hamburgerBtn.onClick.listen((_) {
+  void toggleControls() {
     controlsPanel.classList.toggle('collapsed');
+  }
+
+  hamburgerBtn.onClick.listen((_) {
+    toggleControls();
   });
 
   void toggleZoom() {
@@ -50,8 +54,11 @@ void main() {
   });
 
   window.onKeyDown.listen((KeyboardEvent event) {
-    if (event.key == 'z' || event.key == 'Z') {
-      toggleZoom();
+    switch (event.key) {
+      case 'c' || 'C':
+        toggleControls();
+      case 'z' || 'Z':
+        toggleZoom();
     }
   });
 }
