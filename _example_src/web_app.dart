@@ -9,6 +9,14 @@ import 'dart:js_interop';
 import 'package:pubviz/viz/colors.dart';
 import 'package:web/web.dart';
 
+typedef DepInfo = ({
+  String name,
+  String constraint,
+  bool isDev,
+  bool isNodeOutdated,
+  bool isEdgeOutdated,
+});
+
 final hamburgerBtn =
     document.querySelector('#hamburgerBtn') as HTMLButtonElement;
 final controlsPanel =
@@ -251,26 +259,8 @@ void _updateOver(
       node.id: node.element.classList.contains('outdated'),
   };
 
-  final fromDeps =
-      <
-        ({
-          String name,
-          String constraint,
-          bool isDev,
-          bool isNodeOutdated,
-          bool isEdgeOutdated,
-        })
-      >[];
-  final toDeps =
-      <
-        ({
-          String name,
-          String constraint,
-          bool isDev,
-          bool isNodeOutdated,
-          bool isEdgeOutdated,
-        })
-      >[];
+  final fromDeps = <DepInfo>[];
+  final toDeps = <DepInfo>[];
   for (var edge in edges) {
     final nodeXTo = edge.to;
     final nodeXFrom = edge.from;
@@ -320,18 +310,7 @@ void _updateOver(
     fromDeps.sort((a, b) => a.name.compareTo(b.name));
     toDeps.sort((a, b) => a.name.compareTo(b.name));
 
-    String buildTable(
-      Iterable<
-        ({
-          String name,
-          String constraint,
-          bool isDev,
-          bool isNodeOutdated,
-          bool isEdgeOutdated,
-        })
-      >
-      deps,
-    ) {
+    String buildTable(Iterable<DepInfo> deps) {
       final rows = deps.map((d) {
         final nameHtml = htmlEscape.convert(d.name);
         var nameCell = d.isDev ? '<i>$nameHtml</i>' : nameHtml;
@@ -349,20 +328,7 @@ void _updateOver(
       return '<table class="deps-table"><thead><tr><th>Name</th><th>Constraint</th></tr></thead><tbody>$rows</tbody></table>';
     }
 
-    void updateHudBox(
-      HTMLDivElement box,
-      String title,
-      List<
-        ({
-          String name,
-          String constraint,
-          bool isDev,
-          bool isNodeOutdated,
-          bool isEdgeOutdated,
-        })
-      >
-      deps,
-    ) {
+    void updateHudBox(HTMLDivElement box, String title, List<DepInfo> deps) {
       if (deps.isNotEmpty) {
         box.style.display = 'flex';
         box.innerHTML =
