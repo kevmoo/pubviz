@@ -21,6 +21,13 @@ text {
 }
 #controls-panel.collapsed #controls-title,
 #controls-panel.collapsed #controls-content,
+#controls-footer {
+    margin-top: auto;
+    white-space: nowrap;
+    padding: 15px;
+    text-align: center;
+}
+
 #controls-panel.collapsed #controls-footer {
     display: none;
 }
@@ -131,9 +138,10 @@ g.active > text {
     fill: blue;
     font-size: 100%;
 }
-g.active > polygon, g.active > ellipse, g.active > path {
+g.node.active > polygon, g.node.active > ellipse, g.node.active > path, 
+g.edge.active > polygon, g.edge.active > ellipse, g.edge.active > path {
     stroke: blue;
-    stroke-width: 3px !important;
+    stroke-width: 3px;
 }
 g.active.edge > polygon {
     fill: blue;
@@ -142,17 +150,19 @@ g.active.edge > polygon {
 g.locked > text {
     font-weight: bold;
 }
-g.locked > ellipse, g.locked > path, g.locked.edge > polygon {
-    stroke-width: 4px !important;
+g.node.locked > ellipse, g.node.locked > path, 
+g.edge.locked > ellipse, g.edge.locked > path, g.edge.locked > polygon {
+    stroke-width: 4px;
 }
 
 g.outdated.active > text {
     fill: red;
     font-size: 100%;
 }
-g.outdated.active > polygon, g.outdated.active > ellipse, g.outdated.active > path {
+g.node.outdated.active > polygon, g.node.outdated.active > ellipse, g.node.outdated.active > path,
+g.edge.outdated.active > polygon, g.edge.outdated.active > ellipse, g.edge.outdated.active > path {
     stroke: red;
-    stroke-width: 3px !important;
+    stroke-width: 3px;
 }
 g.outdated.active.edge > polygon {
     fill: red;
