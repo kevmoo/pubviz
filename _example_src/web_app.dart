@@ -16,9 +16,13 @@ final controlsPanel =
 final zoomCheckbox =
     document.querySelector('#zoomCheckbox') as HTMLInputElement;
 
+final depsInBox = document.querySelector('#deps-in-box') as HTMLDivElement;
+final depsOutBox = document.querySelector('#deps-out-box') as HTMLDivElement;
+
 VizInstance? _vizInstance;
 
 SVGElement? __root;
+SVGGElement? _lockedElement;
 
 SVGElement get _root => __root!;
 
@@ -31,13 +35,18 @@ final List<String> _dotContentLines = List.unmodifiable(
   ),
 );
 
-final _toIgnore = <String>{};
-
 void main() {
   _process();
 
-  hamburgerBtn.onClick.listen((_) {
+  depsInBox.onWheel.listen((e) => e.stopPropagation());
+  depsOutBox.onWheel.listen((e) => e.stopPropagation());
+
+  void toggleControls() {
     controlsPanel.classList.toggle('collapsed');
+  }
+
+  hamburgerBtn.onClick.listen((_) {
+    toggleControls();
   });
 
   void toggleZoom() {
@@ -50,8 +59,11 @@ void main() {
   });
 
   window.onKeyDown.listen((KeyboardEvent event) {
-    if (event.key == 'z' || event.key == 'Z') {
-      toggleZoom();
+    switch (event.key) {
+      case 'c' || 'C':
+        toggleControls();
+      case 'z' || 'Z':
+        toggleZoom();
     }
   });
 }
@@ -60,56 +72,7 @@ Future<void> _process() async {
   if (__root != null) {
     _root.remove();
     __root = null;
-  }
-
-  final removedLinesContainingNodeDefinitions = <String>[];
-
-  List<String> lines;
-
-  if (_toIgnore.isEmpty) {
-    lines = _dotContentLines;
-  } else {
-    print('Ignoring: ${_toIgnore.join(',')}');
-    lines = _dotContentLines.where((line) {
-      for (var item in _toIgnore) {
-        if (line == 'digraph $item {') {
-          return true;
-        }
-
-        var comparisonLine = line;
-        // for the purposes of this code, ignore anything after and including [
-        final openBracketIndex = line.indexOf('[');
-        if (openBracketIndex > 0) {
-          comparisonLine = comparisonLine.substring(0, openBracketIndex);
-        }
-
-        if (comparisonLine.contains(RegExp('\\W$item\\W'))) {
-          if (!comparisonLine.contains('->')) {
-            removedLinesContainingNodeDefinitions.add(line);
-          }
-
-          return false;
-        }
-      }
-      return true;
-    }).toList();
-
-    if (removedLinesContainingNodeDefinitions.isEmpty) {
-      print('Weird - nothing removed?');
-    } else {
-      if (lines.last != '}') {
-        throw StateError('huh?');
-      }
-      lines
-        ..removeLast()
-        ..add('  subgraph cluster0 {')
-        ..add('    label=Removed;')
-        ..add('    style=filled;')
-        ..add('    fillcolor="#dddddd";')
-        ..addAll(removedLinesContainingNodeDefinitions)
-        ..add('  }')
-        ..add('}');
-    }
+    _lockedElement = null;
   }
 
   final watch = Stopwatch()..start();
@@ -117,7 +80,7 @@ Future<void> _process() async {
     _vizInstance ??= await Viz.instance().toDart;
 
     final output = _vizInstance!.renderString(
-      lines.join('\n'),
+      _dotContentLines.join('\n'),
       RenderOptions(format: 'svg'),
     );
     _updateBody(output);
@@ -162,16 +125,6 @@ void _updateBody(String output) {
       element.classList.add('outdated');
     }
 
-    element.onClick.listen((MouseEvent event) {
-      final target = event.currentTarget as Element;
-      if (_toIgnore.add(target.id)) {
-        // add succeeded – noop
-      } else {
-        _toIgnore.remove(target.id);
-      }
-      _process();
-    });
-
     return (element: element, id: title);
   }).toList();
 
@@ -186,43 +139,85 @@ void _updateBody(String output) {
       ..setAttribute('x-to', to);
 
     // NOTE: we are assuming the shape of the generated SVG here – be careful!
-    final textFill = node.querySelector('text')?.getAttribute('fill');
+    final textElement = node.querySelector('text');
+    final textFill = textElement?.getAttribute('fill');
+    final constraint = textElement?.textContent ?? '';
     final edgeStroke =
         node.getAttribute('stroke') ??
         node.querySelector('path')?.getAttribute('stroke') ??
         node.querySelector('polygon')?.getAttribute('stroke');
 
+    final isDev =
+        node.querySelector('path')?.hasAttribute('stroke-dasharray') ?? false;
+
     if (isOutdatedColor(textFill) || isOutdatedColor(edgeStroke)) {
       node.classList.add('outdated');
     }
-    return (element: node, from: from, to: to);
+    return (
+      element: node,
+      from: from,
+      to: to,
+      constraint: constraint,
+      isDev: isDev,
+    );
   }).toList();
 
-  for (var entry in nodes) {
-    entry.element.onMouseEnter.listen((MouseEvent event) {
+  void handleMouseEnter(MouseEvent event) {
+    if (_lockedElement == null) {
       _updateOver(event.currentTarget as SVGGElement, nodes, edges);
-    });
+    }
+  }
 
-    entry.element.onMouseLeave.listen((MouseEvent event) {
+  void handleMouseLeave(MouseEvent event) {
+    if (_lockedElement == null) {
       _updateOver(null, nodes, edges);
-    });
+    }
+  }
+
+  void handleClick(MouseEvent event) {
+    event.stopPropagation();
+    final target = event.currentTarget as SVGGElement;
+    if (_lockedElement == target) {
+      _lockedElement = null;
+    } else {
+      _lockedElement = target;
+    }
+    _updateOver(_lockedElement ?? target, nodes, edges);
+  }
+
+  for (var entry in nodes) {
+    entry.element.onMouseEnter.listen(handleMouseEnter);
+    entry.element.onMouseLeave.listen(handleMouseLeave);
+    entry.element.onClick.listen(handleClick);
   }
 
   for (var entry in edges) {
-    entry.element.onMouseEnter.listen((MouseEvent event) {
-      _updateOver(event.currentTarget as SVGGElement, nodes, edges);
-    });
-
-    entry.element.onMouseLeave.listen((MouseEvent event) {
-      _updateOver(null, nodes, edges);
-    });
+    entry.element.onMouseEnter.listen(handleMouseEnter);
+    entry.element.onMouseLeave.listen(handleMouseLeave);
+    entry.element.onClick.listen(handleClick);
   }
+
+  _root.onClick.listen((MouseEvent event) {
+    if (_lockedElement != null) {
+      _lockedElement = null;
+      _updateOver(null, nodes, edges);
+    }
+  });
 }
 
 void _updateOver(
   SVGGElement? element,
   Iterable<({SVGGElement element, String id})> nodes,
-  Iterable<({SVGGElement element, String from, String to})> edges,
+  Iterable<
+    ({
+      SVGGElement element,
+      String from,
+      String to,
+      String constraint,
+      bool isDev,
+    })
+  >
+  edges,
 ) {
   final targetPkg = <String?>[];
   if (element != null) {
@@ -243,10 +238,16 @@ void _updateOver(
     } else {
       node.element.classList.remove('active');
     }
+
+    if (node.element == _lockedElement) {
+      node.element.classList.add('locked');
+    } else {
+      node.element.classList.remove('locked');
+    }
   }
 
-  final fromNodes = <String>[];
-  final toNodes = <String>[];
+  final fromDeps = <({String name, String constraint, bool isDev})>[];
+  final toDeps = <({String name, String constraint, bool isDev})>[];
   for (var edge in edges) {
     final nodeXTo = edge.to;
     final nodeXFrom = edge.from;
@@ -260,11 +261,19 @@ void _updateOver(
     } else {
       if (targetPkg.contains(nodeXTo) || targetPkg.contains(nodeXFrom)) {
         if (targetPkg.contains(nodeXTo)) {
-          fromNodes.add(nodeXFrom);
+          fromDeps.add((
+            name: nodeXFrom,
+            constraint: edge.constraint,
+            isDev: edge.isDev,
+          ));
         }
 
         if (targetPkg.contains(nodeXFrom)) {
-          toNodes.add(nodeXTo);
+          toDeps.add((
+            name: nodeXTo,
+            constraint: edge.constraint,
+            isDev: edge.isDev,
+          ));
         }
 
         edge.element.classList.add('active');
@@ -272,17 +281,49 @@ void _updateOver(
         edge.element.classList.remove('active');
       }
     }
+
+    if (edge.element == _lockedElement) {
+      edge.element.classList.add('locked');
+    } else {
+      edge.element.classList.remove('locked');
+    }
   }
 
   if (targetPkg.length == 1) {
-    final lines = [targetPkg.single];
-    if (fromNodes.isNotEmpty) {
-      lines.add('  From: ${fromNodes.join(', ')}');
+    fromDeps.sort((a, b) => a.name.compareTo(b.name));
+    toDeps.sort((a, b) => a.name.compareTo(b.name));
+
+    String buildTable(
+      Iterable<({String name, String constraint, bool isDev})> deps,
+    ) {
+      final rows = deps.map((d) {
+        final nameHtml = htmlEscape.convert(d.name);
+        final nameCell = d.isDev ? '<i>$nameHtml</i>' : nameHtml;
+        return '<tr><td>$nameCell</td><td>${htmlEscape.convert(d.constraint)}</td></tr>';
+      }).join();
+      return '<table class="deps-table"><thead><tr><th>Name</th><th>Constraint</th></tr></thead><tbody>$rows</tbody></table>';
     }
-    if (toNodes.isNotEmpty) {
-      lines.add('    To: ${toNodes.join(', ')}');
+
+    void updateHudBox(
+      HTMLDivElement box,
+      String title,
+      List<({String name, String constraint, bool isDev})> deps,
+    ) {
+      if (deps.isNotEmpty) {
+        box.style.display = 'flex';
+        box.innerHTML =
+            '<h3>$title</h3><div class="table-scroll">${buildTable(deps)}</div>'
+                .toJS;
+      } else {
+        box.style.display = 'none';
+      }
     }
-    print(lines.join('\n'));
+
+    updateHudBox(depsInBox, 'INCOMING', fromDeps);
+    updateHudBox(depsOutBox, 'OUTGOING', toDeps);
+  } else {
+    depsInBox.style.display = 'none';
+    depsOutBox.style.display = 'none';
   }
 }
 

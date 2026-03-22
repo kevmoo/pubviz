@@ -7,18 +7,24 @@
   </head>
   <body>
     <div id="app-layout">
-      <button id="hamburgerBtn" title="Toggle Controls">&#9776;</button>
+      <button id="hamburgerBtn" title="Toggle Controls (c)">&#9776;</button>
       <div id="controls-panel" class="collapsed">
         <div id="controls-header">
-          <span id="controls-title">Controls</span>
+          <span id="controls-title">Controls (c)</span>
         </div>
         <div id="controls-content">
           <label>
             <input type="checkbox" id="zoomCheckbox"> Zoom (z)
           </label>
         </div>
+        <div id="controls-footer">
+          <a href="https://pub.dev/packages/pubviz" target="_blank" rel="noopener noreferrer">package:pubviz</a>
+        </div>
       </div>
-      <div id="graph-container">
+      <div id="graph-wrapper">
+        <div id="deps-in-box" class="hud-box" style="display: none;"></div>
+        <div id="deps-out-box" class="hud-box" style="display: none;"></div>
+        <div id="graph-container">
         <script type="text/vnd.graphviz" id="dot">
 digraph pubviz {
   graph [nodesep=0.2];
@@ -542,6 +548,7 @@ digraph pubviz {
 }
 
       </script>
+        </div>
       </div>
     </div>
   </body>
