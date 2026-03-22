@@ -5,7 +5,6 @@ import 'package:pub_semver/pub_semver.dart';
 import 'package:pubviz/pubviz.dart';
 import 'package:pubviz/src/service.dart';
 import 'package:pubviz/src/update_order.dart';
-import 'package:pubviz/viz/dot.dart';
 import 'package:test/test.dart';
 
 import 'mock_data_service.dart';
@@ -268,7 +267,7 @@ void _verifyDotOutput(
   String name, {
   Iterable<String> ignoredPackages = const [],
 }) {
-  final dotOutput = toDot(root, ignorePackages: ignoredPackages);
+  final dotOutput = root.toDot(ignorePackages: ignoredPackages);
 
   final filePath = p.join(_mockPath, '$name.dot');
 

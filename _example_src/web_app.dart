@@ -6,7 +6,7 @@ library;
 import 'dart:convert' show LineSplitter, htmlEscape;
 import 'dart:js_interop';
 
-import 'package:pubviz/viz/colors.dart';
+import 'package:pubviz/src/colors.dart';
 import 'package:web/web.dart';
 
 typedef DepInfo = ({

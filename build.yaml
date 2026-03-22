@@ -3,10 +3,10 @@ targets:
   $default:
     sources:
       - _example_src/**
-      - pubspec.*
-      - build.yaml
       - $package$
+      - build.yaml
       - lib/**
+      - pubspec.*
     builders:
       build_cli:
         generate_for:

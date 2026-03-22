@@ -1,15 +1,17 @@
 import 'package:gviz/gviz.dart';
+import 'package:meta/meta.dart';
 
-import '../src/viz_package.dart';
-import '../src/viz_root.dart';
 import 'colors.dart';
+import 'viz_package.dart';
+import 'viz_root.dart';
 
+@internal
 String toDotHtml(
   String htmlTemplate,
   VizRoot root, {
   List<String> ignorePackages = const [],
 }) {
-  final dot = toDot(root, ignorePackages: ignorePackages);
+  final dot = root.toDot(ignorePackages: ignorePackages);
   final regex = RegExp(
     r'(<script type="text/vnd\.graphviz" id="dot">)(.*?)(</script>)',
     dotAll: true,
@@ -25,21 +27,23 @@ String toDotHtml(
       );
 }
 
-String toDot(VizRoot item, {Iterable<String> ignorePackages = const []}) {
-  final gviz = Gviz(
-    name: 'pubviz',
-    graphProperties: {'nodesep': '0.2'},
-    edgeProperties: {'fontcolor': 'gray'},
-  );
+extension VizRootExt on VizRoot {
+  String toDot({Iterable<String> ignorePackages = const []}) {
+    final gviz = Gviz(
+      name: 'pubviz',
+      graphProperties: {'nodesep': '0.2'},
+      edgeProperties: {'fontcolor': 'gray'},
+    );
 
-  for (var pack in item.packages.values.where(
-    (v) => !ignorePackages.contains(v.name),
-  )) {
-    gviz.addBlankLine();
-    _writeDot(pack, gviz, item.root.name, ignorePackages);
+    for (var pack in packages.values.where(
+      (v) => !ignorePackages.contains(v.name),
+    )) {
+      gviz.addBlankLine();
+      _writeDot(pack, gviz, root.name, ignorePackages);
+    }
+
+    return gviz.toString();
   }
-
-  return gviz.toString();
 }
 
 void _writeDot(

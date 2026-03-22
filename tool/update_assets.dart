@@ -1,5 +1,8 @@
 import 'dart:io';
+
 import 'package:path/path.dart' as p;
+
+import 'shared.dart';
 
 void main() async {
   print('Building web assets via build_runner...');
@@ -39,13 +42,10 @@ void main() async {
     bool isRoot = false,
   }) {
     for (var entity in source.listSync()) {
-      if (p.basename(entity.path).startsWith('.')) continue;
-      if (isRoot &&
-          entity is Directory &&
-          p.basename(entity.path) == 'packages') {
+      final basename = p.basename(entity.path);
+      if (_ignoredPatterns.any((p) => p.allMatches(basename).isNotEmpty)) {
         continue;
       }
-      if (_ignoredFiles.contains(p.basename(entity.path))) continue;
       if (entity is Directory) {
         final newDirectory = Directory(
           p.join(destination.absolute.path, p.basename(entity.path)),
@@ -60,13 +60,15 @@ void main() async {
   copyDirectory(tempDir, assetsDir, isRoot: true);
 
   File(
-    p.join(assetsDir.path, 'build_version.txt'),
-  ).writeAsStringSync('${DateTime.now().toUtc().toIso8601String()}\n');
+    p.join(assetsDir.path, assetFileName),
+  ).writeAsStringSync('${await hashInputs()}\n');
 
   print('Successfully updated lib/assets/!');
 }
 
-const _ignoredFiles = {
+final Set<Pattern> _ignoredPatterns = {
+  RegExp(r'^\.'),
+  'packages',
   'web_app.dart2js.js.deps',
   'web_app.dart2js.js.info.json',
 };
