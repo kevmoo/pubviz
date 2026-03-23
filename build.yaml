@@ -7,12 +7,21 @@ targets:
       - build.yaml
       - lib/$lib$
       - lib/src/colors.dart
+      - lib/src/dependency.*
+      - lib/src/dot.dart
       - lib/src/options.*
+      - lib/src/viz_package.*
+      - lib/src/viz_root.*
       - pubspec.*
     builders:
       build_cli:
         generate_for:
         - lib/src/options.*
+      json_serializable:
+        generate_for:
+        - lib/src/viz_root.dart
+        - lib/src/dependency.dart
+        - lib/src/viz_package.dart
       build_web_compilers|entrypoint:
         generate_for:
         - _example_src/**.dart

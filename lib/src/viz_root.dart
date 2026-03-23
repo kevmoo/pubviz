@@ -1,75 +1,29 @@
-import 'dart:async';
 import 'dart:collection';
 
-import 'package:pub_semver/pub_semver.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 import 'dependency.dart';
-import 'service.dart';
 import 'viz_package.dart';
 
+part 'viz_root.g.dart';
+
+@JsonSerializable()
 class VizRoot {
   final String rootPackageName;
   final Map<String, VizPackage> packages;
 
-  VizRoot._(this.rootPackageName, Map<String, VizPackage> packages)
+  VizRoot(this.rootPackageName, Map<String, VizPackage> packages)
     : assert(packages.containsKey(rootPackageName)),
       packages = UnmodifiableMapView(packages);
 
+  factory VizRoot.fromJson(Map<String, dynamic> json) =>
+      _$VizRootFromJson(json);
+
+  Map<String, dynamic> toJson() => _$VizRootToJson(this);
+
   VizPackage get root => packages[rootPackageName]!;
 
-  static Future<VizRoot> forDirectory(
-    Service service, {
-    bool flagOutdated = false,
-    Iterable<String>? ignorePackages,
-    bool directDependenciesOnly = false,
-    bool productionDependenciesOnly = false,
-    bool includeWorkspace = false,
-  }) async {
-    final rootPubspec = service.rootPubspec();
-
-    final packages = await service.getReferencedPackages(
-      flagOutdated,
-      directDependenciesOnly,
-      productionDependenciesOnly,
-      includeWorkspace: includeWorkspace,
-    );
-
-    final value = VizRoot._(rootPubspec.name, packages)
-      .._update(includeWorkspace);
-
-    if (flagOutdated) {
-      for (var dep in _allDeps(value, ignorePackages)) {
-        assert(dep.includesLatest == null);
-
-        final package = packages[dep.name];
-
-        if (package != null &&
-            package.latestVersion != null &&
-            dep.versionConstraint != VersionConstraint.empty) {
-          var allowsLatest = dep.versionConstraint.allows(
-            package.latestVersion!,
-          );
-
-          if (!allowsLatest) {
-            // it could be that the versionConstraint is actually *ahead* of
-            // latest – with a pre-release version
-
-            // TODO: get rid of the `as` here – this is weird!
-            final constraintAsRange = dep.versionConstraint as VersionRange;
-            if (package.latestVersion!.compareTo(constraintAsRange) < 0) {
-              allowsLatest = true;
-            }
-          }
-
-          dep.includesLatest = allowsLatest;
-        }
-      }
-    }
-
-    return value;
-  }
-
-  void _update(bool includeWorkspace) {
+  void update(bool includeWorkspace) {
     // Collect primary packages at the start.
     // If none are set (normal case), mark root as primary.
     if (packages.values.every((v) => !v.isPrimary)) {
@@ -86,13 +40,13 @@ class VizRoot {
         if (package == null) continue;
 
         if (!primaryDep.isDevDependency) {
-          _updateDevOnly(primaryDep);
+          updateDevOnly(primaryDep);
         }
       }
     }
   }
 
-  void _updateDevOnly(Dependency dep) {
+  void updateDevOnly(Dependency dep) {
     final package = packages[dep.name];
 
     if (package?.onlyDev ?? false) {
@@ -100,19 +54,126 @@ class VizRoot {
 
       package.dependencies
           .where((d) => !d.isDevDependency)
-          .forEach(_updateDevOnly);
+          .forEach(updateDevOnly);
     }
   }
-}
 
-Iterable<Dependency> _allDeps(
-  VizRoot root,
-  Iterable<String>? ignorePackages,
-) sync* {
-  ignorePackages ??= const [];
-  for (var pkg in root.packages.values.where(
-    (v) => !ignorePackages!.contains(v.name),
-  )) {
-    yield* pkg.dependencies;
+  VizRoot filter({required bool excludeDev, required bool onlyOutdated}) {
+    if (!excludeDev && !onlyOutdated) return this;
+
+    final newPackages = <String, VizPackage>{};
+
+    VizPackage clonePackage(VizPackage pkg, {required bool includeDev}) =>
+        VizPackage(
+          pkg.name,
+          pkg.version,
+          pkg.dependencies
+              .where((d) => includeDev || !d.isDevDependency)
+              .toSet(),
+          pkg.latestVersion,
+          isPrimary: pkg.isPrimary,
+        );
+
+    if (onlyOutdated) {
+      final primaryPackages = packages.values
+          .where((p) => p.isPrimary)
+          .map((p) => p.name)
+          .toList();
+      final reachableFromRoot = <String>{...primaryPackages, rootPackageName};
+      final rootQueue = <String>[...reachableFromRoot];
+      while (rootQueue.isNotEmpty) {
+        final current = rootQueue.removeLast();
+        final orig = packages[current];
+        if (orig != null) {
+          for (var dep in orig.dependencies) {
+            if (excludeDev && dep.isDevDependency) continue;
+            if (reachableFromRoot.add(dep.name)) {
+              rootQueue.add(dep.name);
+            }
+          }
+        }
+      }
+
+      final incoming = <String, Set<String>>{};
+      for (var pkgName in reachableFromRoot) {
+        final pkg = packages[pkgName];
+        if (pkg != null) {
+          for (var dep in pkg.dependencies) {
+            if (excludeDev && dep.isDevDependency) continue;
+            incoming.putIfAbsent(dep.name, () => {}).add(pkg.name);
+          }
+        }
+      }
+
+      final outdatedNodes = reachableFromRoot.where((name) {
+        final p = packages[name];
+        return p != null &&
+            p.latestVersion != null &&
+            p.latestVersion!.compareTo(p.version!) > 0;
+      }).toSet();
+
+      final queue = outdatedNodes.toList();
+      final keepNodes = Set<String>.from(outdatedNodes);
+
+      while (queue.isNotEmpty) {
+        final current = queue.removeLast();
+        for (var parent in incoming[current] ?? <String>{}) {
+          if (keepNodes.add(parent)) {
+            queue.add(parent);
+          }
+        }
+      }
+
+      keepNodes.add(rootPackageName);
+
+      for (var pkgName in keepNodes) {
+        final orig = packages[pkgName];
+        if (orig != null) {
+          final filteredDeps = orig.dependencies
+              .where(
+                (d) =>
+                    keepNodes.contains(d.name) &&
+                    (!excludeDev || !d.isDevDependency),
+              )
+              .toSet();
+
+          newPackages[pkgName] = VizPackage(
+            orig.name,
+            orig.version,
+            filteredDeps,
+            orig.latestVersion,
+            isPrimary: orig.isPrimary,
+          );
+        }
+      }
+    } else {
+      final primaryPackages = packages.values
+          .where((p) => p.isPrimary)
+          .map((p) => p.name)
+          .toList();
+      final keepNodes = <String>{...primaryPackages, rootPackageName};
+      final queue = <String>[...keepNodes];
+
+      while (queue.isNotEmpty) {
+        final current = queue.removeLast();
+        final orig = packages[current];
+        if (orig == null) continue;
+
+        for (var dep in orig.dependencies) {
+          if (excludeDev && dep.isDevDependency) continue;
+
+          if (keepNodes.add(dep.name)) {
+            queue.add(dep.name);
+          }
+        }
+      }
+
+      for (var pkgName in keepNodes) {
+        final orig = packages[pkgName]!;
+        newPackages[pkgName] = clonePackage(orig, includeDev: !excludeDev);
+      }
+    }
+
+    return VizRoot(rootPackageName, newPackages)..update(false);
   }
 }

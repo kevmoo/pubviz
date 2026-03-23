@@ -1,14 +1,23 @@
+import 'package:json_annotation/json_annotation.dart';
 import 'package:pub_semver/pub_semver.dart';
 import 'package:pubspec_parse/pubspec_parse.dart' as parse;
 
+part 'dependency.g.dart';
+
+@JsonSerializable()
 class Dependency implements Comparable<Dependency> {
   final String name;
+  @JsonKey(
+    fromJson: _versionConstraintFromJson,
+    toJson: _versionConstraintToJson,
+  )
   final VersionConstraint versionConstraint;
   final bool isDevDependency;
 
   bool? _includesLatest;
 
   /// Also true if there is a pre-release version after the latest version
+  @JsonKey(includeFromJson: false, includeToJson: false)
   bool? get includesLatest => _includesLatest;
 
   set includesLatest(bool? value) {
@@ -16,8 +25,12 @@ class Dependency implements Comparable<Dependency> {
     _includesLatest = value!;
   }
 
-  Dependency(this.name, String versionConstraint, this.isDevDependency)
-    : versionConstraint = _parseOrNull(versionConstraint);
+  Dependency(this.name, this.versionConstraint, this.isDevDependency);
+
+  factory Dependency.fromJson(Map<String, dynamic> json) =>
+      _$DependencyFromJson(json);
+
+  Map<String, dynamic> toJson() => _$DependencyToJson(this);
 
   static Set<Dependency> getDependencies(
     parse.Pubspec pubspec, {
@@ -43,7 +56,7 @@ class Dependency implements Comparable<Dependency> {
           ? constraint.version.toString()
           : constraint.toString();
 
-      final dep = Dependency(entry.key, constraintString, isDev);
+      final dep = Dependency(entry.key, _parseOrNull(constraintString), isDev);
 
       value.add(dep);
     }
@@ -80,3 +93,8 @@ VersionConstraint _parseOrNull(String input) {
     return VersionConstraint.empty;
   }
 }
+
+VersionConstraint _versionConstraintFromJson(String json) => _parseOrNull(json);
+
+String _versionConstraintToJson(VersionConstraint constraint) =>
+    constraint.toString();

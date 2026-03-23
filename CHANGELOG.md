@@ -1,4 +1,23 @@
-## 5.0.1-wip
+## 6.0.0-wip
+
+### Breaking Changes
+- `VizRoot.forDirectory` has been replaced by the `vizRoot` extension method on
+  `Service` to accommodate internal refactoring. `vizRoot` is exposed directly
+  via `pubviz.dart`.
+- Reduced the mutable public API surface of `VizRoot` significantly; package
+  nodes and references are formally encapsulated, and filtering logic like
+  `.filter` now returns immutable clones of `VizRoot` rather than mutating
+  objects in-place.
+- `VizRoot.allDeps` has been removed.
+
+### Web UI Overhaul
+- Added a filter to hide `dev_dependency` edges and nodes.
+- Added a filter to only show paths to outdated dependencies.
+
+### Bug Fixes
+- **Workspaces**: Included missing relational web edges for `dev_dependencies`
+  belonging to workspace sub-members. They previously rendered as disconnected
+  nodes.
 
 ## 5.0.0
 

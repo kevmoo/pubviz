@@ -4,3 +4,6 @@ environment:
 resolution: workspace
 dependencies:
   args: ^2.0.0
+
+dev_dependencies:
+  path: ^1.8.0
