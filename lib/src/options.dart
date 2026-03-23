@@ -22,7 +22,7 @@ class Options {
 
   @CliOption(
     abbr: 'o',
-    help: 'Check pub.dev for lasted packages and flag those that are outdated.',
+    help: 'Check pub.dev for latest packages and flag those that are outdated.',
   )
   final bool flagOutdated;
 

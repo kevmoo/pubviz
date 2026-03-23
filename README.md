@@ -4,7 +4,7 @@
 [![package publisher](https://img.shields.io/pub/publisher/pubviz.svg)](https://pub.dev/packages/pubviz/publisher)
 [![CI](https://github.com/kevmoo/pubviz/actions/workflows/ci.yml/badge.svg)](https://github.com/kevmoo/pubviz/actions/workflows/ci.yml)
 
-*Make sure you run `pub get` or `pub upgrade` in your target project directory.*
+*Make sure you run `dart pub get` or `dart pub upgrade` in your target project directory.*
 
 ### Example
 
@@ -56,21 +56,25 @@ digraph G {
   edge [fontname=Helvetica, fontcolor=gray];
 
   http [label="http
-0.9.2+3",fontsize=18,style=bold,shape=box,margin="0.25,0.15"];
-  http -> path [label=">=0.9.0 <2.0.0",penwidth=2];
-  http -> stack_trace [label=">=0.9.1 <0.10.0",penwidth=2];
-  http -> unittest [label=">=0.9.0 <0.10.0",penwidth=2,style=dashed];
+1.2.0",fontsize=18,style=bold,shape=box,margin="0.25,0.15"];
+  http -> async [label="^2.5.0",penwidth=2];
+  http -> http_parser [label="^4.0.0",penwidth=2];
+  http -> path [label="^1.8.0",penwidth=2];
+
+  async [label="async
+2.11.0",shape=box,margin="0.25,0.15",style=bold];
+  async -> collection [label="^1.15.0"];
+
+  collection [label="collection
+1.18.0",shape=box,margin="0.25,0.15",style=bold];
+
+  http_parser [label="http_parser
+4.0.2",shape=box,margin="0.25,0.15",style=bold];
+  http_parser -> collection [label="^1.15.0",color=gray];
+  http_parser -> source_span [label="^1.8.0",color=gray];
 
   path [label="path
-1.0.0",shape=box,margin="0.25,0.15",style=bold];
-
-  stack_trace [label="stack_trace
-0.9.1",shape=box,margin="0.25,0.15",style=bold];
-  stack_trace -> path [label=">=1.0.0-rc.1 <2.0.0"];
-
-  unittest [label="unittest
-0.9.3",style=bold];
-  unittest -> stack_trace [label=">=0.9.0 <0.10.0",color=gray];
+1.9.0",shape=box,margin="0.25,0.15",style=bold];
 }
 ```
 
@@ -115,7 +119,7 @@ Arguments:
             [serve]                Like "create" but also hosts the app on a local server.
 
   -i, --ignore-packages            A comma separated list of packages to exclude in the output.
-  -o, --[no-]flag-outdated         Check pub.dev for lasted packages and flag those that are outdated.
+  -o, --[no-]flag-outdated         Check pub.dev for latest packages and flag those that are outdated.
       --out-dir                    A directory to write the generated HTML file and its localized assets. (HTML format only)
   -d, --direct-dependencies        Include only direct dependencies.
   -p, --production-dependencies    Include only production (non-dev) dependencies.
