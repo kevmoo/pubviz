@@ -64,7 +64,7 @@ ArgParser _$populateOptionsParser(ArgParser parser) => parser
   ..addFlag(
     'flag-outdated',
     abbr: 'o',
-    help: 'Check pub.dev for lasted packages and flag those that are outdated.',
+    help: 'Check pub.dev for latest packages and flag those that are outdated.',
   )
   ..addOption(
     'out-dir',

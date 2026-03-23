@@ -9,8 +9,8 @@
   "lib/src/dependency.dart": "b275b11caec517ee0fab9717dff96bc6a120249e887df16a073e8a51b01bf883",
   "lib/src/deps_list.dart": "7b449fbc2b11e4cb7d60befb803ecae42d8c0d8c843d51db9d56037ddbebe9df",
   "lib/src/dot.dart": "6a7f1d8919d858453db9ef8dae15a941e2ee8489b5b425f88e8d815080ed5c3d",
-  "lib/src/options.dart": "63b7305c63995333ab3dfdac8a92dd90278fe99543e4e4563eac94fa372f8a4c",
-  "lib/src/options.g.dart": "f0d5e6701e92162b8470b9b35f0ca48bf8e4ad60fb2e82e0faaa858d3f72173a",
+  "lib/src/options.dart": "2947661500b9198b22fcb0bb611d8c036239b09adc0103637ccf4a167ac311ff",
+  "lib/src/options.g.dart": "e6c69e86f6602fce8dac346bf3c34e7d4995b3ec6cd5ec97ee3abbd2f5aa4416",
   "lib/src/outdated_info.dart": "23a6b6703d4a67933c747afda2bd5fee7fded43448239dd84243512b58f16c8a",
   "lib/src/pub_data_service.dart": "a288875418a1c50163465ba6bba0df32ea94d8de02e1d389f1aecf80829c4db0",
   "lib/src/pubspek.dart": "085f028d02097617cb50bd1e22dd5f799a18e52f3eddf5ec30674269a3ae1a52",
@@ -18,8 +18,8 @@
   "lib/src/terminate.dart": "43459f9bf9b821d342f32b9ad1ce4fed9b51fe1cb96d7efd9858045293afce50",
   "lib/src/update_order.dart": "c47cabe4d41f7113f81fd769bfe0d9a20f2f27fb305f660772c6db1b2d28d120",
   "lib/src/util.dart": "77191543b8e0f50b2a5d9b33a4aa587388a0a9abb9bf7b97584f0ae0f6d14a26",
-  "lib/src/version.dart": "7a56da7442a2b091f0c779efe8de1c90f951dfe7e66b4a522f33cfd5e1f797d3",
+  "lib/src/version.dart": "c15b2cf2fe7f491fb3c1efebc435d5f7a98a699d869010bdefb079278c4227e9",
   "lib/src/viz_package.dart": "15fa575d68fc3f35a7133e5b5f4c982fff89e02a26be18f89a8169ba697ac9c5",
   "lib/src/viz_root.dart": "418bbebda97b00270b4b67d746cdfd34ea1494de7ad6bc741bfadaa5764dc454",
-  "pubspec.yaml": "012e286d8e2273c0e52826758d7afa0e7e77caab3de4bd2fe50259bbb1e98d8e"
+  "pubspec.yaml": "51b7e55deca2168d3b6739d0ef17c8f081578e1b78776fba01587864bb513473"
 }
