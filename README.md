@@ -38,7 +38,7 @@ $ dart pub global run pubviz
 $ pubviz
 ```
 
-Should open your default browser to something like:
+Will open the default browser to something like:
 
 ![sample](https://raw.github.com/kevmoo/pubviz/master/doc/sample.png)
 
@@ -96,14 +96,16 @@ On Windows:
 winget install graphviz
 ```
 
-Then you can save the `pubviz` output to a file and convert it with `dot` command to desired output type, e.g.:
+Then you can save the `pubviz` output to a file and convert it with `dot`
+command to desired output type, e.g.:
 
 ```sh
 pubviz -a print > output.dot
 dot -Tpdf output.dot -o output.pdf
 ```
 
-The full list of possible output types is available on [the GraphViz website](https://graphviz.org/doc/info/output.html).
+The full list of possible output types is available on
+[the GraphViz website](https://graphviz.org/doc/info/output.html).
 
 ### `pubviz -?` prints help
 
