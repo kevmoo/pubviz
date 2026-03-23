@@ -3,10 +3,12 @@ targets:
   $default:
     sources:
       - _example_src/**
-      - pubspec.*
-      - build.yaml
       - $package$
-      - lib/**
+      - build.yaml
+      - lib/$lib$
+      - lib/src/colors.dart
+      - lib/src/options.*
+      - pubspec.*
     builders:
       build_cli:
         generate_for:

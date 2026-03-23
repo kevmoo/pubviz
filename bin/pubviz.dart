@@ -10,12 +10,12 @@ import 'package:io/ansi.dart';
 import 'package:io/io.dart';
 import 'package:path/path.dart' as p;
 import 'package:pubviz/pubviz.dart';
+import 'package:pubviz/src/dot.dart';
 import 'package:pubviz/src/options.dart';
 import 'package:pubviz/src/pub_data_service.dart';
 import 'package:pubviz/src/terminate.dart';
 import 'package:pubviz/src/update_order.dart';
 import 'package:pubviz/src/version.dart';
-import 'package:pubviz/viz/dot.dart' as dot;
 import 'package:stack_trace/stack_trace.dart';
 
 Future<void> main(List<String> args) async {
@@ -121,7 +121,7 @@ If <package path> is omitted, the current directory is used.''');
 }
 
 String _getContentDot(VizRoot root, List<String> ignorePackages) =>
-    dot.toDot(root, ignorePackages: ignorePackages);
+    root.toDot(ignorePackages: ignorePackages);
 
 Future<String> _getContentHtml(
   VizRoot root,
@@ -134,7 +134,7 @@ Future<String> _getContentHtml(
     throw StateError('Could not resolve package:pubviz/assets/index.html');
   }
   final htmlTemplate = await File.fromUri(indexUri).readAsString();
-  return dot.toDotHtml(htmlTemplate, root, ignorePackages: ignorePackages);
+  return toDotHtml(htmlTemplate, root, ignorePackages: ignorePackages);
 }
 
 Future<void> _prepareHtmlAssets(Directory targetDir) async {
