@@ -7,6 +7,7 @@ import 'dart:convert' show LineSplitter, htmlEscape;
 import 'dart:js_interop';
 
 import 'package:pubviz/src/colors.dart';
+import 'package:pubviz/src/version.dart';
 import 'package:web/web.dart';
 
 typedef DepInfo = ({
@@ -74,6 +75,9 @@ void main() {
         toggleZoom();
     }
   });
+
+  (document.querySelector('#version') as HTMLSpanElement).textContent =
+      'v$packageVersion';
 }
 
 Future<void> _process() async {

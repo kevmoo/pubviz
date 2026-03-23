@@ -43,10 +43,10 @@ class _Pubspec {
 
   bool get hasFlutterKey => _content.containsKey('flutter');
 
-  bool get hasFlutterPluginKey =>
-      hasFlutterKey &&
-      _content['flutter'] is Map &&
-      (_content['flutter'] as Map)['plugin'] != null;
+  bool get hasFlutterPluginKey => switch (_content['flutter']) {
+    {'plugin': _?} => true,
+    _ => false,
+  };
 
   bool get dependsOnFlutterSdk => dependentSdks.contains('flutter');
 
@@ -58,18 +58,16 @@ class _Pubspec {
   Set<String> get dependentSdks {
     if (_dependentSdks == null) {
       _dependentSdks = SplayTreeSet();
-      // ignore: avoid_function_literals_in_foreach_calls
-      dependencies.values.forEach((value) {
+      for (var value in dependencies.values) {
         if (value is SdkDependency) {
           _dependentSdks!.add(value.sdk);
         }
-      });
-      // ignore: avoid_function_literals_in_foreach_calls
-      devDependencies.values.forEach((value) {
+      }
+      for (var value in devDependencies.values) {
         if (value is SdkDependency) {
           _dependentSdks!.add(value.sdk);
         }
-      });
+      }
       final keys = _inner.environment.keys.toList()..remove('sdk');
       _dependentSdks!.addAll(keys);
     }
