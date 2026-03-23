@@ -52,13 +52,10 @@ void main() {
       final expectedMap = jsonDecode(expectedJson) as Map<String, dynamic>;
       final actualMap = jsonDecode(actualJson) as Map<String, dynamic>;
 
-      final changedFiles = <String>{};
-      for (final key in expectedMap.keys) {
-        if (expectedMap[key] != actualMap[key]) changedFiles.add(key);
-      }
-      for (final key in actualMap.keys) {
-        if (!expectedMap.containsKey(key)) changedFiles.add(key);
-      }
+      final allKeys = {...expectedMap.keys, ...actualMap.keys};
+      final changedFiles = allKeys
+          .where((key) => expectedMap[key] != actualMap[key])
+          .toSet();
       if (changedFiles.isNotEmpty) {
         errorMessage.writeln(
           'Files changed:\n'
