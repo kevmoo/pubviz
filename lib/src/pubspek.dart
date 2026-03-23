@@ -58,12 +58,7 @@ class _Pubspec {
   Set<String> get dependentSdks {
     if (_dependentSdks == null) {
       _dependentSdks = SplayTreeSet();
-      for (var value in dependencies.values) {
-        if (value is SdkDependency) {
-          _dependentSdks!.add(value.sdk);
-        }
-      }
-      for (var value in devDependencies.values) {
+      for (final value in [...dependencies.values, ...devDependencies.values]) {
         if (value is SdkDependency) {
           _dependentSdks!.add(value.sdk);
         }
