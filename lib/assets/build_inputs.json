@@ -2,10 +2,13 @@
   "_example_src/favicon.ico": "39ab6b867a1c4c75019506267b3b4ce7cc60fb2ba66870e6485b4e31f6265a7c",
   "_example_src/index.html": "dff96f3cde0deeee4ffbe702244f8eb043d817cc01c273226241fbb023e8b9ab",
   "_example_src/style.css": "9123572a80468f0788d1b9a47a5f9c7d0ea2228646101f48da35eb9392788dfb",
-  "_example_src/web_app.dart": "d3137189231adef3da175471e5bc3dc9455e354b41e94680f7e5fc05188854b5",
-  "lib/pubviz.dart": "84d1ae0ee0a853a32d849f929c7c550fdc0bc2f5579cbbcaf2559251f6b66105",
+  "_example_src/web_app.dart": "6ddf7cafbd002069d8b6da0e125f2d0543ed6f52f1f764a791d3b3023771a92d",
+  "build.yaml": "4afbf68cad8a8c6117d931c66905e172804d9541b3fd336016b6ff4549c2acdf",
+  "lib/pubviz.dart": "660265e3bfb4da0739beb5271d3f04fc01ef32e0a58972b023bd84166a78d61e",
+  "lib/src/colors.dart": "802bcd9a31b062865654c1a5300292164ff8f7f003caf2c8277225177ce74e56",
   "lib/src/dependency.dart": "b275b11caec517ee0fab9717dff96bc6a120249e887df16a073e8a51b01bf883",
   "lib/src/deps_list.dart": "7b449fbc2b11e4cb7d60befb803ecae42d8c0d8c843d51db9d56037ddbebe9df",
+  "lib/src/dot.dart": "6a7f1d8919d858453db9ef8dae15a941e2ee8489b5b425f88e8d815080ed5c3d",
   "lib/src/options.dart": "63b7305c63995333ab3dfdac8a92dd90278fe99543e4e4563eac94fa372f8a4c",
   "lib/src/options.g.dart": "f0d5e6701e92162b8470b9b35f0ca48bf8e4ad60fb2e82e0faaa858d3f72173a",
   "lib/src/outdated_info.dart": "23a6b6703d4a67933c747afda2bd5fee7fded43448239dd84243512b58f16c8a",
@@ -15,10 +18,8 @@
   "lib/src/terminate.dart": "43459f9bf9b821d342f32b9ad1ce4fed9b51fe1cb96d7efd9858045293afce50",
   "lib/src/update_order.dart": "c47cabe4d41f7113f81fd769bfe0d9a20f2f27fb305f660772c6db1b2d28d120",
   "lib/src/util.dart": "77191543b8e0f50b2a5d9b33a4aa587388a0a9abb9bf7b97584f0ae0f6d14a26",
-  "lib/src/version.dart": "99fa581fb287a820b5328da1c22d74fd19b836b4293e676072b123d88a2fa306",
+  "lib/src/version.dart": "7a56da7442a2b091f0c779efe8de1c90f951dfe7e66b4a522f33cfd5e1f797d3",
   "lib/src/viz_package.dart": "15fa575d68fc3f35a7133e5b5f4c982fff89e02a26be18f89a8169ba697ac9c5",
   "lib/src/viz_root.dart": "418bbebda97b00270b4b67d746cdfd34ea1494de7ad6bc741bfadaa5764dc454",
-  "lib/viz/colors.dart": "802bcd9a31b062865654c1a5300292164ff8f7f003caf2c8277225177ce74e56",
-  "lib/viz/dot.dart": "da4ef93f0e1c4b627c4b31244fd2efdce094ba5cb948991efd85f4c77751e8d6",
-  "pubspec.yaml": "17810c78e96415c73634900ad6c7f8a669bf22bb4e1dce82e62f0169a88871bb"
+  "pubspec.yaml": "012e286d8e2273c0e52826758d7afa0e7e77caab3de4bd2fe50259bbb1e98d8e"
 }

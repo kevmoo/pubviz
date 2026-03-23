@@ -5,7 +5,9 @@ targets:
       - _example_src/**
       - $package$
       - build.yaml
-      - lib/**
+      - lib/$lib$
+      - lib/src/colors.dart
+      - lib/src/options.*
       - pubspec.*
     builders:
       build_cli:
