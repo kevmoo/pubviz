@@ -181,11 +181,11 @@ void main() {
 
     test('update order handles a cycle', () {
       final pkgA = VizPackage('a', Version(1, 0, 0), {
-        Dependency('b', VersionConstraint.any, false)..includesLatest = false,
+        Dependency('b', VersionConstraint.any, false, includesLatest: false),
       }, Version(2, 0, 0));
 
       final pkgB = VizPackage('b', Version(1, 0, 0), {
-        Dependency('a', VersionConstraint.any, false)..includesLatest = false,
+        Dependency('a', VersionConstraint.any, false, includesLatest: false),
       }, Version(2, 0, 0));
 
       final root = _MockVizRoot({
@@ -464,12 +464,6 @@ class _MockVizRoot implements VizRoot {
 
   @override
   Map<String, dynamic> toJson() => {};
-
-  @override
-  void update(bool includeWorkspace) {}
-
-  @override
-  void updateDevOnly(Dependency dep) {}
 }
 
 const _writeOutput = false;

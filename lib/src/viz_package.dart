@@ -15,10 +15,10 @@ class VizPackage implements Comparable<VizPackage> {
   final Set<Dependency> dependencies;
 
   @FalseNullConverter()
-  bool isPrimary;
+  final bool isPrimary;
 
   @JsonKey(toJson: _trueToNull)
-  bool onlyDev = true;
+  final bool onlyDev;
 
   @VersionConverter()
   final Version? latestVersion;

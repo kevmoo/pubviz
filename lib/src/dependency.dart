@@ -15,7 +15,7 @@ class Dependency implements Comparable<Dependency> {
   @FalseNullConverter()
   final bool isDevDependency;
 
-  bool? includesLatest;
+  final bool? includesLatest;
 
   Dependency(
     this.name,

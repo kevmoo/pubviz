@@ -1,6 +1,7 @@
 import 'dart:collection';
 
 import 'package:json_annotation/json_annotation.dart';
+import 'package:pub_semver/pub_semver.dart';
 
 import 'dependency.dart';
 import 'viz_package.dart';
@@ -23,39 +24,88 @@ class VizRoot {
 
   VizPackage get root => packages[rootPackageName]!;
 
-  void update(bool includeWorkspace) {
-    // Collect primary packages at the start.
-    // If none are set (normal case), mark root as primary.
-    if (packages.values.every((v) => !v.isPrimary)) {
-      packages[rootPackageName]!.isPrimary = true;
+  static VizRoot assemble(
+    String rootPackageName,
+    Map<String, VizPackage> packages, {
+    bool flagOutdated = false,
+    Iterable<String>? ignorePackages,
+  }) {
+    var primaryPackageNames = packages.values
+        .where((p) => p.isPrimary)
+        .map((p) => p.name)
+        .toSet();
+    if (primaryPackageNames.isEmpty) {
+      primaryPackageNames = {rootPackageName};
     }
 
-    final primaryPackages = packages.values.where((v) => v.isPrimary).toList();
-
-    for (var pkg in primaryPackages) {
-      pkg.onlyDev = false;
-
-      for (var primaryDep in pkg.dependencies) {
-        final package = packages[primaryDep.name];
-        if (package == null) continue;
-
-        if (!primaryDep.isDevDependency) {
-          updateDevOnly(primaryDep);
+    final nonDevReachable = <String>{};
+    final queue = [...primaryPackageNames];
+    while (queue.isNotEmpty) {
+      final current = queue.removeLast();
+      if (nonDevReachable.add(current)) {
+        final pkg = packages[current];
+        if (pkg != null) {
+          for (var dep in pkg.dependencies) {
+            if (!dep.isDevDependency) {
+              queue.add(dep.name);
+            }
+          }
         }
       }
     }
-  }
 
-  void updateDevOnly(Dependency dep) {
-    final package = packages[dep.name];
+    final newPackages = <String, VizPackage>{};
+    final ignoreSet = ignorePackages?.toSet() ?? {};
 
-    if (package?.onlyDev ?? false) {
-      package!.onlyDev = false;
+    for (var entry in packages.entries) {
+      final name = entry.key;
+      final pkg = entry.value;
+      final skipOutdated = ignoreSet.contains(name);
 
-      package.dependencies
-          .where((d) => !d.isDevDependency)
-          .forEach(updateDevOnly);
+      final newDeps = pkg.dependencies.map((dep) {
+        bool? includesLatest;
+        if (flagOutdated && !skipOutdated) {
+          final depPackage = packages[dep.name];
+          if (depPackage != null &&
+              depPackage.latestVersion != null &&
+              dep.versionConstraint != VersionConstraint.empty) {
+            var allowsLatest = dep.versionConstraint.allows(
+              depPackage.latestVersion!,
+            );
+
+            if (!allowsLatest) {
+              final constraint = dep.versionConstraint;
+              if (constraint is VersionRange) {
+                final min = constraint.min;
+                if (min != null &&
+                    min.isPreRelease &&
+                    min.compareTo(depPackage.latestVersion!) > 0) {
+                  allowsLatest = true;
+                }
+              }
+            }
+            includesLatest = allowsLatest;
+          }
+        }
+        return Dependency(
+          dep.name,
+          dep.versionConstraint,
+          dep.isDevDependency,
+          includesLatest: includesLatest,
+        );
+      }).toSet();
+
+      newPackages[name] = VizPackage(
+        pkg.name,
+        pkg.version,
+        newDeps,
+        pkg.latestVersion,
+        isPrimary: primaryPackageNames.contains(name),
+        onlyDev: !nonDevReachable.contains(name),
+      );
     }
+
+    return VizRoot(rootPackageName, newPackages);
   }
 
   VizRoot filter({required bool excludeDev, required bool onlyOutdated}) {
@@ -65,7 +115,7 @@ class VizRoot {
         ? _filterOutdated(excludeDev)
         : _filterStandard(excludeDev);
 
-    return VizRoot(rootPackageName, newPackages)..update(false);
+    return VizRoot.assemble(rootPackageName, newPackages);
   }
 
   Map<String, VizPackage> _filterOutdated(bool excludeDev) {

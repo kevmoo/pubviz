@@ -130,8 +130,8 @@ abstract class Service {
           SplayTreeSet.of(dependencies),
           flagOutdated ? _latest(entry.name) : null,
           isPrimary: true,
+          onlyDev: false,
         );
-        map[entry.name]!.onlyDev = false;
 
         visitedTransitiveDeps.addAll(
           dependencies

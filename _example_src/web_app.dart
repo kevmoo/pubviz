@@ -59,7 +59,7 @@ void main() async {
   final jsonString = string.toDart.trim();
   _originalVizRoot = VizRoot.fromJson(
     jsonDecode(jsonString) as Map<String, dynamic>,
-  )..update(false);
+  );
   document.title = 'pubviz - ${_originalVizRoot.root.name}';
   final hasOutdated = _originalVizRoot.packages.values.any(
     (p) =>
