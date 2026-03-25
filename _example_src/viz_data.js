@@ -13,8 +13,7 @@ export const vizDataString = JSON.stringify({
           "name": "source_span",
           "versionConstraint": "^1.10.0"
         }
-      ],
-      "onlyDev": true
+      ]
     },
     "analyzer": {
       "name": "analyzer",
@@ -68,8 +67,7 @@ export const vizDataString = JSON.stringify({
           "name": "yaml",
           "versionConstraint": "^3.0.0"
         }
-      ],
-      "onlyDev": true
+      ]
     },
     "archive": {
       "name": "archive",
@@ -83,13 +81,13 @@ export const vizDataString = JSON.stringify({
           "name": "posix",
           "versionConstraint": "^6.0.2"
         }
-      ],
-      "onlyDev": true
+      ]
     },
     "args": {
       "name": "args",
       "version": "2.7.0",
-      "dependencies": []
+      "dependencies": [],
+      "onlyDev": false
     },
     "async": {
       "name": "async",
@@ -103,7 +101,8 @@ export const vizDataString = JSON.stringify({
           "name": "meta",
           "versionConstraint": "^1.3.0"
         }
-      ]
+      ],
+      "onlyDev": false
     },
     "bazel_worker": {
       "name": "bazel_worker",
@@ -117,8 +116,7 @@ export const vizDataString = JSON.stringify({
           "name": "protobuf",
           "versionConstraint": ">=5.0.0 <7.0.0"
         }
-      ],
-      "onlyDev": true
+      ]
     },
     "boolean_selector": {
       "name": "boolean_selector",
@@ -132,8 +130,7 @@ export const vizDataString = JSON.stringify({
           "name": "string_scanner",
           "versionConstraint": "^1.1.0"
         }
-      ],
-      "onlyDev": true
+      ]
     },
     "build": {
       "name": "build",
@@ -163,8 +160,7 @@ export const vizDataString = JSON.stringify({
           "name": "path",
           "versionConstraint": "^1.8.0"
         }
-      ],
-      "onlyDev": true
+      ]
     },
     "build_cli": {
       "name": "build_cli",
@@ -202,8 +198,7 @@ export const vizDataString = JSON.stringify({
           "name": "yaml",
           "versionConstraint": "^3.1.3"
         }
-      ],
-      "onlyDev": true
+      ]
     },
     "build_cli_annotations": {
       "name": "build_cli_annotations",
@@ -217,7 +212,8 @@ export const vizDataString = JSON.stringify({
           "name": "meta",
           "versionConstraint": "^1.16.0"
         }
-      ]
+      ],
+      "onlyDev": false
     },
     "build_config": {
       "name": "build_config",
@@ -239,8 +235,7 @@ export const vizDataString = JSON.stringify({
           "name": "pubspec_parse",
           "versionConstraint": "^1.0.0"
         }
-      ],
-      "onlyDev": true
+      ]
     },
     "build_daemon": {
       "name": "build_daemon",
@@ -294,8 +289,7 @@ export const vizDataString = JSON.stringify({
           "name": "web_socket_channel",
           "versionConstraint": ">=2.3.0 <4.0.0"
         }
-      ],
-      "onlyDev": true
+      ]
     },
     "build_modules": {
       "name": "build_modules",
@@ -361,8 +355,7 @@ export const vizDataString = JSON.stringify({
           "name": "uuid",
           "versionConstraint": "^4.4.2"
         }
-      ],
-      "onlyDev": true
+      ]
     },
     "build_runner": {
       "name": "build_runner",
@@ -492,8 +485,7 @@ export const vizDataString = JSON.stringify({
           "name": "yaml",
           "versionConstraint": "^3.0.0"
         }
-      ],
-      "onlyDev": true
+      ]
     },
     "build_verify": {
       "name": "build_verify",
@@ -511,8 +503,7 @@ export const vizDataString = JSON.stringify({
           "name": "test",
           "versionConstraint": "^1.16.6"
         }
-      ],
-      "onlyDev": true
+      ]
     },
     "build_version": {
       "name": "build_version",
@@ -530,8 +521,7 @@ export const vizDataString = JSON.stringify({
           "name": "pubspec_parse",
           "versionConstraint": "^1.0.0"
         }
-      ],
-      "onlyDev": true
+      ]
     },
     "build_web_compilers": {
       "name": "build_web_compilers",
@@ -597,14 +587,12 @@ export const vizDataString = JSON.stringify({
           "name": "stack_trace",
           "versionConstraint": "^1.10.0"
         }
-      ],
-      "onlyDev": true
+      ]
     },
     "built_collection": {
       "name": "built_collection",
       "version": "5.1.1",
-      "dependencies": [],
-      "onlyDev": true
+      "dependencies": []
     },
     "built_value": {
       "name": "built_value",
@@ -626,8 +614,7 @@ export const vizDataString = JSON.stringify({
           "name": "meta",
           "versionConstraint": "^1.3.0"
         }
-      ],
-      "onlyDev": true
+      ]
     },
     "checked_yaml": {
       "name": "checked_yaml",
@@ -645,7 +632,8 @@ export const vizDataString = JSON.stringify({
           "name": "yaml",
           "versionConstraint": "^3.0.0"
         }
-      ]
+      ],
+      "onlyDev": false
     },
     "cli_config": {
       "name": "cli_config",
@@ -659,8 +647,7 @@ export const vizDataString = JSON.stringify({
           "name": "yaml",
           "versionConstraint": "^3.1.1"
         }
-      ],
-      "onlyDev": true
+      ]
     },
     "code_builder": {
       "name": "code_builder",
@@ -686,13 +673,13 @@ export const vizDataString = JSON.stringify({
           "name": "meta",
           "versionConstraint": "^1.16.0"
         }
-      ],
-      "onlyDev": true
+      ]
     },
     "collection": {
       "name": "collection",
       "version": "1.19.1",
-      "dependencies": []
+      "dependencies": [],
+      "onlyDev": false
     },
     "convert": {
       "name": "convert",
@@ -702,7 +689,8 @@ export const vizDataString = JSON.stringify({
           "name": "typed_data",
           "versionConstraint": "^1.3.0"
         }
-      ]
+      ],
+      "onlyDev": false
     },
     "coverage": {
       "name": "coverage",
@@ -752,8 +740,7 @@ export const vizDataString = JSON.stringify({
           "name": "yaml",
           "versionConstraint": "^3.1.3"
         }
-      ],
-      "onlyDev": true
+      ]
     },
     "crypto": {
       "name": "crypto",
@@ -763,8 +750,7 @@ export const vizDataString = JSON.stringify({
           "name": "typed_data",
           "versionConstraint": "^1.3.0"
         }
-      ],
-      "onlyDev": true
+      ]
     },
     "dart_flutter_team_lints": {
       "name": "dart_flutter_team_lints",
@@ -774,8 +760,7 @@ export const vizDataString = JSON.stringify({
           "name": "lints",
           "versionConstraint": "^6.0.0"
         }
-      ],
-      "onlyDev": true
+      ]
     },
     "dart_style": {
       "name": "dart_style",
@@ -813,8 +798,7 @@ export const vizDataString = JSON.stringify({
           "name": "yaml",
           "versionConstraint": "^3.1.2"
         }
-      ],
-      "onlyDev": true
+      ]
     },
     "dhttpd": {
       "name": "dhttpd",
@@ -836,13 +820,13 @@ export const vizDataString = JSON.stringify({
           "name": "shelf_static",
           "versionConstraint": "^1.0.0"
         }
-      ]
+      ],
+      "onlyDev": false
     },
     "ffi": {
       "name": "ffi",
       "version": "2.2.0",
-      "dependencies": [],
-      "onlyDev": true
+      "dependencies": []
     },
     "file": {
       "name": "file",
@@ -856,14 +840,12 @@ export const vizDataString = JSON.stringify({
           "name": "path",
           "versionConstraint": "^1.8.3"
         }
-      ],
-      "onlyDev": true
+      ]
     },
     "fixnum": {
       "name": "fixnum",
       "version": "1.1.1",
-      "dependencies": [],
-      "onlyDev": true
+      "dependencies": []
     },
     "frontend_server_client": {
       "name": "frontend_server_client",
@@ -877,8 +859,7 @@ export const vizDataString = JSON.stringify({
           "name": "path",
           "versionConstraint": "^1.8.0"
         }
-      ],
-      "onlyDev": true
+      ]
     },
     "glob": {
       "name": "glob",
@@ -904,8 +885,7 @@ export const vizDataString = JSON.stringify({
           "name": "string_scanner",
           "versionConstraint": "^1.1.0"
         }
-      ],
-      "onlyDev": true
+      ]
     },
     "graphs": {
       "name": "graphs",
@@ -915,13 +895,13 @@ export const vizDataString = JSON.stringify({
           "name": "collection",
           "versionConstraint": "^1.15.0"
         }
-      ],
-      "onlyDev": true
+      ]
     },
     "gviz": {
       "name": "gviz",
       "version": "0.4.2",
-      "dependencies": []
+      "dependencies": [],
+      "onlyDev": false
     },
     "http": {
       "name": "http",
@@ -943,7 +923,8 @@ export const vizDataString = JSON.stringify({
           "name": "web",
           "versionConstraint": ">=0.5.0 <2.0.0"
         }
-      ]
+      ],
+      "onlyDev": false
     },
     "http_multi_server": {
       "name": "http_multi_server",
@@ -953,8 +934,7 @@ export const vizDataString = JSON.stringify({
           "name": "async",
           "versionConstraint": "^2.5.0"
         }
-      ],
-      "onlyDev": true
+      ]
     },
     "http_parser": {
       "name": "http_parser",
@@ -976,7 +956,8 @@ export const vizDataString = JSON.stringify({
           "name": "typed_data",
           "versionConstraint": "^1.3.0"
         }
-      ]
+      ],
+      "onlyDev": false
     },
     "io": {
       "name": "io",
@@ -994,7 +975,8 @@ export const vizDataString = JSON.stringify({
           "name": "string_scanner",
           "versionConstraint": "^1.1.0"
         }
-      ]
+      ],
+      "onlyDev": false
     },
     "json_annotation": {
       "name": "json_annotation",
@@ -1004,7 +986,8 @@ export const vizDataString = JSON.stringify({
           "name": "meta",
           "versionConstraint": "^1.16.0"
         }
-      ]
+      ],
+      "onlyDev": false
     },
     "json_serializable": {
       "name": "json_serializable",
@@ -1058,20 +1041,17 @@ export const vizDataString = JSON.stringify({
           "name": "source_helper",
           "versionConstraint": "^1.3.10"
         }
-      ],
-      "onlyDev": true
+      ]
     },
     "lints": {
       "name": "lints",
       "version": "6.1.0",
-      "dependencies": [],
-      "onlyDev": true
+      "dependencies": []
     },
     "logging": {
       "name": "logging",
       "version": "1.3.0",
-      "dependencies": [],
-      "onlyDev": true
+      "dependencies": []
     },
     "matcher": {
       "name": "matcher",
@@ -1097,24 +1077,24 @@ export const vizDataString = JSON.stringify({
           "name": "test_api",
           "versionConstraint": ">=0.5.0 <0.8.0"
         }
-      ],
-      "onlyDev": true
+      ]
     },
     "meta": {
       "name": "meta",
       "version": "1.18.2",
-      "dependencies": []
+      "dependencies": [],
+      "onlyDev": false
     },
     "mime": {
       "name": "mime",
       "version": "2.0.0",
-      "dependencies": []
+      "dependencies": [],
+      "onlyDev": false
     },
     "node_preamble": {
       "name": "node_preamble",
       "version": "2.0.2",
-      "dependencies": [],
-      "onlyDev": true
+      "dependencies": []
     },
     "package_config": {
       "name": "package_config",
@@ -1124,13 +1104,13 @@ export const vizDataString = JSON.stringify({
           "name": "path",
           "versionConstraint": "^1.8.0"
         }
-      ],
-      "onlyDev": true
+      ]
     },
     "path": {
       "name": "path",
       "version": "1.9.1",
-      "dependencies": []
+      "dependencies": [],
+      "onlyDev": false
     },
     "pool": {
       "name": "pool",
@@ -1144,8 +1124,7 @@ export const vizDataString = JSON.stringify({
           "name": "stack_trace",
           "versionConstraint": "^1.10.0"
         }
-      ],
-      "onlyDev": true
+      ]
     },
     "posix": {
       "name": "posix",
@@ -1163,8 +1142,7 @@ export const vizDataString = JSON.stringify({
           "name": "path",
           "versionConstraint": "^1.8.3"
         }
-      ],
-      "onlyDev": true
+      ]
     },
     "protobuf": {
       "name": "protobuf",
@@ -1182,8 +1160,7 @@ export const vizDataString = JSON.stringify({
           "name": "meta",
           "versionConstraint": "^1.7.0"
         }
-      ],
-      "onlyDev": true
+      ]
     },
     "pub_semver": {
       "name": "pub_semver",
@@ -1193,7 +1170,8 @@ export const vizDataString = JSON.stringify({
           "name": "collection",
           "versionConstraint": "^1.15.0"
         }
-      ]
+      ],
+      "onlyDev": false
     },
     "pubspec_parse": {
       "name": "pubspec_parse",
@@ -1219,7 +1197,8 @@ export const vizDataString = JSON.stringify({
           "name": "yaml",
           "versionConstraint": "^3.0.0"
         }
-      ]
+      ],
+      "onlyDev": false
     },
     "pubviz": {
       "name": "pubviz",
@@ -1345,7 +1324,8 @@ export const vizDataString = JSON.stringify({
           "isDevDependency": true
         }
       ],
-      "isPrimary": true
+      "isPrimary": true,
+      "onlyDev": false
     },
     "scratch_space": {
       "name": "scratch_space",
@@ -1367,8 +1347,7 @@ export const vizDataString = JSON.stringify({
           "name": "pool",
           "versionConstraint": "^1.5.0"
         }
-      ],
-      "onlyDev": true
+      ]
     },
     "shelf": {
       "name": "shelf",
@@ -1398,7 +1377,8 @@ export const vizDataString = JSON.stringify({
           "name": "stream_channel",
           "versionConstraint": "^2.1.0"
         }
-      ]
+      ],
+      "onlyDev": false
     },
     "shelf_packages_handler": {
       "name": "shelf_packages_handler",
@@ -1416,8 +1396,7 @@ export const vizDataString = JSON.stringify({
           "name": "shelf_static",
           "versionConstraint": "^1.0.0"
         }
-      ],
-      "onlyDev": true
+      ]
     },
     "shelf_static": {
       "name": "shelf_static",
@@ -1443,7 +1422,8 @@ export const vizDataString = JSON.stringify({
           "name": "shelf",
           "versionConstraint": "^1.1.2"
         }
-      ]
+      ],
+      "onlyDev": false
     },
     "shelf_web_socket": {
       "name": "shelf_web_socket",
@@ -1461,8 +1441,7 @@ export const vizDataString = JSON.stringify({
           "name": "web_socket_channel",
           "versionConstraint": ">=2.0.0 <4.0.0"
         }
-      ],
-      "onlyDev": true
+      ]
     },
     "source_gen": {
       "name": "source_gen",
@@ -1504,8 +1483,7 @@ export const vizDataString = JSON.stringify({
           "name": "yaml",
           "versionConstraint": "^3.1.2"
         }
-      ],
-      "onlyDev": true
+      ]
     },
     "source_helper": {
       "name": "source_helper",
@@ -1519,8 +1497,7 @@ export const vizDataString = JSON.stringify({
           "name": "source_gen",
           "versionConstraint": "^4.1.1"
         }
-      ],
-      "onlyDev": true
+      ]
     },
     "source_map_stack_trace": {
       "name": "source_map_stack_trace",
@@ -1538,8 +1515,7 @@ export const vizDataString = JSON.stringify({
           "name": "stack_trace",
           "versionConstraint": "^1.10.0"
         }
-      ],
-      "onlyDev": true
+      ]
     },
     "source_maps": {
       "name": "source_maps",
@@ -1549,8 +1525,7 @@ export const vizDataString = JSON.stringify({
           "name": "source_span",
           "versionConstraint": "^1.8.0"
         }
-      ],
-      "onlyDev": true
+      ]
     },
     "source_span": {
       "name": "source_span",
@@ -1568,7 +1543,8 @@ export const vizDataString = JSON.stringify({
           "name": "term_glyph",
           "versionConstraint": "^1.2.0"
         }
-      ]
+      ],
+      "onlyDev": false
     },
     "stack_trace": {
       "name": "stack_trace",
@@ -1578,7 +1554,8 @@ export const vizDataString = JSON.stringify({
           "name": "path",
           "versionConstraint": "^1.8.0"
         }
-      ]
+      ],
+      "onlyDev": false
     },
     "stream_channel": {
       "name": "stream_channel",
@@ -1588,13 +1565,13 @@ export const vizDataString = JSON.stringify({
           "name": "async",
           "versionConstraint": "^2.5.0"
         }
-      ]
+      ],
+      "onlyDev": false
     },
     "stream_transform": {
       "name": "stream_transform",
       "version": "2.1.1",
-      "dependencies": [],
-      "onlyDev": true
+      "dependencies": []
     },
     "string_scanner": {
       "name": "string_scanner",
@@ -1604,12 +1581,14 @@ export const vizDataString = JSON.stringify({
           "name": "source_span",
           "versionConstraint": "^1.8.0"
         }
-      ]
+      ],
+      "onlyDev": false
     },
     "term_glyph": {
       "name": "term_glyph",
       "version": "1.2.2",
-      "dependencies": []
+      "dependencies": [],
+      "onlyDev": false
     },
     "test": {
       "name": "test",
@@ -1715,8 +1694,7 @@ export const vizDataString = JSON.stringify({
           "name": "yaml",
           "versionConstraint": "^3.0.0"
         }
-      ],
-      "onlyDev": true
+      ]
     },
     "test_api": {
       "name": "test_api",
@@ -1758,8 +1736,7 @@ export const vizDataString = JSON.stringify({
           "name": "term_glyph",
           "versionConstraint": "^1.2.0"
         }
-      ],
-      "onlyDev": true
+      ]
     },
     "test_core": {
       "name": "test_core",
@@ -1849,8 +1826,7 @@ export const vizDataString = JSON.stringify({
           "name": "yaml",
           "versionConstraint": "^3.0.0"
         }
-      ],
-      "onlyDev": true
+      ]
     },
     "test_descriptor": {
       "name": "test_descriptor",
@@ -1876,8 +1852,7 @@ export const vizDataString = JSON.stringify({
           "name": "test",
           "versionConstraint": "^1.16.6"
         }
-      ],
-      "onlyDev": true
+      ]
     },
     "test_process": {
       "name": "test_process",
@@ -1899,8 +1874,7 @@ export const vizDataString = JSON.stringify({
           "name": "test",
           "versionConstraint": "^1.16.6"
         }
-      ],
-      "onlyDev": true
+      ]
     },
     "typed_data": {
       "name": "typed_data",
@@ -1910,7 +1884,8 @@ export const vizDataString = JSON.stringify({
           "name": "collection",
           "versionConstraint": "^1.15.0"
         }
-      ]
+      ],
+      "onlyDev": false
     },
     "uuid": {
       "name": "uuid",
@@ -1924,14 +1899,12 @@ export const vizDataString = JSON.stringify({
           "name": "fixnum",
           "versionConstraint": "^1.1.0"
         }
-      ],
-      "onlyDev": true
+      ]
     },
     "vm_service": {
       "name": "vm_service",
       "version": "15.0.2",
-      "dependencies": [],
-      "onlyDev": true
+      "dependencies": []
     },
     "watcher": {
       "name": "watcher",
@@ -1945,13 +1918,13 @@ export const vizDataString = JSON.stringify({
           "name": "path",
           "versionConstraint": "^1.8.0"
         }
-      ],
-      "onlyDev": true
+      ]
     },
     "web": {
       "name": "web",
       "version": "1.1.1",
-      "dependencies": []
+      "dependencies": [],
+      "onlyDev": false
     },
     "web_socket": {
       "name": "web_socket",
@@ -1961,8 +1934,7 @@ export const vizDataString = JSON.stringify({
           "name": "web",
           "versionConstraint": ">=0.5.0 <2.0.0"
         }
-      ],
-      "onlyDev": true
+      ]
     },
     "web_socket_channel": {
       "name": "web_socket_channel",
@@ -1988,8 +1960,7 @@ export const vizDataString = JSON.stringify({
           "name": "web_socket",
           "versionConstraint": ">=0.1.5 <2.0.0"
         }
-      ],
-      "onlyDev": true
+      ]
     },
     "webkit_inspection_protocol": {
       "name": "webkit_inspection_protocol",
@@ -1999,8 +1970,7 @@ export const vizDataString = JSON.stringify({
           "name": "logging",
           "versionConstraint": "^1.0.0"
         }
-      ],
-      "onlyDev": true
+      ]
     },
     "yaml": {
       "name": "yaml",
@@ -2018,7 +1988,8 @@ export const vizDataString = JSON.stringify({
           "name": "string_scanner",
           "versionConstraint": "^1.2.0"
         }
-      ]
+      ],
+      "onlyDev": false
     }
   }
 });

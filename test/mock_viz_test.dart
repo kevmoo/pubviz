@@ -425,6 +425,26 @@ dependencies:
       );
     });
   });
+
+  group('VizPackage', () {
+    test('onlyDev false roundtrip', () {
+      final pkg = VizPackage(
+        'test_pkg',
+        Version.parse('1.0.0'),
+        {},
+        Version.parse('1.0.0'),
+        onlyDev: false,
+      );
+
+      final json = pkg.toJson();
+      final pkg2 = VizPackage.fromJson(json);
+      expect(
+        pkg2.onlyDev,
+        isFalse,
+        reason: 'onlyDev should remain false after roundtrip',
+      );
+    });
+  });
 }
 
 class _MockVizRoot implements VizRoot {

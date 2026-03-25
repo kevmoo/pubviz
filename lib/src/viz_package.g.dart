@@ -18,9 +18,7 @@ VizPackage _$VizPackageFromJson(Map<String, dynamic> json) => VizPackage(
   isPrimary: json['isPrimary'] == null
       ? false
       : const FalseNullConverter().fromJson(json['isPrimary'] as bool?),
-  onlyDev: json['onlyDev'] == null
-      ? true
-      : const FalseNullConverter().fromJson(json['onlyDev'] as bool?),
+  onlyDev: json['onlyDev'] as bool? ?? true,
 );
 
 Map<String, dynamic> _$VizPackageToJson(VizPackage instance) =>
@@ -29,6 +27,6 @@ Map<String, dynamic> _$VizPackageToJson(VizPackage instance) =>
       'version': ?const VersionConverter().toJson(instance.version),
       'dependencies': instance.dependencies.toList(),
       'isPrimary': ?const FalseNullConverter().toJson(instance.isPrimary),
-      'onlyDev': ?const FalseNullConverter().toJson(instance.onlyDev),
+      'onlyDev': ?_trueToNull(instance.onlyDev),
       'latestVersion': ?const VersionConverter().toJson(instance.latestVersion),
     };

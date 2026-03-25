@@ -17,7 +17,7 @@ class VizPackage implements Comparable<VizPackage> {
   @FalseNullConverter()
   bool isPrimary;
 
-  @FalseNullConverter()
+  @JsonKey(toJson: _trueToNull)
   bool onlyDev = true;
 
   @VersionConverter()
@@ -58,3 +58,5 @@ class VizPackage implements Comparable<VizPackage> {
   @override
   int get hashCode => name.hashCode;
 }
+
+Object? _trueToNull(bool value) => value ? null : false;
