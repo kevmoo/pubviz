@@ -10,6 +10,7 @@ targets:
       - lib/src/dependency.*
       - lib/src/dot.dart
       - lib/src/options.*
+      - lib/src/version.dart
       - lib/src/viz_package.*
       - lib/src/viz_root.*
       - pubspec.*

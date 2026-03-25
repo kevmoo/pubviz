@@ -7,6 +7,7 @@ import 'package:pubviz/pubviz.dart';
 import 'package:pubviz/src/service.dart';
 import 'package:pubviz/src/update_order.dart';
 import 'package:test/test.dart';
+import 'package:test_descriptor/test_descriptor.dart' as d;
 
 import 'mock_data_service.dart';
 
@@ -331,8 +332,39 @@ void main() {
   group('ahead of latest', () {
     late Service service;
 
-    setUpAll(() {
-      service = MockDataService(p.join('test', 'mock_ahead'));
+    setUpAll(() async {
+      await d.dir('pubviz_ahead_test_', [
+        d.file('pubspec.yaml', '''
+name: test_ahead
+version: 1.0.0
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+dependencies:
+  args: ^2.0.0
+'''),
+        d.file('pub_deps_list.txt', '''
+Dart SDK 3.0.0
+test_ahead 1.0.0
+
+dependencies:
+- args 2.0.0
+'''),
+        d.file('outdated.json', '''
+{
+  "packages": [
+    {
+      "package": "args",
+      "current": { "version": "2.0.0" },
+      "upgradable": { "version": "2.0.0" },
+      "resolvable": { "version": "2.0.0" },
+      "latest": { "version": "1.5.0" }
+    }
+  ]
+}
+'''),
+      ]).create();
+
+      service = MockDataService(d.path('pubviz_ahead_test_'));
     });
 
     test('allowsLatest is true for ahead constraints', () async {
