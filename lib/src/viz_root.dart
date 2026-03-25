@@ -115,7 +115,11 @@ class VizRoot {
         ? _filterOutdated(excludeDev)
         : _filterStandard(excludeDev);
 
-    return VizRoot.assemble(rootPackageName, newPackages);
+    return VizRoot.assemble(
+      rootPackageName,
+      newPackages,
+      flagOutdated: packages.values.any((p) => p.latestVersion != null),
+    );
   }
 
   Map<String, VizPackage> _filterOutdated(bool excludeDev) {
