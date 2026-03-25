@@ -340,7 +340,7 @@ version: 1.0.0
 environment:
   sdk: '>=3.0.0 <4.0.0'
 dependencies:
-  args: ^2.0.0
+  args: ^2.0.0-dev
 '''),
         d.file('pub_deps_list.txt', '''
 Dart SDK 3.0.0
@@ -377,7 +377,51 @@ dependencies:
       expect(
         dep.includesLatest,
         isTrue,
-        reason: 'Constraint ^2.0.0 is ahead of latest 1.5.0',
+        reason: 'Constraint ^2.0.0-dev is a pre-release ahead of latest 1.5.0',
+      );
+    });
+
+    test('allowsLatest is false for stable ahead constraints', () async {
+      await d.dir('pubviz_ahead_stable_test_', [
+        d.file('pubspec.yaml', '''
+name: test_ahead_stable
+version: 1.0.0
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+dependencies:
+  args: ^2.0.0
+'''),
+        d.file('pub_deps_list.txt', '''
+Dart SDK 3.0.0
+test_ahead_stable 1.0.0
+
+dependencies:
+- args 2.0.0
+'''),
+        d.file('outdated.json', '''
+{
+  "packages": [
+    {
+      "package": "args",
+      "current": { "version": "2.0.0" },
+      "upgradable": { "version": "2.0.0" },
+      "resolvable": { "version": "2.0.0" },
+      "latest": { "version": "1.5.0" }
+    }
+  ]
+}
+'''),
+      ]).create();
+
+      final stableService = MockDataService(
+        d.path('pubviz_ahead_stable_test_'),
+      );
+      final vp = await stableService.vizRoot(flagOutdated: true);
+      final dep = vp.root.dependencies.firstWhere((d) => d.name == 'args');
+      expect(
+        dep.includesLatest,
+        isFalse,
+        reason: 'Stable constraint ^2.0.0 shouldn\'t allow latest 1.5.0',
       );
     });
   });

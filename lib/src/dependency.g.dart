@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: avoid_bool_literals_in_conditional_expressions, lines_longer_than_80_chars
 
 part of 'dependency.dart';
 
@@ -10,13 +10,21 @@ part of 'dependency.dart';
 
 Dependency _$DependencyFromJson(Map<String, dynamic> json) => Dependency(
   json['name'] as String,
-  _versionConstraintFromJson(json['versionConstraint'] as String),
-  json['isDevDependency'] as bool,
+  const VersionConstraintConverter().fromJson(
+    json['versionConstraint'] as String,
+  ),
+  const FalseNullConverter().fromJson(json['isDevDependency'] as bool?),
+  includesLatest: json['includesLatest'] as bool?,
 );
 
 Map<String, dynamic> _$DependencyToJson(Dependency instance) =>
     <String, dynamic>{
       'name': instance.name,
-      'versionConstraint': _versionConstraintToJson(instance.versionConstraint),
-      'isDevDependency': instance.isDevDependency,
+      'versionConstraint': const VersionConstraintConverter().toJson(
+        instance.versionConstraint,
+      ),
+      'isDevDependency': ?const FalseNullConverter().toJson(
+        instance.isDevDependency,
+      ),
+      'includesLatest': ?instance.includesLatest,
     };

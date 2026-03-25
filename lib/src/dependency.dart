@@ -2,30 +2,27 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:pub_semver/pub_semver.dart';
 import 'package:pubspec_parse/pubspec_parse.dart' as parse;
 
+import 'converters.dart';
+
 part 'dependency.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(includeIfNull: false)
 class Dependency implements Comparable<Dependency> {
   final String name;
-  @JsonKey(
-    fromJson: _versionConstraintFromJson,
-    toJson: _versionConstraintToJson,
-  )
+  @VersionConstraintConverter()
   final VersionConstraint versionConstraint;
+
+  @FalseNullConverter()
   final bool isDevDependency;
 
-  bool? _includesLatest;
+  bool? includesLatest;
 
-  /// Also true if there is a pre-release version after the latest version
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  bool? get includesLatest => _includesLatest;
-
-  set includesLatest(bool? value) {
-    assert(_includesLatest == null);
-    _includesLatest = value!;
-  }
-
-  Dependency(this.name, this.versionConstraint, this.isDevDependency);
+  Dependency(
+    this.name,
+    this.versionConstraint,
+    this.isDevDependency, {
+    this.includesLatest,
+  });
 
   factory Dependency.fromJson(Map<String, dynamic> json) =>
       _$DependencyFromJson(json);
@@ -93,8 +90,3 @@ VersionConstraint _parseOrNull(String input) {
     return VersionConstraint.empty;
   }
 }
-
-VersionConstraint _versionConstraintFromJson(String json) => _parseOrNull(json);
-
-String _versionConstraintToJson(VersionConstraint constraint) =>
-    constraint.toString();

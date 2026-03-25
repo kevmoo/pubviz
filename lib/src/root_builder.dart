@@ -42,7 +42,9 @@ extension ServiceVizRootExt on Service {
             final constraint = dep.versionConstraint;
             if (constraint is VersionRange) {
               final min = constraint.min;
-              if (min != null && min.compareTo(package.latestVersion!) > 0) {
+              if (min != null &&
+                  min.isPreRelease &&
+                  min.compareTo(package.latestVersion!) > 0) {
                 allowsLatest = true;
               }
             }

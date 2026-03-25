@@ -7,18 +7,14 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "meta",
-          "versionConstraint": "^1.9.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.9.0"
         },
         {
           "name": "source_span",
-          "versionConstraint": "^1.10.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.10.0"
         }
       ],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "analyzer": {
       "name": "analyzer",
@@ -26,68 +22,54 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "_fe_analyzer_shared",
-          "versionConstraint": "^98.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^98.0.0"
         },
         {
           "name": "collection",
-          "versionConstraint": "^1.19.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.19.0"
         },
         {
           "name": "convert",
-          "versionConstraint": "^3.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^3.0.0"
         },
         {
           "name": "crypto",
-          "versionConstraint": "^3.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^3.0.0"
         },
         {
           "name": "glob",
-          "versionConstraint": "^2.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.0.0"
         },
         {
           "name": "meta",
-          "versionConstraint": "^1.18.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.18.0"
         },
         {
           "name": "package_config",
-          "versionConstraint": "^2.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.0.0"
         },
         {
           "name": "path",
-          "versionConstraint": "^1.9.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.9.0"
         },
         {
           "name": "pub_semver",
-          "versionConstraint": "^2.1.4",
-          "isDevDependency": false
+          "versionConstraint": "^2.1.4"
         },
         {
           "name": "source_span",
-          "versionConstraint": "^1.8.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.8.0"
         },
         {
           "name": "watcher",
-          "versionConstraint": "^1.1.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.1.0"
         },
         {
           "name": "yaml",
-          "versionConstraint": "^3.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^3.0.0"
         }
       ],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "archive": {
       "name": "archive",
@@ -95,26 +77,19 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "path",
-          "versionConstraint": "^1.8.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.8.0"
         },
         {
           "name": "posix",
-          "versionConstraint": "^6.0.2",
-          "isDevDependency": false
+          "versionConstraint": "^6.0.2"
         }
       ],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "args": {
       "name": "args",
       "version": "2.7.0",
-      "dependencies": [],
-      "isPrimary": false,
-      "onlyDev": false,
-      "latestVersion": null
+      "dependencies": []
     },
     "async": {
       "name": "async",
@@ -122,18 +97,13 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "collection",
-          "versionConstraint": "^1.15.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.15.0"
         },
         {
           "name": "meta",
-          "versionConstraint": "^1.3.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.3.0"
         }
-      ],
-      "isPrimary": false,
-      "onlyDev": false,
-      "latestVersion": null
+      ]
     },
     "bazel_worker": {
       "name": "bazel_worker",
@@ -141,18 +111,14 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "async",
-          "versionConstraint": "^2.5.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.5.0"
         },
         {
           "name": "protobuf",
-          "versionConstraint": ">=5.0.0 <7.0.0",
-          "isDevDependency": false
+          "versionConstraint": ">=5.0.0 <7.0.0"
         }
       ],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "boolean_selector": {
       "name": "boolean_selector",
@@ -160,18 +126,14 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "source_span",
-          "versionConstraint": "^1.8.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.8.0"
         },
         {
           "name": "string_scanner",
-          "versionConstraint": "^1.1.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.1.0"
         }
       ],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "build": {
       "name": "build",
@@ -179,38 +141,30 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "analyzer",
-          "versionConstraint": ">=8.0.0 <13.0.0",
-          "isDevDependency": false
+          "versionConstraint": ">=8.0.0 <13.0.0"
         },
         {
           "name": "crypto",
-          "versionConstraint": "^3.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^3.0.0"
         },
         {
           "name": "glob",
-          "versionConstraint": "^2.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.0.0"
         },
         {
           "name": "logging",
-          "versionConstraint": "^1.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.0.0"
         },
         {
           "name": "package_config",
-          "versionConstraint": "^2.1.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.1.0"
         },
         {
           "name": "path",
-          "versionConstraint": "^1.8.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.8.0"
         }
       ],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "build_cli": {
       "name": "build_cli",
@@ -218,48 +172,38 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "analyzer",
-          "versionConstraint": ">=10.0.0 <13.0.0",
-          "isDevDependency": false
+          "versionConstraint": ">=10.0.0 <13.0.0"
         },
         {
           "name": "build",
-          "versionConstraint": "^4.0.4",
-          "isDevDependency": false
+          "versionConstraint": "^4.0.4"
         },
         {
           "name": "build_cli_annotations",
-          "versionConstraint": ">=2.1.1 <2.2.0",
-          "isDevDependency": false
+          "versionConstraint": ">=2.1.1 <2.2.0"
         },
         {
           "name": "build_config",
-          "versionConstraint": "^1.2.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.2.0"
         },
         {
           "name": "pub_semver",
-          "versionConstraint": "^2.1.4",
-          "isDevDependency": false
+          "versionConstraint": "^2.1.4"
         },
         {
           "name": "source_gen",
-          "versionConstraint": "^4.1.2",
-          "isDevDependency": false
+          "versionConstraint": "^4.1.2"
         },
         {
           "name": "source_helper",
-          "versionConstraint": "^1.3.10",
-          "isDevDependency": false
+          "versionConstraint": "^1.3.10"
         },
         {
           "name": "yaml",
-          "versionConstraint": "^3.1.3",
-          "isDevDependency": false
+          "versionConstraint": "^3.1.3"
         }
       ],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "build_cli_annotations": {
       "name": "build_cli_annotations",
@@ -267,18 +211,13 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "args",
-          "versionConstraint": "^2.6.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.6.0"
         },
         {
           "name": "meta",
-          "versionConstraint": "^1.16.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.16.0"
         }
-      ],
-      "isPrimary": false,
-      "onlyDev": false,
-      "latestVersion": null
+      ]
     },
     "build_config": {
       "name": "build_config",
@@ -286,28 +225,22 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "checked_yaml",
-          "versionConstraint": "^2.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.0.0"
         },
         {
           "name": "json_annotation",
-          "versionConstraint": "^4.8.0",
-          "isDevDependency": false
+          "versionConstraint": "^4.8.0"
         },
         {
           "name": "path",
-          "versionConstraint": "^1.8.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.8.0"
         },
         {
           "name": "pubspec_parse",
-          "versionConstraint": "^1.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.0.0"
         }
       ],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "build_daemon": {
       "name": "build_daemon",
@@ -315,68 +248,54 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "built_collection",
-          "versionConstraint": "^5.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^5.0.0"
         },
         {
           "name": "built_value",
-          "versionConstraint": "^8.1.0",
-          "isDevDependency": false
+          "versionConstraint": "^8.1.0"
         },
         {
           "name": "crypto",
-          "versionConstraint": "^3.0.3",
-          "isDevDependency": false
+          "versionConstraint": "^3.0.3"
         },
         {
           "name": "http_multi_server",
-          "versionConstraint": "^3.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^3.0.0"
         },
         {
           "name": "logging",
-          "versionConstraint": "^1.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.0.0"
         },
         {
           "name": "path",
-          "versionConstraint": "^1.8.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.8.0"
         },
         {
           "name": "pool",
-          "versionConstraint": "^1.5.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.5.0"
         },
         {
           "name": "shelf",
-          "versionConstraint": "^1.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.0.0"
         },
         {
           "name": "shelf_web_socket",
-          "versionConstraint": ">=1.0.0 <4.0.0",
-          "isDevDependency": false
+          "versionConstraint": ">=1.0.0 <4.0.0"
         },
         {
           "name": "stream_transform",
-          "versionConstraint": "^2.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.0.0"
         },
         {
           "name": "watcher",
-          "versionConstraint": "^1.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.0.0"
         },
         {
           "name": "web_socket_channel",
-          "versionConstraint": ">=2.3.0 <4.0.0",
-          "isDevDependency": false
+          "versionConstraint": ">=2.3.0 <4.0.0"
         }
       ],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "build_modules": {
       "name": "build_modules",
@@ -384,83 +303,66 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "analyzer",
-          "versionConstraint": ">=5.1.0 <13.0.0",
-          "isDevDependency": false
+          "versionConstraint": ">=5.1.0 <13.0.0"
         },
         {
           "name": "async",
-          "versionConstraint": "^2.5.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.5.0"
         },
         {
           "name": "bazel_worker",
-          "versionConstraint": "^1.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.0.0"
         },
         {
           "name": "build",
-          "versionConstraint": ">=2.0.0 <5.0.0",
-          "isDevDependency": false
+          "versionConstraint": ">=2.0.0 <5.0.0"
         },
         {
           "name": "collection",
-          "versionConstraint": "^1.15.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.15.0"
         },
         {
           "name": "crypto",
-          "versionConstraint": "^3.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^3.0.0"
         },
         {
           "name": "file",
-          "versionConstraint": "^7.0.1",
-          "isDevDependency": false
+          "versionConstraint": "^7.0.1"
         },
         {
           "name": "glob",
-          "versionConstraint": "^2.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.0.0"
         },
         {
           "name": "graphs",
-          "versionConstraint": "^2.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.0.0"
         },
         {
           "name": "json_annotation",
-          "versionConstraint": "^4.3.0",
-          "isDevDependency": false
+          "versionConstraint": "^4.3.0"
         },
         {
           "name": "logging",
-          "versionConstraint": "^1.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.0.0"
         },
         {
           "name": "path",
-          "versionConstraint": "^1.8.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.8.0"
         },
         {
           "name": "scratch_space",
-          "versionConstraint": "^1.2.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.2.0"
         },
         {
           "name": "stream_transform",
-          "versionConstraint": "^2.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.0.0"
         },
         {
           "name": "uuid",
-          "versionConstraint": "^4.4.2",
-          "isDevDependency": false
+          "versionConstraint": "^4.4.2"
         }
       ],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "build_runner": {
       "name": "build_runner",
@@ -468,163 +370,130 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "analyzer",
-          "versionConstraint": ">=8.0.0 <13.0.0",
-          "isDevDependency": false
+          "versionConstraint": ">=8.0.0 <13.0.0"
         },
         {
           "name": "args",
-          "versionConstraint": "^2.5.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.5.0"
         },
         {
           "name": "async",
-          "versionConstraint": "^2.5.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.5.0"
         },
         {
           "name": "build",
-          "versionConstraint": "^4.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^4.0.0"
         },
         {
           "name": "build_config",
-          "versionConstraint": ">=1.3.0 <1.4.0",
-          "isDevDependency": false
+          "versionConstraint": ">=1.3.0 <1.4.0"
         },
         {
           "name": "build_daemon",
-          "versionConstraint": "^4.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^4.0.0"
         },
         {
           "name": "built_collection",
-          "versionConstraint": "^5.1.1",
-          "isDevDependency": false
+          "versionConstraint": "^5.1.1"
         },
         {
           "name": "built_value",
-          "versionConstraint": "^8.10.1",
-          "isDevDependency": false
+          "versionConstraint": "^8.10.1"
         },
         {
           "name": "code_builder",
-          "versionConstraint": "^4.2.0",
-          "isDevDependency": false
+          "versionConstraint": "^4.2.0"
         },
         {
           "name": "collection",
-          "versionConstraint": "^1.15.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.15.0"
         },
         {
           "name": "convert",
-          "versionConstraint": "^3.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^3.0.0"
         },
         {
           "name": "crypto",
-          "versionConstraint": "^3.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^3.0.0"
         },
         {
           "name": "dart_style",
-          "versionConstraint": ">=2.3.7 <4.0.0",
-          "isDevDependency": false
+          "versionConstraint": ">=2.3.7 <4.0.0"
         },
         {
           "name": "glob",
-          "versionConstraint": "^2.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.0.0"
         },
         {
           "name": "graphs",
-          "versionConstraint": "^2.2.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.2.0"
         },
         {
           "name": "http_multi_server",
-          "versionConstraint": "^3.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^3.0.0"
         },
         {
           "name": "io",
-          "versionConstraint": "^1.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.0.0"
         },
         {
           "name": "json_annotation",
-          "versionConstraint": "^4.8.1",
-          "isDevDependency": false
+          "versionConstraint": "^4.8.1"
         },
         {
           "name": "logging",
-          "versionConstraint": "^1.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.0.0"
         },
         {
           "name": "meta",
-          "versionConstraint": "^1.16.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.16.0"
         },
         {
           "name": "mime",
-          "versionConstraint": ">=1.0.0 <3.0.0",
-          "isDevDependency": false
+          "versionConstraint": ">=1.0.0 <3.0.0"
         },
         {
           "name": "package_config",
-          "versionConstraint": "^2.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.0.0"
         },
         {
           "name": "path",
-          "versionConstraint": "^1.8.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.8.0"
         },
         {
           "name": "pool",
-          "versionConstraint": "^1.5.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.5.0"
         },
         {
           "name": "pub_semver",
-          "versionConstraint": "^2.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.0.0"
         },
         {
           "name": "shelf",
-          "versionConstraint": "^1.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.0.0"
         },
         {
           "name": "shelf_web_socket",
-          "versionConstraint": ">=1.0.0 <4.0.0",
-          "isDevDependency": false
+          "versionConstraint": ">=1.0.0 <4.0.0"
         },
         {
           "name": "stream_transform",
-          "versionConstraint": "^2.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.0.0"
         },
         {
           "name": "watcher",
-          "versionConstraint": "^1.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.0.0"
         },
         {
           "name": "web_socket_channel",
-          "versionConstraint": ">=2.3.0 <4.0.0",
-          "isDevDependency": false
+          "versionConstraint": ">=2.3.0 <4.0.0"
         },
         {
           "name": "yaml",
-          "versionConstraint": "^3.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^3.0.0"
         }
       ],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "build_verify": {
       "name": "build_verify",
@@ -632,23 +501,18 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "io",
-          "versionConstraint": "^1.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.0.0"
         },
         {
           "name": "path",
-          "versionConstraint": "^1.8.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.8.0"
         },
         {
           "name": "test",
-          "versionConstraint": "^1.16.6",
-          "isDevDependency": false
+          "versionConstraint": "^1.16.6"
         }
       ],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "build_version": {
       "name": "build_version",
@@ -656,23 +520,18 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "build",
-          "versionConstraint": ">=3.0.0 <5.0.0",
-          "isDevDependency": false
+          "versionConstraint": ">=3.0.0 <5.0.0"
         },
         {
           "name": "build_config",
-          "versionConstraint": "^1.1.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.1.0"
         },
         {
           "name": "pubspec_parse",
-          "versionConstraint": "^1.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.0.0"
         }
       ],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "build_web_compilers": {
       "name": "build_web_compilers",
@@ -680,91 +539,72 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "analyzer",
-          "versionConstraint": ">=5.1.0 <13.0.0",
-          "isDevDependency": false
+          "versionConstraint": ">=5.1.0 <13.0.0"
         },
         {
           "name": "archive",
-          "versionConstraint": ">=3.0.0 <5.0.0",
-          "isDevDependency": false
+          "versionConstraint": ">=3.0.0 <5.0.0"
         },
         {
           "name": "bazel_worker",
-          "versionConstraint": "^1.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.0.0"
         },
         {
           "name": "build",
-          "versionConstraint": ">=2.0.0 <5.0.0",
-          "isDevDependency": false
+          "versionConstraint": ">=2.0.0 <5.0.0"
         },
         {
           "name": "build_modules",
-          "versionConstraint": "^5.1.7",
-          "isDevDependency": false
+          "versionConstraint": "^5.1.7"
         },
         {
           "name": "build_runner",
-          "versionConstraint": "^2.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.0.0"
         },
         {
           "name": "collection",
-          "versionConstraint": "^1.15.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.15.0"
         },
         {
           "name": "glob",
-          "versionConstraint": "^2.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.0.0"
         },
         {
           "name": "logging",
-          "versionConstraint": "^1.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.0.0"
         },
         {
           "name": "path",
-          "versionConstraint": "^1.8.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.8.0"
         },
         {
           "name": "pool",
-          "versionConstraint": "^1.5.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.5.0"
         },
         {
           "name": "scratch_space",
-          "versionConstraint": "^1.2.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.2.0"
         },
         {
           "name": "source_maps",
-          "versionConstraint": "^0.10.10",
-          "isDevDependency": false
+          "versionConstraint": "^0.10.10"
         },
         {
           "name": "source_span",
-          "versionConstraint": "^1.8.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.8.0"
         },
         {
           "name": "stack_trace",
-          "versionConstraint": "^1.10.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.10.0"
         }
       ],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "built_collection": {
       "name": "built_collection",
       "version": "5.1.1",
       "dependencies": [],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "built_value": {
       "name": "built_value",
@@ -772,28 +612,22 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "built_collection",
-          "versionConstraint": "^5.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^5.0.0"
         },
         {
           "name": "collection",
-          "versionConstraint": "^1.15.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.15.0"
         },
         {
           "name": "fixnum",
-          "versionConstraint": "^1.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.0.0"
         },
         {
           "name": "meta",
-          "versionConstraint": "^1.3.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.3.0"
         }
       ],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "checked_yaml": {
       "name": "checked_yaml",
@@ -801,23 +635,17 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "json_annotation",
-          "versionConstraint": "^4.3.0",
-          "isDevDependency": false
+          "versionConstraint": "^4.3.0"
         },
         {
           "name": "source_span",
-          "versionConstraint": "^1.8.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.8.0"
         },
         {
           "name": "yaml",
-          "versionConstraint": "^3.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^3.0.0"
         }
-      ],
-      "isPrimary": false,
-      "onlyDev": false,
-      "latestVersion": null
+      ]
     },
     "cli_config": {
       "name": "cli_config",
@@ -825,18 +653,14 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "args",
-          "versionConstraint": "^2.4.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.4.0"
         },
         {
           "name": "yaml",
-          "versionConstraint": "^3.1.1",
-          "isDevDependency": false
+          "versionConstraint": "^3.1.1"
         }
       ],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "code_builder": {
       "name": "code_builder",
@@ -844,41 +668,31 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "built_collection",
-          "versionConstraint": "^5.1.1",
-          "isDevDependency": false
+          "versionConstraint": "^5.1.1"
         },
         {
           "name": "built_value",
-          "versionConstraint": "^8.10.1",
-          "isDevDependency": false
+          "versionConstraint": "^8.10.1"
         },
         {
           "name": "collection",
-          "versionConstraint": "^1.19.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.19.0"
         },
         {
           "name": "matcher",
-          "versionConstraint": "^0.12.16+1",
-          "isDevDependency": false
+          "versionConstraint": "^0.12.16+1"
         },
         {
           "name": "meta",
-          "versionConstraint": "^1.16.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.16.0"
         }
       ],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "collection": {
       "name": "collection",
       "version": "1.19.1",
-      "dependencies": [],
-      "isPrimary": false,
-      "onlyDev": false,
-      "latestVersion": null
+      "dependencies": []
     },
     "convert": {
       "name": "convert",
@@ -886,13 +700,9 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "typed_data",
-          "versionConstraint": "^1.3.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.3.0"
         }
-      ],
-      "isPrimary": false,
-      "onlyDev": false,
-      "latestVersion": null
+      ]
     },
     "coverage": {
       "name": "coverage",
@@ -900,63 +710,50 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "args",
-          "versionConstraint": "^2.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.0.0"
         },
         {
           "name": "cli_config",
-          "versionConstraint": "^0.2.0",
-          "isDevDependency": false
+          "versionConstraint": "^0.2.0"
         },
         {
           "name": "glob",
-          "versionConstraint": "^2.1.2",
-          "isDevDependency": false
+          "versionConstraint": "^2.1.2"
         },
         {
           "name": "logging",
-          "versionConstraint": "^1.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.0.0"
         },
         {
           "name": "meta",
-          "versionConstraint": "^1.0.2",
-          "isDevDependency": false
+          "versionConstraint": "^1.0.2"
         },
         {
           "name": "package_config",
-          "versionConstraint": "^2.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.0.0"
         },
         {
           "name": "path",
-          "versionConstraint": "^1.8.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.8.0"
         },
         {
           "name": "source_maps",
-          "versionConstraint": "^0.10.10",
-          "isDevDependency": false
+          "versionConstraint": "^0.10.10"
         },
         {
           "name": "stack_trace",
-          "versionConstraint": "^1.10.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.10.0"
         },
         {
           "name": "vm_service",
-          "versionConstraint": ">=12.0.0 <16.0.0",
-          "isDevDependency": false
+          "versionConstraint": ">=12.0.0 <16.0.0"
         },
         {
           "name": "yaml",
-          "versionConstraint": "^3.1.3",
-          "isDevDependency": false
+          "versionConstraint": "^3.1.3"
         }
       ],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "crypto": {
       "name": "crypto",
@@ -964,13 +761,10 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "typed_data",
-          "versionConstraint": "^1.3.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.3.0"
         }
       ],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "dart_flutter_team_lints": {
       "name": "dart_flutter_team_lints",
@@ -978,13 +772,10 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "lints",
-          "versionConstraint": "^6.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^6.0.0"
         }
       ],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "dart_style": {
       "name": "dart_style",
@@ -992,48 +783,38 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "analyzer",
-          "versionConstraint": "^12.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^12.0.0"
         },
         {
           "name": "args",
-          "versionConstraint": "^2.5.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.5.0"
         },
         {
           "name": "collection",
-          "versionConstraint": "^1.19.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.19.0"
         },
         {
           "name": "package_config",
-          "versionConstraint": "^2.1.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.1.0"
         },
         {
           "name": "path",
-          "versionConstraint": "^1.9.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.9.0"
         },
         {
           "name": "pub_semver",
-          "versionConstraint": "^2.1.4",
-          "isDevDependency": false
+          "versionConstraint": "^2.1.4"
         },
         {
           "name": "source_span",
-          "versionConstraint": "^1.8.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.8.0"
         },
         {
           "name": "yaml",
-          "versionConstraint": "^3.1.2",
-          "isDevDependency": false
+          "versionConstraint": "^3.1.2"
         }
       ],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "dhttpd": {
       "name": "dhttpd",
@@ -1041,36 +822,27 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "args",
-          "versionConstraint": "^2.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.0.0"
         },
         {
           "name": "build_cli_annotations",
-          "versionConstraint": "^2.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.0.0"
         },
         {
           "name": "shelf",
-          "versionConstraint": "^1.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.0.0"
         },
         {
           "name": "shelf_static",
-          "versionConstraint": "^1.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.0.0"
         }
-      ],
-      "isPrimary": false,
-      "onlyDev": false,
-      "latestVersion": null
+      ]
     },
     "ffi": {
       "name": "ffi",
       "version": "2.2.0",
       "dependencies": [],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "file": {
       "name": "file",
@@ -1078,26 +850,20 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "meta",
-          "versionConstraint": "^1.9.1",
-          "isDevDependency": false
+          "versionConstraint": "^1.9.1"
         },
         {
           "name": "path",
-          "versionConstraint": "^1.8.3",
-          "isDevDependency": false
+          "versionConstraint": "^1.8.3"
         }
       ],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "fixnum": {
       "name": "fixnum",
       "version": "1.1.1",
       "dependencies": [],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "frontend_server_client": {
       "name": "frontend_server_client",
@@ -1105,18 +871,14 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "async",
-          "versionConstraint": "^2.5.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.5.0"
         },
         {
           "name": "path",
-          "versionConstraint": "^1.8.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.8.0"
         }
       ],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "glob": {
       "name": "glob",
@@ -1124,33 +886,26 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "async",
-          "versionConstraint": "^2.5.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.5.0"
         },
         {
           "name": "collection",
-          "versionConstraint": "^1.15.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.15.0"
         },
         {
           "name": "file",
-          "versionConstraint": ">=6.1.3 <8.0.0",
-          "isDevDependency": false
+          "versionConstraint": ">=6.1.3 <8.0.0"
         },
         {
           "name": "path",
-          "versionConstraint": "^1.8.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.8.0"
         },
         {
           "name": "string_scanner",
-          "versionConstraint": "^1.1.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.1.0"
         }
       ],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "graphs": {
       "name": "graphs",
@@ -1158,21 +913,15 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "collection",
-          "versionConstraint": "^1.15.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.15.0"
         }
       ],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "gviz": {
       "name": "gviz",
       "version": "0.4.2",
-      "dependencies": [],
-      "isPrimary": false,
-      "onlyDev": false,
-      "latestVersion": null
+      "dependencies": []
     },
     "http": {
       "name": "http",
@@ -1180,28 +929,21 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "async",
-          "versionConstraint": "^2.5.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.5.0"
         },
         {
           "name": "http_parser",
-          "versionConstraint": "^4.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^4.0.0"
         },
         {
           "name": "meta",
-          "versionConstraint": "^1.3.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.3.0"
         },
         {
           "name": "web",
-          "versionConstraint": ">=0.5.0 <2.0.0",
-          "isDevDependency": false
+          "versionConstraint": ">=0.5.0 <2.0.0"
         }
-      ],
-      "isPrimary": false,
-      "onlyDev": false,
-      "latestVersion": null
+      ]
     },
     "http_multi_server": {
       "name": "http_multi_server",
@@ -1209,13 +951,10 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "async",
-          "versionConstraint": "^2.5.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.5.0"
         }
       ],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "http_parser": {
       "name": "http_parser",
@@ -1223,28 +962,21 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "collection",
-          "versionConstraint": "^1.19.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.19.0"
         },
         {
           "name": "source_span",
-          "versionConstraint": "^1.8.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.8.0"
         },
         {
           "name": "string_scanner",
-          "versionConstraint": "^1.1.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.1.0"
         },
         {
           "name": "typed_data",
-          "versionConstraint": "^1.3.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.3.0"
         }
-      ],
-      "isPrimary": false,
-      "onlyDev": false,
-      "latestVersion": null
+      ]
     },
     "io": {
       "name": "io",
@@ -1252,23 +984,17 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "meta",
-          "versionConstraint": "^1.3.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.3.0"
         },
         {
           "name": "path",
-          "versionConstraint": "^1.8.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.8.0"
         },
         {
           "name": "string_scanner",
-          "versionConstraint": "^1.1.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.1.0"
         }
-      ],
-      "isPrimary": false,
-      "onlyDev": false,
-      "latestVersion": null
+      ]
     },
     "json_annotation": {
       "name": "json_annotation",
@@ -1276,13 +1002,9 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "meta",
-          "versionConstraint": "^1.16.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.16.0"
         }
-      ],
-      "isPrimary": false,
-      "onlyDev": false,
-      "latestVersion": null
+      ]
     },
     "json_serializable": {
       "name": "json_serializable",
@@ -1290,84 +1012,66 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "analyzer",
-          "versionConstraint": ">=10.0.0 <13.0.0",
-          "isDevDependency": false
+          "versionConstraint": ">=10.0.0 <13.0.0"
         },
         {
           "name": "async",
-          "versionConstraint": "^2.10.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.10.0"
         },
         {
           "name": "build",
-          "versionConstraint": "^4.0.4",
-          "isDevDependency": false
+          "versionConstraint": "^4.0.4"
         },
         {
           "name": "build_config",
-          "versionConstraint": "^1.2.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.2.0"
         },
         {
           "name": "dart_style",
-          "versionConstraint": "^3.1.4",
-          "isDevDependency": false
+          "versionConstraint": "^3.1.4"
         },
         {
           "name": "json_annotation",
-          "versionConstraint": ">=4.11.0 <4.12.0",
-          "isDevDependency": false
+          "versionConstraint": ">=4.11.0 <4.12.0"
         },
         {
           "name": "meta",
-          "versionConstraint": "^1.16.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.16.0"
         },
         {
           "name": "path",
-          "versionConstraint": "^1.9.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.9.0"
         },
         {
           "name": "pub_semver",
-          "versionConstraint": "^2.1.4",
-          "isDevDependency": false
+          "versionConstraint": "^2.1.4"
         },
         {
           "name": "pubspec_parse",
-          "versionConstraint": "^1.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.0.0"
         },
         {
           "name": "source_gen",
-          "versionConstraint": "^4.1.2",
-          "isDevDependency": false
+          "versionConstraint": "^4.1.2"
         },
         {
           "name": "source_helper",
-          "versionConstraint": "^1.3.10",
-          "isDevDependency": false
+          "versionConstraint": "^1.3.10"
         }
       ],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "lints": {
       "name": "lints",
       "version": "6.1.0",
       "dependencies": [],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "logging": {
       "name": "logging",
       "version": "1.3.0",
       "dependencies": [],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "matcher": {
       "name": "matcher",
@@ -1375,57 +1079,42 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "async",
-          "versionConstraint": "^2.10.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.10.0"
         },
         {
           "name": "meta",
-          "versionConstraint": "^1.8.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.8.0"
         },
         {
           "name": "stack_trace",
-          "versionConstraint": "^1.10.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.10.0"
         },
         {
           "name": "term_glyph",
-          "versionConstraint": "^1.2.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.2.0"
         },
         {
           "name": "test_api",
-          "versionConstraint": ">=0.5.0 <0.8.0",
-          "isDevDependency": false
+          "versionConstraint": ">=0.5.0 <0.8.0"
         }
       ],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "meta": {
       "name": "meta",
       "version": "1.18.2",
-      "dependencies": [],
-      "isPrimary": false,
-      "onlyDev": false,
-      "latestVersion": null
+      "dependencies": []
     },
     "mime": {
       "name": "mime",
       "version": "2.0.0",
-      "dependencies": [],
-      "isPrimary": false,
-      "onlyDev": false,
-      "latestVersion": null
+      "dependencies": []
     },
     "node_preamble": {
       "name": "node_preamble",
       "version": "2.0.2",
       "dependencies": [],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "package_config": {
       "name": "package_config",
@@ -1433,21 +1122,15 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "path",
-          "versionConstraint": "^1.8.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.8.0"
         }
       ],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "path": {
       "name": "path",
       "version": "1.9.1",
-      "dependencies": [],
-      "isPrimary": false,
-      "onlyDev": false,
-      "latestVersion": null
+      "dependencies": []
     },
     "pool": {
       "name": "pool",
@@ -1455,18 +1138,14 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "async",
-          "versionConstraint": "^2.5.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.5.0"
         },
         {
           "name": "stack_trace",
-          "versionConstraint": "^1.10.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.10.0"
         }
       ],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "posix": {
       "name": "posix",
@@ -1474,23 +1153,18 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "ffi",
-          "versionConstraint": "^2.0.1",
-          "isDevDependency": false
+          "versionConstraint": "^2.0.1"
         },
         {
           "name": "meta",
-          "versionConstraint": "^1.7.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.7.0"
         },
         {
           "name": "path",
-          "versionConstraint": "^1.8.3",
-          "isDevDependency": false
+          "versionConstraint": "^1.8.3"
         }
       ],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "protobuf": {
       "name": "protobuf",
@@ -1498,23 +1172,18 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "collection",
-          "versionConstraint": "^1.15.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.15.0"
         },
         {
           "name": "fixnum",
-          "versionConstraint": "^1.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.0.0"
         },
         {
           "name": "meta",
-          "versionConstraint": "^1.7.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.7.0"
         }
       ],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "pub_semver": {
       "name": "pub_semver",
@@ -1522,13 +1191,9 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "collection",
-          "versionConstraint": "^1.15.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.15.0"
         }
-      ],
-      "isPrimary": false,
-      "onlyDev": false,
-      "latestVersion": null
+      ]
     },
     "pubspec_parse": {
       "name": "pubspec_parse",
@@ -1536,112 +1201,88 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "checked_yaml",
-          "versionConstraint": "^2.0.1",
-          "isDevDependency": false
+          "versionConstraint": "^2.0.1"
         },
         {
           "name": "collection",
-          "versionConstraint": "^1.19.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.19.0"
         },
         {
           "name": "json_annotation",
-          "versionConstraint": "^4.9.0",
-          "isDevDependency": false
+          "versionConstraint": "^4.9.0"
         },
         {
           "name": "pub_semver",
-          "versionConstraint": "^2.1.4",
-          "isDevDependency": false
+          "versionConstraint": "^2.1.4"
         },
         {
           "name": "yaml",
-          "versionConstraint": "^3.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^3.0.0"
         }
-      ],
-      "isPrimary": false,
-      "onlyDev": false,
-      "latestVersion": null
+      ]
     },
     "pubviz": {
       "name": "pubviz",
-      "version": null,
       "dependencies": [
         {
           "name": "args",
-          "versionConstraint": "^2.6.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.6.0"
         },
         {
           "name": "build_cli_annotations",
-          "versionConstraint": "^2.1.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.1.0"
         },
         {
           "name": "collection",
-          "versionConstraint": "^1.19.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.19.0"
         },
         {
           "name": "dhttpd",
-          "versionConstraint": "^4.3.0",
-          "isDevDependency": false
+          "versionConstraint": "^4.3.0"
         },
         {
           "name": "gviz",
-          "versionConstraint": "^0.4.2",
-          "isDevDependency": false
+          "versionConstraint": "^0.4.2"
         },
         {
           "name": "http",
-          "versionConstraint": "^1.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.0.0"
         },
         {
           "name": "io",
-          "versionConstraint": "^1.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.0.0"
         },
         {
           "name": "json_annotation",
-          "versionConstraint": "^4.11.0",
-          "isDevDependency": false
+          "versionConstraint": "^4.11.0"
         },
         {
           "name": "meta",
-          "versionConstraint": "^1.18.2",
-          "isDevDependency": false
+          "versionConstraint": "^1.18.2"
         },
         {
           "name": "path",
-          "versionConstraint": "^1.8.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.8.0"
         },
         {
           "name": "pub_semver",
-          "versionConstraint": "^2.1.4",
-          "isDevDependency": false
+          "versionConstraint": "^2.1.4"
         },
         {
           "name": "pubspec_parse",
-          "versionConstraint": "^1.5.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.5.0"
         },
         {
           "name": "stack_trace",
-          "versionConstraint": "^1.10.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.10.0"
         },
         {
           "name": "string_scanner",
-          "versionConstraint": "^1.1.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.1.0"
         },
         {
           "name": "yaml",
-          "versionConstraint": "^3.1.0",
-          "isDevDependency": false
+          "versionConstraint": "^3.1.0"
         },
         {
           "name": "build_cli",
@@ -1704,9 +1345,7 @@ export const vizDataString = JSON.stringify({
           "isDevDependency": true
         }
       ],
-      "isPrimary": true,
-      "onlyDev": false,
-      "latestVersion": null
+      "isPrimary": true
     },
     "scratch_space": {
       "name": "scratch_space",
@@ -1714,28 +1353,22 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "build",
-          "versionConstraint": ">=2.0.0 <5.0.0",
-          "isDevDependency": false
+          "versionConstraint": ">=2.0.0 <5.0.0"
         },
         {
           "name": "crypto",
-          "versionConstraint": "^3.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^3.0.0"
         },
         {
           "name": "path",
-          "versionConstraint": "^1.8.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.8.0"
         },
         {
           "name": "pool",
-          "versionConstraint": "^1.5.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.5.0"
         }
       ],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "shelf": {
       "name": "shelf",
@@ -1743,38 +1376,29 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "async",
-          "versionConstraint": "^2.5.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.5.0"
         },
         {
           "name": "collection",
-          "versionConstraint": "^1.15.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.15.0"
         },
         {
           "name": "http_parser",
-          "versionConstraint": "^4.1.0",
-          "isDevDependency": false
+          "versionConstraint": "^4.1.0"
         },
         {
           "name": "path",
-          "versionConstraint": "^1.8.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.8.0"
         },
         {
           "name": "stack_trace",
-          "versionConstraint": "^1.10.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.10.0"
         },
         {
           "name": "stream_channel",
-          "versionConstraint": "^2.1.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.1.0"
         }
-      ],
-      "isPrimary": false,
-      "onlyDev": false,
-      "latestVersion": null
+      ]
     },
     "shelf_packages_handler": {
       "name": "shelf_packages_handler",
@@ -1782,23 +1406,18 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "path",
-          "versionConstraint": "^1.8.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.8.0"
         },
         {
           "name": "shelf",
-          "versionConstraint": "^1.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.0.0"
         },
         {
           "name": "shelf_static",
-          "versionConstraint": "^1.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.0.0"
         }
       ],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "shelf_static": {
       "name": "shelf_static",
@@ -1806,33 +1425,25 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "convert",
-          "versionConstraint": "^3.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^3.0.0"
         },
         {
           "name": "http_parser",
-          "versionConstraint": "^4.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^4.0.0"
         },
         {
           "name": "mime",
-          "versionConstraint": ">=1.0.0 <3.0.0",
-          "isDevDependency": false
+          "versionConstraint": ">=1.0.0 <3.0.0"
         },
         {
           "name": "path",
-          "versionConstraint": "^1.8.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.8.0"
         },
         {
           "name": "shelf",
-          "versionConstraint": "^1.1.2",
-          "isDevDependency": false
+          "versionConstraint": "^1.1.2"
         }
-      ],
-      "isPrimary": false,
-      "onlyDev": false,
-      "latestVersion": null
+      ]
     },
     "shelf_web_socket": {
       "name": "shelf_web_socket",
@@ -1840,23 +1451,18 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "shelf",
-          "versionConstraint": "^1.1.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.1.0"
         },
         {
           "name": "stream_channel",
-          "versionConstraint": "^2.1.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.1.0"
         },
         {
           "name": "web_socket_channel",
-          "versionConstraint": ">=2.0.0 <4.0.0",
-          "isDevDependency": false
+          "versionConstraint": ">=2.0.0 <4.0.0"
         }
       ],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "source_gen": {
       "name": "source_gen",
@@ -1864,53 +1470,42 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "analyzer",
-          "versionConstraint": ">=8.1.1 <13.0.0",
-          "isDevDependency": false
+          "versionConstraint": ">=8.1.1 <13.0.0"
         },
         {
           "name": "async",
-          "versionConstraint": "^2.10.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.10.0"
         },
         {
           "name": "build",
-          "versionConstraint": ">=3.0.2 <5.0.0",
-          "isDevDependency": false
+          "versionConstraint": ">=3.0.2 <5.0.0"
         },
         {
           "name": "dart_style",
-          "versionConstraint": "^3.1.2",
-          "isDevDependency": false
+          "versionConstraint": "^3.1.2"
         },
         {
           "name": "glob",
-          "versionConstraint": "^2.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.0.0"
         },
         {
           "name": "path",
-          "versionConstraint": "^1.9.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.9.0"
         },
         {
           "name": "pub_semver",
-          "versionConstraint": "^2.1.4",
-          "isDevDependency": false
+          "versionConstraint": "^2.1.4"
         },
         {
           "name": "source_span",
-          "versionConstraint": "^1.8.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.8.0"
         },
         {
           "name": "yaml",
-          "versionConstraint": "^3.1.2",
-          "isDevDependency": false
+          "versionConstraint": "^3.1.2"
         }
       ],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "source_helper": {
       "name": "source_helper",
@@ -1918,18 +1513,14 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "analyzer",
-          "versionConstraint": ">=9.0.0 <13.0.0",
-          "isDevDependency": false
+          "versionConstraint": ">=9.0.0 <13.0.0"
         },
         {
           "name": "source_gen",
-          "versionConstraint": "^4.1.1",
-          "isDevDependency": false
+          "versionConstraint": "^4.1.1"
         }
       ],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "source_map_stack_trace": {
       "name": "source_map_stack_trace",
@@ -1937,23 +1528,18 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "path",
-          "versionConstraint": "^1.8.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.8.0"
         },
         {
           "name": "source_maps",
-          "versionConstraint": "^0.10.10",
-          "isDevDependency": false
+          "versionConstraint": "^0.10.10"
         },
         {
           "name": "stack_trace",
-          "versionConstraint": "^1.10.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.10.0"
         }
       ],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "source_maps": {
       "name": "source_maps",
@@ -1961,13 +1547,10 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "source_span",
-          "versionConstraint": "^1.8.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.8.0"
         }
       ],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "source_span": {
       "name": "source_span",
@@ -1975,23 +1558,17 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "collection",
-          "versionConstraint": "^1.15.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.15.0"
         },
         {
           "name": "path",
-          "versionConstraint": "^1.8.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.8.0"
         },
         {
           "name": "term_glyph",
-          "versionConstraint": "^1.2.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.2.0"
         }
-      ],
-      "isPrimary": false,
-      "onlyDev": false,
-      "latestVersion": null
+      ]
     },
     "stack_trace": {
       "name": "stack_trace",
@@ -1999,13 +1576,9 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "path",
-          "versionConstraint": "^1.8.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.8.0"
         }
-      ],
-      "isPrimary": false,
-      "onlyDev": false,
-      "latestVersion": null
+      ]
     },
     "stream_channel": {
       "name": "stream_channel",
@@ -2013,21 +1586,15 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "async",
-          "versionConstraint": "^2.5.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.5.0"
         }
-      ],
-      "isPrimary": false,
-      "onlyDev": false,
-      "latestVersion": null
+      ]
     },
     "stream_transform": {
       "name": "stream_transform",
       "version": "2.1.1",
       "dependencies": [],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "string_scanner": {
       "name": "string_scanner",
@@ -2035,21 +1602,14 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "source_span",
-          "versionConstraint": "^1.8.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.8.0"
         }
-      ],
-      "isPrimary": false,
-      "onlyDev": false,
-      "latestVersion": null
+      ]
     },
     "term_glyph": {
       "name": "term_glyph",
       "version": "1.2.2",
-      "dependencies": [],
-      "isPrimary": false,
-      "onlyDev": false,
-      "latestVersion": null
+      "dependencies": []
     },
     "test": {
       "name": "test",
@@ -2057,133 +1617,106 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "analyzer",
-          "versionConstraint": ">=8.0.0 <13.0.0",
-          "isDevDependency": false
+          "versionConstraint": ">=8.0.0 <13.0.0"
         },
         {
           "name": "async",
-          "versionConstraint": "^2.5.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.5.0"
         },
         {
           "name": "boolean_selector",
-          "versionConstraint": "^2.1.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.1.0"
         },
         {
           "name": "collection",
-          "versionConstraint": "^1.15.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.15.0"
         },
         {
           "name": "coverage",
-          "versionConstraint": "^1.15.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.15.0"
         },
         {
           "name": "http_multi_server",
-          "versionConstraint": "^3.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^3.0.0"
         },
         {
           "name": "io",
-          "versionConstraint": "^1.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.0.0"
         },
         {
           "name": "matcher",
-          "versionConstraint": ">=0.12.16 <0.12.20",
-          "isDevDependency": false
+          "versionConstraint": ">=0.12.16 <0.12.20"
         },
         {
           "name": "node_preamble",
-          "versionConstraint": "^2.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.0.0"
         },
         {
           "name": "package_config",
-          "versionConstraint": "^2.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.0.0"
         },
         {
           "name": "path",
-          "versionConstraint": "^1.8.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.8.0"
         },
         {
           "name": "pool",
-          "versionConstraint": "^1.5.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.5.0"
         },
         {
           "name": "shelf",
-          "versionConstraint": "^1.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.0.0"
         },
         {
           "name": "shelf_packages_handler",
-          "versionConstraint": "^3.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^3.0.0"
         },
         {
           "name": "shelf_static",
-          "versionConstraint": "^1.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.0.0"
         },
         {
           "name": "shelf_web_socket",
-          "versionConstraint": ">=1.0.0 <4.0.0",
-          "isDevDependency": false
+          "versionConstraint": ">=1.0.0 <4.0.0"
         },
         {
           "name": "source_span",
-          "versionConstraint": "^1.8.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.8.0"
         },
         {
           "name": "stack_trace",
-          "versionConstraint": "^1.10.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.10.0"
         },
         {
           "name": "stream_channel",
-          "versionConstraint": "^2.1.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.1.0"
         },
         {
           "name": "test_api",
-          "versionConstraint": "0.7.11",
-          "isDevDependency": false
+          "versionConstraint": "0.7.11"
         },
         {
           "name": "test_core",
-          "versionConstraint": "0.6.17",
-          "isDevDependency": false
+          "versionConstraint": "0.6.17"
         },
         {
           "name": "typed_data",
-          "versionConstraint": "^1.3.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.3.0"
         },
         {
           "name": "web_socket_channel",
-          "versionConstraint": ">=2.0.0 <4.0.0",
-          "isDevDependency": false
+          "versionConstraint": ">=2.0.0 <4.0.0"
         },
         {
           "name": "webkit_inspection_protocol",
-          "versionConstraint": "^1.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.0.0"
         },
         {
           "name": "yaml",
-          "versionConstraint": "^3.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^3.0.0"
         }
       ],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "test_api": {
       "name": "test_api",
@@ -2191,53 +1724,42 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "async",
-          "versionConstraint": "^2.5.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.5.0"
         },
         {
           "name": "boolean_selector",
-          "versionConstraint": "^2.1.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.1.0"
         },
         {
           "name": "collection",
-          "versionConstraint": "^1.15.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.15.0"
         },
         {
           "name": "meta",
-          "versionConstraint": "^1.16.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.16.0"
         },
         {
           "name": "source_span",
-          "versionConstraint": "^1.8.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.8.0"
         },
         {
           "name": "stack_trace",
-          "versionConstraint": "^1.10.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.10.0"
         },
         {
           "name": "stream_channel",
-          "versionConstraint": "^2.1.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.1.0"
         },
         {
           "name": "string_scanner",
-          "versionConstraint": "^1.1.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.1.0"
         },
         {
           "name": "term_glyph",
-          "versionConstraint": "^1.2.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.2.0"
         }
       ],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "test_core": {
       "name": "test_core",
@@ -2245,113 +1767,90 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "analyzer",
-          "versionConstraint": ">=8.0.0 <13.0.0",
-          "isDevDependency": false
+          "versionConstraint": ">=8.0.0 <13.0.0"
         },
         {
           "name": "args",
-          "versionConstraint": "^2.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.0.0"
         },
         {
           "name": "async",
-          "versionConstraint": "^2.5.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.5.0"
         },
         {
           "name": "boolean_selector",
-          "versionConstraint": "^2.1.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.1.0"
         },
         {
           "name": "collection",
-          "versionConstraint": "^1.15.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.15.0"
         },
         {
           "name": "coverage",
-          "versionConstraint": "^1.15.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.15.0"
         },
         {
           "name": "frontend_server_client",
-          "versionConstraint": ">=3.2.0 <5.0.0",
-          "isDevDependency": false
+          "versionConstraint": ">=3.2.0 <5.0.0"
         },
         {
           "name": "glob",
-          "versionConstraint": "^2.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.0.0"
         },
         {
           "name": "io",
-          "versionConstraint": "^1.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.0.0"
         },
         {
           "name": "meta",
-          "versionConstraint": "^1.16.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.16.0"
         },
         {
           "name": "package_config",
-          "versionConstraint": "^2.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.0.0"
         },
         {
           "name": "path",
-          "versionConstraint": "^1.8.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.8.0"
         },
         {
           "name": "pool",
-          "versionConstraint": "^1.5.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.5.0"
         },
         {
           "name": "source_map_stack_trace",
-          "versionConstraint": "^2.1.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.1.0"
         },
         {
           "name": "source_maps",
-          "versionConstraint": "^0.10.10",
-          "isDevDependency": false
+          "versionConstraint": "^0.10.10"
         },
         {
           "name": "source_span",
-          "versionConstraint": "^1.8.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.8.0"
         },
         {
           "name": "stack_trace",
-          "versionConstraint": "^1.10.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.10.0"
         },
         {
           "name": "stream_channel",
-          "versionConstraint": "^2.1.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.1.0"
         },
         {
           "name": "test_api",
-          "versionConstraint": "0.7.11",
-          "isDevDependency": false
+          "versionConstraint": "0.7.11"
         },
         {
           "name": "vm_service",
-          "versionConstraint": ">=6.0.0 <16.0.0",
-          "isDevDependency": false
+          "versionConstraint": ">=6.0.0 <16.0.0"
         },
         {
           "name": "yaml",
-          "versionConstraint": "^3.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^3.0.0"
         }
       ],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "test_descriptor": {
       "name": "test_descriptor",
@@ -2359,33 +1858,26 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "async",
-          "versionConstraint": "^2.5.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.5.0"
         },
         {
           "name": "collection",
-          "versionConstraint": "^1.15.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.15.0"
         },
         {
           "name": "path",
-          "versionConstraint": "^1.8.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.8.0"
         },
         {
           "name": "term_glyph",
-          "versionConstraint": "^1.2.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.2.0"
         },
         {
           "name": "test",
-          "versionConstraint": "^1.16.6",
-          "isDevDependency": false
+          "versionConstraint": "^1.16.6"
         }
       ],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "test_process": {
       "name": "test_process",
@@ -2393,28 +1885,22 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "async",
-          "versionConstraint": "^2.5.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.5.0"
         },
         {
           "name": "meta",
-          "versionConstraint": "^1.3.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.3.0"
         },
         {
           "name": "path",
-          "versionConstraint": "^1.8.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.8.0"
         },
         {
           "name": "test",
-          "versionConstraint": "^1.16.6",
-          "isDevDependency": false
+          "versionConstraint": "^1.16.6"
         }
       ],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "typed_data": {
       "name": "typed_data",
@@ -2422,13 +1908,9 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "collection",
-          "versionConstraint": "^1.15.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.15.0"
         }
-      ],
-      "isPrimary": false,
-      "onlyDev": false,
-      "latestVersion": null
+      ]
     },
     "uuid": {
       "name": "uuid",
@@ -2436,26 +1918,20 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "crypto",
-          "versionConstraint": "^3.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^3.0.0"
         },
         {
           "name": "fixnum",
-          "versionConstraint": "^1.1.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.1.0"
         }
       ],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "vm_service": {
       "name": "vm_service",
       "version": "15.0.2",
       "dependencies": [],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "watcher": {
       "name": "watcher",
@@ -2463,26 +1939,19 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "async",
-          "versionConstraint": "^2.5.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.5.0"
         },
         {
           "name": "path",
-          "versionConstraint": "^1.8.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.8.0"
         }
       ],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "web": {
       "name": "web",
       "version": "1.1.1",
-      "dependencies": [],
-      "isPrimary": false,
-      "onlyDev": false,
-      "latestVersion": null
+      "dependencies": []
     },
     "web_socket": {
       "name": "web_socket",
@@ -2490,13 +1959,10 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "web",
-          "versionConstraint": ">=0.5.0 <2.0.0",
-          "isDevDependency": false
+          "versionConstraint": ">=0.5.0 <2.0.0"
         }
       ],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "web_socket_channel": {
       "name": "web_socket_channel",
@@ -2504,33 +1970,26 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "async",
-          "versionConstraint": "^2.5.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.5.0"
         },
         {
           "name": "crypto",
-          "versionConstraint": "^3.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^3.0.0"
         },
         {
           "name": "stream_channel",
-          "versionConstraint": "^2.1.0",
-          "isDevDependency": false
+          "versionConstraint": "^2.1.0"
         },
         {
           "name": "web",
-          "versionConstraint": ">=0.5.0 <2.0.0",
-          "isDevDependency": false
+          "versionConstraint": ">=0.5.0 <2.0.0"
         },
         {
           "name": "web_socket",
-          "versionConstraint": ">=0.1.5 <2.0.0",
-          "isDevDependency": false
+          "versionConstraint": ">=0.1.5 <2.0.0"
         }
       ],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "webkit_inspection_protocol": {
       "name": "webkit_inspection_protocol",
@@ -2538,13 +1997,10 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "logging",
-          "versionConstraint": "^1.0.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.0.0"
         }
       ],
-      "isPrimary": false,
-      "onlyDev": true,
-      "latestVersion": null
+      "onlyDev": true
     },
     "yaml": {
       "name": "yaml",
@@ -2552,23 +2008,17 @@ export const vizDataString = JSON.stringify({
       "dependencies": [
         {
           "name": "collection",
-          "versionConstraint": "^1.15.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.15.0"
         },
         {
           "name": "source_span",
-          "versionConstraint": "^1.8.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.8.0"
         },
         {
           "name": "string_scanner",
-          "versionConstraint": "^1.2.0",
-          "isDevDependency": false
+          "versionConstraint": "^1.2.0"
         }
-      ],
-      "isPrimary": false,
-      "onlyDev": false,
-      "latestVersion": null
+      ]
     }
   }
 });

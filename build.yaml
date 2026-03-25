@@ -7,6 +7,7 @@ targets:
       - build.yaml
       - lib/$lib$
       - lib/src/colors.dart
+      - lib/src/converters.dart
       - lib/src/dependency.*
       - lib/src/dot.dart
       - lib/src/options.*
@@ -45,4 +46,5 @@ targets:
       source_gen|combining_builder:
         options:
           ignore_for_file:
+            - avoid_bool_literals_in_conditional_expressions
             - lines_longer_than_80_chars

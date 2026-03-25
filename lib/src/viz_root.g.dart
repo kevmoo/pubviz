@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: avoid_bool_literals_in_conditional_expressions, lines_longer_than_80_chars
 
 part of 'viz_root.dart';
 
