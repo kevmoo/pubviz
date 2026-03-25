@@ -260,6 +260,33 @@ void main() {
         }
       }
     });
+    test('preserves includesLatest calculation', () {
+      final dep = Dependency(
+        'foo',
+        VersionConstraint.parse('>=1.0.0 <1.2.0'),
+        false,
+      );
+      final pkg = VizPackage(
+        'bar',
+        Version(1, 0, 0),
+        {dep},
+        null,
+        isPrimary: true,
+      );
+      final depPkg = VizPackage('foo', Version(1, 1, 0), {}, Version(1, 3, 0));
+
+      final root = VizRoot.assemble('bar', {
+        'bar': pkg,
+        'foo': depPkg,
+      }, flagOutdated: true);
+
+      final initialDep = root.packages['bar']!.dependencies.first;
+      expect(initialDep.includesLatest, isFalse);
+
+      final filtered = root.filter(excludeDev: false, onlyOutdated: false);
+      final filteredDep = filtered.packages['bar']!.dependencies.first;
+      expect(filteredDep.includesLatest, isFalse);
+    });
   });
 
   group('generate VizRoot (real workspace)', () {
