@@ -60,9 +60,7 @@ abstract class Service {
         SplayTreeSet.of(
           value.entries
               .where((element) => !_ignoredPackages.contains(element.key))
-              .map(
-                (entry) => Dependency(entry.key, entry.value.toString(), false),
-              ),
+              .map((entry) => Dependency(entry.key, entry.value, false)),
         ),
         flagOutdated ? _latest(key.name) : null,
       );

@@ -3,9 +3,11 @@ import 'dart:io';
 import 'package:path/path.dart' as p;
 import 'package:pub_semver/pub_semver.dart';
 import 'package:pubviz/pubviz.dart';
+
 import 'package:pubviz/src/service.dart';
 import 'package:pubviz/src/update_order.dart';
 import 'package:test/test.dart';
+import 'package:test_descriptor/test_descriptor.dart' as d;
 
 import 'mock_data_service.dart';
 
@@ -20,7 +22,7 @@ void main() {
     });
 
     test('all dependencies', () async {
-      final vp = await VizRoot.forDirectory(service);
+      final vp = await service.vizRoot();
 
       expect(vp.root.name, 'repo_manager');
       expect(vp.packages, hasLength(82));
@@ -40,10 +42,7 @@ void main() {
     });
 
     test('direct dependencies only', () async {
-      final vp = await VizRoot.forDirectory(
-        service,
-        directDependenciesOnly: true,
-      );
+      final vp = await service.vizRoot(directDependenciesOnly: true);
 
       expect(vp.root.name, 'repo_manager');
       expect(vp.packages, hasLength(25));
@@ -63,10 +62,7 @@ void main() {
     });
 
     test('prod dependencies only', () async {
-      final vp = await VizRoot.forDirectory(
-        service,
-        productionDependenciesOnly: true,
-      );
+      final vp = await service.vizRoot(productionDependenciesOnly: true);
 
       expect(vp.root.name, 'repo_manager');
       expect(vp.packages, hasLength(51));
@@ -86,8 +82,7 @@ void main() {
     });
 
     test('prod + direct dependencies only', () async {
-      final vp = await VizRoot.forDirectory(
-        service,
+      final vp = await service.vizRoot(
         directDependenciesOnly: true,
         productionDependenciesOnly: true,
       );
@@ -110,7 +105,7 @@ void main() {
     });
 
     test('outdated', () async {
-      final vp = await VizRoot.forDirectory(service, flagOutdated: true);
+      final vp = await service.vizRoot(flagOutdated: true);
 
       expect(vp.root.name, 'repo_manager');
       expect(vp.packages, hasLength(82));
@@ -131,8 +126,7 @@ void main() {
 
     test('ignore', () async {
       final ignoredPackages = ['markdown', 'shelf', 'build_runner'];
-      final vp = await VizRoot.forDirectory(
-        service,
+      final vp = await service.vizRoot(
         flagOutdated: true,
         ignorePackages: ignoredPackages,
       );
@@ -155,7 +149,7 @@ void main() {
     });
 
     test('workspace', () async {
-      final vp = await VizRoot.forDirectory(service, includeWorkspace: true);
+      final vp = await service.vizRoot(includeWorkspace: true);
 
       expect(vp.root.name, 'repo_manager');
       expect(vp.packages, hasLength(82));
@@ -173,7 +167,7 @@ void main() {
     });
 
     test('update order', () async {
-      final vp = await VizRoot.forDirectory(service, flagOutdated: true);
+      final vp = await service.vizRoot(flagOutdated: true);
       final updateOrder = computeUpdateOrder(vp);
 
       expect(updateOrder.map((e) => e.name), [
@@ -187,11 +181,11 @@ void main() {
 
     test('update order handles a cycle', () {
       final pkgA = VizPackage('a', Version(1, 0, 0), {
-        Dependency('b', 'any', false)..includesLatest = false,
+        Dependency('b', VersionConstraint.any, false)..includesLatest = false,
       }, Version(2, 0, 0));
 
       final pkgB = VizPackage('b', Version(1, 0, 0), {
-        Dependency('a', 'any', false)..includesLatest = false,
+        Dependency('a', VersionConstraint.any, false)..includesLatest = false,
       }, Version(2, 0, 0));
 
       final root = _MockVizRoot({
@@ -206,6 +200,68 @@ void main() {
     });
   });
 
+  group('filter', () {
+    late Service service;
+    late VizRoot vp;
+
+    setUpAll(() async {
+      service = MockDataService(_mockPath);
+      vp = await service.vizRoot(flagOutdated: true);
+    });
+
+    test('excludeDev', () {
+      final filtered = vp.filter(excludeDev: true, onlyOutdated: false);
+
+      expect(filtered.rootPackageName, 'repo_manager');
+      // Should have fewer packages than vp (82) since dev packages are dropped
+      expect(filtered.packages.length, lessThan(vp.packages.length));
+      expect(
+        filtered.packages.values.where((p) => p.isPrimary),
+        hasLength(1),
+        reason: 'Only primary',
+      );
+
+      // Ensure no packages have devDependencies left!
+      for (final p in filtered.packages.values) {
+        for (final d in p.dependencies) {
+          expect(d.isDevDependency, isFalse);
+        }
+      }
+    });
+
+    test('onlyOutdated', () {
+      final filtered = vp.filter(excludeDev: false, onlyOutdated: true);
+
+      expect(filtered.rootPackageName, 'repo_manager');
+      expect(filtered.packages.length, lessThan(vp.packages.length));
+
+      // Any remaining leaf node without outgoing edges must be an outdated
+      // package, unless it is part of the path to an outdated package.
+      expect(
+        filtered.packages.values.any(
+          (p) =>
+              p.latestVersion != null &&
+              p.latestVersion!.compareTo(p.version!) > 0,
+        ),
+        isTrue,
+        reason: 'Should contain at least one outdated package',
+      );
+    });
+
+    test('excludeDev and onlyOutdated', () {
+      final filtered = vp.filter(excludeDev: true, onlyOutdated: true);
+
+      expect(filtered.rootPackageName, 'repo_manager');
+      expect(filtered.packages.length, lessThan(vp.packages.length));
+
+      for (final p in filtered.packages.values) {
+        for (final d in p.dependencies) {
+          expect(d.isDevDependency, isFalse);
+        }
+      }
+    });
+  });
+
   group('generate VizRoot (real workspace)', () {
     late Service service;
 
@@ -214,10 +270,10 @@ void main() {
     });
 
     test('workspace', () async {
-      final vp = await VizRoot.forDirectory(service, includeWorkspace: true);
+      final vp = await service.vizRoot(includeWorkspace: true);
 
       expect(vp.root.name, 'my_workspace');
-      expect(vp.packages, hasLength(4));
+      expect(vp.packages, hasLength(5));
 
       final primaryPackages = vp.packages.values.where(
         (element) => element.isPrimary,
@@ -241,14 +297,97 @@ void main() {
       );
       expect(
         nonPrimaryPackages.map((e) => e.name),
-        ['args'],
+        unorderedEquals(['args', 'path']),
         reason: 'Transitive dependencies should not be primary',
+      );
+    });
+
+    test('workspace filtering includes all primary packages', () async {
+      final vp = await service.vizRoot(includeWorkspace: true);
+
+      final filtered = vp.filter(excludeDev: true, onlyOutdated: false);
+
+      expect(
+        filtered.packages.values.where((p) => p.isPrimary).map((e) => e.name),
+        unorderedEquals(['my_workspace', 'member_a', 'member_b']),
+        reason: 'Filtering should retain all workspace primary packages',
+      );
+      expect(filtered.packages.containsKey('args'), isTrue);
+    });
+
+    test('workspace primary package dev dependencies emit dot edges', () async {
+      final vp = await service.vizRoot(includeWorkspace: true);
+
+      // Verify that the dev dependency (path) from member_a is present in the
+      // graph and it outputs a dashed edge.
+      final dot = vp.toDot();
+      expect(
+        dot,
+        contains('member_a -> path [label="^1.8.0", style=dashed];'),
+        reason: 'Dev dependencies of non-root primary packages should render',
+      );
+    });
+  });
+
+  group('ahead of latest', () {
+    late Service service;
+
+    setUpAll(() async {
+      await d.dir('pubviz_ahead_test_', [
+        d.file('pubspec.yaml', '''
+name: test_ahead
+version: 1.0.0
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+dependencies:
+  args: ^2.0.0
+'''),
+        d.file('pub_deps_list.txt', '''
+Dart SDK 3.0.0
+test_ahead 1.0.0
+
+dependencies:
+- args 2.0.0
+'''),
+        d.file('outdated.json', '''
+{
+  "packages": [
+    {
+      "package": "args",
+      "current": { "version": "2.0.0" },
+      "upgradable": { "version": "2.0.0" },
+      "resolvable": { "version": "2.0.0" },
+      "latest": { "version": "1.5.0" }
+    }
+  ]
+}
+'''),
+      ]).create();
+
+      service = MockDataService(d.path('pubviz_ahead_test_'));
+    });
+
+    test('allowsLatest is true for ahead constraints', () async {
+      final vp = await service.vizRoot(flagOutdated: true);
+
+      final root = vp.root;
+      expect(root.name, 'test_ahead');
+
+      final dep = root.dependencies.firstWhere((d) => d.name == 'args');
+      expect(
+        dep.includesLatest,
+        isTrue,
+        reason: 'Constraint ^2.0.0 is ahead of latest 1.5.0',
       );
     });
   });
 }
 
 class _MockVizRoot implements VizRoot {
+  @override
+  VizRoot filter({required bool excludeDev, required bool onlyOutdated}) =>
+      throw UnimplementedError();
+
   @override
   final String rootPackageName;
   @override
@@ -258,6 +397,15 @@ class _MockVizRoot implements VizRoot {
   VizPackage get root => packages[rootPackageName]!;
 
   _MockVizRoot(this.packages) : rootPackageName = 'root';
+
+  @override
+  Map<String, dynamic> toJson() => {};
+
+  @override
+  void update(bool includeWorkspace) {}
+
+  @override
+  void updateDevOnly(Dependency dep) {}
 }
 
 const _writeOutput = false;

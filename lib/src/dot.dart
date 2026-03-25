@@ -1,31 +1,8 @@
 import 'package:gviz/gviz.dart';
-import 'package:meta/meta.dart';
 
 import 'colors.dart';
 import 'viz_package.dart';
 import 'viz_root.dart';
-
-@internal
-String toDotHtml(
-  String htmlTemplate,
-  VizRoot root, {
-  List<String> ignorePackages = const [],
-}) {
-  final dot = root.toDot(ignorePackages: ignorePackages);
-  final regex = RegExp(
-    r'(<script type="text/vnd\.graphviz" id="dot">)(.*?)(</script>)',
-    dotAll: true,
-  );
-  return htmlTemplate
-      .replaceFirstMapped(
-        regex,
-        (match) => '${match.group(1)}\n$dot\n      ${match.group(3)}',
-      )
-      .replaceFirst(
-        RegExp(r'<title>pubviz - .*?</title>'),
-        '<title>pubviz - ${root.root.name}</title>',
-      );
-}
 
 extension VizRootExt on VizRoot {
   String toDot({Iterable<String> ignorePackages = const []}) {
@@ -91,7 +68,7 @@ void _writeDot(
   final orderedDeps = pkg.dependencies.toList(growable: false)..sort();
 
   for (var dep in orderedDeps.where((d) => !ignorePackages.contains(d.name))) {
-    if (!dep.isDevDependency || isRoot) {
+    if (!dep.isDevDependency || isRoot || pkg.isPrimary) {
       final edgeProps = <String, String>{};
 
       if (!dep.versionConstraint.isAny) {

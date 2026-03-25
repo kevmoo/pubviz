@@ -10,6 +10,9 @@ member_a 1.0.0
 dependencies:
 - args 2.0.0
 
+dev dependencies:
+- path 1.8.0
+
 member_b 1.0.0
 
 dependencies:
@@ -18,3 +21,4 @@ dependencies:
 
 transitive dependencies:
 - args 2.0.0
+- path 1.8.0

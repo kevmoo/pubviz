@@ -3,11 +3,15 @@
 @JS()
 library;
 
-import 'dart:convert' show LineSplitter, htmlEscape;
+import 'dart:async';
+import 'dart:convert' show LineSplitter, htmlEscape, jsonDecode;
 import 'dart:js_interop';
+import 'dart:js_interop_unsafe';
 
 import 'package:pubviz/src/colors.dart';
+import 'package:pubviz/src/dot.dart';
 import 'package:pubviz/src/version.dart';
+import 'package:pubviz/src/viz_root.dart';
 import 'package:web/web.dart';
 
 typedef DepInfo = ({
@@ -24,6 +28,12 @@ final controlsPanel =
     document.querySelector('#controls-panel') as HTMLDivElement;
 final zoomCheckbox =
     document.querySelector('#zoomCheckbox') as HTMLInputElement;
+final devDependenciesCheckbox =
+    document.querySelector('#devDependenciesCheckbox') as HTMLInputElement;
+final outdatedCheckboxContainer =
+    document.querySelector('#outdatedCheckboxContainer') as HTMLDivElement;
+final outdatedOnlyCheckbox =
+    document.querySelector('#outdatedOnlyCheckbox') as HTMLInputElement;
 
 final depsInBox = document.querySelector('#deps-in-box') as HTMLDivElement;
 final depsOutBox = document.querySelector('#deps-out-box') as HTMLDivElement;
@@ -35,17 +45,34 @@ SVGGElement? _lockedElement;
 
 SVGElement get _root => __root!;
 
-final List<String> _dotContentLines = List.unmodifiable(
-  LineSplitter.split(
-    ((document.querySelector('#dot') as HTMLScriptElement).innerHTML
-            as JSString)
-        .toDart
-        .trim(),
-  ),
-);
+late final VizRoot _originalVizRoot;
 
-void main() {
-  _process();
+void main() async {
+  final url = Uri.parse(window.location.href).resolve('viz_data.js').toString();
+  final module = await importModule(url.toJS).toDart;
+  final string = module.getProperty('vizDataString'.toJS) as JSString?;
+
+  if (string == null) {
+    throw StateError('`vizDataString` is not defined locally or globally.');
+  }
+
+  final jsonString = string.toDart.trim();
+  _originalVizRoot = VizRoot.fromJson(
+    jsonDecode(jsonString) as Map<String, dynamic>,
+  )..update(false);
+  document.title = 'pubviz - ${_originalVizRoot.root.name}';
+  final hasOutdated = _originalVizRoot.packages.values.any(
+    (p) =>
+        p.version != null &&
+        p.latestVersion != null &&
+        p.latestVersion!.compareTo(p.version!) > 0,
+  );
+  if (!hasOutdated) {
+    outdatedOnlyCheckbox.disabled = true;
+    outdatedCheckboxContainer.title = 'No outdated packages found.';
+  }
+
+  unawaited(_process());
 
   depsInBox.onWheel.listen((e) => e.stopPropagation());
   depsOutBox.onWheel.listen((e) => e.stopPropagation());
@@ -67,12 +94,28 @@ void main() {
     __root?.classList.toggle('zoom');
   });
 
+  devDependenciesCheckbox.onChange.listen((_) {
+    unawaited(_process());
+  });
+
+  outdatedOnlyCheckbox.onChange.listen((_) {
+    unawaited(_process());
+  });
+
   window.onKeyDown.listen((KeyboardEvent event) {
     switch (event.key) {
       case 'c' || 'C':
         toggleControls();
       case 'z' || 'Z':
         toggleZoom();
+      case 'd' || 'D':
+        devDependenciesCheckbox.checked = !devDependenciesCheckbox.checked;
+        _process();
+      case 'o' || 'O':
+        if (hasOutdated) {
+          outdatedOnlyCheckbox.checked = !outdatedOnlyCheckbox.checked;
+          _process();
+        }
     }
   });
 
@@ -91,14 +134,22 @@ Future<void> _process() async {
   try {
     _vizInstance ??= await Viz.instance().toDart;
 
+    final filteredRoot = _originalVizRoot.filter(
+      excludeDev: !devDependenciesCheckbox.checked,
+      onlyOutdated: outdatedOnlyCheckbox.checked,
+    );
+
+    final dotString = filteredRoot.toDot();
+
     final output = _vizInstance!.renderString(
-      _dotContentLines.join('\n'),
+      dotString,
       RenderOptions(format: 'svg'),
     );
     _updateBody(output);
   } catch (e) {
     final output = '<pre>${htmlEscape.convert(e.toString())}</pre>';
     document.querySelector('#graph-container')!.append(output.toJS);
+    rethrow;
   } finally {
     print('Total time generating graph: ${watch.elapsed}');
   }

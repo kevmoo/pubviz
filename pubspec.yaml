@@ -1,5 +1,5 @@
 name: pubviz
-version: 5.0.1-wip
+version: 6.0.0-wip
 description: >-
   A tool to visualize package dependencies and version constraints in your Dart
   project.
@@ -16,6 +16,7 @@ dependencies:
   gviz: ^0.4.2
   http: ^1.0.0
   io: ^1.0.0
+  json_annotation: ^4.11.0
   meta: ^1.18.2
   path: ^1.8.0
   pub_semver: ^2.1.4
@@ -26,12 +27,13 @@ dependencies:
 
 dev_dependencies:
   build_cli: ^2.2.1
-  build_runner: ^2.4.8
+  build_runner: ^2.13.1
   build_verify: ^3.0.0
   build_version: ^2.0.3
   build_web_compilers: ^4.2.4
   crypto: ^3.0.7
   dart_flutter_team_lints: ^3.0.0
+  json_serializable: ^6.13.1
   test: ^1.25.1
   test_descriptor: ^2.0.0
   test_process: ^2.0.0

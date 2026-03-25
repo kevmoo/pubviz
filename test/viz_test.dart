@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
-import 'package:pubviz/pubviz.dart';
 import 'package:pubviz/src/pub_data_service.dart';
+import 'package:pubviz/src/root_builder.dart';
 import 'package:pubviz/src/util.dart';
 import 'package:test/test.dart';
 import 'package:test_descriptor/test_descriptor.dart' as d;
@@ -27,7 +27,7 @@ void main() {
     });
 
     test('all dependencies', () async {
-      final vp = await VizRoot.forDirectory(service);
+      final vp = await service.vizRoot();
 
       expect(vp.root.name, 'test_pubspec');
       expect(vp.packages, contains('http'));
@@ -36,10 +36,7 @@ void main() {
     });
 
     test('direct dependencies only', () async {
-      final vp = await VizRoot.forDirectory(
-        service,
-        directDependenciesOnly: true,
-      );
+      final vp = await service.vizRoot(directDependenciesOnly: true);
 
       expect(vp.root.name, 'test_pubspec');
       expect(vp.packages, contains('http'));

@@ -69,6 +69,7 @@ void main() async {
 final Set<Pattern> _ignoredPatterns = {
   RegExp(r'^\.'),
   'packages',
+  'viz_data.js',
   'web_app.dart2js.js.deps',
   'web_app.dart2js.js.info.json',
 };

@@ -1,53 +1,24 @@
+import 'dart:convert';
 import 'dart:io';
 
+import 'package:pubviz/src/pub_data_service.dart';
+import 'package:pubviz/src/root_builder.dart';
+
 void main() async {
-  print('Running pubviz to generate dot graph...');
-  final result = await Process.run('dart', [
-    'bin/pubviz.dart',
-    '--action',
-    'print',
-  ]);
+  print('Generating VizRoot for current workspace...');
+  final service = PubDataService(Directory.current.path);
 
-  if (result.exitCode != 0) {
-    stderr
-      ..writeln('Failed to generate graph:')
-      ..writeln(result.stdout)
-      ..writeln(result.stderr);
-    exitCode = 1;
-    return;
-  }
+  final vp = await service.vizRoot(flagOutdated: true);
 
-  final dotOutput = result.stdout as String;
+  const encoder = JsonEncoder.withIndent('  ');
+  final jsonString = encoder.convert(vp.toJson());
+  // We need vizDataString to be a raw JavaScript string representing JSON.
+  final jsContent =
+      'export const vizDataString = JSON.stringify($jsonString);\n';
 
-  final indexHtmlFile = File('_example_src/index.html');
-  if (!indexHtmlFile.existsSync()) {
-    stderr.writeln('Could not find _example_src/index.html');
-    exit(1);
-  }
+  File('_example_src/viz_data.js').writeAsStringSync(jsContent);
 
-  var htmlContent = indexHtmlFile.readAsStringSync();
-
-  // Replace the contents inside the script tag using regex
-  final regex = RegExp(
-    r'(<script type="text/vnd\.graphviz" id="dot">)(.*?)(</script>)',
-    dotAll: true,
-  );
-
-  if (!regex.hasMatch(htmlContent)) {
-    stderr.writeln(
-      'Could not find the target script tag in index.html to update.',
-    );
-    exitCode = 1;
-    return;
-  }
-
-  htmlContent = htmlContent.replaceFirstMapped(
-    regex,
-    (match) => '${match.group(1)}\n$dotOutput      ${match.group(3)}',
-  );
-
-  indexHtmlFile.writeAsStringSync(htmlContent);
   print(
-    'Successfully updated _example_src/index.html with fresh pubviz graph bits!',
+    'Successfully updated _example_src/viz_data.js with fresh pubviz graph bits!',
   );
 }
