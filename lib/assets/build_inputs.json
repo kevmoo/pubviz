@@ -8,7 +8,7 @@
   "lib/pubviz.dart": "98ab547abef43f10419b1b6441fd97cb77168156d2ad2a1fc1ed31e0f5f86343",
   "lib/src/colors.dart": "802bcd9a31b062865654c1a5300292164ff8f7f003caf2c8277225177ce74e56",
   "lib/src/converters.dart": "be00d906ef2ac939ed0c9aae665f09344c320e7c9456afdb7c1c31fb88e9c161",
-  "lib/src/dependency.dart": "96f3eebed38bde8f9d9286701af068c065c086430ec83dc75b26c8407954a2b9",
+  "lib/src/dependency.dart": "ced75d3e83561b5f463ddee1977b06192e717088d0443f898a3ca7109f691696",
   "lib/src/dependency.g.dart": "40fe0714955bacfe15b12d61b99eeab499b57235a3f2f4de6844c6247a1cb623",
   "lib/src/dot.dart": "7d825f5680454725a849b034c0f3d1f04e2e5a9d0769906e0dfd820918f254d6",
   "lib/src/options.dart": "2947661500b9198b22fcb0bb611d8c036239b09adc0103637ccf4a167ac311ff",
