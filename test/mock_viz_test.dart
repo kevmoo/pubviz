@@ -327,6 +327,28 @@ void main() {
       );
     });
   });
+
+  group('ahead of latest', () {
+    late Service service;
+
+    setUpAll(() {
+      service = MockDataService(p.join('test', 'mock_ahead'));
+    });
+
+    test('allowsLatest is true for ahead constraints', () async {
+      final vp = await service.vizRoot(flagOutdated: true);
+
+      final root = vp.root;
+      expect(root.name, 'test_ahead');
+
+      final dep = root.dependencies.firstWhere((d) => d.name == 'args');
+      expect(
+        dep.includesLatest,
+        isTrue,
+        reason: 'Constraint ^2.0.0 is ahead of latest 1.5.0',
+      );
+    });
+  });
 }
 
 class _MockVizRoot implements VizRoot {

@@ -39,11 +39,12 @@ extension ServiceVizRootExt on Service {
           if (!allowsLatest) {
             // it could be that the versionConstraint is actually *ahead* of
             // latest – with a pre-release version
-
-            // TODO: get rid of the `as` here – this is weird!
-            final constraintAsRange = dep.versionConstraint as VersionRange;
-            if (package.latestVersion!.compareTo(constraintAsRange) < 0) {
-              allowsLatest = true;
+            final constraint = dep.versionConstraint;
+            if (constraint is VersionRange) {
+              final min = constraint.min;
+              if (min != null && min.compareTo(package.latestVersion!) > 0) {
+                allowsLatest = true;
+              }
             }
           }
 

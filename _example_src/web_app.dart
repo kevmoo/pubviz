@@ -62,7 +62,10 @@ void main() async {
   )..update(false);
   document.title = 'pubviz - ${_originalVizRoot.root.name}';
   final hasOutdated = _originalVizRoot.packages.values.any(
-    (p) => p.latestVersion != null,
+    (p) =>
+        p.version != null &&
+        p.latestVersion != null &&
+        p.latestVersion!.compareTo(p.version!) > 0,
   );
   if (!hasOutdated) {
     outdatedOnlyCheckbox.disabled = true;
