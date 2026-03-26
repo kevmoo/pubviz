@@ -1,0 +1,4 @@
+# https://github.com/github-linguist/linguist/blob/master/docs/overrides.md
+lib/assets/** linguist-generated=true
+*.g.dart linguist-generated=true
+lib/src/version.dart linguist-generated=true
