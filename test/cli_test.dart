@@ -216,9 +216,10 @@ resolution: workspace
       final output = await process.stdoutStream().join('\n');
 
       // Both packages should be present as highlighted primary nodes.
-      // Since root was the invocation target, it gets the primary label format without a version.
+      // Since root was the invocation target, it gets the primary label
+      // format without a version.
       expect(output, contains('root [label=root'));
-      expect(output, contains('pkga [label="pkga\\n0.0.0"'));
+      expect(output, contains(r'pkga [label="pkga\n0.0.0"'));
 
       await process.shouldExit(0);
     });
@@ -236,7 +237,7 @@ resolution: workspace
         final output = await process.stdoutStream().join('\n');
 
         // Both packages should be present as highlighted primary nodes.
-        expect(output, contains('root [label="root\\n0.0.0"'));
+        expect(output, contains(r'root [label="root\n0.0.0"'));
         expect(output, contains('pkga [label=pkga'));
 
         await process.shouldExit(0);
