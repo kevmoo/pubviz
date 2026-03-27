@@ -54,12 +54,8 @@ class Options {
   )
   final bool version;
 
-  @CliOption(
-    abbr: 'w',
-    help: 'Include all packages in the workspace.',
-    negatable: false,
-  )
-  final bool workspace;
+  @CliOption(abbr: 'w', help: 'Include all packages in the workspace.')
+  final bool? workspace;
 
   @CliOption(abbr: '?', help: 'Print this help content.', negatable: false)
   final bool help;
@@ -76,7 +72,7 @@ class Options {
     required this.help,
     required this.rest,
     required this.version,
-    required this.workspace,
+    this.workspace,
   }) : ignorePackages = ignorePackages ?? const [];
 }
 

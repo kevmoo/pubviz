@@ -72,27 +72,6 @@ $_usage''');
     await process.shouldExit(0);
   });
 
-  test('workspace warning', () async {
-    final process = await TestProcess.start(dartPath, [
-      _entryPoint,
-      '-a',
-      'print',
-      p.join('test', 'mock_workspace'),
-    ]);
-
-    await expectLater(
-      process.stderr,
-      emits(
-        contains(
-          'This package is a workspace root. To visualize all packages in '
-          'the workspace, use the --workspace flag.',
-        ),
-      ),
-    );
-
-    await process.shouldExit(0);
-  });
-
   test('serve action deletes temp dir when q is pressed', () async {
     final process = await TestProcess.start(dartPath, [
       _entryPoint,
@@ -222,7 +201,7 @@ Arguments:
   -d, --direct-dependencies        Include only direct dependencies.
   -p, --production-dependencies    Include only production (non-dev) dependencies.
   -v, --version                    Print the version of pubviz and exit.
-  -w, --workspace                  Include all packages in the workspace.
+  -w, --[no-]workspace             Include all packages in the workspace.
   -?, --help                       Print this help content.
 
 If <package path> is omitted, the current directory is used.''';

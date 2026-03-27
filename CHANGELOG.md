@@ -14,6 +14,12 @@
 - Added a filter to hide `dev_dependency` edges and nodes.
 - Added a filter to only show paths to outdated dependencies.
 
+### New Features
+- **Workspaces**: `pubviz` now automatically infers workspace context. 
+  If run in a workspace root or member package, it natively visualizes the 
+  layout for the entire workspace graph. The `--workspace` flag is now optional
+  (`--[no-]workspace`).
+
 ### Bug Fixes
 - **Workspaces**: Included missing relational web edges for `dev_dependencies`
   belonging to workspace sub-members. They previously rendered as disconnected
