@@ -4,6 +4,7 @@ import 'package:path/path.dart' as p;
 import 'package:pubviz/src/util.dart';
 import 'package:pubviz/src/version.dart';
 import 'package:test/test.dart';
+import 'package:test_descriptor/test_descriptor.dart' as d;
 import 'package:test_process/test_process.dart';
 
 final _entryPoint = p.join('bin', 'pubviz.dart');
@@ -174,6 +175,72 @@ $_usage''');
 
     // clean up after the test
     targetDir.deleteSync(recursive: true);
+  });
+
+  group('workspace inference', () {
+    setUp(() async {
+      await d.dir('workspace', [
+        d.file('pubspec.yaml', '''
+name: root
+environment:
+  sdk: ^3.10.0
+workspace:
+  - pkga
+'''),
+        d.dir('pkga', [
+          d.file('pubspec.yaml', '''
+name: pkga
+environment:
+  sdk: ^3.10.0
+resolution: workspace
+'''),
+        ]),
+      ]).create();
+
+      final getProcess = await TestProcess.start(Platform.executable, [
+        'pub',
+        'get',
+        '--offline',
+      ], workingDirectory: d.path('workspace'));
+      await getProcess.shouldExit(0);
+    });
+
+    test('implicitly includes all packages when in workspace root', () async {
+      final process = await TestProcess.start(dartPath, [
+        _entryPoint,
+        '-a',
+        'print',
+        d.path('workspace'),
+      ]);
+
+      final output = await process.stdoutStream().join('\n');
+
+      // Both packages should be present as highlighted primary nodes.
+      expect(output, contains('root [label=root'));
+      expect(output, contains('pkga [label="pkga'));
+
+      await process.shouldExit(0);
+    });
+
+    test('--no-workspace disables implicit inclusion', () async {
+      final process = await TestProcess.start(dartPath, [
+        _entryPoint,
+        '-a',
+        'print',
+        '--no-workspace',
+        d.path('workspace'),
+      ]);
+
+      final output = await process.stdoutStream().join('\n');
+
+      // Only root should be present. 'pkga' should not be heavily highlighted
+      // or included at all because the root package does not list it as a
+      // dependency.
+      expect(output, contains('root [label=root'));
+      expect(output, isNot(contains('pkga')));
+
+      await process.shouldExit(0);
+    });
   });
 
   test('readme', () {
