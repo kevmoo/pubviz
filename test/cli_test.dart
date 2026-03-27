@@ -4,6 +4,7 @@ import 'package:path/path.dart' as p;
 import 'package:pubviz/src/util.dart';
 import 'package:pubviz/src/version.dart';
 import 'package:test/test.dart';
+import 'package:test_descriptor/test_descriptor.dart' as d;
 import 'package:test_process/test_process.dart';
 
 final _entryPoint = p.join('bin', 'pubviz.dart');
@@ -68,27 +69,6 @@ $_usage''');
     ]);
 
     await expectLater(process.stdout, emits('digraph pubviz {'));
-
-    await process.shouldExit(0);
-  });
-
-  test('workspace warning', () async {
-    final process = await TestProcess.start(dartPath, [
-      _entryPoint,
-      '-a',
-      'print',
-      p.join('test', 'mock_workspace'),
-    ]);
-
-    await expectLater(
-      process.stderr,
-      emits(
-        contains(
-          'This package is a workspace root. To visualize all packages in '
-          'the workspace, use the --workspace flag.',
-        ),
-      ),
-    );
 
     await process.shouldExit(0);
   });
@@ -197,6 +177,94 @@ $_usage''');
     targetDir.deleteSync(recursive: true);
   });
 
+  group('workspace inference', () {
+    setUp(() async {
+      await d.dir('workspace', [
+        d.file('pubspec.yaml', '''
+name: root
+environment:
+  sdk: ^3.10.0
+workspace:
+  - pkga
+'''),
+        d.dir('pkga', [
+          d.file('pubspec.yaml', '''
+name: pkga
+environment:
+  sdk: ^3.10.0
+resolution: workspace
+'''),
+        ]),
+      ]).create();
+
+      final getProcess = await TestProcess.start(Platform.executable, [
+        'pub',
+        'get',
+        '--offline',
+      ], workingDirectory: d.path('workspace'));
+      await getProcess.shouldExit(0);
+    });
+
+    test('implicitly includes all packages when in workspace root', () async {
+      final process = await TestProcess.start(dartPath, [
+        _entryPoint,
+        '-a',
+        'print',
+        d.path('workspace'),
+      ]);
+
+      final output = await process.stdoutStream().join('\n');
+
+      // Both packages should be present as highlighted primary nodes.
+      // Since root was the invocation target, it gets the primary label
+      // format without a version.
+      expect(output, contains('root [label=root'));
+      expect(output, contains(r'pkga [label="pkga\n0.0.0"'));
+
+      await process.shouldExit(0);
+    });
+
+    test(
+      'implicitly includes all packages when run from a workspace member',
+      () async {
+        final process = await TestProcess.start(dartPath, [
+          _entryPoint,
+          '-a',
+          'print',
+          d.path('workspace/pkga'),
+        ]);
+
+        final output = await process.stdoutStream().join('\n');
+
+        // Both packages should be present as highlighted primary nodes.
+        expect(output, contains(r'root [label="root\n0.0.0"'));
+        expect(output, contains('pkga [label=pkga'));
+
+        await process.shouldExit(0);
+      },
+    );
+
+    test('--no-workspace disables implicit inclusion', () async {
+      final process = await TestProcess.start(dartPath, [
+        _entryPoint,
+        '-a',
+        'print',
+        '--no-workspace',
+        d.path('workspace'),
+      ]);
+
+      final output = await process.stdoutStream().join('\n');
+
+      // Only root should be present. 'pkga' should not be heavily highlighted
+      // or included at all because the root package does not list it as a
+      // dependency.
+      expect(output, contains('root [label=root'));
+      expect(output, isNot(contains('pkga')));
+
+      await process.shouldExit(0);
+    });
+  });
+
   test('readme', () {
     final readmeContent = File('README.md').readAsStringSync();
 
@@ -222,7 +290,7 @@ Arguments:
   -d, --direct-dependencies        Include only direct dependencies.
   -p, --production-dependencies    Include only production (non-dev) dependencies.
   -v, --version                    Print the version of pubviz and exit.
-  -w, --workspace                  Include all packages in the workspace.
+  -w, --[no-]workspace             Include all packages in the workspace.
   -?, --help                       Print this help content.
 
 If <package path> is omitted, the current directory is used.''';

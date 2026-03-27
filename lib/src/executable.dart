@@ -18,22 +18,17 @@ import 'viz_root.dart';
 Future<void> run(Options options, String path) async {
   final service = PubDataService(path);
 
-  if (!options.workspace && service.rootPubspec().workspace != null) {
-    stderr.writeln(
-      yellow.wrap(
-        'This package is a workspace root. '
-        'To visualize all packages in the workspace, use the --workspace '
-        'flag.',
-      ),
-    );
-  }
+  final pubspec = service.rootPubspec();
+  final includeWorkspace =
+      options.workspace ??
+      (pubspec.workspace != null || pubspec.resolution == 'workspace');
 
   final vp = await service.vizRoot(
     flagOutdated: options.flagOutdated,
     ignorePackages: options.ignorePackages,
     directDependenciesOnly: options.directDependencies ?? false,
     productionDependenciesOnly: options.productionDependencies,
-    includeWorkspace: options.workspace,
+    includeWorkspace: includeWorkspace,
   );
   if (options.flagOutdated) {
     final updateOrder = computeUpdateOrder(vp);

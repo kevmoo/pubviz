@@ -32,7 +32,7 @@ Options _$parseOptionsResult(ArgResults result) => Options(
   help: result['help'] as bool,
   rest: result.rest,
   version: result['version'] as bool,
-  workspace: result['workspace'] as bool,
+  workspace: result['workspace'] as bool?,
 );
 
 const _$ActionEnumMapBuildCli = <Action, String>{
@@ -94,7 +94,7 @@ ArgParser _$populateOptionsParser(ArgParser parser) => parser
     'workspace',
     abbr: 'w',
     help: 'Include all packages in the workspace.',
-    negatable: false,
+    defaultsTo: null,
   )
   ..addFlag(
     'help',
