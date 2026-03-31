@@ -1,14 +1,15 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:pubviz/src/pub_data_service.dart';
 import 'package:pubviz/src/root_builder.dart';
 
-void main() async {
-  print('Generating VizRoot for current workspace...');
-  final service = PubDataService(Directory.current.path);
+import '../test/mock_data_service.dart';
 
-  final vp = await service.vizRoot(flagOutdated: true);
+void main() async {
+  print('Generating VizRoot for demo workspace...');
+  final service = MockDataService('test/demo_workspace');
+
+  final vp = await service.vizRoot(includeWorkspace: true, flagOutdated: true);
 
   const encoder = JsonEncoder.withIndent('  ');
   final jsonString = encoder.convert(vp.toJson());

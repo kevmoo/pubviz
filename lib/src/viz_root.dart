@@ -3,19 +3,26 @@ import 'dart:collection';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pub_semver/pub_semver.dart';
 
+import 'converters.dart';
 import 'dependency.dart';
 import 'viz_package.dart';
 
 part 'viz_root.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(includeIfNull: false)
 class VizRoot {
   final String rootPackageName;
   final Map<String, VizPackage> packages;
 
-  VizRoot(this.rootPackageName, Map<String, VizPackage> packages)
-    : assert(packages.containsKey(rootPackageName)),
-      packages = UnmodifiableMapView(packages);
+  @FalseNullConverter()
+  final bool isWorkspace;
+
+  VizRoot(
+    this.rootPackageName,
+    Map<String, VizPackage> packages, {
+    this.isWorkspace = false,
+  }) : assert(packages.containsKey(rootPackageName)),
+       packages = UnmodifiableMapView(packages);
 
   factory VizRoot.fromJson(Map<String, dynamic> json) =>
       _$VizRootFromJson(json);
@@ -102,6 +109,7 @@ class VizRoot {
         pkg.latestVersion,
         isPrimary: primaryPackageNames.contains(name),
         onlyDev: !nonDevReachable.contains(name),
+        isPublishToNone: pkg.isPublishToNone,
       );
     }
 

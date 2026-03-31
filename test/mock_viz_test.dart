@@ -483,6 +483,8 @@ class _MockVizRoot implements VizRoot {
   final String rootPackageName;
   @override
   final Map<String, VizPackage> packages;
+  @override
+  bool get isWorkspace => false;
 
   @override
   VizPackage get root => packages[rootPackageName]!;

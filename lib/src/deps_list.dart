@@ -67,8 +67,8 @@ class DepsPackageEntry extends VersionedEntry {
 
   Map<VersionedEntry, Map<String, VersionConstraint>> get allEntries =>
       CombinedMapView([
-        ..._parent.packages.values.expand((e) => e.sections.values),
         _parent.transitiveDependencies,
+        ..._parent.packages.values.expand((e) => e.sections.values),
       ]);
 
   DepsPackageEntry._(super.entry, this.sections) : super.copy();

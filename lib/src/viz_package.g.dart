@@ -19,6 +19,9 @@ VizPackage _$VizPackageFromJson(Map<String, dynamic> json) => VizPackage(
       ? false
       : const FalseNullConverter().fromJson(json['isPrimary'] as bool?),
   onlyDev: json['onlyDev'] as bool? ?? true,
+  isPublishToNone: json['isPublishToNone'] == null
+      ? false
+      : const FalseNullConverter().fromJson(json['isPublishToNone'] as bool?),
 );
 
 Map<String, dynamic> _$VizPackageToJson(VizPackage instance) =>
@@ -29,4 +32,7 @@ Map<String, dynamic> _$VizPackageToJson(VizPackage instance) =>
       'isPrimary': ?const FalseNullConverter().toJson(instance.isPrimary),
       'onlyDev': ?_trueToNull(instance.onlyDev),
       'latestVersion': ?const VersionConverter().toJson(instance.latestVersion),
+      'isPublishToNone': ?const FalseNullConverter().toJson(
+        instance.isPublishToNone,
+      ),
     };

@@ -131,6 +131,7 @@ abstract class Service {
           flagOutdated ? _latest(entry.name) : null,
           isPrimary: true,
           onlyDev: false,
+          isPublishToNone: memberPubspec.publishTo == 'none',
         );
 
         visitedTransitiveDeps.addAll(
@@ -149,6 +150,7 @@ abstract class Service {
           includeDevDependencies: !productionDependenciesOnly,
         ),
         null,
+        isPublishToNone: pubspec.publishTo == 'none',
       );
 
       addSectionValues(rootDepsEntry.sections['dependencies'] ?? const {});
