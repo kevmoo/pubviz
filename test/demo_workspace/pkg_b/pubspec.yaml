@@ -1,0 +1,9 @@
+name: pkg_b
+environment:
+  sdk: ^3.5.0
+resolution: workspace
+dependencies:
+  outdated_pkg: ^1.0.0
+
+dev_dependencies:
+  test: ^1.25.0

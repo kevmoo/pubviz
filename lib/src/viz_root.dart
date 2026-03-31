@@ -3,19 +3,26 @@ import 'dart:collection';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pub_semver/pub_semver.dart';
 
+import 'converters.dart';
 import 'dependency.dart';
 import 'viz_package.dart';
 
 part 'viz_root.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(includeIfNull: false)
 class VizRoot {
   final String rootPackageName;
   final Map<String, VizPackage> packages;
 
-  VizRoot(this.rootPackageName, Map<String, VizPackage> packages)
-    : assert(packages.containsKey(rootPackageName)),
-      packages = UnmodifiableMapView(packages);
+  @FalseNullConverter()
+  final bool isWorkspace;
+
+  VizRoot(
+    this.rootPackageName,
+    Map<String, VizPackage> packages, {
+    this.isWorkspace = false,
+  }) : assert(packages.containsKey(rootPackageName)),
+       packages = UnmodifiableMapView(packages);
 
   factory VizRoot.fromJson(Map<String, dynamic> json) =>
       _$VizRootFromJson(json);
@@ -29,6 +36,7 @@ class VizRoot {
     Map<String, VizPackage> packages, {
     bool flagOutdated = false,
     Iterable<String>? ignorePackages,
+    bool isWorkspace = false,
   }) {
     var primaryPackageNames = packages.values
         .where((p) => p.isPrimary)
@@ -102,10 +110,11 @@ class VizRoot {
         pkg.latestVersion,
         isPrimary: primaryPackageNames.contains(name),
         onlyDev: !nonDevReachable.contains(name),
+        isPublishToNone: pkg.isPublishToNone,
       );
     }
 
-    return VizRoot(rootPackageName, newPackages);
+    return VizRoot(rootPackageName, newPackages, isWorkspace: isWorkspace);
   }
 
   VizRoot filter({required bool excludeDev, required bool onlyOutdated}) {
@@ -119,6 +128,7 @@ class VizRoot {
       rootPackageName,
       newPackages,
       flagOutdated: packages.values.any((p) => p.latestVersion != null),
+      isWorkspace: isWorkspace,
     );
   }
 

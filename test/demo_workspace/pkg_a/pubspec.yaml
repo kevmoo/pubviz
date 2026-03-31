@@ -1,0 +1,10 @@
+name: pkg_a
+environment:
+  sdk: ^3.5.0
+resolution: workspace
+publish_to: none
+dependencies:
+  args: ^2.0.0
+
+dev_dependencies:
+  test: ^1.25.0

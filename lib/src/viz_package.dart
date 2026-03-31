@@ -23,6 +23,9 @@ class VizPackage implements Comparable<VizPackage> {
   @VersionConverter()
   final Version? latestVersion;
 
+  @FalseNullConverter()
+  final bool isPublishToNone;
+
   VizPackage(
     this.name,
     this.version,
@@ -30,6 +33,7 @@ class VizPackage implements Comparable<VizPackage> {
     this.latestVersion, {
     this.isPrimary = false,
     this.onlyDev = true,
+    this.isPublishToNone = false,
   }) : dependencies = UnmodifiableSetView(dependencies);
 
   factory VizPackage.fromJson(Map<String, dynamic> json) =>

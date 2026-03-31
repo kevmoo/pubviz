@@ -13,9 +13,13 @@ VizRoot _$VizRootFromJson(Map<String, dynamic> json) => VizRoot(
   (json['packages'] as Map<String, dynamic>).map(
     (k, e) => MapEntry(k, VizPackage.fromJson(e as Map<String, dynamic>)),
   ),
+  isWorkspace: json['isWorkspace'] == null
+      ? false
+      : const FalseNullConverter().fromJson(json['isWorkspace'] as bool?),
 );
 
 Map<String, dynamic> _$VizRootToJson(VizRoot instance) => <String, dynamic>{
   'rootPackageName': instance.rootPackageName,
   'packages': instance.packages,
+  'isWorkspace': ?const FalseNullConverter().toJson(instance.isWorkspace),
 };

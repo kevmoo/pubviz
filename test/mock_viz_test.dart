@@ -151,6 +151,7 @@ void main() {
     test('workspace', () async {
       final vp = await service.vizRoot(includeWorkspace: true);
 
+      expect(vp.isWorkspace, isTrue); // Verify it starts as true
       expect(vp.root.name, 'repo_manager');
       expect(vp.packages, hasLength(82));
 
@@ -164,6 +165,10 @@ void main() {
         hasLength(81),
         reason: 'Only non-primary',
       );
+
+      // Regression test: filter should preserve isWorkspace
+      final filtered = vp.filter(excludeDev: true, onlyOutdated: false);
+      expect(filtered.isWorkspace, isTrue);
     });
 
     test('update order', () async {
@@ -483,6 +488,8 @@ class _MockVizRoot implements VizRoot {
   final String rootPackageName;
   @override
   final Map<String, VizPackage> packages;
+  @override
+  bool get isWorkspace => false;
 
   @override
   VizPackage get root => packages[rootPackageName]!;

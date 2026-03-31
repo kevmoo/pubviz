@@ -23,6 +23,7 @@ extension ServiceVizRootExt on Service {
       packages,
       flagOutdated: flagOutdated,
       ignorePackages: ignorePackages,
+      isWorkspace: includeWorkspace,
     );
   }
 }

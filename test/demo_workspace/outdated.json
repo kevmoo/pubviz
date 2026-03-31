@@ -1,0 +1,11 @@
+{
+  "packages": [
+    {
+      "package": "outdated_pkg",
+      "current": {"version": "1.0.0"},
+      "upgradable": {"version": "1.0.0"},
+      "resolvable": {"version": "1.0.0"},
+      "latest": {"version": "2.0.0"}
+    }
+  ]
+}

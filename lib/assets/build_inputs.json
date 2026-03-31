@@ -2,7 +2,7 @@
   "_example_src/favicon.ico": "39ab6b867a1c4c75019506267b3b4ce7cc60fb2ba66870e6485b4e31f6265a7c",
   "_example_src/index.html": "e383e5013c2acf9c601069770602d0d62a6ac4e1e77375a537aed3e04437101f",
   "_example_src/style.css": "97f0deb0e11586db5ec68f26bdd6eacd38cafb73cad94658529e43a2bf0dbb56",
-  "_example_src/viz_data.js": "ebc163a1e9c53ac42466da8c9c407f8cd2d7be83fe9d05a96dbb3543c122031c",
+  "_example_src/viz_data.js": "bae86ed7f8755090c0464a79ce1e102745d807d2284e2e6065f03cba8881f2b6",
   "_example_src/web_app.dart": "f29c9085742e96529ebb279ffcfb1bddb50340d014179f56d9bfb9c4aaaa27e4",
   "build.yaml": "612dd74e37f4606739fe4902eb244bb76c224e7eaea76a363bc14dcce02b76e4",
   "lib/pubviz.dart": "98ab547abef43f10419b1b6441fd97cb77168156d2ad2a1fc1ed31e0f5f86343",
@@ -14,9 +14,9 @@
   "lib/src/options.dart": "746f93833c909bc1f47176ef181c1a0e09e94f53001aed9d877fe786e0c8ff4c",
   "lib/src/options.g.dart": "791729a48930de197954501af965ac7366f9463970b684ec573eaa9b6e0f2172",
   "lib/src/version.dart": "8627fe8cc1d1c04d199c1ab1035d767fa40fb887d82888239e98193b22809d9c",
-  "lib/src/viz_package.dart": "cfa7388c7b3d743cb00896222cb8c4291e60ea451a5bbf791e6a0e1ada569ec6",
-  "lib/src/viz_package.g.dart": "59f882ac48fbbec8968fb5471efe3e080e8f22852b331f915d1e2cf4c62225f3",
-  "lib/src/viz_root.dart": "1ed3badc26612b15fa616cb83237a2293a5e0b92b0849d1a5d891883b5dc0cde",
-  "lib/src/viz_root.g.dart": "6a0da0326ac75f01f22513ccf43c5df436833dc1a9bf48489937e05ba3f94030",
+  "lib/src/viz_package.dart": "5a8fb6e15db0a8b5f11284cb48626f4be53809b668e1caf032c288d1142b3c50",
+  "lib/src/viz_package.g.dart": "6cac4358a0576205dc8cc010c3b9310d3e0052075f9c55d622fbb687222c78e7",
+  "lib/src/viz_root.dart": "a49ed3806f2ea9e4877f1b8395359782258756bb350d7d4f1a4efc57801d51d7",
+  "lib/src/viz_root.g.dart": "a0d1f70a6118015f27d34f8e6659e69603fa70a0f143da0d9a5bc912ec2bb6f3",
   "pubspec.yaml": "49fc7aa4a0d0881a03e57fccf556b00aed8a3dfcbff1f184f1ed317c28ce9856"
 }
