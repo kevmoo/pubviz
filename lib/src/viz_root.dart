@@ -36,6 +36,7 @@ class VizRoot {
     Map<String, VizPackage> packages, {
     bool flagOutdated = false,
     Iterable<String>? ignorePackages,
+    bool isWorkspace = false,
   }) {
     var primaryPackageNames = packages.values
         .where((p) => p.isPrimary)
@@ -113,7 +114,7 @@ class VizRoot {
       );
     }
 
-    return VizRoot(rootPackageName, newPackages);
+    return VizRoot(rootPackageName, newPackages, isWorkspace: isWorkspace);
   }
 
   VizRoot filter({required bool excludeDev, required bool onlyOutdated}) {
@@ -127,6 +128,7 @@ class VizRoot {
       rootPackageName,
       newPackages,
       flagOutdated: packages.values.any((p) => p.latestVersion != null),
+      isWorkspace: isWorkspace,
     );
   }
 
