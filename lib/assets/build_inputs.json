@@ -16,7 +16,7 @@
   "lib/src/version.dart": "8627fe8cc1d1c04d199c1ab1035d767fa40fb887d82888239e98193b22809d9c",
   "lib/src/viz_package.dart": "5a8fb6e15db0a8b5f11284cb48626f4be53809b668e1caf032c288d1142b3c50",
   "lib/src/viz_package.g.dart": "6cac4358a0576205dc8cc010c3b9310d3e0052075f9c55d622fbb687222c78e7",
-  "lib/src/viz_root.dart": "2f7b79cc4ccca96da2e0cdf6c45c194c21f784ac62e5ce3ab592bf8c61c53fbe",
+  "lib/src/viz_root.dart": "a49ed3806f2ea9e4877f1b8395359782258756bb350d7d4f1a4efc57801d51d7",
   "lib/src/viz_root.g.dart": "a0d1f70a6118015f27d34f8e6659e69603fa70a0f143da0d9a5bc912ec2bb6f3",
   "pubspec.yaml": "49fc7aa4a0d0881a03e57fccf556b00aed8a3dfcbff1f184f1ed317c28ce9856"
 }
