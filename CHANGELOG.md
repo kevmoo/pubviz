@@ -9,10 +9,13 @@
   `.filter` now returns immutable clones of `VizRoot` rather than mutating
   objects in-place.
 - `VizRoot.allDeps` has been removed.
+- Removed the `--action create` option.
+- Removed the `--out-dir` option.
 
 ### Web UI Overhaul
 - Added a filter to hide `dev_dependency` edges and nodes.
 - Added a filter to only show paths to outdated dependencies.
+- Assets are now served without creating a temp directory.
 
 ### New Features
 - **Workspaces**: `pubviz` now automatically infers workspace context. 
