@@ -85,7 +85,7 @@ Future<void> _createOrOpen(VizRoot root, Options options) async {
       )
       .handler;
 
-  final server = await io.serve(handler, 'localhost', 0);
+  final server = await io.serve(handler, InternetAddress.loopbackIPv4, 0);
   final serverUrl = 'http://localhost:${server.port}/';
   print('Serving pubviz on $serverUrl');
 
