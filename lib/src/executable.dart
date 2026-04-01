@@ -72,7 +72,7 @@ Future<void> _createOrOpen(VizRoot root, Options options) async {
         if (request.url.path == 'viz_data.js') {
           return Response.ok(
             jsContent,
-            headers: {'content-type': 'application/javascript'},
+            headers: {'content-type': 'text/javascript'},
           );
         }
         return Response.notFound('');
