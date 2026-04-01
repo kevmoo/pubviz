@@ -1,6 +1,6 @@
 name: my_workspace
 environment:
-  sdk: ^3.5.0
+  sdk: ^3.10.0
 workspace:
   - member_a
   - member_b

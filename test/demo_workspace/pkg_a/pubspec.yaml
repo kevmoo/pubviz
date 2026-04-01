@@ -1,6 +1,6 @@
 name: pkg_a
 environment:
-  sdk: ^3.5.0
+  sdk: ^3.10.0
 resolution: workspace
 publish_to: none
 dependencies:

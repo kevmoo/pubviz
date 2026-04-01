@@ -1,6 +1,6 @@
 name: member_a
 environment:
-  sdk: ^3.5.0
+  sdk: ^3.10.0
 resolution: workspace
 dependencies:
   args: ^2.0.0
