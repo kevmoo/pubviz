@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:path/path.dart' as p;
 import 'package:pubviz/src/pub_data_service.dart';
 import 'package:pubviz/src/root_builder.dart';
-import 'package:pubviz/src/util.dart';
 import 'package:test/test.dart';
 import 'package:test_descriptor/test_descriptor.dart' as d;
 
@@ -56,7 +55,7 @@ Future<void> _initTest() async {
 
   // NOTE: since all dependencies in the the sample pubspec are in pubviz
   //       we can use offline to improve speed.
-  final pr = await Process.run(dartPath, [
+  final pr = await Process.run(Platform.executable, [
     'pub',
     'get',
     '--offline',

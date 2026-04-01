@@ -62,16 +62,10 @@ Future<void> _createOrOpen(VizRoot root, Options options) async {
   if (assetsUri == null) {
     throw StateError('Could not resolve package:pubviz/assets/');
   }
-  final assetsDir = Directory.fromUri(assetsUri);
 
   final jsContent =
       'export const vizDataString = '
       'JSON.stringify(${jsonEncode(root.toJson())});\n';
-
-  final staticHandler = createStaticHandler(
-    assetsDir.path,
-    defaultDocument: 'index.html',
-  );
 
   final handler = Cascade()
       .add((Request request) {
@@ -83,7 +77,12 @@ Future<void> _createOrOpen(VizRoot root, Options options) async {
         }
         return Response.notFound('');
       })
-      .add(staticHandler)
+      .add(
+        createStaticHandler(
+          assetsUri.toFilePath(),
+          defaultDocument: 'index.html',
+        ),
+      )
       .handler;
 
   final server = await io.serve(handler, 'localhost', 0);
@@ -108,7 +107,7 @@ Future<void> _createOrOpen(VizRoot root, Options options) async {
 
   print('Press "q" (or "Q") or Ctrl+C to stop.');
   await waitForTerminate();
-  await server.close();
+  await server.close(force: true);
 }
 
 void _printContent(VizRoot root, List<String> ignorePackages) {
