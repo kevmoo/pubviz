@@ -4,6 +4,7 @@ import 'dart:io';
 import 'dart:isolate';
 
 import 'package:io/ansi.dart';
+import 'package:meta/meta.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart' as io;
 import 'package:shelf_static/shelf_static.dart';
@@ -63,9 +64,7 @@ Future<void> _createOrOpen(VizRoot root, Options options) async {
     throw StateError('Could not resolve package:pubviz/assets/');
   }
 
-  final jsContent =
-      'export const vizDataString = '
-      'JSON.stringify(${jsonEncode(root.toJson())});\n';
+  final jsContent = vizDataString(root);
 
   final handler = Cascade()
       .add((Request request) {
@@ -113,4 +112,13 @@ Future<void> _createOrOpen(VizRoot root, Options options) async {
 void _printContent(VizRoot root, List<String> ignorePackages) {
   final content = _getContentDot(root, ignorePackages);
   print(content);
+}
+
+/// Return a string that can be used as a JavaScript module exporting the
+/// viz data.
+@internal
+String vizDataString(VizRoot root) {
+  const encoder = JsonEncoder.withIndent('  ');
+  final jsonString = encoder.convert(root.toJson());
+  return 'export const vizDataString = JSON.stringify($jsonString);\n';
 }

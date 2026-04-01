@@ -1,6 +1,6 @@
 name: demo_workspace
 environment:
-  sdk: ^3.5.0
+  sdk: ^3.10.0
 workspace:
   - pkg_a
   - pkg_b

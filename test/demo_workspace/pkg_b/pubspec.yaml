@@ -1,8 +1,9 @@
 name: pkg_b
 environment:
-  sdk: ^3.5.0
+  sdk: ^3.10.0
 resolution: workspace
 dependencies:
+  http_parser: ^4.0.0
   outdated_pkg: ^1.0.0
 
 dev_dependencies:

@@ -2,10 +2,37 @@
   "packages": [
     {
       "package": "outdated_pkg",
-      "current": {"version": "1.0.0"},
-      "upgradable": {"version": "1.0.0"},
-      "resolvable": {"version": "1.0.0"},
-      "latest": {"version": "2.0.0"}
+      "current": {
+        "version": "1.0.0"
+      },
+      "upgradable": {
+        "version": "1.0.0"
+      },
+      "resolvable": {
+        "version": "1.0.0"
+      },
+      "latest": {
+        "version": "2.0.0"
+      }
+    },
+    {
+      "package": "typed_data",
+      "kind": "direct",
+      "isDiscontinued": false,
+      "isCurrentRetracted": false,
+      "isCurrentAffectedByAdvisory": false,
+      "current": {
+        "version": "1.3.2"
+      },
+      "upgradable": {
+        "version": "1.3.2"
+      },
+      "resolvable": {
+        "version": "1.4.0"
+      },
+      "latest": {
+        "version": "1.4.0"
+      }
     }
   ]
 }
