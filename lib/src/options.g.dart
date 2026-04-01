@@ -26,7 +26,6 @@ Options _$parseOptionsResult(ArgResults result) => Options(
   ),
   ignorePackages: result['ignore-packages'] as List<String>,
   flagOutdated: result['flag-outdated'] as bool,
-  outDir: result['out-dir'] as String?,
   directDependencies: result['direct-dependencies'] as bool?,
   productionDependencies: result['production-dependencies'] as bool,
   help: result['help'] as bool,
@@ -36,7 +35,6 @@ Options _$parseOptionsResult(ArgResults result) => Options(
 );
 
 const _$ActionEnumMapBuildCli = <Action, String>{
-  Action.create: 'create',
   Action.open: 'open',
   Action.print: 'print',
   Action.serve: 'serve',
@@ -48,12 +46,11 @@ ArgParser _$populateOptionsParser(ArgParser parser) => parser
     abbr: 'a',
     valueHelp: 'action',
     defaultsTo: 'open',
-    allowed: ['create', 'open', 'print', 'serve'],
+    allowed: ['open', 'print', 'serve'],
     allowedHelp: <String, String>{
-      'create': 'Generate the HTML web app in a directory.',
       'open': 'Like "serve" but also opens the browser.',
       'print': 'Print the raw DOT output to stdout.',
-      'serve': 'Like "create" but also hosts the app on a local server.',
+      'serve': 'Hosts the web app on a local server.',
     },
   )
   ..addMultiOption(
@@ -65,11 +62,6 @@ ArgParser _$populateOptionsParser(ArgParser parser) => parser
     'flag-outdated',
     abbr: 'o',
     help: 'Check pub.dev for latest packages and flag those that are outdated.',
-  )
-  ..addOption(
-    'out-dir',
-    help:
-        'A directory to write the generated HTML file and its localized assets. (HTML format only)',
   )
   ..addFlag(
     'direct-dependencies',

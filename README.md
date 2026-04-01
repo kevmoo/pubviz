@@ -115,14 +115,12 @@ Usage: pubviz [<args>] [<package path>]
 
 Arguments:
   -a, --action=<action>
-            [create]               Generate the HTML web app in a directory.
             [open] (default)       Like "serve" but also opens the browser.
             [print]                Print the raw DOT output to stdout.
-            [serve]                Like "create" but also hosts the app on a local server.
+            [serve]                Hosts the web app on a local server.
 
   -i, --ignore-packages            A comma separated list of packages to exclude in the output.
   -o, --[no-]flag-outdated         Check pub.dev for latest packages and flag those that are outdated.
-      --out-dir                    A directory to write the generated HTML file and its localized assets. (HTML format only)
   -d, --direct-dependencies        Include only direct dependencies.
   -p, --production-dependencies    Include only production (non-dev) dependencies.
   -v, --version                    Print the version of pubviz and exit.

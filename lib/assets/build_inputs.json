@@ -11,12 +11,12 @@
   "lib/src/dependency.dart": "15296f1152964f300871fcc21e8c94e7362712d94c759180899c12a0ee9bb59e",
   "lib/src/dependency.g.dart": "40fe0714955bacfe15b12d61b99eeab499b57235a3f2f4de6844c6247a1cb623",
   "lib/src/dot.dart": "7d825f5680454725a849b034c0f3d1f04e2e5a9d0769906e0dfd820918f254d6",
-  "lib/src/options.dart": "746f93833c909bc1f47176ef181c1a0e09e94f53001aed9d877fe786e0c8ff4c",
-  "lib/src/options.g.dart": "791729a48930de197954501af965ac7366f9463970b684ec573eaa9b6e0f2172",
+  "lib/src/options.dart": "1763c325b3227afb2ef019b47578a37cab715cbb0b78f984d398746ef378e9f0",
+  "lib/src/options.g.dart": "6e0443a9a86f8f6a52ebabb8ef067b26b4ca3d436189f26c4fab802c17f0a2de",
   "lib/src/version.dart": "8627fe8cc1d1c04d199c1ab1035d767fa40fb887d82888239e98193b22809d9c",
   "lib/src/viz_package.dart": "5a8fb6e15db0a8b5f11284cb48626f4be53809b668e1caf032c288d1142b3c50",
   "lib/src/viz_package.g.dart": "6cac4358a0576205dc8cc010c3b9310d3e0052075f9c55d622fbb687222c78e7",
   "lib/src/viz_root.dart": "a49ed3806f2ea9e4877f1b8395359782258756bb350d7d4f1a4efc57801d51d7",
   "lib/src/viz_root.g.dart": "a0d1f70a6118015f27d34f8e6659e69603fa70a0f143da0d9a5bc912ec2bb6f3",
-  "pubspec.yaml": "49fc7aa4a0d0881a03e57fccf556b00aed8a3dfcbff1f184f1ed317c28ce9856"
+  "pubspec.yaml": "87d7b560df8267c8d02341d0ef94f20c1bee686c20bb8329ca19948e407664bc"
 }
