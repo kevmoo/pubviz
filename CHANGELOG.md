@@ -13,6 +13,7 @@
 - Removed the `--out-dir` option.
 
 ### Web UI Overhaul
+- `--flag-outdated` now defaults to on.
 - Added a filter to hide `dev_dependency` edges and nodes.
 - Added a filter to only show paths to outdated dependencies.
 - Assets are now served without creating a temp directory.
