@@ -80,16 +80,12 @@ $_usage''');
       'serve',
     ]);
 
-    await expectLater(
-      process.stdout,
-      emitsThrough(contains('Press "q"')),
-    );
+    await expectLater(process.stdout, emitsThrough(contains('Press "q"')));
 
     process.stdin.writeln('q');
 
     await process.shouldExit(0);
   });
-
 
   group('workspace inference', () {
     setUp(() async {

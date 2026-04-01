@@ -26,7 +26,6 @@ class Options {
   )
   final bool flagOutdated;
 
-
   @CliOption(
     abbr: 'd',
     help: 'Include only direct dependencies.',
