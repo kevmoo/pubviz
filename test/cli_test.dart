@@ -123,10 +123,7 @@ $_usage''');
 
     final response = await http.get(Uri.parse('${serverUrl}viz_data.js'));
     expect(response.statusCode, equals(200));
-    expect(
-      response.headers['content-type'],
-      contains('application/javascript'),
-    );
+    expect(response.headers['content-type'], contains('text/javascript'));
     expect(response.body, contains('vizDataString'));
 
     process.stdin.writeln('q');
