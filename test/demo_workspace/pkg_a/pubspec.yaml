@@ -5,6 +5,9 @@ resolution: workspace
 publish_to: none
 dependencies:
   args: ^2.0.0
+  http_parser: ^4.0.0
+  # weird on purpose!
+  typed_data: <1.4.0
 
 dev_dependencies:
   test: ^1.25.0
