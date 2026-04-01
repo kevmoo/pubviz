@@ -114,9 +114,11 @@ void _printContent(VizRoot root, List<String> ignorePackages) {
   print(content);
 }
 
+/// Return a string that can be used as a JavaScript module exporting the
+/// viz data.
 @internal
-String vizDataString(Object object) {
+String vizDataString(VizRoot root) {
   const encoder = JsonEncoder.withIndent('  ');
-  final jsonString = encoder.convert(object);
+  final jsonString = encoder.convert(root.toJson());
   return 'export const vizDataString = JSON.stringify($jsonString);\n';
 }
