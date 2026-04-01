@@ -62,6 +62,7 @@ ArgParser _$populateOptionsParser(ArgParser parser) => parser
     'flag-outdated',
     abbr: 'o',
     help: 'Check pub.dev for latest packages and flag those that are outdated.',
+    defaultsTo: true,
   )
   ..addFlag(
     'direct-dependencies',
