@@ -50,8 +50,8 @@ between the source files and the compiled outputs:
 
 - **Programmatic Sandboxing**: 
   When adding test suites for edge cases that require synthetic setup files 
-  (e.g., `pubspec.yaml`, `outdated.json`), avoid littering static mock 
-  directories on disk. Instead, use **`package:test_descriptor`** (`d.dir()`) 
+  (e.g., `pubspec.yaml`, `outdated.json`), 
+  use **`package:test_descriptor`** (`d.dir()`) 
   inside `setUpAll()` to build isolated filesystems on-the-fly within 
   `d.sandbox`. This guarantees absolute parallel isolated pass-rates and avoids 
   workspace git-littering artifacts.

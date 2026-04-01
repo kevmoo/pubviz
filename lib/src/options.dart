@@ -27,13 +27,6 @@ class Options {
   final bool flagOutdated;
 
   @CliOption(
-    help:
-        'A directory to write the generated HTML file and its localized '
-        'assets. (HTML format only)',
-  )
-  final String? outDir;
-
-  @CliOption(
     abbr: 'd',
     help: 'Include only direct dependencies.',
     negatable: false,
@@ -66,7 +59,6 @@ class Options {
     required this.action,
     List<String>? ignorePackages,
     required this.flagOutdated,
-    this.outDir,
     this.directDependencies,
     required this.productionDependencies,
     required this.help,
@@ -76,11 +68,10 @@ class Options {
   }) : ignorePackages = ignorePackages ?? const [];
 }
 
-enum Action { create, open, print, serve }
+enum Action { open, print, serve }
 
 const _actionHelp = <Action, String>{
-  Action.create: 'Generate the HTML web app in a directory.',
   Action.open: 'Like "serve" but also opens the browser.',
   Action.print: 'Print the raw DOT output to stdout.',
-  Action.serve: 'Like "create" but also hosts the app on a local server.',
+  Action.serve: 'Hosts the web app on a local server.',
 };

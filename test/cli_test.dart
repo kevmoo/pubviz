@@ -1,7 +1,7 @@
 import 'dart:io';
 
+import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as p;
-import 'package:pubviz/src/util.dart';
 import 'package:pubviz/src/version.dart';
 import 'package:test/test.dart';
 import 'package:test_descriptor/test_descriptor.dart' as d;
@@ -11,7 +11,10 @@ final _entryPoint = p.join('bin', 'pubviz.dart');
 
 void main() {
   test('help', () async {
-    final proc = await TestProcess.start(dartPath, [_entryPoint, '--help']);
+    final proc = await TestProcess.start(Platform.executable, [
+      _entryPoint,
+      '--help',
+    ]);
 
     final output = await proc.stdoutStream().join('\n');
     expect(output, _usage);
@@ -20,7 +23,10 @@ void main() {
   });
 
   test('version', () async {
-    final proc = await TestProcess.start(dartPath, [_entryPoint, '--version']);
+    final proc = await TestProcess.start(Platform.executable, [
+      _entryPoint,
+      '--version',
+    ]);
 
     final output = await proc.stdoutStream().join('\n');
     expect(output, packageVersion);
@@ -29,7 +35,10 @@ void main() {
   });
 
   test('bad flag', () async {
-    final proc = await TestProcess.start(dartPath, [_entryPoint, '--bob']);
+    final proc = await TestProcess.start(Platform.executable, [
+      _entryPoint,
+      '--bob',
+    ]);
 
     final output = await proc.stdoutStream().join('\n');
     expect(output, '''Could not find an option named "--bob".
@@ -40,7 +49,11 @@ $_usage''');
   });
 
   test('too many args', () async {
-    final proc = await TestProcess.start(dartPath, [_entryPoint, 'a', 'b']);
+    final proc = await TestProcess.start(Platform.executable, [
+      _entryPoint,
+      'a',
+      'b',
+    ]);
 
     final output = await proc.stderrStream().join('\n');
     expect(output, 'Only one argument is allowed. You provided 2.');
@@ -49,7 +62,7 @@ $_usage''');
   });
 
   test('print dot', () async {
-    final process = await TestProcess.start(dartPath, [
+    final process = await TestProcess.start(Platform.executable, [
       _entryPoint,
       '-a',
       'print',
@@ -61,7 +74,7 @@ $_usage''');
   });
 
   test('print dot with outdated', () async {
-    final process = await TestProcess.start(dartPath, [
+    final process = await TestProcess.start(Platform.executable, [
       _entryPoint,
       '-o',
       '-a',
@@ -73,94 +86,34 @@ $_usage''');
     await process.shouldExit(0);
   });
 
-  test('serve action deletes temp dir when q is pressed', () async {
-    final process = await TestProcess.start(dartPath, [
+  test('serve action stops when q is pressed', () async {
+    final process = await TestProcess.start(Platform.executable, [
       _entryPoint,
       '-a',
       'serve',
     ]);
 
-    late String generatedFilePath;
-    await expectLater(
-      process.stdout,
-      emitsThrough(
-        predicate<String>((line) {
-          if (line.startsWith('File generated: ')) {
-            generatedFilePath = line
-                .substring('File generated: '.length)
-                .trim();
-          }
-          return line.contains('Press "q"');
-        }),
-      ),
-    );
-
-    final targetDir = File(generatedFilePath).parent;
-    expect(targetDir.existsSync(), isTrue);
+    await expectLater(process.stdout, emitsThrough(contains('Press "q"')));
 
     process.stdin.writeln('q');
 
-    await expectLater(
-      process.stdout,
-      emitsThrough('Deleted temp directory: ${targetDir.path}'),
-    );
-
     await process.shouldExit(0);
-    expect(targetDir.existsSync(), isFalse);
   });
 
-  test('serve action does not delete provided out-dir', () async {
-    final tempDir = Directory.systemTemp.createTempSync('pubviz_test_out_');
-    addTearDown(() => tempDir.deleteSync(recursive: true));
-
-    final process = await TestProcess.start(dartPath, [
+  test('serve action serves viz_data.js', () async {
+    final process = await TestProcess.start(Platform.executable, [
       _entryPoint,
       '-a',
       'serve',
-      '--out-dir',
-      tempDir.path,
     ]);
 
-    late String generatedFilePath;
+    late String serverUrl;
     await expectLater(
       process.stdout,
       emitsThrough(
         predicate<String>((line) {
-          if (line.startsWith('File generated: ')) {
-            generatedFilePath = line
-                .substring('File generated: '.length)
-                .trim();
-          }
-          return line.contains('Press "q"');
-        }),
-      ),
-    );
-
-    final targetDir = File(generatedFilePath).parent;
-    expect(targetDir.path, equals(tempDir.path));
-
-    process.stdin.writeln('q');
-
-    await process.shouldExit(0);
-    expect(tempDir.existsSync(), isTrue);
-  });
-
-  test('create action does not delete temp dir', () async {
-    final process = await TestProcess.start(dartPath, [
-      _entryPoint,
-      '-a',
-      'create',
-    ]);
-
-    late String generatedFilePath;
-    await expectLater(
-      process.stdout,
-      emitsThrough(
-        predicate<String>((line) {
-          if (line.startsWith('File generated: ')) {
-            generatedFilePath = line
-                .substring('File generated: '.length)
-                .trim();
+          if (line.startsWith('Serving pubviz on ')) {
+            serverUrl = line.substring('Serving pubviz on '.length).trim();
             return true;
           }
           return false;
@@ -168,13 +121,13 @@ $_usage''');
       ),
     );
 
+    final response = await http.get(Uri.parse('${serverUrl}viz_data.js'));
+    expect(response.statusCode, equals(200));
+    expect(response.headers['content-type'], contains('text/javascript'));
+    expect(response.body, contains('vizDataString'));
+
+    process.stdin.writeln('q');
     await process.shouldExit(0);
-
-    final targetDir = File(generatedFilePath).parent;
-    expect(targetDir.existsSync(), isTrue);
-
-    // clean up after the test
-    targetDir.deleteSync(recursive: true);
   });
 
   group('workspace inference', () {
@@ -206,7 +159,7 @@ resolution: workspace
     });
 
     test('implicitly includes all packages when in workspace root', () async {
-      final process = await TestProcess.start(dartPath, [
+      final process = await TestProcess.start(Platform.executable, [
         _entryPoint,
         '-a',
         'print',
@@ -227,7 +180,7 @@ resolution: workspace
     test(
       'implicitly includes all packages when run from a workspace member',
       () async {
-        final process = await TestProcess.start(dartPath, [
+        final process = await TestProcess.start(Platform.executable, [
           _entryPoint,
           '-a',
           'print',
@@ -245,7 +198,7 @@ resolution: workspace
     );
 
     test('--no-workspace disables implicit inclusion', () async {
-      final process = await TestProcess.start(dartPath, [
+      final process = await TestProcess.start(Platform.executable, [
         _entryPoint,
         '-a',
         'print',
@@ -279,14 +232,12 @@ const _usage = r'''Usage: pubviz [<args>] [<package path>]
 
 Arguments:
   -a, --action=<action>
-            [create]               Generate the HTML web app in a directory.
             [open] (default)       Like "serve" but also opens the browser.
             [print]                Print the raw DOT output to stdout.
-            [serve]                Like "create" but also hosts the app on a local server.
+            [serve]                Hosts the web app on a local server.
 
   -i, --ignore-packages            A comma separated list of packages to exclude in the output.
   -o, --[no-]flag-outdated         Check pub.dev for latest packages and flag those that are outdated.
-      --out-dir                    A directory to write the generated HTML file and its localized assets. (HTML format only)
   -d, --direct-dependencies        Include only direct dependencies.
   -p, --production-dependencies    Include only production (non-dev) dependencies.
   -v, --version                    Print the version of pubviz and exit.
