@@ -177,7 +177,14 @@ final class GraphRenderer {
         _updateOver(null, nodes, edges);
       }
     });
+
+    _nodeOutdatedMap = {
+      for (var node in nodes)
+        node.id: node.element.classList.contains('outdated'),
+    };
   }
+
+  late final Map<String, bool> _nodeOutdatedMap;
 
   void _updateOver(
     SVGGElement? element,
@@ -220,11 +227,6 @@ final class GraphRenderer {
       }
     }
 
-    final nodeOutdatedMap = {
-      for (var node in nodes)
-        node.id: node.element.classList.contains('outdated'),
-    };
-
     final fromDeps = <DepInfo>[];
     final toDeps = <DepInfo>[];
     for (var edge in edges) {
@@ -243,7 +245,7 @@ final class GraphRenderer {
               name: nodeXFrom,
               constraint: edge.constraint,
               isDev: edge.isDev,
-              isNodeOutdated: nodeOutdatedMap[nodeXFrom] ?? false,
+              isNodeOutdated: _nodeOutdatedMap[nodeXFrom] ?? false,
               isEdgeOutdated: edge.element.classList.contains('outdated'),
             ));
           }
@@ -253,7 +255,7 @@ final class GraphRenderer {
               name: nodeXTo,
               constraint: edge.constraint,
               isDev: edge.isDev,
-              isNodeOutdated: nodeOutdatedMap[nodeXTo] ?? false,
+              isNodeOutdated: _nodeOutdatedMap[nodeXTo] ?? false,
               isEdgeOutdated: edge.element.classList.contains('outdated'),
             ));
           }
