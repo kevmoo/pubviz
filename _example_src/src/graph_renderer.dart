@@ -139,7 +139,6 @@ final class GraphRenderer {
       }
     }
 
-
     void handleMouseLeave(MouseEvent event) {
       if (_lockedElement == null) {
         _updateOver(null, nodes, edges);
