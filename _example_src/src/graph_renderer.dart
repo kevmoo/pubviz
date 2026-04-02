@@ -128,9 +128,12 @@ final class GraphRenderer {
 
     void handleMouseEnter(MouseEvent event) {
       final target = event.currentTarget as SVGGElement;
-      if (target.classList.contains('node')) {
-        final textElements = target.querySelectorAll('text');
-        final text = textElements.elements.map((e) => e.textContent).join(' ');
+      final textElements = target.querySelectorAll('text');
+      final text = textElements.elements
+          .map((e) => e.textContent?.trim() ?? '')
+          .where((t) => t.isNotEmpty)
+          .join(' ');
+      if (text.isNotEmpty) {
         _app.ui.showToast(text);
       }
 
