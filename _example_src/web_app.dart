@@ -172,6 +172,9 @@ void _updateBody(String output) {
       .insertAdjacentHTML('beforeend', output.toJS);
 
   __root = document.querySelector('svg') as SVGElement;
+  if (zoomCheckbox.checked) {
+    __root!.classList.add('zoom');
+  }
 
   final nodes = _root.querySelectorAll('g.node').elements.map((e) {
     final element = e as SVGGElement;
