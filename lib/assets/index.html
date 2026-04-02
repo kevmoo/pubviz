@@ -8,7 +8,12 @@
   </head>
   <body>
     <div id="app-layout">
-      <button id="hamburgerBtn" title="Toggle Controls (c)">&#9776;</button>
+      <input type="checkbox" id="controlsToggle" class="hidden-toggler">
+      <label for="controlsToggle" id="hamburgerLabel" title="Toggle Controls (c)">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
       <div id="controls-panel" class="collapsed">
         <div id="controls-header">
           <span id="controls-title">Controls (c)</span>
@@ -35,5 +40,6 @@
         <div id="graph-container"></div>
       </div>
     </div>
+    <div id="toast" class="toast"></div>
   </body>
 </html>

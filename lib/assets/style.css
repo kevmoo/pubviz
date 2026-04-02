@@ -21,14 +21,20 @@ text {
     overflow: hidden;
 }
 
-#controls-panel.collapsed {
+/* Default to collapsed style */
+#controls-panel {
     width: 0px;
     border-right: none;
 }
 
-#controls-panel.collapsed #controls-title,
-#controls-panel.collapsed #controls-content,
-#controls-panel.collapsed #controls-footer {
+#controlsToggle:checked ~ #controls-panel {
+    width: 250px;
+    border-right: 1px solid #ddd;
+}
+
+#controlsToggle:not(:checked) ~ #controls-panel #controls-title,
+#controlsToggle:not(:checked) ~ #controls-panel #controls-content,
+#controlsToggle:not(:checked) ~ #controls-panel #controls-footer {
     display: none;
 }
 
@@ -47,7 +53,11 @@ text {
     min-height: 50px;
 }
 
-#hamburgerBtn {
+.hidden-toggler {
+    display: none;
+}
+
+#hamburgerLabel {
     position: absolute;
     top: 7px;
     left: 10px;
@@ -55,17 +65,49 @@ text {
     background: #ffffff;
     border: 1px solid #e0e0e0;
     border-radius: 8px;
-    font-size: 20px;
-    line-height: 1;
     cursor: pointer;
-    padding: 6px 12px 10px;
+    padding: 8px 10px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     transition: background 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 40px;
+    height: 36px;
 }
 
-#hamburgerBtn:hover {
+#hamburgerLabel:hover {
     background: #f8f9fa;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+#hamburgerLabel span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background: #333;
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+#controlsToggle:checked ~ #hamburgerLabel span {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    width: 20px;
+    margin-top: -1.5px;
+}
+
+#controlsToggle:checked ~ #hamburgerLabel span:nth-child(1) {
+    transform: rotate(45deg) scaleX(1.414);
+}
+
+#controlsToggle:checked ~ #hamburgerLabel span:nth-child(2) {
+    opacity: 0;
+}
+
+#controlsToggle:checked ~ #hamburgerLabel span:nth-child(3) {
+    transform: rotate(-45deg) scaleX(1.414);
 }
 
 #controls-title {
@@ -270,4 +312,41 @@ svg {
 svg.zoom {
     max-width: none;
     max-height: none;
+}
+
+.toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: #1a202c;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    z-index: 2000;
+    opacity: 0;
+    transition: opacity 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: none;
+    letter-spacing: 0.2px;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+@keyframes toast-pop {
+    0% { transform: translateX(-50%) translateY(20px) scale(0.9); }
+    50% { transform: translateX(-50%) translateY(-5px) scale(1.05); }
+    100% { transform: translateX(-50%) translateY(0) scale(1); }
+}
+
+.toast.pop {
+    animation: toast-pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
