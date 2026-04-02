@@ -127,10 +127,18 @@ final class GraphRenderer {
     }).toList();
 
     void handleMouseEnter(MouseEvent event) {
+      final target = event.currentTarget as SVGGElement;
+      if (target.classList.contains('node')) {
+        final textElements = target.querySelectorAll('text');
+        final text = textElements.elements.map((e) => e.textContent).join(' ');
+        _app.ui.showToast(text);
+      }
+
       if (_lockedElement == null) {
-        _updateOver(event.currentTarget as SVGGElement, nodes, edges);
+        _updateOver(target, nodes, edges);
       }
     }
+
 
     void handleMouseLeave(MouseEvent event) {
       if (_lockedElement == null) {
