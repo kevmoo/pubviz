@@ -1,4 +1,4 @@
-import 'dart:convert' show LineSplitter, htmlEscape;
+import 'dart:convert' show LineSplitter;
 import 'dart:js_interop';
 
 import 'package:pubviz/src/colors.dart';
@@ -14,6 +14,7 @@ final class GraphRenderer {
   VizInstance? _vizInstance;
   SVGElement? __root;
   SVGGElement? _lockedElement;
+  final _nodeOutdatedMap = <String, bool>{};
 
   GraphRenderer(this._app);
 
@@ -46,9 +47,8 @@ final class GraphRenderer {
         RenderOptions(format: 'svg'),
       );
       _updateBody(output);
-    } catch (e) {
-      final output = '<pre>${htmlEscape.convert(e.toString())}</pre>';
-      document.querySelector('#graph-container')!.append(output.toJS);
+    } catch (e, stack) {
+      _app.ui.showCrashReport(e.toString(), stack.toString());
       rethrow;
     } finally {
       print('Total time generating graph: ${watch.elapsed}');
@@ -76,6 +76,7 @@ final class GraphRenderer {
       __root!.classList.add('zoom');
     }
 
+    _nodeOutdatedMap.clear();
     final nodes = _root.querySelectorAll('g.node').elements.map((e) {
       final element = e as SVGGElement;
       final title = element.querySelector('title')!.textContent!;
@@ -86,9 +87,11 @@ final class GraphRenderer {
           element.querySelector('polygon')?.getAttribute('stroke') ??
           element.querySelector('path')?.getAttribute('stroke');
 
-      if (isOutdatedColor(nodeStroke)) {
+      final isOutdated = isOutdatedColor(nodeStroke);
+      if (isOutdated) {
         element.classList.add('outdated');
       }
+      _nodeOutdatedMap[title] = isOutdated;
 
       return (element: element, id: title);
     }).toList();
@@ -177,14 +180,7 @@ final class GraphRenderer {
         _updateOver(null, nodes, edges);
       }
     });
-
-    _nodeOutdatedMap = {
-      for (var node in nodes)
-        node.id: node.element.classList.contains('outdated'),
-    };
   }
-
-  late final Map<String, bool> _nodeOutdatedMap;
 
   void _updateOver(
     SVGGElement? element,
