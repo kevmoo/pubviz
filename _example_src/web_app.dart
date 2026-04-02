@@ -43,6 +43,8 @@ VizInstance? _vizInstance;
 SVGElement? __root;
 SVGGElement? _lockedElement;
 
+Timer? _toastTimer;
+
 SVGElement get _root => __root!;
 
 late final VizRoot _originalVizRoot;
@@ -106,21 +108,59 @@ void main() async {
     switch (event.key) {
       case 'c' || 'C':
         toggleControls();
+        _showToast(
+          controlsPanel.classList.contains('collapsed')
+              ? 'Controls Hidden'
+              : 'Controls Shown',
+        );
       case 'z' || 'Z':
         toggleZoom();
+        _showToast(zoomCheckbox.checked ? 'Zoom Enabled' : 'Zoom Disabled');
       case 'd' || 'D':
         devDependenciesCheckbox.checked = !devDependenciesCheckbox.checked;
-        _process();
+        unawaited(_process());
+        _showToast(
+          devDependenciesCheckbox.checked
+              ? 'Showing Dev Dependencies'
+              : 'Hiding Dev Dependencies',
+        );
       case 'o' || 'O':
         if (hasOutdated) {
           outdatedOnlyCheckbox.checked = !outdatedOnlyCheckbox.checked;
-          _process();
+          unawaited(_process());
+          _showToast(
+            outdatedOnlyCheckbox.checked
+                ? 'Showing Only Outdated'
+                : 'Showing All Packages',
+          );
+        } else {
+          _showToast('No Outdated Packages to Filter');
         }
     }
   });
 
   (document.querySelector('#version') as HTMLSpanElement).textContent =
       'v$packageVersion';
+}
+
+void _showToast(String message) {
+  final toast = document.querySelector('#toast') as HTMLDivElement
+    ..textContent = message;
+
+  toast.classList.remove('show');
+  toast.classList.remove('pop');
+
+  // Force reflow
+  toast.offsetHeight;
+
+  toast.classList.add('show');
+  toast.classList.add('pop');
+
+  _toastTimer?.cancel();
+  _toastTimer = Timer(const Duration(seconds: 1), () {
+    toast.classList.remove('show');
+    toast.classList.remove('pop');
+  });
 }
 
 Future<void> _process() async {
