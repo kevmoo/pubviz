@@ -1,5 +1,4 @@
 import 'dart:convert' show jsonDecode;
-import 'dart:js_interop';
 
 import 'package:pubviz/src/viz_root.dart';
 import 'package:web/web.dart';
@@ -21,8 +20,8 @@ final class PubvizApp {
   late final VizRoot originalVizRoot;
   bool get hasOutdated => originalVizRoot.hasOutdated;
 
-  PubvizApp(JSString vizDataJson) {
-    final jsonString = vizDataJson.toDart.trim();
+  PubvizApp(String vizDataJson) {
+    final jsonString = vizDataJson.trim();
     originalVizRoot = VizRoot.fromJson(
       jsonDecode(jsonString) as Map<String, dynamic>,
     );
@@ -35,8 +34,4 @@ final class PubvizApp {
   Future<void> render() => _renderer.render();
 
   void toggleZoomStyle() => _renderer.toggleZoomStyle();
-
-  Future<void> run() async {
-    await render();
-  }
 }

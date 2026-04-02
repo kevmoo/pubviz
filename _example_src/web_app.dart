@@ -11,12 +11,13 @@ import 'src/pubviz_app.dart';
 void main() async {
   final url = Uri.parse(window.location.href).resolve('viz_data.js').toString();
   final module = await importModule(url.toJS).toDart;
-  final vizDataString = module.getProperty('vizDataString'.toJS) as JSString?;
+  final vizDataString = module
+      .getProperty<JSString?>('vizDataString'.toJS)
+      ?.toDart;
 
   if (vizDataString == null) {
     throw StateError('`vizDataString` is not defined locally or globally.');
   }
 
-  final app = PubvizApp(vizDataString);
-  await app.run();
+  await PubvizApp(vizDataString).render();
 }
