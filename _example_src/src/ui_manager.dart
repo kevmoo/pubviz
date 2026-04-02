@@ -10,10 +10,8 @@ import 'pubviz_app.dart';
 final class UIManager {
   final PubvizApp _app;
 
-  final HTMLButtonElement _hamburgerBtn =
-      document.querySelector('#hamburgerBtn') as HTMLButtonElement;
-  final HTMLDivElement _controlsPanel =
-      document.querySelector('#controls-panel') as HTMLDivElement;
+  final HTMLInputElement _hamburgerCheckbox =
+      document.querySelector('#controlsToggle') as HTMLInputElement;
   final HTMLInputElement _zoomCheckbox =
       document.querySelector('#zoomCheckbox') as HTMLInputElement;
   final HTMLInputElement _devDependenciesCheckbox =
@@ -26,6 +24,8 @@ final class UIManager {
       document.querySelector('#deps-in-box') as HTMLDivElement;
   final HTMLDivElement _depsOutBox =
       document.querySelector('#deps-out-box') as HTMLDivElement;
+  final HTMLDivElement _toast =
+      document.querySelector('#toast') as HTMLDivElement;
 
   Timer? _toastTimer;
 
@@ -38,7 +38,11 @@ final class UIManager {
     _depsInBox.onWheel.listen((e) => e.stopPropagation());
     _depsOutBox.onWheel.listen((e) => e.stopPropagation());
 
-    _hamburgerBtn.onClick.listen((_) => toggleControls());
+    _hamburgerCheckbox.onChange.listen((_) {
+      showToast(
+        _hamburgerCheckbox.checked ? 'Controls Shown' : 'Controls Hidden',
+      );
+    });
 
     _zoomCheckbox.onChange.listen((_) => _app.toggleZoomStyle());
 
@@ -62,18 +66,16 @@ final class UIManager {
   bool get outdatedOnly => _outdatedOnlyCheckbox.checked;
 
   void toggleControls() {
-    _controlsPanel.classList.toggle('collapsed');
+    _hamburgerCheckbox.checked = !_hamburgerCheckbox.checked;
+    showToast(
+      _hamburgerCheckbox.checked ? 'Controls Shown' : 'Controls Hidden',
+    );
   }
 
   void _handleKeyDown(KeyboardEvent event) {
     switch (event.key) {
       case 'c' || 'C':
         toggleControls();
-        showToast(
-          _controlsPanel.classList.contains('collapsed')
-              ? 'Controls Hidden'
-              : 'Controls Shown',
-        );
       case 'z' || 'Z':
         _zoomCheckbox.checked = !_zoomCheckbox.checked;
         _app.toggleZoomStyle();
@@ -102,21 +104,20 @@ final class UIManager {
   }
 
   void showToast(String message) {
-    final toast = document.querySelector('#toast') as HTMLDivElement
-      ..textContent = message;
+    _toast.textContent = message;
 
-    toast.classList.remove('show');
-    toast.classList.remove('pop');
+    _toast.classList.remove('show');
+    _toast.classList.remove('pop');
 
-    toast.offsetHeight;
+    _toast.offsetHeight;
 
-    toast.classList.add('show');
-    toast.classList.add('pop');
+    _toast.classList.add('show');
+    _toast.classList.add('pop');
 
     _toastTimer?.cancel();
     _toastTimer = Timer(const Duration(milliseconds: 1500), () {
-      toast.classList.remove('show');
-      toast.classList.remove('pop');
+      _toast.classList.remove('show');
+      _toast.classList.remove('pop');
     });
   }
 
