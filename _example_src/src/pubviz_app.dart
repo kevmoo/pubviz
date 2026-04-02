@@ -7,11 +7,19 @@ import 'package:web/web.dart';
 import 'graph_renderer.dart';
 import 'ui_manager.dart';
 
+typedef DepInfo = ({
+  String name,
+  String constraint,
+  bool isDev,
+  bool isNodeOutdated,
+  bool isEdgeOutdated,
+});
+
 final class PubvizApp {
   late final UIManager ui;
-  late final GraphRenderer renderer;
+  late final GraphRenderer _renderer;
   late final VizRoot originalVizRoot;
-  late final bool hasOutdated;
+  bool get hasOutdated => originalVizRoot.hasOutdated;
 
   PubvizApp(JSString vizDataJson) {
     final jsonString = vizDataJson.toDart.trim();
@@ -20,18 +28,15 @@ final class PubvizApp {
     );
     document.title = 'pubviz - ${originalVizRoot.root.name}';
 
-    hasOutdated = originalVizRoot.packages.values.any(
-      (p) =>
-          p.version != null &&
-          p.latestVersion != null &&
-          p.latestVersion!.compareTo(p.version!) > 0,
-    );
-
     ui = UIManager(this);
-    renderer = GraphRenderer(this);
+    _renderer = GraphRenderer(this);
   }
 
+  Future<void> render() => _renderer.render();
+
+  void toggleZoomStyle() => _renderer.toggleZoomStyle();
+
   Future<void> run() async {
-    await renderer.render();
+    await render();
   }
 }

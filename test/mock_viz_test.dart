@@ -494,6 +494,14 @@ class _MockVizRoot implements VizRoot {
   @override
   VizPackage get root => packages[rootPackageName]!;
 
+  @override
+  bool get hasOutdated => packages.values.any(
+    (p) =>
+        p.version != null &&
+        p.latestVersion != null &&
+        p.latestVersion!.compareTo(p.version!) > 0,
+  );
+
   _MockVizRoot(this.packages) : rootPackageName = 'root';
 
   @override

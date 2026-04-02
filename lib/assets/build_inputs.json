@@ -1,10 +1,10 @@
 {
   "_example_src/favicon.ico": "39ab6b867a1c4c75019506267b3b4ce7cc60fb2ba66870e6485b4e31f6265a7c",
   "_example_src/index.html": "8075c0e1ca2bf48472833dd6103ee132780e5dce8ca2fa268198e269e706801b",
-  "_example_src/src/graph_renderer.dart": "a7e464fa99556fb0ba2133d5ebdc15dee1aec46642a3c55094784646a6ee9479",
+  "_example_src/src/graph_renderer.dart": "a8f7be94d1e03af5e1250c2ba9d70b934ce727260994fe295ce4349d21531111",
   "_example_src/src/interop.dart": "0caf433b0750f8926bd40abb10ec91e3005bfac8d4f9328f0c51ea80a672bcaa",
-  "_example_src/src/pubviz_app.dart": "ef85671da139fa7d2928c87de1c8093aa0860ed9c9bb616662c322cfa9dfef7f",
-  "_example_src/src/ui_manager.dart": "55baa6280b6ef0ec1587279c29e65e2e58e359d2d30d3b13ab5f18dd55fbb9dd",
+  "_example_src/src/pubviz_app.dart": "00d755106630c97495cc7c2ba97c4fd6cdb4e8a7eb2c73bca37dc6569e651398",
+  "_example_src/src/ui_manager.dart": "107861bf2868dcb994b3a30023d058d382ea4e8e5c9aa44ed1d9f1c387d813fb",
   "_example_src/style.css": "58c7423f4e9aababda0e8aff2dc9a6e4ee66a35247d2f6ed44dd0f5b4b3a39f4",
   "_example_src/viz_data.js": "0e8f4ebb67eaaf171f62bce9024ab64413ed6e5339a5db9b492e6270a0b73b1f",
   "_example_src/web_app.dart": "99c8f8b886584b36ca8a6de8afb09fe269c301ab8236d7ed690edc71c9460851",
@@ -20,7 +20,7 @@
   "lib/src/version.dart": "8627fe8cc1d1c04d199c1ab1035d767fa40fb887d82888239e98193b22809d9c",
   "lib/src/viz_package.dart": "5a8fb6e15db0a8b5f11284cb48626f4be53809b668e1caf032c288d1142b3c50",
   "lib/src/viz_package.g.dart": "6cac4358a0576205dc8cc010c3b9310d3e0052075f9c55d622fbb687222c78e7",
-  "lib/src/viz_root.dart": "a49ed3806f2ea9e4877f1b8395359782258756bb350d7d4f1a4efc57801d51d7",
+  "lib/src/viz_root.dart": "9572a078a2237a0029aca050b7f78be28cb95c0bd1fb1c16589b0f02baff5e6d",
   "lib/src/viz_root.g.dart": "a0d1f70a6118015f27d34f8e6659e69603fa70a0f143da0d9a5bc912ec2bb6f3",
   "pubspec.yaml": "58f3bff2ea5c674246c985613b2de62b442a1798ed31d73dd589fdebaf39a8b3"
 }

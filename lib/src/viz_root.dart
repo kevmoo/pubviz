@@ -17,6 +17,13 @@ class VizRoot {
   @FalseNullConverter()
   final bool isWorkspace;
 
+  late final hasOutdated = packages.values.any(
+    (p) =>
+        p.version != null &&
+        p.latestVersion != null &&
+        p.latestVersion!.compareTo(p.version!) > 0,
+  );
+
   VizRoot(
     this.rootPackageName,
     Map<String, VizPackage> packages, {

@@ -9,21 +9,13 @@ import 'package:web/web.dart';
 import 'interop.dart';
 import 'pubviz_app.dart';
 
-typedef DepInfo = ({
-  String name,
-  String constraint,
-  bool isDev,
-  bool isNodeOutdated,
-  bool isEdgeOutdated,
-});
-
 final class GraphRenderer {
-  final PubvizApp app;
+  final PubvizApp _app;
   VizInstance? _vizInstance;
   SVGElement? __root;
   SVGGElement? _lockedElement;
 
-  GraphRenderer(this.app);
+  GraphRenderer(this._app);
 
   SVGElement get _root => __root!;
 
@@ -42,9 +34,9 @@ final class GraphRenderer {
     try {
       _vizInstance ??= await Viz.instance().toDart;
 
-      final filteredRoot = app.originalVizRoot.filter(
-        excludeDev: !app.ui.devDependenciesCheckbox.checked,
-        onlyOutdated: app.ui.outdatedOnlyCheckbox.checked,
+      final filteredRoot = _app.originalVizRoot.filter(
+        excludeDev: !_app.ui.devDependencies,
+        onlyOutdated: _app.ui.outdatedOnly,
       );
 
       final dotString = filteredRoot.toDot();
@@ -80,7 +72,7 @@ final class GraphRenderer {
         .insertAdjacentHTML('beforeend', output.toJS);
 
     __root = document.querySelector('svg') as SVGElement;
-    if (app.ui.zoomCheckbox.checked) {
+    if (_app.ui.zoomEnabled) {
       __root!.classList.add('zoom');
     }
 
@@ -270,44 +262,9 @@ final class GraphRenderer {
     }
 
     if (targetPkg.length == 1) {
-      fromDeps.sort((a, b) => a.name.compareTo(b.name));
-      toDeps.sort((a, b) => a.name.compareTo(b.name));
-
-      String buildTable(Iterable<DepInfo> deps) {
-        final rows = deps.map((d) {
-          final nameHtml = htmlEscape.convert(d.name);
-          var nameCell = d.isDev ? '<i>$nameHtml</i>' : nameHtml;
-          if (d.isNodeOutdated) {
-            nameCell = '<span class="outdated-node">$nameCell</span>';
-          }
-
-          var constraintCell = htmlEscape.convert(d.constraint);
-          if (d.isEdgeOutdated) {
-            constraintCell =
-                '<span class="outdated-edge">$constraintCell</span>';
-          }
-
-          return '<tr><td>$nameCell</td><td>$constraintCell</td></tr>';
-        }).join();
-        return '<table class="deps-table"><thead><tr><th>Name</th><th>Constraint</th></tr></thead><tbody>$rows</tbody></table>';
-      }
-
-      void updateHudBox(HTMLDivElement box, String title, List<DepInfo> deps) {
-        if (deps.isNotEmpty) {
-          box.style.display = 'flex';
-          box.innerHTML =
-              '<h3>$title</h3><div class="table-scroll">${buildTable(deps)}</div>'
-                  .toJS;
-        } else {
-          box.style.display = 'none';
-        }
-      }
-
-      updateHudBox(app.ui.depsInBox, 'INCOMING', fromDeps);
-      updateHudBox(app.ui.depsOutBox, 'OUTGOING', toDeps);
+      _app.ui.updateBoxes(fromDeps: fromDeps, toDeps: toDeps);
     } else {
-      app.ui.depsInBox.style.display = 'none';
-      app.ui.depsOutBox.style.display = 'none';
+      _app.ui.updateBoxes(fromDeps: [], toDeps: []);
     }
   }
 }
