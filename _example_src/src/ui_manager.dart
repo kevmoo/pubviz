@@ -139,6 +139,15 @@ final class UIManager {
     _updateHudBox(_depsInBox, 'INCOMING', sortedFrom);
     _updateHudBox(_depsOutBox, 'OUTGOING', sortedTo);
   }
+
+  void showCrashReport(String error, String stackTrace) {
+    (document.querySelector('#crash-trace') as HTMLPreElement).textContent =
+        '$error\n$stackTrace';
+    (document.querySelector('#crash-overlay') as HTMLDivElement).classList
+        .remove('hidden');
+    (document.querySelector('#graph-container') as HTMLDivElement).classList
+        .add('hidden');
+  }
 }
 
 void _updateHudBox(HTMLDivElement box, String title, List<DepInfo> deps) {
