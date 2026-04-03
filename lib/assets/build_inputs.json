@@ -1,10 +1,10 @@
 {
   "_example_src/favicon.ico": "39ab6b867a1c4c75019506267b3b4ce7cc60fb2ba66870e6485b4e31f6265a7c",
   "_example_src/index.html": "2cf1dca1f1e7f77c82a232eb3330de0d8c70f830c0c1f584d13690ecfa9490db",
-  "_example_src/src/graph_renderer.dart": "a8209d91610f67164143528a658be01ae4deb86ac8c89ce550640333e6da7ead",
+  "_example_src/src/graph_renderer.dart": "1259f51ff50d16e73770c0c3e941051f0318973b461e51c2c33ce73a61dc01b4",
   "_example_src/src/interop.dart": "0caf433b0750f8926bd40abb10ec91e3005bfac8d4f9328f0c51ea80a672bcaa",
-  "_example_src/src/pubviz_app.dart": "b99abffea084cdb4034c5f0b33c40c8ad71a45a8a8abbab5a29a53e5d3fcbca0",
-  "_example_src/src/ui_manager.dart": "f74ebff44a9a617c5a3d87bc3603a19720c4c7de0b30c8354dc63057e4a299ac",
+  "_example_src/src/pubviz_app.dart": "2ea287aa427c4969173f879ba8cc26b119cbdad5dc5675cafe4cef5d0b26bbe2",
+  "_example_src/src/ui_manager.dart": "ea1c59731e9808dbfd73df671d9634ff99116150f3ebe574423da06c7e3fef17",
   "_example_src/style.css": "ae6a2dc542b67f36ab844e94eb61750f533e62d32af4dbe6ecbe8d608a1b75bc",
   "_example_src/viz_data.js": "0e8f4ebb67eaaf171f62bce9024ab64413ed6e5339a5db9b492e6270a0b73b1f",
   "_example_src/web_app.dart": "13da5e0a84b0075df6af4961a3fd1508450f8367bd423cdc272ad5a38d0020bd",

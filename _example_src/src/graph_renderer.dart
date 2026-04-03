@@ -20,8 +20,12 @@ final class GraphRenderer {
 
   SVGElement get _root => __root!;
 
-  void toggleZoomStyle() {
-    __root?.classList.toggle('zoom');
+  void updateZoom() {
+    if (_app.ui.zoomEnabled) {
+      __root?.classList.add('zoom');
+    } else {
+      __root?.classList.remove('zoom');
+    }
   }
 
   Future<void> render() async {

@@ -48,7 +48,7 @@ final class UIManager {
       );
     });
 
-    _zoomCheckbox.onChange.listen((_) => _app.toggleZoomStyle());
+    _zoomCheckbox.onChange.listen((_) => _app.updateZoom());
 
     _devDependenciesCheckbox.onChange.listen((_) {
       unawaited(_app.render());
@@ -73,7 +73,7 @@ final class UIManager {
 
   bool get outdatedOnly => _outdatedOnlyCheckbox.checked;
 
-  void toggleControls() {
+  void _toggleControls() {
     _hamburgerCheckbox.checked = !_hamburgerCheckbox.checked;
     showToast(
       _hamburgerCheckbox.checked ? 'Controls Shown' : 'Controls Hidden',
@@ -83,16 +83,16 @@ final class UIManager {
   void _handleKeyDown(KeyboardEvent event) {
     switch (event.key) {
       case 'c' || 'C':
-        toggleControls();
+        _toggleControls();
       case 'z' || 'Z':
         _zoomCheckbox.checked = !_zoomCheckbox.checked;
-        _app.toggleZoomStyle();
-        showToast(_zoomCheckbox.checked ? 'Zoom Enabled' : 'Zoom Disabled');
+        _app.updateZoom();
+        showToast(zoomEnabled ? 'Zoom Enabled' : 'Zoom Disabled');
       case 'd' || 'D':
         _devDependenciesCheckbox.checked = !_devDependenciesCheckbox.checked;
         unawaited(_app.render());
         showToast(
-          _devDependenciesCheckbox.checked
+          devDependencies
               ? 'Showing Dev Dependencies'
               : 'Hiding Dev Dependencies',
         );
@@ -101,9 +101,7 @@ final class UIManager {
           _outdatedOnlyCheckbox.checked = !_outdatedOnlyCheckbox.checked;
           unawaited(_app.render());
           showToast(
-            _outdatedOnlyCheckbox.checked
-                ? 'Showing Only Outdated'
-                : 'Showing All Packages',
+            outdatedOnly ? 'Showing Only Outdated' : 'Showing All Packages',
           );
         } else {
           showToast('No Outdated Packages to Filter');
