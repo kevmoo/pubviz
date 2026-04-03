@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>pubviz - pubviz</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/@viz-js/viz@3.25.0/dist/viz-global.js"></script>
@@ -38,6 +39,21 @@
         <div id="deps-in-box" class="hud-box" style="display: none;"></div>
         <div id="deps-out-box" class="hud-box" style="display: none;"></div>
         <div id="graph-container"></div>
+        <div id="crash-overlay" class="hidden">
+          <div id="crash-report" class="crash-report">
+            <p>Oh no! Something went wrong!</p>
+            <p>Please file an issue at <a href="https://github.com/kevmoo/pubviz/issues">https://github.com/kevmoo/pubviz/issues</a></p>
+            <pre id="crash-trace"></pre>
+          </div>
+        </div>
+        <div id="mobile-overlay">
+          <div class="mobile-warning">
+            <h2>Optimal on Desktop</h2>
+            <p>This application is optimized for larger screens to visualize complex dependency graphs.</p>
+            <p>Come back on a bigger screen for the best experience!</p>
+            <button id="dismissMobileWarning">Dismiss</button>
+          </div>
+        </div>
       </div>
     </div>
     <div id="toast" class="toast"></div>
