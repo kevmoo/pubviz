@@ -26,6 +26,10 @@ final class UIManager {
       document.querySelector('#deps-out-box') as HTMLDivElement;
   final HTMLDivElement _toast =
       document.querySelector('#toast') as HTMLDivElement;
+  final HTMLDivElement _mobileOverlay =
+      document.querySelector('#mobile-overlay') as HTMLDivElement;
+  final HTMLButtonElement _dismissMobileWarning =
+      document.querySelector('#dismissMobileWarning') as HTMLButtonElement;
 
   Timer? _toastTimer;
 
@@ -54,6 +58,10 @@ final class UIManager {
     });
 
     window.onKeyDown.listen(_handleKeyDown);
+
+    _dismissMobileWarning.onClick.listen((_) {
+      _mobileOverlay.classList.add('hidden');
+    });
 
     (document.querySelector('#version') as HTMLSpanElement).textContent =
         'v$packageVersion';
