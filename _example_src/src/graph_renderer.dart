@@ -48,10 +48,20 @@ final class GraphRenderer {
       );
       _updateBody(output);
     } catch (e, stack) {
-      _app.ui.showCrashReport(e.toString(), stack.toString());
+      try {
+        _app.ui.showCrashReport(e.toString(), stack.toString());
+      } catch (error, stack) {
+        console.error(
+          '''Even the crash reporter crashed!,
+          $error,
+          $stack,
+        '''
+              .toJS,
+        );
+      }
       rethrow;
     } finally {
-      print('Total time generating graph: ${watch.elapsed}');
+      console.info('Total time generating graph: ${watch.elapsed}'.toJS);
     }
   }
 

@@ -143,7 +143,7 @@ final class UIManager {
   void showCrashReport(String error, String stackTrace) {
     (document.querySelector('#crash-trace') as HTMLPreElement).textContent =
         '$error\n$stackTrace';
-    (document.querySelector('#crash-report') as HTMLDivElement).classList
+    (document.querySelector('#crash-overlay') as HTMLDivElement).classList
         .remove('hidden');
     (document.querySelector('#graph-container') as HTMLDivElement).classList
         .add('hidden');

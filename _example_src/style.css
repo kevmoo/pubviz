@@ -5,8 +5,6 @@ text {
 *,
 *:before,
 *:after {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
 
@@ -27,14 +25,14 @@ text {
     border-right: none;
 }
 
-#controlsToggle:checked ~ #controls-panel {
+#controlsToggle:checked~#controls-panel {
     width: 250px;
     border-right: 1px solid #ddd;
 }
 
-#controlsToggle:not(:checked) ~ #controls-panel #controls-title,
-#controlsToggle:not(:checked) ~ #controls-panel #controls-content,
-#controlsToggle:not(:checked) ~ #controls-panel #controls-footer {
+#controlsToggle:not(:checked)~#controls-panel #controls-title,
+#controlsToggle:not(:checked)~#controls-panel #controls-content,
+#controlsToggle:not(:checked)~#controls-panel #controls-footer {
     display: none;
 }
 
@@ -90,7 +88,7 @@ text {
     transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-#controlsToggle:checked ~ #hamburgerLabel span {
+#controlsToggle:checked~#hamburgerLabel span {
     position: absolute;
     top: 50%;
     left: 10px;
@@ -98,15 +96,15 @@ text {
     margin-top: -1.5px;
 }
 
-#controlsToggle:checked ~ #hamburgerLabel span:nth-child(1) {
+#controlsToggle:checked~#hamburgerLabel span:nth-child(1) {
     transform: rotate(45deg) scaleX(1.414);
 }
 
-#controlsToggle:checked ~ #hamburgerLabel span:nth-child(2) {
+#controlsToggle:checked~#hamburgerLabel span:nth-child(2) {
     opacity: 0;
 }
 
-#controlsToggle:checked ~ #hamburgerLabel span:nth-child(3) {
+#controlsToggle:checked~#hamburgerLabel span:nth-child(3) {
     transform: rotate(-45deg) scaleX(1.414);
 }
 
@@ -342,28 +340,51 @@ svg.zoom {
 }
 
 @keyframes toast-pop {
-    0% { transform: translateX(-50%) translateY(20px) scale(0.9); }
-    50% { transform: translateX(-50%) translateY(-5px) scale(1.05); }
-    100% { transform: translateX(-50%) translateY(0) scale(1); }
+    0% {
+        transform: translateX(-50%) translateY(20px) scale(0.9);
+    }
+
+    50% {
+        transform: translateX(-50%) translateY(-5px) scale(1.05);
+    }
+
+    100% {
+        transform: translateX(-50%) translateY(0) scale(1);
+    }
 }
 
 .toast.pop {
     animation: toast-pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
+#crash-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3000;
+}
+
+#crash-overlay.hidden {
+    display: none;
+}
+
 .crash-report {
     max-width: 800px;
-    margin: 80px auto;
+    width: 90%;
     padding: 30px;
     background: #ffffff;
     border: 1px solid #e2e8f0;
     border-radius: 12px;
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
     text-align: center;
-}
-
-.crash-report.hidden {
-    display: none;
 }
 
 .crash-report p:first-child {
@@ -397,7 +418,8 @@ svg.zoom {
     border: 1px solid #edf2f7;
     border-radius: 8px;
     overflow-x: auto;
-    white-space: pre; /* Ensure no wrapping */
+    white-space: pre;
+    /* Ensure no wrapping */
     font-size: 0.875rem;
     color: #2d3748;
     max-height: 400px;
