@@ -424,3 +424,77 @@ svg.zoom {
     color: #2d3748;
     max-height: 400px;
 }
+
+#mobile-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2500;
+    transition: opacity 0.3s ease;
+}
+
+#mobile-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.mobile-warning {
+    max-width: 400px;
+    width: 90%;
+    padding: 30px;
+    background: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    text-align: center;
+    animation: pop-in 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes pop-in {
+    0% { transform: scale(0.9); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.mobile-warning h2 {
+    color: #1a202c;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.mobile-warning p {
+    color: #4a5568;
+    font-size: 1rem;
+    margin-bottom: 16px;
+    line-height: 1.5;
+}
+
+.mobile-warning button {
+    background: #3182ce;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.mobile-warning button:hover {
+    background: #2b6cb0;
+}
+
+@media (min-width: 601px) {
+    #mobile-overlay {
+        display: none !important;
+    }
+}
