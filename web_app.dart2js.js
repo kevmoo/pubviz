@@ -4536,8 +4536,11 @@ A.vN.prototype={
 $1(a){return this.a.$1(a)},
 $S:1}
 A.J.prototype={
-SZ(){var s=this.c
-if(s!=null)s.classList.toggle("zoom")},
+Fc(){var s,r=this.a.a
+r===$&&A.Q4()
+r=r.c.checked
+s=this.c
+if(r){if(s!=null)s.classList.add("zoom")}else if(s!=null)s.classList.remove("zoom")},
 W(){var s=0,r=A.F(t.n),q=1,p=[],o=[],n=this,m,l,k,j,i,h,g,f,e,d,c,b,a,a0,a1,a2
 var $async$W=A.l(function(a4,a5){if(a4===1){p.push(a5)
 s=q}for(;;)switch(s){case 0:a1=n.c
@@ -4757,7 +4760,7 @@ A.JE(q.window,"keydown",s.gMh(),!1)
 A.JE(s.z,"click",new A.DT(s),!1)
 q=q.document.querySelector("#version")
 if(q==null)q=A.AN(q)
-q.textContent="v6.0.0-wip"},
+q.textContent="v6.0.0"},
 e9(a){var s,r,q,p=this
 A:{s=a.key
 if("c"===s||"C"===s){r=p.b
@@ -4767,7 +4770,7 @@ break A}if("z"===s||"Z"===s){r=p.c
 r.checked=!r.checked
 q=p.a.b
 q===$&&A.Q4()
-q.SZ()
+q.Fc()
 p.jz(r.checked?"Zoom Enabled":"Zoom Disabled")
 break A}if("d"===s||"D"===s){r=p.d
 r.checked=!r.checked
@@ -4816,7 +4819,7 @@ $S:1}
 A.dh.prototype={
 $1(a){var s=this.a.a.b
 s===$&&A.Q4()
-return s.SZ()},
+return s.Fc()},
 $S:1}
 A.ab.prototype={
 $1(a){var s=this.a.a.b

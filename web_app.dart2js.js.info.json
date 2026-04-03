@@ -3,11 +3,11 @@
   "dump_minor_version": 1,
   "program": {
     "entrypoint": "function/org-dartlang-app:///_example_src/web_app.dart::main",
-    "size": 152893,
+    "size": 152976,
     "ramUsage": "N/A MB",
     "dart2jsVersion": "3.12.0-295.0.dev",
-    "compilationMoment": "2026-04-02 21:50:25.663226",
-    "compilationDuration": 935748,
+    "compilationMoment": "2026-04-03 11:49:39.957228",
+    "compilationDuration": 917426,
     "toJsonDuration": 2000,
     "dumpInfoDuration": 0,
     "noSuchMethodEnabled": false,
@@ -687,7 +687,7 @@
         "id": "library/org-dartlang-app:///_example_src/src/graph_renderer.dart::",
         "kind": "library",
         "name": "<unnamed>",
-        "size": 5839,
+        "size": 5926,
         "children": [
           "class/org-dartlang-app:///_example_src/src/graph_renderer.dart::GraphRenderer"
         ],
@@ -718,7 +718,7 @@
         "id": "library/org-dartlang-app:///_example_src/src/ui_manager.dart::",
         "kind": "library",
         "name": "<unnamed>",
-        "size": 4020,
+        "size": 4016,
         "children": [
           "class/org-dartlang-app:///_example_src/src/ui_manager.dart::UIManager",
           "function/org-dartlang-app:///_example_src/src/ui_manager.dart::_buildTable",
@@ -5335,7 +5335,7 @@
         "id": "class/org-dartlang-app:///_example_src/src/graph_renderer.dart::GraphRenderer",
         "kind": "class",
         "name": "GraphRenderer",
-        "size": 5839,
+        "size": 5926,
         "outputUnit": "outputUnit/main",
         "parent": "library/org-dartlang-app:///_example_src/src/graph_renderer.dart::",
         "modifiers": {
@@ -5352,7 +5352,7 @@
           "function/org-dartlang-app:///_example_src/src/graph_renderer.dart::GraphRenderer._updateBody",
           "function/org-dartlang-app:///_example_src/src/graph_renderer.dart::GraphRenderer._updateOver",
           "function/org-dartlang-app:///_example_src/src/graph_renderer.dart::GraphRenderer.render",
-          "function/org-dartlang-app:///_example_src/src/graph_renderer.dart::GraphRenderer.toggleZoomStyle"
+          "function/org-dartlang-app:///_example_src/src/graph_renderer.dart::GraphRenderer.updateZoom"
         ],
         "supers": []
       },
@@ -5377,9 +5377,9 @@
           "function/org-dartlang-app:///_example_src/src/pubviz_app.dart::PubvizApp.originalVizRoot",
           "function/org-dartlang-app:///_example_src/src/pubviz_app.dart::PubvizApp.originalVizRoot%0",
           "function/org-dartlang-app:///_example_src/src/pubviz_app.dart::PubvizApp.render",
-          "function/org-dartlang-app:///_example_src/src/pubviz_app.dart::PubvizApp.toggleZoomStyle",
           "function/org-dartlang-app:///_example_src/src/pubviz_app.dart::PubvizApp.ui",
-          "function/org-dartlang-app:///_example_src/src/pubviz_app.dart::PubvizApp.ui%0"
+          "function/org-dartlang-app:///_example_src/src/pubviz_app.dart::PubvizApp.ui%0",
+          "function/org-dartlang-app:///_example_src/src/pubviz_app.dart::PubvizApp.updateZoom"
         ],
         "supers": []
       },
@@ -5387,7 +5387,7 @@
         "id": "class/org-dartlang-app:///_example_src/src/ui_manager.dart::UIManager",
         "kind": "class",
         "name": "UIManager",
-        "size": 2660,
+        "size": 2656,
         "outputUnit": "outputUnit/main",
         "parent": "library/org-dartlang-app:///_example_src/src/ui_manager.dart::",
         "modifiers": {
@@ -5408,11 +5408,11 @@
           "field/org-dartlang-app:///_example_src/src/ui_manager.dart::UIManager._zoomCheckbox",
           "function/org-dartlang-app:///_example_src/src/ui_manager.dart::UIManager.UIManager",
           "function/org-dartlang-app:///_example_src/src/ui_manager.dart::UIManager._handleKeyDown",
+          "function/org-dartlang-app:///_example_src/src/ui_manager.dart::UIManager._toggleControls",
           "function/org-dartlang-app:///_example_src/src/ui_manager.dart::UIManager.devDependencies",
           "function/org-dartlang-app:///_example_src/src/ui_manager.dart::UIManager.outdatedOnly",
           "function/org-dartlang-app:///_example_src/src/ui_manager.dart::UIManager.showCrashReport",
           "function/org-dartlang-app:///_example_src/src/ui_manager.dart::UIManager.showToast",
-          "function/org-dartlang-app:///_example_src/src/ui_manager.dart::UIManager.toggleControls",
           "function/org-dartlang-app:///_example_src/src/ui_manager.dart::UIManager.updateBoxes",
           "function/org-dartlang-app:///_example_src/src/ui_manager.dart::UIManager.zoomEnabled"
         ],
@@ -41855,7 +41855,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 66,
+        "inlinedCount": 67,
         "code": "",
         "type": "#A Function<#A extends Object?>(Object,Object,Object?)",
         "functionKind": 0
@@ -42050,7 +42050,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads anything; writes nothing)",
-        "inlinedCount": 79,
+        "inlinedCount": 81,
         "code": "",
         "type": "#A Function<#A extends Object?>(Object,Object)",
         "functionKind": 0
@@ -42593,11 +42593,11 @@
         "type": "Future<void> Function()",
         "functionKind": 2
       },
-      "org-dartlang-app:///_example_src/src/graph_renderer.dart::GraphRenderer.toggleZoomStyle": {
-        "id": "function/org-dartlang-app:///_example_src/src/graph_renderer.dart::GraphRenderer.toggleZoomStyle",
+      "org-dartlang-app:///_example_src/src/graph_renderer.dart::GraphRenderer.updateZoom": {
+        "id": "function/org-dartlang-app:///_example_src/src/graph_renderer.dart::GraphRenderer.updateZoom",
         "kind": "function",
-        "name": "toggleZoomStyle",
-        "size": 56,
+        "name": "updateZoom",
+        "size": 143,
         "outputUnit": "outputUnit/main",
         "parent": "class/org-dartlang-app:///_example_src/src/graph_renderer.dart::GraphRenderer",
         "children": [],
@@ -42612,7 +42612,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "SZ(){var s=this.c\nif(s!=null)s.classList.toggle(\"zoom\")}",
+        "code": "Fc(){var s,r=this.a.a\nr===$&&A.Q4()\nr=r.c.checked\ns=this.c\nif(r){if(s!=null)s.classList.add(\"zoom\")}else if(s!=null)s.classList.remove(\"zoom\")}",
         "type": "void Function()",
         "functionKind": 2
       },
@@ -42858,29 +42858,6 @@
         "type": "Future<void> Function()",
         "functionKind": 2
       },
-      "org-dartlang-app:///_example_src/src/pubviz_app.dart::PubvizApp.toggleZoomStyle": {
-        "id": "function/org-dartlang-app:///_example_src/src/pubviz_app.dart::PubvizApp.toggleZoomStyle",
-        "kind": "function",
-        "name": "toggleZoomStyle",
-        "size": 0,
-        "outputUnit": "outputUnit/main",
-        "parent": "class/org-dartlang-app:///_example_src/src/pubviz_app.dart::PubvizApp",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "void",
-        "inferredReturnType": "[null|powerset={null}]",
-        "parameters": [],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 2,
-        "code": "",
-        "type": "void Function()",
-        "functionKind": 2
-      },
       "org-dartlang-app:///_example_src/src/pubviz_app.dart::PubvizApp.ui": {
         "id": "function/org-dartlang-app:///_example_src/src/pubviz_app.dart::PubvizApp.ui",
         "kind": "function",
@@ -42899,7 +42876,7 @@
         "inferredReturnType": "[exact=UIManager|powerset={N}{O}{N}]",
         "parameters": [],
         "sideEffects": "SideEffects(reads field; writes nothing)",
-        "inlinedCount": 7,
+        "inlinedCount": 8,
         "code": "",
         "type": "UIManager Function()",
         "functionKind": 2
@@ -42931,6 +42908,29 @@
         "inlinedCount": 1,
         "code": "",
         "type": "void Function(UIManager)",
+        "functionKind": 2
+      },
+      "org-dartlang-app:///_example_src/src/pubviz_app.dart::PubvizApp.updateZoom": {
+        "id": "function/org-dartlang-app:///_example_src/src/pubviz_app.dart::PubvizApp.updateZoom",
+        "kind": "function",
+        "name": "updateZoom",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/org-dartlang-app:///_example_src/src/pubviz_app.dart::PubvizApp",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "void",
+        "inferredReturnType": "[null|powerset={null}]",
+        "parameters": [],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 2,
+        "code": "",
+        "type": "void Function()",
         "functionKind": 2
       },
       "org-dartlang-app:///_example_src/src/ui_manager.dart::UIManager.UIManager": {
@@ -43082,7 +43082,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "$1(a){var s=this.a.a.b\ns===$&&A.Q4()\nreturn s.SZ()}",
+        "code": "$1(a){var s=this.a.a.b\ns===$&&A.Q4()\nreturn s.Fc()}",
         "type": "void Function(JSObject)",
         "functionKind": 2
       },
@@ -43198,8 +43198,31 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "e9(a){var s,r,q,p=this\nA:{s=a.key\nif(\"c\"===s||\"C\"===s){r=p.b\nr.checked=!r.checked\np.jz(r.checked?\"Controls Shown\":\"Controls Hidden\")\nbreak A}if(\"z\"===s||\"Z\"===s){r=p.c\nr.checked=!r.checked\nq=p.a.b\nq===$&&A.Q4()\nq.SZ()\np.jz(r.checked?\"Zoom Enabled\":\"Zoom Disabled\")\nbreak A}if(\"d\"===s||\"D\"===s){r=p.d\nr.checked=!r.checked\nq=p.a.b\nq===$&&A.Q4()\nq.W()\np.jz(r.checked?\"Showing Dev Dependencies\":\"Hiding Dev Dependencies\")\nbreak A}if(\"o\"===s||\"O\"===s){r=p.a\nq=r.c\nq===$&&A.Q4()\nif(q.gH4()){q=p.f\nq.checked=!q.checked\nr=r.b\nr===$&&A.Q4()\nr.W()\np.jz(q.checked?\"Showing Only Outdated\":\"Showing All Packages\")}else p.jz(\"No Outdated Packages to Filter\")}}}\np(A.XG.prototype,\"gMh\",\"e9\",1)",
+        "code": "e9(a){var s,r,q,p=this\nA:{s=a.key\nif(\"c\"===s||\"C\"===s){r=p.b\nr.checked=!r.checked\np.jz(r.checked?\"Controls Shown\":\"Controls Hidden\")\nbreak A}if(\"z\"===s||\"Z\"===s){r=p.c\nr.checked=!r.checked\nq=p.a.b\nq===$&&A.Q4()\nq.Fc()\np.jz(r.checked?\"Zoom Enabled\":\"Zoom Disabled\")\nbreak A}if(\"d\"===s||\"D\"===s){r=p.d\nr.checked=!r.checked\nq=p.a.b\nq===$&&A.Q4()\nq.W()\np.jz(r.checked?\"Showing Dev Dependencies\":\"Hiding Dev Dependencies\")\nbreak A}if(\"o\"===s||\"O\"===s){r=p.a\nq=r.c\nq===$&&A.Q4()\nif(q.gH4()){q=p.f\nq.checked=!q.checked\nr=r.b\nr===$&&A.Q4()\nr.W()\np.jz(q.checked?\"Showing Only Outdated\":\"Showing All Packages\")}else p.jz(\"No Outdated Packages to Filter\")}}}\np(A.XG.prototype,\"gMh\",\"e9\",1)",
         "type": "void Function(JSObject)",
+        "functionKind": 2
+      },
+      "org-dartlang-app:///_example_src/src/ui_manager.dart::UIManager._toggleControls": {
+        "id": "function/org-dartlang-app:///_example_src/src/ui_manager.dart::UIManager._toggleControls",
+        "kind": "function",
+        "name": "_toggleControls",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/org-dartlang-app:///_example_src/src/ui_manager.dart::UIManager",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "void",
+        "inferredReturnType": "[null|powerset={null}]",
+        "parameters": [],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 1,
+        "code": "",
+        "type": "void Function()",
         "functionKind": 2
       },
       "org-dartlang-app:///_example_src/src/ui_manager.dart::UIManager.devDependencies": {
@@ -43220,7 +43243,7 @@
         "inferredReturnType": "[subtype=bool|powerset={IN}{O}{N}]",
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes nothing)",
-        "inlinedCount": 1,
+        "inlinedCount": 2,
         "code": "",
         "type": "bool Function()",
         "functionKind": 2
@@ -43243,7 +43266,7 @@
         "inferredReturnType": "[subtype=bool|powerset={IN}{O}{N}]",
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes nothing)",
-        "inlinedCount": 1,
+        "inlinedCount": 2,
         "code": "",
         "type": "bool Function()",
         "functionKind": 2
@@ -43333,29 +43356,6 @@
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
         "code": "$0(){var s=this.a.x\ns.classList.remove(\"show\")\ns.classList.remove(\"pop\")}",
-        "type": "void Function()",
-        "functionKind": 2
-      },
-      "org-dartlang-app:///_example_src/src/ui_manager.dart::UIManager.toggleControls": {
-        "id": "function/org-dartlang-app:///_example_src/src/ui_manager.dart::UIManager.toggleControls",
-        "kind": "function",
-        "name": "toggleControls",
-        "size": 0,
-        "outputUnit": "outputUnit/main",
-        "parent": "class/org-dartlang-app:///_example_src/src/ui_manager.dart::UIManager",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "void",
-        "inferredReturnType": "[null|powerset={null}]",
-        "parameters": [],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 1,
-        "code": "",
         "type": "void Function()",
         "functionKind": 2
       },
@@ -43482,7 +43482,7 @@
         "inferredReturnType": "[subtype=bool|powerset={IN}{O}{N}]",
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes nothing)",
-        "inlinedCount": 1,
+        "inlinedCount": 3,
         "code": "",
         "type": "bool Function()",
         "functionKind": 2
@@ -77474,9 +77474,21 @@
         "id": "function/package:pubviz/src/viz_root.dart::VizRoot.filter"
       }
     ],
-    "function/org-dartlang-app:///_example_src/src/graph_renderer.dart::GraphRenderer.toggleZoomStyle": [
+    "function/org-dartlang-app:///_example_src/src/graph_renderer.dart::GraphRenderer.updateZoom": [
       {
         "id": "field/org-dartlang-app:///_example_src/src/graph_renderer.dart::GraphRenderer.__root"
+      },
+      {
+        "id": "field/org-dartlang-app:///_example_src/src/graph_renderer.dart::GraphRenderer._app"
+      },
+      {
+        "id": "field/org-dartlang-app:///_example_src/src/pubviz_app.dart::PubvizApp._#PubvizApp#ui#F"
+      },
+      {
+        "id": "field/org-dartlang-app:///_example_src/src/ui_manager.dart::UIManager._zoomCheckbox"
+      },
+      {
+        "id": "function/dart:_late_helper::throwUnnamedLateFieldNI"
       },
       {
         "id": "function/dart:js_util::_callMethodUnchecked1",
@@ -77491,6 +77503,20 @@
       },
       {
         "id": "function/dart:js_util::getProperty"
+      },
+      {
+        "id": "function/org-dartlang-app:///_example_src/src/pubviz_app.dart::PubvizApp.ui",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/org-dartlang-app:///_example_src/src/pubviz_app.dart::PubvizApp.ui"
+      },
+      {
+        "id": "function/org-dartlang-app:///_example_src/src/ui_manager.dart::UIManager.zoomEnabled",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/org-dartlang-app:///_example_src/src/ui_manager.dart::UIManager.zoomEnabled"
       }
     ],
     "function/org-dartlang-app:///_example_src/src/interop.dart::NamedNodeMapExt|[]": [
@@ -77547,7 +77573,7 @@
         "mask": "inlined"
       }
     ],
-    "function/org-dartlang-app:///_example_src/src/pubviz_app.dart::PubvizApp.toggleZoomStyle": [
+    "function/org-dartlang-app:///_example_src/src/pubviz_app.dart::PubvizApp.updateZoom": [
       {
         "id": "function/org-dartlang-app:///_example_src/src/pubviz_app.dart::PubvizApp._renderer",
         "mask": "inlined"
@@ -77623,17 +77649,17 @@
         "id": "function/dart:_late_helper::throwUnnamedLateFieldNI"
       },
       {
-        "id": "function/org-dartlang-app:///_example_src/src/graph_renderer.dart::GraphRenderer.toggleZoomStyle"
+        "id": "function/org-dartlang-app:///_example_src/src/graph_renderer.dart::GraphRenderer.updateZoom"
       },
       {
         "id": "function/org-dartlang-app:///_example_src/src/pubviz_app.dart::PubvizApp._renderer"
       },
       {
-        "id": "function/org-dartlang-app:///_example_src/src/pubviz_app.dart::PubvizApp.toggleZoomStyle",
+        "id": "function/org-dartlang-app:///_example_src/src/pubviz_app.dart::PubvizApp.updateZoom",
         "mask": "inlined"
       },
       {
-        "id": "function/org-dartlang-app:///_example_src/src/pubviz_app.dart::PubvizApp.toggleZoomStyle"
+        "id": "function/org-dartlang-app:///_example_src/src/pubviz_app.dart::PubvizApp.updateZoom"
       }
     ],
     "function/org-dartlang-app:///_example_src/src/ui_manager.dart::UIManager.UIManager.UIManager_closure.call%3": [
@@ -77767,7 +77793,7 @@
         "id": "function/org-dartlang-app:///_example_src/src/graph_renderer.dart::GraphRenderer.render"
       },
       {
-        "id": "function/org-dartlang-app:///_example_src/src/graph_renderer.dart::GraphRenderer.toggleZoomStyle"
+        "id": "function/org-dartlang-app:///_example_src/src/graph_renderer.dart::GraphRenderer.updateZoom"
       },
       {
         "id": "function/org-dartlang-app:///_example_src/src/pubviz_app.dart::PubvizApp._renderer"
@@ -77790,24 +77816,55 @@
         "id": "function/org-dartlang-app:///_example_src/src/pubviz_app.dart::PubvizApp.render"
       },
       {
-        "id": "function/org-dartlang-app:///_example_src/src/pubviz_app.dart::PubvizApp.toggleZoomStyle",
+        "id": "function/org-dartlang-app:///_example_src/src/pubviz_app.dart::PubvizApp.updateZoom",
         "mask": "inlined"
       },
       {
-        "id": "function/org-dartlang-app:///_example_src/src/pubviz_app.dart::PubvizApp.toggleZoomStyle"
+        "id": "function/org-dartlang-app:///_example_src/src/pubviz_app.dart::PubvizApp.updateZoom"
+      },
+      {
+        "id": "function/org-dartlang-app:///_example_src/src/ui_manager.dart::UIManager._toggleControls",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/org-dartlang-app:///_example_src/src/ui_manager.dart::UIManager._toggleControls"
+      },
+      {
+        "id": "function/org-dartlang-app:///_example_src/src/ui_manager.dart::UIManager.devDependencies",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/org-dartlang-app:///_example_src/src/ui_manager.dart::UIManager.devDependencies"
+      },
+      {
+        "id": "function/org-dartlang-app:///_example_src/src/ui_manager.dart::UIManager.outdatedOnly",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/org-dartlang-app:///_example_src/src/ui_manager.dart::UIManager.outdatedOnly"
       },
       {
         "id": "function/org-dartlang-app:///_example_src/src/ui_manager.dart::UIManager.showToast"
       },
       {
-        "id": "function/org-dartlang-app:///_example_src/src/ui_manager.dart::UIManager.toggleControls",
+        "id": "function/org-dartlang-app:///_example_src/src/ui_manager.dart::UIManager.zoomEnabled",
         "mask": "inlined"
       },
       {
-        "id": "function/org-dartlang-app:///_example_src/src/ui_manager.dart::UIManager.toggleControls"
+        "id": "function/org-dartlang-app:///_example_src/src/ui_manager.dart::UIManager.zoomEnabled"
       },
       {
         "id": "function/package:pubviz/src/viz_root.dart::VizRoot.hasOutdated"
+      }
+    ],
+    "function/org-dartlang-app:///_example_src/src/ui_manager.dart::UIManager._toggleControls": [
+      {
+        "id": "function/dart:js_util::_setPropertyUnchecked",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:js_util::getProperty",
+        "mask": "inlined"
       }
     ],
     "function/org-dartlang-app:///_example_src/src/ui_manager.dart::UIManager.devDependencies": [
@@ -77901,16 +77958,6 @@
       },
       {
         "id": "function/dart:js_util::getProperty"
-      }
-    ],
-    "function/org-dartlang-app:///_example_src/src/ui_manager.dart::UIManager.toggleControls": [
-      {
-        "id": "function/dart:js_util::_setPropertyUnchecked",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/dart:js_util::getProperty",
-        "mask": "inlined"
       }
     ],
     "function/org-dartlang-app:///_example_src/src/ui_manager.dart::UIManager.updateBoxes": [
@@ -82778,7 +82825,7 @@
       "id": "outputUnit/main",
       "kind": "outputUnit",
       "name": "main",
-      "size": 152893,
+      "size": 152976,
       "filename": "web_app.dart2js.js",
       "imports": []
     }
