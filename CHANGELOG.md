@@ -1,4 +1,4 @@
-## 6.0.0-wip
+## 6.0.0
 
 ### Breaking Changes
 - `VizRoot.forDirectory` has been replaced by the `vizRoot` extension method on
