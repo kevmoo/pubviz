@@ -437,13 +437,13 @@ svg.zoom {
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 4000;
+    z-index: 2500;
     transition: opacity 0.3s ease;
 }
 
 #mobile-overlay.hidden {
-    display: none;
     opacity: 0;
+    visibility: hidden;
 }
 
 .mobile-warning {
