@@ -33,5 +33,5 @@ final class PubvizApp {
 
   Future<void> render() => _renderer.render();
 
-  void toggleZoomStyle() => _renderer.toggleZoomStyle();
+  void updateZoom() => _renderer.updateZoom();
 }
