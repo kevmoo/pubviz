@@ -143,53 +143,48 @@ final class GraphRenderer {
       );
     }).toList();
 
-    void handleMouseEnter(MouseEvent event) {
-      final target = event.currentTarget as SVGGElement;
-      final textElements = target.querySelectorAll('text');
-      final text = textElements.elements
-          .map((e) => e.textContent?.trim() ?? '')
-          .where((t) => t.isNotEmpty)
-          .join(' ');
-      if (text.isNotEmpty) {
-        _app.ui.showToast(text);
+    _root.onMouseOver.listen((MouseEvent event) {
+      final target =
+          (event.target as Element).closest('g.node, g.edge') as SVGGElement?;
+      final related =
+          (event.relatedTarget as Element?)?.closest('g.node, g.edge')
+              as SVGGElement?;
+
+      if (target == related) return;
+
+      if (target != null) {
+        final textElements = target.querySelectorAll('text');
+        final text = textElements.elements
+            .map((e) => e.textContent?.trim() ?? '')
+            .where((t) => t.isNotEmpty)
+            .join(' ');
+        if (text.isNotEmpty) {
+          _app.ui.showToast(text);
+        }
       }
 
       if (_lockedElement == null) {
         _updateOver(target, nodes, edges);
       }
-    }
+    });
 
-    void handleMouseLeave(MouseEvent event) {
+    _root.onMouseLeave.listen((_) {
       if (_lockedElement == null) {
         _updateOver(null, nodes, edges);
       }
-    }
-
-    void handleClick(MouseEvent event) {
-      event.stopPropagation();
-      final target = event.currentTarget as SVGGElement;
-      if (_lockedElement == target) {
-        _lockedElement = null;
-      } else {
-        _lockedElement = target;
-      }
-      _updateOver(_lockedElement ?? target, nodes, edges);
-    }
-
-    for (var entry in nodes) {
-      entry.element.onMouseEnter.listen(handleMouseEnter);
-      entry.element.onMouseLeave.listen(handleMouseLeave);
-      entry.element.onClick.listen(handleClick);
-    }
-
-    for (var entry in edges) {
-      entry.element.onMouseEnter.listen(handleMouseEnter);
-      entry.element.onMouseLeave.listen(handleMouseLeave);
-      entry.element.onClick.listen(handleClick);
-    }
+    });
 
     _root.onClick.listen((MouseEvent event) {
-      if (_lockedElement != null) {
+      final target =
+          (event.target as Element).closest('g.node, g.edge') as SVGGElement?;
+      if (target != null) {
+        if (_lockedElement == target) {
+          _lockedElement = null;
+        } else {
+          _lockedElement = target;
+        }
+        _updateOver(_lockedElement ?? target, nodes, edges);
+      } else if (_lockedElement != null) {
         _lockedElement = null;
         _updateOver(null, nodes, edges);
       }
