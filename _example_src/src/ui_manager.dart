@@ -28,8 +28,6 @@ final class UIManager {
       document.querySelector('#toast') as HTMLDivElement;
   final HTMLDivElement _mobileOverlay =
       document.querySelector('#mobile-overlay') as HTMLDivElement;
-  final HTMLButtonElement _dismissMobileWarning =
-      document.querySelector('#dismissMobileWarning') as HTMLButtonElement;
 
   Timer? _toastTimer;
 
