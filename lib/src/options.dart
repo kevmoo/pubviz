@@ -35,6 +35,13 @@ class Options {
   final bool? directDependencies;
 
   @CliOption(
+    help: '''
+A published package name (and optional version) to visualize.
+I.E. "--package pubviz" or "--package pubviz:5.0.0"''',
+  )
+  final String? package;
+
+  @CliOption(
     abbr: 'p',
     help: 'Include only production (non-dev) dependencies.',
     negatable: false,
@@ -69,6 +76,7 @@ class Options {
     List<String>? ignorePackages,
     required this.flagOutdated,
     this.directDependencies,
+    this.package,
     required this.productionDependencies,
     required this.help,
     required this.rest,

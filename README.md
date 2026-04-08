@@ -123,6 +123,8 @@ Arguments:
   -o, --[no-]flag-outdated         Check pub.dev for latest packages and flag those that are outdated.
                                    (defaults to on)
   -d, --direct-dependencies        Include only direct dependencies.
+      --package                    A published package name (and optional version) to visualize.
+                                   I.E. "--package pubviz" or "--package pubviz:5.0.0"
   -p, --production-dependencies    Include only production (non-dev) dependencies.
   -v, --version                    Print the version of pubviz and exit.
   -w, --[no-]workspace             Include all packages in the workspace.

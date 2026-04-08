@@ -27,6 +27,7 @@ Options _$parseOptionsResult(ArgResults result) => Options(
   ignorePackages: result['ignore-packages'] as List<String>,
   flagOutdated: result['flag-outdated'] as bool,
   directDependencies: result['direct-dependencies'] as bool?,
+  package: result['package'] as String?,
   productionDependencies: result['production-dependencies'] as bool,
   help: result['help'] as bool,
   rest: result.rest,
@@ -71,6 +72,11 @@ ArgParser _$populateOptionsParser(ArgParser parser) => parser
     help: 'Include only direct dependencies.',
     defaultsTo: null,
     negatable: false,
+  )
+  ..addOption(
+    'package',
+    help:
+        'A published package name (and optional version) to visualize.\nI.E. "--package pubviz" or "--package pubviz:5.0.0"',
   )
   ..addFlag(
     'production-dependencies',

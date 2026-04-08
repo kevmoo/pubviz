@@ -69,7 +69,7 @@ class VizRoot {
       }
     }
 
-    final newPackages = <String, VizPackage>{};
+    final newPackages = SplayTreeMap<String, VizPackage>();
     final ignoreSet = ignorePackages?.toSet() ?? {};
 
     for (var entry in packages.entries) {
@@ -202,7 +202,7 @@ class VizRoot {
     // 4. Intersection
     final keepNodes = forwardReachable.intersection(backwardReachable);
 
-    final newPackages = <String, VizPackage>{};
+    final newPackages = SplayTreeMap<String, VizPackage>();
     for (var name in keepNodes) {
       final orig = sourcePackages[name];
       if (orig != null) {
@@ -230,7 +230,7 @@ class VizRoot {
     Map<String, VizPackage> sourcePackages,
     bool excludeDev,
   ) {
-    final newPackages = <String, VizPackage>{};
+    final newPackages = SplayTreeMap<String, VizPackage>();
     final primaryPackages = sourcePackages.values
         .where((p) => p.isPrimary)
         .map((p) => p.name)
@@ -311,7 +311,7 @@ class VizRoot {
     Map<String, VizPackage> sourcePackages,
     bool excludeDev,
   ) {
-    final newPackages = <String, VizPackage>{};
+    final newPackages = SplayTreeMap<String, VizPackage>();
     final primaryPackages = sourcePackages.values
         .where((p) => p.isPrimary)
         .map((p) => p.name)

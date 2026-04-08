@@ -13,50 +13,108 @@ import 'package:shelf_static/shelf_static.dart';
 import 'dot.dart';
 import 'options.dart';
 import 'pub_data_service.dart';
+import 'published_package.dart';
 import 'root_builder.dart';
 import 'terminate.dart';
 import 'update_order.dart';
 import 'viz_root.dart';
 
 Future<void> run(Options options) async {
-  final path = _getPath(options.rest);
-  final service = PubDataService(path);
+  Directory? tempDir;
+  String? targetPackage;
+  String effectivePath;
 
-  final pubspec = service.rootPubspec();
-  final includeWorkspace =
-      options.workspace ??
-      (pubspec.workspace != null || pubspec.resolution == 'workspace');
+  if (options.package != null) {
+    targetPackage = options.package!;
+    tempDir = await setupPublishedPackageProject(targetPackage);
+    effectivePath = tempDir.path;
+  } else {
+    if (options.rest.length > 1) {
+      throw UsageException(
+        'Only one argument is allowed. You provided ${options.rest.length}.',
+      );
+    }
+    effectivePath = options.rest.isEmpty ? p.current : options.rest.first;
 
-  final vp = await service.vizRoot(
-    flagOutdated: options.flagOutdated,
-    ignorePackages: options.ignorePackages,
-    directDependenciesOnly: options.directDependencies ?? false,
-    productionDependenciesOnly: options.productionDependencies,
-    includeWorkspace: includeWorkspace,
-  );
-  if (options.flagOutdated) {
-    final updateOrder = computeUpdateOrder(vp);
-    if (updateOrder.isNotEmpty) {
-      stderr
-        ..writeln()
-        ..writeln(styleBold.wrap('Outdated package update order:'));
-      for (final pkg in updateOrder) {
-        stderr.writeln('  ${pkg.name}');
-      }
-      stderr.writeln();
+    if (!FileSystemEntity.isDirectorySync(effectivePath)) {
+      throw StateError(
+        'The provided path does not exist or is not a directory: '
+        '$effectivePath',
+      );
+    }
+
+    final yamlPath = p.join(effectivePath, 'pubspec.yaml');
+
+    if (!FileSystemEntity.isFileSync(yamlPath)) {
+      throw StateError(
+        'Could not find a pubspec.yaml in the target path.: $effectivePath',
+      );
     }
   }
-  switch (options.action) {
-    case Action.print:
-      final filteredVp = vp.filter(
-        excludeDev: options.filters.contains('hide-dev'),
-        onlyOutdated: options.filters.contains('outdated'),
-        onlyWorkspace: options.filters.contains('workspace'),
+  try {
+    final service = PubDataService(effectivePath);
+
+    final pubspec = service.rootPubspec();
+    final includeWorkspace =
+        options.workspace ??
+        (pubspec.workspace != null || pubspec.resolution == 'workspace');
+
+    final VizRoot vp;
+    if (options.package != null) {
+      final parsedName = options.package!.split(':').first;
+      final packages = await service.getReferencedPackages(
+        options.flagOutdated,
+        options.directDependencies ?? false,
+        options.productionDependencies,
+        includeWorkspace: includeWorkspace,
       );
-      _printContent(filteredVp, options.ignorePackages);
-    case Action.open:
-    case Action.serve:
-      await _createOrOpen(vp, options);
+      packages.remove(pubspec.name);
+
+      vp = VizRoot.assemble(
+        parsedName,
+        packages,
+        flagOutdated: options.flagOutdated,
+        ignorePackages: options.ignorePackages,
+        isWorkspace: includeWorkspace,
+      );
+    } else {
+      vp = await service.vizRoot(
+        flagOutdated: options.flagOutdated,
+        ignorePackages: options.ignorePackages,
+        directDependenciesOnly: options.directDependencies ?? false,
+        productionDependenciesOnly: options.productionDependencies,
+        includeWorkspace: includeWorkspace,
+      );
+    }
+    if (options.flagOutdated) {
+      final updateOrder = computeUpdateOrder(vp);
+      if (updateOrder.isNotEmpty) {
+        stderr
+          ..writeln()
+          ..writeln(styleBold.wrap('Outdated package update order:'));
+        for (final pkg in updateOrder) {
+          stderr.writeln('  ${pkg.name}');
+        }
+        stderr.writeln();
+      }
+    }
+    switch (options.action) {
+      case Action.print:
+        final filteredVp = vp.filter(
+          excludeDev: options.filters.contains('hide-dev'),
+          onlyOutdated: options.filters.contains('outdated'),
+          onlyWorkspace: options.filters.contains('workspace'),
+        );
+        _printContent(filteredVp, options.ignorePackages);
+      case Action.open:
+      case Action.serve:
+        await _createOrOpen(vp, options);
+    }
+  } finally {
+    if (tempDir != null) {
+      print('Cleaning up temporary directory...');
+      tempDir.deleteSync(recursive: true);
+    }
   }
 }
 
@@ -134,32 +192,6 @@ String vizDataString(VizRoot root) {
   const encoder = JsonEncoder.withIndent('  ');
   final jsonString = encoder.convert(root.toJson());
   return 'export const vizDataString = JSON.stringify($jsonString);\n';
-}
-
-String _getPath(List<String> args) {
-  if (args.length > 1) {
-    throw UsageException(
-      'Only one argument is allowed. You provided ${args.length}.',
-    );
-  }
-
-  final path = args.isEmpty ? p.current : args.first;
-
-  if (!FileSystemEntity.isDirectorySync(path)) {
-    throw UsageException(
-      'The provided path does not exist or is not a directory: $path',
-    );
-  }
-
-  final yamlPath = p.join(path, 'pubspec.yaml');
-
-  if (!FileSystemEntity.isFileSync(yamlPath)) {
-    throw UsageException(
-      'Could not find a pubspec.yaml in the target path: $yamlPath',
-    );
-  }
-
-  return path;
 }
 
 class UsageException implements Exception {
