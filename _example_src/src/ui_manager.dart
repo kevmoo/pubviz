@@ -28,8 +28,6 @@ final class UIManager {
       document.querySelector('#toast') as HTMLDivElement;
   final HTMLDivElement _mobileOverlay =
       document.querySelector('#mobile-overlay') as HTMLDivElement;
-  final HTMLButtonElement _dismissMobileWarning =
-      document.querySelector('#dismissMobileWarning') as HTMLButtonElement;
 
   Timer? _toastTimer;
 
@@ -39,29 +37,34 @@ final class UIManager {
       _outdatedCheckboxContainer.title = 'No outdated packages found.';
     }
 
-    _depsInBox.onWheel.listen((e) => e.stopPropagation());
-    _depsOutBox.onWheel.listen((e) => e.stopPropagation());
-
-    _hamburgerCheckbox.onChange.listen((_) {
-      showToast(
-        _hamburgerCheckbox.checked ? 'Controls Shown' : 'Controls Hidden',
-      );
+    document.body!.onWheel.listen((e) {
+      if ((e.target as Element).closest('.hud-box') != null) {
+        e.stopPropagation();
+      }
     });
 
-    _zoomCheckbox.onChange.listen((_) => _app.updateZoom());
-
-    _devDependenciesCheckbox.onChange.listen((_) {
-      unawaited(_app.render());
+    document.body!.onChange.listen((e) {
+      final target = e.target as Element;
+      switch (target.id) {
+        case 'controlsToggle':
+          showToast(
+            _hamburgerCheckbox.checked ? 'Controls Shown' : 'Controls Hidden',
+          );
+        case 'zoomCheckbox':
+          _app.updateZoom();
+        case 'devDependenciesCheckbox' || 'outdatedOnlyCheckbox':
+          unawaited(_app.render());
+      }
     });
-    _outdatedOnlyCheckbox.onChange.listen((_) {
-      unawaited(_app.render());
+
+    document.body!.onClick.listen((e) {
+      final target = e.target as Element;
+      if (target.id == 'dismissMobileWarning') {
+        _mobileOverlay.classList.add('hidden');
+      }
     });
 
     window.onKeyDown.listen(_handleKeyDown);
-
-    _dismissMobileWarning.onClick.listen((_) {
-      _mobileOverlay.classList.add('hidden');
-    });
 
     (document.querySelector('#version') as HTMLSpanElement).textContent =
         'v$packageVersion';
