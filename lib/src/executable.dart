@@ -5,6 +5,7 @@ import 'dart:isolate';
 
 import 'package:io/ansi.dart';
 import 'package:meta/meta.dart';
+import 'package:path/path.dart' as p;
 import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart' as io;
 import 'package:shelf_static/shelf_static.dart';
@@ -17,7 +18,8 @@ import 'terminate.dart';
 import 'update_order.dart';
 import 'viz_root.dart';
 
-Future<void> run(Options options, String path) async {
+Future<void> run(Options options) async {
+  final path = _getPath(options.rest);
   final service = PubDataService(path);
 
   final pubspec = service.rootPubspec();
@@ -61,7 +63,10 @@ Future<void> _createOrOpen(VizRoot root, Options options) async {
     Uri.parse('package:pubviz/assets/'),
   );
   if (assetsUri == null) {
-    throw StateError('Could not resolve package:pubviz/assets/');
+    throw const FileSystemException(
+      'Could not resolve package:pubviz/assets/',
+      'package:pubviz/assets/',
+    );
   }
 
   final jsContent = vizDataString(root);
@@ -121,4 +126,39 @@ String vizDataString(VizRoot root) {
   const encoder = JsonEncoder.withIndent('  ');
   final jsonString = encoder.convert(root.toJson());
   return 'export const vizDataString = JSON.stringify($jsonString);\n';
+}
+
+String _getPath(List<String> args) {
+  if (args.length > 1) {
+    throw UsageException(
+      'Only one argument is allowed. You provided ${args.length}.',
+    );
+  }
+
+  final path = args.isEmpty ? p.current : args.first;
+
+  if (!FileSystemEntity.isDirectorySync(path)) {
+    throw UsageException(
+      'The provided path does not exist or is not a directory: $path',
+    );
+  }
+
+  final yamlPath = p.join(path, 'pubspec.yaml');
+
+  if (!FileSystemEntity.isFileSync(yamlPath)) {
+    throw UsageException(
+      'Could not find a pubspec.yaml in the target path: $yamlPath',
+    );
+  }
+
+  return path;
+}
+
+class UsageException implements Exception {
+  final String message;
+
+  UsageException(this.message);
+
+  @override
+  String toString() => message;
 }
