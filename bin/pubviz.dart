@@ -22,10 +22,7 @@ Future<void> _main(List<String> args) async {
   try {
     options = parseOptions(args);
   } on FormatException catch (e) {
-    print(red.wrap(e.message));
-    print('');
-    _printUsage();
-    exitCode = ExitCode.usage.code;
+    _errorAndUsage(e.message);
     return;
   }
 
@@ -42,10 +39,7 @@ Future<void> _main(List<String> args) async {
   try {
     await exec.run(options);
   } on exec.UsageException catch (e) {
-    print(red.wrap(e.message));
-    print('');
-    _printUsage();
-    exitCode = ExitCode.usage.code;
+    _errorAndUsage(e.message);
   } catch (error, stack) {
     stderr.write('''
 $error
@@ -65,4 +59,11 @@ ${styleBold.wrap('Arguments:')}
 ${_indent(parser.usage)}
 
 If <package path> is omitted, the current directory is used.''');
+}
+
+void _errorAndUsage(String message) {
+  print(red.wrap(message));
+  print('');
+  _printUsage();
+  exitCode = ExitCode.usage.code;
 }
