@@ -82,8 +82,11 @@ final class GraphRenderer {
   }
 
   Future<String> _renderWithWorker(String dotString) {
-    _currentWorker?.terminate();
-    _currentCompleter?.completeError('Cancelled');
+    final oldCompleter = _currentCompleter;
+    if (_currentWorker != null) {
+      _cleanupWorker(_currentWorker!);
+      oldCompleter?.completeError('Cancelled');
+    }
 
     final completer = Completer<String>();
     _currentCompleter = completer;
@@ -93,16 +96,20 @@ final class GraphRenderer {
 
     worker
       ..onmessage = (MessageEvent event) {
-        final response = event.data as RenderResponse;
-        if (response.success) {
-          completer.complete(response.output);
-        } else {
-          completer.completeError(response.error);
+        if (!completer.isCompleted) {
+          final response = event.data as RenderResponse;
+          if (response.success) {
+            completer.complete(response.output);
+          } else {
+            completer.completeError(response.error);
+          }
         }
         _cleanupWorker(worker);
       }.toJS
       ..onerror = (Event event) {
-        completer.completeError('Worker error');
+        if (!completer.isCompleted) {
+          completer.completeError('Worker error');
+        }
         _cleanupWorker(worker);
       }.toJS
       ..postMessage(
