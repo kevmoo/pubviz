@@ -2,7 +2,7 @@
 targets:
   $default:
     sources:
-      - _example_src/**
+      - web/**
       - $package$
       - build.yaml
       - lib/$lib$
@@ -26,7 +26,7 @@ targets:
         - lib/src/viz_package.dart
       build_web_compilers|entrypoint:
         generate_for:
-        - _example_src/**.dart
+        - web/**.dart
         release_options:
           compilers:
             dart2wasm:

@@ -6,7 +6,7 @@ import 'package:yaml/yaml.dart';
 
 const assetFileName = 'build_inputs.json';
 
-const _inputs = {'_example_src', 'build.yaml', 'lib', 'pubspec.yaml'};
+const _inputs = {'web', 'build.yaml', 'lib', 'pubspec.yaml'};
 
 Future<String> hashInputs() async {
   final gitLs = await Process.run('git', ['ls-files', ..._inputs]);
