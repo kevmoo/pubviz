@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert' show LineSplitter;
 import 'dart:js_interop';
 
@@ -11,10 +12,13 @@ import 'pubviz_app.dart';
 
 final class GraphRenderer {
   final PubvizApp _app;
-  VizInstance? _vizInstance;
   SVGElement? __root;
   SVGGElement? _lockedElement;
   final _nodeOutdatedMap = <String, bool>{};
+
+  int _renderGeneration = 0;
+  Worker? _currentWorker;
+  Completer<String>? _currentCompleter;
 
   GraphRenderer(this._app);
 
@@ -29,16 +33,16 @@ final class GraphRenderer {
   }
 
   Future<void> render() async {
-    if (__root != null) {
-      _root.remove();
-      __root = null;
-      _lockedElement = null;
-    }
+    final generation = ++_renderGeneration;
+
+    final loadingOverlay = document.querySelector('#loading-overlay');
+    loadingOverlay?.classList.remove('hidden');
+
+    // Yield to allow the browser to render the loading overlay.
+    await Future<void>.microtask(() {});
 
     final watch = Stopwatch()..start();
     try {
-      _vizInstance ??= await Viz.instance().toDart;
-
       final filteredRoot = _app.originalVizRoot.filter(
         excludeDev: !_app.ui.devDependencies,
         onlyOutdated: _app.ui.outdatedOnly,
@@ -46,12 +50,17 @@ final class GraphRenderer {
 
       final dotString = filteredRoot.toDot();
 
-      final output = _vizInstance!.renderString(
-        dotString,
-        RenderOptions(format: 'svg'),
-      );
+      final output = await _renderWithWorker(dotString);
+
+      if (generation != _renderGeneration) {
+        return;
+      }
+
       _updateBody(output);
     } catch (e, stack) {
+      if (e == 'Cancelled') {
+        return;
+      }
       try {
         _app.ui.showCrashReport(e.toString(), stack.toString());
       } catch (error, stack) {
@@ -65,12 +74,61 @@ final class GraphRenderer {
       }
       rethrow;
     } finally {
-      console.info('Total time generating graph: ${watch.elapsed}'.toJS);
+      if (generation == _renderGeneration) {
+        loadingOverlay?.classList.add('hidden');
+        console.info('Total time generating graph: ${watch.elapsed}'.toJS);
+      }
     }
   }
 
+  Future<String> _renderWithWorker(String dotString) {
+    _currentWorker?.terminate();
+    _currentCompleter?.completeError('Cancelled');
+
+    final completer = Completer<String>();
+    _currentCompleter = completer;
+
+    final worker = Worker('viz_worker.js'.toJS);
+    _currentWorker = worker;
+
+    worker
+      ..onmessage = (MessageEvent event) {
+        final response = event.data as RenderResponse;
+        if (response.success) {
+          completer.complete(response.output);
+        } else {
+          completer.completeError(response.error);
+        }
+        _cleanupWorker(worker);
+      }.toJS
+      ..onerror = (Event event) {
+        completer.completeError('Worker error');
+        _cleanupWorker(worker);
+      }.toJS
+      ..postMessage(
+        RenderMessage(
+          dotString: dotString,
+          options: RenderOptions(format: 'svg'),
+        ),
+      );
+
+    return completer.future;
+  }
+
+  void _cleanupWorker(Worker worker) {
+    if (_currentWorker == worker) {
+      _currentWorker = null;
+      _currentCompleter = null;
+    }
+    worker.terminate();
+  }
+
   void _updateBody(String output) {
-    assert(__root == null);
+    if (__root != null) {
+      __root!.remove();
+      __root = null;
+      _lockedElement = null;
+    }
 
     output = LineSplitter.split(output)
         .where(

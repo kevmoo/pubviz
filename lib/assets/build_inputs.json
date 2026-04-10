@@ -15,12 +15,13 @@
   "lib/src/viz_root.g.dart": "a0d1f70a6118015f27d34f8e6659e69603fa70a0f143da0d9a5bc912ec2bb6f3",
   "pubspec.yaml": "8557dd337abe36e5aaf75f26eadc595e3ed0134c628be20d568b9412e9871414",
   "web/favicon.ico": "39ab6b867a1c4c75019506267b3b4ce7cc60fb2ba66870e6485b4e31f6265a7c",
-  "web/index.html": "2cf1dca1f1e7f77c82a232eb3330de0d8c70f830c0c1f584d13690ecfa9490db",
-  "web/src/graph_renderer.dart": "24e20e36301709c6b7df6002098d29ba94bce17acdd56ac7b05c8928d8d65b34",
-  "web/src/interop.dart": "0caf433b0750f8926bd40abb10ec91e3005bfac8d4f9328f0c51ea80a672bcaa",
+  "web/index.html": "b177910e36aa4ab42f3764d61edf5474f68b9367c416effb34e3c365e9792379",
+  "web/src/graph_renderer.dart": "9015c149a14aa112d4db8519fbc409fa193f9bfdd185edd2d7a9eb329b46328d",
+  "web/src/interop.dart": "398e0e1e212acc689a48c61ee3ac7e7b7fa20f01258e910d4af7c5aea2d7dd88",
   "web/src/pubviz_app.dart": "2ea287aa427c4969173f879ba8cc26b119cbdad5dc5675cafe4cef5d0b26bbe2",
   "web/src/ui_manager.dart": "e5698ca9279d668a245a7f7f1f077b599d68de597b3ed2c9a832d159177295ef",
-  "web/style.css": "ae6a2dc542b67f36ab844e94eb61750f533e62d32af4dbe6ecbe8d608a1b75bc",
+  "web/style.css": "487c58c95d98e64a5df8b1d35ce0257dd9dc607f10dfb913b2e96b40035dd6df",
   "web/viz_data.js": "0e8f4ebb67eaaf171f62bce9024ab64413ed6e5339a5db9b492e6270a0b73b1f",
+  "web/viz_worker.js": "f22f00b05ffad1df3c1fb951ef1676d82514b30984ecfe4278bcc1101c97c40a",
   "web/web_app.dart": "13da5e0a84b0075df6af4961a3fd1508450f8367bd423cdc272ad5a38d0020bd"
 }
