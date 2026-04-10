@@ -2,15 +2,15 @@
 
 These instructions help guide AI agents when making changes to this repository.
 
-## Web Assets Workflow (`_example_src` vs `lib/assets`)
+## Web Assets Workflow (`web` vs `lib/assets`)
 
 The `pubviz` application includes a compiled web frontend that is bundled
 directly into the Dart package. It is critical to understand the distinction
 between the source files and the compiled outputs:
 
-1. **Source of Truth (`_example_src/`)**:
+1. **Source of Truth (`web/`)**:
    - All web application source code (HTML, CSS, Dart) lives in the
-     `_example_src` directory.
+     `web` directory.
    - **Make all web-related UI or logic edits here.** Do NOT manually edit
      files in `lib/assets/`.
 
@@ -18,11 +18,11 @@ between the source files and the compiled outputs:
    - This directory contains the final generated web artifacts (Compiled JS,
      WASM, CSS, copied HTML, etc.) ensuring offline functionality.
    - It also contains `build_inputs.json`, which tracks the `SHA-256` hashes
-     of the input files (`_example_src`, `lib`, `build.yaml`, `pubspec.yaml`)
+     of the input files (`web`, `lib`, `build.yaml`, `pubspec.yaml`)
      to ensure the cache isn't stale.
 
 3. **Rebuilding Assets**:
-   - Whenever you modify *anything* in `_example_src/`, `lib/`, `build.yaml`, 
+   - Whenever you modify *anything* in `web/`, `lib/`, `build.yaml`, 
      or `pubspec.yaml`, you **MUST** run the following command to recompile
      the assets and sync them to `lib/assets/`:
      ```bash

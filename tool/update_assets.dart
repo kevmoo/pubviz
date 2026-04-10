@@ -13,7 +13,7 @@ void main() async {
     'build',
     '--release',
     '-o',
-    '_example_src:build/assets_temp',
+    'web:build/assets_temp',
   ], mode: ProcessStartMode.inheritStdio);
 
   if (await buildResult.exitCode != 0) {

@@ -16,7 +16,7 @@ void main() {
   test('ensure web assets are built and up-to-date', () async {
     // 1. Verify static non-compiled files exactly match
     for (final filename in _staticAssets) {
-      final sourceFile = File(p.join('_example_src', filename));
+      final sourceFile = File(p.join('web', filename));
       final assetFile = File(p.join('lib', 'assets', filename));
 
       if (sourceFile.existsSync() && assetFile.existsSync()) {
@@ -24,7 +24,7 @@ void main() {
         final assetBytes = assetFile.readAsBytesSync();
         if (!(const ListEquality<int>().equals(sourceBytes, assetBytes))) {
           fail(
-            '`lib/assets/$filename` does not match `_example_src/$filename`.\n'
+            '`lib/assets/$filename` does not match `web/$filename`.\n'
             'Please run `dart tool/update_assets.dart` and commit the updated files.',
           );
         }

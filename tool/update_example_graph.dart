@@ -289,9 +289,9 @@ Future<void> _generateVizData() async {
 
   final jsContent = vizDataString(vp);
 
-  File('_example_src/viz_data.js').writeAsStringSync(jsContent);
+  File('web/viz_data.js').writeAsStringSync(jsContent);
 
   print(
-    'Successfully updated _example_src/viz_data.js with fresh pubviz graph bits!',
+    'Successfully updated web/viz_data.js with fresh pubviz graph bits!',
   );
 }
