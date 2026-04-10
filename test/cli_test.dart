@@ -55,10 +55,12 @@ $_usage''');
       'b',
     ]);
 
-    final output = await proc.stderrStream().join('\n');
-    expect(output, 'Only one argument is allowed. You provided 2.');
+    final output = await proc.stdoutStream().join('\n');
+    expect(output, '''Only one argument is allowed. You provided 2.
 
-    await proc.shouldExit(1);
+$_usage''');
+
+    await proc.shouldExit(64);
   });
 
   test('print dot', () async {

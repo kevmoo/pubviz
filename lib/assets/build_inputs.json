@@ -17,10 +17,10 @@
   "lib/src/dot.dart": "7d825f5680454725a849b034c0f3d1f04e2e5a9d0769906e0dfd820918f254d6",
   "lib/src/options.dart": "4de6623f7441e4076fbd874c28d6e7a0ae45bd53734f05ae7c7ee247728a5e85",
   "lib/src/options.g.dart": "d495ee8b311a54dfffdf77d5e09d04008f9724d859834009ced5b72975df34fb",
-  "lib/src/version.dart": "64dae4060472e5ed5ad445d72b30fbe5590d672ee6a2c6c1c7e008751e1710b8",
+  "lib/src/version.dart": "4fc1b21322712d7dee1efad949956f123fa4b56a38fb79e2b9e6414c02c938a4",
   "lib/src/viz_package.dart": "5a8fb6e15db0a8b5f11284cb48626f4be53809b668e1caf032c288d1142b3c50",
   "lib/src/viz_package.g.dart": "6cac4358a0576205dc8cc010c3b9310d3e0052075f9c55d622fbb687222c78e7",
   "lib/src/viz_root.dart": "9572a078a2237a0029aca050b7f78be28cb95c0bd1fb1c16589b0f02baff5e6d",
   "lib/src/viz_root.g.dart": "a0d1f70a6118015f27d34f8e6659e69603fa70a0f143da0d9a5bc912ec2bb6f3",
-  "pubspec.yaml": "53c9e1c4b56916ce09e62ca2fdc92e8326c6b13715b9334889c23e69c7d7974d"
+  "pubspec.yaml": "8557dd337abe36e5aaf75f26eadc595e3ed0134c628be20d568b9412e9871414"
 }
