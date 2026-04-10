@@ -291,7 +291,5 @@ Future<void> _generateVizData() async {
 
   File('web/viz_data.js').writeAsStringSync(jsContent);
 
-  print(
-    'Successfully updated web/viz_data.js with fresh pubviz graph bits!',
-  );
+  print('Successfully updated web/viz_data.js with fresh pubviz graph bits!');
 }
