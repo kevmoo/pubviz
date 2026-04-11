@@ -14,6 +14,7 @@ targets:
       - lib/src/version.dart
       - lib/src/viz_package.*
       - lib/src/viz_root.*
+      - lib/src/web/**
       - pubspec.*
     builders:
       build_cli:

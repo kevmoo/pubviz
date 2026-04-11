@@ -4,9 +4,8 @@ library;
 import 'dart:js_interop';
 import 'dart:js_interop_unsafe';
 
+import 'package:pubviz/src/web/pubviz_app.dart';
 import 'package:web/web.dart' as web;
-
-import 'src/pubviz_app.dart';
 
 void main() async {
   final url = web.URL('viz_data.js', web.window.location.href).href;
