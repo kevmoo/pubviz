@@ -344,23 +344,20 @@ void main() {
         isPrimary: true,
       );
 
-      final b = VizPackage(
-        'b',
-        Version(1, 0, 0),
-        {Dependency('c', VersionConstraint.any, false)},
-        Version(2, 0, 0),
-      );
+      final b = VizPackage('b', Version(1, 0, 0), {
+        Dependency('c', VersionConstraint.any, false),
+      }, Version(2, 0, 0));
 
       final c = VizPackage('c', Version(1, 0, 0), {}, null, isPrimary: true);
 
       final d = VizPackage('d', Version(1, 0, 0), {}, null);
 
-      final root = VizRoot.assemble('a', {
-        'a': a,
-        'b': b,
-        'c': c,
-        'd': d,
-      }, isWorkspace: true, flagOutdated: true);
+      final root = VizRoot.assemble(
+        'a',
+        {'a': a, 'b': b, 'c': c, 'd': d},
+        isWorkspace: true,
+        flagOutdated: true,
+      );
 
       final filtered = root.filter(onlyWorkspace: true, onlyOutdated: true);
 

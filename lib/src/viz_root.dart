@@ -336,7 +336,7 @@ class VizRoot {
     for (var pkgName in keepNodes) {
       final orig = sourcePackages[pkgName];
       if (orig == null) continue;
-      
+
       newPackages[pkgName] = VizPackage(
         orig.name,
         orig.version,
