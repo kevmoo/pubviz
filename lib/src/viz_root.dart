@@ -131,25 +131,30 @@ class VizRoot {
   }) {
     if (!excludeDev && !onlyOutdated && !onlyWorkspace) return this;
 
-    Map<String, VizPackage> newPackages;
+    var currentPackages = packages;
     if (onlyWorkspace) {
-      newPackages = _filterWorkspace(excludeDev);
-    } else if (onlyOutdated) {
-      newPackages = _filterOutdated(excludeDev);
-    } else {
-      newPackages = _filterStandard(excludeDev);
+      currentPackages = _filterWorkspace(currentPackages, excludeDev);
+    }
+    if (onlyOutdated) {
+      currentPackages = _filterOutdated(currentPackages, excludeDev);
+    }
+    if (!onlyWorkspace && !onlyOutdated) {
+      currentPackages = _filterStandard(currentPackages, excludeDev);
     }
 
     return VizRoot.assemble(
       rootPackageName,
-      newPackages,
+      currentPackages,
       flagOutdated: packages.values.any((p) => p.latestVersion != null),
       isWorkspace: isWorkspace,
     );
   }
 
-  Map<String, VizPackage> _filterWorkspace(bool excludeDev) {
-    final primaryNodes = packages.values
+  Map<String, VizPackage> _filterWorkspace(
+    Map<String, VizPackage> sourcePackages,
+    bool excludeDev,
+  ) {
+    final primaryNodes = sourcePackages.values
         .where((p) => p.isPrimary)
         .map((p) => p.name)
         .toSet();
@@ -159,7 +164,7 @@ class VizRoot {
     final queue = primaryNodes.toList();
     while (queue.isNotEmpty) {
       final current = queue.removeLast();
-      final pkg = packages[current];
+      final pkg = sourcePackages[current];
       if (pkg != null) {
         for (var dep in pkg.dependencies) {
           if (excludeDev && dep.isDevDependency) continue;
@@ -173,7 +178,7 @@ class VizRoot {
     // 2. Build Incoming Edges (only for forward reachable nodes to save time)
     final incoming = <String, Set<String>>{};
     for (var name in forwardReachable) {
-      final pkg = packages[name];
+      final pkg = sourcePackages[name];
       if (pkg != null) {
         for (var dep in pkg.dependencies) {
           if (excludeDev && dep.isDevDependency) continue;
@@ -199,7 +204,7 @@ class VizRoot {
 
     final newPackages = <String, VizPackage>{};
     for (var name in keepNodes) {
-      final orig = packages[name];
+      final orig = sourcePackages[name];
       if (orig != null) {
         final filteredDeps = orig.dependencies
             .where((d) => keepNodes.contains(d.name))
@@ -221,9 +226,12 @@ class VizRoot {
     return newPackages;
   }
 
-  Map<String, VizPackage> _filterOutdated(bool excludeDev) {
+  Map<String, VizPackage> _filterOutdated(
+    Map<String, VizPackage> sourcePackages,
+    bool excludeDev,
+  ) {
     final newPackages = <String, VizPackage>{};
-    final primaryPackages = packages.values
+    final primaryPackages = sourcePackages.values
         .where((p) => p.isPrimary)
         .map((p) => p.name)
         .toList();
@@ -231,7 +239,7 @@ class VizRoot {
     final rootQueue = <String>[...reachableFromRoot];
     while (rootQueue.isNotEmpty) {
       final current = rootQueue.removeLast();
-      final orig = packages[current];
+      final orig = sourcePackages[current];
       if (orig != null) {
         for (var dep in orig.dependencies) {
           if (excludeDev && dep.isDevDependency) continue;
@@ -244,7 +252,7 @@ class VizRoot {
 
     final incoming = <String, Set<String>>{};
     for (var pkgName in reachableFromRoot) {
-      final pkg = packages[pkgName];
+      final pkg = sourcePackages[pkgName];
       if (pkg != null) {
         for (var dep in pkg.dependencies) {
           if (excludeDev && dep.isDevDependency) continue;
@@ -254,7 +262,7 @@ class VizRoot {
     }
 
     final outdatedNodes = reachableFromRoot.where((name) {
-      final p = packages[name];
+      final p = sourcePackages[name];
       return p != null &&
           p.latestVersion != null &&
           p.latestVersion!.compareTo(p.version!) > 0;
@@ -275,7 +283,7 @@ class VizRoot {
     keepNodes.add(rootPackageName);
 
     for (var pkgName in keepNodes) {
-      final orig = packages[pkgName];
+      final orig = sourcePackages[pkgName];
       if (orig != null) {
         final filteredDeps = orig.dependencies
             .where(
@@ -291,15 +299,20 @@ class VizRoot {
           filteredDeps,
           orig.latestVersion,
           isPrimary: orig.isPrimary,
+          onlyDev: orig.onlyDev,
+          isPublishToNone: orig.isPublishToNone,
         );
       }
     }
     return newPackages;
   }
 
-  Map<String, VizPackage> _filterStandard(bool excludeDev) {
+  Map<String, VizPackage> _filterStandard(
+    Map<String, VizPackage> sourcePackages,
+    bool excludeDev,
+  ) {
     final newPackages = <String, VizPackage>{};
-    final primaryPackages = packages.values
+    final primaryPackages = sourcePackages.values
         .where((p) => p.isPrimary)
         .map((p) => p.name)
         .toList();
@@ -308,7 +321,7 @@ class VizRoot {
 
     while (queue.isNotEmpty) {
       final current = queue.removeLast();
-      final orig = packages[current];
+      final orig = sourcePackages[current];
       if (orig == null) continue;
 
       for (var dep in orig.dependencies) {
@@ -321,7 +334,9 @@ class VizRoot {
     }
 
     for (var pkgName in keepNodes) {
-      final orig = packages[pkgName]!;
+      final orig = sourcePackages[pkgName];
+      if (orig == null) continue;
+      
       newPackages[pkgName] = VizPackage(
         orig.name,
         orig.version,
@@ -331,6 +346,7 @@ class VizRoot {
         orig.latestVersion,
         isPrimary: orig.isPrimary,
         onlyDev: orig.onlyDev,
+        isPublishToNone: orig.isPublishToNone,
       );
     }
     return newPackages;

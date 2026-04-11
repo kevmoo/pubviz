@@ -334,6 +334,56 @@ void main() {
       expect(filtered.packages.keys, unorderedEquals(['a', 'b', 'c']));
       expect(filtered.packages.containsKey('d'), isFalse);
     });
+
+    test('onlyWorkspace and onlyOutdated can be combined', () {
+      final a = VizPackage(
+        'a',
+        Version(1, 0, 0),
+        {Dependency('b', VersionConstraint.any, false)},
+        null,
+        isPrimary: true,
+      );
+
+      final b = VizPackage(
+        'b',
+        Version(1, 0, 0),
+        {Dependency('c', VersionConstraint.any, false)},
+        Version(2, 0, 0),
+      );
+
+      final c = VizPackage('c', Version(1, 0, 0), {}, null, isPrimary: true);
+
+      final d = VizPackage('d', Version(1, 0, 0), {}, null);
+
+      final root = VizRoot.assemble('a', {
+        'a': a,
+        'b': b,
+        'c': c,
+        'd': d,
+      }, isWorkspace: true, flagOutdated: true);
+
+      final filtered = root.filter(onlyWorkspace: true, onlyOutdated: true);
+
+      // Should retain 'a' and 'b' (workspace + path to outdated)
+      // 'c' is in workspace but not outdated or leading to outdated
+      // 'd' is not in workspace
+      expect(filtered.packages.keys, unorderedEquals(['a', 'b']));
+    });
+
+    test('filter preserves isPublishToNone', () {
+      final pkg = VizPackage(
+        'a',
+        Version(1, 0, 0),
+        {},
+        null,
+        isPublishToNone: true,
+      );
+
+      final root = VizRoot('a', {'a': pkg});
+
+      final filtered = root.filter(excludeDev: true);
+      expect(filtered.packages['a']!.isPublishToNone, isTrue);
+    });
   });
 
   group('generate VizRoot (real workspace)', () {
