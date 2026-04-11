@@ -126,6 +126,12 @@ Arguments:
   -p, --production-dependencies    Include only production (non-dev) dependencies.
   -v, --version                    Print the version of pubviz and exit.
   -w, --[no-]workspace             Include all packages in the workspace.
+  -f, --filters                    A comma separated list of filters to apply.
+
+            [hide-dev]             Hide dev dependencies.
+            [workspace]            Show only packages in the workspace.
+            [outdated]             Show only outdated packages.
+
   -?, --help                       Print this help content.
 
 If <package path> is omitted, the current directory is used.
