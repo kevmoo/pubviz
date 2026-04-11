@@ -1,5 +1,8 @@
 ## 6.0.1-wip
 
+- Use a worker so the UI doesn't freeze when rendering big graphs.
+- MUCH smaller WebAssembly module.
+
 ## 6.0.0
 
 ### Breaking Changes
