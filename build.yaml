@@ -32,7 +32,6 @@ targets:
             dart2wasm:
               args:
                 - -O4
-                - --no-strip-wasm
             dart2js:
               args:
                 - --stage=dump-info-all
