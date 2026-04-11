@@ -101,7 +101,9 @@ final class GraphRenderer {
           if (response.success) {
             completer.complete(response.output);
           } else {
-            completer.completeError(response.error);
+            completer.completeError(
+              '${response.error}\n${response.stack ?? ''}',
+            );
           }
         }
         _cleanupWorker(worker);

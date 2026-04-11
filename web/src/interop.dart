@@ -42,4 +42,5 @@ extension type RenderResponse._(JSObject _) implements JSObject {
   external bool get success;
   external String get output;
   external String get error;
+  external String? get stack;
 }

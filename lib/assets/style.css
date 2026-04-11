@@ -531,3 +531,9 @@ svg.zoom {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+#loading-overlay .loading-text {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #4a5568;
+}

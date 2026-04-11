@@ -2,9 +2,9 @@ importScripts('https://cdn.jsdelivr.net/npm/@viz-js/viz@3.25.0/dist/viz-global.j
 
 let vizInstance = null;
 
-onmessage = async function(e) {
+onmessage = async function (e) {
   const { dotString, options } = e.data;
-  
+
   try {
     if (!vizInstance) {
       vizInstance = await Viz.instance();
@@ -12,6 +12,10 @@ onmessage = async function(e) {
     const output = vizInstance.renderString(dotString, options);
     postMessage({ success: true, output });
   } catch (error) {
-    postMessage({ success: false, error: error.toString() });
+    postMessage({
+      success: false,
+      error: error.toString(),
+      stack: error instanceof Error ? error.stack : ''
+    });
   }
 };
