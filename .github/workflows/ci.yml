@@ -56,7 +56,9 @@ jobs:
       - id: install
         name: Install dependencies
         run: dart pub get
-      - run: dart test
+      - run: dart test -p vm
+        if: always() && steps.install.outcome == 'success'
+      - run: dart test -p chrome -c dart2js,dart2wasm
         if: always() && steps.install.outcome == 'success'
       - run: dart test -P presubmit -j 1
         if: always() && steps.install.outcome == 'success' && matrix.sdk == 'dev'
