@@ -51,7 +51,7 @@ class PubDataService extends Service {
   }
 
   String _pubCommand(List<String> commandArgs) {
-    final proc = Platform.executable;
+    final proc = _dartExecutable();
     final args = [
       ...['pub'],
       ...commandArgs,
@@ -103,3 +103,13 @@ class PubDataService extends Service {
 }
 
 const _pubEnvironment = 'PUB_ENVIRONMENT';
+
+String _dartExecutable() {
+  if (_isCompiledExe()) {
+    return Platform.isWindows ? 'dart.exe' : 'dart';
+  }
+  return Platform.executable;
+}
+
+bool _isCompiledExe() =>
+    Platform.script.toFilePath() == Platform.resolvedExecutable;
