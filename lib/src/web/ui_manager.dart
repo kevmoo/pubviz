@@ -2,8 +2,9 @@ import 'dart:async';
 import 'dart:convert' show htmlEscape;
 import 'dart:js_interop';
 
-import 'package:pubviz/src/version.dart';
 import 'package:web/web.dart';
+
+import '../version.dart';
 
 import 'pubviz_app.dart';
 

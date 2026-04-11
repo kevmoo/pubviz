@@ -1,10 +1,10 @@
 import 'dart:convert' show LineSplitter;
 import 'dart:js_interop';
 
-import 'package:pubviz/src/colors.dart';
-import 'package:pubviz/src/dot.dart';
-
 import 'package:web/web.dart';
+
+import '../colors.dart';
+import '../dot.dart';
 
 import 'interop.dart';
 import 'pubviz_app.dart';
