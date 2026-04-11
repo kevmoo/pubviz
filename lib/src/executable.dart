@@ -48,7 +48,12 @@ Future<void> run(Options options) async {
   }
   switch (options.action) {
     case Action.print:
-      _printContent(vp, options.ignorePackages);
+      final filteredVp = vp.filter(
+        excludeDev: options.filters.contains('hide-dev'),
+        onlyOutdated: options.filters.contains('outdated'),
+        onlyWorkspace: options.filters.contains('workspace'),
+      );
+      _printContent(filteredVp, options.ignorePackages);
     case Action.open:
     case Action.serve:
       await _createOrOpen(vp, options);
@@ -90,7 +95,10 @@ Future<void> _createOrOpen(VizRoot root, Options options) async {
       .handler;
 
   final server = await io.serve(handler, InternetAddress.loopbackIPv4, 0);
-  final serverUrl = 'http://localhost:${server.port}/';
+  var serverUrl = 'http://localhost:${server.port}/';
+  if (options.filters.isNotEmpty) {
+    serverUrl += '#/filters=${options.filters.join(',')}';
+  }
   print('Serving pubviz on $serverUrl');
 
   if (options.action == Action.open) {

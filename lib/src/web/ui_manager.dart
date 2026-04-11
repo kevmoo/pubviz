@@ -4,6 +4,7 @@ import 'dart:js_interop';
 
 import 'package:web/web.dart';
 
+import '../options.dart';
 import '../version.dart';
 
 import 'pubviz_app.dart';
@@ -39,6 +40,7 @@ final class UIManager {
       _outdatedOnlyCheckbox.disabled = true;
       _outdatedCheckboxContainer.title = 'No outdated packages found.';
     }
+    _applyHashFilters();
 
     document.body!.onWheel.listen((e) {
       if ((e.target as Element).closest('.hud-box') != null) {
@@ -58,6 +60,7 @@ final class UIManager {
         case 'devDependenciesCheckbox' ||
             'outdatedOnlyCheckbox' ||
             'workspaceOnlyCheckbox':
+          _updateHash();
           unawaited(_app.render());
       }
     });
@@ -100,6 +103,7 @@ final class UIManager {
         showToast(zoomEnabled ? 'Zoom Enabled' : 'Zoom Disabled');
       case 'd' || 'D':
         _devDependenciesCheckbox.checked = !_devDependenciesCheckbox.checked;
+        _updateHash();
         unawaited(_app.render());
         showToast(
           hideDevDependencies
@@ -108,6 +112,7 @@ final class UIManager {
         );
       case 'w' || 'W':
         _workspaceOnlyCheckbox.checked = !_workspaceOnlyCheckbox.checked;
+        _updateHash();
         unawaited(_app.render());
         showToast(
           workspaceOnly ? 'Showing Only Workspace' : 'Showing All Packages',
@@ -115,6 +120,7 @@ final class UIManager {
       case 'o' || 'O':
         if (_app.hasOutdated) {
           _outdatedOnlyCheckbox.checked = !_outdatedOnlyCheckbox.checked;
+          _updateHash();
           unawaited(_app.render());
           showToast(
             outdatedOnly ? 'Showing Only Outdated' : 'Showing All Packages',
@@ -160,6 +166,33 @@ final class UIManager {
 
     _updateHudBox(_depsInBox, 'INCOMING', sortedFrom);
     _updateHudBox(_depsOutBox, 'OUTGOING', sortedTo);
+  }
+
+  void _applyHashFilters() {
+    final hash = window.location.hash;
+    if (hash.startsWith('#/filters=')) {
+      final filtersStr = hash.substring('#/filters='.length);
+      final filters = filtersStr.split(',');
+
+      _devDependenciesCheckbox.checked = filters.contains(filterHideDev);
+      _workspaceOnlyCheckbox.checked = filters.contains(filterWorkspace);
+      if (_app.hasOutdated) {
+        _outdatedOnlyCheckbox.checked = filters.contains(filterOutdated);
+      }
+    }
+  }
+
+  void _updateHash() {
+    final filters = <String>{};
+    if (_devDependenciesCheckbox.checked) filters.add(filterHideDev);
+    if (_workspaceOnlyCheckbox.checked) filters.add(filterWorkspace);
+    if (_outdatedOnlyCheckbox.checked) filters.add(filterOutdated);
+
+    if (filters.isEmpty) {
+      window.history.replaceState(null, '', window.location.pathname);
+    } else {
+      window.history.replaceState(null, '', '#/filters=${filters.join(',')}');
+    }
   }
 
   void showCrashReport(String error, String stackTrace) {
