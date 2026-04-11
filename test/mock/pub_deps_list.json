@@ -161,6 +161,7 @@
    }
   }
  },
+ "rootPackageName": "repo_manager",
  "transitiveDependencies": {
   "analyzer @ 0.38.5": {
    "args": ">=0.12.1 <2.0.0",

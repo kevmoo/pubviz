@@ -7,10 +7,18 @@ class DepsList {
 
   final Map<String, Version> sdks;
   final Map<String, DepsPackageEntry> packages;
+  final String rootPackageName;
   final Map<VersionedEntry, Map<String, VersionConstraint>>
   transitiveDependencies;
 
-  DepsList._(this.sdks, this.packages, {required this.transitiveDependencies}) {
+  DepsPackageEntry get rootPackage => packages[rootPackageName]!;
+
+  DepsList._(
+    this.sdks,
+    this.packages,
+    this.rootPackageName, {
+    required this.transitiveDependencies,
+  }) {
     for (var entry in packages.values) {
       entry._parent = this;
     }
@@ -33,9 +41,15 @@ class DepsList {
     } while (scanner.matches(_sdkLine));
 
     final pkgs = <String, DepsPackageEntry>{};
+    String? rootPackageName;
     while (scanner.matches(_packageLine)) {
       final entry = DepsPackageEntry._parse(scanner);
       pkgs[entry.name] = entry;
+      rootPackageName ??= entry.name;
+    }
+
+    if (rootPackageName == null) {
+      throw const FormatException('No package found in deps list.');
     }
 
     final section = scanner.matches(_transitiveDepsHeaderLine)
@@ -45,12 +59,18 @@ class DepsList {
           ).entries
         : <VersionedEntry, Map<String, VersionConstraint>>{};
 
-    return DepsList._(sdks, pkgs, transitiveDependencies: section);
+    return DepsList._(
+      sdks,
+      pkgs,
+      rootPackageName,
+      transitiveDependencies: section,
+    );
   }
 
   Map<String, dynamic> toJson() => {
     'sdks': sdks,
     'packages': packages,
+    'rootPackageName': rootPackageName,
     'transitiveDependencies': transitiveDependencies.map(
       (k, v) => MapEntry(k.toString(), v),
     ),

@@ -188,6 +188,7 @@
    }
   }
  },
+ "rootPackageName": "gallery",
  "transitiveDependencies": {
   "_fe_analyzer_shared @ 2.2.0": {
    "meta": "^1.0.2"

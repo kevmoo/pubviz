@@ -7,7 +7,7 @@ import 'shared.dart';
 void main() async {
   print('Building web assets via build_runner...');
 
-  final buildResult = await Process.start('dart', [
+  final buildResult = await Process.start(Platform.executable, [
     'run',
     'build_runner',
     'build',
