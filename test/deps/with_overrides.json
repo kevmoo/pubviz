@@ -324,6 +324,7 @@
    }
   }
  },
+ "rootPackageName": "build_runner",
  "transitiveDependencies": {
   "_fe_analyzer_shared @ 76.0.0": {
    "meta": "^1.9.0"

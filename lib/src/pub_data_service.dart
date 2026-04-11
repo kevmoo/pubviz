@@ -2,21 +2,14 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'deps_list.dart';
-import 'pubspek.dart';
 import 'service.dart';
 
 class PubDataService extends Service {
   @override
   final String rootPackageDir;
   final bool _debug;
-  late final bool _isFlutterPkg;
-  late final String packageName;
 
-  PubDataService(this.rootPackageDir, {bool debug = false}) : _debug = debug {
-    final details = packageDeets(rootPackageDir);
-    _isFlutterPkg = details.isFlutterPackage;
-    packageName = details.packageName;
-  }
+  PubDataService(this.rootPackageDir, {bool debug = false}) : _debug = debug;
 
   @override
   Map<String, dynamic> outdated() {
@@ -34,16 +27,15 @@ class PubDataService extends Service {
     }
   }
 
-  DepsList? _depsListCache;
-
-  DepsList _getDepsList() =>
-      _depsListCache ??= DepsList.parse(_pubCommand(['deps', '-s', 'list']));
-
-  @override
-  DepsPackageEntry rootDeps() => _getDepsList().packages[packageName]!;
+  late final _depsListCache = DepsList.parse(
+    _pubCommand(['deps', '-s', 'list']),
+  );
 
   @override
-  Iterable<DepsPackageEntry> allDeps() => _getDepsList().packages.values;
+  DepsPackageEntry rootDeps() => _depsListCache.rootPackage;
+
+  @override
+  Iterable<DepsPackageEntry> allDeps() => _depsListCache.packages.values;
 
   @override
   Future<Map<String, String>> workspaceMembers() async {
@@ -59,7 +51,7 @@ class PubDataService extends Service {
   }
 
   String _pubCommand(List<String> commandArgs) {
-    final proc = _isFlutterPkg ? 'flutter' : 'dart';
+    final proc = Platform.executable;
     final args = [
       ...['pub'],
       ...commandArgs,
