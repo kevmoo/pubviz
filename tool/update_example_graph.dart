@@ -69,7 +69,9 @@ Map<String, VersionConstraint> _gatherConstraints(List<String> memberDirs) {
   void addDeps(Map<String, parse.Dependency> yaml) {
     for (final entry in yaml.entries) {
       final name = entry.key;
-      if (name == 'outdated_pkg') continue; // Skip fake package
+      if (name == 'outdated_pkg' || memberDirs.contains(name)) {
+        continue; // Skip fake package and workspace members
+      }
       final constraint = entry.value;
       final constraintString = (constraint is parse.HostedDependency)
           ? constraint.version.toString()

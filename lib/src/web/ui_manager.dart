@@ -21,6 +21,8 @@ final class UIManager {
       document.querySelector('#outdatedCheckboxContainer') as HTMLDivElement;
   final HTMLInputElement _outdatedOnlyCheckbox =
       document.querySelector('#outdatedOnlyCheckbox') as HTMLInputElement;
+  final HTMLInputElement _workspaceOnlyCheckbox =
+      document.querySelector('#workspaceOnlyCheckbox') as HTMLInputElement;
   final HTMLDivElement _depsInBox =
       document.querySelector('#deps-in-box') as HTMLDivElement;
   final HTMLDivElement _depsOutBox =
@@ -53,7 +55,9 @@ final class UIManager {
           );
         case 'zoomCheckbox':
           _app.updateZoom();
-        case 'devDependenciesCheckbox' || 'outdatedOnlyCheckbox':
+        case 'devDependenciesCheckbox' ||
+            'outdatedOnlyCheckbox' ||
+            'workspaceOnlyCheckbox':
           unawaited(_app.render());
       }
     });
@@ -73,9 +77,11 @@ final class UIManager {
 
   bool get zoomEnabled => _zoomCheckbox.checked;
 
-  bool get devDependencies => _devDependenciesCheckbox.checked;
+  bool get hideDevDependencies => _devDependenciesCheckbox.checked;
 
   bool get outdatedOnly => _outdatedOnlyCheckbox.checked;
+
+  bool get workspaceOnly => _workspaceOnlyCheckbox.checked;
 
   void _toggleControls() {
     _hamburgerCheckbox.checked = !_hamburgerCheckbox.checked;
@@ -96,9 +102,15 @@ final class UIManager {
         _devDependenciesCheckbox.checked = !_devDependenciesCheckbox.checked;
         unawaited(_app.render());
         showToast(
-          devDependencies
-              ? 'Showing Dev Dependencies'
-              : 'Hiding Dev Dependencies',
+          hideDevDependencies
+              ? 'Hiding Dev Dependencies'
+              : 'Showing Dev Dependencies',
+        );
+      case 'w' || 'W':
+        _workspaceOnlyCheckbox.checked = !_workspaceOnlyCheckbox.checked;
+        unawaited(_app.render());
+        showToast(
+          workspaceOnly ? 'Showing Only Workspace' : 'Showing All Packages',
         );
       case 'o' || 'O':
         if (_app.hasOutdated) {

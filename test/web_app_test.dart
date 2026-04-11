@@ -23,6 +23,7 @@ void main() {
       <input id="controlsToggle" type="checkbox">
       <input id="zoomCheckbox" type="checkbox">
       <input id="devDependenciesCheckbox" type="checkbox">
+      <input id="workspaceOnlyCheckbox" type="checkbox">
       <div id="outdatedCheckboxContainer"></div>
       <input id="outdatedOnlyCheckbox" type="checkbox">
       <div id="deps-in-box"></div>

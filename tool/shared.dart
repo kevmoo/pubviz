@@ -23,6 +23,7 @@ Future<String> hashInputs() async {
   final map = <String, String>{};
   for (final file in files) {
     if (file.startsWith('lib/assets/')) continue;
+    if (file == 'web/viz_data.js') continue;
 
     if (file.startsWith('lib/src/')) {
       final matches = regexes.any((r) => r.hasMatch(file));
