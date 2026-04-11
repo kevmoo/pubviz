@@ -40,8 +40,9 @@ final class GraphRenderer {
       _vizInstance ??= await Viz.instance().toDart;
 
       final filteredRoot = _app.originalVizRoot.filter(
-        excludeDev: !_app.ui.devDependencies,
+        excludeDev: _app.ui.hideDevDependencies,
         onlyOutdated: _app.ui.outdatedOnly,
+        onlyWorkspace: _app.ui.workspaceOnly,
       );
 
       final dotString = filteredRoot.toDot();

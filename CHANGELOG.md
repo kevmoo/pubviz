@@ -1,5 +1,6 @@
-## 6.0.1-wip
+## 6.1.0-wip
 
+- Add a `workspace` filter.
 - Use a worker so the UI doesn't freeze when rendering big graphs.
 - MUCH smaller WebAssembly module.
 
