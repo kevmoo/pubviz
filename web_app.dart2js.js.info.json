@@ -3,12 +3,12 @@
   "dump_minor_version": 1,
   "program": {
     "entrypoint": "function/org-dartlang-app:///web/web_app.dart::main",
-    "size": 126313,
+    "size": 127780,
     "ramUsage": "N/A MB",
-    "dart2jsVersion": "3.12.0-320.0.dev",
-    "compilationMoment": "2026-04-11 12:45:52.444245",
-    "compilationDuration": 820242,
-    "toJsonDuration": 3000,
+    "dart2jsVersion": "3.13.0-10.0.dev",
+    "compilationMoment": "2026-04-13 12:45:19.214907",
+    "compilationDuration": 859012,
+    "toJsonDuration": 2000,
     "dumpInfoDuration": 0,
     "noSuchMethodEnabled": false,
     "isRuntimeTypeUsed": true,
@@ -103,6 +103,7 @@
           "function/dart:_internal::makeFixedListUnmodifiable",
           "function/dart:_internal::makeListFixedLength",
           "function/dart:_internal::toStringVisiting",
+          "function/dart:_internal::typeAcceptsNull",
           "function/dart:_internal::unsafeCast"
         ],
         "canonicalUri": "dart:_internal"
@@ -307,7 +308,7 @@
         "id": "library/dart:_rti::",
         "kind": "library",
         "name": "rti",
-        "size": 17102,
+        "size": 17104,
         "children": [
           "class/dart:_rti::Rti",
           "class/dart:_rti::TypeRule",
@@ -414,10 +415,11 @@
         "id": "library/dart:async::",
         "kind": "library",
         "name": "dart.async",
-        "size": 11199,
+        "size": 11529,
         "children": [
           "class/dart:async::AsyncError",
           "class/dart:async::Completer",
+          "class/dart:async::Future",
           "class/dart:async::StreamIterator",
           "class/dart:async::Timer",
           "class/dart:async::Zone",
@@ -446,7 +448,9 @@
           "function/dart:async::_awaitOnObject",
           "function/dart:async::_beforeScheduleMicrotaskCallback",
           "function/dart:async::_beforeSchedulePriorityCallback",
+          "function/dart:async::_completeWithErrorCallback",
           "function/dart:async::_hasTimer",
+          "function/dart:async::_interceptCaughtError",
           "function/dart:async::_interceptError",
           "function/dart:async::_interceptUserError",
           "function/dart:async::_makeAsyncAwaitCompleter",
@@ -603,8 +607,9 @@
         "id": "library/dart:js_util::",
         "kind": "library",
         "name": "dart.js_util",
-        "size": 386,
+        "size": 578,
         "children": [
+          "function/dart:js_util::_callConstructorUnchecked1",
           "function/dart:js_util::_callConstructorUnchecked2",
           "function/dart:js_util::_callDartFunctionFast1",
           "function/dart:js_util::_callMethodUnchecked0",
@@ -837,8 +842,9 @@
         "id": "library/package:pubviz/src/web/graph_renderer.dart::",
         "kind": "library",
         "name": "<unnamed>",
-        "size": 5803,
+        "size": 6847,
         "children": [
+          "class/package:pubviz/src/web/graph_renderer.dart::CancellationException",
           "class/package:pubviz/src/web/graph_renderer.dart::GraphRenderer"
         ],
         "canonicalUri": "package:pubviz/src/web/graph_renderer.dart"
@@ -895,7 +901,7 @@
         "id": "library/package:web/src/helpers/events/streams.dart::",
         "kind": "library",
         "name": "<unnamed>",
-        "size": 582,
+        "size": 406,
         "children": [
           "class/package:web/src/helpers/events/streams.dart::EventStreamProvider",
           "class/package:web/src/helpers/events/streams.dart::_ElementEventStreamImpl",
@@ -3247,6 +3253,21 @@
         ],
         "supers": []
       },
+      "dart:async::Future": {
+        "id": "class/dart:async::Future",
+        "kind": "class",
+        "name": "Future",
+        "size": 113,
+        "outputUnit": "outputUnit/main",
+        "parent": "library/dart:async::",
+        "modifiers": {
+          "abstract": true
+        },
+        "children": [
+          "function/dart:async::Future.Future.delayed"
+        ],
+        "supers": []
+      },
       "dart:async::StreamIterator": {
         "id": "class/dart:async::StreamIterator",
         "kind": "class",
@@ -3386,7 +3407,8 @@
         },
         "children": [
           "field/dart:async::_Completer.future",
-          "function/dart:async::_Completer.completeError"
+          "function/dart:async::_Completer.completeError",
+          "function/dart:async::_Completer.isCompleted"
         ],
         "supers": [
           "class/dart:async::Completer"
@@ -3396,7 +3418,7 @@
         "id": "class/dart:async::_Future",
         "kind": "class",
         "name": "_Future",
-        "size": 3068,
+        "size": 3118,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:async::",
         "modifiers": {
@@ -3417,6 +3439,7 @@
           "function/dart:async::_Future._chainFuture",
           "function/dart:async::_Future._chainSource",
           "function/dart:async::_Future._cloneResult",
+          "function/dart:async::_Future._complete",
           "function/dart:async::_Future._completeError",
           "function/dart:async::_Future._completeErrorObject",
           "function/dart:async::_Future._completeWithResultOf",
@@ -3440,7 +3463,9 @@
           "function/dart:async::_Future._thenAwait",
           "function/dart:async::_Future.then"
         ],
-        "supers": []
+        "supers": [
+          "class/dart:async::Future"
+        ]
       },
       "dart:async::_FutureListener": {
         "id": "class/dart:async::_FutureListener",
@@ -5229,11 +5254,28 @@
         ],
         "supers": []
       },
+      "package:pubviz/src/web/graph_renderer.dart::CancellationException": {
+        "id": "class/package:pubviz/src/web/graph_renderer.dart::CancellationException",
+        "kind": "class",
+        "name": "CancellationException",
+        "size": 65,
+        "outputUnit": "outputUnit/main",
+        "parent": "library/package:pubviz/src/web/graph_renderer.dart::",
+        "modifiers": {
+          "abstract": false
+        },
+        "children": [
+          "function/package:pubviz/src/web/graph_renderer.dart::CancellationException.toString"
+        ],
+        "supers": [
+          "class/dart:core::Exception"
+        ]
+      },
       "package:pubviz/src/web/graph_renderer.dart::GraphRenderer": {
         "id": "class/package:pubviz/src/web/graph_renderer.dart::GraphRenderer",
         "kind": "class",
         "name": "GraphRenderer",
-        "size": 5803,
+        "size": 6782,
         "outputUnit": "outputUnit/main",
         "parent": "library/package:pubviz/src/web/graph_renderer.dart::",
         "modifiers": {
@@ -5242,10 +5284,13 @@
         "children": [
           "field/package:pubviz/src/web/graph_renderer.dart::GraphRenderer.__root",
           "field/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._app",
+          "field/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._currentCompleter",
+          "field/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._currentWorker",
           "field/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._lockedElement",
           "field/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._nodeOutdatedMap",
-          "field/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._vizInstance",
+          "field/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._renderGeneration",
           "function/package:pubviz/src/web/graph_renderer.dart::GraphRenderer.GraphRenderer",
+          "function/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._renderWithWorker",
           "function/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._root",
           "function/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._updateBody",
           "function/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._updateOver",
@@ -6047,7 +6092,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "yZ(a,b){return J.IM(a,b)}\ns(J,\"NE\",\"yZ\",37)",
+        "code": "yZ(a,b){return J.IM(a,b)}\ns(J,\"NE\",\"yZ\",38)",
         "type": "int Function(dynamic,dynamic)",
         "functionKind": 0
       },
@@ -7120,7 +7165,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads field; writes anything)",
         "inlinedCount": 0,
-        "code": "gbx(a){return A.Kx(t.H)}",
+        "code": "gbx(a){return A.Kx(t.n)}",
         "type": "Type Function()",
         "functionKind": 2
       },
@@ -8527,7 +8572,7 @@
         ],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
         "inlinedCount": 0,
-        "code": "K1(a,b,c,d){if(t.O.b(a))return new A.xy(a,b,c.C(\"@<0>\").K(d).C(\"xy<1,2>\"))\nreturn new A.i1(a,b,c.C(\"@<0>\").K(d).C(\"i1<1,2>\"))}",
+        "code": "K1(a,b,c,d){if(t.U.b(a))return new A.xy(a,b,c.C(\"@<0>\").K(d).C(\"xy<1,2>\"))\nreturn new A.i1(a,b,c.C(\"@<0>\").K(d).C(\"i1<1,2>\"))}",
         "type": "MappedIterable<#A,#B> Function<#A extends Object?,#B extends Object?>(Iterable<#A>,#B Function(#A))",
         "functionKind": 3
       },
@@ -10929,6 +10974,29 @@
         "inlinedCount": 7,
         "code": "",
         "type": "List<Object> Function()",
+        "functionKind": 0
+      },
+      "dart:_internal::typeAcceptsNull": {
+        "id": "function/dart:_internal::typeAcceptsNull",
+        "kind": "function",
+        "name": "typeAcceptsNull",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "library/dart:_internal::",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "bool",
+        "inferredReturnType": "[exact=JSBool|powerset={I}{O}{N}]",
+        "parameters": [],
+        "sideEffects": "SideEffects(reads nothing; writes nothing)",
+        "inlinedCount": 1,
+        "code": "",
+        "type": "bool Function<#A extends Object?>()",
         "functionKind": 0
       },
       "dart:_internal::unsafeCast": {
@@ -16877,7 +16945,7 @@
         "inferredReturnType": "[subclass=JavaScriptObject|powerset={I}{GFUO}{IMN}]",
         "parameters": [],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 30,
+        "inlinedCount": 31,
         "code": "",
         "type": "Object Function()",
         "functionKind": 0
@@ -17507,7 +17575,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 6,
+        "inlinedCount": 7,
         "code": "",
         "type": "String Function(String)",
         "functionKind": 0
@@ -21334,7 +21402,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "eV(a,b,c,d){var s,r\nif(d){s=b.w\nif(A.cc(b)||b===t.K)return b\nelse if(s===1)return A.Q2(a,\"b8\",[b])\nelse if(b===t.P||b===t.T)return t.U}r=new A.Jc(null,null)\nr.w=7\nr.x=b\nr.as=c\nreturn A.BD(a,r)}",
+        "code": "eV(a,b,c,d){var s,r\nif(d){s=b.w\nif(A.cc(b)||b===t.K)return b\nelse if(s===1)return A.Q2(a,\"b8\",[b])\nelse if(b===t.P||b===t.T)return t.W}r=new A.Jc(null,null)\nr.w=7\nr.x=b\nr.as=c\nreturn A.BD(a,r)}",
         "type": "Rti Function(Object?,Rti,String,bool)",
         "functionKind": 0
       },
@@ -24610,7 +24678,7 @@
         "id": "function/dart:_rti::_installSpecializedAsCheck",
         "kind": "function",
         "name": "_installSpecializedAsCheck",
-        "size": 382,
+        "size": 384,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:_rti::",
         "children": [],
@@ -24631,7 +24699,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "Au(a){var s=this,r=A.Oz\nif(A.cc(s))r=A.hn\nelse if(s===t.K)r=A.Ti\nelse if(A.lR(s)){r=A.l4\nif(s===t.a3)r=A.Uc\nelse if(s===t.W)r=A.ra\nelse if(s===t.u)r=A.M4\nelse if(s===t.ae)r=A.cU\nelse if(s===t.I)r=A.Qk\nelse if(s===t.M)r=A.wI}else if(s===t.S)r=A.IZ\nelse if(s===t.N)r=A.Bt\nelse if(s===t.y)r=A.p8\nelse if(s===t.H)r=A.z5\nelse if(s===t.i)r=A.rV\nelse if(s===t.m)r=A.AN\ns.a=r\nreturn s.a(a)}",
+        "code": "Au(a){var s=this,r=A.Oz\nif(A.cc(s))r=A.hn\nelse if(s===t.K)r=A.Ti\nelse if(A.lR(s)){r=A.l4\nif(s===t.a3)r=A.Uc\nelse if(s===t.aD)r=A.ra\nelse if(s===t.u)r=A.M4\nelse if(s===t.ae)r=A.cU\nelse if(s===t.dd)r=A.Qk\nelse if(s===t.M)r=A.wI}else if(s===t.S)r=A.IZ\nelse if(s===t.N)r=A.Bt\nelse if(s===t.y)r=A.p8\nelse if(s===t.n)r=A.z5\nelse if(s===t.i)r=A.rV\nelse if(s===t.m)r=A.AN\ns.a=r\nreturn s.a(a)}",
         "type": "Object? Function(Object?)",
         "functionKind": 0
       },
@@ -25645,7 +25713,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "U5(a){if(a.w===8){if(a===t.S)return A.ok\nif(a===t.i||a===t.H)return A.KH\nif(a===t.N)return A.MM\nif(a===t.y)return A.rQ}return null}",
+        "code": "U5(a){if(a.w===8){if(a===t.S)return A.ok\nif(a===t.i||a===t.n)return A.KH\nif(a===t.N)return A.MM\nif(a===t.y)return A.rQ}return null}",
         "type": "Object? Function(Rti)",
         "functionKind": 0
       },
@@ -26724,7 +26792,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 7,
+        "inlinedCount": 8,
         "code": "",
         "type": "dynamic Function(Object,StackTrace?)",
         "functionKind": 3
@@ -26833,10 +26901,64 @@
         "inferredReturnType": "[exact=_AsyncCompleter|powerset={N}{O}{N}]",
         "parameters": [],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 1,
+        "inlinedCount": 2,
         "code": "",
         "type": "Completer<#A> Function<#A extends Object?>()",
         "functionKind": 3
+      },
+      "dart:async::Future.Future.delayed": {
+        "id": "function/dart:async::Future.Future.delayed",
+        "kind": "function",
+        "name": "Future.delayed",
+        "size": 280,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:async::Future",
+        "children": [
+          "closure/dart:async::Future.Future.delayed.Future_Future$delayed_closure"
+        ],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": true,
+          "external": false
+        },
+        "returnType": "Future<#A/*free*/>",
+        "inferredReturnType": "[exact=_Future|powerset={N}{O}{N}]",
+        "parameters": [
+          {
+            "name": "duration",
+            "type": "[exact=Duration|powerset={N}{O}{N}]",
+            "declaredType": "Duration"
+          }
+        ],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 0,
+        "code": "dT(a,b){var s\nif(!b.b(null))throw A.b(A.L3(null,\"computation\",\"The type parameter is not nullable\"))\ns=new A.vs($.X3,b.C(\"vs<0>\"))\nA.ww(a,new A.Z5(null,s,b))\nreturn s}",
+        "type": "Future<#A> Function<#A extends Object?>(Duration,[FutureOr<#A> Function()?])",
+        "functionKind": 3
+      },
+      "dart:async::Future.Future.delayed.Future_Future$delayed_closure.call": {
+        "id": "function/dart:async::Future.Future.delayed.Future_Future$delayed_closure.call",
+        "kind": "function",
+        "name": "call",
+        "size": 36,
+        "outputUnit": "outputUnit/main",
+        "parent": "closure/dart:async::Future.Future.delayed.Future_Future$delayed_closure",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "void",
+        "inferredReturnType": "[null|powerset={null}]",
+        "parameters": [],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 0,
+        "code": "$0(){this.c.a(null)\nthis.b.HH(null)}",
+        "type": "void Function()",
+        "functionKind": 2
       },
       "dart:async::StreamIterator.StreamIterator": {
         "id": "function/dart:async::StreamIterator.StreamIterator",
@@ -27172,7 +27294,7 @@
         "inferredReturnType": "[exact=_AsyncCompleter|powerset={N}{O}{N}]",
         "parameters": [],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 1,
+        "inlinedCount": 2,
         "code": "",
         "type": "dynamic Function()",
         "functionKind": 3
@@ -27519,6 +27641,29 @@
         "type": "void Function(Object,[StackTrace?])",
         "functionKind": 2
       },
+      "dart:async::_Completer.isCompleted": {
+        "id": "function/dart:async::_Completer.isCompleted",
+        "kind": "function",
+        "name": "isCompleted",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:async::_Completer",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "bool",
+        "inferredReturnType": "[exact=JSBool|powerset={I}{O}{N}]",
+        "parameters": [],
+        "sideEffects": "SideEffects(reads field; writes nothing)",
+        "inlinedCount": 3,
+        "code": "",
+        "type": "bool Function()",
+        "functionKind": 2
+      },
       "dart:async::_Future._Future": {
         "id": "function/dart:async::_Future._Future",
         "kind": "function",
@@ -27537,7 +27682,7 @@
         "inferredReturnType": "[exact=_Future|powerset={N}{O}{N}]",
         "parameters": [],
         "sideEffects": "SideEffects(reads static; writes nothing)",
-        "inlinedCount": 5,
+        "inlinedCount": 7,
         "code": "",
         "type": "dynamic Function()",
         "functionKind": 3
@@ -27941,6 +28086,35 @@
         "type": "void Function(_Future<dynamic>)",
         "functionKind": 2
       },
+      "dart:async::_Future._complete": {
+        "id": "function/dart:async::_Future._complete",
+        "kind": "function",
+        "name": "_complete",
+        "size": 48,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:async::_Future",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "void",
+        "inferredReturnType": "[null|powerset={null}]",
+        "parameters": [
+          {
+            "name": "value",
+            "type": "[null|subclass=JSPositiveInt|powerset={null}{I}{O}{N}]",
+            "declaredType": "FutureOr<_Future.T>"
+          }
+        ],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 0,
+        "code": "HH(a){var s=this,r=s.ah()\ns.a=8\ns.c=a\nA.HZ(s,r)}",
+        "type": "void Function(Object?)",
+        "functionKind": 2
+      },
       "dart:async::_Future._completeError": {
         "id": "function/dart:async::_Future._completeError",
         "kind": "function",
@@ -28218,7 +28392,7 @@
         "inferredReturnType": "[exact=JSBool|powerset={I}{O}{N}]",
         "parameters": [],
         "sideEffects": "SideEffects(reads field; writes nothing)",
-        "inlinedCount": 2,
+        "inlinedCount": 5,
         "code": "",
         "type": "bool Function()",
         "functionKind": 2
@@ -28405,7 +28579,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "$0(){var s,r,q,p,o,n,m,l,k=this,j=null\ntry{q=k.a.a\nj=q.b.b.Gr(q.d)}catch(p){s=A.Ru(p)\nr=A.ts(p)\nif(k.c&&k.b.a.c.a===s){q=k.a\nq.c=k.b.a.c}else{q=s\no=r\nif(o==null)o=A.v0(q)\nn=k.a\nn.c=new A.OH(q,o)\nq=n}q.b=!0\nreturn}if(j instanceof A.vs&&(j.a&24)!==0){if((j.a&16)!==0){q=k.a\nq.c=j.c\nq.b=!0}return}if(j instanceof A.vs){m=k.b.a\nl=new A.vs(m.b,m.$ti)\nj.S(new A.jZ(l,m),new A.FZ(l),t.n)\nq=k.a\nq.c=l\nq.b=!1}}",
+        "code": "$0(){var s,r,q,p,o,n,m,l,k=this,j=null\ntry{q=k.a.a\nj=q.b.b.Gr(q.d)}catch(p){s=A.Ru(p)\nr=A.ts(p)\nif(k.c&&k.b.a.c.a===s){q=k.a\nq.c=k.b.a.c}else{q=s\no=r\nif(o==null)o=A.v0(q)\nn=k.a\nn.c=new A.OH(q,o)\nq=n}q.b=!0\nreturn}if(j instanceof A.vs&&(j.a&24)!==0){if((j.a&16)!==0){q=k.a\nq.c=j.c\nq.b=!0}return}if(j instanceof A.vs){m=k.b.a\nl=new A.vs(m.b,m.$ti)\nj.S(new A.jZ(l,m),new A.FZ(l),t.H)\nq=k.a\nq.c=l\nq.b=!1}}",
         "type": "void Function()",
         "functionKind": 2
       },
@@ -28629,7 +28803,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads nothing; writes field)",
-        "inlinedCount": 3,
+        "inlinedCount": 4,
         "code": "",
         "type": "void Function(Object?)",
         "functionKind": 2
@@ -30343,6 +30517,45 @@
         "type": "void Function()",
         "functionKind": 0
       },
+      "dart:async::_completeWithErrorCallback": {
+        "id": "function/dart:async::_completeWithErrorCallback",
+        "kind": "function",
+        "name": "_completeWithErrorCallback",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "library/dart:async::",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "void",
+        "inferredReturnType": "[null|powerset={null}]",
+        "parameters": [
+          {
+            "name": "result",
+            "type": "[exact=_Future|powerset={N}{O}{N}]",
+            "declaredType": "_Future<dynamic>"
+          },
+          {
+            "name": "error",
+            "type": "[subclass=Object|powerset={IN}{GFUO}{IMN}]",
+            "declaredType": "Object"
+          },
+          {
+            "name": "stackTrace",
+            "type": "[subtype=StackTrace|powerset={N}{O}{N}]",
+            "declaredType": "StackTrace"
+          }
+        ],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 1,
+        "code": "",
+        "type": "void Function(_Future<dynamic>,Object,StackTrace)",
+        "functionKind": 0
+      },
       "dart:async::_hasTimer": {
         "id": "function/dart:async::_hasTimer",
         "kind": "function",
@@ -30364,6 +30577,40 @@
         "inlinedCount": 2,
         "code": "",
         "type": "bool Function()",
+        "functionKind": 0
+      },
+      "dart:async::_interceptCaughtError": {
+        "id": "function/dart:async::_interceptCaughtError",
+        "kind": "function",
+        "name": "_interceptCaughtError",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "library/dart:async::",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "AsyncError",
+        "inferredReturnType": "[exact=AsyncError|powerset={N}{O}{N}]",
+        "parameters": [
+          {
+            "name": "error",
+            "type": "[subclass=Object|powerset={IN}{GFUO}{IMN}]",
+            "declaredType": "Object"
+          },
+          {
+            "name": "stackTrace",
+            "type": "[subtype=StackTrace|powerset={N}{O}{N}]",
+            "declaredType": "StackTrace?"
+          }
+        ],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 1,
+        "code": "",
+        "type": "AsyncError Function(Object,StackTrace?)",
         "functionKind": 0
       },
       "dart:async::_interceptError": {
@@ -36581,7 +36828,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 2,
+        "inlinedCount": 1,
         "code": "",
         "type": "Future<#A> Function<#A extends Object?>(JSObject)",
         "functionKind": 0
@@ -36639,7 +36886,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 6,
+        "inlinedCount": 7,
         "code": "",
         "type": "String Function(String)",
         "functionKind": 0
@@ -36720,7 +36967,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 6,
+        "inlinedCount": 7,
         "code": "",
         "type": "String Function(String)",
         "functionKind": 0
@@ -36786,6 +37033,40 @@
         "inlinedCount": 1,
         "code": "",
         "type": "#A Function<#A extends Object?>(JSObject,Object)",
+        "functionKind": 0
+      },
+      "dart:js_util::_callConstructorUnchecked1": {
+        "id": "function/dart:js_util::_callConstructorUnchecked1",
+        "kind": "function",
+        "name": "_callConstructorUnchecked1",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "library/dart:js_util::",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "#A/*free*/",
+        "inferredReturnType": "[subclass=Object|powerset={IN}{GFUO}{IMN}]",
+        "parameters": [
+          {
+            "name": "constr",
+            "type": "[subclass=Object|powerset={IN}{GFUO}{IMN}]",
+            "declaredType": "Object"
+          },
+          {
+            "name": "arg1",
+            "type": "[exact=JSString|powerset={I}{O}{I}]",
+            "declaredType": "Object?"
+          }
+        ],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 1,
+        "code": "",
+        "type": "#A Function<#A extends Object?>(Object,Object?)",
         "functionKind": 0
       },
       "dart:js_util::_callConstructorUnchecked2": {
@@ -36929,12 +37210,12 @@
           },
           {
             "name": "arg1",
-            "type": "Union([exact=JSString|powerset={I}{O}{I}], [subclass=JSPositiveInt|powerset={I}{O}{N}], powerset: {I}{O}{IN})",
+            "type": "Union([exact=JSString|powerset={I}{O}{I}], [subclass=JSPositiveInt|powerset={I}{O}{N}], [subclass=JavaScriptObject|powerset={I}{GFUO}{IMN}], powerset: {I}{GFUO}{IMN})",
             "declaredType": "Object?"
           }
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 71,
+        "inlinedCount": 75,
         "code": "",
         "type": "#A Function<#A extends Object?>(Object,Object,Object?)",
         "functionKind": 0
@@ -36973,12 +37254,12 @@
           },
           {
             "name": "arg2",
-            "type": "Union([exact=JSString|powerset={I}{O}{I}], [subclass=JavaScriptObject|powerset={I}{GFUO}{IMN}], powerset: {I}{GFUO}{IMN})",
+            "type": "[exact=JSString|powerset={I}{O}{I}]",
             "declaredType": "Object?"
           }
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 4,
+        "inlinedCount": 3,
         "code": "",
         "type": "#A Function<#A extends Object?>(Object,Object,Object?,Object?)",
         "functionKind": 0
@@ -37036,7 +37317,7 @@
         "id": "function/dart:js_util::_functionToJS1",
         "kind": "function",
         "name": "_functionToJS1",
-        "size": 0,
+        "size": 192,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:js_util::",
         "children": [],
@@ -37056,8 +37337,8 @@
           }
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 1,
-        "code": "",
+        "inlinedCount": 0,
+        "code": "k6(a){var s\nif(typeof a==\"function\")throw A.b(A.xY(\"Attempting to rewrap a JS function.\",null))\ns=function(b,c){return function(d){return b(c,d,arguments.length)}}(A.K8,a)\ns[$.q()]=a\nreturn s}",
         "type": "JavaScriptFunction Function(Function)",
         "functionKind": 0
       },
@@ -37085,12 +37366,12 @@
           },
           {
             "name": "name",
-            "type": "Value([exact=JSString|powerset={I}{O}{I}], value: \"URL\", powerset: {I}{O}{I})",
+            "type": "[exact=JSString|powerset={I}{O}{I}]",
             "declaredType": "Object"
           }
         ],
         "sideEffects": "SideEffects(reads anything; writes nothing)",
-        "inlinedCount": 1,
+        "inlinedCount": 2,
         "code": "",
         "type": "#A Function<#A extends Object?>(Object,Object)",
         "functionKind": 0
@@ -37124,12 +37405,12 @@
           },
           {
             "name": "value",
-            "type": "Union([exact=JSBool|powerset={I}{O}{N}], [exact=JSString|powerset={I}{O}{I}], powerset: {I}{O}{IN})",
+            "type": "Union([exact=JSBool|powerset={I}{O}{N}], [exact=JSString|powerset={I}{O}{I}], [exact=JavaScriptFunction|powerset={I}{O}{N}], powerset: {I}{O}{IN})",
             "declaredType": "_setPropertyUnchecked.T?"
           }
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 20,
+        "inlinedCount": 22,
         "code": "",
         "type": "#A Function<#A extends Object?>(Object,Object,#A?)",
         "functionKind": 0
@@ -37163,7 +37444,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads anything; writes nothing)",
-        "inlinedCount": 110,
+        "inlinedCount": 118,
         "code": "",
         "type": "#A Function<#A extends Object?>(Object,Object)",
         "functionKind": 0
@@ -37311,7 +37592,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "E(){var s=0,r=A.F(t.n),q,p,o,n\nvar $async$E=A.l(function(a,b){if(a===1)return A.x(b,r)\nfor(;;)switch(s){case 0:o=v.G\ns=2\nreturn A.j(A.f(import(new o.URL(\"viz_data.js\",o.window.location.href).href),t.m),$async$E)\ncase 2:n=b.vizDataString\nif(n==null)n=null\nif(n==null)throw A.b(A.u(\"`vizDataString` is not defined locally or globally.\"))\nq=new A.e()\np=q.c=A.M(t.b.a(B.Ct.p(B.xB.D(n),null)))\no=o.document\np=p.b.a.q(0,p.a)\np.toString\no.title=\"pubviz - \"+p.a\np=A.D(q)\nq.a!==$&&A.K()\nq.a=p\np=new A.J(q,A.C(t.N,t.y))\nq.b!==$&&A.K()\nq.b=p\ns=3\nreturn A.j(p.W(),$async$E)\ncase 3:return A.y(null,r)}})\nreturn A.i($async$E,r)}",
+        "code": "E(){var s=0,r=A.F(t.H),q,p,o,n\nvar $async$E=A.l(function(a,b){if(a===1)return A.x(b,r)\nfor(;;)switch(s){case 0:o=v.G\ns=2\nreturn A.j(A.f(import(new o.URL(\"viz_data.js\",o.window.location.href).href),t.m),$async$E)\ncase 2:n=b.vizDataString\nif(n==null)n=null\nif(n==null)throw A.b(A.u(\"`vizDataString` is not defined locally or globally.\"))\nq=new A.e()\np=q.c=A.M(t.b.a(B.Ct.p(B.xB.D(n),null)))\no=o.document\np=p.b.a.q(0,p.a)\np.toString\no.title=\"pubviz - \"+p.a\np=A.D(q)\nq.a!==$&&A.K()\nq.a=p\np=new A.J(q,A.C(t.N,t.y))\nq.b!==$&&A.K()\nq.b=p\ns=3\nreturn A.j(p.W(),$async$E)\ncase 3:return A.y(null,r)}})\nreturn A.i($async$E,r)}",
         "type": "void Function()",
         "functionKind": 0
       },
@@ -41085,6 +41366,29 @@
         "type": "MapEntry<String,VizPackage> Function(String,dynamic)",
         "functionKind": 2
       },
+      "package:pubviz/src/web/graph_renderer.dart::CancellationException.toString": {
+        "id": "function/package:pubviz/src/web/graph_renderer.dart::CancellationException.toString",
+        "kind": "function",
+        "name": "toString",
+        "size": 25,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/package:pubviz/src/web/graph_renderer.dart::CancellationException",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "String",
+        "inferredReturnType": "Value([exact=JSString|powerset={I}{O}{I}], value: \"Cancelled\", powerset: {I}{O}{I})",
+        "parameters": [],
+        "sideEffects": "SideEffects(reads nothing; writes nothing)",
+        "inlinedCount": 0,
+        "code": "\"[\"(a){return\"Cancelled\"}",
+        "type": "String Function()",
+        "functionKind": 2
+      },
       "package:pubviz/src/web/graph_renderer.dart::GraphRenderer.GraphRenderer": {
         "id": "function/package:pubviz/src/web/graph_renderer.dart::GraphRenderer.GraphRenderer",
         "kind": "function",
@@ -41114,6 +41418,101 @@
         "type": "dynamic Function(PubvizApp)",
         "functionKind": 3
       },
+      "package:pubviz/src/web/graph_renderer.dart::GraphRenderer._renderWithWorker": {
+        "id": "function/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._renderWithWorker",
+        "kind": "function",
+        "name": "_renderWithWorker",
+        "size": 771,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/package:pubviz/src/web/graph_renderer.dart::GraphRenderer",
+        "children": [
+          "closure/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._renderWithWorker.GraphRenderer__renderWithWorker_closure",
+          "closure/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._renderWithWorker.GraphRenderer__renderWithWorker_closure%0"
+        ],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "Future<String>",
+        "inferredReturnType": "[exact=_Future|powerset={N}{O}{N}]",
+        "parameters": [
+          {
+            "name": "dotString",
+            "type": "[exact=JSString|powerset={I}{O}{I}]",
+            "declaredType": "String"
+          },
+          {
+            "name": "generation",
+            "type": "[subclass=JSPositiveInt|powerset={I}{O}{N}]",
+            "declaredType": "int"
+          }
+        ],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 0,
+        "code": "cX(a,b){var s,r,q,p=this,o=p.r\nif(o!=null&&(o.a.a&30)===0)o.pm(B.Rd)\ns=new A.vs($.X3,t.I)\np.r=new A.Zf(s,t.O)\nif(p.f==null){r=p.f=new v.G.Worker(\"viz_worker.js\")\nr.onmessage=A.k6(new A.Ak(p))\nr.onerror=A.k6(new A.lt(p,r))}q=p.f\nq.toString\nq.postMessage({dotString:a,options:{format:\"svg\"},generation:b})\nreturn s}",
+        "type": "Future<String> Function(String,int)",
+        "functionKind": 2
+      },
+      "package:pubviz/src/web/graph_renderer.dart::GraphRenderer._renderWithWorker.GraphRenderer__renderWithWorker_closure.call": {
+        "id": "function/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._renderWithWorker.GraphRenderer__renderWithWorker_closure.call",
+        "kind": "function",
+        "name": "call",
+        "size": 213,
+        "outputUnit": "outputUnit/main",
+        "parent": "closure/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._renderWithWorker.GraphRenderer__renderWithWorker_closure",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "Null",
+        "inferredReturnType": "[null|powerset={null}]",
+        "parameters": [
+          {
+            "name": "event",
+            "type": "[subclass=JavaScriptObject|powerset={I}{GFUO}{IMN}]",
+            "declaredType": "JSObject"
+          }
+        ],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 0,
+        "code": "$1(a){var s,r,q,p=A.AN(a.data),o=this.a\nif(J.cf(p.generation,o.e)){s=o.r\nif(s!=null&&(s.a.a&30)===0){if(p.success)s.T(p.output)\nelse{r=A.Ej(p.error)\nq=p.stack\ns.pm(r+\"\\n\"+A.Ej(q==null?\"\":q))}if(o.r===s)o.r=null}}}",
+        "type": "Null Function(JSObject)",
+        "functionKind": 2
+      },
+      "package:pubviz/src/web/graph_renderer.dart::GraphRenderer._renderWithWorker.GraphRenderer__renderWithWorker_closure.call%0": {
+        "id": "function/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._renderWithWorker.GraphRenderer__renderWithWorker_closure.call%0",
+        "kind": "function",
+        "name": "call",
+        "size": 122,
+        "outputUnit": "outputUnit/main",
+        "parent": "closure/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._renderWithWorker.GraphRenderer__renderWithWorker_closure%0",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "Null",
+        "inferredReturnType": "[null|powerset={null}]",
+        "parameters": [
+          {
+            "name": "event",
+            "type": "[subclass=JavaScriptObject|powerset={I}{GFUO}{IMN}]",
+            "declaredType": "JSObject"
+          }
+        ],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 0,
+        "code": "$1(a){var s,r=this.a,q=r.r\nif(q!=null&&(q.a.a&30)===0)q.pm(\"Worker error\")\ns=this.b\ns.terminate()\nif(r.f===s)r.r=r.f=null}",
+        "type": "Null Function(JSObject)",
+        "functionKind": 2
+      },
       "package:pubviz/src/web/graph_renderer.dart::GraphRenderer._root": {
         "id": "function/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._root",
         "kind": "function",
@@ -41132,7 +41531,7 @@
         "inferredReturnType": "[subclass=JavaScriptObject|powerset={I}{GFUO}{IMN}]",
         "parameters": [],
         "sideEffects": "SideEffects(reads field; writes nothing)",
-        "inlinedCount": 6,
+        "inlinedCount": 5,
         "code": "",
         "type": "JSObject Function()",
         "functionKind": 2
@@ -41141,7 +41540,7 @@
         "id": "function/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._updateBody",
         "kind": "function",
         "name": "_updateBody",
-        "size": 3104,
+        "size": 3144,
         "outputUnit": "outputUnit/main",
         "parent": "class/package:pubviz/src/web/graph_renderer.dart::GraphRenderer",
         "children": [
@@ -41171,7 +41570,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "eY(a){var s,r,q,p,o=this\na=new A.oi(new A.V6(a,0,A.jB(0,null,a.length)),new A.CU(),t.V.C(\"oi<cX.E>\")).zV(0,\"\\n\")\ns=v.G\ns.document.querySelector(\"#graph-container\").insertAdjacentHTML(\"beforeend\",a)\ns=s.document.querySelector(\"svg\")\nif(s==null)s=A.AN(s)\no.c=s\nr=o.a.a\nr===$&&A.Q4()\nif(r.c.checked)s.classList.add(\"zoom\")\no.e.V1(0)\ns=A.jl(o.c.querySelectorAll(\"g.node\"))\ns=A.K1(s,new A.eQ(o),s.$ti.C(\"cX.E\"),t.h)\nq=A.ev(s,A.Lh(s).C(\"cX.E\"))\ns=A.jl(o.c.querySelectorAll(\"g.edge\"))\ns=A.K1(s,new A.wP(),s.$ti.C(\"cX.E\"),t.w)\np=A.ev(s,A.Lh(s).C(\"cX.E\"))\ns=o.c\ns.toString\nA.JE(s,\"mouseover\",new A.zG(o,q,p),!1)\ns=o.c\ns.toString\nA.JE(s,\"mouseleave\",new A.zn(o,q,p),!1)\ns=o.c\ns.toString\nA.JE(s,\"click\",new A.zC(o,q,p),!1)}",
+        "code": "eY(a){var s,r,q,p=this,o=p.b\nif(o!=null){o.remove()\np.c=p.b=null}a=new A.oi(new A.V6(a,0,A.jB(0,null,a.length)),new A.CU(),t.V.C(\"oi<cX.E>\")).zV(0,\"\\n\")\no=v.G\no.document.querySelector(\"#graph-container\").insertAdjacentHTML(\"beforeend\",a)\no=o.document.querySelector(\"svg\")\nif(o==null)o=A.AN(o)\np.b=o\ns=p.a.a\ns===$&&A.Q4()\nif(s.c.checked)o.classList.add(\"zoom\")\np.d.V1(0)\no=A.jl(p.b.querySelectorAll(\"g.node\"))\no=A.K1(o,new A.eQ(p),o.$ti.C(\"cX.E\"),t.h)\nr=A.ev(o,A.Lh(o).C(\"cX.E\"))\no=A.jl(p.b.querySelectorAll(\"g.edge\"))\no=A.K1(o,new A.wP(),o.$ti.C(\"cX.E\"),t.w)\nq=A.ev(o,A.Lh(o).C(\"cX.E\"))\no=p.b\no.toString\nA.JE(o,\"mouseover\",new A.zG(p,r,q),!1)\no=p.b\no.toString\nA.JE(o,\"mouseleave\",new A.zn(p,r,q),!1)\no=p.b\no.toString\nA.JE(o,\"click\",new A.zC(p,r,q),!1)}",
         "type": "void Function(String)",
         "functionKind": 2
       },
@@ -41287,7 +41686,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "$1(a){var s,r,q,p=a.querySelector(\"title\").textContent\np.toString\na.id=p\ns=a.querySelector(\"ellipse\")\ns=s==null?null:s.getAttribute(\"stroke\")\nif(s==null){s=a.querySelector(\"polygon\")\ns=s==null?null:s.getAttribute(\"stroke\")\nr=s}else r=s\nif(r==null){s=a.querySelector(\"path\")\nr=s==null?null:s.getAttribute(\"stroke\")}q=A.Nn(r)\nif(q)a.classList.add(\"outdated\")\nthis.a.e.Y5(0,p,q)\nreturn new A.Pl(a,p)}",
+        "code": "$1(a){var s,r,q,p=a.querySelector(\"title\").textContent\np.toString\na.id=p\ns=a.querySelector(\"ellipse\")\ns=s==null?null:s.getAttribute(\"stroke\")\nif(s==null){s=a.querySelector(\"polygon\")\ns=s==null?null:s.getAttribute(\"stroke\")\nr=s}else r=s\nif(r==null){s=a.querySelector(\"path\")\nr=s==null?null:s.getAttribute(\"stroke\")}q=A.Nn(r)\nif(q)a.classList.add(\"outdated\")\nthis.a.d.Y5(0,p,q)\nreturn new A.Pl(a,p)}",
         "type": "({JSObject element,String id}) Function(JSObject)",
         "functionKind": 2
       },
@@ -41345,7 +41744,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "$1(a){var s,r,q=this,p=a.target\nif(p==null)p=A.AN(p)\ns=p.closest(\"g.node, g.edge\")\np=a.relatedTarget\nif(s==null?(p==null?null:p.closest(\"g.node, g.edge\"))==null:s===(p==null?null:p.closest(\"g.node, g.edge\")))return\nif(s!=null){p=A.jl(s.querySelectorAll(\"text\"))\np=A.K1(p,new A.Bf(),p.$ti.C(\"cX.E\"),t.N)\nr=new A.oi(p,new A.dT(),A.Lh(p).C(\"oi<cX.E>\")).zV(0,\" \")\nif(r.length!==0){p=q.a.a.a\np===$&&A.Q4()\np.jz(r)}}p=q.a\nif(p.d==null)p.LZ(s,q.b,q.c)}",
+        "code": "$1(a){var s,r,q=this,p=a.target\nif(p==null)p=A.AN(p)\ns=p.closest(\"g.node, g.edge\")\np=a.relatedTarget\nif(s==null?(p==null?null:p.closest(\"g.node, g.edge\"))==null:s===(p==null?null:p.closest(\"g.node, g.edge\")))return\nif(s!=null){p=A.jl(s.querySelectorAll(\"text\"))\np=A.K1(p,new A.Bf(),p.$ti.C(\"cX.E\"),t.N)\nr=new A.oi(p,new A.FL(),A.Lh(p).C(\"oi<cX.E>\")).zV(0,\" \")\nif(r.length!==0){p=q.a.a.a\np===$&&A.Q4()\np.jz(r)}}p=q.a\nif(p.c==null)p.LZ(s,q.b,q.c)}",
         "type": "void Function(JSObject)",
         "functionKind": 2
       },
@@ -41374,7 +41773,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "$1(a){var s=this.a\nif(s.d==null)s.LZ(null,this.b,this.c)}",
+        "code": "$1(a){var s=this.a\nif(s.c==null)s.LZ(null,this.b,this.c)}",
         "type": "void Function(JSObject)",
         "functionKind": 2
       },
@@ -41403,7 +41802,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "$1(a){var s,r,q=this,p=a.target\nif(p==null)p=A.AN(p)\ns=p.closest(\"g.node, g.edge\")\nif(s!=null){p=q.a\nif(p.d===s){p.d=null\nr=null}else{p.d=s\nr=s}if(r==null)r=s\np.LZ(r,q.b,q.c)}else{p=q.a\nif(p.d!=null){p.d=null\np.LZ(null,q.b,q.c)}}}",
+        "code": "$1(a){var s,r,q=this,p=a.target\nif(p==null)p=A.AN(p)\ns=p.closest(\"g.node, g.edge\")\nif(s!=null){p=q.a\nif(p.c===s){p.c=null\nr=null}else{p.c=s\nr=s}if(r==null)r=s\np.LZ(r,q.b,q.c)}else{p=q.a\nif(p.c!=null){p.c=null\np.LZ(null,q.b,q.c)}}}",
         "type": "void Function(JSObject)",
         "functionKind": 2
       },
@@ -41442,7 +41841,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "LZ(a,b,c){var s,r,q,p,o,n,m,l,k,j,i,h,g=this,f=t.t,e=A.QI([],f)\nif(a!=null)if(a.classList.contains(\"edge\"))B.Nm.FV(e,A.QI([A.X2(a.attributes,\"x-to\"),A.X2(a.attributes,\"x-from\")],f))\nelse e.push(a.id)\nfor(f=b.length,s=0;s<b.length;b.length===f||(0,A.p)(b),++s){r=b[s]\nq=r.a\nif(B.Nm.tg(e,r.b))q.classList.add(\"active\")\nelse q.classList.remove(\"active\")\nif(q===g.d)q.classList.add(\"locked\")\nelse q.classList.remove(\"locked\")}f=t.d\np=A.QI([],f)\no=A.QI([],f)\nfor(q=c.length,n=g.e,s=0;s<c.length;c.length===q||(0,A.p)(c),++s){m=c[s].a\nl=m[4]\nk=m[2]\nif(e.length===2)if(B.Nm.tg(e,l)&&B.Nm.tg(e,k))m[1].classList.add(\"active\")\nelse m[1].classList.remove(\"active\")\nelse if(B.Nm.tg(e,l)||B.Nm.tg(e,k)){if(B.Nm.tg(e,l)){j=m[0]\ni=m[3]\nh=n.q(0,k)\np.push(new A.vG([j,i,m[1].classList.contains(\"outdated\"),h===!0,k]))}if(B.Nm.tg(e,k)){j=m[0]\ni=m[3]\nh=n.q(0,l)\no.push(new A.vG([j,i,m[1].classList.contains(\"outdated\"),h===!0,l]))}m[1].classList.add(\"active\")}else m[1].classList.remove(\"active\")\nm=m[1]\nif(m===g.d)m.classList.add(\"locked\")\nelse m.classList.remove(\"locked\")}q=e.length\nn=g.a.a\nif(q===1){n===$&&A.Q4()\nn.t2(p,o)}else{n===$&&A.Q4()\nn.t2(A.QI([],f),A.QI([],f))}}",
+        "code": "LZ(a,b,c){var s,r,q,p,o,n,m,l,k,j,i,h,g=this,f=t.t,e=A.QI([],f)\nif(a!=null)if(a.classList.contains(\"edge\"))B.Nm.FV(e,A.QI([A.X2(a.attributes,\"x-to\"),A.X2(a.attributes,\"x-from\")],f))\nelse e.push(a.id)\nfor(f=b.length,s=0;s<b.length;b.length===f||(0,A.p)(b),++s){r=b[s]\nq=r.a\nif(B.Nm.tg(e,r.b))q.classList.add(\"active\")\nelse q.classList.remove(\"active\")\nif(q===g.c)q.classList.add(\"locked\")\nelse q.classList.remove(\"locked\")}f=t.d\np=A.QI([],f)\no=A.QI([],f)\nfor(q=c.length,n=g.d,s=0;s<c.length;c.length===q||(0,A.p)(c),++s){m=c[s].a\nl=m[4]\nk=m[2]\nif(e.length===2)if(B.Nm.tg(e,l)&&B.Nm.tg(e,k))m[1].classList.add(\"active\")\nelse m[1].classList.remove(\"active\")\nelse if(B.Nm.tg(e,l)||B.Nm.tg(e,k)){if(B.Nm.tg(e,l)){j=m[0]\ni=m[3]\nh=n.q(0,k)\np.push(new A.vG([j,i,m[1].classList.contains(\"outdated\"),h===!0,k]))}if(B.Nm.tg(e,k)){j=m[0]\ni=m[3]\nh=n.q(0,l)\no.push(new A.vG([j,i,m[1].classList.contains(\"outdated\"),h===!0,l]))}m[1].classList.add(\"active\")}else m[1].classList.remove(\"active\")\nm=m[1]\nif(m===g.c)m.classList.add(\"locked\")\nelse m.classList.remove(\"locked\")}q=e.length\nn=g.a.a\nif(q===1){n===$&&A.Q4()\nn.t2(p,o)}else{n===$&&A.Q4()\nn.t2(A.QI([],f),A.QI([],f))}}",
         "type": "void Function(JSObject?,Iterable<({JSObject element,String id})>,Iterable<({String constraint,JSObject element,String from,bool isDev,String to})>)",
         "functionKind": 2
       },
@@ -41450,7 +41849,7 @@
         "id": "function/package:pubviz/src/web/graph_renderer.dart::GraphRenderer.render",
         "kind": "function",
         "name": "render",
-        "size": 1314,
+        "size": 1465,
         "outputUnit": "outputUnit/main",
         "parent": "class/package:pubviz/src/web/graph_renderer.dart::GraphRenderer",
         "children": [],
@@ -41465,7 +41864,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "W(){var s=0,r=A.F(t.n),q=1,p=[],o=[],n=this,m,l,k,j,i,h,g,f,e,d,c,b,a,a0,a1,a2\nvar $async$W=A.l(function(a4,a5){if(a4===1){p.push(a5)\ns=q}for(;;)switch(s){case 0:a1=n.c\nif(a1!=null){a1.remove()\nn.d=n.c=null}e=new A.P1()\n$.jv()\na1=$.lE.$0()\ne.a=a1\ne.b=null\nm=e\nq=3\ns=n.b==null?6:7\nbreak\ncase 6:s=8\nreturn A.j(A.f(v.G.Viz.instance(),t.m),$async$W)\ncase 8:n.b=a5\ncase 7:a1=n.a\nd=a1.c\nd===$&&A.Q4()\na1=a1.a\na1===$&&A.Q4()\nl=d.tP(a1.d.checked,a1.f.checked,a1.r.checked)\nk=A.iQ(l)\na1=n.b\na1.toString\nj=a1.renderString(k,{format:\"svg\"})\nn.eY(j)\no.push(5)\ns=4\nbreak\ncase 3:q=2\na2=p.pop()\ni=A.Ru(a2)\nh=A.ts(a2)\ntry{n.a.a===$&&A.Q4()\na1=J.n(i)\nd=J.n(h)\nb=v.G\na=b.document.querySelector(\"#crash-trace\")\nif(a==null)a=A.AN(a)\na.textContent=a1+\"\\n\"+d\nd=b.document.querySelector(\"#crash-overlay\")\na1=d==null?A.AN(d):d\na1.classList.remove(\"hidden\")\nb=b.document.querySelector(\"#graph-container\")\na1=b==null?A.AN(b):b\na1.classList.add(\"hidden\")}catch(a3){g=A.Ru(a3)\nf=A.ts(a3)\na1=v.G.console\nd=A.Ej(g)\nb=A.Ej(f)\na1.error(\"Even the crash reporter crashed!,\\n          \"+d+\",\\n          \"+b+\",\\n        \")}throw a2\no.push(5)\ns=4\nbreak\ncase 2:o=[1]\ncase 4:q=1\nv.G.console.info(\"Total time generating graph: \"+new A.a6(m.gqs())[\"[\"](0))\ns=o.pop()\nbreak\ncase 5:return A.y(null,r)\ncase 1:return A.x(p.at(-1),r)}})\nreturn A.i($async$W,r)}",
+        "code": "W(){var s=0,r=A.F(t.H),q,p=2,o=[],n=[],m=this,l,k,j,i,h,g,f,e,d,c,b,a,a0,a1,a2,a3,a4,a5\nvar $async$W=A.l(function(a7,a8){if(a7===1){o.push(a8)\ns=p}for(;;)switch(s){case 0:a1=++m.e\na2=v.G\na3=a2.document.querySelector(\"#loading-overlay\")\na4=a3\nif(a4!=null)a4.classList.remove(\"hidden\")\ns=3\nreturn A.j(A.dT(B.RT,t.H),$async$W)\ncase 3:d=new A.P1()\n$.jv()\na4=$.lE.$0()\nd.a=a4\nd.b=null\nl=d\np=5\na4=m.a\nc=a4.c\nc===$&&A.Q4()\na4=a4.a\na4===$&&A.Q4()\nk=c.tP(a4.d.checked,a4.f.checked,a4.r.checked)\nj=A.iQ(k)\ns=8\nreturn A.j(m.cX(j,a1),$async$W)\ncase 8:i=a8\nif(!J.cf(a1,m.e)){n=[1]\ns=6\nbreak}m.eY(i)\nn.push(7)\ns=6\nbreak\ncase 5:p=4\na5=o.pop()\nh=A.Ru(a5)\ng=A.ts(a5)\nif(h instanceof A.CC){n=[1]\ns=6\nbreak}try{m.a.a===$&&A.Q4()\na4=J.n(h)\nc=J.n(g)\na=a2.document.querySelector(\"#crash-trace\")\nif(a==null)a=A.AN(a)\na.textContent=a4+\"\\n\"+c\nc=a2.document.querySelector(\"#crash-overlay\")\na4=c==null?A.AN(c):c\na4.classList.remove(\"hidden\")\na4=a2.document.querySelector(\"#graph-container\")\nif(a4==null)a4=A.AN(a4)\na4.classList.add(\"hidden\")}catch(a6){f=A.Ru(a6)\ne=A.ts(a6)\na4=a2.console\nc=A.Ej(f)\na=A.Ej(e)\na4.error(\"Even the crash reporter crashed!,\\n          \"+c+\",\\n          \"+a+\",\\n        \")}throw a5\nn.push(7)\ns=6\nbreak\ncase 4:n=[2]\ncase 6:p=2\nif(J.cf(a1,m.e)){a4=a3\nif(a4!=null)a4.classList.add(\"hidden\")\na2.console.info(\"Total time generating graph: \"+new A.a6(l.gqs())[\"[\"](0))}s=n.pop()\nbreak\ncase 7:case 1:return A.y(q,r)\ncase 2:return A.x(o.at(-1),r)}})\nreturn A.i($async$W,r)}",
         "type": "Future<void> Function()",
         "functionKind": 2
       },
@@ -41488,7 +41887,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "Fc(){var s,r=this.a.a\nr===$&&A.Q4()\nr=r.c.checked\ns=this.c\nif(r){if(s!=null)s.classList.add(\"zoom\")}else if(s!=null)s.classList.remove(\"zoom\")}",
+        "code": "Fc(){var s,r=this.a.a\nr===$&&A.Q4()\nr=r.c.checked\ns=this.b\nif(r){if(s!=null)s.classList.add(\"zoom\")}else if(s!=null)s.classList.remove(\"zoom\")}",
         "type": "void Function()",
         "functionKind": 2
       },
@@ -42769,7 +43168,7 @@
         "id": "function/package:web/src/helpers/events/streams.dart::_EventStreamSubscription._EventStreamSubscription",
         "kind": "function",
         "name": "_EventStreamSubscription",
-        "size": 384,
+        "size": 208,
         "outputUnit": "outputUnit/main",
         "parent": "class/package:web/src/helpers/events/streams.dart::_EventStreamSubscription",
         "children": [
@@ -42807,7 +43206,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "JE(a,b,c,d){var s,r=A.aF(new A.vN(c),t.m),q=null\nif(r==null)r=q\nelse{if(typeof r==\"function\")A.vh(A.xY(\"Attempting to rewrap a JS function.\",null))\ns=function(e,f){return function(g){return e(f,g,arguments.length)}}(A.K8,r)\ns[$.q()]=r\nr=s}if(r!=null)a.addEventListener(b,r,!1)\nreturn new A.xC(a,b,r,!1)}",
+        "code": "JE(a,b,c,d){var s=A.aF(new A.vN(c),t.m)\ns=s==null?null:A.k6(s)\nif(s!=null)a.addEventListener(b,s,!1)\nreturn new A.xC(a,b,s,!1)}",
         "type": "dynamic Function(JSObject?,String,void Function(_EventStreamSubscription.T)?,bool)",
         "functionKind": 3
       },
@@ -46806,6 +47205,30 @@
         "code": "",
         "type": "PubvizApp"
       },
+      "package:pubviz/src/web/graph_renderer.dart::GraphRenderer._currentCompleter": {
+        "id": "field/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._currentCompleter",
+        "kind": "field",
+        "name": "_currentCompleter",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/package:pubviz/src/web/graph_renderer.dart::GraphRenderer",
+        "children": [],
+        "inferredType": "[null|exact=_AsyncCompleter|powerset={null}{N}{O}{N}]",
+        "code": "",
+        "type": "Completer<String>?"
+      },
+      "package:pubviz/src/web/graph_renderer.dart::GraphRenderer._currentWorker": {
+        "id": "field/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._currentWorker",
+        "kind": "field",
+        "name": "_currentWorker",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/package:pubviz/src/web/graph_renderer.dart::GraphRenderer",
+        "children": [],
+        "inferredType": "[null|subclass=JavaScriptObject|powerset={null}{I}{GFUO}{IMN}]",
+        "code": "",
+        "type": "JSObject?"
+      },
       "package:pubviz/src/web/graph_renderer.dart::GraphRenderer._lockedElement": {
         "id": "field/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._lockedElement",
         "kind": "field",
@@ -46830,17 +47253,17 @@
         "code": "",
         "type": "Map<String,bool>"
       },
-      "package:pubviz/src/web/graph_renderer.dart::GraphRenderer._vizInstance": {
-        "id": "field/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._vizInstance",
+      "package:pubviz/src/web/graph_renderer.dart::GraphRenderer._renderGeneration": {
+        "id": "field/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._renderGeneration",
         "kind": "field",
-        "name": "_vizInstance",
+        "name": "_renderGeneration",
         "size": 0,
         "outputUnit": "outputUnit/main",
         "parent": "class/package:pubviz/src/web/graph_renderer.dart::GraphRenderer",
         "children": [],
-        "inferredType": "[null|subclass=JavaScriptObject|powerset={null}{I}{GFUO}{IMN}]",
+        "inferredType": "[subclass=JSPositiveInt|powerset={I}{O}{N}]",
         "code": "",
-        "type": "JSObject?"
+        "type": "int"
       },
       "package:pubviz/src/web/pubviz_app.dart::PubvizApp._#PubvizApp#_renderer#F": {
         "id": "field/package:pubviz/src/web/pubviz_app.dart::PubvizApp._#PubvizApp#_renderer#F",
@@ -47308,6 +47731,14 @@
         "outputUnit": "outputUnit/main",
         "code": "B.RT=new A.a6(0)"
       },
+      "B.Rd=new A.CC()": {
+        "id": "constant/B.Rd=new A.CC()",
+        "kind": "constant",
+        "name": "",
+        "size": 15,
+        "outputUnit": "outputUnit/main",
+        "code": "B.Rd=new A.CC()"
+      },
       "B.Ry=A.xq(\"HS\")": {
         "id": "constant/B.Ry=A.xq(\"HS\")",
         "kind": "constant",
@@ -47578,6 +48009,15 @@
         "outputUnit": "outputUnit/main",
         "parent": "function/dart:_js_helper::initHooks",
         "function": "function/dart:_js_helper::initHooks.initHooks_closure.call%1"
+      },
+      "dart:async::Future.Future.delayed.Future_Future$delayed_closure": {
+        "id": "closure/dart:async::Future.Future.delayed.Future_Future$delayed_closure",
+        "kind": "closure",
+        "name": "Future_Future$delayed_closure",
+        "size": 113,
+        "outputUnit": "outputUnit/main",
+        "parent": "function/dart:async::Future.Future.delayed",
+        "function": "function/dart:async::Future.Future.delayed.Future_Future$delayed_closure.call"
       },
       "dart:async::_AsyncRun._initializeScheduleImmediate._AsyncRun__initializeScheduleImmediate_closure": {
         "id": "closure/dart:async::_AsyncRun._initializeScheduleImmediate._AsyncRun__initializeScheduleImmediate_closure",
@@ -48100,6 +48540,24 @@
         "outputUnit": "outputUnit/main",
         "parent": "function/package:pubviz/src/viz_root.dart::_$VizRootFromJson",
         "function": "function/package:pubviz/src/viz_root.dart::_$VizRootFromJson._$VizRootFromJson_closure.call"
+      },
+      "package:pubviz/src/web/graph_renderer.dart::GraphRenderer._renderWithWorker.GraphRenderer__renderWithWorker_closure": {
+        "id": "closure/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._renderWithWorker.GraphRenderer__renderWithWorker_closure",
+        "kind": "closure",
+        "name": "GraphRenderer__renderWithWorker_closure",
+        "size": 269,
+        "outputUnit": "outputUnit/main",
+        "parent": "function/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._renderWithWorker",
+        "function": "function/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._renderWithWorker.GraphRenderer__renderWithWorker_closure.call"
+      },
+      "package:pubviz/src/web/graph_renderer.dart::GraphRenderer._renderWithWorker.GraphRenderer__renderWithWorker_closure%0": {
+        "id": "closure/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._renderWithWorker.GraphRenderer__renderWithWorker_closure%0",
+        "kind": "closure",
+        "name": "GraphRenderer__renderWithWorker_closure",
+        "size": 189,
+        "outputUnit": "outputUnit/main",
+        "parent": "function/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._renderWithWorker",
+        "function": "function/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._renderWithWorker.GraphRenderer__renderWithWorker_closure.call%0"
       },
       "package:pubviz/src/web/graph_renderer.dart::GraphRenderer._updateBody.GraphRenderer__updateBody__closure": {
         "id": "closure/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._updateBody.GraphRenderer__updateBody__closure",
@@ -50376,6 +50834,10 @@
       },
       {
         "id": "function/package:pubviz/src/viz_package.dart::VizPackage.toString",
+        "mask": "[subclass=Object|powerset={IN}{GFUO}{IMN}]"
+      },
+      {
+        "id": "function/package:pubviz/src/web/graph_renderer.dart::CancellationException.toString",
         "mask": "[subclass=Object|powerset={IN}{GFUO}{IMN}]"
       }
     ],
@@ -53491,6 +53953,10 @@
       {
         "id": "function/package:pubviz/src/viz_package.dart::VizPackage.toString",
         "mask": "[subclass=Object|powerset={IN}{GFUO}{IMN}]"
+      },
+      {
+        "id": "function/package:pubviz/src/web/graph_renderer.dart::CancellationException.toString",
+        "mask": "[subclass=Object|powerset={IN}{GFUO}{IMN}]"
       }
     ],
     "function/dart:_js_helper::StaticClosure.toString": [
@@ -55181,6 +55647,10 @@
       },
       {
         "id": "function/package:pubviz/src/viz_package.dart::VizPackage.toString",
+        "mask": "[null|subclass=Object|powerset={null}{IN}{GFUO}{IMN}]"
+      },
+      {
+        "id": "function/package:pubviz/src/web/graph_renderer.dart::CancellationException.toString",
         "mask": "[null|subclass=Object|powerset={null}{IN}{GFUO}{IMN}]"
       }
     ],
@@ -61215,6 +61685,238 @@
         "mask": "inlined"
       }
     ],
+    "function/dart:async::Future.Future.delayed": [
+      {
+        "id": "field/dart:async::Zone._current"
+      },
+      {
+        "id": "function/dart:_internal::typeAcceptsNull",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:_internal::typeAcceptsNull"
+      },
+      {
+        "id": "function/dart:_js_helper::wrapException"
+      },
+      {
+        "id": "function/dart:_rti::Rti._bind"
+      },
+      {
+        "id": "function/dart:_rti::Rti._eval"
+      },
+      {
+        "id": "function/dart:_rti::_arrayInstanceType"
+      },
+      {
+        "id": "function/dart:_rti::_asBool"
+      },
+      {
+        "id": "function/dart:_rti::_asBoolQ"
+      },
+      {
+        "id": "function/dart:_rti::_asDouble"
+      },
+      {
+        "id": "function/dart:_rti::_asDoubleQ"
+      },
+      {
+        "id": "function/dart:_rti::_asInt"
+      },
+      {
+        "id": "function/dart:_rti::_asIntQ"
+      },
+      {
+        "id": "function/dart:_rti::_asNum"
+      },
+      {
+        "id": "function/dart:_rti::_asNumQ"
+      },
+      {
+        "id": "function/dart:_rti::_asObject"
+      },
+      {
+        "id": "function/dart:_rti::_asString"
+      },
+      {
+        "id": "function/dart:_rti::_asStringQ"
+      },
+      {
+        "id": "function/dart:_rti::_asTop"
+      },
+      {
+        "id": "function/dart:_rti::_generalAsCheckImplementation"
+      },
+      {
+        "id": "function/dart:_rti::_generalIsTestImplementation"
+      },
+      {
+        "id": "function/dart:_rti::_generalNullableAsCheckImplementation"
+      },
+      {
+        "id": "function/dart:_rti::_generalNullableIsTestImplementation"
+      },
+      {
+        "id": "function/dart:_rti::_installSpecializedAsCheck"
+      },
+      {
+        "id": "function/dart:_rti::_installSpecializedIsTest"
+      },
+      {
+        "id": "function/dart:_rti::_instanceType"
+      },
+      {
+        "id": "function/dart:_rti::_isBool"
+      },
+      {
+        "id": "function/dart:_rti::_isInt"
+      },
+      {
+        "id": "function/dart:_rti::_isNum"
+      },
+      {
+        "id": "function/dart:_rti::_isObject"
+      },
+      {
+        "id": "function/dart:_rti::_isString"
+      },
+      {
+        "id": "function/dart:_rti::_isTop"
+      },
+      {
+        "id": "function/dart:_rti::_setArrayType"
+      },
+      {
+        "id": "function/dart:_rti::findType"
+      },
+      {
+        "id": "function/dart:_rti::instanceType"
+      },
+      {
+        "id": "function/dart:async::Future.Future.delayed.Future_Future$delayed_closure.call"
+      },
+      {
+        "id": "function/dart:async::Timer.Timer"
+      },
+      {
+        "id": "function/dart:async::_Future._Future",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:async::_Future._Future"
+      },
+      {
+        "id": "function/dart:core::ArgumentError.ArgumentError.value"
+      }
+    ],
+    "function/dart:async::Future.Future.delayed.Future_Future$delayed_closure.call": [
+      {
+        "id": "function/dart:_rti::Rti._bind"
+      },
+      {
+        "id": "function/dart:_rti::Rti._eval"
+      },
+      {
+        "id": "function/dart:_rti::_arrayInstanceType"
+      },
+      {
+        "id": "function/dart:_rti::_asBool"
+      },
+      {
+        "id": "function/dart:_rti::_asBoolQ"
+      },
+      {
+        "id": "function/dart:_rti::_asDouble"
+      },
+      {
+        "id": "function/dart:_rti::_asDoubleQ"
+      },
+      {
+        "id": "function/dart:_rti::_asInt"
+      },
+      {
+        "id": "function/dart:_rti::_asIntQ"
+      },
+      {
+        "id": "function/dart:_rti::_asNum"
+      },
+      {
+        "id": "function/dart:_rti::_asNumQ"
+      },
+      {
+        "id": "function/dart:_rti::_asObject"
+      },
+      {
+        "id": "function/dart:_rti::_asString"
+      },
+      {
+        "id": "function/dart:_rti::_asStringQ"
+      },
+      {
+        "id": "function/dart:_rti::_asTop"
+      },
+      {
+        "id": "function/dart:_rti::_generalAsCheckImplementation"
+      },
+      {
+        "id": "function/dart:_rti::_generalIsTestImplementation"
+      },
+      {
+        "id": "function/dart:_rti::_generalNullableAsCheckImplementation"
+      },
+      {
+        "id": "function/dart:_rti::_generalNullableIsTestImplementation"
+      },
+      {
+        "id": "function/dart:_rti::_installSpecializedAsCheck"
+      },
+      {
+        "id": "function/dart:_rti::_installSpecializedIsTest"
+      },
+      {
+        "id": "function/dart:_rti::_instanceType"
+      },
+      {
+        "id": "function/dart:_rti::_isBool"
+      },
+      {
+        "id": "function/dart:_rti::_isInt"
+      },
+      {
+        "id": "function/dart:_rti::_isNum"
+      },
+      {
+        "id": "function/dart:_rti::_isObject"
+      },
+      {
+        "id": "function/dart:_rti::_isString"
+      },
+      {
+        "id": "function/dart:_rti::_isTop"
+      },
+      {
+        "id": "function/dart:_rti::findType"
+      },
+      {
+        "id": "function/dart:_rti::instanceType"
+      },
+      {
+        "id": "function/dart:async::AsyncError.AsyncError"
+      },
+      {
+        "id": "function/dart:async::_Future._complete"
+      },
+      {
+        "id": "function/dart:async::_completeWithErrorCallback",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:async::_completeWithErrorCallback"
+      },
+      {
+        "id": "function/dart:async::_interceptCaughtError"
+      }
+    ],
     "function/dart:async::StreamIterator.StreamIterator": [
       {
         "id": "function/dart:_internal::checkNotNullable"
@@ -61543,6 +62245,12 @@
       },
       {
         "id": "function/dart:core::StateError.StateError"
+      }
+    ],
+    "function/dart:async::_Completer.isCompleted": [
+      {
+        "id": "function/dart:async::_Future._mayComplete",
+        "mask": "inlined"
       }
     ],
     "function/dart:async::_Future._addListener": [
@@ -61910,6 +62618,27 @@
       },
       {
         "id": "field/dart:async::_Future._state"
+      }
+    ],
+    "function/dart:async::_Future._complete": [
+      {
+        "id": "field/dart:async::_Future._resultOrListeners"
+      },
+      {
+        "id": "field/dart:async::_Future._state"
+      },
+      {
+        "id": "function/dart:async::_Future._propagateToListeners"
+      },
+      {
+        "id": "function/dart:async::_Future._removeListeners"
+      },
+      {
+        "id": "function/dart:async::_Future._setValue",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:async::_Future._setValue"
       }
     ],
     "function/dart:async::_Future._completeError": [
@@ -63465,9 +64194,21 @@
         "id": "function/dart:_js_helper::ExceptionAndStackTrace.ExceptionAndStackTrace"
       }
     ],
+    "function/dart:async::_completeWithErrorCallback": [
+      {
+        "id": "function/dart:async::_interceptCaughtError",
+        "mask": "inlined"
+      }
+    ],
     "function/dart:async::_hasTimer": [
       {
         "id": "function/dart:_js_helper::requiresPreamble",
+        "mask": "inlined"
+      }
+    ],
+    "function/dart:async::_interceptCaughtError": [
+      {
+        "id": "function/dart:async::AsyncError.AsyncError",
         "mask": "inlined"
       }
     ],
@@ -65214,6 +65955,10 @@
       },
       {
         "id": "function/package:pubviz/src/viz_package.dart::VizPackage.toString",
+        "mask": "[null|subclass=Object|powerset={null}{IN}{GFUO}{IMN}]"
+      },
+      {
+        "id": "function/package:pubviz/src/web/graph_renderer.dart::CancellationException.toString",
         "mask": "[null|subclass=Object|powerset={null}{IN}{GFUO}{IMN}]"
       }
     ],
@@ -67459,6 +68204,10 @@
       {
         "id": "function/package:pubviz/src/viz_package.dart::VizPackage.toString",
         "mask": "[null|subclass=Object|powerset={null}{IN}{GFUO}{IMN}]"
+      },
+      {
+        "id": "function/package:pubviz/src/web/graph_renderer.dart::CancellationException.toString",
+        "mask": "[null|subclass=Object|powerset={null}{IN}{GFUO}{IMN}]"
       }
     ],
     "function/dart:core::Iterable.length": [
@@ -68604,8 +69353,23 @@
     ],
     "function/dart:js_util::_functionToJS1": [
       {
+        "id": "field/dart:_interceptors::DART_CLOSURE_DART_JSINTEROP_PROPERTY_NAME"
+      },
+      {
         "id": "function/dart:_js_helper::isJSFunction",
         "mask": "inlined"
+      },
+      {
+        "id": "function/dart:_js_helper::isJSFunction"
+      },
+      {
+        "id": "function/dart:_js_helper::wrapException"
+      },
+      {
+        "id": "function/dart:core::ArgumentError.ArgumentError"
+      },
+      {
+        "id": "function/dart:js_util::_callDartFunctionFast1"
       }
     ],
     "function/dart:js_util::promiseToFuture": [
@@ -73572,12 +74336,208 @@
         "id": "function/package:pubviz/src/viz_package.dart::_$VizPackageFromJson"
       }
     ],
+    "function/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._renderWithWorker": [
+      {
+        "id": "field/dart:async::Zone._current"
+      },
+      {
+        "id": "field/dart:async::_Completer.future"
+      },
+      {
+        "id": "field/dart:async::_Future._state"
+      },
+      {
+        "id": "field/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._currentCompleter"
+      },
+      {
+        "id": "field/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._currentWorker"
+      },
+      {
+        "id": "function/dart:_js_helper::staticInteropGlobalContext",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:_js_helper::staticInteropGlobalContext"
+      },
+      {
+        "id": "function/dart:_js_types::JSStringType|constructor#"
+      },
+      {
+        "id": "function/dart:_rti::_setArrayType"
+      },
+      {
+        "id": "function/dart:_rti::findType"
+      },
+      {
+        "id": "function/dart:async::Completer.Completer",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:async::Completer.Completer"
+      },
+      {
+        "id": "function/dart:async::_AsyncCompleter._AsyncCompleter"
+      },
+      {
+        "id": "function/dart:async::_Completer.completeError",
+        "mask": "[exact=_AsyncCompleter|powerset={N}{O}{N}]"
+      },
+      {
+        "id": "function/dart:async::_Completer.isCompleted",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:async::_Completer.isCompleted"
+      },
+      {
+        "id": "function/dart:async::_Future._Future"
+      },
+      {
+        "id": "function/dart:async::_Future._mayComplete"
+      },
+      {
+        "id": "function/dart:js_interop::JSString|constructor#_"
+      },
+      {
+        "id": "function/dart:js_interop::StringToJSString|get#toJS",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:js_interop::StringToJSString|get#toJS"
+      },
+      {
+        "id": "function/dart:js_util::_callConstructorUnchecked1",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:js_util::_callConstructorUnchecked1"
+      },
+      {
+        "id": "function/dart:js_util::_callMethodUnchecked1",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:js_util::_callMethodUnchecked1"
+      },
+      {
+        "id": "function/dart:js_util::_functionToJS1"
+      },
+      {
+        "id": "function/dart:js_util::_getPropertyTrustType",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:js_util::_getPropertyTrustType"
+      },
+      {
+        "id": "function/dart:js_util::_setPropertyUnchecked",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:js_util::_setPropertyUnchecked"
+      },
+      {
+        "id": "function/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._renderWithWorker.GraphRenderer__renderWithWorker_closure.call"
+      },
+      {
+        "id": "function/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._renderWithWorker.GraphRenderer__renderWithWorker_closure.call%0"
+      }
+    ],
+    "function/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._renderWithWorker.GraphRenderer__renderWithWorker_closure.call": [
+      {
+        "id": "field/dart:async::_Completer.future"
+      },
+      {
+        "id": "field/dart:async::_Future._state"
+      },
+      {
+        "id": "field/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._currentCompleter"
+      },
+      {
+        "id": "field/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._renderGeneration"
+      },
+      {
+        "id": "function/dart:_interceptors::Interceptor.==",
+        "mask": "[subclass=JSInt|powerset={I}{O}{N}]"
+      },
+      {
+        "id": "function/dart:_interceptors::getNativeInterceptor"
+      },
+      {
+        "id": "function/dart:_js_helper::S"
+      },
+      {
+        "id": "function/dart:_rti::_asJSObject"
+      },
+      {
+        "id": "function/dart:async::_AsyncCompleter.complete"
+      },
+      {
+        "id": "function/dart:async::_Completer.completeError",
+        "mask": "[exact=_AsyncCompleter|powerset={N}{O}{N}]"
+      },
+      {
+        "id": "function/dart:async::_Completer.isCompleted",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:async::_Completer.isCompleted"
+      },
+      {
+        "id": "function/dart:async::_Future._mayComplete"
+      },
+      {
+        "id": "function/dart:js_util::getProperty",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:js_util::getProperty"
+      }
+    ],
+    "function/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._renderWithWorker.GraphRenderer__renderWithWorker_closure.call%0": [
+      {
+        "id": "field/dart:async::_Completer.future"
+      },
+      {
+        "id": "field/dart:async::_Future._state"
+      },
+      {
+        "id": "field/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._currentCompleter"
+      },
+      {
+        "id": "field/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._currentWorker"
+      },
+      {
+        "id": "function/dart:async::_Completer.completeError",
+        "mask": "[exact=_AsyncCompleter|powerset={N}{O}{N}]"
+      },
+      {
+        "id": "function/dart:async::_Completer.isCompleted",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:async::_Completer.isCompleted"
+      },
+      {
+        "id": "function/dart:async::_Future._mayComplete"
+      },
+      {
+        "id": "function/dart:js_util::_callMethodUnchecked0",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:js_util::_callMethodUnchecked0"
+      }
+    ],
     "function/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._updateBody": [
       {
         "id": "field/package:pubviz/src/web/graph_renderer.dart::GraphRenderer.__root"
       },
       {
         "id": "field/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._app"
+      },
+      {
+        "id": "field/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._lockedElement"
       },
       {
         "id": "field/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._nodeOutdatedMap"
@@ -73686,6 +74646,13 @@
       },
       {
         "id": "function/dart:js_interop::StringToJSString|get#toJS"
+      },
+      {
+        "id": "function/dart:js_util::_callMethodUnchecked0",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:js_util::_callMethodUnchecked0"
       },
       {
         "id": "function/dart:js_util::_callMethodUnchecked1",
@@ -74095,16 +75062,10 @@
         "id": "field/dart:core::Stopwatch._stop"
       },
       {
-        "id": "field/package:pubviz/src/web/graph_renderer.dart::GraphRenderer.__root"
-      },
-      {
         "id": "field/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._app"
       },
       {
-        "id": "field/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._lockedElement"
-      },
-      {
-        "id": "field/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._vizInstance"
+        "id": "field/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._renderGeneration"
       },
       {
         "id": "field/package:pubviz/src/web/pubviz_app.dart::PubvizApp._#PubvizApp#originalVizRoot#F"
@@ -74120,6 +75081,10 @@
       },
       {
         "id": "field/package:pubviz/src/web/ui_manager.dart::UIManager._workspaceOnlyCheckbox"
+      },
+      {
+        "id": "function/dart:_interceptors::Interceptor.==",
+        "mask": "[subclass=JSPositiveInt|powerset={I}{O}{N}]"
       },
       {
         "id": "function/dart:_interceptors::Interceptor.toString",
@@ -74259,6 +75224,9 @@
       {
         "id": "function/dart:async::AsyncError.toString",
         "mask": "[subclass=Object|powerset={IN}{GFUO}{IMN}]"
+      },
+      {
+        "id": "function/dart:async::Future.Future.delayed"
       },
       {
         "id": "function/dart:async::StreamIterator.StreamIterator"
@@ -74415,13 +75383,6 @@
         "mask": "[subclass=Object|powerset={IN}{GFUO}{IMN}]"
       },
       {
-        "id": "function/dart:js_interop::JSPromiseToFuture|get#toDart",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/dart:js_interop::JSPromiseToFuture|get#toDart"
-      },
-      {
         "id": "function/dart:js_interop::JSString|constructor#_"
       },
       {
@@ -74436,25 +75397,11 @@
         "id": "function/dart:js_interop::StringToJSString|get#toJS"
       },
       {
-        "id": "function/dart:js_util::_callMethodUnchecked0",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/dart:js_util::_callMethodUnchecked0"
-      },
-      {
         "id": "function/dart:js_util::_callMethodUnchecked1",
         "mask": "inlined"
       },
       {
         "id": "function/dart:js_util::_callMethodUnchecked1"
-      },
-      {
-        "id": "function/dart:js_util::_callMethodUnchecked2",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/dart:js_util::_callMethodUnchecked2"
       },
       {
         "id": "function/dart:js_util::_setPropertyUnchecked"
@@ -74465,9 +75412,6 @@
       },
       {
         "id": "function/dart:js_util::getProperty"
-      },
-      {
-        "id": "function/dart:js_util::promiseToFuture"
       },
       {
         "id": "function/package:collection/src/wrappers.dart::_DelegatingIterableBase.toString",
@@ -74508,11 +75452,11 @@
         "id": "function/package:pubviz/src/viz_root.dart::VizRoot.filter"
       },
       {
-        "id": "function/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._root",
-        "mask": "inlined"
+        "id": "function/package:pubviz/src/web/graph_renderer.dart::CancellationException.toString",
+        "mask": "[subclass=Object|powerset={IN}{GFUO}{IMN}]"
       },
       {
-        "id": "function/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._root"
+        "id": "function/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._renderWithWorker"
       },
       {
         "id": "function/package:pubviz/src/web/graph_renderer.dart::GraphRenderer._updateBody"
@@ -75317,15 +76261,6 @@
     ],
     "function/package:web/src/helpers/events/streams.dart::_EventStreamSubscription._EventStreamSubscription": [
       {
-        "id": "field/dart:_interceptors::DART_CLOSURE_DART_JSINTEROP_PROPERTY_NAME"
-      },
-      {
-        "id": "function/dart:_js_helper::isJSFunction"
-      },
-      {
-        "id": "function/dart:_js_helper::throwExpression"
-      },
-      {
         "id": "function/dart:_js_types::JSBooleanType|constructor#"
       },
       {
@@ -75335,23 +76270,13 @@
         "id": "function/dart:_rti::findType"
       },
       {
-        "id": "function/dart:core::ArgumentError.ArgumentError"
-      },
-      {
         "id": "function/dart:js_interop::BoolToJSBoolean|get#toJS"
       },
       {
         "id": "function/dart:js_interop::JSBoolean|constructor#_"
       },
       {
-        "id": "function/dart:js_util::_callDartFunctionFast1"
-      },
-      {
         "id": "function/dart:js_util::_callMethodUnchecked3"
-      },
-      {
-        "id": "function/dart:js_util::_functionToJS1",
-        "mask": "inlined"
       },
       {
         "id": "function/dart:js_util::_functionToJS1"
@@ -75415,7 +76340,7 @@
       "id": "outputUnit/main",
       "kind": "outputUnit",
       "name": "main",
-      "size": 126313,
+      "size": 127780,
       "filename": "web_app.dart2js.js",
       "imports": []
     }
