@@ -41,6 +41,7 @@ final class GraphRenderer {
   Future<void> render() async {
     final generation = ++_renderGeneration;
 
+    // TODO(kevmoo): Move this into the UI manager
     final loadingOverlay = document.querySelector('#loading-overlay');
     loadingOverlay?.classList.remove('hidden');
 
@@ -113,6 +114,9 @@ final class GraphRenderer {
                 activeCompleter.completeError(
                   '${response.error}\n${response.stack ?? ''}',
                 );
+              }
+              if (_currentCompleter == activeCompleter) {
+                _currentCompleter = null;
               }
             }
           }
