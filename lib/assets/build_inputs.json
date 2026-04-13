@@ -13,14 +13,14 @@
   "lib/src/viz_package.g.dart": "6cac4358a0576205dc8cc010c3b9310d3e0052075f9c55d622fbb687222c78e7",
   "lib/src/viz_root.dart": "b6a9553bdcab8661fcfe20c46116b7ac16f801fe5996a5d082a5a1615c2c6476",
   "lib/src/viz_root.g.dart": "a0d1f70a6118015f27d34f8e6659e69603fa70a0f143da0d9a5bc912ec2bb6f3",
-  "lib/src/web/graph_renderer.dart": "3aaf629b8f6823a80cfbb7742777ce1c9d1dcecd5d4664c60e017f29f012a4be",
-  "lib/src/web/interop.dart": "0dd3c3bc1702bad5a78de27d4a4da42d3551c0adeca17d1af26adabfa2a29f33",
+  "lib/src/web/graph_renderer.dart": "a96f69c54ca39436e69a7b2bbd22f6efd9fb807794b6d3f84c851978b9c2e657",
+  "lib/src/web/interop.dart": "4c03fd0f3ca5ee07633fd0dab1b048be7db708d8c2aae1620f4d19e1a2c30111",
   "lib/src/web/pubviz_app.dart": "2c69197c134219dc0d462833415f725ed92bbb02369054c0442789cf7f6bbf17",
   "lib/src/web/ui_manager.dart": "0acd84a7858f09392f04b21935dff1e57fe4b9fda869b82d437ee97bb3db4e9c",
   "pubspec.yaml": "f72fddec4d39531d953eaa556c94239d00b57865f441a2b2e19e8603cbbc2371",
   "web/favicon.ico": "39ab6b867a1c4c75019506267b3b4ce7cc60fb2ba66870e6485b4e31f6265a7c",
   "web/index.html": "1f2682e8bfca9a181ef812c5f676b8d468b124103877aa5f9c0cedafec32e08c",
   "web/style.css": "b3be9b4444b5ecfa777d2dbfed6338eb81602290a9a5c8a3d8a9b790323b73c1",
-  "web/viz_worker.js": "ff61cce1839a1c9fba06036eea1a5bb2e08d0c23342422a200c9790a4e85002a",
+  "web/viz_worker.js": "559cd006e396419830c65608337084790b42456237b6f5c87ca3301cca1c1bca",
   "web/web_app.dart": "5f1aeba8e857bbf6913c88883fc42e8daaa3695a277fa05f00b948562d5af303"
 }

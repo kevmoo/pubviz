@@ -57,7 +57,7 @@ final class GraphRenderer {
 
       final dotString = filteredRoot.toDot();
 
-      final output = await _renderWithWorker(dotString);
+      final output = await _renderWithWorker(dotString, generation);
 
       if (generation != _renderGeneration) {
         return;
@@ -88,55 +88,57 @@ final class GraphRenderer {
     }
   }
 
-  Future<String> _renderWithWorker(String dotString) {
+  Future<String> _renderWithWorker(String dotString, int generation) {
     final oldCompleter = _currentCompleter;
-    if (_currentWorker != null) {
-      _cleanupWorker(_currentWorker!);
-      oldCompleter?.completeError(const CancellationException());
+    if (oldCompleter != null && !oldCompleter.isCompleted) {
+      oldCompleter.completeError(const CancellationException());
     }
 
     final completer = Completer<String>();
     _currentCompleter = completer;
 
-    final worker = Worker('viz_worker.js'.toJS);
-    _currentWorker = worker;
+    if (_currentWorker == null) {
+      final worker = Worker('viz_worker.js'.toJS);
+      _currentWorker = worker;
 
-    worker
-      ..onmessage = (MessageEvent event) {
-        if (!completer.isCompleted) {
+      worker
+        ..onmessage = (MessageEvent event) {
           final response = event.data as RenderResponse;
-          if (response.success) {
-            completer.complete(response.output);
-          } else {
-            completer.completeError(
-              '${response.error}\n${response.stack ?? ''}',
-            );
+          if (response.generation == _renderGeneration) {
+            final activeCompleter = _currentCompleter;
+            if (activeCompleter != null && !activeCompleter.isCompleted) {
+              if (response.success) {
+                activeCompleter.complete(response.output);
+              } else {
+                activeCompleter.completeError(
+                  '${response.error}\n${response.stack ?? ''}',
+                );
+              }
+            }
           }
-        }
-        _cleanupWorker(worker);
-      }.toJS
-      ..onerror = (Event event) {
-        if (!completer.isCompleted) {
-          completer.completeError('Worker error');
-        }
-        _cleanupWorker(worker);
-      }.toJS
-      ..postMessage(
-        RenderMessage(
-          dotString: dotString,
-          options: RenderOptions(format: 'svg'),
-        ),
-      );
+        }.toJS
+        ..onerror = (Event event) {
+          final activeCompleter = _currentCompleter;
+          if (activeCompleter != null && !activeCompleter.isCompleted) {
+            activeCompleter.completeError('Worker error');
+          }
+          worker.terminate();
+          if (_currentWorker == worker) {
+            _currentWorker = null;
+            _currentCompleter = null;
+          }
+        }.toJS;
+    }
+
+    _currentWorker!.postMessage(
+      RenderMessage(
+        dotString: dotString,
+        options: RenderOptions(format: 'svg'),
+        generation: generation,
+      ),
+    );
 
     return completer.future;
-  }
-
-  void _cleanupWorker(Worker worker) {
-    if (_currentWorker == worker) {
-      _currentWorker = null;
-      _currentCompleter = null;
-    }
-    worker.terminate();
   }
 
   void _updateBody(String output) {

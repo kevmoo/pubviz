@@ -73,7 +73,8 @@ void main() {
                   success: success,
                   output: output,
                   error: error,
-                  stack: ''
+                  stack: '',
+                  generation: msg.generation
                 }
               });
             }
