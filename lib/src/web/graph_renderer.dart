@@ -2,10 +2,10 @@ import 'dart:async';
 import 'dart:convert' show LineSplitter;
 import 'dart:js_interop';
 
-import 'package:pubviz/src/colors.dart';
-import 'package:pubviz/src/dot.dart';
-
 import 'package:web/web.dart';
+
+import '../colors.dart';
+import '../dot.dart';
 
 import 'interop.dart';
 import 'pubviz_app.dart';
@@ -44,8 +44,9 @@ final class GraphRenderer {
     final watch = Stopwatch()..start();
     try {
       final filteredRoot = _app.originalVizRoot.filter(
-        excludeDev: !_app.ui.devDependencies,
+        excludeDev: _app.ui.hideDevDependencies,
         onlyOutdated: _app.ui.outdatedOnly,
+        onlyWorkspace: _app.ui.workspaceOnly,
       );
 
       final dotString = filteredRoot.toDot();

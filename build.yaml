@@ -14,6 +14,7 @@ targets:
       - lib/src/version.dart
       - lib/src/viz_package.*
       - lib/src/viz_root.*
+      - lib/src/web/**
       - pubspec.*
     builders:
       build_cli:
@@ -32,7 +33,6 @@ targets:
             dart2wasm:
               args:
                 - -O4
-                - --no-strip-wasm
             dart2js:
               args:
                 - --stage=dump-info-all

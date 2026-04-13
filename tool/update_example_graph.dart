@@ -69,7 +69,9 @@ Map<String, VersionConstraint> _gatherConstraints(List<String> memberDirs) {
   void addDeps(Map<String, parse.Dependency> yaml) {
     for (final entry in yaml.entries) {
       final name = entry.key;
-      if (name == 'outdated_pkg') continue; // Skip fake package
+      if (name == 'outdated_pkg' || memberDirs.contains(name)) {
+        continue; // Skip fake package and workspace members
+      }
       final constraint = entry.value;
       final constraintString = (constraint is parse.HostedDependency)
           ? constraint.version.toString()
@@ -136,14 +138,14 @@ ${depsBuffer.toString()}
 ''');
 
   print('Running `dart pub get` in temp project...');
-  final getResult = await Process.run('dart', [
+  final getResult = await Process.run(Platform.executable, [
     'pub',
     'get',
   ], workingDirectory: tempDir.path);
 
   if (getResult.exitCode != 0) {
     throw ProcessException(
-      'dart',
+      Platform.executable,
       ['pub', 'get'],
       getResult.stderr as String,
       getResult.exitCode,
@@ -151,7 +153,7 @@ ${depsBuffer.toString()}
   }
 
   print('Running `dart pub deps` in temp project...');
-  final depsResult = await Process.run('dart', [
+  final depsResult = await Process.run(Platform.executable, [
     'pub',
     'deps',
     '--style=list',
@@ -159,7 +161,7 @@ ${depsBuffer.toString()}
 
   if (depsResult.exitCode != 0) {
     throw ProcessException(
-      'dart',
+      Platform.executable,
       ['pub', 'deps'],
       depsResult.stderr as String,
       depsResult.exitCode,
@@ -243,7 +245,7 @@ void _updatePubDepsList(String depsOutput) {
 
 Future<void> _updateOutdatedJson(Directory tempDir) async {
   print('Running `dart pub outdated` in temp project...');
-  final outdatedResult = await Process.run('dart', [
+  final outdatedResult = await Process.run(Platform.executable, [
     'pub',
     'outdated',
     '--json',

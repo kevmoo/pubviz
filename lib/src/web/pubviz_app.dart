@@ -1,7 +1,8 @@
 import 'dart:convert' show jsonDecode;
 
-import 'package:pubviz/src/viz_root.dart';
 import 'package:web/web.dart';
+
+import '../viz_root.dart';
 
 import 'graph_renderer.dart';
 import 'ui_manager.dart';

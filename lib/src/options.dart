@@ -51,6 +51,14 @@ class Options {
   @CliOption(abbr: 'w', help: 'Include all packages in the workspace.')
   final bool? workspace;
 
+  @CliOption(
+    abbr: 'f',
+    help: 'A comma separated list of filters to apply.',
+    allowed: allowedFilters,
+    allowedHelp: _filterHelp,
+  )
+  final List<String> filters;
+
   @CliOption(abbr: '?', help: 'Print this help content.', negatable: false)
   final bool help;
 
@@ -66,7 +74,9 @@ class Options {
     required this.rest,
     required this.version,
     this.workspace,
-  }) : ignorePackages = ignorePackages ?? const [];
+    List<String>? filters,
+  }) : ignorePackages = ignorePackages ?? const [],
+       filters = filters ?? const [];
 }
 
 enum Action { open, print, serve }
@@ -75,4 +85,16 @@ const _actionHelp = <Action, String>{
   Action.open: 'Like "serve" but also opens the browser.',
   Action.print: 'Print the raw DOT output to stdout.',
   Action.serve: 'Hosts the web app on a local server.',
+};
+
+const filterHideDev = 'hide-dev';
+const filterWorkspace = 'workspace';
+const filterOutdated = 'outdated';
+
+const allowedFilters = [filterHideDev, filterWorkspace, filterOutdated];
+
+const _filterHelp = <String, String>{
+  filterHideDev: 'Hide dev dependencies.',
+  filterWorkspace: 'Show only packages in the workspace.',
+  filterOutdated: 'Show only outdated packages.',
 };

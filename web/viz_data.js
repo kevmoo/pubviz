@@ -3,7 +3,7 @@ export const vizDataString = JSON.stringify({
   "packages": {
     "_fe_analyzer_shared": {
       "name": "_fe_analyzer_shared",
-      "version": "98.0.0",
+      "version": "99.0.0",
       "dependencies": [
         {
           "name": "meta",
@@ -17,11 +17,11 @@ export const vizDataString = JSON.stringify({
     },
     "analyzer": {
       "name": "analyzer",
-      "version": "12.0.0",
+      "version": "12.1.0",
       "dependencies": [
         {
           "name": "_fe_analyzer_shared",
-          "versionConstraint": "^98.0.0"
+          "versionConstraint": "^99.0.0"
         },
         {
           "name": "collection",
@@ -425,6 +425,10 @@ export const vizDataString = JSON.stringify({
           "name": "outdated_pkg",
           "versionConstraint": "^1.0.0",
           "includesLatest": false
+        },
+        {
+          "name": "pkg_a",
+          "versionConstraint": "any"
         },
         {
           "name": "test",

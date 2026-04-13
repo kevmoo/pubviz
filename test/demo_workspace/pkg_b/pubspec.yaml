@@ -5,6 +5,7 @@ resolution: workspace
 dependencies:
   http_parser: ^4.0.0
   outdated_pkg: ^1.0.0
+  pkg_a:
 
 dev_dependencies:
   test: ^1.25.0

@@ -1,4 +1,9 @@
-## 6.0.1-wip
+## 6.1.0-wip
+
+- Added `--filter` option to CLI (that's also reflected in the web UI).
+- Added a `workspace` filter to only show packages in the workspace.
+- Use a worker so the UI doesn't freeze when rendering big graphs.
+- MUCH smaller WebAssembly module.
 
 ## 6.0.0
 

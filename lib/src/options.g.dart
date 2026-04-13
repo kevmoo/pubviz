@@ -32,6 +32,7 @@ Options _$parseOptionsResult(ArgResults result) => Options(
   rest: result.rest,
   version: result['version'] as bool,
   workspace: result['workspace'] as bool?,
+  filters: result['filters'] as List<String>,
 );
 
 const _$ActionEnumMapBuildCli = <Action, String>{
@@ -88,6 +89,17 @@ ArgParser _$populateOptionsParser(ArgParser parser) => parser
     abbr: 'w',
     help: 'Include all packages in the workspace.',
     defaultsTo: null,
+  )
+  ..addMultiOption(
+    'filters',
+    abbr: 'f',
+    help: 'A comma separated list of filters to apply.',
+    allowed: ['hide-dev', 'workspace', 'outdated'],
+    allowedHelp: <String, String>{
+      'hide-dev': 'Hide dev dependencies.',
+      'workspace': 'Show only packages in the workspace.',
+      'outdated': 'Show only outdated packages.',
+    },
   )
   ..addFlag(
     'help',

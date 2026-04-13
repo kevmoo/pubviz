@@ -1,3 +1,6 @@
+@TestOn('vm')
+library;
+
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
@@ -167,7 +170,7 @@ void main() {
       );
 
       // Regression test: filter should preserve isWorkspace
-      final filtered = vp.filter(excludeDev: true, onlyOutdated: false);
+      final filtered = vp.filter(excludeDev: true);
       expect(filtered.isWorkspace, isTrue);
     });
 
@@ -215,7 +218,7 @@ void main() {
     });
 
     test('excludeDev', () {
-      final filtered = vp.filter(excludeDev: true, onlyOutdated: false);
+      final filtered = vp.filter(excludeDev: true);
 
       expect(filtered.rootPackageName, 'repo_manager');
       // Should have fewer packages than vp (82) since dev packages are dropped
@@ -235,7 +238,7 @@ void main() {
     });
 
     test('onlyOutdated', () {
-      final filtered = vp.filter(excludeDev: false, onlyOutdated: true);
+      final filtered = vp.filter(onlyOutdated: true);
 
       expect(filtered.rootPackageName, 'repo_manager');
       expect(filtered.packages.length, lessThan(vp.packages.length));
@@ -288,9 +291,95 @@ void main() {
       final initialDep = root.packages['bar']!.dependencies.first;
       expect(initialDep.includesLatest, isFalse);
 
-      final filtered = root.filter(excludeDev: false, onlyOutdated: false);
+      final filtered = root.filter();
       final filteredDep = filtered.packages['bar']!.dependencies.first;
       expect(filteredDep.includesLatest, isFalse);
+    });
+
+    test('filter preserves onlyDev state', () {
+      final pkg = VizPackage('a', Version(1, 0, 0), {}, null, onlyDev: false);
+
+      final root = VizRoot('a', {'a': pkg});
+
+      final filtered = root.filter(excludeDev: true);
+      expect(filtered.packages['a']!.onlyDev, isFalse);
+    });
+
+    test('onlyWorkspace retains bridges', () {
+      final a = VizPackage(
+        'a',
+        Version(1, 0, 0),
+        {Dependency('b', VersionConstraint.any, false)},
+        null,
+        isPrimary: true,
+      );
+
+      final b = VizPackage('b', Version(1, 0, 0), {
+        Dependency('c', VersionConstraint.any, false),
+      }, null);
+
+      final c = VizPackage('c', Version(1, 0, 0), {}, null, isPrimary: true);
+
+      final d = VizPackage('d', Version(1, 0, 0), {}, null);
+
+      final root = VizRoot.assemble('a', {
+        'a': a,
+        'b': b,
+        'c': c,
+        'd': d,
+      }, isWorkspace: true);
+
+      final filtered = root.filter(onlyWorkspace: true);
+
+      expect(filtered.packages.keys, unorderedEquals(['a', 'b', 'c']));
+      expect(filtered.packages.containsKey('d'), isFalse);
+    });
+
+    test('onlyWorkspace and onlyOutdated can be combined', () {
+      final a = VizPackage(
+        'a',
+        Version(1, 0, 0),
+        {Dependency('b', VersionConstraint.any, false)},
+        null,
+        isPrimary: true,
+      );
+
+      final b = VizPackage('b', Version(1, 0, 0), {
+        Dependency('c', VersionConstraint.any, false),
+      }, Version(2, 0, 0));
+
+      final c = VizPackage('c', Version(1, 0, 0), {}, null, isPrimary: true);
+
+      final d = VizPackage('d', Version(1, 0, 0), {}, null);
+
+      final root = VizRoot.assemble(
+        'a',
+        {'a': a, 'b': b, 'c': c, 'd': d},
+        isWorkspace: true,
+        flagOutdated: true,
+      );
+
+      final filtered = root.filter(onlyWorkspace: true, onlyOutdated: true);
+
+      // Should retain 'a' and 'b' (workspace + path to outdated)
+      // 'c' is in workspace but not outdated or leading to outdated
+      // 'd' is not in workspace
+      expect(filtered.packages.keys, unorderedEquals(['a', 'b']));
+    });
+
+    test('filter preserves isPublishToNone', () {
+      final pkg = VizPackage(
+        'a',
+        Version(1, 0, 0),
+        {},
+        null,
+        isPublishToNone: true,
+      );
+
+      final root = VizRoot('a', {'a': pkg});
+
+      final filtered = root.filter(excludeDev: true);
+      expect(filtered.packages['a']!.isPublishToNone, isTrue);
     });
   });
 
@@ -337,7 +426,7 @@ void main() {
     test('workspace filtering includes all primary packages', () async {
       final vp = await service.vizRoot(includeWorkspace: true);
 
-      final filtered = vp.filter(excludeDev: true, onlyOutdated: false);
+      final filtered = vp.filter(excludeDev: true);
 
       expect(
         filtered.packages.values.where((p) => p.isPrimary).map((e) => e.name),
@@ -481,8 +570,11 @@ dependencies:
 
 class _MockVizRoot implements VizRoot {
   @override
-  VizRoot filter({required bool excludeDev, required bool onlyOutdated}) =>
-      throw UnimplementedError();
+  VizRoot filter({
+    bool excludeDev = false,
+    bool onlyOutdated = false,
+    bool onlyWorkspace = false,
+  }) => throw UnimplementedError();
 
   @override
   final String rootPackageName;

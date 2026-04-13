@@ -1,3 +1,6 @@
+@TestOn('vm')
+library;
+
 import 'dart:io';
 
 import 'package:http/http.dart' as http;
@@ -46,6 +49,40 @@ void main() {
 $_usage''');
 
     await proc.shouldExit(64);
+  });
+
+  test('bad filter', () async {
+    final proc = await TestProcess.start(Platform.executable, [
+      _entryPoint,
+      '-a',
+      'print',
+      '--filters',
+      'bob',
+    ]);
+
+    final output = await proc.stdoutStream().join('\n');
+    expect(
+      output,
+      contains('"bob" is not an allowed value for option "--filters".'),
+    );
+
+    await proc.shouldExit(64);
+  });
+
+  test('print with filter hide-dev', () async {
+    final process = await TestProcess.start(Platform.executable, [
+      _entryPoint,
+      '-a',
+      'print',
+      '--filters',
+      'hide-dev',
+    ]);
+
+    final output = await process.stdoutStream().join('\n');
+    expect(output, contains('digraph pubviz {'));
+    expect(output, isNot(contains('"test" [')));
+
+    await process.shouldExit(0);
   });
 
   test('too many args', () async {
@@ -245,6 +282,12 @@ Arguments:
   -p, --production-dependencies    Include only production (non-dev) dependencies.
   -v, --version                    Print the version of pubviz and exit.
   -w, --[no-]workspace             Include all packages in the workspace.
+  -f, --filters                    A comma separated list of filters to apply.
+
+            [hide-dev]             Hide dev dependencies.
+            [workspace]            Show only packages in the workspace.
+            [outdated]             Show only outdated packages.
+
   -?, --help                       Print this help content.
 
 If <package path> is omitted, the current directory is used.''';

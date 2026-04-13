@@ -39,7 +39,6 @@ void _writeDot(
   final props = {'label': label};
 
   if (isRoot) {
-    assert(!pkg.onlyDev);
     props['fontsize'] = '18';
     props['style'] = 'bold';
   }
