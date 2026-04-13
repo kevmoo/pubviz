@@ -10,6 +10,12 @@ import '../dot.dart';
 import 'interop.dart';
 import 'pubviz_app.dart';
 
+final class CancellationException implements Exception {
+  const CancellationException();
+  @override
+  String toString() => 'Cancelled';
+}
+
 final class GraphRenderer {
   final PubvizApp _app;
   SVGElement? __root;
@@ -39,7 +45,7 @@ final class GraphRenderer {
     loadingOverlay?.classList.remove('hidden');
 
     // Yield to allow the browser to render the loading overlay.
-    await Future<void>.microtask(() {});
+    await Future<void>.delayed(Duration.zero);
 
     final watch = Stopwatch()..start();
     try {
@@ -59,7 +65,7 @@ final class GraphRenderer {
 
       _updateBody(output);
     } catch (e, stack) {
-      if (e == 'Cancelled') {
+      if (e is CancellationException) {
         return;
       }
       try {
@@ -86,7 +92,7 @@ final class GraphRenderer {
     final oldCompleter = _currentCompleter;
     if (_currentWorker != null) {
       _cleanupWorker(_currentWorker!);
-      oldCompleter?.completeError('Cancelled');
+      oldCompleter?.completeError(const CancellationException());
     }
 
     final completer = Completer<String>();
