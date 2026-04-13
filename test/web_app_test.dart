@@ -49,6 +49,39 @@ void main() {
           });
         }
       };
+      
+      window.Worker = function(url) {
+        this.postMessage = function(msg) {
+          setTimeout(async () => {
+            if (this.onmessage) {
+              let output = '';
+              let success = true;
+              let error = '';
+              try {
+                if (window.Viz && window.Viz.instance) {
+                  const viz = await window.Viz.instance();
+                  output = viz.renderString(msg.dotString, msg.options);
+                } else {
+                  output = '<svg id="mock-svg"><g class="node"><title>my_cool_package</title><ellipse stroke="#000000"></ellipse></g></svg>';
+                }
+              } catch (e) {
+                success = false;
+                error = e.toString();
+              }
+              this.onmessage({
+                data: {
+                  success: success,
+                  output: output,
+                  error: error,
+                  stack: '',
+                  generation: msg.generation
+                }
+              });
+            }
+          }, 0);
+        };
+        this.terminate = function() {};
+      };
     ''';
     document.body!.appendChild(script);
   });
