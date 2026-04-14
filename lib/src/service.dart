@@ -144,7 +144,7 @@ abstract class Service {
       // Standard non-workspace mode: treat only the root package as primary.
       map[pubspec.name] = VizPackage(
         pubspec.name,
-        null,
+        pubspec.version,
         Dependency.getDependencies(
           pubspec,
           includeDevDependencies: !productionDependenciesOnly,

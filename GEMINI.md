@@ -55,3 +55,9 @@ between the source files and the compiled outputs:
   inside `setUpAll()` to build isolated filesystems on-the-fly within 
   `d.sandbox`. This guarantees absolute parallel isolated pass-rates and avoids 
   workspace git-littering artifacts.
+
+## Debugging and Experimenting
+- When debugging or experimenting with the CLI, prefer using the `-a serve` or 
+  `--action serve` command instead of the default `open` action. 
+  The default action opens a browser window, which can be annoying during 
+  development.

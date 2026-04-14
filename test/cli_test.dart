@@ -5,6 +5,8 @@ import 'dart:io';
 
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as p;
+import 'package:pubviz/src/executable.dart';
+import 'package:pubviz/src/options.dart';
 import 'package:pubviz/src/version.dart';
 import 'package:test/test.dart';
 import 'package:test_descriptor/test_descriptor.dart' as d;
@@ -257,6 +259,46 @@ resolution: workspace
     });
   });
 
+  test('integration test with published package:pubviz', () async {
+    const options = Options(
+      action: Action.print,
+      flagOutdated: false,
+      productionDependencies: false,
+      help: false,
+      rest: [],
+      version: false,
+      package: 'pubviz:6.0.0',
+    );
+
+    expect(
+      () => run(options),
+      prints(
+        allOf(
+          contains('digraph pubviz'),
+          contains('pubviz -\u003e args'),
+          contains('pubviz -\u003e path'),
+        ),
+      ),
+    );
+  });
+
+  test('integration test with published package:analyzer', () async {
+    const options = Options(
+      action: Action.print,
+      flagOutdated: false,
+      productionDependencies: false,
+      help: false,
+      rest: [],
+      version: false,
+      package: 'analyzer',
+    );
+
+    expect(
+      () => run(options),
+      prints(allOf(contains('digraph pubviz'), contains('analyzer [label='))),
+    );
+  });
+
   test('readme', () {
     final readmeContent = File('README.md').readAsStringSync();
 
@@ -279,6 +321,8 @@ Arguments:
   -o, --[no-]flag-outdated         Check pub.dev for latest packages and flag those that are outdated.
                                    (defaults to on)
   -d, --direct-dependencies        Include only direct dependencies.
+      --package                    A published package name (and optional version) to visualize.
+                                   I.E. "--package pubviz" or "--package pubviz:5.0.0"
   -p, --production-dependencies    Include only production (non-dev) dependencies.
   -v, --version                    Print the version of pubviz and exit.
   -w, --[no-]workspace             Include all packages in the workspace.

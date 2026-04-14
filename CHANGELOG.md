@@ -4,6 +4,7 @@
 - Added a `workspace` filter to only show packages in the workspace.
 - Use a worker so the UI doesn't freeze when rendering big graphs.
 - MUCH smaller WebAssembly module.
+- Added `--package` flag to open a specific published package.
 
 ## 6.0.0
 
