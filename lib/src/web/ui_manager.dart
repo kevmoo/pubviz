@@ -14,6 +14,8 @@ final class UIManager {
 
   final HTMLInputElement _hamburgerCheckbox =
       document.querySelector('#controlsToggle') as HTMLInputElement;
+  final HTMLLabelElement _hamburgerLabel =
+      document.querySelector('#hamburgerLabel') as HTMLLabelElement;
   final HTMLInputElement _zoomCheckbox =
       document.querySelector('#zoomCheckbox') as HTMLInputElement;
   final HTMLInputElement _devDependenciesCheckbox =
@@ -40,7 +42,18 @@ final class UIManager {
       _outdatedOnlyCheckbox.disabled = true;
       _outdatedCheckboxContainer.title = 'No outdated packages found.';
     }
+    if (!_app.hasDevDependencies) {
+      _devDependenciesCheckbox.disabled = true;
+      (_devDependenciesCheckbox.parentNode as HTMLElement).title =
+          'No dev dependencies found.';
+    }
+    if (!_app.isWorkspace) {
+      _workspaceOnlyCheckbox.disabled = true;
+      (_workspaceOnlyCheckbox.parentNode as HTMLElement).title =
+          'Not a workspace (only one package).';
+    }
     _applyHashFilters();
+    _updateNonDefaultDot();
 
     document.body!.onWheel.listen((e) {
       if ((e.target as Element).closest('.hud-box') != null) {
@@ -63,6 +76,7 @@ final class UIManager {
           _updateHash();
           unawaited(_app.render());
       }
+      _updateNonDefaultDot();
     });
 
     document.body!.onClick.listen((e) {
@@ -102,21 +116,29 @@ final class UIManager {
         _app.updateZoom();
         showToast(zoomEnabled ? 'Zoom Enabled' : 'Zoom Disabled');
       case 'd' || 'D':
-        _devDependenciesCheckbox.checked = !_devDependenciesCheckbox.checked;
-        _updateHash();
-        unawaited(_app.render());
-        showToast(
-          hideDevDependencies
-              ? 'Hiding Dev Dependencies'
-              : 'Showing Dev Dependencies',
-        );
+        if (_app.hasDevDependencies) {
+          _devDependenciesCheckbox.checked = !_devDependenciesCheckbox.checked;
+          _updateHash();
+          unawaited(_app.render());
+          showToast(
+            hideDevDependencies
+                ? 'Hiding Dev Dependencies'
+                : 'Showing Dev Dependencies',
+          );
+        } else {
+          showToast('⚠️ No Dev Dependencies to Filter');
+        }
       case 'w' || 'W':
-        _workspaceOnlyCheckbox.checked = !_workspaceOnlyCheckbox.checked;
-        _updateHash();
-        unawaited(_app.render());
-        showToast(
-          workspaceOnly ? 'Showing Only Workspace' : 'Showing All Packages',
-        );
+        if (_app.isWorkspace) {
+          _workspaceOnlyCheckbox.checked = !_workspaceOnlyCheckbox.checked;
+          _updateHash();
+          unawaited(_app.render());
+          showToast(
+            workspaceOnly ? 'Showing Only Workspace' : 'Showing All Packages',
+          );
+        } else {
+          showToast('⚠️ Workspace Filter Not Available');
+        }
       case 'o' || 'O':
         if (_app.hasOutdated) {
           _outdatedOnlyCheckbox.checked = !_outdatedOnlyCheckbox.checked;
@@ -126,9 +148,10 @@ final class UIManager {
             outdatedOnly ? 'Showing Only Outdated' : 'Showing All Packages',
           );
         } else {
-          showToast('No Outdated Packages to Filter');
+          showToast('⚠️ No Outdated Packages to Filter');
         }
     }
+    _updateNonDefaultDot();
   }
 
   void showToast(String message) {
@@ -192,6 +215,20 @@ final class UIManager {
       window.history.replaceState(null, '', window.location.pathname);
     } else {
       window.history.replaceState(null, '', '#/filters=${filters.join(',')}');
+    }
+  }
+
+  void _updateNonDefaultDot() {
+    final isNonDefault =
+        _zoomCheckbox.checked ||
+        _devDependenciesCheckbox.checked ||
+        _workspaceOnlyCheckbox.checked ||
+        _outdatedOnlyCheckbox.checked;
+
+    if (isNonDefault) {
+      _hamburgerLabel.classList.add('non-default');
+    } else {
+      _hamburgerLabel.classList.remove('non-default');
     }
   }
 
