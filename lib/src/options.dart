@@ -106,3 +106,12 @@ const _filterHelp = <String, String>{
   filterWorkspace: 'Show only packages in the workspace.',
   filterOutdated: 'Show only outdated packages.',
 };
+
+class UsageException implements Exception {
+  final String message;
+
+  UsageException(this.message);
+
+  @override
+  String toString() => message;
+}

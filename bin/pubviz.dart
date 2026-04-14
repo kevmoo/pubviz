@@ -38,7 +38,7 @@ Future<void> _main(List<String> args) async {
 
   try {
     await exec.run(options);
-  } on exec.UsageException catch (e) {
+  } on UsageException catch (e) {
     _errorAndUsage(e.message);
   } catch (error, stack) {
     stderr.write('''

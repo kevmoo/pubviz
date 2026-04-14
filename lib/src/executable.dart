@@ -37,7 +37,7 @@ Future<void> run(Options options) async {
     effectivePath = options.rest.isEmpty ? p.current : options.rest.first;
 
     if (!FileSystemEntity.isDirectorySync(effectivePath)) {
-      throw StateError(
+      throw UsageException(
         'The provided path does not exist or is not a directory: '
         '$effectivePath',
       );
@@ -46,7 +46,7 @@ Future<void> run(Options options) async {
     final yamlPath = p.join(effectivePath, 'pubspec.yaml');
 
     if (!FileSystemEntity.isFileSync(yamlPath)) {
-      throw StateError(
+      throw UsageException(
         'Could not find a pubspec.yaml in the target path.: $effectivePath',
       );
     }
@@ -191,13 +191,4 @@ String vizDataString(VizRoot root) {
   const encoder = JsonEncoder.withIndent('  ');
   final jsonString = encoder.convert(root.toJson());
   return 'export const vizDataString = JSON.stringify($jsonString);\n';
-}
-
-class UsageException implements Exception {
-  final String message;
-
-  UsageException(this.message);
-
-  @override
-  String toString() => message;
 }
