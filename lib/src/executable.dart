@@ -111,7 +111,7 @@ Future<void> run(Options options) async {
     }
   } finally {
     if (tempDir != null) {
-      print('Cleaning up temporary directory...');
+      stderr.writeln('Cleaning up temporary directory...');
       tempDir.deleteSync(recursive: true);
     }
   }
