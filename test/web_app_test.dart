@@ -21,6 +21,7 @@ void main() {
       ..innerHTML =
           '''
       <input id="controlsToggle" type="checkbox">
+      <label id="hamburgerLabel"></label>
       <input id="zoomCheckbox" type="checkbox">
       <input id="devDependenciesCheckbox" type="checkbox">
       <input id="workspaceOnlyCheckbox" type="checkbox">
