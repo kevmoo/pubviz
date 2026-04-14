@@ -21,12 +21,12 @@ import 'viz_root.dart';
 
 Future<void> run(Options options) async {
   Directory? tempDir;
-  String? targetPackage;
   String effectivePath;
+  String? packageName;
 
-  if (options.package != null) {
-    targetPackage = options.package!;
-    tempDir = await setupPublishedPackageProject(targetPackage);
+  if (options.package case final targetPackage?) {
+    (directory: tempDir, packageName: packageName) =
+        await setupPublishedPackageProject(targetPackage);
     effectivePath = tempDir.path;
   } else {
     if (options.rest.length > 1) {
@@ -61,7 +61,6 @@ Future<void> run(Options options) async {
 
     final VizRoot vp;
     if (options.package != null) {
-      final parsedName = options.package!.split(':').first;
       final packages = await service.getReferencedPackages(
         options.flagOutdated,
         options.directDependencies ?? false,
@@ -71,7 +70,7 @@ Future<void> run(Options options) async {
       packages.remove(pubspec.name);
 
       vp = VizRoot.assemble(
-        parsedName,
+        packageName!,
         packages,
         flagOutdated: options.flagOutdated,
         ignorePackages: options.ignorePackages,

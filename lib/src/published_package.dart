@@ -3,7 +3,8 @@ import 'dart:io';
 import 'package:path/path.dart' as p;
 
 /// Sets up a fake project to resolve dependencies for a published package.
-Future<Directory> setupPublishedPackageProject(String targetPackage) async {
+Future<({Directory directory, String packageName})>
+setupPublishedPackageProject(String targetPackage) async {
   final (name, version) = switch (targetPackage.split(':')) {
     [final n, final v] => (n, v),
     [final n] => (n, 'any'),
@@ -35,7 +36,7 @@ dependencies:
       throw StateError('Failed to resolve dependencies for $name');
     }
 
-    return tempDir;
+    return (directory: tempDir, packageName: name);
   } catch (e) {
     tempDir.deleteSync(recursive: true);
     rethrow;
