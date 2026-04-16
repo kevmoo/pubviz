@@ -79,6 +79,18 @@ text {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
+#hamburgerLabel.non-default::after {
+    content: '';
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    width: 10px;
+    height: 10px;
+    background-color: #e53e3e;
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px #ffffff;
+}
+
 #hamburgerLabel span {
     display: block;
     width: 100%;
