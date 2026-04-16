@@ -568,7 +568,7 @@ dependencies:
   });
 }
 
-class _MockVizRoot implements VizRoot {
+class _MockVizRoot with HasPackages implements VizRoot {
   @override
   VizRoot filter({
     bool excludeDev = false,
@@ -582,17 +582,6 @@ class _MockVizRoot implements VizRoot {
   final Map<String, VizPackage> packages;
   @override
   bool get isWorkspace => false;
-
-  @override
-  VizPackage get root => packages[rootPackageName]!;
-
-  @override
-  bool get hasOutdated => packages.values.any(
-    (p) =>
-        p.version != null &&
-        p.latestVersion != null &&
-        p.latestVersion!.compareTo(p.version!) > 0,
-  );
 
   _MockVizRoot(this.packages) : rootPackageName = 'root';
 

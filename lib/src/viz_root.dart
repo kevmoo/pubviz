@@ -10,19 +10,14 @@ import 'viz_package.dart';
 part 'viz_root.g.dart';
 
 @JsonSerializable(includeIfNull: false)
-class VizRoot {
+class VizRoot with HasPackages {
+  @override
   final String rootPackageName;
+  @override
   final Map<String, VizPackage> packages;
 
   @FalseNullConverter()
   final bool isWorkspace;
-
-  late final hasOutdated = packages.values.any(
-    (p) =>
-        p.version != null &&
-        p.latestVersion != null &&
-        p.latestVersion!.compareTo(p.version!) > 0,
-  );
 
   VizRoot(
     this.rootPackageName,
@@ -35,8 +30,6 @@ class VizRoot {
       _$VizRootFromJson(json);
 
   Map<String, dynamic> toJson() => _$VizRootToJson(this);
-
-  VizPackage get root => packages[rootPackageName]!;
 
   static VizRoot assemble(
     String rootPackageName,
@@ -351,4 +344,22 @@ class VizRoot {
     }
     return newPackages;
   }
+}
+
+abstract mixin class HasPackages {
+  String get rootPackageName;
+  Map<String, VizPackage> get packages;
+
+  late final root = packages[rootPackageName]!;
+
+  late final hasOutdated = packages.values.any(
+    (p) =>
+        p.version != null &&
+        p.latestVersion != null &&
+        p.latestVersion!.compareTo(p.version!) > 0,
+  );
+
+  late final hasDevDependencies = packages.values.any(
+    (p) => p.dependencies.any((d) => d.isDevDependency),
+  );
 }

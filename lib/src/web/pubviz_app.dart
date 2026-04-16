@@ -20,6 +20,8 @@ final class PubvizApp {
   late final GraphRenderer _renderer;
   late final VizRoot originalVizRoot;
   bool get hasOutdated => originalVizRoot.hasOutdated;
+  bool get hasDevDependencies => originalVizRoot.hasDevDependencies;
+  bool get isWorkspace => originalVizRoot.isWorkspace;
 
   PubvizApp(String vizDataJson) {
     final jsonString = vizDataJson.trim();
