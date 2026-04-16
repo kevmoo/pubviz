@@ -44,13 +44,17 @@ final class UIManager {
     }
     if (!_app.hasDevDependencies) {
       _devDependenciesCheckbox.disabled = true;
-      (_devDependenciesCheckbox.parentNode as HTMLElement).title =
-          'No dev dependencies found.';
+      final parent = _devDependenciesCheckbox.parentNode;
+      if (parent != null && parent.nodeType == 1) {
+        (parent as HTMLElement).title = 'No dev dependencies found.';
+      }
     }
     if (!_app.isWorkspace) {
       _workspaceOnlyCheckbox.disabled = true;
-      (_workspaceOnlyCheckbox.parentNode as HTMLElement).title =
-          'Not a workspace (only one package).';
+      final parent = _workspaceOnlyCheckbox.parentNode;
+      if (parent != null && parent.nodeType == 1) {
+        (parent as HTMLElement).title = 'Not a workspace (only one package).';
+      }
     }
     _applyHashFilters();
     _updateNonDefaultDot();
@@ -220,7 +224,6 @@ final class UIManager {
 
   void _updateNonDefaultDot() {
     final isNonDefault =
-        _zoomCheckbox.checked ||
         _devDependenciesCheckbox.checked ||
         _workspaceOnlyCheckbox.checked ||
         _outdatedOnlyCheckbox.checked;
