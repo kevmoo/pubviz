@@ -51,10 +51,10 @@ between the source files and the compiled outputs:
 - **Programmatic Sandboxing**: 
   When adding test suites for edge cases that require synthetic setup files 
   (e.g., `pubspec.yaml`, `outdated.json`), 
-  use **`package:test_descriptor`** (`d.dir()`) 
-  inside `setUpAll()` to build isolated filesystems on-the-fly within 
-  `d.sandbox`. This guarantees absolute parallel isolated pass-rates and avoids 
-  workspace git-littering artifacts.
+  use **`package:test_descriptor`** (`d.dir()`) to build isolated filesystems 
+  on-the-fly within `d.sandbox`. If many tests need the same setup, you can do 
+  this in `setUp()`. This guarantees absolute parallel isolated pass-rates and 
+  avoids workspace git-littering artifacts.
 
 ## Debugging and Experimenting
 - When debugging or experimenting with the CLI, prefer using the `-a serve` or 

@@ -146,6 +146,12 @@ void main() {
       expect(pkg2.version, pkg.version);
       expect(pkg2.latestVersion, pkg.latestVersion);
       expect(pkg2.isPrimary, pkg.isPrimary);
+
+      expect(pkg2.dependencies, hasLength(1));
+      final dep = pkg2.dependencies.first;
+      expect(dep.name, 'b');
+      expect(dep.versionConstraint, VersionConstraint.any);
+      expect(dep.isDevDependency, isFalse);
     });
   });
 
