@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:path/path.dart' as p;
 import 'package:pub_semver/pub_semver.dart';
 import 'package:pubspec_parse/pubspec_parse.dart' as parse;
-import 'package:string_scanner/string_scanner.dart';
 import 'package:pubviz/src/colors.dart';
 import 'package:pubviz/src/converters.dart';
 import 'package:pubviz/src/dependency.dart';
@@ -14,7 +13,6 @@ import 'package:pubviz/src/service.dart';
 import 'package:pubviz/src/viz_package.dart';
 import 'package:pubviz/src/viz_root.dart';
 import 'package:test/test.dart';
-
 import 'package:test_descriptor/test_descriptor.dart' as d;
 
 void main() {
@@ -142,8 +140,7 @@ void main() {
       expect(json['isPrimary'], true);
 
       // Manually handle the fact that explicitToJson is false
-      final fullJson =
-          jsonDecode(jsonEncode(pkg)) as Map<String, dynamic>;
+      final fullJson = jsonDecode(jsonEncode(pkg)) as Map<String, dynamic>;
       final pkg2 = VizPackage.fromJson(fullJson);
       expect(pkg2.name, pkg.name);
       expect(pkg2.version, pkg.version);
@@ -160,8 +157,7 @@ void main() {
       final json = root.toJson();
       expect(json['rootPackageName'], 'a');
 
-      final fullJson =
-          jsonDecode(jsonEncode(root)) as Map<String, dynamic>;
+      final fullJson = jsonDecode(jsonEncode(root)) as Map<String, dynamic>;
       final root2 = VizRoot.fromJson(fullJson);
       expect(root2.rootPackageName, root.rootPackageName);
       expect(root2.packages.keys, contains('a'));
@@ -198,7 +194,10 @@ dev_dependencies:
   qux: '>=1.0.0 <2.0.0'
 ''');
       final deps = Dependency.getDependencies(pubspec);
-      expect(deps.map((d) => d.name).toList(), containsAll(['bar', 'baz', 'qux']));
+      expect(
+        deps.map((d) => d.name).toList(),
+        containsAll(['bar', 'baz', 'qux']),
+      );
 
       final bar = deps.firstWhere((d) => d.name == 'bar');
       expect(bar.versionConstraint.toString(), '^1.0.0');
@@ -239,9 +238,7 @@ dev_dependencies:
     test('vizRoot workspace with outdated', () async {
       await d.dir('fake_pkg', [
         d.file('pubspec.yaml', 'name: a'),
-        d.dir('member', [
-          d.file('pubspec.yaml', 'name: member'),
-        ]),
+        d.dir('member', [d.file('pubspec.yaml', 'name: member')]),
       ]).create();
 
       final service = _WorkspaceMockService(d.path('fake_pkg'));
@@ -261,7 +258,10 @@ class _WorkspaceMockService extends Service {
   _WorkspaceMockService(this.rootPackageDir);
 
   @override
-  parse.Pubspec rootPubspec() => parse.Pubspec.parse('name: a', sourceUrl: Uri.file(p.join(rootPackageDir, 'pubspec.yaml')));
+  parse.Pubspec rootPubspec() => parse.Pubspec.parse(
+    'name: a',
+    sourceUrl: Uri.file(p.join(rootPackageDir, 'pubspec.yaml')),
+  );
 
   @override
   DepsPackageEntry rootDeps() => DepsList.parse('''
@@ -288,20 +288,20 @@ member 1.0.0
 
   @override
   Future<Map<String, String>> workspaceMembers() async => {
-        'a': '.',
-        'member': 'member',
-      };
+    'a': '.',
+    'member': 'member',
+  };
 
   @override
   Map<String, dynamic> outdated() => {
-        'packages': [
-          {
-            'package': 'member',
-            'current': {'version': '1.0.0'},
-            'latest': {'version': '1.1.0'},
-          }
-        ]
-      };
+    'packages': [
+      {
+        'package': 'member',
+        'current': {'version': '1.0.0'},
+        'latest': {'version': '1.1.0'},
+      },
+    ],
+  };
 }
 
 class _SimpleMockService extends Service {
@@ -332,5 +332,5 @@ b 1.0.0
   Future<Map<String, String>> workspaceMembers() async => {'a': '.'};
 
   @override
-  Map<String, dynamic> outdated() => {'packages': []};
+  Map<String, dynamic> outdated() => {'packages': <void>[]};
 }

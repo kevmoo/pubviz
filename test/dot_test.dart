@@ -8,9 +8,13 @@ import 'package:test/test.dart';
 void main() {
   test('toDot with root dependency', () {
     final root = VizRoot('a', {
-      'a': VizPackage('a', Version(1, 0, 0), {
-        Dependency('b', VersionConstraint.any, false),
-      }, null, isPrimary: true),
+      'a': VizPackage(
+        'a',
+        Version(1, 0, 0),
+        {Dependency('b', VersionConstraint.any, false)},
+        null,
+        isPrimary: true,
+      ),
       'b': VizPackage('b', Version(1, 0, 0), {
         Dependency('a', VersionConstraint.any, false),
       }, null),

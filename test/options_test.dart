@@ -15,16 +15,20 @@ void main() {
 
     test('all flags', () {
       final options = parseOptions([
-        '--action', 'print',
-        '--ignore-packages', 'a,b',
+        '--action',
+        'print',
+        '--ignore-packages',
+        'a,b',
         '--no-flag-outdated',
         '--direct-dependencies',
         '--production-dependencies',
         '--version',
         '--help',
         '--workspace',
-        '--filters', 'hide-dev',
-        '--package', 'pubviz:1.0.0',
+        '--filters',
+        'hide-dev',
+        '--package',
+        'pubviz:1.0.0',
       ]);
       expect(options.action, Action.print);
       expect(options.ignorePackages, ['a', 'b']);
