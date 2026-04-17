@@ -235,7 +235,7 @@ dev_dependencies:
       );
     });
 
-    test('vizRoot workspace with outdated', () async {
+    test('vizRoot workspace with outdated', testOn: 'vm', () async {
       await d.dir('fake_pkg', [
         d.file('pubspec.yaml', 'name: a'),
         d.dir('member', [d.file('pubspec.yaml', 'name: member')]),
