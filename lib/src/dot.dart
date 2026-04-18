@@ -16,7 +16,7 @@ extension VizRootExt on VizRoot {
       (v) => !ignorePackages.contains(v.name),
     )) {
       gviz.addBlankLine();
-      _writeDot(pack, gviz, root.name, ignorePackages);
+      _writeDot(pack, gviz, root.name, ignorePackages, isWorkspace);
     }
 
     return gviz.toString();
@@ -28,10 +28,14 @@ void _writeDot(
   Gviz gviz,
   String rootName,
   Iterable<String> ignorePackages,
+  bool isWorkspace,
 ) {
   final isRoot = rootName == pkg.name;
 
   var label = pkg.name;
+  if (isWorkspace && isRoot) {
+    label = '⚙️ $label';
+  }
   if (pkg.version != null) {
     label = '$label\\n${pkg.version}';
   }
@@ -39,7 +43,6 @@ void _writeDot(
   final props = {'label': label};
 
   if (isRoot) {
-    props['fontsize'] = '18';
     props['style'] = 'bold';
   }
 
@@ -52,6 +55,11 @@ void _writeDot(
     props['style'] = 'filled,bold';
     props['color'] = colorPrimary;
     props['fillcolor'] = colorBackgroundPrimary;
+  }
+
+  if (pkg.isPublishToNone) {
+    final currentStyle = props['style'];
+    props['style'] = currentStyle == null ? 'dashed' : '$currentStyle,dashed';
   }
 
   if (!isRoot &&

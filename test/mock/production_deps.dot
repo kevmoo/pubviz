@@ -188,7 +188,7 @@ digraph pubviz {
   quiver -> matcher [label=">=0.12.5 <0.13.0"];
   quiver -> meta [label=">=1.0.0 <2.0.0"];
 
-  repo_manager [label=repo_manager, fontsize=18, style="filled,bold", shape=box, margin="0.25,0.15", color="#0175C2", fillcolor="#e3f2fd"];
+  repo_manager [label=repo_manager, style="filled,bold", shape=box, margin="0.25,0.15", color="#0175C2", fillcolor="#e3f2fd"];
   repo_manager -> args [label="^1.4.3", penwidth=2];
   repo_manager -> collection [label="^1.11.0", penwidth=2];
   repo_manager -> github [label="^6.0.2", penwidth=2];
