@@ -150,17 +150,16 @@ final class UIManager {
   }
 
   void _handleKeyDown(KeyboardEvent event) {
+    // Ignore modifier keys to avoid conflicts with browser shortcuts.
+    if (event.ctrlKey || event.metaKey || event.altKey) {
+      return;
+    }
+
     final key = event.key.toLowerCase();
 
     for (final config in _filterConfigs) {
       if (config.key == key) {
-        _toggleFilter(
-          isAvailable: config.isAvailable(),
-          checkbox: config.checkbox,
-          enabledMessage: config.enabledMessage,
-          disabledMessage: config.disabledMessage,
-          unavailableMessage: config.unavailableMessage,
-        );
+        _toggleFilter(config);
         return;
       }
     }
@@ -179,20 +178,18 @@ final class UIManager {
     }
   }
 
-  void _toggleFilter({
-    required bool isAvailable,
-    required HTMLInputElement checkbox,
-    required String enabledMessage,
-    required String disabledMessage,
-    required String unavailableMessage,
-  }) {
-    if (isAvailable) {
-      checkbox.checked = !checkbox.checked;
+  void _toggleFilter(_FilterConfig config) {
+    if (config.isAvailable()) {
+      config.checkbox.checked = !config.checkbox.checked;
       _updateHash();
       unawaited(_app.render());
-      showToast(checkbox.checked ? enabledMessage : disabledMessage);
+      showToast(
+        config.checkbox.checked
+            ? config.enabledMessage
+            : config.disabledMessage,
+      );
     } else {
-      showToast('⚠️ $unavailableMessage');
+      showToast('⚠️ ${config.unavailableMessage}');
     }
     _updateNonDefaultDot();
   }
