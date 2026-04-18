@@ -4,8 +4,8 @@ import 'dart:js_interop';
 
 import 'package:web/web.dart';
 
-import '../colors.dart';
 import '../dot.dart';
+import '../viz_root.dart';
 
 import 'interop.dart';
 import 'pubviz_app.dart';
@@ -20,7 +20,7 @@ final class GraphRenderer {
   final PubvizApp _app;
   SVGElement? __root;
   SVGGElement? _lockedElement;
-  final _nodeOutdatedMap = <String, bool>{};
+  VizRoot? _currentRoot;
 
   int _renderGeneration = 0;
   Worker? _currentWorker;
@@ -56,6 +56,7 @@ final class GraphRenderer {
         onlyWorkspace: _app.ui.workspaceOnly,
       );
 
+      _currentRoot = filteredRoot;
       final dotString = filteredRoot.toDot();
 
       final output = await _renderWithWorker(dotString, generation);
@@ -170,24 +171,23 @@ final class GraphRenderer {
       __root!.classList.add('zoom');
     }
 
-    _nodeOutdatedMap.clear();
     final nodes = _root.querySelectorAll('g.node').elements.map((e) {
       final element = e as SVGGElement;
       final title = element.querySelector('title')!.textContent!;
       element.id = title;
 
-      final nodeStroke =
-          element.querySelector('ellipse')?.getAttribute('stroke') ??
-          element.querySelector('polygon')?.getAttribute('stroke') ??
-          element.querySelector('path')?.getAttribute('stroke');
+      final pkg = _currentRoot!.packages[title];
+      final isOutdated =
+          pkg != null &&
+          pkg.version != null &&
+          pkg.latestVersion != null &&
+          pkg.latestVersion!.compareTo(pkg.version!) > 0;
 
-      final isOutdated = isOutdatedColor(nodeStroke);
       if (isOutdated) {
         element.classList.add('outdated');
       }
-      _nodeOutdatedMap[title] = isOutdated;
 
-      return (element: element, id: title);
+      return (element: element, id: title, isOutdated: isOutdated);
     }).toList();
 
     final edges = _root.querySelectorAll('g.edge').elements.map((e) {
@@ -196,30 +196,24 @@ final class GraphRenderer {
       final things = title.split('->');
       final from = things[0];
       final to = things[1];
-      node
-        ..setAttribute('x-from', from)
-        ..setAttribute('x-to', to);
 
-      final textElement = node.querySelector('text');
-      final textFill = textElement?.getAttribute('fill');
-      final constraint = textElement?.textContent ?? '';
-      final edgeStroke =
-          node.getAttribute('stroke') ??
-          node.querySelector('path')?.getAttribute('stroke') ??
-          node.querySelector('polygon')?.getAttribute('stroke');
+      final pkgFrom = _currentRoot!.packages[from];
+      final dep = pkgFrom?.dependencies.where((d) => d.name == to).firstOrNull;
+      final constraint = dep?.versionConstraint.toString() ?? '';
+      final isDev = dep?.isDevDependency ?? false;
+      final isOutdated = dep?.includesLatest == false;
 
-      final isDev =
-          node.querySelector('path')?.hasAttribute('stroke-dasharray') ?? false;
-
-      if (isOutdatedColor(textFill) || isOutdatedColor(edgeStroke)) {
+      if (isOutdated) {
         node.classList.add('outdated');
       }
+
       return (
         element: node,
         from: from,
         to: to,
         constraint: constraint,
         isDev: isDev,
+        isOutdated: isOutdated,
       );
     }).toList();
 
@@ -273,7 +267,7 @@ final class GraphRenderer {
 
   void _updateOver(
     SVGGElement? element,
-    Iterable<({SVGGElement element, String id})> nodes,
+    Iterable<({SVGGElement element, String id, bool isOutdated})> nodes,
     Iterable<
       ({
         SVGGElement element,
@@ -281,6 +275,7 @@ final class GraphRenderer {
         String to,
         String constraint,
         bool isDev,
+        bool isOutdated,
       })
     >
     edges,
@@ -288,10 +283,9 @@ final class GraphRenderer {
     final targetPkg = <String?>[];
     if (element != null) {
       if (element.classList.contains('edge')) {
-        targetPkg.addAll([
-          element.attributes['x-to'],
-          element.attributes['x-from'],
-        ]);
+        final title = element.querySelector('title')!.textContent!;
+        final things = title.split('->');
+        targetPkg.addAll([things[1], things[0]]);
       } else {
         assert(element.classList.contains('node'));
         targetPkg.add(element.id);
@@ -330,8 +324,10 @@ final class GraphRenderer {
               name: nodeXFrom,
               constraint: edge.constraint,
               isDev: edge.isDev,
-              isNodeOutdated: _nodeOutdatedMap[nodeXFrom] ?? false,
-              isEdgeOutdated: edge.element.classList.contains('outdated'),
+              isNodeOutdated: nodes
+                  .firstWhere((n) => n.id == nodeXFrom)
+                  .isOutdated,
+              isEdgeOutdated: edge.isOutdated,
             ));
           }
 
@@ -340,8 +336,10 @@ final class GraphRenderer {
               name: nodeXTo,
               constraint: edge.constraint,
               isDev: edge.isDev,
-              isNodeOutdated: _nodeOutdatedMap[nodeXTo] ?? false,
-              isEdgeOutdated: edge.element.classList.contains('outdated'),
+              isNodeOutdated: nodes
+                  .firstWhere((n) => n.id == nodeXTo)
+                  .isOutdated,
+              isEdgeOutdated: edge.isOutdated,
             ));
           }
 
