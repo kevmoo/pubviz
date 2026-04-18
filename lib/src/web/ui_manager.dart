@@ -9,6 +9,17 @@ import '../version.dart';
 
 import 'pubviz_app.dart';
 
+typedef _FilterConfig = ({
+  String key,
+  bool Function() isAvailable,
+  HTMLInputElement checkbox,
+  String enabledMessage,
+  String disabledMessage,
+  String unavailableMessage,
+});
+
+final _hotkeyRegex = RegExp(r'^[a-zA-Z]$');
+
 final class UIManager {
   final PubvizApp _app;
 
@@ -34,6 +45,33 @@ final class UIManager {
       document.querySelector('#toast') as HTMLDivElement;
   final HTMLDivElement _mobileOverlay =
       document.querySelector('#mobile-overlay') as HTMLDivElement;
+
+  late final _filterConfigs = <_FilterConfig>[
+    (
+      key: 'd',
+      isAvailable: () => _app.hasDevDependencies,
+      checkbox: _devDependenciesCheckbox,
+      enabledMessage: 'Hiding Dev Dependencies',
+      disabledMessage: 'Showing Dev Dependencies',
+      unavailableMessage: 'No Dev Dependencies to Filter',
+    ),
+    (
+      key: 'w',
+      isAvailable: () => _app.isWorkspace,
+      checkbox: _workspaceOnlyCheckbox,
+      enabledMessage: 'Showing Only Workspace',
+      disabledMessage: 'Showing All Packages',
+      unavailableMessage: 'Not a workspace (only one package)',
+    ),
+    (
+      key: 'o',
+      isAvailable: () => _app.hasOutdated,
+      checkbox: _outdatedOnlyCheckbox,
+      enabledMessage: 'Showing Only Outdated',
+      disabledMessage: 'Showing All Packages',
+      unavailableMessage: 'No Outdated Packages to Filter',
+    ),
+  ];
 
   Timer? _toastTimer;
 
@@ -112,48 +150,46 @@ final class UIManager {
   }
 
   void _handleKeyDown(KeyboardEvent event) {
-    switch (event.key) {
-      case 'c' || 'C':
+    // Ignore modifier keys to avoid conflicts with browser shortcuts.
+    if (event.ctrlKey || event.metaKey || event.altKey) {
+      return;
+    }
+
+    final key = event.key.toLowerCase();
+
+    for (final config in _filterConfigs) {
+      if (config.key == key) {
+        _toggleFilter(config);
+        return;
+      }
+    }
+
+    switch (key) {
+      case 'c':
         _toggleControls();
-      case 'z' || 'Z':
+      case 'z':
         _zoomCheckbox.checked = !_zoomCheckbox.checked;
         _app.updateZoom();
         showToast(zoomEnabled ? 'Zoom Enabled' : 'Zoom Disabled');
-      case 'd' || 'D':
-        if (_app.hasDevDependencies) {
-          _devDependenciesCheckbox.checked = !_devDependenciesCheckbox.checked;
-          _updateHash();
-          unawaited(_app.render());
-          showToast(
-            hideDevDependencies
-                ? 'Hiding Dev Dependencies'
-                : 'Showing Dev Dependencies',
-          );
-        } else {
-          showToast('⚠️ No Dev Dependencies to Filter');
+      default:
+        if (_hotkeyRegex.hasMatch(event.key)) {
+          showToast('❓ Unknown hot key: ${event.key}');
         }
-      case 'w' || 'W':
-        if (_app.isWorkspace) {
-          _workspaceOnlyCheckbox.checked = !_workspaceOnlyCheckbox.checked;
-          _updateHash();
-          unawaited(_app.render());
-          showToast(
-            workspaceOnly ? 'Showing Only Workspace' : 'Showing All Packages',
-          );
-        } else {
-          showToast('⚠️ Workspace Filter Not Available');
-        }
-      case 'o' || 'O':
-        if (_app.hasOutdated) {
-          _outdatedOnlyCheckbox.checked = !_outdatedOnlyCheckbox.checked;
-          _updateHash();
-          unawaited(_app.render());
-          showToast(
-            outdatedOnly ? 'Showing Only Outdated' : 'Showing All Packages',
-          );
-        } else {
-          showToast('⚠️ No Outdated Packages to Filter');
-        }
+    }
+  }
+
+  void _toggleFilter(_FilterConfig config) {
+    if (config.isAvailable()) {
+      config.checkbox.checked = !config.checkbox.checked;
+      _updateHash();
+      unawaited(_app.render());
+      showToast(
+        config.checkbox.checked
+            ? config.enabledMessage
+            : config.disabledMessage,
+      );
+    } else {
+      showToast('⚠️ ${config.unavailableMessage}');
     }
     _updateNonDefaultDot();
   }
