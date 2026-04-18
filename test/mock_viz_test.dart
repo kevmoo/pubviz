@@ -335,6 +335,50 @@ void main() {
       expect(filtered.packages.containsKey('d'), isFalse);
     });
 
+    test(
+      'hideIsolatedWorkspacePackages hides isolated unpublished and root nodes',
+      () {
+        final a = VizPackage(
+          'a',
+          Version(1, 0, 0),
+          {Dependency('c', VersionConstraint.any, false)},
+          null,
+          isPrimary: true,
+        );
+
+        final b = VizPackage(
+          'b',
+          Version(1, 0, 0),
+          {},
+          null,
+          isPrimary: true,
+          isPublishToNone: true,
+        );
+
+        final c = VizPackage('c', Version(1, 0, 0), {}, null);
+
+        final root = VizRoot.assemble('a', {
+          'a': a,
+          'b': b,
+          'c': c,
+        }, isWorkspace: true);
+
+        final filtered = root.filter(hideIsolatedWorkspacePackages: true);
+
+        // 'a' (root) and 'b' (unpublished) have no incoming dependencies, so
+        // they are hidden.
+        // 'c' is kept because 'a' depends on it.
+        expect(filtered.packages.keys, unorderedEquals(['c']));
+        expect(filtered.packages.containsKey('a'), isFalse);
+        expect(filtered.packages.containsKey('b'), isFalse);
+
+        // Fallback logic should preserve the root name even if missing from
+        // packages
+        expect(filtered.rootPackageName, equals('a'));
+        expect(filtered.root.name, equals('a'));
+      },
+    );
+
     test('onlyWorkspace and onlyOutdated can be combined', () {
       final a = VizPackage(
         'a',
@@ -574,6 +618,7 @@ class _MockVizRoot with HasPackages implements VizRoot {
     bool excludeDev = false,
     bool onlyOutdated = false,
     bool onlyWorkspace = false,
+    bool hideIsolatedWorkspacePackages = false,
   }) => throw UnimplementedError();
 
   @override

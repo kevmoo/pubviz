@@ -23,8 +23,7 @@ class VizRoot with HasPackages {
     this.rootPackageName,
     Map<String, VizPackage> packages, {
     this.isWorkspace = false,
-  }) : assert(packages.containsKey(rootPackageName)),
-       packages = UnmodifiableMapView(packages);
+  }) : packages = UnmodifiableMapView(packages);
 
   factory VizRoot.fromJson(Map<String, dynamic> json) =>
       _$VizRootFromJson(json);
@@ -121,8 +120,14 @@ class VizRoot with HasPackages {
     bool excludeDev = false,
     bool onlyOutdated = false,
     bool onlyWorkspace = false,
+    bool hideIsolatedWorkspacePackages = false,
   }) {
-    if (!excludeDev && !onlyOutdated && !onlyWorkspace) return this;
+    if (!excludeDev &&
+        !onlyOutdated &&
+        !onlyWorkspace &&
+        !hideIsolatedWorkspacePackages) {
+      return this;
+    }
 
     var currentPackages = packages;
     if (onlyWorkspace) {
@@ -133,6 +138,46 @@ class VizRoot with HasPackages {
     }
     if (!onlyWorkspace && !onlyOutdated) {
       currentPackages = _filterStandard(currentPackages, excludeDev);
+    }
+
+    if (hideIsolatedWorkspacePackages) {
+      final incoming = <String>{};
+      for (final pkg in currentPackages.values) {
+        for (final dep in pkg.dependencies) {
+          incoming.add(dep.name);
+        }
+      }
+
+      final keepNodes = currentPackages.keys.where((name) {
+        final pkg = currentPackages[name];
+        if (pkg == null) return false;
+        final isUnpublished = pkg.isPublishToNone;
+        final isRoot = name == rootPackageName;
+        final hasIncoming = incoming.contains(name);
+
+        final shouldHide = (isUnpublished || isRoot) && !hasIncoming;
+        return !shouldHide;
+      }).toSet();
+
+      final newPackages = SplayTreeMap<String, VizPackage>();
+      for (final name in keepNodes) {
+        final orig = currentPackages[name];
+        if (orig == null) continue;
+        final filteredDeps = orig.dependencies
+            .where((d) => keepNodes.contains(d.name))
+            .toSet();
+
+        newPackages[name] = VizPackage(
+          orig.name,
+          orig.version,
+          filteredDeps,
+          orig.latestVersion,
+          isPrimary: orig.isPrimary,
+          onlyDev: orig.onlyDev,
+          isPublishToNone: orig.isPublishToNone,
+        );
+      }
+      currentPackages = newPackages;
     }
 
     return VizRoot.assemble(
@@ -350,7 +395,8 @@ abstract mixin class HasPackages {
   String get rootPackageName;
   Map<String, VizPackage> get packages;
 
-  late final root = packages[rootPackageName]!;
+  late final root =
+      packages[rootPackageName] ?? VizPackage(rootPackageName, null, {}, null);
 
   late final hasOutdated = packages.values.any(
     (p) =>

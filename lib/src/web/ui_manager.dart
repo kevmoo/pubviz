@@ -37,6 +37,8 @@ final class UIManager {
       document.querySelector('#outdatedOnlyCheckbox') as HTMLInputElement;
   final HTMLInputElement _workspaceOnlyCheckbox =
       document.querySelector('#workspaceOnlyCheckbox') as HTMLInputElement;
+  final HTMLInputElement _hideIsolatedCheckbox =
+      document.querySelector('#hideIsolatedCheckbox') as HTMLInputElement;
   final HTMLDivElement _depsInBox =
       document.querySelector('#deps-in-box') as HTMLDivElement;
   final HTMLDivElement _depsOutBox =
@@ -70,6 +72,14 @@ final class UIManager {
       enabledMessage: 'Showing Only Outdated',
       disabledMessage: 'Showing All Packages',
       unavailableMessage: 'No Outdated Packages to Filter',
+    ),
+    (
+      key: 'i',
+      isAvailable: () => true,
+      checkbox: _hideIsolatedCheckbox,
+      enabledMessage: 'Hiding Isolated Packages',
+      disabledMessage: 'Showing Isolated Packages',
+      unavailableMessage: '',
     ),
   ];
 
@@ -141,6 +151,8 @@ final class UIManager {
   bool get outdatedOnly => _outdatedOnlyCheckbox.checked;
 
   bool get workspaceOnly => _workspaceOnlyCheckbox.checked;
+
+  bool get hideIsolatedPackages => _hideIsolatedCheckbox.checked;
 
   void _toggleControls() {
     _hamburgerCheckbox.checked = !_hamburgerCheckbox.checked;
@@ -239,6 +251,7 @@ final class UIManager {
 
       _devDependenciesCheckbox.checked = filters.contains(filterHideDev);
       _workspaceOnlyCheckbox.checked = filters.contains(filterWorkspace);
+      _hideIsolatedCheckbox.checked = filters.contains(filterHideIsolated);
       if (_app.hasOutdated) {
         _outdatedOnlyCheckbox.checked = filters.contains(filterOutdated);
       }
@@ -250,6 +263,7 @@ final class UIManager {
     if (_devDependenciesCheckbox.checked) filters.add(filterHideDev);
     if (_workspaceOnlyCheckbox.checked) filters.add(filterWorkspace);
     if (_outdatedOnlyCheckbox.checked) filters.add(filterOutdated);
+    if (_hideIsolatedCheckbox.checked) filters.add(filterHideIsolated);
 
     if (filters.isEmpty) {
       window.history.replaceState(null, '', window.location.pathname);
