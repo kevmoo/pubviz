@@ -75,11 +75,11 @@ final class UIManager {
     ),
     (
       key: 'i',
-      isAvailable: () => true,
+      isAvailable: () => _app.isWorkspace,
       checkbox: _hideIsolatedCheckbox,
       enabledMessage: 'Hiding Isolated Packages',
       disabledMessage: 'Showing Isolated Packages',
-      unavailableMessage: '',
+      unavailableMessage: 'Not a workspace (only one package)',
     ),
   ];
 
@@ -99,9 +99,15 @@ final class UIManager {
     }
     if (!_app.isWorkspace) {
       _workspaceOnlyCheckbox.disabled = true;
+      _hideIsolatedCheckbox.disabled = true;
       final parent = _workspaceOnlyCheckbox.parentNode;
       if (parent != null && parent.nodeType == 1) {
         (parent as HTMLElement).title = 'Not a workspace (only one package).';
+      }
+      final isolatedParent = _hideIsolatedCheckbox.parentNode;
+      if (isolatedParent != null && isolatedParent.nodeType == 1) {
+        (isolatedParent as HTMLElement).title =
+            'Not a workspace (only one package).';
       }
     }
     _applyHashFilters();
@@ -124,7 +130,8 @@ final class UIManager {
           _app.updateZoom();
         case 'devDependenciesCheckbox' ||
             'outdatedOnlyCheckbox' ||
-            'workspaceOnlyCheckbox':
+            'workspaceOnlyCheckbox' ||
+            'hideIsolatedCheckbox':
           _updateHash();
           unawaited(_app.render());
       }
@@ -276,7 +283,8 @@ final class UIManager {
     final isNonDefault =
         _devDependenciesCheckbox.checked ||
         _workspaceOnlyCheckbox.checked ||
-        _outdatedOnlyCheckbox.checked;
+        _outdatedOnlyCheckbox.checked ||
+        _hideIsolatedCheckbox.checked;
 
     if (isNonDefault) {
       _hamburgerLabel.classList.add('non-default');

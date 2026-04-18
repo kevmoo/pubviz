@@ -141,43 +141,7 @@ class VizRoot with HasPackages {
     }
 
     if (hideIsolatedWorkspacePackages) {
-      final incoming = <String>{};
-      for (final pkg in currentPackages.values) {
-        for (final dep in pkg.dependencies) {
-          incoming.add(dep.name);
-        }
-      }
-
-      final keepNodes = currentPackages.keys.where((name) {
-        final pkg = currentPackages[name];
-        if (pkg == null) return false;
-        final isUnpublished = pkg.isPublishToNone;
-        final isRoot = name == rootPackageName;
-        final hasIncoming = incoming.contains(name);
-
-        final shouldHide = (isUnpublished || isRoot) && !hasIncoming;
-        return !shouldHide;
-      }).toSet();
-
-      final newPackages = SplayTreeMap<String, VizPackage>();
-      for (final name in keepNodes) {
-        final orig = currentPackages[name];
-        if (orig == null) continue;
-        final filteredDeps = orig.dependencies
-            .where((d) => keepNodes.contains(d.name))
-            .toSet();
-
-        newPackages[name] = VizPackage(
-          orig.name,
-          orig.version,
-          filteredDeps,
-          orig.latestVersion,
-          isPrimary: orig.isPrimary,
-          onlyDev: orig.onlyDev,
-          isPublishToNone: orig.isPublishToNone,
-        );
-      }
-      currentPackages = newPackages;
+      currentPackages = _filterIsolatedWorkspacePackages(currentPackages);
     }
 
     return VizRoot.assemble(
@@ -381,6 +345,48 @@ class VizRoot with HasPackages {
         orig.dependencies
             .where((d) => !excludeDev || !d.isDevDependency)
             .toSet(),
+        orig.latestVersion,
+        isPrimary: orig.isPrimary,
+        onlyDev: orig.onlyDev,
+        isPublishToNone: orig.isPublishToNone,
+      );
+    }
+    return newPackages;
+  }
+
+  Map<String, VizPackage> _filterIsolatedWorkspacePackages(
+    Map<String, VizPackage> sourcePackages,
+  ) {
+    final incoming = <String>{};
+    for (final pkg in sourcePackages.values) {
+      for (final dep in pkg.dependencies) {
+        incoming.add(dep.name);
+      }
+    }
+
+    final keepNodes = sourcePackages.keys.where((name) {
+      final pkg = sourcePackages[name];
+      if (pkg == null) return false;
+      final isUnpublished = pkg.isPublishToNone;
+      final isRoot = name == rootPackageName;
+      final hasIncoming = incoming.contains(name);
+
+      final shouldHide = (isUnpublished || isRoot) && !hasIncoming;
+      return !shouldHide;
+    }).toSet();
+
+    final newPackages = SplayTreeMap<String, VizPackage>();
+    for (final name in keepNodes) {
+      final orig = sourcePackages[name];
+      if (orig == null) continue;
+      final filteredDeps = orig.dependencies
+          .where((d) => keepNodes.contains(d.name))
+          .toSet();
+
+      newPackages[name] = VizPackage(
+        orig.name,
+        orig.version,
+        filteredDeps,
         orig.latestVersion,
         isPrimary: orig.isPrimary,
         onlyDev: orig.onlyDev,
