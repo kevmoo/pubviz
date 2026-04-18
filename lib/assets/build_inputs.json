@@ -13,7 +13,7 @@
   "lib/src/viz_package.g.dart": "6cac4358a0576205dc8cc010c3b9310d3e0052075f9c55d622fbb687222c78e7",
   "lib/src/viz_root.dart": "a1248e8f094637bcf3d654f432c091d36273b90922d754e0ad9eba2cd2652d45",
   "lib/src/viz_root.g.dart": "a0d1f70a6118015f27d34f8e6659e69603fa70a0f143da0d9a5bc912ec2bb6f3",
-  "lib/src/web/graph_renderer.dart": "8f25c442222462cfc62d143cd3e1704bdf5f5a408df08e58d89442a2ca0d6f96",
+  "lib/src/web/graph_renderer.dart": "83128b7cba9c92a979e6dde2753df85b303962372f024af98e8467777d052cc0",
   "lib/src/web/interop.dart": "4c03fd0f3ca5ee07633fd0dab1b048be7db708d8c2aae1620f4d19e1a2c30111",
   "lib/src/web/pubviz_app.dart": "7e7931e3e4cf4ec1d447b595ae14eac49fcf5c6310633699ec888d4e9dc383c8",
   "lib/src/web/ui_manager.dart": "9045372128f9637bf12278926fc848ffc8e245b125f06de97ee354b593a7ba67",
