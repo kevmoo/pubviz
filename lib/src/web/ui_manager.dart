@@ -18,6 +18,8 @@ typedef _FilterConfig = ({
   String unavailableMessage,
 });
 
+final _hotkeyRegex = RegExp(r'^[a-zA-Z]$');
+
 final class UIManager {
   final PubvizApp _app;
 
@@ -171,11 +173,10 @@ final class UIManager {
         _app.updateZoom();
         showToast(zoomEnabled ? 'Zoom Enabled' : 'Zoom Disabled');
       default:
-        if (RegExp(r'^[a-zA-Z]$').hasMatch(event.key)) {
+        if (_hotkeyRegex.hasMatch(event.key)) {
           showToast('❓ Unknown hot key: ${event.key}');
         }
     }
-    _updateNonDefaultDot();
   }
 
   void _toggleFilter({
@@ -193,6 +194,7 @@ final class UIManager {
     } else {
       showToast('⚠️ $unavailableMessage');
     }
+    _updateNonDefaultDot();
   }
 
   void showToast(String message) {
