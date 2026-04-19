@@ -140,7 +140,7 @@ class VizRoot with HasPackages {
       currentPackages = _filterStandard(currentPackages, excludeDev);
     }
 
-    if (hideIsolatedWorkspacePackages) {
+    if (hideIsolatedWorkspacePackages && isWorkspace) {
       currentPackages = _filterIsolatedWorkspacePackages(currentPackages);
     }
 
@@ -371,7 +371,8 @@ class VizRoot with HasPackages {
       final isRoot = name == rootPackageName;
       final hasIncoming = incoming.contains(name);
 
-      final shouldHide = (isUnpublished || isRoot) && !hasIncoming;
+      final shouldHide =
+          (isUnpublished || isRoot) && !hasIncoming && !pkg.isPrimary;
       return !shouldHide;
     }).toSet();
 

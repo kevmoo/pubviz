@@ -351,7 +351,7 @@ void main() {
           Version(1, 0, 0),
           {},
           null,
-          isPrimary: true,
+          isPrimary: false,
           isPublishToNone: true,
         );
 
@@ -365,11 +365,11 @@ void main() {
 
         final filtered = root.filter(hideIsolatedWorkspacePackages: true);
 
-        // 'a' (root) and 'b' (unpublished) have no incoming dependencies, so
-        // they are hidden.
+        // 'a' (root) is primary, so it is kept.
+        // 'b' (unpublished) has no incoming dependencies and is not primary, so it is hidden.
         // 'c' is kept because 'a' depends on it.
-        expect(filtered.packages.keys, unorderedEquals(['c']));
-        expect(filtered.packages.containsKey('a'), isFalse);
+        expect(filtered.packages.keys, unorderedEquals(['a', 'c']));
+        expect(filtered.packages.containsKey('a'), isTrue);
         expect(filtered.packages.containsKey('b'), isFalse);
 
         // Fallback logic should preserve the root name even if missing from
@@ -378,6 +378,66 @@ void main() {
         expect(filtered.root.name, equals('a'));
       },
     );
+
+    test(
+      'hideIsolatedWorkspacePackages is ignored in non-workspace context',
+      () {
+        final a = VizPackage(
+          'a',
+          Version(1, 0, 0),
+          {Dependency('c', VersionConstraint.any, false)},
+          null,
+          isPrimary: true,
+        );
+
+        final b = VizPackage(
+          'b',
+          Version(1, 0, 0),
+          {},
+          null,
+          isPrimary: true,
+          isPublishToNone: true,
+        );
+
+        final c = VizPackage('c', Version(1, 0, 0), {}, null);
+
+        final root = VizRoot.assemble('a', {
+          'a': a,
+          'b': b,
+          'c': c,
+        }, isWorkspace: false);
+
+        final filtered = root.filter(hideIsolatedWorkspacePackages: true);
+
+        expect(filtered.packages.keys, unorderedEquals(['a', 'b', 'c']));
+      },
+    );
+
+    test('hideIsolatedWorkspacePackages does not hide primary packages', () {
+      final a = VizPackage(
+        'a',
+        Version(1, 0, 0),
+        {},
+        null,
+        isPrimary: true,
+        isPublishToNone: true,
+      );
+
+      final b = VizPackage(
+        'b',
+        Version(1, 0, 0),
+        {},
+        null,
+        isPrimary: false,
+        isPublishToNone: true,
+      );
+
+      final root = VizRoot.assemble('a', {'a': a, 'b': b}, isWorkspace: true);
+
+      final filtered = root.filter(hideIsolatedWorkspacePackages: true);
+
+      expect(filtered.packages.keys, unorderedEquals(['a']));
+    });
 
     test('onlyWorkspace and onlyOutdated can be combined', () {
       final a = VizPackage(
