@@ -367,13 +367,14 @@ class VizRoot with HasPackages {
     final keepNodes = sourcePackages.keys.where((name) {
       final pkg = sourcePackages[name];
       if (pkg == null) return false;
-      final isUnpublished = pkg.isPublishToNone;
-      final isRoot = name == rootPackageName;
       final hasIncoming = incoming.contains(name);
 
-      final shouldHide =
-          (isUnpublished || isRoot) && !hasIncoming && !pkg.isPrimary;
-      return !shouldHide;
+      // We keep a package in the graph if:
+      // 1. It is the root package (we never want to hide the entry point).
+      // 2. It is a published package
+      //    (we only want to hide internal workspace bits).
+      // 3. It has incoming dependencies (it is not isolated).
+      return name == rootPackageName || !pkg.isPublishToNone || hasIncoming;
     }).toSet();
 
     final newPackages = SplayTreeMap<String, VizPackage>();

@@ -351,6 +351,7 @@ void main() {
           Version(1, 0, 0),
           {},
           null,
+          isPrimary: true,
           isPublishToNone: true,
         );
 
