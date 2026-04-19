@@ -474,6 +474,29 @@ void main() {
       },
     );
 
+    test('hideIsolatedWorkspacePackages removes edges to ghost nodes', () {
+      final a = VizPackage(
+        'a',
+        Version(1, 0, 0),
+        {Dependency('b', VersionConstraint.any, false)},
+        null,
+        isPrimary: true,
+      );
+
+      // We do NOT include 'b' in the sourcePackages map!
+      // This simulates 'b' being filtered out previously.
+
+      final root = VizRoot.assemble('a', {'a': a}, isWorkspace: true);
+
+      final filtered = root.filter(hideIsolatedWorkspacePackages: true);
+
+      // 'a' is kept.
+      // 'b' is not in sourcePackages, so it should NOT be in 'a's
+      // dependencies after filtering!
+      final filteredA = filtered.packages['a']!;
+      expect(filteredA.dependencies.any((d) => d.name == 'b'), isFalse);
+    });
+
     test('onlyWorkspace and onlyOutdated can be combined', () {
       final a = VizPackage(
         'a',

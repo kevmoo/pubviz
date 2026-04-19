@@ -388,7 +388,11 @@ class VizRoot with HasPackages {
       final orig = sourcePackages[name];
       if (orig == null) continue;
       final filteredDeps = orig.dependencies
-          .where((d) => keepNodes.contains(d.name))
+          .where(
+            (d) =>
+                keepNodes.contains(d.name) &&
+                sourcePackages.containsKey(d.name),
+          )
           .toSet();
 
       newPackages[name] = VizPackage(
