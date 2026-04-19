@@ -23,7 +23,8 @@ class VizRoot with HasPackages {
     this.rootPackageName,
     Map<String, VizPackage> packages, {
     this.isWorkspace = false,
-  }) : packages = UnmodifiableMapView(packages);
+  }) : assert(packages.containsKey(rootPackageName)),
+       packages = UnmodifiableMapView(packages);
 
   factory VizRoot.fromJson(Map<String, dynamic> json) =>
       _$VizRootFromJson(json);
@@ -357,26 +358,31 @@ class VizRoot with HasPackages {
   Map<String, VizPackage> _filterIsolatedWorkspacePackages(
     Map<String, VizPackage> sourcePackages,
   ) {
-    final incoming = <String>{};
+    // 1. Find all "seeds" (root package and all published packages).
+    final seeds = <String>{rootPackageName};
     for (final pkg in sourcePackages.values) {
-      for (final dep in pkg.dependencies) {
-        incoming.add(dep.name);
+      if (!pkg.isPublishToNone) {
+        seeds.add(pkg.name);
       }
     }
 
-    final keepNodes = sourcePackages.keys.where((name) {
-      final pkg = sourcePackages[name];
-      if (pkg == null) return false;
-      final hasIncoming = incoming.contains(name);
+    // 2. Find all nodes reachable from these seeds.
+    final keepNodes = <String>{...seeds};
+    final queue = seeds.toList();
 
-      // We keep a package in the graph if:
-      // 1. It is the root package (we never want to hide the entry point).
-      // 2. It is a published package
-      //    (we only want to hide internal workspace bits).
-      // 3. It has incoming dependencies (it is not isolated).
-      return name == rootPackageName || !pkg.isPublishToNone || hasIncoming;
-    }).toSet();
+    while (queue.isNotEmpty) {
+      final current = queue.removeLast();
+      final pkg = sourcePackages[current];
+      if (pkg == null) continue;
 
+      for (final dep in pkg.dependencies) {
+        if (keepNodes.add(dep.name)) {
+          queue.add(dep.name);
+        }
+      }
+    }
+
+    // 3. Rebuild the graph with only reachable nodes.
     final newPackages = SplayTreeMap<String, VizPackage>();
     for (final name in keepNodes) {
       final orig = sourcePackages[name];
@@ -403,8 +409,7 @@ abstract mixin class HasPackages {
   String get rootPackageName;
   Map<String, VizPackage> get packages;
 
-  late final root =
-      packages[rootPackageName] ?? VizPackage(rootPackageName, null, {}, null);
+  late final root = packages[rootPackageName]!;
 
   late final hasOutdated = packages.values.any(
     (p) =>

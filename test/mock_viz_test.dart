@@ -435,6 +435,45 @@ void main() {
       expect(filtered.packages.keys, unorderedEquals(['a']));
     });
 
+    test(
+      'hideIsolatedWorkspacePackages removes floating disconnected nodes',
+      () {
+        final a = VizPackage(
+          'a',
+          Version(1, 0, 0),
+          {Dependency('b', VersionConstraint.any, false)},
+          null,
+          isPublishToNone: true,
+        );
+
+        final b = VizPackage(
+          'b',
+          Version(1, 0, 0),
+          {},
+          null,
+          isPublishToNone: true,
+        );
+
+        final rootPkg = VizPackage(
+          'root',
+          Version(1, 0, 0),
+          {},
+          null,
+          isPrimary: true,
+        );
+
+        final root = VizRoot.assemble('root', {
+          'root': rootPkg,
+          'a': a,
+          'b': b,
+        }, isWorkspace: true);
+
+        final filtered = root.filter(hideIsolatedWorkspacePackages: true);
+
+        expect(filtered.packages.keys, unorderedEquals(['root']));
+      },
+    );
+
     test('onlyWorkspace and onlyOutdated can be combined', () {
       final a = VizPackage(
         'a',
