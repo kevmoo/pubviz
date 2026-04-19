@@ -121,8 +121,14 @@ class VizRoot with HasPackages {
     bool excludeDev = false,
     bool onlyOutdated = false,
     bool onlyWorkspace = false,
+    bool hideIsolatedWorkspacePackages = false,
   }) {
-    if (!excludeDev && !onlyOutdated && !onlyWorkspace) return this;
+    if (!excludeDev &&
+        !onlyOutdated &&
+        !onlyWorkspace &&
+        !hideIsolatedWorkspacePackages) {
+      return this;
+    }
 
     var currentPackages = packages;
     if (onlyWorkspace) {
@@ -133,6 +139,10 @@ class VizRoot with HasPackages {
     }
     if (!onlyWorkspace && !onlyOutdated) {
       currentPackages = _filterStandard(currentPackages, excludeDev);
+    }
+
+    if (hideIsolatedWorkspacePackages && isWorkspace) {
+      currentPackages = _filterIsolatedWorkspacePackages(currentPackages);
     }
 
     return VizRoot.assemble(
@@ -336,6 +346,59 @@ class VizRoot with HasPackages {
         orig.dependencies
             .where((d) => !excludeDev || !d.isDevDependency)
             .toSet(),
+        orig.latestVersion,
+        isPrimary: orig.isPrimary,
+        onlyDev: orig.onlyDev,
+        isPublishToNone: orig.isPublishToNone,
+      );
+    }
+    return newPackages;
+  }
+
+  Map<String, VizPackage> _filterIsolatedWorkspacePackages(
+    Map<String, VizPackage> sourcePackages,
+  ) {
+    // 1. Find all "seeds" (root package and all published packages).
+    final seeds = <String>{rootPackageName};
+    for (final pkg in sourcePackages.values) {
+      if (!pkg.isPublishToNone) {
+        seeds.add(pkg.name);
+      }
+    }
+
+    // 2. Find all nodes reachable from these seeds.
+    final keepNodes = <String>{...seeds};
+    final queue = seeds.toList();
+
+    while (queue.isNotEmpty) {
+      final current = queue.removeLast();
+      final pkg = sourcePackages[current];
+      if (pkg == null) continue;
+
+      for (final dep in pkg.dependencies) {
+        if (keepNodes.add(dep.name)) {
+          queue.add(dep.name);
+        }
+      }
+    }
+
+    // 3. Rebuild the graph with only reachable nodes.
+    final newPackages = SplayTreeMap<String, VizPackage>();
+    for (final name in keepNodes) {
+      final orig = sourcePackages[name];
+      if (orig == null) continue;
+      final filteredDeps = orig.dependencies
+          .where(
+            (d) =>
+                keepNodes.contains(d.name) &&
+                sourcePackages.containsKey(d.name),
+          )
+          .toSet();
+
+      newPackages[name] = VizPackage(
+        orig.name,
+        orig.version,
+        filteredDeps,
         orig.latestVersion,
         isPrimary: orig.isPrimary,
         onlyDev: orig.onlyDev,

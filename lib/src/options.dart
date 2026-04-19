@@ -98,13 +98,20 @@ const _actionHelp = <Action, String>{
 const filterHideDev = 'hide-dev';
 const filterWorkspace = 'workspace';
 const filterOutdated = 'outdated';
+const filterHideIsolated = 'hide-isolated';
 
-const allowedFilters = [filterHideDev, filterWorkspace, filterOutdated];
+const allowedFilters = [
+  filterHideDev,
+  filterWorkspace,
+  filterOutdated,
+  filterHideIsolated,
+];
 
 const _filterHelp = <String, String>{
   filterHideDev: 'Hide dev dependencies.',
   filterWorkspace: 'Show only packages in the workspace.',
   filterOutdated: 'Show only outdated packages.',
+  filterHideIsolated: 'Hide isolated workspace packages.',
 };
 
 class UsageException implements Exception {

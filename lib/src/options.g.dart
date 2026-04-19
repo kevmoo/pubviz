@@ -100,11 +100,12 @@ ArgParser _$populateOptionsParser(ArgParser parser) => parser
     'filters',
     abbr: 'f',
     help: 'A comma separated list of filters to apply.',
-    allowed: ['hide-dev', 'workspace', 'outdated'],
+    allowed: ['hide-dev', 'workspace', 'outdated', 'hide-isolated'],
     allowedHelp: <String, String>{
       'hide-dev': 'Hide dev dependencies.',
       'workspace': 'Show only packages in the workspace.',
       'outdated': 'Show only outdated packages.',
+      'hide-isolated': 'Hide isolated workspace packages.',
     },
   )
   ..addFlag(

@@ -331,6 +331,7 @@ Arguments:
             [hide-dev]             Hide dev dependencies.
             [workspace]            Show only packages in the workspace.
             [outdated]             Show only outdated packages.
+            [hide-isolated]        Hide isolated workspace packages.
 
   -?, --help                       Print this help content.
 

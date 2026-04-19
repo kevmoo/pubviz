@@ -37,6 +37,8 @@ final class UIManager {
       document.querySelector('#outdatedOnlyCheckbox') as HTMLInputElement;
   final HTMLInputElement _workspaceOnlyCheckbox =
       document.querySelector('#workspaceOnlyCheckbox') as HTMLInputElement;
+  final HTMLInputElement _hideIsolatedCheckbox =
+      document.querySelector('#hideIsolatedCheckbox') as HTMLInputElement;
   final HTMLDivElement _depsInBox =
       document.querySelector('#deps-in-box') as HTMLDivElement;
   final HTMLDivElement _depsOutBox =
@@ -71,6 +73,14 @@ final class UIManager {
       disabledMessage: 'Showing All Packages',
       unavailableMessage: 'No Outdated Packages to Filter',
     ),
+    (
+      key: 'i',
+      isAvailable: () => _app.isWorkspace,
+      checkbox: _hideIsolatedCheckbox,
+      enabledMessage: 'Hiding Isolated Packages',
+      disabledMessage: 'Showing Isolated Packages',
+      unavailableMessage: 'Not a workspace (only one package)',
+    ),
   ];
 
   Timer? _toastTimer;
@@ -89,9 +99,15 @@ final class UIManager {
     }
     if (!_app.isWorkspace) {
       _workspaceOnlyCheckbox.disabled = true;
+      _hideIsolatedCheckbox.disabled = true;
       final parent = _workspaceOnlyCheckbox.parentNode;
       if (parent != null && parent.nodeType == 1) {
         (parent as HTMLElement).title = 'Not a workspace (only one package).';
+      }
+      final isolatedParent = _hideIsolatedCheckbox.parentNode;
+      if (isolatedParent != null && isolatedParent.nodeType == 1) {
+        (isolatedParent as HTMLElement).title =
+            'Not a workspace (only one package).';
       }
     }
     _applyHashFilters();
@@ -114,7 +130,8 @@ final class UIManager {
           _app.updateZoom();
         case 'devDependenciesCheckbox' ||
             'outdatedOnlyCheckbox' ||
-            'workspaceOnlyCheckbox':
+            'workspaceOnlyCheckbox' ||
+            'hideIsolatedCheckbox':
           _updateHash();
           unawaited(_app.render());
       }
@@ -141,6 +158,8 @@ final class UIManager {
   bool get outdatedOnly => _outdatedOnlyCheckbox.checked;
 
   bool get workspaceOnly => _workspaceOnlyCheckbox.checked;
+
+  bool get hideIsolatedPackages => _hideIsolatedCheckbox.checked;
 
   void _toggleControls() {
     _hamburgerCheckbox.checked = !_hamburgerCheckbox.checked;
@@ -239,6 +258,7 @@ final class UIManager {
 
       _devDependenciesCheckbox.checked = filters.contains(filterHideDev);
       _workspaceOnlyCheckbox.checked = filters.contains(filterWorkspace);
+      _hideIsolatedCheckbox.checked = filters.contains(filterHideIsolated);
       if (_app.hasOutdated) {
         _outdatedOnlyCheckbox.checked = filters.contains(filterOutdated);
       }
@@ -250,6 +270,7 @@ final class UIManager {
     if (_devDependenciesCheckbox.checked) filters.add(filterHideDev);
     if (_workspaceOnlyCheckbox.checked) filters.add(filterWorkspace);
     if (_outdatedOnlyCheckbox.checked) filters.add(filterOutdated);
+    if (_hideIsolatedCheckbox.checked) filters.add(filterHideIsolated);
 
     if (filters.isEmpty) {
       window.history.replaceState(null, '', window.location.pathname);
@@ -262,7 +283,8 @@ final class UIManager {
     final isNonDefault =
         _devDependenciesCheckbox.checked ||
         _workspaceOnlyCheckbox.checked ||
-        _outdatedOnlyCheckbox.checked;
+        _outdatedOnlyCheckbox.checked ||
+        _hideIsolatedCheckbox.checked;
 
     if (isNonDefault) {
       _hamburgerLabel.classList.add('non-default');

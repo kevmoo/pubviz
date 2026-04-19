@@ -335,6 +335,168 @@ void main() {
       expect(filtered.packages.containsKey('d'), isFalse);
     });
 
+    test(
+      'hideIsolatedWorkspacePackages hides isolated unpublished and root nodes',
+      () {
+        final a = VizPackage(
+          'a',
+          Version(1, 0, 0),
+          {Dependency('c', VersionConstraint.any, false)},
+          null,
+          isPrimary: true,
+        );
+
+        final b = VizPackage(
+          'b',
+          Version(1, 0, 0),
+          {},
+          null,
+          isPrimary: true,
+          isPublishToNone: true,
+        );
+
+        final c = VizPackage('c', Version(1, 0, 0), {}, null);
+
+        final root = VizRoot.assemble('a', {
+          'a': a,
+          'b': b,
+          'c': c,
+        }, isWorkspace: true);
+
+        final filtered = root.filter(hideIsolatedWorkspacePackages: true);
+
+        // 'a' (root) is primary, so it is kept.
+        // 'b' (unpublished) has no incoming dependencies and is not primary,
+        // so it is hidden.
+        // 'c' is kept because 'a' depends on it.
+        expect(filtered.packages.keys, unorderedEquals(['a', 'c']));
+        expect(filtered.packages.containsKey('a'), isTrue);
+        expect(filtered.packages.containsKey('b'), isFalse);
+
+        // Fallback logic should preserve the root name even if missing from
+        // packages
+        expect(filtered.rootPackageName, equals('a'));
+        expect(filtered.root.name, equals('a'));
+      },
+    );
+
+    test(
+      'hideIsolatedWorkspacePackages is ignored in non-workspace context',
+      () {
+        final a = VizPackage(
+          'a',
+          Version(1, 0, 0),
+          {Dependency('c', VersionConstraint.any, false)},
+          null,
+          isPrimary: true,
+        );
+
+        final b = VizPackage(
+          'b',
+          Version(1, 0, 0),
+          {},
+          null,
+          isPrimary: true,
+          isPublishToNone: true,
+        );
+
+        final c = VizPackage('c', Version(1, 0, 0), {}, null);
+
+        final root = VizRoot.assemble('a', {'a': a, 'b': b, 'c': c});
+
+        final filtered = root.filter(hideIsolatedWorkspacePackages: true);
+
+        expect(filtered.packages.keys, unorderedEquals(['a', 'b', 'c']));
+      },
+    );
+
+    test('hideIsolatedWorkspacePackages does not hide primary packages', () {
+      final a = VizPackage(
+        'a',
+        Version(1, 0, 0),
+        {},
+        null,
+        isPrimary: true,
+        isPublishToNone: true,
+      );
+
+      final b = VizPackage(
+        'b',
+        Version(1, 0, 0),
+        {},
+        null,
+        isPublishToNone: true,
+      );
+
+      final root = VizRoot.assemble('a', {'a': a, 'b': b}, isWorkspace: true);
+
+      final filtered = root.filter(hideIsolatedWorkspacePackages: true);
+
+      expect(filtered.packages.keys, unorderedEquals(['a']));
+    });
+
+    test(
+      'hideIsolatedWorkspacePackages removes floating disconnected nodes',
+      () {
+        final a = VizPackage(
+          'a',
+          Version(1, 0, 0),
+          {Dependency('b', VersionConstraint.any, false)},
+          null,
+          isPublishToNone: true,
+        );
+
+        final b = VizPackage(
+          'b',
+          Version(1, 0, 0),
+          {},
+          null,
+          isPublishToNone: true,
+        );
+
+        final rootPkg = VizPackage(
+          'root',
+          Version(1, 0, 0),
+          {},
+          null,
+          isPrimary: true,
+        );
+
+        final root = VizRoot.assemble('root', {
+          'root': rootPkg,
+          'a': a,
+          'b': b,
+        }, isWorkspace: true);
+
+        final filtered = root.filter(hideIsolatedWorkspacePackages: true);
+
+        expect(filtered.packages.keys, unorderedEquals(['root']));
+      },
+    );
+
+    test('hideIsolatedWorkspacePackages removes edges to ghost nodes', () {
+      final a = VizPackage(
+        'a',
+        Version(1, 0, 0),
+        {Dependency('b', VersionConstraint.any, false)},
+        null,
+        isPrimary: true,
+      );
+
+      // We do NOT include 'b' in the sourcePackages map!
+      // This simulates 'b' being filtered out previously.
+
+      final root = VizRoot.assemble('a', {'a': a}, isWorkspace: true);
+
+      final filtered = root.filter(hideIsolatedWorkspacePackages: true);
+
+      // 'a' is kept.
+      // 'b' is not in sourcePackages, so it should NOT be in 'a's
+      // dependencies after filtering!
+      final filteredA = filtered.packages['a']!;
+      expect(filteredA.dependencies.any((d) => d.name == 'b'), isFalse);
+    });
+
     test('onlyWorkspace and onlyOutdated can be combined', () {
       final a = VizPackage(
         'a',
@@ -574,6 +736,7 @@ class _MockVizRoot with HasPackages implements VizRoot {
     bool excludeDev = false,
     bool onlyOutdated = false,
     bool onlyWorkspace = false,
+    bool hideIsolatedWorkspacePackages = false,
   }) => throw UnimplementedError();
 
   @override

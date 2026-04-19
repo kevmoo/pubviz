@@ -54,6 +54,7 @@ final class GraphRenderer {
         excludeDev: _app.ui.hideDevDependencies,
         onlyOutdated: _app.ui.outdatedOnly,
         onlyWorkspace: _app.ui.workspaceOnly,
+        hideIsolatedWorkspacePackages: _app.ui.hideIsolatedPackages,
       );
 
       _currentRoot = filteredRoot;
