@@ -351,7 +351,6 @@ void main() {
           Version(1, 0, 0),
           {},
           null,
-          isPrimary: false,
           isPublishToNone: true,
         );
 
@@ -366,7 +365,8 @@ void main() {
         final filtered = root.filter(hideIsolatedWorkspacePackages: true);
 
         // 'a' (root) is primary, so it is kept.
-        // 'b' (unpublished) has no incoming dependencies and is not primary, so it is hidden.
+        // 'b' (unpublished) has no incoming dependencies and is not primary,
+        // so it is hidden.
         // 'c' is kept because 'a' depends on it.
         expect(filtered.packages.keys, unorderedEquals(['a', 'c']));
         expect(filtered.packages.containsKey('a'), isTrue);
@@ -401,11 +401,7 @@ void main() {
 
         final c = VizPackage('c', Version(1, 0, 0), {}, null);
 
-        final root = VizRoot.assemble('a', {
-          'a': a,
-          'b': b,
-          'c': c,
-        }, isWorkspace: false);
+        final root = VizRoot.assemble('a', {'a': a, 'b': b, 'c': c});
 
         final filtered = root.filter(hideIsolatedWorkspacePackages: true);
 
@@ -428,7 +424,6 @@ void main() {
         Version(1, 0, 0),
         {},
         null,
-        isPrimary: false,
         isPublishToNone: true,
       );
 
