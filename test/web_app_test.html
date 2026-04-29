@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Web App Test</title>
+  <link rel="x-dart-test" href="web_app_test.dart">
+  <script>
+    window.Viz = {
+      instance: function() {
+        return Promise.resolve({
+          renderString: function(src, options) {
+            return '<svg id="mock-svg"><g class="node"><title>my_cool_package</title><ellipse stroke="#000000"></ellipse></g></svg>';
+          }
+        });
+      }
+    };
+    
+    window.Worker = function(url) {
+      this.postMessage = function(msg) {
+        setTimeout(async () => {
+          if (this.onmessage) {
+            let output = '';
+            let success = true;
+            let error = '';
+            try {
+              if (window.Viz && window.Viz.instance) {
+                const viz = await window.Viz.instance();
+                output = viz.renderString(msg.dotString, msg.options);
+              } else {
+                output = '<svg id="mock-svg"><g class="node"><title>my_cool_package</title><ellipse stroke="#000000"></ellipse></g></svg>';
+              }
+            } catch (e) {
+              success = false;
+              error = e.toString();
+            }
+            this.onmessage({
+              data: {
+                success: success,
+                output: output,
+                error: error,
+                stack: '',
+                generation: msg.generation
+              }
+            });
+          }
+        }, 0);
+      };
+      this.terminate = function() {};
+    };
+  </script>
+</head>
+<body>
+  <!-- Template for test DOM -->
+  <template id="test-dom-template">
+    <input id="controlsToggle" type="checkbox">
+    <label id="hamburgerLabel"></label>
+    <input id="zoomCheckbox" type="checkbox">
+    <input id="devDependenciesCheckbox" type="checkbox">
+    <input id="workspaceOnlyCheckbox" type="checkbox">
+    <input id="hideIsolatedCheckbox" type="checkbox">
+    <div id="outdatedCheckboxContainer"></div>
+    <input id="outdatedOnlyCheckbox" type="checkbox">
+    <div id="deps-in-box"></div>
+    <div id="deps-out-box"></div>
+    <div id="toast"></div>
+    <div id="mobile-overlay"></div>
+    <span id="version"></span>
+    <div id="graph-container"></div>
+    <div id="crash-overlay" class="hidden"></div>
+    <pre id="crash-trace"></pre>
+  </template>
+
+  <!-- Container where the template will be cloned -->
+  <div id="test-area"></div>
+
+  <!-- Required by package:test -->
+  <script src="packages/test/dart.js"></script>
+</body>
+</html>
