@@ -92,10 +92,10 @@ Future<void> run(Options options) async {
           ..writeln()
           ..writeln(styleBold.wrap('Outdated package update order:'));
         for (final pkg in updateOrder) {
-          final hasNewer =
-              pkg.latestVersion != null &&
-              pkg.version != null &&
-              pkg.latestVersion! > pkg.version!;
+          final hasNewer = switch ((pkg.latestVersion, pkg.version)) {
+            (final latest?, final current?) => latest > current,
+            _ => false,
+          };
           final suffix = hasNewer ? ' *' : '';
           stderr.writeln('  ${pkg.name}$suffix');
         }
