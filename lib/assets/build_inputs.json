@@ -16,10 +16,10 @@
   "lib/src/web/graph_renderer.dart": "9cb66e5d1d26dab3035b234f5608da63f19fc3f28ba03fefa82e140b02d7e27b",
   "lib/src/web/interop.dart": "4c03fd0f3ca5ee07633fd0dab1b048be7db708d8c2aae1620f4d19e1a2c30111",
   "lib/src/web/pubviz_app.dart": "7d389a992393ee2871d0f0c264aa6903c6de0810988d07eac2b1700f00e34911",
-  "lib/src/web/ui_manager.dart": "c5f8f448c9397c3f991f51cc02fcbc8d2977ad39b7514e82a9959fd8c7637bd3",
+  "lib/src/web/ui_manager.dart": "629c1647f67e089dbcc25a79ad59a0db408189b97da221374c2173613a2b1ea8",
   "pubspec.yaml": "1ae8be62d1297e2ff670a7f530e2b1505bb54ba331e938101eb9609b02ac0130",
   "web/favicon.ico": "39ab6b867a1c4c75019506267b3b4ce7cc60fb2ba66870e6485b4e31f6265a7c",
-  "web/index.html": "563bb3c5234a3a25c8ca6662528b5e254995bb1aec7335cdfd471e4e6e7b9f9c",
+  "web/index.html": "307f049830f9e02d9243e7498a90c567b24300e4a026d25325814c2ba086cbe4",
   "web/style.css": "613327805b74692fcc15d8f0f38ebc254a0572a02ef1292be230805bdef417b0",
   "web/viz_worker.js": "559cd006e396419830c65608337084790b42456237b6f5c87ca3301cca1c1bca",
   "web/web_app.dart": "5f1aeba8e857bbf6913c88883fc42e8daaa3695a277fa05f00b948562d5af303"

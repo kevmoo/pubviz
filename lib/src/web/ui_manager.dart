@@ -48,7 +48,7 @@ final class UIManager {
     (
       key: 'z',
       id: 'zoomCheckbox',
-      labelText: 'Zoom (z)',
+      labelText: 'Zoom (Z)',
       filterKey: null,
       isAvailable: () => true,
       onChanged: (_) => _app.updateZoom(),
@@ -62,7 +62,7 @@ final class UIManager {
     (
       key: 'd',
       id: 'devDependenciesCheckbox',
-      labelText: 'Hide Dev Deps (d)',
+      labelText: 'Hide Dev Deps (D)',
       filterKey: filterHideDev,
       isAvailable: () => _app.hasDevDependencies,
       onChanged: (_) => _triggerRender(),
@@ -76,7 +76,7 @@ final class UIManager {
     (
       key: 'w',
       id: 'workspaceOnlyCheckbox',
-      labelText: 'Workspace Only (w)',
+      labelText: 'Workspace Only (W)',
       filterKey: filterWorkspace,
       isAvailable: () => _app.isWorkspace,
       onChanged: (_) => _triggerRender(),
@@ -89,9 +89,9 @@ final class UIManager {
       unavailableTooltip: () => 'Not a workspace (only one package).',
     ),
     (
-      key: 'i',
+      key: 'h',
       id: 'hideIsolatedCheckbox',
-      labelText: 'Hide Isolated (i)',
+      labelText: 'Hide Isolated (H)',
       filterKey: filterHideIsolated,
       isAvailable: () => _app.hasIsolatedPackages,
       onChanged: (_) => _triggerRender(),
@@ -108,7 +108,7 @@ final class UIManager {
     (
       key: 'o',
       id: 'outdatedOnlyCheckbox',
-      labelText: 'Outdated Only (o)',
+      labelText: 'Outdated Only (O)',
       filterKey: filterOutdated,
       isAvailable: () => _app.hasOutdated,
       onChanged: (_) => _triggerRender(),
@@ -155,7 +155,7 @@ final class UIManager {
 
     _resetButton = document.createElement('button') as HTMLButtonElement
       ..id = 'resetButton'
-      ..textContent = 'Reset (r)'
+      ..textContent = 'Reset (R)'
       ..disabled = true;
 
     controlsContent.appendChild(_resetButton);
