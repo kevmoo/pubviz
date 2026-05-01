@@ -1,12 +1,14 @@
 import 'dart:async';
 import 'dart:convert' show htmlEscape;
 import 'dart:js_interop';
+import 'dart:js_interop_unsafe';
 
-import 'package:web/web.dart';
+import 'package:web/web.dart' hide ClipboardItem;
 
+import '../dot.dart';
 import '../options.dart';
 import '../version.dart';
-
+import 'interop.dart' as interop;
 import 'pubviz_app.dart';
 
 typedef _FilterConfig = ({
@@ -162,6 +164,40 @@ final class UIManager {
 
     _resetButton.onClick.listen((_) => _resetFilters());
 
+    final exportHeader = document.createElement('span') as HTMLSpanElement
+      ..id = 'export-title'
+      ..textContent = 'Export';
+    controlsContent.appendChild(exportHeader);
+
+    final formats = ['DOT', 'SVG', 'PNG'];
+    for (final format in formats) {
+      final row = document.createElement('div') as HTMLDivElement
+        ..className = 'export-row';
+
+      final label = document.createElement('span') as HTMLSpanElement
+        ..className = 'export-label'
+        ..textContent = format;
+
+      final copyBtn = document.createElement('button') as HTMLButtonElement
+        ..className = 'export-btn copy'
+        ..title = 'Copy $format to clipboard'
+        ..innerHTML = '📋 <span>Copy</span>'.toJS;
+
+      final saveBtn = document.createElement('button') as HTMLButtonElement
+        ..className = 'export-btn save'
+        ..title = 'Download $format file'
+        ..innerHTML = '⬇️ <span>Save</span>'.toJS;
+
+      row
+        ..appendChild(label)
+        ..appendChild(copyBtn)
+        ..appendChild(saveBtn);
+      controlsContent.appendChild(row);
+
+      copyBtn.onClick.listen((_) => _exportAction(format, isCopy: true));
+      saveBtn.onClick.listen((_) => _exportAction(format, isCopy: false));
+    }
+
     _applyHashFilters();
     _updateNonDefaultDot();
     _updateResetButtonState();
@@ -255,6 +291,155 @@ final class UIManager {
     _resetButton.title = anyChecked
         ? 'Restore all filters to their default unchecked states.'
         : 'All filters are already at their default states.';
+  }
+
+  Future<void> _exportAction(String format, {required bool isCopy}) async {
+    try {
+      switch (format) {
+        case 'DOT':
+          final dot = _app.originalVizRoot
+              .filter(
+                excludeDev: hideDevDependencies,
+                onlyOutdated: outdatedOnly,
+                onlyWorkspace: workspaceOnly,
+                hideIsolatedWorkspacePackages: hideIsolatedPackages,
+              )
+              .toDot();
+
+          if (isCopy) {
+            await window.navigator.clipboard.writeText(dot).toDart;
+            showToast('DOT Copied to Clipboard');
+          } else {
+            _downloadBlob(dot, 'dependencies.dot', 'text/plain');
+          }
+        case 'SVG':
+          final svg =
+              document.querySelector('#graph-container svg') as SVGElement?;
+          if (svg == null) {
+            showToast('⚠️ No SVG graph found to export');
+            return;
+          }
+          final svgString = (svg as JSObject).getProperty('outerHTML'.toJS);
+          final svgText = (svgString as JSString).toDart;
+          if (isCopy) {
+            await window.navigator.clipboard.writeText(svgText).toDart;
+            showToast('SVG Copied to Clipboard');
+          } else {
+            _downloadBlob(svgText, 'dependencies.svg', 'image/svg+xml');
+          }
+        case 'PNG':
+          final svg =
+              document.querySelector('#graph-container svg') as SVGElement?;
+          if (svg == null) {
+            showToast('⚠️ No graph found to export');
+            return;
+          }
+
+          showToast('Processing PNG...');
+
+          final svgString = (svg as JSObject).getProperty('outerHTML'.toJS);
+          final svgText = (svgString as JSString).toDart;
+          final svgBlob = Blob(
+            [svgText.toJS].toJS,
+            BlobPropertyBag(type: 'image/svg+xml'),
+          );
+          final url = URL.createObjectURL(svgBlob);
+
+          final img = (document.createElement('img') as HTMLImageElement)
+            ..src = url;
+
+          img.onload = (Event event) {
+            final canvas =
+                document.createElement('canvas') as HTMLCanvasElement;
+            final bbox = svg.getBoundingClientRect();
+            final width = bbox.width == 0 ? 1000 : bbox.width.toInt();
+            final height = bbox.height == 0 ? 1000 : bbox.height.toInt();
+
+            canvas
+              ..width = width * 2
+              ..height = height * 2;
+
+            canvas.getContext('2d') as CanvasRenderingContext2D
+              ..scale(2, 2)
+              ..fillStyle = 'white'.toJS
+              ..fillRect(0, 0, width, height)
+              ..drawImage(img, 0, 0, width, height);
+
+            URL.revokeObjectURL(url);
+
+            if (isCopy) {
+              canvas.toBlob(
+                (Blob? blob) {
+                  if (blob != null) {
+                    unawaited(() async {
+                      try {
+                        final clipboardExt =
+                            window.navigator.clipboard as JSObject;
+                        final items = JSObject()
+                          ..setProperty('image/png'.toJS, blob);
+
+                        final clipboardItem = interop.ClipboardItem(items);
+
+                        if (clipboardExt.hasProperty('write'.toJS).toDart) {
+                          await (clipboardExt as interop.ClipboardExt)
+                              .write(
+                                <interop.ClipboardItem>[clipboardItem].toJS,
+                              )
+                              .toDart;
+                          showToast('PNG Copied to Clipboard');
+                        } else {
+                          showToast(
+                            '⚠️ Browser does not support clipboard write',
+                          );
+                        }
+                      } catch (e) {
+                        showToast(
+                          '⚠️ Browser blocked image clipboard write: $e',
+                        );
+                      }
+                    }());
+                  }
+                }.toJS,
+                'image/png',
+              );
+            } else {
+              canvas.toBlob(
+                (Blob? blob) {
+                  if (blob != null) {
+                    final pngUrl = URL.createObjectURL(blob);
+                    _triggerDownload(pngUrl, 'dependencies.png');
+                    URL.revokeObjectURL(pngUrl);
+                    showToast('PNG Saved');
+                  }
+                }.toJS,
+                'image/png',
+              );
+            }
+          }.toJS;
+
+          img.onerror = (Event event) {
+            URL.revokeObjectURL(url);
+            showToast('⚠️ Failed to render PNG');
+          }.toJS;
+      }
+    } catch (e) {
+      showToast('⚠️ Export failed: $e');
+    }
+  }
+
+  void _triggerDownload(String url, String filename) {
+    document.createElement('a') as HTMLAnchorElement
+      ..href = url
+      ..download = filename
+      ..click();
+  }
+
+  void _downloadBlob(String content, String filename, String contentType) {
+    final blob = Blob([content.toJS].toJS, BlobPropertyBag(type: contentType));
+    final url = URL.createObjectURL(blob);
+    _triggerDownload(url, filename);
+    URL.revokeObjectURL(url);
+    showToast('$filename Saved');
   }
 
   void _handleKeyDown(KeyboardEvent event) {

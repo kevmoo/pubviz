@@ -1,4 +1,4 @@
-## 6.1.0-wip
+## 6.1.0
 
 - Added `--filter` option to CLI (that's also reflected in the web UI).
 - Added a `workspace` filter to only show packages in the workspace.
@@ -8,6 +8,8 @@
 - Added a `hide-isolated` filter to remove unpublished or root workspace
   packages with no incoming dependencies.
 - `VizRoot` implements a new `HasPackages` mixin, mostly for testing.
+- Added `copy` and `download` buttons to the web UI.
+- Added reset mechanism to the UI.
 
 ## 6.0.0
 

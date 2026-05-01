@@ -50,3 +50,12 @@ extension type RenderResponse._(JSObject _) implements JSObject {
   external String? get stack;
   external int get generation;
 }
+
+@JS('ClipboardItem')
+extension type ClipboardItem._(JSObject _) implements JSObject {
+  external factory ClipboardItem(JSObject items);
+}
+
+extension type ClipboardExt._(JSObject _) implements JSObject {
+  external JSPromise<JSAny?> write(JSArray<ClipboardItem> data);
+}
