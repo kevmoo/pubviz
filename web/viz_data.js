@@ -439,6 +439,18 @@ export const vizDataString = JSON.stringify({
       "isPrimary": true,
       "onlyDev": false
     },
+    "pkg_c": {
+      "name": "pkg_c",
+      "dependencies": [
+        {
+          "name": "args",
+          "versionConstraint": "^2.0.0"
+        }
+      ],
+      "isPrimary": true,
+      "onlyDev": false,
+      "isPublishToNone": true
+    },
     "pool": {
       "name": "pool",
       "version": "1.5.2",

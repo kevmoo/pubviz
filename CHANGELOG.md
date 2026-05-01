@@ -7,6 +7,7 @@
 - Added `--package` flag to open a specific published package.
 - Added a `hide-isolated` filter to remove unpublished or root workspace
   packages with no incoming dependencies.
+- `VizRoot` implements a new `HasPackages` mixin, mostly for testing.
 
 ## 6.0.0
 
@@ -29,8 +30,8 @@
 - Assets are now served without creating a temp directory.
 
 ### New Features
-- **Workspaces**: `pubviz` now automatically infers workspace context. 
-  If run in a workspace root or member package, it natively visualizes the 
+- **Workspaces**: `pubviz` now automatically infers workspace context.
+  If run in a workspace root or member package, it natively visualizes the
   layout for the entire workspace graph. The `--workspace` flag is now optional
   (`--[no-]workspace`).
 
@@ -200,7 +201,7 @@
 
 * Better error output if a subprocess fails.
 
-* Try to handle flutter packages. 
+* Try to handle flutter packages.
 
 ## 2.3.11
 

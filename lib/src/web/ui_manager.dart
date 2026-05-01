@@ -11,11 +11,16 @@ import 'pubviz_app.dart';
 
 typedef _FilterConfig = ({
   String key,
+  String id,
+  String labelText,
+  String? filterKey,
   bool Function() isAvailable,
-  HTMLInputElement checkbox,
+  void Function(HTMLInputElement checkbox) onChanged,
   String enabledMessage,
   String disabledMessage,
   String unavailableMessage,
+  String Function() availableTooltip,
+  String Function() unavailableTooltip,
 });
 
 final _hotkeyRegex = RegExp(r'^[a-zA-Z]$');
@@ -27,18 +32,6 @@ final class UIManager {
       document.querySelector('#controlsToggle') as HTMLInputElement;
   final HTMLLabelElement _hamburgerLabel =
       document.querySelector('#hamburgerLabel') as HTMLLabelElement;
-  final HTMLInputElement _zoomCheckbox =
-      document.querySelector('#zoomCheckbox') as HTMLInputElement;
-  final HTMLInputElement _devDependenciesCheckbox =
-      document.querySelector('#devDependenciesCheckbox') as HTMLInputElement;
-  final HTMLDivElement _outdatedCheckboxContainer =
-      document.querySelector('#outdatedCheckboxContainer') as HTMLDivElement;
-  final HTMLInputElement _outdatedOnlyCheckbox =
-      document.querySelector('#outdatedOnlyCheckbox') as HTMLInputElement;
-  final HTMLInputElement _workspaceOnlyCheckbox =
-      document.querySelector('#workspaceOnlyCheckbox') as HTMLInputElement;
-  final HTMLInputElement _hideIsolatedCheckbox =
-      document.querySelector('#hideIsolatedCheckbox') as HTMLInputElement;
   final HTMLDivElement _depsInBox =
       document.querySelector('#deps-in-box') as HTMLDivElement;
   final HTMLDivElement _depsOutBox =
@@ -48,70 +41,130 @@ final class UIManager {
   final HTMLDivElement _mobileOverlay =
       document.querySelector('#mobile-overlay') as HTMLDivElement;
 
+  late final _checkboxes = <String, HTMLInputElement>{};
+  late final HTMLButtonElement _resetButton;
+
   late final _filterConfigs = <_FilterConfig>[
     (
+      key: 'z',
+      id: 'zoomCheckbox',
+      labelText: 'Zoom (Z)',
+      filterKey: null,
+      isAvailable: () => true,
+      onChanged: (_) => _app.updateZoom(),
+      enabledMessage: 'Zoom Enabled',
+      disabledMessage: 'Zoom Disabled',
+      unavailableMessage: '',
+      availableTooltip: () =>
+          'Toggle pan and zoom capabilities across the graph.',
+      unavailableTooltip: () => '',
+    ),
+    (
       key: 'd',
+      id: 'devDependenciesCheckbox',
+      labelText: 'Hide Dev Deps (D)',
+      filterKey: filterHideDev,
       isAvailable: () => _app.hasDevDependencies,
-      checkbox: _devDependenciesCheckbox,
+      onChanged: (_) => _triggerRender(),
       enabledMessage: 'Hiding Dev Dependencies',
       disabledMessage: 'Showing Dev Dependencies',
       unavailableMessage: 'No Dev Dependencies to Filter',
+      availableTooltip: () =>
+          'Hide all packages that are only utilized during development.',
+      unavailableTooltip: () => 'No dev dependencies found.',
     ),
     (
       key: 'w',
+      id: 'workspaceOnlyCheckbox',
+      labelText: 'Workspace Only (W)',
+      filterKey: filterWorkspace,
       isAvailable: () => _app.isWorkspace,
-      checkbox: _workspaceOnlyCheckbox,
+      onChanged: (_) => _triggerRender(),
       enabledMessage: 'Showing Only Workspace',
       disabledMessage: 'Showing All Packages',
       unavailableMessage: 'Not a workspace (only one package)',
+      availableTooltip: () =>
+          'Filter the view to exclusively show packages within the current '
+          'workspace.',
+      unavailableTooltip: () => 'Not a workspace (only one package).',
+    ),
+    (
+      key: 'h',
+      id: 'hideIsolatedCheckbox',
+      labelText: 'Hide Isolated (H)',
+      filterKey: filterHideIsolated,
+      isAvailable: () => _app.hasIsolatedPackages,
+      onChanged: (_) => _triggerRender(),
+      enabledMessage: 'Hiding Isolated Packages',
+      disabledMessage: 'Showing Isolated Packages',
+      unavailableMessage: 'No isolated packages to filter',
+      availableTooltip: () =>
+          'Hide workspace packages that aren\'t reachable from published '
+          'members.',
+      unavailableTooltip: () => !_app.isWorkspace
+          ? 'Not a workspace (only one package).'
+          : 'No isolated packages found.',
     ),
     (
       key: 'o',
+      id: 'outdatedOnlyCheckbox',
+      labelText: 'Outdated Only (O)',
+      filterKey: filterOutdated,
       isAvailable: () => _app.hasOutdated,
-      checkbox: _outdatedOnlyCheckbox,
+      onChanged: (_) => _triggerRender(),
       enabledMessage: 'Showing Only Outdated',
       disabledMessage: 'Showing All Packages',
       unavailableMessage: 'No Outdated Packages to Filter',
-    ),
-    (
-      key: 'i',
-      isAvailable: () => _app.isWorkspace,
-      checkbox: _hideIsolatedCheckbox,
-      enabledMessage: 'Hiding Isolated Packages',
-      disabledMessage: 'Showing Isolated Packages',
-      unavailableMessage: 'Not a workspace (only one package)',
+      availableTooltip: () =>
+          'Filter the view to exclusively highlight outdated packages.',
+      unavailableTooltip: () => 'No outdated packages found.',
     ),
   ];
 
   Timer? _toastTimer;
 
   UIManager(this._app) {
-    if (!_app.hasOutdated) {
-      _outdatedOnlyCheckbox.disabled = true;
-      _outdatedCheckboxContainer.title = 'No outdated packages found.';
-    }
-    if (!_app.hasDevDependencies) {
-      _devDependenciesCheckbox.disabled = true;
-      final parent = _devDependenciesCheckbox.parentNode;
-      if (parent != null && parent.nodeType == 1) {
-        (parent as HTMLElement).title = 'No dev dependencies found.';
+    final controlsContent =
+        document.querySelector('#controls-content') as HTMLDivElement
+          ..innerHTML = ''.toJS;
+
+    for (final config in _filterConfigs) {
+      final label = document.createElement('label') as HTMLLabelElement;
+      final checkbox = document.createElement('input') as HTMLInputElement
+        ..type = 'checkbox'
+        ..id = config.id;
+
+      label
+        ..appendChild(checkbox)
+        ..appendChild(document.createTextNode(' ${config.labelText}'));
+      controlsContent.appendChild(label);
+
+      _checkboxes[config.id] = checkbox;
+
+      if (!config.isAvailable()) {
+        checkbox.disabled = true;
+        if (config.unavailableTooltip().isNotEmpty) {
+          label.title = config.unavailableTooltip();
+        }
+      } else {
+        if (config.availableTooltip().isNotEmpty) {
+          label.title = config.availableTooltip();
+        }
       }
     }
-    if (!_app.isWorkspace) {
-      _workspaceOnlyCheckbox.disabled = true;
-      _hideIsolatedCheckbox.disabled = true;
-      final parent = _workspaceOnlyCheckbox.parentNode;
-      if (parent != null && parent.nodeType == 1) {
-        (parent as HTMLElement).title = 'Not a workspace (only one package).';
-      }
-      final isolatedParent = _hideIsolatedCheckbox.parentNode;
-      if (isolatedParent != null && isolatedParent.nodeType == 1) {
-        (isolatedParent as HTMLElement).title =
-            'Not a workspace (only one package).';
-      }
-    }
+
+    _resetButton = document.createElement('button') as HTMLButtonElement
+      ..id = 'resetButton'
+      ..textContent = 'Reset (R)'
+      ..disabled = true;
+
+    controlsContent.appendChild(_resetButton);
+
+    _resetButton.onClick.listen((_) => _resetFilters());
+
     _applyHashFilters();
     _updateNonDefaultDot();
+    _updateResetButtonState();
 
     document.body!.onWheel.listen((e) {
       if ((e.target as Element).closest('.hud-box') != null) {
@@ -121,21 +174,22 @@ final class UIManager {
 
     document.body!.onChange.listen((e) {
       final target = e.target as Element;
-      switch (target.id) {
-        case 'controlsToggle':
-          showToast(
-            _hamburgerCheckbox.checked ? 'Controls Shown' : 'Controls Hidden',
-          );
-        case 'zoomCheckbox':
-          _app.updateZoom();
-        case 'devDependenciesCheckbox' ||
-            'outdatedOnlyCheckbox' ||
-            'workspaceOnlyCheckbox' ||
-            'hideIsolatedCheckbox':
-          _updateHash();
-          unawaited(_app.render());
+      if (target.id == 'controlsToggle') {
+        showToast(
+          _hamburgerCheckbox.checked ? 'Controls Shown' : 'Controls Hidden',
+        );
+        _updateNonDefaultDot();
+        return;
       }
-      _updateNonDefaultDot();
+
+      for (final config in _filterConfigs) {
+        if (config.id == target.id) {
+          config.onChanged(_checkboxes[config.id]!);
+          _updateNonDefaultDot();
+          _updateResetButtonState();
+          return;
+        }
+      }
     });
 
     document.body!.onClick.listen((e) {
@@ -151,15 +205,21 @@ final class UIManager {
         'v$packageVersion';
   }
 
-  bool get zoomEnabled => _zoomCheckbox.checked;
+  void _triggerRender() {
+    _updateHash();
+    unawaited(_app.render());
+  }
 
-  bool get hideDevDependencies => _devDependenciesCheckbox.checked;
+  bool get zoomEnabled => _checkboxes['zoomCheckbox']!.checked;
 
-  bool get outdatedOnly => _outdatedOnlyCheckbox.checked;
+  bool get hideDevDependencies =>
+      _checkboxes['devDependenciesCheckbox']!.checked;
 
-  bool get workspaceOnly => _workspaceOnlyCheckbox.checked;
+  bool get outdatedOnly => _checkboxes['outdatedOnlyCheckbox']!.checked;
 
-  bool get hideIsolatedPackages => _hideIsolatedCheckbox.checked;
+  bool get workspaceOnly => _checkboxes['workspaceOnlyCheckbox']!.checked;
+
+  bool get hideIsolatedPackages => _checkboxes['hideIsolatedCheckbox']!.checked;
 
   void _toggleControls() {
     _hamburgerCheckbox.checked = !_hamburgerCheckbox.checked;
@@ -168,8 +228,36 @@ final class UIManager {
     );
   }
 
+  void _resetFilters() {
+    var anyChanged = false;
+    for (final config in _filterConfigs) {
+      final checkbox = _checkboxes[config.id]!;
+      if (checkbox.checked) {
+        checkbox.checked = false;
+        if (config.id == 'zoomCheckbox') {
+          _app.updateZoom();
+        }
+        anyChanged = true;
+      }
+    }
+    if (anyChanged) {
+      _updateHash();
+      unawaited(_app.render());
+      _updateNonDefaultDot();
+      _updateResetButtonState();
+      showToast('Filters Reset');
+    }
+  }
+
+  void _updateResetButtonState() {
+    final anyChecked = _checkboxes.values.any((cb) => cb.checked);
+    _resetButton.disabled = !anyChecked;
+    _resetButton.title = anyChecked
+        ? 'Restore all filters to their default unchecked states.'
+        : 'All filters are already at their default states.';
+  }
+
   void _handleKeyDown(KeyboardEvent event) {
-    // Ignore modifier keys to avoid conflicts with browser shortcuts.
     if (event.ctrlKey || event.metaKey || event.altKey) {
       return;
     }
@@ -186,10 +274,10 @@ final class UIManager {
     switch (key) {
       case 'c':
         _toggleControls();
-      case 'z':
-        _zoomCheckbox.checked = !_zoomCheckbox.checked;
-        _app.updateZoom();
-        showToast(zoomEnabled ? 'Zoom Enabled' : 'Zoom Disabled');
+      case 'r':
+        if (!_resetButton.disabled) {
+          _resetFilters();
+        }
       default:
         if (_hotkeyRegex.hasMatch(event.key)) {
           showToast('❓ Unknown hot key: ${event.key}');
@@ -199,14 +287,13 @@ final class UIManager {
 
   void _toggleFilter(_FilterConfig config) {
     if (config.isAvailable()) {
-      config.checkbox.checked = !config.checkbox.checked;
-      _updateHash();
-      unawaited(_app.render());
+      final checkbox = _checkboxes[config.id]!;
+      checkbox.checked = !checkbox.checked;
+      config.onChanged(checkbox);
       showToast(
-        config.checkbox.checked
-            ? config.enabledMessage
-            : config.disabledMessage,
+        checkbox.checked ? config.enabledMessage : config.disabledMessage,
       );
+      _updateResetButtonState();
     } else {
       showToast('⚠️ ${config.unavailableMessage}');
     }
@@ -256,21 +343,27 @@ final class UIManager {
       final filtersStr = hash.substring('#/filters='.length);
       final filters = filtersStr.split(',');
 
-      _devDependenciesCheckbox.checked = filters.contains(filterHideDev);
-      _workspaceOnlyCheckbox.checked = filters.contains(filterWorkspace);
-      _hideIsolatedCheckbox.checked = filters.contains(filterHideIsolated);
-      if (_app.hasOutdated) {
-        _outdatedOnlyCheckbox.checked = filters.contains(filterOutdated);
+      for (final config in _filterConfigs) {
+        if (config.filterKey case final filterKey?) {
+          final checkbox = _checkboxes[config.id]!;
+          if (filterKey == filterOutdated && !_app.hasOutdated) {
+            continue;
+          }
+          checkbox.checked = filters.contains(filterKey);
+        }
       }
     }
   }
 
   void _updateHash() {
     final filters = <String>{};
-    if (_devDependenciesCheckbox.checked) filters.add(filterHideDev);
-    if (_workspaceOnlyCheckbox.checked) filters.add(filterWorkspace);
-    if (_outdatedOnlyCheckbox.checked) filters.add(filterOutdated);
-    if (_hideIsolatedCheckbox.checked) filters.add(filterHideIsolated);
+    for (final config in _filterConfigs) {
+      if (config.filterKey case final filterKey?) {
+        if (_checkboxes[config.id]!.checked) {
+          filters.add(filterKey);
+        }
+      }
+    }
 
     if (filters.isEmpty) {
       window.history.replaceState(null, '', window.location.pathname);
@@ -280,11 +373,9 @@ final class UIManager {
   }
 
   void _updateNonDefaultDot() {
-    final isNonDefault =
-        _devDependenciesCheckbox.checked ||
-        _workspaceOnlyCheckbox.checked ||
-        _outdatedOnlyCheckbox.checked ||
-        _hideIsolatedCheckbox.checked;
+    final isNonDefault = _filterConfigs.any(
+      (config) => config.filterKey != null && _checkboxes[config.id]!.checked,
+    );
 
     if (isNonDefault) {
       _hamburgerLabel.classList.add('non-default');

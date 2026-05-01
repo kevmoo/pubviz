@@ -144,6 +144,28 @@ text {
     cursor: pointer;
 }
 
+#resetButton {
+    margin-top: 12px;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s, color 0.2s;
+}
+
+#resetButton:hover:not(:disabled) {
+    background: #edf2f7;
+}
+
+#resetButton:disabled {
+    background: #f7fafc;
+    color: #a0aec0;
+    cursor: not-allowed;
+    border-color: #edf2f7;
+}
+
 #graph-wrapper {
     flex-grow: 1;
     position: relative;
