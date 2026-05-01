@@ -41,6 +41,7 @@ final class UIManager {
       document.querySelector('#mobile-overlay') as HTMLDivElement;
 
   late final _checkboxes = <String, HTMLInputElement>{};
+  late final HTMLButtonElement _resetButton;
 
   late final _filterConfigs = <_FilterConfig>[
     (
@@ -135,8 +136,18 @@ final class UIManager {
       }
     }
 
+    _resetButton = document.createElement('button') as HTMLButtonElement
+      ..id = 'resetButton'
+      ..textContent = 'Reset (r)'
+      ..disabled = true;
+
+    controlsContent.appendChild(_resetButton);
+
+    _resetButton.onClick.listen((_) => _resetFilters());
+
     _applyHashFilters();
     _updateNonDefaultDot();
+    _updateResetButtonState();
 
     document.body!.onWheel.listen((e) {
       if ((e.target as Element).closest('.hud-box') != null) {
@@ -158,6 +169,7 @@ final class UIManager {
         if (config.id == target.id) {
           config.onChanged(_checkboxes[config.id]!);
           _updateNonDefaultDot();
+          _updateResetButtonState();
           return;
         }
       }
@@ -199,6 +211,32 @@ final class UIManager {
     );
   }
 
+  void _resetFilters() {
+    var anyChanged = false;
+    for (final config in _filterConfigs) {
+      final checkbox = _checkboxes[config.id]!;
+      if (checkbox.checked) {
+        checkbox.checked = false;
+        if (config.id == 'zoomCheckbox') {
+          _app.updateZoom();
+        }
+        anyChanged = true;
+      }
+    }
+    if (anyChanged) {
+      _updateHash();
+      unawaited(_app.render());
+      _updateNonDefaultDot();
+      _updateResetButtonState();
+      showToast('Filters Reset');
+    }
+  }
+
+  void _updateResetButtonState() {
+    final anyChecked = _checkboxes.values.any((cb) => cb.checked);
+    _resetButton.disabled = !anyChecked;
+  }
+
   void _handleKeyDown(KeyboardEvent event) {
     if (event.ctrlKey || event.metaKey || event.altKey) {
       return;
@@ -216,6 +254,10 @@ final class UIManager {
     switch (key) {
       case 'c':
         _toggleControls();
+      case 'r':
+        if (!_resetButton.disabled) {
+          _resetFilters();
+        }
       default:
         if (_hotkeyRegex.hasMatch(event.key)) {
           showToast('❓ Unknown hot key: ${event.key}');
@@ -231,6 +273,7 @@ final class UIManager {
       showToast(
         checkbox.checked ? config.enabledMessage : config.disabledMessage,
       );
+      _updateResetButtonState();
     } else {
       showToast('⚠️ ${config.unavailableMessage}');
     }

@@ -16,11 +16,11 @@
   "lib/src/web/graph_renderer.dart": "9cb66e5d1d26dab3035b234f5608da63f19fc3f28ba03fefa82e140b02d7e27b",
   "lib/src/web/interop.dart": "4c03fd0f3ca5ee07633fd0dab1b048be7db708d8c2aae1620f4d19e1a2c30111",
   "lib/src/web/pubviz_app.dart": "7d389a992393ee2871d0f0c264aa6903c6de0810988d07eac2b1700f00e34911",
-  "lib/src/web/ui_manager.dart": "0ea3624ddb8fa657bfd8cbf573f5298f4783f69b98353ef3200df68c931ca909",
+  "lib/src/web/ui_manager.dart": "897af94bfb82d1f0dd5b1ec51be1e32f12e71d60411d72fff29439b2a927fe84",
   "pubspec.yaml": "1ae8be62d1297e2ff670a7f530e2b1505bb54ba331e938101eb9609b02ac0130",
   "web/favicon.ico": "39ab6b867a1c4c75019506267b3b4ce7cc60fb2ba66870e6485b4e31f6265a7c",
   "web/index.html": "563bb3c5234a3a25c8ca6662528b5e254995bb1aec7335cdfd471e4e6e7b9f9c",
-  "web/style.css": "a1864ef29d1c77eb663a59c5a8f665c7c77e720d8c1038c0924809dd68672672",
+  "web/style.css": "613327805b74692fcc15d8f0f38ebc254a0572a02ef1292be230805bdef417b0",
   "web/viz_worker.js": "559cd006e396419830c65608337084790b42456237b6f5c87ca3301cca1c1bca",
   "web/web_app.dart": "5f1aeba8e857bbf6913c88883fc42e8daaa3695a277fa05f00b948562d5af303"
 }
