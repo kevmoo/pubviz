@@ -1,0 +1,69 @@
+package:pubviz/pubviz.dart:
+  Dependency (class extends Object implements Comparable<Dependency>):
+    getDependencies (static method: Set<Dependency> Function(Pubspec, {bool includeDevDependencies}))
+    new (constructor: Dependency Function(String, VersionConstraint, bool, {bool? includesLatest}))
+    fromJson (constructor: Dependency Function(Map<String, dynamic>))
+    hashCode (getter: int)
+    includesLatest (getter: bool?)
+    isDevDependency (getter: bool)
+    name (getter: String)
+    versionConstraint (getter: VersionConstraint)
+    == (method: bool Function(Object))
+    compareTo (method: int Function(Dependency))
+    toJson (method: Map<String, dynamic> Function())
+    toString (method: String Function())
+  HasPackages (class extends Object, abstract, mixin):
+    new (constructor: HasPackages Function())
+    hasDevDependencies (getter: bool)
+    hasOutdated (getter: bool)
+    packages (getter: Map<String, VizPackage>)
+    root (getter: VizPackage)
+    rootPackageName (getter: String)
+  VizPackage (class extends Object implements Comparable<VizPackage>):
+    new (constructor: VizPackage Function(String, Version?, Set<Dependency>, Version?, {bool isPrimary, bool isPublishToNone, bool onlyDev}))
+    fromJson (constructor: VizPackage Function(Map<String, dynamic>))
+    dependencies (getter: Set<Dependency>)
+    hashCode (getter: int)
+    isPrimary (getter: bool)
+    isPublishToNone (getter: bool)
+    latestVersion (getter: Version?)
+    name (getter: String)
+    onlyDev (getter: bool)
+    version (getter: Version?)
+    == (method: bool Function(Object))
+    compareTo (method: int Function(VizPackage))
+    toJson (method: Map<String, dynamic> Function())
+    toString (method: String Function())
+  VizRoot (class extends Object):
+    assemble (static method: VizRoot Function(String, Map<String, VizPackage>, {bool flagOutdated, Iterable<String>? ignorePackages, bool isWorkspace}))
+    new (constructor: VizRoot Function(String, Map<String, VizPackage>, {bool isWorkspace}))
+    fromJson (constructor: VizRoot Function(Map<String, dynamic>))
+    isWorkspace (getter: bool)
+    packages (getter: Map<String, VizPackage>)
+    rootPackageName (getter: String)
+    filter (method: VizRoot Function({bool excludeDev, bool hideIsolatedWorkspacePackages, bool onlyOutdated, bool onlyWorkspace}))
+    toJson (method: Map<String, dynamic> Function())
+  ServiceVizRootExt (extension on Service):
+    vizRoot (method: Future<VizRoot> Function({bool directDependenciesOnly, bool flagOutdated, Iterable<String>? ignorePackages, bool includeWorkspace, bool productionDependenciesOnly}))
+  VizRootExt (extension on VizRoot):
+    toDot (method: String Function({Iterable<String> ignorePackages}))
+package:pubviz/src/service.dart:
+  Service (non-public)
+dart:async:
+  Future (referenced)
+dart:core:
+  Comparable (referenced)
+  Iterable (referenced)
+  Map (referenced)
+  Object (referenced)
+  Set (referenced)
+  String (referenced)
+  bool (referenced)
+  int (referenced)
+package:pub_semver/src/version.dart:
+  Version (referenced)
+package:pub_semver/src/version_constraint.dart:
+  VersionConstraint (referenced)
+package:pubspec_parse/src/pubspec.dart:
+  Pubspec (referenced)
+
