@@ -75,11 +75,11 @@ final class UIManager {
     ),
     (
       key: 'i',
-      isAvailable: () => _app.isWorkspace,
+      isAvailable: () => _app.hasIsolatedPackages,
       checkbox: _hideIsolatedCheckbox,
       enabledMessage: 'Hiding Isolated Packages',
       disabledMessage: 'Showing Isolated Packages',
-      unavailableMessage: 'Not a workspace (only one package)',
+      unavailableMessage: 'No isolated packages to filter',
     ),
   ];
 
@@ -108,6 +108,12 @@ final class UIManager {
       if (isolatedParent != null && isolatedParent.nodeType == 1) {
         (isolatedParent as HTMLElement).title =
             'Not a workspace (only one package).';
+      }
+    } else if (!_app.hasIsolatedPackages) {
+      _hideIsolatedCheckbox.disabled = true;
+      final isolatedParent = _hideIsolatedCheckbox.parentNode;
+      if (isolatedParent != null && isolatedParent.nodeType == 1) {
+        (isolatedParent as HTMLElement).title = 'No isolated packages found.';
       }
     }
     _applyHashFilters();

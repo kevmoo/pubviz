@@ -425,4 +425,30 @@ abstract mixin class HasPackages {
   late final hasDevDependencies = packages.values.any(
     (p) => p.dependencies.any((d) => d.isDevDependency),
   );
+
+  late final hasIsolatedPackages = () {
+    final seeds = <String>{rootPackageName};
+    for (final pkg in packages.values) {
+      if (!pkg.isPublishToNone) {
+        seeds.add(pkg.name);
+      }
+    }
+
+    final reachable = <String>{...seeds};
+    final queue = seeds.toList();
+
+    while (queue.isNotEmpty) {
+      final current = queue.removeLast();
+      final pkg = packages[current];
+      if (pkg == null) continue;
+
+      for (final dep in pkg.dependencies) {
+        if (reachable.add(dep.name)) {
+          queue.add(dep.name);
+        }
+      }
+    }
+
+    return packages.keys.any((name) => !reachable.contains(name));
+  }();
 }

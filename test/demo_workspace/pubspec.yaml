@@ -4,6 +4,7 @@ environment:
 workspace:
   - pkg_a
   - pkg_b
+  - pkg_c
 
 dev_dependencies:
   dart_flutter_team_lints: ^3.0.0

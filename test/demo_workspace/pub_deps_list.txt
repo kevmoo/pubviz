@@ -26,6 +26,11 @@ dev dependencies:
 
 outdated_pkg 1.0.0
 
+pkg_c 1.0.0
+
+dependencies:
+- args 2.0.0
+
 dart_flutter_team_lints 3.0.0
 
 transitive dependencies:

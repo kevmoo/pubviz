@@ -22,6 +22,8 @@ final class PubvizApp {
   bool get hasOutdated => originalVizRoot.hasOutdated;
   bool get hasDevDependencies => originalVizRoot.hasDevDependencies;
   bool get isWorkspace => originalVizRoot.isWorkspace;
+  bool get hasIsolatedPackages =>
+      isWorkspace && originalVizRoot.hasIsolatedPackages;
 
   PubvizApp(String vizDataJson) {
     final jsonString = vizDataJson.trim();
