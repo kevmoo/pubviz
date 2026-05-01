@@ -3,12 +3,11 @@ import 'dart:convert' show htmlEscape;
 import 'dart:js_interop';
 import 'dart:js_interop_unsafe';
 
-import 'package:web/web.dart' hide ClipboardItem;
+import 'package:web/web.dart';
 
 import '../dot.dart';
 import '../options.dart';
 import '../version.dart';
-import 'interop.dart' as interop;
 import 'pubviz_app.dart';
 
 enum _ExportFormat {
@@ -312,6 +311,14 @@ final class UIManager {
     _ExportFormat format, {
     required bool isCopy,
   }) async {
+    final hasClipboard = (window.navigator as JSObject)
+        .hasProperty('clipboard'.toJS)
+        .toDart;
+    if (isCopy && !hasClipboard) {
+      showToast('⚠️ Clipboard API not available in this context');
+      return;
+    }
+
     try {
       switch (format) {
         case _ExportFormat.dot:
@@ -337,8 +344,7 @@ final class UIManager {
             showToast('⚠️ No SVG graph found to export');
             return;
           }
-          final svgString = (svg as JSObject).getProperty('outerHTML'.toJS);
-          final svgText = (svgString as JSString).toDart;
+          final svgText = (svg.outerHTML as JSString).toDart;
           if (isCopy) {
             await window.navigator.clipboard.writeText(svgText).toDart;
             showToast('SVG Copied to Clipboard');
@@ -355,8 +361,7 @@ final class UIManager {
 
           showToast('Processing PNG...');
 
-          final svgString = (svg as JSObject).getProperty('outerHTML'.toJS);
-          final svgText = (svgString as JSString).toDart;
+          final svgText = (svg.outerHTML as JSString).toDart;
           final svgBlob = Blob(
             [svgText.toJS].toJS,
             BlobPropertyBag(type: 'image/svg+xml'),
@@ -391,25 +396,14 @@ final class UIManager {
                   if (blob != null) {
                     unawaited(() async {
                       try {
-                        final clipboardExt =
-                            window.navigator.clipboard as JSObject;
                         final items = JSObject()
                           ..setProperty('image/png'.toJS, blob);
 
-                        final clipboardItem = interop.ClipboardItem(items);
-
-                        if (clipboardExt.hasProperty('write'.toJS).toDart) {
-                          await (clipboardExt as interop.ClipboardExt)
-                              .write(
-                                <interop.ClipboardItem>[clipboardItem].toJS,
-                              )
-                              .toDart;
-                          showToast('PNG Copied to Clipboard');
-                        } else {
-                          showToast(
-                            '⚠️ Browser does not support clipboard write',
-                          );
-                        }
+                        final clipboardItem = ClipboardItem(items);
+                        await window.navigator.clipboard
+                            .write([clipboardItem].toJS)
+                            .toDart;
+                        showToast('PNG Copied to Clipboard');
                       } catch (e) {
                         showToast(
                           '⚠️ Browser blocked image clipboard write: $e',

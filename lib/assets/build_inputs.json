@@ -16,7 +16,7 @@
   "lib/src/web/graph_renderer.dart": "9cb66e5d1d26dab3035b234f5608da63f19fc3f28ba03fefa82e140b02d7e27b",
   "lib/src/web/interop.dart": "956a3bd123b70d4b711418e6fbefce2ea5b9317079399338877cd74cc61daa4f",
   "lib/src/web/pubviz_app.dart": "7d389a992393ee2871d0f0c264aa6903c6de0810988d07eac2b1700f00e34911",
-  "lib/src/web/ui_manager.dart": "897e4d7fb18b9880802a0ee01e41fdf39de5b6f4d99c0da1389880f3e58420b6",
+  "lib/src/web/ui_manager.dart": "1cdddb614add07aec85d866a11ac1873cce32a11c8cc9b161fef8528efb944f7",
   "pubspec.yaml": "8d465f78c6ead9cd3b5edf29e5840e3d301e40f04092b036510e194c46410c99",
   "web/favicon.ico": "39ab6b867a1c4c75019506267b3b4ce7cc60fb2ba66870e6485b4e31f6265a7c",
   "web/index.html": "307f049830f9e02d9243e7498a90c567b24300e4a026d25325814c2ba086cbe4",
