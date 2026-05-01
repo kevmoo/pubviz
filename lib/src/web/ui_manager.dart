@@ -11,6 +11,22 @@ import '../version.dart';
 import 'interop.dart' as interop;
 import 'pubviz_app.dart';
 
+enum _ExportFormat {
+  dot(label: 'DOT', extension: 'dot', contentType: 'text/plain'),
+  svg(label: 'SVG', extension: 'svg', contentType: 'image/svg+xml'),
+  png(label: 'PNG', extension: 'png', contentType: 'image/png');
+
+  final String label;
+  final String extension;
+  final String contentType;
+
+  const _ExportFormat({
+    required this.label,
+    required this.extension,
+    required this.contentType,
+  });
+}
+
 typedef _FilterConfig = ({
   String key,
   String id,
@@ -169,23 +185,22 @@ final class UIManager {
       ..textContent = 'Export';
     controlsContent.appendChild(exportHeader);
 
-    final formats = ['DOT', 'SVG', 'PNG'];
-    for (final format in formats) {
+    for (final format in _ExportFormat.values) {
       final row = document.createElement('div') as HTMLDivElement
         ..className = 'export-row';
 
       final label = document.createElement('span') as HTMLSpanElement
         ..className = 'export-label'
-        ..textContent = format;
+        ..textContent = format.label;
 
       final copyBtn = document.createElement('button') as HTMLButtonElement
         ..className = 'export-btn copy'
-        ..title = 'Copy $format to clipboard'
+        ..title = 'Copy ${format.label} to clipboard'
         ..innerHTML = '📋 <span>Copy</span>'.toJS;
 
       final saveBtn = document.createElement('button') as HTMLButtonElement
         ..className = 'export-btn save'
-        ..title = 'Download $format file'
+        ..title = 'Download ${format.label} file'
         ..innerHTML = '⬇️ <span>Save</span>'.toJS;
 
       row
@@ -293,10 +308,13 @@ final class UIManager {
         : 'All filters are already at their default states.';
   }
 
-  Future<void> _exportAction(String format, {required bool isCopy}) async {
+  Future<void> _exportAction(
+    _ExportFormat format, {
+    required bool isCopy,
+  }) async {
     try {
       switch (format) {
-        case 'DOT':
+        case _ExportFormat.dot:
           final dot = _app.originalVizRoot
               .filter(
                 excludeDev: hideDevDependencies,
@@ -312,7 +330,7 @@ final class UIManager {
           } else {
             _downloadBlob(dot, 'dependencies.dot', 'text/plain');
           }
-        case 'SVG':
+        case _ExportFormat.svg:
           final svg =
               document.querySelector('#graph-container svg') as SVGElement?;
           if (svg == null) {
@@ -327,7 +345,7 @@ final class UIManager {
           } else {
             _downloadBlob(svgText, 'dependencies.svg', 'image/svg+xml');
           }
-        case 'PNG':
+        case _ExportFormat.png:
           final svg =
               document.querySelector('#graph-container svg') as SVGElement?;
           if (svg == null) {
