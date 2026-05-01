@@ -344,7 +344,8 @@ final class UIManager {
             showToast('⚠️ No SVG graph found to export');
             return;
           }
-          final svgText = (svg.outerHTML as JSString).toDart;
+          var svgText = (svg.outerHTML as JSString).toDart;
+          svgText = _injectStyles(svgText);
           if (isCopy) {
             await window.navigator.clipboard.writeText(svgText).toDart;
             showToast('SVG Copied to Clipboard');
@@ -358,99 +359,111 @@ final class UIManager {
             showToast('⚠️ No graph found to export');
             return;
           }
-
-          showToast('Processing PNG...');
-
-          final svgText = (svg.outerHTML as JSString).toDart;
-          final svgBlob = Blob(
-            [svgText.toJS].toJS,
-            BlobPropertyBag(type: 'image/svg+xml'),
-          );
-          final url = URL.createObjectURL(svgBlob);
-
-          final img = (document.createElement('img') as HTMLImageElement)
-            ..src = url;
-
-          img.onload = (Event event) {
-            final canvas =
-                document.createElement('canvas') as HTMLCanvasElement;
-            final bbox = svg.getBoundingClientRect();
-            final width = bbox.width == 0 ? 1000 : bbox.width.toInt();
-            final height = bbox.height == 0 ? 1000 : bbox.height.toInt();
-
-            canvas
-              ..width = width * 2
-              ..height = height * 2;
-
-            canvas.getContext('2d') as CanvasRenderingContext2D
-              ..scale(2, 2)
-              ..fillStyle = 'white'.toJS
-              ..fillRect(0, 0, width, height)
-              ..drawImage(img, 0, 0, width, height);
-
-            URL.revokeObjectURL(url);
-
-            if (isCopy) {
-              canvas.toBlob(
-                (Blob? blob) {
-                  if (blob != null) {
-                    unawaited(() async {
-                      try {
-                        final items = JSObject()
-                          ..setProperty('image/png'.toJS, blob);
-
-                        final clipboardItem = ClipboardItem(items);
-                        await window.navigator.clipboard
-                            .write([clipboardItem].toJS)
-                            .toDart;
-                        showToast('PNG Copied to Clipboard');
-                      } catch (e) {
-                        showToast(
-                          '⚠️ Browser blocked image clipboard write: $e',
-                        );
-                      }
-                    }());
-                  }
-                }.toJS,
-                'image/png',
-              );
-            } else {
-              canvas.toBlob(
-                (Blob? blob) {
-                  if (blob != null) {
-                    final pngUrl = URL.createObjectURL(blob);
-                    _triggerDownload(pngUrl, 'dependencies.png');
-                    URL.revokeObjectURL(pngUrl);
-                    showToast('PNG Saved');
-                  }
-                }.toJS,
-                'image/png',
-              );
-            }
-          }.toJS;
-
-          img.onerror = (Event event) {
-            URL.revokeObjectURL(url);
-            showToast('⚠️ Failed to render PNG');
-          }.toJS;
+          _exportPng(svg, isCopy: isCopy);
       }
     } catch (e) {
       showToast('⚠️ Export failed: $e');
     }
   }
 
+  void _exportPng(SVGElement svg, {required bool isCopy}) {
+    showToast('Processing PNG...');
+
+    var svgText = (svg.outerHTML as JSString).toDart;
+    svgText = _injectStyles(svgText);
+
+    final svgBlob = Blob(
+      [svgText.toJS].toJS,
+      BlobPropertyBag(type: 'image/svg+xml'),
+    );
+    final url = URL.createObjectURL(svgBlob);
+
+    final img = document.createElement('img') as HTMLImageElement;
+    img
+      ..onload = (Event event) {
+        final canvas = document.createElement('canvas') as HTMLCanvasElement;
+        final bbox = svg.getBoundingClientRect();
+        final width = bbox.width == 0 ? 1000 : bbox.width.toInt();
+        final height = bbox.height == 0 ? 1000 : bbox.height.toInt();
+
+        canvas
+          ..width = width * 2
+          ..height = height * 2;
+
+        final ctx = canvas.getContext('2d') as CanvasRenderingContext2D?;
+        if (ctx == null) {
+          URL.revokeObjectURL(url);
+          showToast('⚠️ Failed to obtain Canvas 2D context');
+          return;
+        }
+
+        ctx
+          ..scale(2, 2)
+          ..fillStyle = 'white'.toJS
+          ..fillRect(0, 0, width, height)
+          ..drawImage(img, 0, 0, width, height);
+
+        Timer(Duration.zero, () => URL.revokeObjectURL(url));
+
+        if (isCopy) {
+          canvas.toBlob(
+            (Blob? blob) {
+              if (blob != null) {
+                unawaited(() async {
+                  try {
+                    final items = JSObject()
+                      ..setProperty('image/png'.toJS, blob);
+
+                    final clipboardItem = ClipboardItem(items);
+                    await window.navigator.clipboard
+                        .write([clipboardItem].toJS)
+                        .toDart;
+                    showToast('PNG Copied to Clipboard');
+                  } catch (e) {
+                    showToast('⚠️ Browser blocked image clipboard write: $e');
+                  }
+                }());
+              }
+            }.toJS,
+            'image/png',
+          );
+        } else {
+          canvas.toBlob(
+            (Blob? blob) {
+              if (blob != null) {
+                final pngUrl = URL.createObjectURL(blob);
+                _triggerDownload(pngUrl, 'dependencies.png');
+                Timer(Duration.zero, () => URL.revokeObjectURL(pngUrl));
+                showToast('PNG Saved');
+              }
+            }.toJS,
+            'image/png',
+          );
+        }
+      }.toJS
+      ..onerror = (Event event) {
+        Timer(Duration.zero, () => URL.revokeObjectURL(url));
+        showToast('⚠️ Failed to render PNG');
+      }.toJS
+      ..src = url;
+  }
+
+  // Industrially-standard way to trigger a download.
   void _triggerDownload(String url, String filename) {
-    document.createElement('a') as HTMLAnchorElement
+    final anchor = document.createElement('a') as HTMLAnchorElement
       ..href = url
-      ..download = filename
-      ..click();
+      ..download = filename;
+    document.body!.appendChild(anchor);
+    anchor
+      ..click()
+      ..remove();
   }
 
   void _downloadBlob(String content, String filename, String contentType) {
     final blob = Blob([content.toJS].toJS, BlobPropertyBag(type: contentType));
     final url = URL.createObjectURL(blob);
     _triggerDownload(url, filename);
-    URL.revokeObjectURL(url);
+    Timer(Duration.zero, () => URL.revokeObjectURL(url));
     showToast('$filename Saved');
   }
 
@@ -618,4 +631,49 @@ String _buildTable(Iterable<DepInfo> deps) {
     return '<tr><td>$nameCell</td><td>$constraintCell</td></tr>';
   }).join();
   return '<table class="deps-table"><thead><tr><th>Name</th><th>Constraint</th></tr></thead><tbody>$rows</tbody></table>';
+}
+
+String _injectStyles(String svgText) {
+  final index = svgText.indexOf('>');
+  if (index == -1) return svgText;
+
+  final cssBuffer = StringBuffer();
+  try {
+    final sheets = document.styleSheets;
+    for (var i = 0; i < sheets.length; i++) {
+      final sheet = sheets.item(i);
+      if (sheet == null) continue;
+
+      final sheetObj = sheet as JSObject;
+      final hrefObj = sheetObj.getProperty('href'.toJS);
+      final href = hrefObj.isUndefinedOrNull
+          ? ''
+          : (hrefObj as JSString).toDart;
+
+      if (href.contains('style.css') || href.isEmpty) {
+        final rulesObj = sheetObj.getProperty('cssRules'.toJS);
+        if (!rulesObj.isUndefinedOrNull) {
+          final rulesList = rulesObj as JSObject;
+          final length = rulesList.getProperty('length'.toJS) as JSNumber;
+          for (var j = 0; j < length.toDartInt; j++) {
+            final rule = rulesList.getProperty(j.toJS);
+            if (!rule.isUndefinedOrNull) {
+              final cssTextObj = (rule as JSObject).getProperty('cssText'.toJS);
+              if (!cssTextObj.isUndefinedOrNull) {
+                cssBuffer.writeln((cssTextObj as JSString).toDart);
+              }
+            }
+          }
+        }
+      }
+    }
+  } catch (_) {
+    // Graceful fallback if stylesheet access is blocked
+  }
+
+  final cssText = cssBuffer.isNotEmpty
+      ? cssBuffer.toString()
+      : 'text { font-family: sans-serif; }';
+
+  return '${svgText.substring(0, index + 1)}<style>$cssText</style>${svgText.substring(index + 1)}';
 }
