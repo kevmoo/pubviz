@@ -383,8 +383,8 @@ final class UIManager {
       ..onload = (Event event) {
         final canvas = document.createElement('canvas') as HTMLCanvasElement;
         final bbox = svg.getBoundingClientRect();
-        final width = bbox.width == 0 ? 1000 : bbox.width.toInt();
-        final height = bbox.height == 0 ? 1000 : bbox.height.toInt();
+        final width = bbox.width == 0 ? 1000 : bbox.width.ceil();
+        final height = bbox.height == 0 ? 1000 : bbox.height.ceil();
 
         canvas
           ..width = width * 2
@@ -644,31 +644,23 @@ String _injectStyles(String svgText) {
       final sheet = sheets.item(i);
       if (sheet == null) continue;
 
-      final sheetObj = sheet as JSObject;
-      final hrefObj = sheetObj.getProperty('href'.toJS);
-      final href = hrefObj.isUndefinedOrNull
-          ? ''
-          : (hrefObj as JSString).toDart;
-
+      final href = sheet.href ?? '';
       if (href.contains('style.css') || href.isEmpty) {
-        final rulesObj = sheetObj.getProperty('cssRules'.toJS);
-        if (!rulesObj.isUndefinedOrNull) {
-          final rulesList = rulesObj as JSObject;
-          final length = rulesList.getProperty('length'.toJS) as JSNumber;
-          for (var j = 0; j < length.toDartInt; j++) {
-            final rule = rulesList.getProperty(j.toJS);
-            if (!rule.isUndefinedOrNull) {
-              final cssTextObj = (rule as JSObject).getProperty('cssText'.toJS);
-              if (!cssTextObj.isUndefinedOrNull) {
-                cssBuffer.writeln((cssTextObj as JSString).toDart);
-              }
+        try {
+          final rules = sheet.cssRules;
+          for (var j = 0; j < rules.length; j++) {
+            final rule = rules.item(j);
+            if (rule != null) {
+              cssBuffer.writeln(rule.cssText);
             }
           }
+        } catch (_) {
+          // CORS block guard
         }
       }
     }
   } catch (_) {
-    // Graceful fallback if stylesheet access is blocked
+    // Graceful fallback
   }
 
   final cssText = cssBuffer.isNotEmpty
