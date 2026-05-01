@@ -19,7 +19,8 @@ typedef _FilterConfig = ({
   String enabledMessage,
   String disabledMessage,
   String unavailableMessage,
-  String Function() tooltip,
+  String Function() availableTooltip,
+  String Function() unavailableTooltip,
 });
 
 final _hotkeyRegex = RegExp(r'^[a-zA-Z]$');
@@ -54,7 +55,9 @@ final class UIManager {
       enabledMessage: 'Zoom Enabled',
       disabledMessage: 'Zoom Disabled',
       unavailableMessage: '',
-      tooltip: () => '',
+      availableTooltip: () =>
+          'Toggle pan and zoom capabilities across the graph.',
+      unavailableTooltip: () => '',
     ),
     (
       key: 'd',
@@ -66,7 +69,9 @@ final class UIManager {
       enabledMessage: 'Hiding Dev Dependencies',
       disabledMessage: 'Showing Dev Dependencies',
       unavailableMessage: 'No Dev Dependencies to Filter',
-      tooltip: () => 'No dev dependencies found.',
+      availableTooltip: () =>
+          'Hide all packages that are only utilized during development.',
+      unavailableTooltip: () => 'No dev dependencies found.',
     ),
     (
       key: 'w',
@@ -78,7 +83,10 @@ final class UIManager {
       enabledMessage: 'Showing Only Workspace',
       disabledMessage: 'Showing All Packages',
       unavailableMessage: 'Not a workspace (only one package)',
-      tooltip: () => 'Not a workspace (only one package).',
+      availableTooltip: () =>
+          'Filter the view to exclusively show packages within the current '
+          'workspace.',
+      unavailableTooltip: () => 'Not a workspace (only one package).',
     ),
     (
       key: 'i',
@@ -90,7 +98,10 @@ final class UIManager {
       enabledMessage: 'Hiding Isolated Packages',
       disabledMessage: 'Showing Isolated Packages',
       unavailableMessage: 'No isolated packages to filter',
-      tooltip: () => !_app.isWorkspace
+      availableTooltip: () =>
+          'Hide workspace packages that aren\'t reachable from published '
+          'members.',
+      unavailableTooltip: () => !_app.isWorkspace
           ? 'Not a workspace (only one package).'
           : 'No isolated packages found.',
     ),
@@ -104,7 +115,9 @@ final class UIManager {
       enabledMessage: 'Showing Only Outdated',
       disabledMessage: 'Showing All Packages',
       unavailableMessage: 'No Outdated Packages to Filter',
-      tooltip: () => 'No outdated packages found.',
+      availableTooltip: () =>
+          'Filter the view to exclusively highlight outdated packages.',
+      unavailableTooltip: () => 'No outdated packages found.',
     ),
   ];
 
@@ -130,8 +143,12 @@ final class UIManager {
 
       if (!config.isAvailable()) {
         checkbox.disabled = true;
-        if (config.tooltip().isNotEmpty) {
-          label.title = config.tooltip();
+        if (config.unavailableTooltip().isNotEmpty) {
+          label.title = config.unavailableTooltip();
+        }
+      } else {
+        if (config.availableTooltip().isNotEmpty) {
+          label.title = config.availableTooltip();
         }
       }
     }
@@ -235,6 +252,9 @@ final class UIManager {
   void _updateResetButtonState() {
     final anyChecked = _checkboxes.values.any((cb) => cb.checked);
     _resetButton.disabled = !anyChecked;
+    _resetButton.title = anyChecked
+        ? 'Restore all filters to their default unchecked states.'
+        : 'All filters are already at their default states.';
   }
 
   void _handleKeyDown(KeyboardEvent event) {
