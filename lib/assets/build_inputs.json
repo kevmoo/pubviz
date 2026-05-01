@@ -14,7 +14,7 @@
   "lib/src/viz_root.dart": "41005c367c7a93410fd0e02b4a615e83edebcbee2d4043c0cb5d0394b22f5140",
   "lib/src/viz_root.g.dart": "a0d1f70a6118015f27d34f8e6659e69603fa70a0f143da0d9a5bc912ec2bb6f3",
   "lib/src/web/graph_renderer.dart": "9cb66e5d1d26dab3035b234f5608da63f19fc3f28ba03fefa82e140b02d7e27b",
-  "lib/src/web/interop.dart": "956a3bd123b70d4b711418e6fbefce2ea5b9317079399338877cd74cc61daa4f",
+  "lib/src/web/interop.dart": "4c03fd0f3ca5ee07633fd0dab1b048be7db708d8c2aae1620f4d19e1a2c30111",
   "lib/src/web/pubviz_app.dart": "7d389a992393ee2871d0f0c264aa6903c6de0810988d07eac2b1700f00e34911",
   "lib/src/web/ui_manager.dart": "1cdddb614add07aec85d866a11ac1873cce32a11c8cc9b161fef8528efb944f7",
   "pubspec.yaml": "8d465f78c6ead9cd3b5edf29e5840e3d301e40f04092b036510e194c46410c99",
