@@ -1,3 +1,9 @@
+## 6.2.0-wip
+
+- Added native Mermaid diagram support:
+  - Added the `print-mermaid` action (`-a print-mermaid`) to print the dependency graph as a Mermaid flowchart.
+  - Added Mermaid export options ("Copy Mermaid" and "Save Mermaid") to the web UI.
+
 ## 6.1.0
 
 - Added `--filter` option to CLI (that's also reflected in the web UI).
