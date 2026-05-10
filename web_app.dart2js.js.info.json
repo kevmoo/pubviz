@@ -3,12 +3,12 @@
   "dump_minor_version": 1,
   "program": {
     "entrypoint": "function/org-dartlang-app:///web/web_app.dart::main",
-    "size": 146340,
+    "size": 148749,
     "ramUsage": "N/A MB",
-    "dart2jsVersion": "3.13.0-84.0.dev",
-    "compilationMoment": "2026-04-30 22:25:22.159469",
-    "compilationDuration": 1010666,
-    "toJsonDuration": 3000,
+    "dart2jsVersion": "3.13.0-103.1.beta",
+    "compilationMoment": "2026-05-09 18:05:22.129889",
+    "compilationDuration": 973400,
+    "toJsonDuration": 5000,
     "dumpInfoDuration": 0,
     "noSuchMethodEnabled": false,
     "isRuntimeTypeUsed": true,
@@ -836,6 +836,16 @@
         ],
         "canonicalUri": "package:pubviz/src/dot.dart"
       },
+      "package:pubviz/src/mermaid.dart::": {
+        "id": "library/package:pubviz/src/mermaid.dart::",
+        "kind": "library",
+        "name": "<unnamed>",
+        "size": 1877,
+        "children": [
+          "function/package:pubviz/src/mermaid.dart::VizRootMermaidExt|toMermaid"
+        ],
+        "canonicalUri": "package:pubviz/src/mermaid.dart"
+      },
       "package:pubviz/src/viz_package.dart::": {
         "id": "library/package:pubviz/src/viz_package.dart::",
         "kind": "library",
@@ -895,7 +905,7 @@
         "id": "library/package:pubviz/src/web/ui_manager.dart::",
         "kind": "library",
         "name": "<unnamed>",
-        "size": 14627,
+        "size": 15103,
         "children": [
           "class/package:pubviz/src/web/ui_manager.dart::UIManager",
           "class/package:pubviz/src/web/ui_manager.dart::_ExportFormat",
@@ -1033,6 +1043,7 @@
           "function/dart:_interceptors::JSArray.markFixedList",
           "function/dart:_interceptors::JSArray.markUnmodifiableList",
           "function/dart:_interceptors::JSArray.sort",
+          "function/dart:_interceptors::JSArray.toSet",
           "function/dart:_interceptors::JSArray.toString",
           "function/dart:_interceptors::JSArray.where",
           "function/dart:_interceptors::JSArray.whereType"
@@ -5633,7 +5644,7 @@
         "id": "class/package:pubviz/src/web/ui_manager.dart::UIManager",
         "kind": "class",
         "name": "UIManager",
-        "size": 12918,
+        "size": 13394,
         "outputUnit": "outputUnit/main",
         "parent": "library/package:pubviz/src/web/ui_manager.dart::",
         "modifiers": {
@@ -6858,7 +6869,7 @@
         "inferredReturnType": "[exact=JSBool|powerset={I}{O}{N}]",
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes nothing)",
-        "inlinedCount": 33,
+        "inlinedCount": 36,
         "code": "",
         "type": "bool Function()",
         "functionKind": 2
@@ -6881,7 +6892,7 @@
         "inferredReturnType": "[exact=JSBool|powerset={I}{O}{N}]",
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes nothing)",
-        "inlinedCount": 23,
+        "inlinedCount": 26,
         "code": "",
         "type": "bool Function()",
         "functionKind": 2
@@ -6928,7 +6939,7 @@
         "parameters": [
           {
             "name": "separator",
-            "type": "Value([exact=JSString|powerset={I}{O}{I}], value: \", \", powerset: {I}{O}{I})",
+            "type": "[exact=JSString|powerset={I}{O}{I}]",
             "declaredType": "String"
           }
         ],
@@ -7037,7 +7048,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads nothing; writes anything)",
-        "inlinedCount": 18,
+        "inlinedCount": 19,
         "code": "",
         "type": "List<#A> Function<#A extends Object?>(List<#A>)",
         "functionKind": 0
@@ -7100,6 +7111,29 @@
         "type": "void Function([int Function(JSArray.E,JSArray.E)?])",
         "functionKind": 2
       },
+      "dart:_interceptors::JSArray.toSet": {
+        "id": "function/dart:_interceptors::JSArray.toSet",
+        "kind": "function",
+        "name": "toSet",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:_interceptors::JSArray",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "Set<JSArray.E>",
+        "inferredReturnType": "[subclass=_LinkedHashSet|powerset={N}{O}{N}]",
+        "parameters": [],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 1,
+        "code": "",
+        "type": "Set<JSArray.E> Function()",
+        "functionKind": 2
+      },
       "dart:_interceptors::JSArray.toString": {
         "id": "function/dart:_interceptors::JSArray.toString",
         "kind": "function",
@@ -7147,7 +7181,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 1,
+        "inlinedCount": 2,
         "code": "",
         "type": "Iterable<JSArray.E> Function(bool Function(JSArray.E))",
         "functionKind": 2
@@ -11128,7 +11162,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 15,
+        "inlinedCount": 18,
         "code": "",
         "type": "dynamic Function(Iterable<WhereIterable.E>,bool Function(WhereIterable.E))",
         "functionKind": 3
@@ -11151,7 +11185,7 @@
         "inferredReturnType": "[exact=WhereIterator|powerset={N}{O}{N}]",
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 3,
+        "inlinedCount": 6,
         "code": "gkz(a){return new A.SO(J.I(this.a),this.b)}",
         "type": "Iterator<WhereIterable.E> Function()",
         "functionKind": 2
@@ -11214,7 +11248,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 4,
+        "inlinedCount": 7,
         "code": "",
         "type": "dynamic Function(Iterator<WhereIterator.E>,bool Function(WhereIterator.E))",
         "functionKind": 3
@@ -11237,7 +11271,7 @@
         "inferredReturnType": "[null|subclass=Object|powerset={null}{IN}{GFUO}{IMN}]",
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 3,
+        "inlinedCount": 6,
         "code": "gl(){return this.a.gl()}",
         "type": "WhereIterator.E Function()",
         "functionKind": 2
@@ -11583,7 +11617,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads nothing; writes anything)",
-        "inlinedCount": 16,
+        "inlinedCount": 17,
         "code": "",
         "type": "List<#A> Function<#A extends Object?>(List<#A>)",
         "functionKind": 0
@@ -14510,7 +14544,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 14,
+        "inlinedCount": 15,
         "code": "",
         "type": "String Function(String)",
         "functionKind": 0
@@ -14742,7 +14776,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 57,
+        "inlinedCount": 66,
         "code": "",
         "type": "String Function(String,String)",
         "functionKind": 0
@@ -17609,7 +17643,7 @@
         "inferredReturnType": "[subclass=JavaScriptObject|powerset={I}{GFUO}{IMN}]",
         "parameters": [],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 59,
+        "inlinedCount": 60,
         "code": "",
         "type": "Object Function()",
         "functionKind": 0
@@ -32661,7 +32695,7 @@
         "inferredReturnType": "Union([exact=LinkedHashMapValuesIterable|powerset={N}{O}{N}], [exact=_SplayTreeValueIterable|powerset={N}{O}{N}], powerset: {N}{O}{N})",
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 6,
+        "inlinedCount": 8,
         "code": "gUQ(){return this.a.gUQ()}",
         "type": "Iterable<MapView.V> Function()",
         "functionKind": 2
@@ -32835,7 +32869,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 6,
+        "inlinedCount": 7,
         "code": "",
         "type": "List<SetBase.E> Function({bool growable})",
         "functionKind": 2
@@ -36749,7 +36783,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 8,
+        "inlinedCount": 10,
         "code": "",
         "type": "Iterable<Iterable.E> Function(bool Function(Iterable.E))",
         "functionKind": 2
@@ -36778,7 +36812,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 15,
+        "inlinedCount": 16,
         "code": "",
         "type": "List<#A> Function<#A extends Object?>(Iterable<#A>)",
         "functionKind": 3
@@ -36943,7 +36977,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 15,
+        "inlinedCount": 16,
         "code": "",
         "type": "List<#A> Function<#A extends Object?>(Iterable<#A>,{bool growable})",
         "functionKind": 3
@@ -37846,7 +37880,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads nothing; writes anything)",
-        "inlinedCount": 13,
+        "inlinedCount": 14,
         "code": "",
         "type": "dynamic Function([Object])",
         "functionKind": 3
@@ -37948,7 +37982,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads field; writes field)",
-        "inlinedCount": 53,
+        "inlinedCount": 62,
         "code": "",
         "type": "void Function(String)",
         "functionKind": 2
@@ -38040,7 +38074,7 @@
         "inferredReturnType": "[exact=JSString|powerset={I}{O}{I}]",
         "parameters": [],
         "sideEffects": "SideEffects(reads field; writes nothing)",
-        "inlinedCount": 13,
+        "inlinedCount": 14,
         "code": "\"[\"(a){var s=this.a\nreturn s.charCodeAt(0)==0?s:s}",
         "type": "String Function()",
         "functionKind": 2
@@ -38132,7 +38166,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads field; writes anything)",
-        "inlinedCount": 8,
+        "inlinedCount": 17,
         "code": "",
         "type": "void Function([Object?])",
         "functionKind": 2
@@ -38668,7 +38702,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 4,
+        "inlinedCount": 5,
         "code": "",
         "type": "Future<#A> Function<#A extends Object?>(JSObject)",
         "functionKind": 0
@@ -39180,7 +39214,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 95,
+        "inlinedCount": 96,
         "code": "",
         "type": "#A Function<#A extends Object?>(Object,Object,Object?)",
         "functionKind": 0
@@ -39502,7 +39536,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads anything; writes nothing)",
-        "inlinedCount": 159,
+        "inlinedCount": 166,
         "code": "",
         "type": "#A Function<#A extends Object?>(Object,Object)",
         "functionKind": 0
@@ -39995,7 +40029,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 1,
+        "inlinedCount": 2,
         "code": "",
         "type": "List<_DelegatingIterableBase.E> Function({bool growable})",
         "functionKind": 2
@@ -42279,6 +42313,126 @@
         "type": "bool Function(Dependency)",
         "functionKind": 2
       },
+      "package:pubviz/src/mermaid.dart::VizRootMermaidExt|toMermaid": {
+        "id": "function/package:pubviz/src/mermaid.dart::VizRootMermaidExt|toMermaid",
+        "kind": "function",
+        "name": "VizRootMermaidExt|toMermaid",
+        "size": 1877,
+        "outputUnit": "outputUnit/main",
+        "parent": "library/package:pubviz/src/mermaid.dart::",
+        "children": [
+          "closure/package:pubviz/src/mermaid.dart::VizRootMermaidExt|toMermaid.VizRootMermaidExt_toMermaid_closure",
+          "closure/package:pubviz/src/mermaid.dart::VizRootMermaidExt|toMermaid.VizRootMermaidExt_toMermaid_closure%0",
+          "closure/package:pubviz/src/mermaid.dart::VizRootMermaidExt|toMermaid.VizRootMermaidExt_toMermaid_closure%1"
+        ],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "String",
+        "inferredReturnType": "[exact=JSString|powerset={I}{O}{I}]",
+        "parameters": [
+          {
+            "name": "#this",
+            "type": "[exact=VizRoot|powerset={N}{O}{N}]",
+            "declaredType": "VizRoot"
+          }
+        ],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 0,
+        "code": "DE(a5){var s,r,q,p,o,n,m,l,k,j,i,h,g,f,e,d,c,b,a,a0,a1,a2,a3=A.tM(B.xD,t.N),a4=new A.v(\"\")\na4.a=\"flowchart TD\\n\"\na4.a=\"flowchart TD\\n  classDef primary fill:#e3f2fd,stroke:#0175C2,stroke-width:2px;\\n\"\na4.a=\"flowchart TD\\n  classDef primary fill:#e3f2fd,stroke:#0175C2,stroke-width:2px;\\n  classDef outdated stroke:#e53935,stroke-width:2px;\\n\"\ns=a4.a=\"flowchart TD\\n  classDef primary fill:#e3f2fd,stroke:#0175C2,stroke-width:2px;\\n  classDef outdated stroke:#e53935,stroke-width:2px;\\n  classDef publishToNone stroke-dasharray: 5 5;\\n\"\nr=t.s\nq=A.QI([],r)\np=A.QI([],r)\no=A.QI([],r)\nfor(r=a5.b.a,n=r.gUQ(),n=n.gkz(n),m=new A.SO(n,new A.N0(a3)),l=a5.c;m.G();){k=n.gl()\nj=a5.gY()\ni=k.a\nh=j.a===i\ng=l&&h?\"\\u2699\\ufe0f \"+i:i\nj=k.b\nf=j!=null\nif(f)g=g+\"<br/>\"+j[\"[\"](0)\ne=!1\nif(!h)if(f){f=k.f\nj=f!=null&&f.iM(0,j)>0}else j=e\nelse j=e\nif(j){g=g+\"<br/>(latest: \"+A.Ej(k.f)+\")\"\np.push(i)}if(k.d)q.push(i)\nif(k.r)o.push(i)\nk=k.e\nd=k?\"(\":\"[\"\nc=k?\")\":\"]\"\ns+=\"  \"+i+d+'\"'+g+'\"'+c+\"\\n\"\na4.a=s}for(s=r.gUQ(),s=s.gkz(s),r=new A.SO(s,new A.Bh(a3));r.G();){n=s.gl()\nm=a5.gY()\nl=n.a\nk=n.c.a\nk=A.ev(k,A.Lh(k).c)\nk.$flags=1\nb=k\nB.Nm.Jd(b)\nfor(k=B.Nm.gkz(b),j=new A.SO(k,new A.ky(a3)),m=m.a!==l,n=n.d,l=\"  \"+l+\" \";j.G();){f=k.gl()\ne=f.c\nif(!e||!m||n){a=f.b\na0=!a.gBv()\na1=a0?' \"'+a[\"[\"](0)+'\"':\"\"\nif(e)a2=a0?'-. \"'+a[\"[\"](0)+'\" .->':\"-.->\"\nelse a2=a0?\"--\"+a1+\"-->\":\"-->\"\nf=l+a2+\" \"+f.a+\"\\n\"\na4.a+=f}}}if(q.length!==0){s=\"  class \"+B.Nm.zV(q,\",\")+\" primary;\\n\"\na4.a+=s}if(p.length!==0){s=\"  class \"+B.Nm.zV(p,\",\")+\" outdated;\\n\"\na4.a+=s}if(o.length!==0){s=\"  class \"+B.Nm.zV(o,\",\")+\" publishToNone;\\n\"\na4.a+=s}s=a4.a\nreturn s.charCodeAt(0)==0?s:s}",
+        "type": "String Function(VizRoot,{Iterable<String> ignorePackages})",
+        "functionKind": 0
+      },
+      "package:pubviz/src/mermaid.dart::VizRootMermaidExt|toMermaid.VizRootMermaidExt_toMermaid_closure.call": {
+        "id": "function/package:pubviz/src/mermaid.dart::VizRootMermaidExt|toMermaid.VizRootMermaidExt_toMermaid_closure.call",
+        "kind": "function",
+        "name": "call",
+        "size": 30,
+        "outputUnit": "outputUnit/main",
+        "parent": "closure/package:pubviz/src/mermaid.dart::VizRootMermaidExt|toMermaid.VizRootMermaidExt_toMermaid_closure",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "bool",
+        "inferredReturnType": "[exact=JSBool|powerset={I}{O}{N}]",
+        "parameters": [
+          {
+            "name": "v",
+            "type": "[exact=VizPackage|powerset={N}{O}{N}]",
+            "declaredType": "VizPackage"
+          }
+        ],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 0,
+        "code": "$1(a){return!this.a.tg(0,a.a)}",
+        "type": "bool Function(VizPackage)",
+        "functionKind": 2
+      },
+      "package:pubviz/src/mermaid.dart::VizRootMermaidExt|toMermaid.VizRootMermaidExt_toMermaid_closure.call%0": {
+        "id": "function/package:pubviz/src/mermaid.dart::VizRootMermaidExt|toMermaid.VizRootMermaidExt_toMermaid_closure.call%0",
+        "kind": "function",
+        "name": "call",
+        "size": 30,
+        "outputUnit": "outputUnit/main",
+        "parent": "closure/package:pubviz/src/mermaid.dart::VizRootMermaidExt|toMermaid.VizRootMermaidExt_toMermaid_closure%0",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "bool",
+        "inferredReturnType": "[exact=JSBool|powerset={I}{O}{N}]",
+        "parameters": [
+          {
+            "name": "v",
+            "type": "[exact=VizPackage|powerset={N}{O}{N}]",
+            "declaredType": "VizPackage"
+          }
+        ],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 0,
+        "code": "$1(a){return!this.a.tg(0,a.a)}",
+        "type": "bool Function(VizPackage)",
+        "functionKind": 2
+      },
+      "package:pubviz/src/mermaid.dart::VizRootMermaidExt|toMermaid.VizRootMermaidExt_toMermaid_closure.call%1": {
+        "id": "function/package:pubviz/src/mermaid.dart::VizRootMermaidExt|toMermaid.VizRootMermaidExt_toMermaid_closure.call%1",
+        "kind": "function",
+        "name": "call",
+        "size": 30,
+        "outputUnit": "outputUnit/main",
+        "parent": "closure/package:pubviz/src/mermaid.dart::VizRootMermaidExt|toMermaid.VizRootMermaidExt_toMermaid_closure%1",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "bool",
+        "inferredReturnType": "[exact=JSBool|powerset={I}{O}{N}]",
+        "parameters": [
+          {
+            "name": "d",
+            "type": "[exact=Dependency|powerset={N}{O}{N}]",
+            "declaredType": "Dependency"
+          }
+        ],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 0,
+        "code": "$1(a){return!this.a.tg(0,a.a)}",
+        "type": "bool Function(Dependency)",
+        "functionKind": 2
+      },
       "package:pubviz/src/viz_package.dart::VizPackage.==": {
         "id": "function/package:pubviz/src/viz_package.dart::VizPackage.==",
         "kind": "function",
@@ -44492,7 +44646,7 @@
         "inferredReturnType": "[exact=VizRoot|powerset={N}{O}{N}]",
         "parameters": [],
         "sideEffects": "SideEffects(reads field; writes nothing)",
-        "inlinedCount": 10,
+        "inlinedCount": 11,
         "code": "",
         "type": "VizRoot Function()",
         "functionKind": 2
@@ -46125,7 +46279,7 @@
         "inferredReturnType": "[subtype=bool|powerset={IN}{O}{N}]",
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 2,
+        "inlinedCount": 3,
         "code": "",
         "type": "bool Function()",
         "functionKind": 2
@@ -46148,7 +46302,7 @@
         "inferredReturnType": "[subtype=bool|powerset={IN}{O}{N}]",
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 2,
+        "inlinedCount": 3,
         "code": "",
         "type": "bool Function()",
         "functionKind": 2
@@ -46171,7 +46325,7 @@
         "inferredReturnType": "[subtype=bool|powerset={IN}{O}{N}]",
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 2,
+        "inlinedCount": 3,
         "code": "",
         "type": "bool Function()",
         "functionKind": 2
@@ -46387,7 +46541,7 @@
         "inferredReturnType": "[subtype=bool|powerset={IN}{O}{N}]",
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 2,
+        "inlinedCount": 3,
         "code": "",
         "type": "bool Function()",
         "functionKind": 2
@@ -51671,6 +51825,14 @@
         "outputUnit": "outputUnit/main",
         "code": "B.BV=new A.W9()"
       },
+      "B.Bc=new A.tT(\"PNG\",3,\"png\")": {
+        "id": "constant/B.Bc=new A.tT(\"PNG\",3,\"png\")",
+        "kind": "constant",
+        "name": "",
+        "size": 28,
+        "outputUnit": "outputUnit/main",
+        "code": "B.Bc=new A.tT(\"PNG\",3,\"png\")"
+      },
       "B.CD=J.qI.prototype": {
         "id": "constant/B.CD=J.qI.prototype",
         "kind": "constant",
@@ -51694,14 +51856,6 @@
         "size": 15,
         "outputUnit": "outputUnit/main",
         "code": "B.Ct=new A.by()"
-      },
-      "B.Cx=new A.tT(\"PNG\",2,\"png\")": {
-        "id": "constant/B.Cx=new A.tT(\"PNG\",2,\"png\")",
-        "kind": "constant",
-        "name": "",
-        "size": 28,
-        "outputUnit": "outputUnit/main",
-        "code": "B.Cx=new A.tT(\"PNG\",2,\"png\")"
       },
       "B.DG=J.c5.prototype": {
         "id": "constant/B.DG=J.c5.prototype",
@@ -51735,13 +51889,13 @@
         "outputUnit": "outputUnit/main",
         "code": "B.GO=new A.tT(\"DOT\",0,\"dot\")"
       },
-      "B.JG=new A.tT(\"SVG\",1,\"svg\")": {
-        "id": "constant/B.JG=new A.tT(\"SVG\",1,\"svg\")",
+      "B.Hb=new A.tT(\"SVG\",2,\"svg\")": {
+        "id": "constant/B.Hb=new A.tT(\"SVG\",2,\"svg\")",
         "kind": "constant",
         "name": "",
         "size": 28,
         "outputUnit": "outputUnit/main",
-        "code": "B.JG=new A.tT(\"SVG\",1,\"svg\")"
+        "code": "B.Hb=new A.tT(\"SVG\",2,\"svg\")"
       },
       "B.KU=function(hooks) {\n  if (typeof dartExperimentalFixupGetTag != \"function\") return hooks;\n  hooks.getTag = dartExperimentalFixupGetTag(hooks.getTag);\n}": {
         "id": "constant/B.KU=function(hooks) {\n  if (typeof dartExperimentalFixupGetTag != \"function\") return hooks;\n  hooks.getTag = dartExperimentalFixupGetTag(hooks.getTag);\n}",
@@ -51758,14 +51912,6 @@
         "size": 15,
         "outputUnit": "outputUnit/main",
         "code": "B.Km=new A.wL()"
-      },
-      "B.L3=s([B.GO,B.JG,B.Cx],A.q7(\"jd<tT>\"))": {
-        "id": "constant/B.L3=s([B.GO,B.JG,B.Cx],A.q7(\"jd<tT>\"))",
-        "kind": "constant",
-        "name": "",
-        "size": 39,
-        "outputUnit": "outputUnit/main",
-        "code": "B.L3=s([B.GO,B.JG,B.Cx],A.q7(\"jd<tT>\"))"
       },
       "B.LV=A.xq(\"Wy\")": {
         "id": "constant/B.LV=A.xq(\"Wy\")",
@@ -51895,6 +52041,14 @@
         "outputUnit": "outputUnit/main",
         "code": "B.Vr=A.xq(\"oI\")"
       },
+      "B.X8=new A.tT(\"Mermaid\",1,\"mermaid\")": {
+        "id": "constant/B.X8=new A.tT(\"Mermaid\",1,\"mermaid\")",
+        "kind": "constant",
+        "name": "",
+        "size": 36,
+        "outputUnit": "outputUnit/main",
+        "code": "B.X8=new A.tT(\"Mermaid\",1,\"mermaid\")"
+      },
       "B.Yq=function() {\n  var toStringFunction = Object.prototype.toString;\n  function getTag(o) {\n    var s = toStringFunction.call(o);\n    return s.substring(8, s.length - 1);\n  }\n  function getUnknownTag(object, tag) {\n    if (/^HTML[A-Z].*Element$/.test(tag)) {\n      var name = toStringFunction.call(object);\n      if (name == \"[object Object]\") return null;\n      return \"HTMLElement\";\n    }\n  }\n  function getUnknownTagGenericBrowser(object, tag) {\n    if (object instanceof HTMLElement) return \"HTMLElement\";\n    return getUnknownTag(object, tag);\n  }\n  function prototypeForTag(tag) {\n    if (typeof window == \"undefined\") return null;\n    if (typeof window[tag] == \"undefined\") return null;\n    var constructor = window[tag];\n    if (typeof constructor != \"function\") return null;\n    return constructor.prototype;\n  }\n  function discriminator(tag) { return null; }\n  var isBrowser = typeof HTMLElement == \"function\";\n  return {\n    getTag: getTag,\n    getUnknownTag: isBrowser ? getUnknownTagGenericBrowser : getUnknownTag,\n    prototypeForTag: prototypeForTag,\n    discriminator: discriminator };\n}": {
         "id": "constant/B.Yq=function() {\n  var toStringFunction = Object.prototype.toString;\n  function getTag(o) {\n    var s = toStringFunction.call(o);\n    return s.substring(8, s.length - 1);\n  }\n  function getUnknownTag(object, tag) {\n    if (/^HTML[A-Z].*Element$/.test(tag)) {\n      var name = toStringFunction.call(object);\n      if (name == \"[object Object]\") return null;\n      return \"HTMLElement\";\n    }\n  }\n  function getUnknownTagGenericBrowser(object, tag) {\n    if (object instanceof HTMLElement) return \"HTMLElement\";\n    return getUnknownTag(object, tag);\n  }\n  function prototypeForTag(tag) {\n    if (typeof window == \"undefined\") return null;\n    if (typeof window[tag] == \"undefined\") return null;\n    var constructor = window[tag];\n    if (typeof constructor != \"function\") return null;\n    return constructor.prototype;\n  }\n  function discriminator(tag) { return null; }\n  var isBrowser = typeof HTMLElement == \"function\";\n  return {\n    getTag: getTag,\n    getUnknownTag: isBrowser ? getUnknownTagGenericBrowser : getUnknownTag,\n    prototypeForTag: prototypeForTag,\n    discriminator: discriminator };\n}",
         "kind": "constant",
@@ -51974,6 +52128,14 @@
         "size": 15,
         "outputUnit": "outputUnit/main",
         "code": "B.jo=new A.bM()"
+      },
+      "B.kq=s([B.GO,B.X8,B.Hb,B.Bc],A.q7(\"jd<tT>\"))": {
+        "id": "constant/B.kq=s([B.GO,B.X8,B.Hb,B.Bc],A.q7(\"jd<tT>\"))",
+        "kind": "constant",
+        "name": "",
+        "size": 44,
+        "outputUnit": "outputUnit/main",
+        "code": "B.kq=s([B.GO,B.X8,B.Hb,B.Bc],A.q7(\"jd<tT>\"))"
       },
       "B.lb=A.xq(\"I2\")": {
         "id": "constant/B.lb=A.xq(\"I2\")",
@@ -52484,6 +52646,33 @@
         "outputUnit": "outputUnit/main",
         "parent": "function/package:pubviz/src/dot.dart::_writeDot",
         "function": "function/package:pubviz/src/dot.dart::_writeDot._writeDot_closure.call"
+      },
+      "package:pubviz/src/mermaid.dart::VizRootMermaidExt|toMermaid.VizRootMermaidExt_toMermaid_closure": {
+        "id": "closure/package:pubviz/src/mermaid.dart::VizRootMermaidExt|toMermaid.VizRootMermaidExt_toMermaid_closure",
+        "kind": "closure",
+        "name": "VizRootMermaidExt_toMermaid_closure",
+        "size": 85,
+        "outputUnit": "outputUnit/main",
+        "parent": "function/package:pubviz/src/mermaid.dart::VizRootMermaidExt|toMermaid",
+        "function": "function/package:pubviz/src/mermaid.dart::VizRootMermaidExt|toMermaid.VizRootMermaidExt_toMermaid_closure.call"
+      },
+      "package:pubviz/src/mermaid.dart::VizRootMermaidExt|toMermaid.VizRootMermaidExt_toMermaid_closure%0": {
+        "id": "closure/package:pubviz/src/mermaid.dart::VizRootMermaidExt|toMermaid.VizRootMermaidExt_toMermaid_closure%0",
+        "kind": "closure",
+        "name": "VizRootMermaidExt_toMermaid_closure",
+        "size": 85,
+        "outputUnit": "outputUnit/main",
+        "parent": "function/package:pubviz/src/mermaid.dart::VizRootMermaidExt|toMermaid",
+        "function": "function/package:pubviz/src/mermaid.dart::VizRootMermaidExt|toMermaid.VizRootMermaidExt_toMermaid_closure.call%0"
+      },
+      "package:pubviz/src/mermaid.dart::VizRootMermaidExt|toMermaid.VizRootMermaidExt_toMermaid_closure%1": {
+        "id": "closure/package:pubviz/src/mermaid.dart::VizRootMermaidExt|toMermaid.VizRootMermaidExt_toMermaid_closure%1",
+        "kind": "closure",
+        "name": "VizRootMermaidExt_toMermaid_closure",
+        "size": 85,
+        "outputUnit": "outputUnit/main",
+        "parent": "function/package:pubviz/src/mermaid.dart::VizRootMermaidExt|toMermaid",
+        "function": "function/package:pubviz/src/mermaid.dart::VizRootMermaidExt|toMermaid.VizRootMermaidExt_toMermaid_closure.call%1"
       },
       "package:pubviz/src/viz_package.dart::_$VizPackageFromJson._$VizPackageFromJson_closure": {
         "id": "closure/package:pubviz/src/viz_package.dart::_$VizPackageFromJson._$VizPackageFromJson_closure",
@@ -78261,6 +78450,301 @@
         "id": "function/dart:_interceptors::JSArray.contains"
       }
     ],
+    "function/package:pubviz/src/mermaid.dart::VizRootMermaidExt|toMermaid": [
+      {
+        "id": "field/dart:_rti::Rti._precomputed1"
+      },
+      {
+        "id": "field/dart:collection::MapView._map"
+      },
+      {
+        "id": "field/dart:core::StringBuffer._contents"
+      },
+      {
+        "id": "field/package:collection/src/wrappers.dart::DelegatingSet._base"
+      },
+      {
+        "id": "field/package:pubviz/src/dependency.dart::Dependency.isDevDependency"
+      },
+      {
+        "id": "field/package:pubviz/src/dependency.dart::Dependency.name"
+      },
+      {
+        "id": "field/package:pubviz/src/dependency.dart::Dependency.versionConstraint"
+      },
+      {
+        "id": "field/package:pubviz/src/viz_package.dart::VizPackage.dependencies"
+      },
+      {
+        "id": "field/package:pubviz/src/viz_package.dart::VizPackage.isPrimary"
+      },
+      {
+        "id": "field/package:pubviz/src/viz_package.dart::VizPackage.isPublishToNone"
+      },
+      {
+        "id": "field/package:pubviz/src/viz_package.dart::VizPackage.latestVersion"
+      },
+      {
+        "id": "field/package:pubviz/src/viz_package.dart::VizPackage.name"
+      },
+      {
+        "id": "field/package:pubviz/src/viz_package.dart::VizPackage.onlyDev"
+      },
+      {
+        "id": "field/package:pubviz/src/viz_package.dart::VizPackage.version"
+      },
+      {
+        "id": "field/package:pubviz/src/viz_root.dart::VizRoot.isWorkspace"
+      },
+      {
+        "id": "field/package:pubviz/src/viz_root.dart::VizRoot.packages"
+      },
+      {
+        "id": "function/dart:_interceptors::ArrayIterator.current"
+      },
+      {
+        "id": "function/dart:_interceptors::JSArray.isEmpty"
+      },
+      {
+        "id": "function/dart:_interceptors::JSArray.isNotEmpty",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:_interceptors::JSArray.isNotEmpty"
+      },
+      {
+        "id": "function/dart:_interceptors::JSArray.iterator"
+      },
+      {
+        "id": "function/dart:_interceptors::JSArray.join"
+      },
+      {
+        "id": "function/dart:_interceptors::JSArray.markFixedList"
+      },
+      {
+        "id": "function/dart:_interceptors::JSArray.sort",
+        "mask": "Container([subclass=JSMutableArray|powerset={I}{F}{M}], element: [null|subclass=Object|powerset={null}{IN}{GFUO}{IMN}], length: null, powerset: {I}{F}{M})"
+      },
+      {
+        "id": "function/dart:_interceptors::JSArray.toSet",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:_interceptors::JSArray.toSet"
+      },
+      {
+        "id": "function/dart:_interceptors::JSArray.where",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:_interceptors::JSArray.where"
+      },
+      {
+        "id": "function/dart:_internal::WhereIterable.WhereIterable"
+      },
+      {
+        "id": "function/dart:_internal::WhereIterable.iterator",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:_internal::WhereIterable.iterator"
+      },
+      {
+        "id": "function/dart:_internal::WhereIterator.WhereIterator"
+      },
+      {
+        "id": "function/dart:_internal::WhereIterator.current",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:_internal::WhereIterator.current"
+      },
+      {
+        "id": "function/dart:_internal::WhereIterator.moveNext"
+      },
+      {
+        "id": "function/dart:_internal::makeListFixedLength"
+      },
+      {
+        "id": "function/dart:_js_helper::JsLinkedHashMap.values",
+        "mask": "Union([exact=SplayTreeMap|powerset={N}{O}{N}], [subclass=JsLinkedHashMap|powerset={N}{O}{N}], powerset: {N}{O}{N})"
+      },
+      {
+        "id": "function/dart:_js_helper::LinkedHashMapValueIterator.current",
+        "mask": "Union([exact=LinkedHashMapValueIterator|powerset={N}{O}{N}], [exact=_SplayTreeValueIterator|powerset={N}{O}{N}], powerset: {N}{O}{N})"
+      },
+      {
+        "id": "function/dart:_js_helper::LinkedHashMapValuesIterable.iterator",
+        "mask": "Union([exact=LinkedHashMapValuesIterable|powerset={N}{O}{N}], [exact=_SplayTreeValueIterable|powerset={N}{O}{N}], powerset: {N}{O}{N})"
+      },
+      {
+        "id": "function/dart:_js_helper::Primitives.flattenString"
+      },
+      {
+        "id": "function/dart:_js_helper::Primitives.stringConcatUnchecked"
+      },
+      {
+        "id": "function/dart:_js_helper::S"
+      },
+      {
+        "id": "function/dart:_rti::_instanceType"
+      },
+      {
+        "id": "function/dart:_rti::_setArrayType"
+      },
+      {
+        "id": "function/dart:_rti::findType"
+      },
+      {
+        "id": "function/dart:collection::LinkedHashSet.LinkedHashSet.from"
+      },
+      {
+        "id": "function/dart:collection::MapView.values",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:collection::MapView.values"
+      },
+      {
+        "id": "function/dart:collection::SetBase.toList"
+      },
+      {
+        "id": "function/dart:collection::SplayTreeMap.values",
+        "mask": "Union([exact=SplayTreeMap|powerset={N}{O}{N}], [subclass=JsLinkedHashMap|powerset={N}{O}{N}], powerset: {N}{O}{N})"
+      },
+      {
+        "id": "function/dart:collection::_SplayTreeIterator.current",
+        "mask": "Union([exact=LinkedHashMapValueIterator|powerset={N}{O}{N}], [exact=_SplayTreeValueIterator|powerset={N}{O}{N}], powerset: {N}{O}{N})"
+      },
+      {
+        "id": "function/dart:collection::_SplayTreeValueIterable.iterator",
+        "mask": "Union([exact=LinkedHashMapValuesIterable|powerset={N}{O}{N}], [exact=_SplayTreeValueIterable|powerset={N}{O}{N}], powerset: {N}{O}{N})"
+      },
+      {
+        "id": "function/dart:core::Iterable.where",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:core::Iterable.where"
+      },
+      {
+        "id": "function/dart:core::List.List._fixedOf"
+      },
+      {
+        "id": "function/dart:core::List.List._of"
+      },
+      {
+        "id": "function/dart:core::List.List.of"
+      },
+      {
+        "id": "function/dart:core::Object.toString",
+        "mask": "Union([exact=_EmptyVersion|powerset={N}{O}{N}], [subtype=VersionRange|powerset={N}{O}{N}], powerset: {N}{O}{N})"
+      },
+      {
+        "id": "function/dart:core::StringBuffer.StringBuffer",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:core::StringBuffer.StringBuffer"
+      },
+      {
+        "id": "function/dart:core::StringBuffer._writeString"
+      },
+      {
+        "id": "function/dart:core::StringBuffer.toString",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:core::StringBuffer.toString"
+      },
+      {
+        "id": "function/dart:core::StringBuffer.writeln",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:core::StringBuffer.writeln"
+      },
+      {
+        "id": "function/package:collection/src/wrappers.dart::_DelegatingIterableBase.toList",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/package:collection/src/wrappers.dart::_DelegatingIterableBase.toList"
+      },
+      {
+        "id": "function/package:pub_semver/src/version.dart::Version.compareTo"
+      },
+      {
+        "id": "function/package:pub_semver/src/version.dart::Version.isAny",
+        "mask": "Union([exact=_EmptyVersion|powerset={N}{O}{N}], [subtype=VersionRange|powerset={N}{O}{N}], powerset: {N}{O}{N})"
+      },
+      {
+        "id": "function/package:pub_semver/src/version.dart::Version.toString",
+        "mask": "Union([exact=_EmptyVersion|powerset={N}{O}{N}], [subtype=VersionRange|powerset={N}{O}{N}], powerset: {N}{O}{N})"
+      },
+      {
+        "id": "function/package:pub_semver/src/version.dart::Version.toString"
+      },
+      {
+        "id": "function/package:pub_semver/src/version_constraint.dart::_EmptyVersion.isAny",
+        "mask": "Union([exact=_EmptyVersion|powerset={N}{O}{N}], [subtype=VersionRange|powerset={N}{O}{N}], powerset: {N}{O}{N})"
+      },
+      {
+        "id": "function/package:pub_semver/src/version_constraint.dart::_EmptyVersion.toString",
+        "mask": "Union([exact=_EmptyVersion|powerset={N}{O}{N}], [subtype=VersionRange|powerset={N}{O}{N}], powerset: {N}{O}{N})"
+      },
+      {
+        "id": "function/package:pub_semver/src/version_range.dart::CompatibleWithVersionRange.toString",
+        "mask": "Union([exact=_EmptyVersion|powerset={N}{O}{N}], [subtype=VersionRange|powerset={N}{O}{N}], powerset: {N}{O}{N})"
+      },
+      {
+        "id": "function/package:pub_semver/src/version_range.dart::VersionRange.isAny",
+        "mask": "Union([exact=_EmptyVersion|powerset={N}{O}{N}], [subtype=VersionRange|powerset={N}{O}{N}], powerset: {N}{O}{N})"
+      },
+      {
+        "id": "function/package:pub_semver/src/version_range.dart::VersionRange.toString",
+        "mask": "Union([exact=_EmptyVersion|powerset={N}{O}{N}], [subtype=VersionRange|powerset={N}{O}{N}], powerset: {N}{O}{N})"
+      },
+      {
+        "id": "function/package:pubviz/src/mermaid.dart::VizRootMermaidExt|toMermaid.VizRootMermaidExt_toMermaid_closure.call"
+      },
+      {
+        "id": "function/package:pubviz/src/mermaid.dart::VizRootMermaidExt|toMermaid.VizRootMermaidExt_toMermaid_closure.call%0"
+      },
+      {
+        "id": "function/package:pubviz/src/mermaid.dart::VizRootMermaidExt|toMermaid.VizRootMermaidExt_toMermaid_closure.call%1"
+      },
+      {
+        "id": "function/package:pubviz/src/viz_root.dart::HasPackages.root"
+      }
+    ],
+    "function/package:pubviz/src/mermaid.dart::VizRootMermaidExt|toMermaid.VizRootMermaidExt_toMermaid_closure.call": [
+      {
+        "id": "field/package:pubviz/src/viz_package.dart::VizPackage.name"
+      },
+      {
+        "id": "function/dart:collection::_LinkedHashSet.contains",
+        "mask": "[subclass=_LinkedHashSet|powerset={N}{O}{N}]"
+      }
+    ],
+    "function/package:pubviz/src/mermaid.dart::VizRootMermaidExt|toMermaid.VizRootMermaidExt_toMermaid_closure.call%0": [
+      {
+        "id": "field/package:pubviz/src/viz_package.dart::VizPackage.name"
+      },
+      {
+        "id": "function/dart:collection::_LinkedHashSet.contains",
+        "mask": "[subclass=_LinkedHashSet|powerset={N}{O}{N}]"
+      }
+    ],
+    "function/package:pubviz/src/mermaid.dart::VizRootMermaidExt|toMermaid.VizRootMermaidExt_toMermaid_closure.call%1": [
+      {
+        "id": "field/package:pubviz/src/dependency.dart::Dependency.name"
+      },
+      {
+        "id": "function/dart:collection::_LinkedHashSet.contains",
+        "mask": "[subclass=_LinkedHashSet|powerset={N}{O}{N}]"
+      }
+    ],
     "function/package:pubviz/src/viz_package.dart::VizPackage.==": [
       {
         "id": "field/package:pubviz/src/viz_package.dart::VizPackage.name"
@@ -84919,7 +85403,7 @@
       "id": "outputUnit/main",
       "kind": "outputUnit",
       "name": "main",
-      "size": 146340,
+      "size": 148749,
       "filename": "web_app.dart2js.js",
       "imports": []
     }
