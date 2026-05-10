@@ -6,12 +6,14 @@ import 'dart:js_interop_unsafe';
 import 'package:web/web.dart';
 
 import '../dot.dart';
+import '../mermaid.dart';
 import '../options.dart';
 import '../version.dart';
 import 'pubviz_app.dart';
 
 enum _ExportFormat {
   dot(label: 'DOT', extension: 'dot', contentType: 'text/plain'),
+  mermaid(label: 'Mermaid', extension: 'md', contentType: 'text/plain'),
   svg(label: 'SVG', extension: 'svg', contentType: 'image/svg+xml'),
   png(label: 'PNG', extension: 'png', contentType: 'image/png');
 
@@ -336,6 +338,22 @@ final class UIManager {
             showToast('DOT Copied to Clipboard');
           } else {
             _downloadBlob(dot, 'dependencies.dot', 'text/plain');
+          }
+        case _ExportFormat.mermaid:
+          final mermaid = _app.originalVizRoot
+              .filter(
+                excludeDev: hideDevDependencies,
+                onlyOutdated: outdatedOnly,
+                onlyWorkspace: workspaceOnly,
+                hideIsolatedWorkspacePackages: hideIsolatedPackages,
+              )
+              .toMermaid();
+
+          if (isCopy) {
+            await window.navigator.clipboard.writeText(mermaid).toDart;
+            showToast('Mermaid Copied to Clipboard');
+          } else {
+            _downloadBlob(mermaid, 'dependencies.md', 'text/plain');
           }
         case _ExportFormat.svg:
           final svg =

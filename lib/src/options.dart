@@ -87,11 +87,12 @@ I.E. "--package pubviz" or "--package pubviz:5.0.0"''',
        filters = filters ?? const [];
 }
 
-enum Action { open, print, serve }
+enum Action { open, print, printMermaid, serve }
 
 const _actionHelp = <Action, String>{
   Action.open: 'Like "serve" but also opens the browser.',
   Action.print: 'Print the raw DOT output to stdout.',
+  Action.printMermaid: 'Print the Mermaid flowchart output to stdout.',
   Action.serve: 'Hosts the web app on a local server.',
 };
 

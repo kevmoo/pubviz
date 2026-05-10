@@ -11,6 +11,7 @@ import 'package:shelf/shelf_io.dart' as io;
 import 'package:shelf_static/shelf_static.dart';
 
 import 'dot.dart';
+import 'mermaid.dart';
 import 'options.dart';
 import 'pub_data_service.dart';
 import 'published_package.dart';
@@ -112,6 +113,16 @@ Future<void> run(Options options) async {
           onlyWorkspace: options.filters.contains('workspace'),
         );
         _printContent(filteredVp, options.ignorePackages);
+      case Action.printMermaid:
+        final filteredVp = vp.filter(
+          excludeDev: options.filters.contains('hide-dev'),
+          onlyOutdated: options.filters.contains('outdated'),
+          onlyWorkspace: options.filters.contains('workspace'),
+        );
+        final content = filteredVp.toMermaid(
+          ignorePackages: options.ignorePackages,
+        );
+        print(content);
       case Action.open:
       case Action.serve:
         await _createOrOpen(vp, options);

@@ -39,6 +39,7 @@ Options _$parseOptionsResult(ArgResults result) => Options(
 const _$ActionEnumMapBuildCli = <Action, String>{
   Action.open: 'open',
   Action.print: 'print',
+  Action.printMermaid: 'print-mermaid',
   Action.serve: 'serve',
 };
 
@@ -48,10 +49,11 @@ ArgParser _$populateOptionsParser(ArgParser parser) => parser
     abbr: 'a',
     valueHelp: 'action',
     defaultsTo: 'open',
-    allowed: ['open', 'print', 'serve'],
+    allowed: ['open', 'print', 'print-mermaid', 'serve'],
     allowedHelp: <String, String>{
       'open': 'Like "serve" but also opens the browser.',
       'print': 'Print the raw DOT output to stdout.',
+      'print-mermaid': 'Print the Mermaid flowchart output to stdout.',
       'serve': 'Hosts the web app on a local server.',
     },
   )

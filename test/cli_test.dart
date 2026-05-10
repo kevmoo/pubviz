@@ -315,6 +315,7 @@ Arguments:
   -a, --action=<action>
             [open] (default)       Like "serve" but also opens the browser.
             [print]                Print the raw DOT output to stdout.
+            [print-mermaid]        Print the Mermaid flowchart output to stdout.
             [serve]                Hosts the web app on a local server.
 
   -i, --ignore-packages            A comma separated list of packages to exclude in the output.
