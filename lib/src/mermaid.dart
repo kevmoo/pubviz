@@ -2,6 +2,7 @@ import 'viz_root.dart';
 
 extension VizRootMermaidExt on VizRoot {
   String toMermaid({Iterable<String> ignorePackages = const []}) {
+    final ignored = ignorePackages.toSet();
     final sb = StringBuffer()
       ..writeln('flowchart TD')
       ..writeln(
@@ -14,9 +15,7 @@ extension VizRootMermaidExt on VizRoot {
     final outdatedNodes = <String>[];
     final publishToNoneNodes = <String>[];
 
-    for (var pkg in packages.values.where(
-      (v) => !ignorePackages.contains(v.name),
-    )) {
+    for (var pkg in packages.values.where((v) => !ignored.contains(v.name))) {
       final isRoot = root.name == pkg.name;
 
       var label = pkg.name;
@@ -49,15 +48,11 @@ extension VizRootMermaidExt on VizRoot {
       sb.writeln('  ${pkg.name}$shapeOpen"$label"$shapeClose');
     }
 
-    for (var pkg in packages.values.where(
-      (v) => !ignorePackages.contains(v.name),
-    )) {
+    for (var pkg in packages.values.where((v) => !ignored.contains(v.name))) {
       final isRoot = root.name == pkg.name;
       final orderedDeps = pkg.dependencies.toList(growable: false)..sort();
 
-      for (var dep in orderedDeps.where(
-        (d) => !ignorePackages.contains(d.name),
-      )) {
+      for (var dep in orderedDeps.where((d) => !ignored.contains(d.name))) {
         if (!dep.isDevDependency || isRoot || pkg.isPrimary) {
           final hasConstraint = !dep.versionConstraint.isAny;
           final constraintStr = hasConstraint
