@@ -1,10 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:pub_semver/pub_semver.dart';
-import 'package:string_scanner/string_scanner.dart';
 
 class DepsList {
-  static final _sdkLine = RegExp(r'(\w+) SDK (.+)\n');
-
   final Map<String, Version> sdks;
   final Map<String, DepsPackageEntry> packages;
   final String rootPackageName;
@@ -24,46 +21,88 @@ class DepsList {
     }
   }
 
-  factory DepsList.parse(String input) {
-    final scanner = StringScanner(input);
+  factory DepsList.fromJson(Map<String, dynamic> json) {
+    final sdks = <String, Version>{
+      for (final sdk in (json['sdks'] as List).cast<Map<String, dynamic>>())
+        sdk['name'] as String: Version.parse(sdk['version'] as String),
+    };
 
-    final sdks = <String, Version>{};
+    final rootPackageName = json['root'] as String;
 
-    void scanSdk() {
-      scanner.expect(_sdkLine, name: 'SDK');
-      final entry = VersionedEntry.fromMatch(scanner.lastMatch!);
-      assert(!sdks.containsKey(entry.name));
-      sdks[entry.name] = entry.version;
+    final allPackagesJson = {
+      for (final pkg in (json['packages'] as List).cast<Map<String, dynamic>>())
+        pkg['name'] as String: pkg,
+    };
+
+    VersionedEntry makeVersionedEntry(String name) {
+      final pkg = allPackagesJson[name];
+      if (pkg == null) {
+        throw StateError('Could not find package entry for `$name` in JSON.');
+      }
+      return VersionedEntry(name, Version.parse(pkg['version'] as String));
     }
 
-    do {
-      scanSdk();
-    } while (scanner.matches(_sdkLine));
+    Map<String, VersionConstraint> getConstraints(Map<String, dynamic> pkg) {
+      final constraints = pkg['dependencyConstraints'] as Map?;
+      return {
+        if (constraints != null)
+          for (final entry in constraints.entries)
+            entry.key as String: VersionConstraint.parse(entry.value as String),
+      };
+    }
 
     final pkgs = <String, DepsPackageEntry>{};
-    String? rootPackageName;
-    while (scanner.matches(_packageLine)) {
-      final entry = DepsPackageEntry._parse(scanner);
-      pkgs[entry.name] = entry;
-      rootPackageName ??= entry.name;
-    }
+    final transitiveDeps = <VersionedEntry, Map<String, VersionConstraint>>{};
 
-    if (rootPackageName == null) {
-      throw const FormatException('No package found in deps list.');
-    }
+    for (final pkg in allPackagesJson.values) {
+      final name = pkg['name'] as String;
+      final kind = pkg['kind'] as String;
 
-    final section = scanner.matches(_transitiveDepsHeaderLine)
-        ? _scanSection(
-            scanner,
-            headerPattern: _transitiveDepsHeaderLine,
-          ).entries
-        : <VersionedEntry, Map<String, VersionConstraint>>{};
+      if (kind == 'root') {
+        final directDepsList =
+            (pkg['directDependencies'] as List?)?.cast<String>() ?? const [];
+        final devDepsList =
+            (pkg['devDependencies'] as List?)?.cast<String>() ?? const [];
+
+        final directDepsSet = directDepsList.toSet();
+        final devDepsSet = devDepsList.toSet();
+
+        final dependenciesSection =
+            <VersionedEntry, Map<String, VersionConstraint>>{
+              for (final depName in directDepsSet)
+                makeVersionedEntry(depName): getConstraints(
+                  allPackagesJson[depName]!,
+                ),
+            };
+
+        final devDependenciesSection =
+            <VersionedEntry, Map<String, VersionConstraint>>{
+              for (final depName in devDepsSet)
+                makeVersionedEntry(depName): getConstraints(
+                  allPackagesJson[depName]!,
+                ),
+            };
+
+        final sections =
+            <String, Map<VersionedEntry, Map<String, VersionConstraint>>>{
+              if (dependenciesSection.isNotEmpty)
+                'dependencies': dependenciesSection,
+              if (devDependenciesSection.isNotEmpty)
+                'dev dependencies': devDependenciesSection,
+            };
+
+        final sourcePackage = makeVersionedEntry(name);
+        pkgs[name] = DepsPackageEntry._(sourcePackage, sections);
+      } else {
+        transitiveDeps[makeVersionedEntry(name)] = getConstraints(pkg);
+      }
+    }
 
     return DepsList._(
       sdks,
       pkgs,
       rootPackageName,
-      transitiveDependencies: section,
+      transitiveDependencies: transitiveDeps,
     );
   }
 
@@ -78,8 +117,6 @@ class DepsList {
 }
 
 class DepsPackageEntry extends VersionedEntry {
-  static final _emptyLine = RegExp(r'\n');
-
   final Map<String, Map<VersionedEntry, Map<String, VersionConstraint>>>
   sections;
 
@@ -92,26 +129,6 @@ class DepsPackageEntry extends VersionedEntry {
       ]);
 
   DepsPackageEntry._(super.entry, this.sections) : super.copy();
-
-  factory DepsPackageEntry._parse(StringScanner scanner) {
-    scanner.expect(_packageLine, name: 'Source package');
-
-    final sourcePackage = VersionedEntry.fromMatch(scanner.lastMatch!);
-
-    final sections =
-        <String, Map<VersionedEntry, Map<String, VersionConstraint>>>{};
-
-    while (scanner.scan(_emptyLine)) {
-      if (!scanner.matches(_sectionHeaderLine)) {
-        break;
-      }
-
-      final section = _scanSection(scanner, headerPattern: _sectionHeaderLine);
-      sections[section.name] = section.entries;
-    }
-
-    return DepsPackageEntry._(sourcePackage, sections);
-  }
 
   Map<String, dynamic> toJson() => {
     'name': name,
@@ -129,54 +146,6 @@ class DepsPackageEntry extends VersionedEntry {
   };
 }
 
-/// A regular expression matching a Dart identifier.
-///
-/// This also matches a package name, since they must be Dart identifiers.
-const _identifierRegExp = r'[a-zA-Z_]\w*';
-
-/// A regular expression matching allowed package names.
-///
-/// This allows dot-separated valid Dart identifiers. The dots are there for
-/// compatibility with Google's internal Dart packages, but they may not be used
-/// when publishing a package to pub.dev.
-const _pkgName = '$_identifierRegExp(?:\\.$_identifierRegExp)*';
-
-final _sectionHeaderLine = RegExp(
-  r'(dependencies|dev dependencies|dependency overrides):\n',
-);
-final _transitiveDepsHeaderLine = RegExp(r'(transitive dependencies):\n');
-final _packageLine = RegExp('^($_pkgName) (\\d.+)\n', multiLine: true);
-final _usageLine = RegExp('- ($_pkgName) (.+)\n');
-final _depLine = RegExp('  - ($_pkgName) (.+)\n');
-
-({String name, Map<VersionedEntry, Map<String, VersionConstraint>> entries})
-_scanSection(StringScanner scanner, {required Pattern headerPattern}) {
-  scanner.expect(headerPattern, name: 'section header');
-  final header = scanner.lastMatch![1]!;
-
-  final entries = <VersionedEntry, Map<String, VersionConstraint>>{};
-
-  void scanUsage() {
-    scanner.expect(_usageLine, name: 'dependency');
-    final entry = VersionedEntry.fromMatch(scanner.lastMatch!);
-    assert(!entries.containsKey(entry));
-
-    final deps = entries[entry] = {};
-
-    while (scanner.scan(_depLine)) {
-      deps[scanner.lastMatch![1]!] = VersionConstraint.parse(
-        scanner.lastMatch![2]!,
-      );
-    }
-  }
-
-  do {
-    scanUsage();
-  } while (scanner.matches(_usageLine));
-
-  return (name: header, entries: entries);
-}
-
 class VersionedEntry {
   final String name;
   final Version version;
@@ -186,9 +155,6 @@ class VersionedEntry {
   VersionedEntry.copy(VersionedEntry other)
     : name = other.name,
       version = other.version;
-
-  factory VersionedEntry.fromMatch(Match match) =>
-      VersionedEntry(match[1]!, Version.parse(match[2]!));
 
   @override
   String toString() => '$name @ $version';

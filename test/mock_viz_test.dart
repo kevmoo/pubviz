@@ -595,12 +595,38 @@ environment:
 dependencies:
   args: ^2.0.0-dev
 '''),
-        d.file('pub_deps_list.txt', '''
-Dart SDK 3.0.0
-test_ahead 1.0.0
-
-dependencies:
-- args 2.0.0
+        d.file('pub_deps_list.json', '''
+{
+  "root": "test_ahead",
+  "packages": [
+    {
+      "name": "test_ahead",
+      "version": "1.0.0",
+      "kind": "root",
+      "source": "root",
+      "dependencies": ["args"],
+      "directDependencies": ["args"],
+      "devDependencies": [],
+      "dependencyConstraints": {
+        "args": "^2.0.0-dev"
+      }
+    },
+    {
+      "name": "args",
+      "version": "2.0.0",
+      "kind": "direct",
+      "source": "hosted",
+      "dependencies": [],
+      "directDependencies": [],
+      "devDependencies": [],
+      "dependencyConstraints": {}
+    }
+  ],
+  "sdks": [
+    { "name": "Dart", "version": "3.13.0" }
+  ],
+  "executables": []
+}
 '''),
         d.file('outdated.json', '''
 {
@@ -643,12 +669,38 @@ environment:
 dependencies:
   args: ^2.0.0
 '''),
-        d.file('pub_deps_list.txt', '''
-Dart SDK 3.0.0
-test_ahead_stable 1.0.0
-
-dependencies:
-- args 2.0.0
+        d.file('pub_deps_list.json', '''
+{
+  "root": "test_ahead_stable",
+  "packages": [
+    {
+      "name": "test_ahead_stable",
+      "version": "1.0.0",
+      "kind": "root",
+      "source": "root",
+      "dependencies": ["args"],
+      "directDependencies": ["args"],
+      "devDependencies": [],
+      "dependencyConstraints": {
+        "args": "^2.0.0"
+      }
+    },
+    {
+      "name": "args",
+      "version": "2.0.0",
+      "kind": "direct",
+      "source": "hosted",
+      "dependencies": [],
+      "directDependencies": [],
+      "devDependencies": [],
+      "dependencyConstraints": {}
+    }
+  ],
+  "sdks": [
+    { "name": "Dart", "version": "3.13.0" }
+  ],
+  "executables": []
+}
 '''),
         d.file('outdated.json', '''
 {

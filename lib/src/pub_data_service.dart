@@ -29,8 +29,8 @@ class PubDataService extends Service {
     }
   }
 
-  late final _depsListCache = DepsList.parse(
-    _pubCommand(['deps', '-s', 'list']),
+  late final _depsListCache = DepsList.fromJson(
+    jsonDecode(_pubCommand(['deps', '--json'])) as Map<String, dynamic>,
   );
 
   @override

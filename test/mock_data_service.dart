@@ -21,8 +21,10 @@ class MockDataService extends Service {
 
   DepsList _getDepsList() {
     if (_depsListCache == null) {
-      final depsFile = File(p.join(rootPackageDir, 'pub_deps_list.txt'));
-      _depsListCache = DepsList.parse(depsFile.readAsStringSync());
+      final depsFile = File(p.join(rootPackageDir, 'pub_deps_list.json'));
+      _depsListCache = DepsList.fromJson(
+        jsonDecode(depsFile.readAsStringSync()) as Map<String, dynamic>,
+      );
     }
     return _depsListCache!;
   }

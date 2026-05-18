@@ -260,25 +260,67 @@ class _WorkspaceMockService extends Service {
   );
 
   @override
-  DepsPackageEntry rootDeps() => DepsList.parse('''
-Dart SDK 3.0.0
-a 1.0.0
-
-dependencies:
-- member 1.0.0
-''').packages['a']!;
+  DepsPackageEntry rootDeps() => DepsList.fromJson(const {
+    'root': 'a',
+    'packages': [
+      {
+        'name': 'a',
+        'version': '1.0.0',
+        'kind': 'root',
+        'source': 'root',
+        'dependencies': ['member'],
+        'directDependencies': ['member'],
+        'devDependencies': <String>[],
+        'dependencyConstraints': {'member': '1.0.0'},
+      },
+      {
+        'name': 'member',
+        'version': '1.0.0',
+        'kind': 'root',
+        'source': 'root',
+        'dependencies': <String>[],
+        'directDependencies': <String>[],
+        'devDependencies': <String>[],
+        'dependencyConstraints': <String, String>{},
+      },
+    ],
+    'sdks': [
+      {'name': 'Dart', 'version': '3.13.0'},
+    ],
+    'executables': <String>[],
+  }).packages['a']!;
 
   @override
   Iterable<DepsPackageEntry> allDeps() {
-    final list = DepsList.parse('''
-Dart SDK 3.0.0
-a 1.0.0
-
-dependencies:
-- member 1.0.0
-
-member 1.0.0
-''');
+    final list = DepsList.fromJson(const {
+      'root': 'a',
+      'packages': [
+        {
+          'name': 'a',
+          'version': '1.0.0',
+          'kind': 'root',
+          'source': 'root',
+          'dependencies': ['member'],
+          'directDependencies': ['member'],
+          'devDependencies': <String>[],
+          'dependencyConstraints': {'member': '1.0.0'},
+        },
+        {
+          'name': 'member',
+          'version': '1.0.0',
+          'kind': 'root',
+          'source': 'root',
+          'dependencies': <String>[],
+          'directDependencies': <String>[],
+          'devDependencies': <String>[],
+          'dependencyConstraints': <String, String>{},
+        },
+      ],
+      'sdks': [
+        {'name': 'Dart', 'version': '3.13.0'},
+      ],
+      'executables': <String>[],
+    });
     return list.packages.values;
   }
 
@@ -301,16 +343,35 @@ member 1.0.0
 }
 
 class _SimpleMockService extends Service {
-  late final _depsList = DepsList.parse('''
-Dart SDK 3.0.0
-a 1.0.0
-
-dependencies:
-- b 1.0.0
-  - c ^1.0.0
-
-b 1.0.0
-''');
+  late final _depsList = DepsList.fromJson(const {
+    'root': 'a',
+    'packages': [
+      {
+        'name': 'a',
+        'version': '1.0.0',
+        'kind': 'root',
+        'source': 'root',
+        'dependencies': ['b'],
+        'directDependencies': ['b'],
+        'devDependencies': <String>[],
+        'dependencyConstraints': {'b': '1.0.0'},
+      },
+      {
+        'name': 'b',
+        'version': '1.0.0',
+        'kind': 'direct',
+        'source': 'hosted',
+        'dependencies': ['c'],
+        'directDependencies': ['c'],
+        'devDependencies': <String>[],
+        'dependencyConstraints': {'c': '^1.0.0'},
+      },
+    ],
+    'sdks': [
+      {'name': 'Dart', 'version': '3.13.0'},
+    ],
+    'executables': <String>[],
+  });
 
   @override
   String get rootPackageDir => 'fake';
