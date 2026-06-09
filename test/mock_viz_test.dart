@@ -287,7 +287,7 @@ void main() {
       final root = VizRoot('a', {'a': pkg});
 
       final filtered = root.filter(excludeDev: true);
-      check(filtered.packages['a']!.onlyDev).equals(false);
+      check(filtered.packages['a']!.onlyDev).isFalse();
     });
 
     test('onlyWorkspace retains bridges', () {
@@ -702,7 +702,7 @@ dependencies:
       check(
         because: 'onlyDev should remain false after roundtrip',
         pkg2.onlyDev,
-      ).equals(false);
+      ).isFalse();
     });
   });
 }

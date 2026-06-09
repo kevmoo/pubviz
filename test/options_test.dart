@@ -7,11 +7,11 @@ void main() {
     test('defaults', () {
       final options = parseOptions([]);
       check(options.action).equals(Action.open);
-      check(options.flagOutdated).equals(true);
+      check(options.flagOutdated).isTrue();
       check(options.ignorePackages).isEmpty();
-      check(options.productionDependencies).equals(false);
-      check(options.version).equals(false);
-      check(options.help).equals(false);
+      check(options.productionDependencies).isFalse();
+      check(options.version).isFalse();
+      check(options.help).isFalse();
     });
 
     test('all flags', () {
@@ -33,11 +33,11 @@ void main() {
       ]);
       check(options.action).equals(Action.print);
       check(options.ignorePackages).deepEquals(['a', 'b']);
-      check(options.flagOutdated).equals(false);
+      check(options.flagOutdated).isFalse();
       check(options.directDependencies).equals(true);
-      check(options.productionDependencies).equals(true);
-      check(options.version).equals(true);
-      check(options.help).equals(true);
+      check(options.productionDependencies).isTrue();
+      check(options.version).isTrue();
+      check(options.help).isTrue();
       check(options.workspace).equals(true);
       check(options.filters).deepEquals(['hide-dev']);
       check(options.package).equals('pubviz:1.0.0');
