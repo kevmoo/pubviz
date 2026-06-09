@@ -1,6 +1,7 @@
 @TestOn('vm')
 library;
 
+import 'dart:async';
 import 'dart:io';
 
 import 'package:checks/checks.dart';
@@ -9,7 +10,6 @@ import 'package:path/path.dart' as p;
 import 'package:pubviz/src/executable.dart';
 import 'package:pubviz/src/options.dart';
 import 'package:pubviz/src/version.dart';
-import 'package:test/expect.dart';
 import 'package:test/scaffolding.dart';
 import 'package:test_descriptor/test_descriptor.dart' as d;
 import 'package:test_process/test_process.dart';
@@ -110,7 +110,7 @@ $_usage''');
       'print',
     ]);
 
-    await expectLater(process.stdout, emits('digraph pubviz {'));
+    await check(process.stdout).emits((it) => it.equals('digraph pubviz {'));
 
     await process.shouldExit(0);
   });
@@ -123,7 +123,7 @@ $_usage''');
       'print',
     ]);
 
-    await expectLater(process.stdout, emits('digraph pubviz {'));
+    await check(process.stdout).emits((it) => it.equals('digraph pubviz {'));
 
     await process.shouldExit(0);
   });
@@ -135,7 +135,7 @@ $_usage''');
       'serve',
     ]);
 
-    await expectLater(process.stdout, emitsThrough(contains('Press "q"')));
+    await check(process.stdout).emitsThrough((it) => it.contains('Press "q"'));
 
     process.stdin.writeln('q');
 
@@ -150,18 +150,13 @@ $_usage''');
     ]);
 
     late String serverUrl;
-    await expectLater(
-      process.stdout,
-      emitsThrough(
-        predicate<String>((line) {
-          if (line.startsWith('Serving pubviz on ')) {
-            serverUrl = line.substring('Serving pubviz on '.length).trim();
-            return true;
-          }
-          return false;
-        }),
-      ),
-    );
+    while (true) {
+      final line = await process.stdout.next;
+      if (line.startsWith('Serving pubviz on ')) {
+        serverUrl = line.substring('Serving pubviz on '.length).trim();
+        break;
+      }
+    }
 
     final response = await http.get(Uri.parse('${serverUrl}viz_data.js'));
     check(response.statusCode).equals(200);
@@ -273,16 +268,19 @@ resolution: workspace
       package: 'pubviz:6.0.0',
     );
 
-    expect(
+    final prints = <String>[];
+    await runZoned(
       () => run(options),
-      prints(
-        allOf(
-          contains('digraph pubviz'),
-          contains('pubviz -\u003e args'),
-          contains('pubviz -\u003e path'),
-        ),
+      zoneSpecification: ZoneSpecification(
+        print: (self, parent, zone, line) {
+          prints.add(line);
+        },
       ),
     );
+    check(prints.join('\n'))
+      ..contains('digraph pubviz')
+      ..contains('pubviz -\u003e args')
+      ..contains('pubviz -\u003e path');
   });
 
   test('integration test with published package:analyzer', () async {
@@ -296,10 +294,18 @@ resolution: workspace
       package: 'analyzer',
     );
 
-    expect(
+    final prints = <String>[];
+    await runZoned(
       () => run(options),
-      prints(allOf(contains('digraph pubviz'), contains('analyzer [label='))),
+      zoneSpecification: ZoneSpecification(
+        print: (self, parent, zone, line) {
+          prints.add(line);
+        },
+      ),
     );
+    check(prints.join('\n'))
+      ..contains('digraph pubviz')
+      ..contains('analyzer [label=');
   });
 
   test('readme', () {

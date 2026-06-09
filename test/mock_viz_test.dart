@@ -9,7 +9,6 @@ import 'package:pub_semver/pub_semver.dart';
 import 'package:pubviz/pubviz.dart';
 import 'package:pubviz/src/service.dart';
 import 'package:pubviz/src/update_order.dart';
-import 'package:test/expect.dart';
 import 'package:test/scaffolding.dart';
 import 'package:test_descriptor/test_descriptor.dart' as d;
 
@@ -742,7 +741,7 @@ void _verifyDotOutput(
 
   if (_writeOutput) {
     File(filePath).writeAsStringSync(dotOutput);
-    fail('Set `_writeOutput` to false!');
+    throw StateError('Set `_writeOutput` to false!');
   }
 
   printOnFailure(dotOutput);

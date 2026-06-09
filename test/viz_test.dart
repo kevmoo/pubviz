@@ -8,7 +8,6 @@ import 'package:checks/checks.dart';
 import 'package:path/path.dart' as p;
 import 'package:pubviz/src/pub_data_service.dart';
 import 'package:pubviz/src/root_builder.dart';
-import 'package:test/expect.dart';
 import 'package:test/scaffolding.dart';
 import 'package:test_descriptor/test_descriptor.dart' as d;
 
@@ -69,6 +68,6 @@ Future<void> _initTest() async {
   ], workingDirectory: d.sandbox);
 
   if (pr.exitCode != 0) {
-    fail([pr.stdout, pr.stderr].join('\n'));
+    throw StateError([pr.stdout, pr.stderr].join('\n'));
   }
 }
