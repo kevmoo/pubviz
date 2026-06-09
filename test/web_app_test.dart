@@ -3,8 +3,9 @@ library;
 
 import 'dart:js_interop';
 
+import 'package:checks/checks.dart';
 import 'package:pubviz/src/web/pubviz_app.dart';
-import 'package:test/test.dart';
+import 'package:test/scaffolding.dart';
 import 'package:web/web.dart';
 
 void main() {
@@ -21,7 +22,7 @@ void main() {
   test('PubvizApp initializes and sets document title', () {
     PubvizApp(_mockData);
 
-    expect(document.title, equals('pubviz - my_cool_package'));
+    check(document.title).equals('pubviz - my_cool_package');
   });
 
   test('Toggling zoom checkbox updates SVG class', () async {
@@ -31,16 +32,16 @@ void main() {
 
     final checkbox =
         document.querySelector('#zoomCheckbox') as HTMLInputElement;
-    expect(checkbox.checked, isFalse);
+    check(checkbox.checked).isFalse();
 
     checkbox
       ..click()
       ..dispatchEvent(Event('change'));
 
-    expect(checkbox.checked, isTrue);
+    check(checkbox.checked).isTrue();
 
     final svg = document.querySelector('#mock-svg') as SVGElement;
-    expect(svg.classList.contains('zoom'), isTrue);
+    check(svg.classList.contains('zoom')).isTrue();
   });
 
   test('PubvizApp renders SVG using mocked Viz', () async {
@@ -49,7 +50,7 @@ void main() {
     await app.render();
 
     final svg = document.querySelector('#mock-svg');
-    expect(svg, isNotNull);
+    check(svg).isNotNull();
   });
 
   test('PubvizApp renders real SVG using viz-js from CDN', () async {
@@ -70,8 +71,8 @@ void main() {
     await app.render();
 
     final svg = document.querySelector('svg');
-    expect(svg, isNotNull);
-    expect(svg!.id, isNot(equals('mock-svg')));
+    check(svg).isNotNull();
+    check(svg!.id).not((it) => it.equals('mock-svg'));
   });
 }
 

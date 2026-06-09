@@ -4,10 +4,11 @@ library;
 import 'dart:async';
 import 'dart:io';
 
+import 'package:checks/checks.dart';
 import 'package:path/path.dart' as p;
 import 'package:pubviz/src/pub_data_service.dart';
 import 'package:pubviz/src/root_builder.dart';
-import 'package:test/test.dart';
+import 'package:test/scaffolding.dart';
 import 'package:test_descriptor/test_descriptor.dart' as d;
 
 void main() {
@@ -18,7 +19,7 @@ void main() {
   test('validate pub completed', () async {
     final type = await FileSystemEntity.type(p.join(d.sandbox, 'pubspec.lock'));
 
-    expect(type, FileSystemEntityType.file);
+    check(type).equals(FileSystemEntityType.file);
   });
 
   group('generate VizRoot', () {
@@ -31,19 +32,21 @@ void main() {
     test('all dependencies', () async {
       final vp = await service.vizRoot();
 
-      expect(vp.root.name, 'test_pubspec');
-      expect(vp.packages, contains('http'));
-      expect(vp.packages, contains('test'));
-      expect(vp.packages, contains('test_core'));
+      check(vp.root.name).equals('test_pubspec');
+      check(vp.packages)
+        ..containsKey('http')
+        ..containsKey('test')
+        ..containsKey('test_core');
     });
 
     test('direct dependencies only', () async {
       final vp = await service.vizRoot(directDependenciesOnly: true);
 
-      expect(vp.root.name, 'test_pubspec');
-      expect(vp.packages, contains('http'));
-      expect(vp.packages, contains('test'));
-      expect(vp.packages, isNot(contains('test_core')));
+      check(vp.root.name).equals('test_pubspec');
+      check(vp.packages)
+        ..containsKey('http')
+        ..containsKey('test')
+        ..not((it) => it.containsKey('test_core'));
     });
   });
 }
@@ -65,6 +68,6 @@ Future<void> _initTest() async {
   ], workingDirectory: d.sandbox);
 
   if (pr.exitCode != 0) {
-    fail([pr.stdout, pr.stderr].join('\n'));
+    throw StateError([pr.stdout, pr.stderr].join('\n'));
   }
 }

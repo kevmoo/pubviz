@@ -6,7 +6,7 @@ import 'dart:io';
 
 import 'package:collection/collection.dart';
 import 'package:path/path.dart' as p;
-import 'package:test/test.dart';
+import 'package:test/scaffolding.dart';
 
 import '../tool/shared.dart';
 
@@ -23,13 +23,13 @@ void main() {
         final sourceBytes = sourceFile.readAsBytesSync();
         final assetBytes = assetFile.readAsBytesSync();
         if (!(const ListEquality<int>().equals(sourceBytes, assetBytes))) {
-          fail(
+          throw StateError(
             '`lib/assets/$filename` does not match `web/$filename`.\n'
             'Please run `dart tool/update_assets.dart` and commit the updated files.',
           );
         }
       } else if (sourceFile.existsSync() && !assetFile.existsSync()) {
-        fail(
+        throw StateError(
           '`lib/assets/$filename` is missing. Please run `dart tool/update_assets.dart`.',
         );
       }
@@ -38,7 +38,7 @@ void main() {
     // 2. Ensure the build_version hash matches current inputs
     final buildVersionFile = File(p.join('lib', 'assets', assetFileName));
     if (!buildVersionFile.existsSync()) {
-      fail(
+      throw StateError(
         'Compiled asset tracking file not found. Run `dart tool/update_assets.dart`',
       );
     }
@@ -62,7 +62,7 @@ void main() {
           '${changedFiles.map((f) => '  - $f').join('\n')}\n',
         );
       }
-      fail(
+      throw StateError(
         '$errorMessage'
         'Please run `dart tool/update_assets.dart` and commit the updated files.',
       );

@@ -4,11 +4,12 @@ library;
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:checks/checks.dart';
 import 'package:path/path.dart' as p;
 import 'package:pub_semver/pub_semver.dart';
 import 'package:pubviz/src/deps_list.dart';
 import 'package:stack_trace/stack_trace.dart';
-import 'package:test/test.dart';
+import 'package:test/scaffolding.dart';
 
 const _write = false;
 
@@ -35,10 +36,10 @@ void main() {
 
       if (_write) {
         jsonFile.writeAsStringSync(depsJson);
-        fail('Set `_write` to false!');
+        throw StateError('Set `_write` to false!');
       }
 
-      expect(depsJson, jsonFile.readAsStringSync());
+      check(depsJson).equals(jsonFile.readAsStringSync());
     });
   }
 }
