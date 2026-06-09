@@ -6,7 +6,8 @@ import 'dart:io';
 
 import 'package:collection/collection.dart';
 import 'package:path/path.dart' as p;
-import 'package:test/test.dart';
+import 'package:test/expect.dart';
+import 'package:test/scaffolding.dart';
 
 import '../tool/shared.dart';
 

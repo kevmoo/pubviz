@@ -3,12 +3,14 @@ library;
 
 import 'dart:io';
 
+import 'package:checks/checks.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as p;
 import 'package:pubviz/src/executable.dart';
 import 'package:pubviz/src/options.dart';
 import 'package:pubviz/src/version.dart';
-import 'package:test/test.dart';
+import 'package:test/expect.dart';
+import 'package:test/scaffolding.dart';
 import 'package:test_descriptor/test_descriptor.dart' as d;
 import 'package:test_process/test_process.dart';
 
@@ -22,7 +24,7 @@ void main() {
     ]);
 
     final output = await proc.stdoutStream().join('\n');
-    expect(output, _usage);
+    check(output).equals(_usage);
 
     await proc.shouldExit(0);
   });
@@ -34,7 +36,7 @@ void main() {
     ]);
 
     final output = await proc.stdoutStream().join('\n');
-    expect(output, packageVersion);
+    check(output).equals(packageVersion);
 
     await proc.shouldExit(0);
   });
@@ -46,7 +48,7 @@ void main() {
     ]);
 
     final output = await proc.stdoutStream().join('\n');
-    expect(output, '''Could not find an option named "--bob".
+    check(output).equals('''Could not find an option named "--bob".
 
 $_usage''');
 
@@ -63,10 +65,9 @@ $_usage''');
     ]);
 
     final output = await proc.stdoutStream().join('\n');
-    expect(
+    check(
       output,
-      contains('"bob" is not an allowed value for option "--filters".'),
-    );
+    ).contains('"bob" is not an allowed value for option "--filters".');
 
     await proc.shouldExit(64);
   });
@@ -81,8 +82,8 @@ $_usage''');
     ]);
 
     final output = await process.stdoutStream().join('\n');
-    expect(output, contains('digraph pubviz {'));
-    expect(output, isNot(contains('"test" [')));
+    check(output).contains('digraph pubviz {');
+    check(output).not((it) => it.contains('"test" ['));
 
     await process.shouldExit(0);
   });
@@ -95,7 +96,7 @@ $_usage''');
     ]);
 
     final output = await proc.stdoutStream().join('\n');
-    expect(output, '''Only one argument is allowed. You provided 2.
+    check(output).equals('''Only one argument is allowed. You provided 2.
 
 $_usage''');
 
@@ -163,9 +164,11 @@ $_usage''');
     );
 
     final response = await http.get(Uri.parse('${serverUrl}viz_data.js'));
-    expect(response.statusCode, equals(200));
-    expect(response.headers['content-type'], contains('text/javascript'));
-    expect(response.body, contains('vizDataString'));
+    check(response.statusCode).equals(200);
+    check(
+      response.headers['content-type'],
+    ).isNotNull().contains('text/javascript');
+    check(response.body).contains('vizDataString');
 
     process.stdin.writeln('q');
     await process.shouldExit(0);
@@ -212,8 +215,8 @@ resolution: workspace
       // Both packages should be present as highlighted primary nodes.
       // Since root was the invocation target, it gets the primary label
       // format without a version.
-      expect(output, contains('root [label="⚙️ root"'));
-      expect(output, contains(r'pkga [label="pkga\n0.0.0"'));
+      check(output).contains('root [label="⚙️ root"');
+      check(output).contains(r'pkga [label="pkga\n0.0.0"');
 
       await process.shouldExit(0);
     });
@@ -231,8 +234,8 @@ resolution: workspace
         final output = await process.stdoutStream().join('\n');
 
         // Both packages should be present as highlighted primary nodes.
-        expect(output, contains(r'root [label="root\n0.0.0"'));
-        expect(output, contains('pkga [label="⚙️ pkga"'));
+        check(output).contains(r'root [label="root\n0.0.0"');
+        check(output).contains('pkga [label="⚙️ pkga"');
 
         await process.shouldExit(0);
       },
@@ -252,8 +255,8 @@ resolution: workspace
       // Only root should be present. 'pkga' should not be heavily highlighted
       // or included at all because the root package does not list it as a
       // dependency.
-      expect(output, contains('root [label=root'));
-      expect(output, isNot(contains('pkga')));
+      check(output).contains('root [label=root');
+      check(output).not((it) => it.contains('pkga'));
 
       await process.shouldExit(0);
     });
@@ -302,10 +305,9 @@ resolution: workspace
   test('readme', () {
     final readmeContent = File('README.md').readAsStringSync();
 
-    expect(
+    check(
       readmeContent,
-      contains(['```console', r'$ pubviz -?', _usage, '```'].join('\n')),
-    );
+    ).contains(['```console', r'$ pubviz -?', _usage, '```'].join('\n'));
   });
 }
 

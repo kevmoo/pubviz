@@ -1,16 +1,17 @@
+import 'package:checks/checks.dart';
 import 'package:pubviz/src/options.dart';
-import 'package:test/test.dart';
+import 'package:test/scaffolding.dart';
 
 void main() {
   group('parseOptions', () {
     test('defaults', () {
       final options = parseOptions([]);
-      expect(options.action, Action.open);
-      expect(options.flagOutdated, isTrue);
-      expect(options.ignorePackages, isEmpty);
-      expect(options.productionDependencies, isFalse);
-      expect(options.version, isFalse);
-      expect(options.help, isFalse);
+      check(options.action).equals(Action.open);
+      check(options.flagOutdated).equals(true);
+      check(options.ignorePackages).isEmpty();
+      check(options.productionDependencies).equals(false);
+      check(options.version).equals(false);
+      check(options.help).equals(false);
     });
 
     test('all flags', () {
@@ -30,25 +31,25 @@ void main() {
         '--package',
         'pubviz:1.0.0',
       ]);
-      expect(options.action, Action.print);
-      expect(options.ignorePackages, ['a', 'b']);
-      expect(options.flagOutdated, isFalse);
-      expect(options.directDependencies, isTrue);
-      expect(options.productionDependencies, isTrue);
-      expect(options.version, isTrue);
-      expect(options.help, isTrue);
-      expect(options.workspace, isTrue);
-      expect(options.filters, ['hide-dev']);
-      expect(options.package, 'pubviz:1.0.0');
+      check(options.action).equals(Action.print);
+      check(options.ignorePackages).deepEquals(['a', 'b']);
+      check(options.flagOutdated).equals(false);
+      check(options.directDependencies).equals(true);
+      check(options.productionDependencies).equals(true);
+      check(options.version).equals(true);
+      check(options.help).equals(true);
+      check(options.workspace).equals(true);
+      check(options.filters).deepEquals(['hide-dev']);
+      check(options.package).equals('pubviz:1.0.0');
     });
 
     test('rest arguments', () {
       final options = parseOptions(['path/to/pkg']);
-      expect(options.rest, ['path/to/pkg']);
+      check(options.rest).deepEquals(['path/to/pkg']);
     });
   });
 
   test('UsageException toString', () {
-    expect(UsageException('bob').toString(), 'bob');
+    check(UsageException('bob').toString()).equals('bob');
   });
 }

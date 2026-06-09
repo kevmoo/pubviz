@@ -3,13 +3,14 @@ library;
 
 import 'dart:io';
 
+import 'package:checks/checks.dart';
 import 'package:path/path.dart' as p;
 import 'package:pub_semver/pub_semver.dart';
 import 'package:pubviz/pubviz.dart';
-
 import 'package:pubviz/src/service.dart';
 import 'package:pubviz/src/update_order.dart';
-import 'package:test/test.dart';
+import 'package:test/expect.dart';
+import 'package:test/scaffolding.dart';
 import 'package:test_descriptor/test_descriptor.dart' as d;
 
 import 'mock_data_service.dart';
@@ -27,19 +28,17 @@ void main() {
     test('all dependencies', () async {
       final vp = await service.vizRoot();
 
-      expect(vp.root.name, 'repo_manager');
-      expect(vp.packages, hasLength(82));
+      check(vp.root.name).equals('repo_manager');
+      check(vp.packages).length.equals(82);
 
-      expect(
+      check(
+        because: 'Only primary',
         vp.packages.values.where((element) => element.isPrimary),
-        hasLength(1),
-        reason: 'Only primary',
-      );
-      expect(
+      ).length.equals(1);
+      check(
+        because: 'Only non-primary',
         vp.packages.values.where((element) => !element.isPrimary),
-        hasLength(81),
-        reason: 'Only non-primary',
-      );
+      ).length.equals(81);
 
       _verifyDotOutput(vp, 'all_deps');
     });
@@ -47,19 +46,17 @@ void main() {
     test('direct dependencies only', () async {
       final vp = await service.vizRoot(directDependenciesOnly: true);
 
-      expect(vp.root.name, 'repo_manager');
-      expect(vp.packages, hasLength(25));
+      check(vp.root.name).equals('repo_manager');
+      check(vp.packages).length.equals(25);
 
-      expect(
+      check(
+        because: 'Only primary',
         vp.packages.values.where((element) => element.isPrimary),
-        hasLength(1),
-        reason: 'Only primary',
-      );
-      expect(
+      ).length.equals(1);
+      check(
+        because: 'Only non-primary',
         vp.packages.values.where((element) => !element.isPrimary),
-        hasLength(24),
-        reason: 'Only non-primary',
-      );
+      ).length.equals(24);
 
       _verifyDotOutput(vp, 'direct_deps');
     });
@@ -67,19 +64,17 @@ void main() {
     test('prod dependencies only', () async {
       final vp = await service.vizRoot(productionDependenciesOnly: true);
 
-      expect(vp.root.name, 'repo_manager');
-      expect(vp.packages, hasLength(51));
+      check(vp.root.name).equals('repo_manager');
+      check(vp.packages).length.equals(51);
 
-      expect(
+      check(
+        because: 'Only primary',
         vp.packages.values.where((element) => element.isPrimary),
-        hasLength(1),
-        reason: 'Only primary',
-      );
-      expect(
+      ).length.equals(1);
+      check(
+        because: 'Only non-primary',
         vp.packages.values.where((element) => !element.isPrimary),
-        hasLength(50),
-        reason: 'Only non-primary',
-      );
+      ).length.equals(50);
 
       _verifyDotOutput(vp, 'production_deps');
     });
@@ -90,19 +85,17 @@ void main() {
         productionDependenciesOnly: true,
       );
 
-      expect(vp.root.name, 'repo_manager');
-      expect(vp.packages, hasLength(20));
+      check(vp.root.name).equals('repo_manager');
+      check(vp.packages).length.equals(20);
 
-      expect(
+      check(
+        because: 'Only primary',
         vp.packages.values.where((element) => element.isPrimary),
-        hasLength(1),
-        reason: 'Only primary',
-      );
-      expect(
+      ).length.equals(1);
+      check(
+        because: 'Only non-primary',
         vp.packages.values.where((element) => !element.isPrimary),
-        hasLength(19),
-        reason: 'Only non-primary',
-      );
+      ).length.equals(19);
 
       _verifyDotOutput(vp, 'direct_production_deps');
     });
@@ -110,19 +103,17 @@ void main() {
     test('outdated', () async {
       final vp = await service.vizRoot(flagOutdated: true);
 
-      expect(vp.root.name, 'repo_manager');
-      expect(vp.packages, hasLength(82));
+      check(vp.root.name).equals('repo_manager');
+      check(vp.packages).length.equals(82);
 
-      expect(
+      check(
+        because: 'Only primary',
         vp.packages.values.where((element) => element.isPrimary),
-        hasLength(1),
-        reason: 'Only primary',
-      );
-      expect(
+      ).length.equals(1);
+      check(
+        because: 'Only non-primary',
         vp.packages.values.where((element) => !element.isPrimary),
-        hasLength(81),
-        reason: 'Only non-primary',
-      );
+      ).length.equals(81);
 
       _verifyDotOutput(vp, 'outdated');
     });
@@ -134,19 +125,17 @@ void main() {
         ignorePackages: ignoredPackages,
       );
 
-      expect(vp.root.name, 'repo_manager');
-      expect(vp.packages, hasLength(82));
+      check(vp.root.name).equals('repo_manager');
+      check(vp.packages).length.equals(82);
 
-      expect(
+      check(
+        because: 'Only primary',
         vp.packages.values.where((element) => element.isPrimary),
-        hasLength(1),
-        reason: 'Only primary',
-      );
-      expect(
+      ).length.equals(1);
+      check(
+        because: 'Only non-primary',
         vp.packages.values.where((element) => !element.isPrimary),
-        hasLength(81),
-        reason: 'Only non-primary',
-      );
+      ).length.equals(81);
 
       _verifyDotOutput(vp, 'ignore', ignoredPackages: ignoredPackages);
     });
@@ -154,31 +143,29 @@ void main() {
     test('workspace', () async {
       final vp = await service.vizRoot(includeWorkspace: true);
 
-      expect(vp.isWorkspace, isTrue); // Verify it starts as true
-      expect(vp.root.name, 'repo_manager');
-      expect(vp.packages, hasLength(82));
+      check(vp.isWorkspace).isTrue(); // Verify it starts as true
+      check(vp.root.name).equals('repo_manager');
+      check(vp.packages).length.equals(82);
 
-      expect(
+      check(
+        because: 'Only primary',
         vp.packages.values.where((element) => element.isPrimary),
-        hasLength(1),
-        reason: 'Only primary',
-      );
-      expect(
+      ).length.equals(1);
+      check(
+        because: 'Only non-primary',
         vp.packages.values.where((element) => !element.isPrimary),
-        hasLength(81),
-        reason: 'Only non-primary',
-      );
+      ).length.equals(81);
 
       // Regression test: filter should preserve isWorkspace
       final filtered = vp.filter(excludeDev: true);
-      expect(filtered.isWorkspace, isTrue);
+      check(filtered.isWorkspace).isTrue();
     });
 
     test('update order', () async {
       final vp = await service.vizRoot(flagOutdated: true);
       final updateOrder = computeUpdateOrder(vp);
 
-      expect(updateOrder.map((e) => e.name), [
+      check(updateOrder.map((e) => e.name)).deepEquals([
         'front_end',
         'analyzer',
         'build_resolvers',
@@ -204,7 +191,7 @@ void main() {
 
       final updateOrder = computeUpdateOrder(root);
 
-      expect(updateOrder.map((e) => e.name), ['b', 'a']);
+      check(updateOrder.map((e) => e.name)).deepEquals(['b', 'a']);
     });
   });
 
@@ -220,19 +207,18 @@ void main() {
     test('excludeDev', () {
       final filtered = vp.filter(excludeDev: true);
 
-      expect(filtered.rootPackageName, 'repo_manager');
+      check(filtered.rootPackageName).equals('repo_manager');
       // Should have fewer packages than vp (82) since dev packages are dropped
-      expect(filtered.packages.length, lessThan(vp.packages.length));
-      expect(
+      check(filtered.packages.length).isLessThan(vp.packages.length);
+      check(
+        because: 'Only primary',
         filtered.packages.values.where((p) => p.isPrimary),
-        hasLength(1),
-        reason: 'Only primary',
-      );
+      ).length.equals(1);
 
       // Ensure no packages have devDependencies left!
       for (final p in filtered.packages.values) {
         for (final d in p.dependencies) {
-          expect(d.isDevDependency, isFalse);
+          check(d.isDevDependency).isFalse();
         }
       }
     });
@@ -240,31 +226,30 @@ void main() {
     test('onlyOutdated', () {
       final filtered = vp.filter(onlyOutdated: true);
 
-      expect(filtered.rootPackageName, 'repo_manager');
-      expect(filtered.packages.length, lessThan(vp.packages.length));
+      check(filtered.rootPackageName).equals('repo_manager');
+      check(filtered.packages.length).isLessThan(vp.packages.length);
 
       // Any remaining leaf node without outgoing edges must be an outdated
       // package, unless it is part of the path to an outdated package.
-      expect(
+      check(
+        because: 'Should contain at least one outdated package',
         filtered.packages.values.any(
           (p) =>
               p.latestVersion != null &&
               p.latestVersion!.compareTo(p.version!) > 0,
         ),
-        isTrue,
-        reason: 'Should contain at least one outdated package',
-      );
+      ).isTrue();
     });
 
     test('excludeDev and onlyOutdated', () {
       final filtered = vp.filter(excludeDev: true, onlyOutdated: true);
 
-      expect(filtered.rootPackageName, 'repo_manager');
-      expect(filtered.packages.length, lessThan(vp.packages.length));
+      check(filtered.rootPackageName).equals('repo_manager');
+      check(filtered.packages.length).isLessThan(vp.packages.length);
 
       for (final p in filtered.packages.values) {
         for (final d in p.dependencies) {
-          expect(d.isDevDependency, isFalse);
+          check(d.isDevDependency).isFalse();
         }
       }
     });
@@ -289,11 +274,11 @@ void main() {
       }, flagOutdated: true);
 
       final initialDep = root.packages['bar']!.dependencies.first;
-      expect(initialDep.includesLatest, isFalse);
+      check(initialDep.includesLatest).equals(false);
 
       final filtered = root.filter();
       final filteredDep = filtered.packages['bar']!.dependencies.first;
-      expect(filteredDep.includesLatest, isFalse);
+      check(filteredDep.includesLatest).equals(false);
     });
 
     test('filter preserves onlyDev state', () {
@@ -302,7 +287,7 @@ void main() {
       final root = VizRoot('a', {'a': pkg});
 
       final filtered = root.filter(excludeDev: true);
-      expect(filtered.packages['a']!.onlyDev, isFalse);
+      check(filtered.packages['a']!.onlyDev).equals(false);
     });
 
     test('onlyWorkspace retains bridges', () {
@@ -331,8 +316,8 @@ void main() {
 
       final filtered = root.filter(onlyWorkspace: true);
 
-      expect(filtered.packages.keys, unorderedEquals(['a', 'b', 'c']));
-      expect(filtered.packages.containsKey('d'), isFalse);
+      check(filtered.packages.keys).unorderedEquals(['a', 'b', 'c']);
+      check(filtered.packages.containsKey('d')).isFalse();
     });
 
     test(
@@ -369,14 +354,14 @@ void main() {
         // 'b' (unpublished) has no incoming dependencies and is not primary,
         // so it is hidden.
         // 'c' is kept because 'a' depends on it.
-        expect(filtered.packages.keys, unorderedEquals(['a', 'c']));
-        expect(filtered.packages.containsKey('a'), isTrue);
-        expect(filtered.packages.containsKey('b'), isFalse);
+        check(filtered.packages.keys).unorderedEquals(['a', 'c']);
+        check(filtered.packages.containsKey('a')).isTrue();
+        check(filtered.packages.containsKey('b')).isFalse();
 
         // Fallback logic should preserve the root name even if missing from
         // packages
-        expect(filtered.rootPackageName, equals('a'));
-        expect(filtered.root.name, equals('a'));
+        check(filtered.rootPackageName).equals('a');
+        check(filtered.root.name).equals('a');
       },
     );
 
@@ -406,7 +391,7 @@ void main() {
 
         final filtered = root.filter(hideIsolatedWorkspacePackages: true);
 
-        expect(filtered.packages.keys, unorderedEquals(['a', 'b', 'c']));
+        check(filtered.packages.keys).unorderedEquals(['a', 'b', 'c']);
       },
     );
 
@@ -432,7 +417,7 @@ void main() {
 
       final filtered = root.filter(hideIsolatedWorkspacePackages: true);
 
-      expect(filtered.packages.keys, unorderedEquals(['a']));
+      check(filtered.packages.keys).unorderedEquals(['a']);
     });
 
     test(
@@ -470,7 +455,7 @@ void main() {
 
         final filtered = root.filter(hideIsolatedWorkspacePackages: true);
 
-        expect(filtered.packages.keys, unorderedEquals(['root']));
+        check(filtered.packages.keys).unorderedEquals(['root']);
       },
     );
 
@@ -494,7 +479,7 @@ void main() {
       // 'b' is not in sourcePackages, so it should NOT be in 'a's
       // dependencies after filtering!
       final filteredA = filtered.packages['a']!;
-      expect(filteredA.dependencies.any((d) => d.name == 'b'), isFalse);
+      check(filteredA.dependencies.any((d) => d.name == 'b')).isFalse();
     });
 
     test('onlyWorkspace and onlyOutdated can be combined', () {
@@ -526,7 +511,7 @@ void main() {
       // Should retain 'a' and 'b' (workspace + path to outdated)
       // 'c' is in workspace but not outdated or leading to outdated
       // 'd' is not in workspace
-      expect(filtered.packages.keys, unorderedEquals(['a', 'b']));
+      check(filtered.packages.keys).unorderedEquals(['a', 'b']);
     });
 
     test('filter preserves isPublishToNone', () {
@@ -541,7 +526,7 @@ void main() {
       final root = VizRoot('a', {'a': pkg});
 
       final filtered = root.filter(excludeDev: true);
-      expect(filtered.packages['a']!.isPublishToNone, isTrue);
+      check(filtered.packages['a']!.isPublishToNone).isTrue();
     });
   });
 
@@ -555,34 +540,31 @@ void main() {
     test('workspace', () async {
       final vp = await service.vizRoot(includeWorkspace: true);
 
-      expect(vp.root.name, 'my_workspace');
-      expect(vp.packages, hasLength(5));
+      check(vp.root.name).equals('my_workspace');
+      check(vp.packages).length.equals(5);
 
       final primaryPackages = vp.packages.values.where(
         (element) => element.isPrimary,
       );
-      expect(
+      check(
+        because: 'Workspace members should be primary',
         primaryPackages.map((e) => e.name),
-        unorderedEquals(['my_workspace', 'member_a', 'member_b']),
-        reason: 'Workspace members should be primary',
-      );
+      ).unorderedEquals(['my_workspace', 'member_a', 'member_b']);
 
       final memberA = vp.packages['member_a']!;
       final argsDep = memberA.dependencies.firstWhere((d) => d.name == 'args');
-      expect(
+      check(
+        because: 'Should load constraint from member pubspec',
         argsDep.versionConstraint.toString(),
-        '^2.0.0',
-        reason: 'Should load constraint from member pubspec',
-      );
+      ).equals('^2.0.0');
 
       final nonPrimaryPackages = vp.packages.values.where(
         (element) => !element.isPrimary,
       );
-      expect(
+      check(
+        because: 'Transitive dependencies should not be primary',
         nonPrimaryPackages.map((e) => e.name),
-        unorderedEquals(['args', 'path']),
-        reason: 'Transitive dependencies should not be primary',
-      );
+      ).unorderedEquals(['args', 'path']);
     });
 
     test('workspace filtering includes all primary packages', () async {
@@ -590,12 +572,11 @@ void main() {
 
       final filtered = vp.filter(excludeDev: true);
 
-      expect(
+      check(
+        because: 'Filtering should retain all workspace primary packages',
         filtered.packages.values.where((p) => p.isPrimary).map((e) => e.name),
-        unorderedEquals(['my_workspace', 'member_a', 'member_b']),
-        reason: 'Filtering should retain all workspace primary packages',
-      );
-      expect(filtered.packages.containsKey('args'), isTrue);
+      ).unorderedEquals(['my_workspace', 'member_a', 'member_b']);
+      check(filtered.packages.containsKey('args')).isTrue();
     });
 
     test('workspace primary package dev dependencies emit dot edges', () async {
@@ -604,11 +585,10 @@ void main() {
       // Verify that the dev dependency (path) from member_a is present in the
       // graph and it outputs a dashed edge.
       final dot = vp.toDot();
-      expect(
+      check(
+        because: 'Dev dependencies of non-root primary packages should render',
         dot,
-        contains('member_a -> path [label="^1.8.0", style=dashed];'),
-        reason: 'Dev dependencies of non-root primary packages should render',
-      );
+      ).contains('member_a -> path [label="^1.8.0", style=dashed];');
     });
   });
 
@@ -654,14 +634,13 @@ dependencies:
       final vp = await service.vizRoot(flagOutdated: true);
 
       final root = vp.root;
-      expect(root.name, 'test_ahead');
+      check(root.name).equals('test_ahead');
 
       final dep = root.dependencies.firstWhere((d) => d.name == 'args');
-      expect(
+      check(
+        because: 'Constraint ^2.0.0-dev is a pre-release ahead of latest 1.5.0',
         dep.includesLatest,
-        isTrue,
-        reason: 'Constraint ^2.0.0-dev is a pre-release ahead of latest 1.5.0',
-      );
+      ).equals(true);
     });
 
     test('allowsLatest is false for stable ahead constraints', () async {
@@ -701,11 +680,10 @@ dependencies:
       );
       final vp = await stableService.vizRoot(flagOutdated: true);
       final dep = vp.root.dependencies.firstWhere((d) => d.name == 'args');
-      expect(
+      check(
+        because: 'Stable constraint ^2.0.0 shouldn\'t allow latest 1.5.0',
         dep.includesLatest,
-        isFalse,
-        reason: 'Stable constraint ^2.0.0 shouldn\'t allow latest 1.5.0',
-      );
+      ).equals(false);
     });
   });
 
@@ -721,11 +699,10 @@ dependencies:
 
       final json = pkg.toJson();
       final pkg2 = VizPackage.fromJson(json);
-      expect(
+      check(
+        because: 'onlyDev should remain false after roundtrip',
         pkg2.onlyDev,
-        isFalse,
-        reason: 'onlyDev should remain false after roundtrip',
-      );
+      ).equals(false);
     });
   });
 }
@@ -772,5 +749,5 @@ void _verifyDotOutput(
 
   final fileContent = File(filePath).readAsStringSync();
 
-  expect(dotOutput, fileContent);
+  check(dotOutput).equals(fileContent);
 }
