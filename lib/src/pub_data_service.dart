@@ -11,7 +11,7 @@ class PubDataService extends Service {
   final String rootPackageDir;
   final bool _debug;
 
-  PubDataService(this.rootPackageDir, {bool debug = false}) : _debug = debug;
+  PubDataService(this.rootPackageDir, {this._debug = false});
 
   @override
   Map<String, dynamic> outdated() {

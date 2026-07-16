@@ -186,7 +186,7 @@ $_usage''');
         d.file('pubspec.yaml', '''
 name: root
 environment:
-  sdk: ^3.10.0
+  sdk: ^3.12.0
 workspace:
   - pkga
 '''),
@@ -194,7 +194,7 @@ workspace:
           d.file('pubspec.yaml', '''
 name: pkga
 environment:
-  sdk: ^3.10.0
+  sdk: ^3.12.0
 resolution: workspace
 '''),
         ]),

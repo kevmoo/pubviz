@@ -41,7 +41,7 @@ const assetInputs = <String, String>{
   'lib/src/web/ui_manager.dart':
       '9cfec4eedb86c944eab02246a1c750339f533886517fb2636d70ecfbe94069f5',
   'pubspec.yaml':
-      '4b84886019475151bb48094e802e2fcb1c3f316affc041a55015eff618501c88',
+      'a9820f345bbcb86ad0df71df551c70400efb17b521c28ac1d377bc70c2633db6',
   'web/favicon.ico':
       '39ab6b867a1c4c75019506267b3b4ce7cc60fb2ba66870e6485b4e31f6265a7c',
   'web/index.html':
