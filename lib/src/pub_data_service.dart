@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:path/path.dart' as p;
+
 import 'deps_list.dart';
 import 'service.dart';
 
@@ -51,7 +53,7 @@ class PubDataService extends Service {
   }
 
   String _pubCommand(List<String> commandArgs) {
-    final proc = _dartExecutable();
+    final proc = dartExecutable();
     final args = [
       ...['pub'],
       ...commandArgs,
@@ -104,12 +106,14 @@ class PubDataService extends Service {
 
 const _pubEnvironment = 'PUB_ENVIRONMENT';
 
-String _dartExecutable() {
+String dartExecutable() {
   if (_isCompiledExe()) {
     return Platform.isWindows ? 'dart.exe' : 'dart';
   }
-  return Platform.executable;
+  return Platform.resolvedExecutable;
 }
 
 bool _isCompiledExe() =>
-    Platform.script.toFilePath() == Platform.resolvedExecutable;
+    Platform.script.toFilePath() == Platform.resolvedExecutable ||
+    p.basenameWithoutExtension(Platform.resolvedExecutable).toLowerCase() !=
+        'dart';

@@ -63,7 +63,11 @@ void main() async {
     p.join(assetsDir.path, assetFileName),
   ).writeAsStringSync('${await hashInputs()}\n');
 
-  print('Successfully updated lib/assets/!');
+  File(
+    p.join('lib', 'src', 'assets.g.dart'),
+  ).writeAsStringSync(generateEmbeddedAssetsString(assetsDir));
+
+  print('Successfully updated lib/assets/ and lib/src/assets.g.dart!');
 }
 
 final Set<Pattern> _ignoredPatterns = {

@@ -67,5 +67,22 @@ void main() {
         'Please run `dart tool/update_assets.dart` and commit the updated files.',
       );
     }
+
+    // 3. Ensure lib/src/assets.g.dart is up to date
+    final assetsGDart = File(p.join('lib', 'src', 'assets.g.dart'));
+    if (!assetsGDart.existsSync()) {
+      throw StateError(
+        '`lib/src/assets.g.dart` is missing. Please run `dart tool/update_assets.dart`.',
+      );
+    }
+
+    final expectedAssetsG = generateEmbeddedAssetsString(
+      Directory(p.join('lib', 'assets')),
+    );
+    if (assetsGDart.readAsStringSync() != expectedAssetsG) {
+      throw StateError(
+        '`lib/src/assets.g.dart` is out of date. Please run `dart tool/update_assets.dart`.',
+      );
+    }
   });
 }

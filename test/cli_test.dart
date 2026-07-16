@@ -142,7 +142,7 @@ $_usage''');
     await process.shouldExit(0);
   });
 
-  test('serve action serves viz_data.js', () async {
+  test('serve action serves viz_data.js and static web assets', () async {
     final process = await TestProcess.start(Platform.executable, [
       _entryPoint,
       '-a',
@@ -158,12 +158,23 @@ $_usage''');
       }
     }
 
-    final response = await http.get(Uri.parse('${serverUrl}viz_data.js'));
-    check(response.statusCode).equals(200);
+    final dataResponse = await http.get(Uri.parse('${serverUrl}viz_data.js'));
+    check(dataResponse.statusCode).equals(200);
     check(
-      response.headers['content-type'],
+      dataResponse.headers['content-type'],
     ).isNotNull().contains('text/javascript');
-    check(response.body).contains('vizDataString');
+    check(dataResponse.body).contains('vizDataString');
+
+    final indexResponse = await http.get(Uri.parse(serverUrl));
+    check(indexResponse.statusCode).equals(200);
+    check(
+      indexResponse.headers['content-type'],
+    ).isNotNull().contains('text/html');
+    check(indexResponse.body).contains('<!DOCTYPE html>');
+
+    final cssResponse = await http.get(Uri.parse('${serverUrl}style.css'));
+    check(cssResponse.statusCode).equals(200);
+    check(cssResponse.headers['content-type']).isNotNull().contains('text/css');
 
     process.stdin.writeln('q');
     await process.shouldExit(0);
