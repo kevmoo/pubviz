@@ -7,6 +7,11 @@ import 'shared.dart';
 void main() async {
   print('Building web assets via build_runner...');
 
+  final tempDir = Directory('build/assets_temp');
+  if (tempDir.existsSync()) {
+    tempDir.deleteSync(recursive: true);
+  }
+
   final buildResult = await Process.start(Platform.executable, [
     'run',
     'build_runner',
@@ -17,63 +22,23 @@ void main() async {
   ], mode: ProcessStartMode.inheritStdio);
 
   if (await buildResult.exitCode != 0) {
-    stderr.writeln('Build failed:');
+    stderr.writeln('Build failed.');
     exitCode = 1;
     return;
   }
 
-  print('Copying built assets to lib/assets/...');
-  final assetsDir = Directory('lib/assets');
-  if (assetsDir.existsSync()) {
-    assetsDir.deleteSync(recursive: true);
-  }
-  assetsDir.createSync(recursive: true);
-
-  final tempDir = Directory('build/assets_temp');
   if (!tempDir.existsSync()) {
     stderr.writeln('Error: build/assets_temp directory not found after build.');
     exitCode = 1;
     return;
   }
 
-  void copyDirectory(
-    Directory source,
-    Directory destination, {
-    bool isRoot = false,
-  }) {
-    for (var entity in source.listSync()) {
-      final basename = p.basename(entity.path);
-      if (_ignoredPatterns.any((p) => p.allMatches(basename).isNotEmpty)) {
-        continue;
-      }
-      if (entity is Directory) {
-        final newDirectory = Directory(
-          p.join(destination.absolute.path, p.basename(entity.path)),
-        )..createSync();
-        copyDirectory(entity.absolute, newDirectory);
-      } else if (entity is File) {
-        entity.copySync(p.join(destination.path, p.basename(entity.path)));
-      }
-    }
-  }
-
-  copyDirectory(tempDir, assetsDir, isRoot: true);
-
-  File(
-    p.join(assetsDir.path, assetFileName),
-  ).writeAsStringSync('${await hashInputs()}\n');
-
+  final hash = await hashInputs();
   File(
     p.join('lib', 'src', 'assets.g.dart'),
-  ).writeAsStringSync(generateEmbeddedAssetsString(assetsDir));
+  ).writeAsStringSync(generateEmbeddedAssetsString(tempDir, inputHashes: hash));
 
-  print('Successfully updated lib/assets/ and lib/src/assets.g.dart!');
+  tempDir.deleteSync(recursive: true);
+
+  print('Successfully updated lib/src/assets.g.dart!');
 }
-
-final Set<Pattern> _ignoredPatterns = {
-  RegExp(r'^\.'),
-  'packages',
-  'viz_data.js',
-  'web_app.dart2js.js.deps',
-  'web_app.dart2js.js.info.json',
-};
