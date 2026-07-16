@@ -107,13 +107,13 @@ class PubDataService extends Service {
 const _pubEnvironment = 'PUB_ENVIRONMENT';
 
 String dartExecutable() {
-  if (_isCompiledExe()) {
+  final isCompiledExe =
+      Platform.version.contains('(exe)') ||
+      Platform.script.toFilePath() == Platform.resolvedExecutable ||
+      p.basenameWithoutExtension(Platform.resolvedExecutable).toLowerCase() !=
+          'dart';
+  if (isCompiledExe) {
     return Platform.isWindows ? 'dart.exe' : 'dart';
   }
   return Platform.resolvedExecutable;
 }
-
-bool _isCompiledExe() =>
-    Platform.script.toFilePath() == Platform.resolvedExecutable ||
-    p.basenameWithoutExtension(Platform.resolvedExecutable).toLowerCase() !=
-        'dart';

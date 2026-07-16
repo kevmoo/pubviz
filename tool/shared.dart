@@ -44,19 +44,14 @@ const embeddedAssets = <String, String>{
     final base64String = base64Encode(compressedBytes);
 
     buffer.writeln("  '$basename':");
-    const chunkSize = 72;
+    const chunkSize = 70;
     for (var i = 0; i < base64String.length; i += chunkSize) {
-      final isLast = i + chunkSize >= base64String.length;
-      final currentChunkSize = isLast ? 71 : chunkSize;
-      final end = (i + currentChunkSize < base64String.length)
-          ? i + currentChunkSize
+      final end = (i + chunkSize < base64String.length)
+          ? i + chunkSize
           : base64String.length;
       final chunk = base64String.substring(i, end);
-      final suffix = (end == base64String.length) ? ',' : '';
-      buffer.writeln("      '$chunk'$suffix");
-      if (end < base64String.length && end != i + chunkSize) {
-        i = end - chunkSize;
-      }
+      final isLast = end == base64String.length;
+      buffer.writeln("      '$chunk'${isLast ? ',' : ''}");
     }
   }
 
