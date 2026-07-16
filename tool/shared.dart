@@ -21,7 +21,8 @@ const embeddedAssets = <String, String>{
     if (basename == assetFileName) continue;
 
     final bytes = file.readAsBytesSync();
-    final base64String = base64Encode(bytes);
+    final compressedBytes = gzip.encode(bytes);
+    final base64String = base64Encode(compressedBytes);
 
     buffer.writeln("  '$basename':");
     const chunkSize = 72;

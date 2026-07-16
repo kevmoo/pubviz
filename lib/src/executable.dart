@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'dart:isolate';
 import 'dart:typed_data';
 
 import 'package:io/ansi.dart';
@@ -9,7 +8,6 @@ import 'package:meta/meta.dart';
 import 'package:path/path.dart' as p;
 import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart' as io;
-import 'package:shelf_static/shelf_static.dart';
 
 import 'assets.g.dart';
 import 'dot.dart';
@@ -141,10 +139,6 @@ String _getContentDot(VizRoot root, List<String> ignorePackages) =>
     root.toDot(ignorePackages: ignorePackages);
 
 Future<void> _createOrOpen(VizRoot root, Options options) async {
-  final assetsUri = await Isolate.resolvePackageUri(
-    Uri.parse('package:pubviz/assets/'),
-  );
-
   final jsContent = vizDataString(root);
 
   final handler = Cascade()
@@ -157,7 +151,7 @@ Future<void> _createOrOpen(VizRoot root, Options options) async {
         }
         return Response.notFound('');
       })
-      .add(_assetHandler(assetsUri))
+      .add(_embeddedAssetHandler())
       .handler;
 
   final server = await io.serve(handler, InternetAddress.loopbackIPv4, 0);
@@ -202,16 +196,6 @@ String vizDataString(VizRoot root) {
   return 'export const vizDataString = JSON.stringify($jsonString);\n';
 }
 
-Handler _assetHandler(Uri? assetsUri) {
-  if (assetsUri != null && Directory(assetsUri.toFilePath()).existsSync()) {
-    return createStaticHandler(
-      assetsUri.toFilePath(),
-      defaultDocument: 'index.html',
-    );
-  }
-  return _embeddedAssetHandler();
-}
-
 Handler _embeddedAssetHandler() {
   final cache = <String, Uint8List>{};
   return (Request request) {
@@ -219,16 +203,24 @@ Handler _embeddedAssetHandler() {
     if (path.isEmpty || path == '/') {
       path = 'index.html';
     }
-    var bytes = cache[path];
-    if (bytes == null) {
+    var compressedBytes = cache[path];
+    if (compressedBytes == null) {
       final base64Content = embeddedAssets[path];
       if (base64Content == null) {
         return Response.notFound('Not found');
       }
-      bytes = cache[path] = base64Decode(base64Content);
+      compressedBytes = cache[path] = base64Decode(base64Content);
     }
     final mimeType = _mimeTypeFor(path);
-    return Response.ok(bytes, headers: {'content-type': ?mimeType});
+    final acceptEncoding = request.headers['accept-encoding'] ?? '';
+    if (acceptEncoding.contains('gzip')) {
+      return Response.ok(
+        compressedBytes,
+        headers: {'content-encoding': 'gzip', 'content-type': ?mimeType},
+      );
+    }
+    final decompressed = gzip.decode(compressedBytes);
+    return Response.ok(decompressed, headers: {'content-type': ?mimeType});
   };
 }
 
