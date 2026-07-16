@@ -1,8 +1,14 @@
 ## 6.2.0-wip
 
+- Now supports `dart run pubviz@`.
+- Faster local web serving via pre-gzipped embedded assets with HTTP
+  `Content-Encoding: gzip`.
 - Added native Mermaid diagram support:
-  - Added the `print-mermaid` action (`-a print-mermaid`) to print the dependency graph as a Mermaid flowchart.
-  - Added Mermaid export options ("Copy Mermaid" and "Save Mermaid") to the web UI.
+  - Added the `print-mermaid` action (`-a print-mermaid`) to print the
+    dependency graph as a Mermaid flowchart.
+  - Added Mermaid export options ("Copy Mermaid" and "Save Mermaid") to the
+    web UI.
+- Require `sdk: ^3.12.0`.
 
 ## 6.1.0
 
