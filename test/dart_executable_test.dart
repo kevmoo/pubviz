@@ -75,19 +75,17 @@ void main() {
       },
     );
 
-    test(
-      'defaults to bare executable name when running as compiled executable without SDK env vars',
-      () {
-        final exeName = Platform.isWindows ? 'dart.exe' : 'dart';
-        final result = dartExecutable(
-          script: Uri.file('/usr/local/bin/pubviz'),
-          resolvedExecutable: '/usr/local/bin/pubviz',
-          version: '3.12.0 (exe)',
-          environment: {},
-        );
+    test('defaults to bare executable name when running as compiled executable '
+        'without SDK env vars', () {
+      final exeName = Platform.isWindows ? 'dart.exe' : 'dart';
+      final result = dartExecutable(
+        script: Uri.file('/usr/local/bin/pubviz'),
+        resolvedExecutable: '/usr/local/bin/pubviz',
+        version: '3.12.0 (exe)',
+        environment: {},
+      );
 
-        check(result).equals(exeName);
-      },
-    );
+      check(result).equals(exeName);
+    });
   });
 }
