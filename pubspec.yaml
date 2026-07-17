@@ -6,7 +6,7 @@ description: >-
 homepage: https://github.com/kevmoo/pubviz
 
 environment:
-  sdk: ^3.10.0
+  sdk: ^3.12.0
 
 dependencies:
   args: ^2.6.0
@@ -21,7 +21,6 @@ dependencies:
   pub_semver: ^2.1.4
   pubspec_parse: ^1.5.0
   shelf: ^1.4.1
-  shelf_static: ^1.1.2
   stack_trace: ^1.10.0
   string_scanner: ^1.2.0
   web: ^1.0.0

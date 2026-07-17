@@ -132,7 +132,7 @@ Future<void> _runPubGetAndDeps(
   pubspecFile.writeAsStringSync('''
 name: temp_project
 environment:
-  sdk: '^3.10.0'
+  sdk: '^3.12.0'
 dependencies:
 ${depsBuffer.toString()}
 ''');

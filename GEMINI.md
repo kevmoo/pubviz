@@ -2,36 +2,34 @@
 
 These instructions help guide AI agents when making changes to this repository.
 
-## Web Assets Workflow (`web` vs `lib/assets`)
+## Web Assets Workflow (`web` vs `lib/src/assets.g.dart`)
 
-The `pubviz` application includes a compiled web frontend that is bundled
-directly into the Dart package. It is critical to understand the distinction
-between the source files and the compiled outputs:
+The `pubviz` application includes a compiled web frontend that is embedded
+directly into Dart source code as pre-gzipped Base64 strings. It is critical
+to understand the workflow between source files and compiled outputs:
 
 1. **Source of Truth (`web/`)**:
    - All web application source code (HTML, CSS, Dart) lives in the
      `web` directory.
-   - **Make all web-related UI or logic edits here.** Do NOT manually edit
-     files in `lib/assets/`.
+   - **Make all web-related UI or logic edits here.**
 
-2. **Compiled Output (`lib/assets/`)**:
-   - This directory contains the final generated web artifacts (Compiled JS,
-     WASM, CSS, copied HTML, etc.) ensuring offline functionality.
-   - It also contains `build_inputs.json`, which tracks the `SHA-256` hashes
-     of the input files (`web`, `lib`, `build.yaml`, `pubspec.yaml`)
+2. **Compiled Embedded Output (`lib/src/assets.g.dart`)**:
+   - This generated file contains the pre-gzipped assets embedded directly
+     in Dart code to guarantee 100% standalone, offline functionality.
+   - It also embeds `assetInputsHash`, which tracks the `SHA-256` hashes
+     of the input files (`web`, `lib/src`, `build.yaml`, `pubspec.yaml`)
      to ensure the cache isn't stale.
 
 3. **Rebuilding Assets**:
    - Whenever you modify *anything* in `web/`, `lib/`, `build.yaml`, 
      or `pubspec.yaml`, you **MUST** run the following command to recompile
-     the assets and sync them to `lib/assets/`:
+     the assets and update `lib/src/assets.g.dart`:
      ```bash
      dart tool/update_assets.dart
      ```
    - If you fail to run this step, the CI test
-     `ensure_web_assets_built_test.dart` will fail because the
-     `build_inputs.json` hash will no longer match the source files on disk,
-     or the manual static byte checks will fail.
+     `ensure_web_assets_built_test.dart` will fail because `assetInputsHash`
+     will no longer match the source files on disk.
 
 ## Code Generation (`build_runner`)
 - `pubviz` uses `build_cli` (for `lib/src/options.dart`) and `build_version`

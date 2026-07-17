@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:path/path.dart' as p;
+
 import 'deps_list.dart';
 import 'service.dart';
 
@@ -9,7 +11,7 @@ class PubDataService extends Service {
   final String rootPackageDir;
   final bool _debug;
 
-  PubDataService(this.rootPackageDir, {bool debug = false}) : _debug = debug;
+  PubDataService(this.rootPackageDir, {this._debug = false});
 
   @override
   Map<String, dynamic> outdated() {
@@ -51,7 +53,7 @@ class PubDataService extends Service {
   }
 
   String _pubCommand(List<String> commandArgs) {
-    final proc = _dartExecutable();
+    final proc = dartExecutable();
     final args = [
       ...['pub'],
       ...commandArgs,
@@ -104,12 +106,44 @@ class PubDataService extends Service {
 
 const _pubEnvironment = 'PUB_ENVIRONMENT';
 
-String _dartExecutable() {
-  if (_isCompiledExe()) {
-    return Platform.isWindows ? 'dart.exe' : 'dart';
-  }
-  return Platform.executable;
-}
+String dartExecutable({
+  Uri? script,
+  String? resolvedExecutable,
+  String? version,
+  Map<String, String>? environment,
+}) {
+  script ??= Platform.script;
+  resolvedExecutable ??= Platform.resolvedExecutable;
+  version ??= Platform.version;
+  environment ??= Platform.environment;
 
-bool _isCompiledExe() =>
-    Platform.script.toFilePath() == Platform.resolvedExecutable;
+  final isCompiledExe =
+      version.contains('(exe)') ||
+      (script.isScheme('file') && script.toFilePath() == resolvedExecutable) ||
+      p.basenameWithoutExtension(resolvedExecutable).toLowerCase() != 'dart';
+
+  if (isCompiledExe) {
+    final exeName = Platform.isWindows ? 'dart.exe' : 'dart';
+    if (environment.containsKey('FLUTTER_ROOT')) {
+      final flutterDart = p.join(
+        environment['FLUTTER_ROOT']!,
+        'bin',
+        'cache',
+        'dart-sdk',
+        'bin',
+        exeName,
+      );
+      if (File(flutterDart).existsSync()) {
+        return flutterDart;
+      }
+    }
+    if (environment.containsKey('DART_SDK')) {
+      final sdkDart = p.join(environment['DART_SDK']!, 'bin', exeName);
+      if (File(sdkDart).existsSync()) {
+        return sdkDart;
+      }
+    }
+    return exeName;
+  }
+  return resolvedExecutable;
+}

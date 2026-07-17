@@ -26,8 +26,8 @@ linter:
     - prefer_expression_function_bodies
     - prefer_final_locals
     - require_trailing_commas
+    - simple_directive_paths
     - unnecessary_await_in_return
     - unnecessary_ignore
-    - use_if_null_to_convert_nulls_to_bools
     - use_raw_strings
     - use_string_buffers
