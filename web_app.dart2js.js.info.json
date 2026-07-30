@@ -3,12 +3,12 @@
   "dump_minor_version": 1,
   "program": {
     "entrypoint": "function/org-dartlang-app:///web/web_app.dart::main",
-    "size": 148749,
+    "size": 149317,
     "ramUsage": "N/A MB",
-    "dart2jsVersion": "3.13.0-103.1.beta",
-    "compilationMoment": "2026-05-09 18:05:22.129889",
-    "compilationDuration": 973400,
-    "toJsonDuration": 5000,
+    "dart2jsVersion": "3.14.0-76.0.dev",
+    "compilationMoment": "2026-07-30 10:51:44.082994",
+    "compilationDuration": 881636,
+    "toJsonDuration": 3000,
     "dumpInfoDuration": 0,
     "noSuchMethodEnabled": false,
     "isRuntimeTypeUsed": true,
@@ -33,7 +33,7 @@
         "id": "library/dart:_interceptors::",
         "kind": "library",
         "name": "_interceptors",
-        "size": 9156,
+        "size": 9125,
         "children": [
           "class/dart:_interceptors::ArrayIterator",
           "class/dart:_interceptors::Interceptor",
@@ -113,7 +113,7 @@
         "id": "library/dart:_js_helper::",
         "kind": "library",
         "name": "_js_helper",
-        "size": 21868,
+        "size": 21882,
         "children": [
           "class/dart:_js_helper::BoundClosure",
           "class/dart:_js_helper::Closure",
@@ -240,7 +240,7 @@
         "id": "library/dart:_js_names::",
         "kind": "library",
         "name": "dart._js_names",
-        "size": 0,
+        "size": 37,
         "children": [
           "function/dart:_js_names::unmangleGlobalNameIfPreservedAnyways"
         ],
@@ -312,7 +312,7 @@
         "id": "library/dart:_rti::",
         "kind": "library",
         "name": "rti",
-        "size": 17103,
+        "size": 17114,
         "children": [
           "class/dart:_rti::Rti",
           "class/dart:_rti::TypeRule",
@@ -419,7 +419,7 @@
         "id": "library/dart:async::",
         "kind": "library",
         "name": "dart.async",
-        "size": 11533,
+        "size": 11943,
         "children": [
           "class/dart:async::AsyncError",
           "class/dart:async::Completer",
@@ -427,6 +427,7 @@
           "class/dart:async::StreamIterator",
           "class/dart:async::Timer",
           "class/dart:async::Zone",
+          "class/dart:async::ZoneDelegate",
           "class/dart:async::_AsyncAwaitCompleter",
           "class/dart:async::_AsyncCallbackEntry",
           "class/dart:async::_AsyncCompleter",
@@ -434,18 +435,16 @@
           "class/dart:async::_Completer",
           "class/dart:async::_Future",
           "class/dart:async::_FutureListener",
-          "class/dart:async::_RootZone",
           "class/dart:async::_StreamIterator",
           "class/dart:async::_SyncStarIterable",
           "class/dart:async::_SyncStarIterator",
           "class/dart:async::_TimerImpl",
-          "class/dart:async::_Zone",
-          "class/dart:async::_ZoneFunction",
           "classType/dart:async::Future",
           "field/dart:async::_isInCallbackLoop",
           "field/dart:async::_lastCallback",
           "field/dart:async::_lastPriorityCallback",
           "field/dart:async::_nextCallback",
+          "field/dart:async::_rootDelegate",
           "function/dart:async::_asyncAwait",
           "function/dart:async::_asyncRethrow",
           "function/dart:async::_asyncReturn",
@@ -463,10 +462,8 @@
           "function/dart:async::_microtaskEntryCallback",
           "function/dart:async::_microtaskLoop",
           "function/dart:async::_registerErrorHandler",
-          "function/dart:async::_rootHandleError",
-          "function/dart:async::_rootRun",
-          "function/dart:async::_rootRunBinary",
-          "function/dart:async::_rootRunUnary",
+          "function/dart:async::_rootCreateTimer",
+          "function/dart:async::_rootHandleUncaughtError",
           "function/dart:async::_rootScheduleMicrotask",
           "function/dart:async::_scheduleAsyncCallback",
           "function/dart:async::_schedulePriorityAsyncCallback",
@@ -545,7 +542,7 @@
         "id": "library/dart:core::",
         "kind": "library",
         "name": "dart.core",
-        "size": 6913,
+        "size": 6910,
         "children": [
           "class/dart:core::ArgumentError",
           "class/dart:core::AssertionError",
@@ -905,7 +902,7 @@
         "id": "library/package:pubviz/src/web/ui_manager.dart::",
         "kind": "library",
         "name": "<unnamed>",
-        "size": 15103,
+        "size": 15099,
         "children": [
           "class/package:pubviz/src/web/ui_manager.dart::UIManager",
           "class/package:pubviz/src/web/ui_manager.dart::_ExportFormat",
@@ -1150,7 +1147,7 @@
         "id": "class/dart:_interceptors::JSNumber",
         "kind": "class",
         "name": "JSNumber",
-        "size": 1318,
+        "size": 1317,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:_interceptors::",
         "modifiers": {
@@ -1958,7 +1955,7 @@
         "id": "class/dart:_js_helper::JsLinkedHashMap",
         "kind": "class",
         "name": "JsLinkedHashMap",
-        "size": 1672,
+        "size": 1702,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:_js_helper::",
         "modifiers": {
@@ -3347,17 +3344,67 @@
         "id": "class/dart:async::Zone",
         "kind": "class",
         "name": "Zone",
+        "size": 1818,
+        "outputUnit": "outputUnit/main",
+        "parent": "library/dart:async::",
+        "modifiers": {
+          "abstract": false
+        },
+        "children": [
+          "field/dart:async::Zone._createPeriodicTimerFunction",
+          "field/dart:async::Zone._createTimerFunction",
+          "field/dart:async::Zone._current",
+          "field/dart:async::Zone._delegate",
+          "field/dart:async::Zone._errorCallbackFunction",
+          "field/dart:async::Zone._forkFunction",
+          "field/dart:async::Zone._handleUncaughtErrorFunction",
+          "field/dart:async::Zone._parent",
+          "field/dart:async::Zone._printFunction",
+          "field/dart:async::Zone._registerBinaryCallbackFunction",
+          "field/dart:async::Zone._registerCallbackFunction",
+          "field/dart:async::Zone._registerUnaryCallbackFunction",
+          "field/dart:async::Zone._runBinaryFunction",
+          "field/dart:async::Zone._runFunction",
+          "field/dart:async::Zone._runUnaryFunction",
+          "field/dart:async::Zone._scheduleMicrotaskFunction",
+          "field/dart:async::Zone._zoneValues",
+          "function/dart:async::Zone._createTimerZoned",
+          "function/dart:async::Zone._errorCallbackZoned",
+          "function/dart:async::Zone._handleUncaughtErrorZoned",
+          "function/dart:async::Zone._registerBinaryCallbackZoned",
+          "function/dart:async::Zone._registerCallbackZoned",
+          "function/dart:async::Zone._registerUnaryCallbackZoned",
+          "function/dart:async::Zone._runBinaryZoned",
+          "function/dart:async::Zone._runUnaryZoned",
+          "function/dart:async::Zone._runZoned",
+          "function/dart:async::Zone._scheduleMicrotaskZoned",
+          "function/dart:async::Zone.bindCallback",
+          "function/dart:async::Zone.bindCallbackGuarded",
+          "function/dart:async::Zone.bindUnaryCallbackGuarded",
+          "function/dart:async::Zone.createTimer",
+          "function/dart:async::Zone.current",
+          "function/dart:async::Zone.errorCallback",
+          "function/dart:async::Zone.handleUncaughtError",
+          "function/dart:async::Zone.inSameErrorZone",
+          "function/dart:async::Zone.registerBinaryCallback",
+          "function/dart:async::Zone.registerUnaryCallback",
+          "function/dart:async::Zone.runGuarded",
+          "function/dart:async::Zone.runUnaryGuarded"
+        ],
+        "supers": []
+      },
+      "dart:async::ZoneDelegate": {
+        "id": "class/dart:async::ZoneDelegate",
+        "kind": "class",
+        "name": "ZoneDelegate",
         "size": 0,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:async::",
         "modifiers": {
-          "abstract": true
+          "abstract": false
         },
         "children": [
-          "field/dart:async::Zone._current",
-          "function/dart:async::Zone._enter",
-          "function/dart:async::Zone._leave",
-          "function/dart:async::Zone.current"
+          "field/dart:async::ZoneDelegate._zone"
         ],
         "supers": []
       },
@@ -3365,7 +3412,7 @@
         "id": "class/dart:async::_AsyncAwaitCompleter",
         "kind": "class",
         "name": "_AsyncAwaitCompleter",
-        "size": 268,
+        "size": 269,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:async::",
         "modifiers": {
@@ -3443,7 +3490,7 @@
         "id": "class/dart:async::_Completer",
         "kind": "class",
         "name": "_Completer",
-        "size": 164,
+        "size": 165,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:async::",
         "modifiers": {
@@ -3462,7 +3509,7 @@
         "id": "class/dart:async::_Future",
         "kind": "class",
         "name": "_Future",
-        "size": 3118,
+        "size": 3075,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:async::",
         "modifiers": {
@@ -3515,7 +3562,7 @@
         "id": "class/dart:async::_FutureListener",
         "kind": "class",
         "name": "_FutureListener",
-        "size": 553,
+        "size": 571,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:async::",
         "modifiers": {
@@ -3546,36 +3593,6 @@
           "function/dart:async::_FutureListener.shouldChain"
         ],
         "supers": []
-      },
-      "dart:async::_RootZone": {
-        "id": "class/dart:async::_RootZone",
-        "kind": "class",
-        "name": "_RootZone",
-        "size": 1012,
-        "outputUnit": "outputUnit/main",
-        "parent": "library/dart:async::",
-        "modifiers": {
-          "abstract": false
-        },
-        "children": [
-          "function/dart:async::_RootZone.bindCallbackGuarded",
-          "function/dart:async::_RootZone.bindUnaryCallbackGuarded",
-          "function/dart:async::_RootZone.createTimer",
-          "function/dart:async::_RootZone.errorCallback",
-          "function/dart:async::_RootZone.errorZone",
-          "function/dart:async::_RootZone.handleUncaughtError",
-          "function/dart:async::_RootZone.registerBinaryCallback",
-          "function/dart:async::_RootZone.registerUnaryCallback",
-          "function/dart:async::_RootZone.run",
-          "function/dart:async::_RootZone.runBinary",
-          "function/dart:async::_RootZone.runGuarded",
-          "function/dart:async::_RootZone.runUnary",
-          "function/dart:async::_RootZone.runUnaryGuarded",
-          "function/dart:async::_RootZone.scheduleMicrotask"
-        ],
-        "supers": [
-          "class/dart:async::_Zone"
-        ]
       },
       "dart:async::_StreamIterator": {
         "id": "class/dart:async::_StreamIterator",
@@ -3663,39 +3680,6 @@
         "supers": [
           "class/dart:async::Timer"
         ]
-      },
-      "dart:async::_Zone": {
-        "id": "class/dart:async::_Zone",
-        "kind": "class",
-        "name": "_Zone",
-        "size": 39,
-        "outputUnit": "outputUnit/main",
-        "parent": "library/dart:async::",
-        "modifiers": {
-          "abstract": true
-        },
-        "children": [
-          "function/dart:async::_Zone.inSameErrorZone"
-        ],
-        "supers": [
-          "class/dart:async::Zone"
-        ]
-      },
-      "dart:async::_ZoneFunction": {
-        "id": "class/dart:async::_ZoneFunction",
-        "kind": "class",
-        "name": "_ZoneFunction",
-        "size": 0,
-        "outputUnit": "outputUnit/main",
-        "parent": "library/dart:async::",
-        "modifiers": {
-          "abstract": false
-        },
-        "children": [
-          "field/dart:async::_ZoneFunction.function",
-          "field/dart:async::_ZoneFunction.zone"
-        ],
-        "supers": []
       },
       "dart:collection::LinkedHashMap": {
         "id": "class/dart:collection::LinkedHashMap",
@@ -4558,19 +4542,18 @@
         "id": "class/dart:core::Duration",
         "kind": "class",
         "name": "Duration",
-        "size": 424,
+        "size": 421,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:core::",
         "modifiers": {
           "abstract": false
         },
         "children": [
-          "field/dart:core::Duration._duration",
+          "field/dart:core::Duration.inMicroseconds",
           "function/dart:core::Duration.==",
           "function/dart:core::Duration.Duration",
           "function/dart:core::Duration.compareTo",
           "function/dart:core::Duration.hashCode",
-          "function/dart:core::Duration.inMicroseconds",
           "function/dart:core::Duration.inMilliseconds",
           "function/dart:core::Duration.toString"
         ],
@@ -5644,7 +5627,7 @@
         "id": "class/package:pubviz/src/web/ui_manager.dart::UIManager",
         "kind": "class",
         "name": "UIManager",
-        "size": 13394,
+        "size": 13390,
         "outputUnit": "outputUnit/main",
         "parent": "library/package:pubviz/src/web/ui_manager.dart::",
         "modifiers": {
@@ -7542,7 +7525,7 @@
         "id": "function/dart:_interceptors::JSNumber._tdivFast",
         "kind": "function",
         "name": "_tdivFast",
-        "size": 42,
+        "size": 41,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:_interceptors::JSNumber",
         "children": [],
@@ -7563,7 +7546,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "BU(a,b){return(a|0)===a?a/b|0:this.P(a,b)}",
+        "code": "O(a,b){return(a|0)===a?a/b|0:this.P(a,b)}",
         "type": "int Function(num)",
         "functionKind": 2
       },
@@ -8710,7 +8693,7 @@
         "id": "function/dart:_interceptors::getNativeInterceptor",
         "kind": "function",
         "name": "getNativeInterceptor",
-        "size": 744,
+        "size": 714,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:_interceptors::",
         "children": [],
@@ -8731,7 +8714,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "ks(a){var s,r,q,p,o,n=a[v.dispatchPropertyName]\nif(n==null)if($.Bv==null){A.XD()\nn=a[v.dispatchPropertyName]}if(n!=null){s=n.p\nif(!1===s)return n.i\nif(!0===s)return a\nr=Object.getPrototypeOf(a)\nif(s===r)return n.i\nif(n.e===r)throw A.b(A.SY(\"Return interceptor for \"+A.Ej(s(a,n))))}q=a.constructor\nif(q==null)p=null\nelse{o=$.zm\nif(o==null)o=$.zm=v.getIsolateTag(\"_$dart_js\")\np=q[o]}if(p!=null)return p\np=A.A(a)\nif(p!=null)return p\nif(typeof a==\"function\")return B.DG\ns=Object.getPrototypeOf(a)\nif(s==null)return B.ZQ\nif(s===Object.prototype)return B.ZQ\nif(typeof q==\"function\"){o=$.zm\nif(o==null)o=$.zm=v.getIsolateTag(\"_$dart_js\")\nObject.defineProperty(q,o,{value:B.vB,enumerable:false,writable:true,configurable:true})\nreturn B.vB}return B.vB}",
+        "code": "ks(a){var s,r,q,p,o,n=\"_$dart_js\",m=a[v.dispatchPropertyName]\nif(m==null)if($.Bv==null){A.XD()\nm=a[v.dispatchPropertyName]}if(m!=null){s=m.p\nif(!1===s)return m.i\nif(!0===s)return a\nr=Object.getPrototypeOf(a)\nif(s===r)return m.i\nif(m.e===r)throw A.b(A.SY(\"Return interceptor for \"+A.Ej(s(a,m))))}q=a.constructor\nif(q==null)p=null\nelse{o=$.zm\nif(o==null)o=$.zm=A.L(n)\np=q[o]}if(p!=null)return p\np=A.A(a)\nif(p!=null)return p\nif(typeof a==\"function\")return B.DG\ns=Object.getPrototypeOf(a)\nif(s==null)return B.ZQ\nif(s===Object.prototype)return B.ZQ\nif(typeof q==\"function\"){o=$.zm\nif(o==null)o=$.zm=A.L(n)\nObject.defineProperty(q,o,{value:B.vB,enumerable:false,writable:true,configurable:true})\nreturn B.vB}return B.vB}",
         "type": "dynamic Function(dynamic)",
         "functionKind": 0
       },
@@ -13056,7 +13039,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "Y5(a,b,c){var s,r,q,p,o,n,m=this\nif(typeof b==\"string\"){s=m.b\nm.u9(s==null?m.b=m.zK():s,b,c)}else if(typeof b==\"number\"&&(b&0x3fffffff)===b){r=m.c\nm.u9(r==null?m.c=m.zK():r,b,c)}else{q=m.d\nif(q==null)q=m.d=m.zK()\np=m.xi(b)\no=q[p]\nif(o==null)q[p]=[m.Oz(b,c)]\nelse{n=m.Fh(o,b)\nif(n>=0)o[n].b=c\nelse o.push(m.Oz(b,c))}}}",
+        "code": "Y5(a,b,c){var s,r,q,p,o,n,m=this\nif(typeof b==\"string\"){s=m.b\nm.Gr(s==null?m.b=m.zK():s,b,c)}else if(typeof b==\"number\"&&(b&0x3fffffff)===b){r=m.c\nm.Gr(r==null?m.c=m.zK():r,b,c)}else{q=m.d\nif(q==null)q=m.d=m.zK()\np=m.xi(b)\no=q[p]\nif(o==null)q[p]=[m.Oz(b,c)]\nelse{n=m.Xj(o,b)\nif(n>=0)o[n].b=c\nelse o.push(m.Oz(b,c))}}}",
         "type": "void Function(Object?,Object?)",
         "functionKind": 2
       },
@@ -13095,7 +13078,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "u9(a,b,c){var s=a[b]\nif(s==null)a[b]=this.Oz(b,c)\nelse s.b=c}",
+        "code": "Gr(a,b,c){var s=a[b]\nif(s==null)a[b]=this.Oz(b,c)\nelse s.b=c}",
         "type": "void Function(dynamic,Object?,Object?)",
         "functionKind": 2
       },
@@ -13171,7 +13154,7 @@
         "id": "function/dart:_js_helper::JsLinkedHashMap._getBucket",
         "kind": "function",
         "name": "_getBucket",
-        "size": 0,
+        "size": 29,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:_js_helper::JsLinkedHashMap",
         "children": [],
@@ -13196,8 +13179,8 @@
           }
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 1,
-        "code": "",
+        "inlinedCount": 0,
+        "code": "e1(a,b){return a[this.xi(b)]}",
         "type": "List<LinkedHashMapCell>? Function(dynamic,dynamic)",
         "functionKind": 2
       },
@@ -13586,7 +13569,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "Fh(a,b){var s,r\nif(a==null)return-1\ns=a.length\nfor(r=0;r<s;++r)if(J.cf(a[r].a,b))return r\nreturn-1}",
+        "code": "Xj(a,b){var s,r\nif(a==null)return-1\ns=a.length\nfor(r=0;r<s;++r)if(J.cf(a[r].a,b))return r\nreturn-1}",
         "type": "int Function(dynamic,dynamic)",
         "functionKind": 2
       },
@@ -13594,7 +13577,7 @@
         "id": "function/dart:_js_helper::JsLinkedHashMap.internalGet",
         "kind": "function",
         "name": "internalGet",
-        "size": 110,
+        "size": 109,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:_js_helper::JsLinkedHashMap",
         "children": [],
@@ -13615,7 +13598,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "aa(a){var s,r,q=this.d\nif(q==null)return null\ns=q[this.xi(a)]\nr=this.Fh(s,a)\nif(r<0)return null\nreturn s[r].b}",
+        "code": "aa(a){var s,r,q=this.d\nif(q==null)return null\ns=this.e1(q,a)\nr=this.Xj(s,a)\nif(r<0)return null\nreturn s[r].b}",
         "type": "JsLinkedHashMap.V? Function(Object?)",
         "functionKind": 2
       },
@@ -15125,7 +15108,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "j(a){var s,r,q=this,p=new RegExp(q.a).exec(a)\nif(p==null)return null\ns=Object.create(null)\nr=q.b\nif(r!==-1)s.arguments=p[r+1]\nr=q.c\nif(r!==-1)s.argumentsExpr=p[r+1]\nr=q.d\nif(r!==-1)s.expr=p[r+1]\nr=q.e\nif(r!==-1)s.method=p[r+1]\nr=q.f\nif(r!==-1)s.receiver=p[r+1]\nreturn s}",
+        "code": "i(a){var s,r,q=this,p=new RegExp(q.a).exec(a)\nif(p==null)return null\ns=Object.create(null)\nr=q.b\nif(r!==-1)s.arguments=p[r+1]\nr=q.c\nif(r!==-1)s.argumentsExpr=p[r+1]\nr=q.d\nif(r!==-1)s.expr=p[r+1]\nr=q.e\nif(r!==-1)s.method=p[r+1]\nr=q.f\nif(r!==-1)s.receiver=p[r+1]\nreturn s}",
         "type": "dynamic Function(dynamic)",
         "functionKind": 2
       },
@@ -16181,7 +16164,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "tl(a){var s,r,q,p,o,n,m,l,k,j,i,h,g\nif(!(\"message\" in a))return a\ns=a.message\nif(\"number\" in a&&typeof a.number==\"number\"){r=a.number\nq=r&65535\nif((B.jn.A(r,16)&8191)===10)switch(q){case 438:return A.tW(a,A.T3(A.Ej(s)+\" (Error \"+q+\")\",null))\ncase 445:case 5007:A.Ej(s)\nreturn A.tW(a,new A.W0())}}if(a instanceof TypeError){p=$.Sn()\no=$.lq()\nn=$.N9()\nm=$.iI()\nl=$.UN()\nk=$.Zh()\nj=$.rN()\n$.c3()\ni=$.HK()\nh=$.r1()\ng=p.j(s)\nif(g!=null)return A.tW(a,A.T3(s,g))\nelse{g=o.j(s)\nif(g!=null){g.method=\"call\"\nreturn A.tW(a,A.T3(s,g))}else if(n.j(s)!=null||m.j(s)!=null||l.j(s)!=null||k.j(s)!=null||j.j(s)!=null||m.j(s)!=null||i.j(s)!=null||h.j(s)!=null)return A.tW(a,new A.W0())}return A.tW(a,new A.vV(typeof s==\"string\"?s:\"\"))}if(a instanceof RangeError){if(typeof s==\"string\"&&s.indexOf(\"call stack\")!==-1)return new A.VS()\ns=function(b){try{return String(b)}catch(f){}return null}(a)\nreturn A.tW(a,new A.AT(!1,null,null,typeof s==\"string\"?s.replace(/^RangeError:\\s*/,\"\"):s))}if(typeof InternalError==\"function\"&&a instanceof InternalError)if(typeof s==\"string\"&&s===\"too much recursion\")return new A.VS()\nreturn a}",
+        "code": "tl(a){var s,r,q,p,o,n,m,l,k,j,i,h,g\nif(!(\"message\" in a))return a\ns=a.message\nif(\"number\" in a&&typeof a.number==\"number\"){r=a.number\nq=r&65535\nif((B.jn.A(r,16)&8191)===10)switch(q){case 438:return A.tW(a,A.T3(A.Ej(s)+\" (Error \"+q+\")\",null))\ncase 445:case 5007:A.Ej(s)\nreturn A.tW(a,new A.W0())}}if(a instanceof TypeError){p=$.Sn()\no=$.lq()\nn=$.N9()\nm=$.iI()\nl=$.UN()\nk=$.Zh()\nj=$.rN()\n$.c3()\ni=$.HK()\nh=$.r1()\ng=p.i(s)\nif(g!=null)return A.tW(a,A.T3(s,g))\nelse{g=o.i(s)\nif(g!=null){g.method=\"call\"\nreturn A.tW(a,A.T3(s,g))}else if(n.i(s)!=null||m.i(s)!=null||l.i(s)!=null||k.i(s)!=null||j.i(s)!=null||m.i(s)!=null||i.i(s)!=null||h.i(s)!=null)return A.tW(a,new A.W0())}return A.tW(a,new A.vV(typeof s==\"string\"?s:\"\"))}if(a instanceof RangeError){if(typeof s==\"string\"&&s.indexOf(\"call stack\")!==-1)return new A.VS()\ns=function(b){try{return String(b)}catch(f){}return null}(a)\nreturn A.tW(a,new A.AT(!1,null,null,typeof s==\"string\"?s.replace(/^RangeError:\\s*/,\"\"):s))}if(typeof InternalError==\"function\"&&a instanceof InternalError)if(typeof s==\"string\"&&s===\"too much recursion\")return new A.VS()\nreturn a}",
         "type": "Object Function(Object)",
         "functionKind": 0
       },
@@ -16746,7 +16729,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 2,
+        "inlinedCount": 0,
         "code": "L(a){return v.getIsolateTag(a)}",
         "type": "String Function(String)",
         "functionKind": 0
@@ -18079,7 +18062,7 @@
         "id": "function/dart:_js_helper::unminifyOrTag",
         "kind": "function",
         "name": "unminifyOrTag",
-        "size": 76,
+        "size": 60,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:_js_helper::",
         "children": [],
@@ -18100,7 +18083,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "NQ(a){var s=v.mangledGlobalNames[a]\nif(s!=null)return s\nreturn\"minified:\"+a}",
+        "code": "NQ(a){var s=A.Jg(a)\nif(s!=null)return s\nreturn\"minified:\"+a}",
         "type": "String Function(String)",
         "functionKind": 0
       },
@@ -18166,7 +18149,7 @@
         "id": "function/dart:_js_names::unmangleGlobalNameIfPreservedAnyways",
         "kind": "function",
         "name": "unmangleGlobalNameIfPreservedAnyways",
-        "size": 0,
+        "size": 37,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:_js_names::",
         "children": [],
@@ -18186,8 +18169,8 @@
           }
         ],
         "sideEffects": "SideEffects(reads anything; writes nothing)",
-        "inlinedCount": 2,
-        "code": "",
+        "inlinedCount": 0,
+        "code": "Jg(a){return v.mangledGlobalNames[a]}",
         "type": "String? Function(String)",
         "functionKind": 0
       },
@@ -23033,7 +23016,7 @@
         "id": "function/dart:_rti::_Universe._parseRecipe",
         "kind": "function",
         "name": "_parseRecipe",
-        "size": 0,
+        "size": 39,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:_rti::_Universe",
         "children": [],
@@ -23068,8 +23051,8 @@
           }
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 2,
-        "code": "",
+        "inlinedCount": 0,
+        "code": "z1(a,b,c,d){return A.eT(A.ow(a,b,c,d))}",
         "type": "Rti Function(Object?,Object?,String,bool)",
         "functionKind": 0
       },
@@ -23379,7 +23362,7 @@
         "id": "function/dart:_rti::_Universe.eval",
         "kind": "function",
         "name": "eval",
-        "size": 100,
+        "size": 94,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:_rti::_Universe",
         "children": [],
@@ -23410,7 +23393,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "Ew(a,b,c){var s,r=a.eC,q=r.get(b)\nif(q!=null)return q\ns=A.eT(A.ow(a,null,b,!1))\nr.set(b,s)\nreturn s}",
+        "code": "Ew(a,b,c){var s,r=a.eC,q=r.get(b)\nif(q!=null)return q\ns=A.z1(a,null,b,!1)\nr.set(b,s)\nreturn s}",
         "type": "Rti Function(Object?,String,bool)",
         "functionKind": 0
       },
@@ -23447,7 +23430,7 @@
         "id": "function/dart:_rti::_Universe.evalInEnvironment",
         "kind": "function",
         "name": "evalInEnvironment",
-        "size": 125,
+        "size": 119,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:_rti::_Universe",
         "children": [],
@@ -23478,7 +23461,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "cE(a,b,c){var s,r,q=b.z\nif(q==null)q=b.z=new Map()\ns=q.get(c)\nif(s!=null)return s\nr=A.eT(A.ow(a,b,c,!0))\nq.set(c,r)\nreturn r}",
+        "code": "cE(a,b,c){var s,r,q=b.z\nif(q==null)q=b.z=new Map()\ns=q.get(c)\nif(s!=null)return s\nr=A.z1(a,b,c,!0)\nq.set(c,r)\nreturn r}",
         "type": "Rti Function(Object?,Rti,String)",
         "functionKind": 0
       },
@@ -26734,7 +26717,7 @@
         "id": "function/dart:_rti::_unminifyOrTag",
         "kind": "function",
         "name": "_unminifyOrTag",
-        "size": 76,
+        "size": 60,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:_rti::",
         "children": [],
@@ -26755,7 +26738,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "o3(a){var s=v.mangledGlobalNames[a]\nif(s!=null)return s\nreturn\"minified:\"+a}",
+        "code": "o3(a){var s=A.Jg(a)\nif(s!=null)return s\nreturn\"minified:\"+a}",
         "type": "String Function(String)",
         "functionKind": 0
       },
@@ -27720,7 +27703,7 @@
         "id": "function/dart:async::Timer.Timer",
         "kind": "function",
         "name": "Timer",
-        "size": 71,
+        "size": 75,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:async::Timer",
         "children": [],
@@ -27746,7 +27729,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "ww(a,b){var s=$.X3\nif(s===B.NU)return A.YF(a,b)\nreturn A.YF(a,s.qS(b))}",
+        "code": "ww(a,b){var s=$.X3\nif(s===B.HE)return s.AL(s,a,b)\nreturn s.AL(s,a,s.qS(b))}",
         "type": "Timer Function(Duration,void Function())",
         "functionKind": 3
       },
@@ -27754,7 +27737,7 @@
         "id": "function/dart:async::Timer._createTimer",
         "kind": "function",
         "name": "_createTimer",
-        "size": 55,
+        "size": 54,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:async::Timer",
         "children": [],
@@ -27780,49 +27763,98 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "YF(a,b){var s=B.jn.BU(a.a,1000)\nreturn A.QN(s<0?0:s,b)}",
+        "code": "YF(a,b){var s=B.jn.O(a.a,1000)\nreturn A.QN(s<0?0:s,b)}",
         "type": "Timer Function(Duration,void Function())",
         "functionKind": 0
       },
-      "dart:async::Zone._enter": {
-        "id": "function/dart:async::Zone._enter",
+      "dart:async::Zone._createTimerZoned": {
+        "id": "function/dart:async::Zone._createTimerZoned",
         "kind": "function",
-        "name": "_enter",
-        "size": 0,
+        "name": "_createTimerZoned",
+        "size": 47,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:async::Zone",
         "children": [],
         "modifiers": {
-          "static": true,
+          "static": false,
           "const": false,
           "factory": false,
           "external": false
         },
-        "returnType": "_Zone",
-        "inferredReturnType": "[exact=_RootZone|powerset={N}{O}{N}]",
+        "returnType": "Timer",
+        "inferredReturnType": "[exact=_TimerImpl|powerset={N}{O}{N}]",
         "parameters": [
           {
             "name": "zone",
-            "type": "[exact=_RootZone|powerset={N}{O}{N}]",
-            "declaredType": "_Zone"
+            "type": "[exact=Zone|powerset={N}{O}{N}]",
+            "declaredType": "Zone"
+          },
+          {
+            "name": "duration",
+            "type": "[exact=Duration|powerset={N}{O}{N}]",
+            "declaredType": "Duration"
+          },
+          {
+            "name": "callback",
+            "type": "[subtype=Function|powerset={IN}{O}{N}]",
+            "declaredType": "void Function()"
           }
         ],
-        "sideEffects": "SideEffects(reads static; writes static)",
-        "inlinedCount": 4,
-        "code": "",
-        "type": "_Zone Function(_Zone)",
-        "functionKind": 0
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 0,
+        "code": "AL(a,b,c){return A.YF(b,B.HE!==a?a.H(c,t.H):c)}",
+        "type": "Timer Function(Zone,Duration,void Function())",
+        "functionKind": 2
       },
-      "dart:async::Zone._leave": {
-        "id": "function/dart:async::Zone._leave",
+      "dart:async::Zone._errorCallbackZoned": {
+        "id": "function/dart:async::Zone._errorCallbackZoned",
         "kind": "function",
-        "name": "_leave",
-        "size": 0,
+        "name": "_errorCallbackZoned",
+        "size": 22,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:async::Zone",
         "children": [],
         "modifiers": {
-          "static": true,
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "AsyncError?",
+        "inferredReturnType": "[null|powerset={null}]",
+        "parameters": [
+          {
+            "name": "zone",
+            "type": "[exact=Zone|powerset={N}{O}{N}]",
+            "declaredType": "Zone"
+          },
+          {
+            "name": "error",
+            "type": "[subclass=Object|powerset={IN}{GFUO}{IMN}]",
+            "declaredType": "Object"
+          },
+          {
+            "name": "stackTrace",
+            "type": "[null|subtype=StackTrace|powerset={null}{N}{O}{N}]",
+            "declaredType": "StackTrace?"
+          }
+        ],
+        "sideEffects": "SideEffects(reads field, static; writes nothing)",
+        "inlinedCount": 0,
+        "code": "Jm(a,b,c){return null}",
+        "type": "AsyncError? Function(Zone,Object,StackTrace?)",
+        "functionKind": 2
+      },
+      "dart:async::Zone._handleUncaughtErrorZoned": {
+        "id": "function/dart:async::Zone._handleUncaughtErrorZoned",
+        "kind": "function",
+        "name": "_handleUncaughtErrorZoned",
+        "size": 191,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:async::Zone",
+        "children": [],
+        "modifiers": {
+          "static": false,
           "const": false,
           "factory": false,
           "external": false
@@ -27831,16 +27863,481 @@
         "inferredReturnType": "[null|powerset={null}]",
         "parameters": [
           {
-            "name": "previous",
-            "type": "[exact=_RootZone|powerset={N}{O}{N}]",
-            "declaredType": "_Zone"
+            "name": "zone",
+            "type": "[exact=Zone|powerset={N}{O}{N}]",
+            "declaredType": "Zone"
+          },
+          {
+            "name": "error",
+            "type": "[subclass=Object|powerset={IN}{GFUO}{IMN}]",
+            "declaredType": "Object"
+          },
+          {
+            "name": "stackTrace",
+            "type": "[subtype=StackTrace|powerset={N}{O}{N}]",
+            "declaredType": "StackTrace"
           }
         ],
-        "sideEffects": "SideEffects(reads nothing; writes static)",
-        "inlinedCount": 4,
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 0,
+        "code": "Fh(a,b,c){var s,r,q,p,o,n,m,l=null\nif(l==null){A.L2(b,c)\nreturn}s=l.gJ()\nr=s.gHg()\nq=$.X3\ntry{$.X3=r\nl.IS(s,s.gQH(),a,b,c)\n$.X3=q}catch(n){p=A.Ru(n)\no=A.ts(n)\n$.X3=q\nm=b===p?c:o\nr.Fh(s,p,m)}}",
+        "type": "void Function(Zone,Object,StackTrace)",
+        "functionKind": 2
+      },
+      "dart:async::Zone._registerBinaryCallbackZoned": {
+        "id": "function/dart:async::Zone._registerBinaryCallbackZoned",
+        "kind": "function",
+        "name": "_registerBinaryCallbackZoned",
+        "size": 60,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:async::Zone",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "#A/*free*/ Function(#B/*free*/,#C/*free*/)",
+        "inferredReturnType": "[subtype=Function|powerset={IN}{O}{N}]",
+        "parameters": [
+          {
+            "name": "zone",
+            "type": "[exact=Zone|powerset={N}{O}{N}]",
+            "declaredType": "Zone"
+          },
+          {
+            "name": "callback",
+            "type": "[subtype=Function|powerset={IN}{O}{N}]",
+            "declaredType": "_registerBinaryCallbackZoned.R Function(_registerBinaryCallbackZoned.T1,_registerBinaryCallbackZoned.T2)"
+          }
+        ],
+        "sideEffects": "SideEffects(reads field, static; writes nothing)",
+        "inlinedCount": 0,
+        "code": "QD(a,b){return b}\nj(a,b){var s=t.z\nreturn this.QD(a,b,s,s,s)}",
+        "type": "#A Function(#B,#C) Function<#A extends Object?,#B extends Object?,#C extends Object?>(Zone,#A Function(#B,#C))",
+        "functionKind": 2
+      },
+      "dart:async::Zone._registerCallbackZoned": {
+        "id": "function/dart:async::Zone._registerCallbackZoned",
+        "kind": "function",
+        "name": "_registerCallbackZoned",
+        "size": 48,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:async::Zone",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "#A/*free*/ Function()",
+        "inferredReturnType": "[subtype=Function|powerset={IN}{O}{N}]",
+        "parameters": [
+          {
+            "name": "zone",
+            "type": "[exact=Zone|powerset={N}{O}{N}]",
+            "declaredType": "Zone"
+          },
+          {
+            "name": "callback",
+            "type": "[subtype=Function|powerset={IN}{O}{N}]",
+            "declaredType": "_registerCallbackZoned.R Function()"
+          }
+        ],
+        "sideEffects": "SideEffects(reads field, static; writes nothing)",
+        "inlinedCount": 0,
+        "code": "MN(a,b){return b}\nm(a,b){return this.MN(a,b,t.z)}",
+        "type": "#A Function() Function<#A extends Object?>(Zone,#A Function())",
+        "functionKind": 2
+      },
+      "dart:async::Zone._registerUnaryCallbackZoned": {
+        "id": "function/dart:async::Zone._registerUnaryCallbackZoned",
+        "kind": "function",
+        "name": "_registerUnaryCallbackZoned",
+        "size": 58,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:async::Zone",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "#A/*free*/ Function(#B/*free*/)",
+        "inferredReturnType": "[subtype=Function|powerset={IN}{O}{N}]",
+        "parameters": [
+          {
+            "name": "zone",
+            "type": "[exact=Zone|powerset={N}{O}{N}]",
+            "declaredType": "Zone"
+          },
+          {
+            "name": "callback",
+            "type": "[subtype=Function|powerset={IN}{O}{N}]",
+            "declaredType": "_registerUnaryCallbackZoned.R Function(_registerUnaryCallbackZoned.T)"
+          }
+        ],
+        "sideEffects": "SideEffects(reads field, static; writes nothing)",
+        "inlinedCount": 0,
+        "code": "tZ(a,b){return b}\nF(a,b){var s=t.z\nreturn this.tZ(a,b,s,s)}",
+        "type": "#A Function(#B) Function<#A extends Object?,#B extends Object?>(Zone,#A Function(#B))",
+        "functionKind": 2
+      },
+      "dart:async::Zone._runBinaryZoned": {
+        "id": "function/dart:async::Zone._runBinaryZoned",
+        "kind": "function",
+        "name": "_runBinaryZoned",
+        "size": 202,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:async::Zone",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "#A/*free*/",
+        "inferredReturnType": "[null|subclass=Object|powerset={null}{IN}{GFUO}{IMN}]",
+        "parameters": [
+          {
+            "name": "zone",
+            "type": "[exact=Zone|powerset={N}{O}{N}]",
+            "declaredType": "Zone"
+          },
+          {
+            "name": "callback",
+            "type": "[subtype=Function|powerset={IN}{O}{N}]",
+            "declaredType": "_runBinaryZoned.R Function(_runBinaryZoned.T1,_runBinaryZoned.T2)"
+          },
+          {
+            "name": "argument1",
+            "type": "[subclass=Object|powerset={IN}{GFUO}{IMN}]",
+            "declaredType": "_runBinaryZoned.T1"
+          },
+          {
+            "name": "argument2",
+            "type": "[subtype=StackTrace|powerset={N}{O}{N}]",
+            "declaredType": "_runBinaryZoned.T2"
+          }
+        ],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 0,
+        "code": "ky(a,b,c,d){var s,r,q=$.X3\nif(q===a)return b.$2(c,d)\ns=q\n$.X3=a\ntry{q=b.$2(c,d)\nreturn q}finally{$.X3=s}r=null.gJ()\nreturn null.cc(r,r.gQH(),a,b,c,d)}\nPj(a,b,c,d){var s=t.z\nreturn this.ky(a,b,c,d,s,s,s)}",
+        "type": "#A Function<#A extends Object?,#B extends Object?,#C extends Object?>(Zone,#A Function(#B,#C),#B,#C)",
+        "functionKind": 2
+      },
+      "dart:async::Zone._runUnaryZoned": {
+        "id": "function/dart:async::Zone._runUnaryZoned",
+        "kind": "function",
+        "name": "_runUnaryZoned",
+        "size": 188,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:async::Zone",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "#A/*free*/",
+        "inferredReturnType": "[null|subclass=Object|powerset={null}{IN}{GFUO}{IMN}]",
+        "parameters": [
+          {
+            "name": "zone",
+            "type": "[exact=Zone|powerset={N}{O}{N}]",
+            "declaredType": "Zone"
+          },
+          {
+            "name": "callback",
+            "type": "[subtype=Function|powerset={IN}{O}{N}]",
+            "declaredType": "_runUnaryZoned.R Function(_runUnaryZoned.T)"
+          },
+          {
+            "name": "argument",
+            "type": "[null|subclass=Object|powerset={null}{IN}{GFUO}{IMN}]",
+            "declaredType": "_runUnaryZoned.T"
+          }
+        ],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 0,
+        "code": "ct(a,b,c){var s,r,q=$.X3\nif(q===a)return b.$1(c)\ns=q\n$.X3=a\ntry{q=b.$1(c)\nreturn q}finally{$.X3=s}r=null.gJ()\nreturn null.IS(r,r.gQH(),a,b,c)}\nu9(a,b,c){var s=t.z\nreturn this.ct(a,b,c,s,s)}",
+        "type": "#A Function<#A extends Object?,#B extends Object?>(Zone,#A Function(#B),#B)",
+        "functionKind": 2
+      },
+      "dart:async::Zone._runZoned": {
+        "id": "function/dart:async::Zone._runZoned",
+        "kind": "function",
+        "name": "_runZoned",
+        "size": 167,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:async::Zone",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "#A/*free*/",
+        "inferredReturnType": "[null|subclass=Object|powerset={null}{IN}{GFUO}{IMN}]",
+        "parameters": [
+          {
+            "name": "zone",
+            "type": "[exact=Zone|powerset={N}{O}{N}]",
+            "declaredType": "Zone"
+          },
+          {
+            "name": "callback",
+            "type": "[subtype=Function|powerset={IN}{O}{N}]",
+            "declaredType": "_runZoned.R Function()"
+          }
+        ],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 0,
+        "code": "GE(a,b){var s,r,q=$.X3\nif(q===a)return b.$0()\ns=q\n$.X3=a\ntry{q=b.$0()\nreturn q}finally{$.X3=s}r=null.gJ()\nreturn null.X(r,r.gQH(),a,b)}\nwX(a,b){return this.GE(a,b,t.z)}",
+        "type": "#A Function<#A extends Object?>(Zone,#A Function())",
+        "functionKind": 2
+      },
+      "dart:async::Zone._scheduleMicrotaskZoned": {
+        "id": "function/dart:async::Zone._scheduleMicrotaskZoned",
+        "kind": "function",
+        "name": "_scheduleMicrotaskZoned",
+        "size": 25,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:async::Zone",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "void",
+        "inferredReturnType": "[null|powerset={null}]",
+        "parameters": [
+          {
+            "name": "zone",
+            "type": "[exact=Zone|powerset={N}{O}{N}]",
+            "declaredType": "Zone"
+          },
+          {
+            "name": "callback",
+            "type": "[subtype=Function|powerset={IN}{O}{N}]",
+            "declaredType": "void Function()"
+          }
+        ],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 0,
+        "code": "w2(a,b){A.Tk(a,b)\nreturn}",
+        "type": "void Function(Zone,void Function())",
+        "functionKind": 2
+      },
+      "dart:async::Zone.bindCallback": {
+        "id": "function/dart:async::Zone.bindCallback",
+        "kind": "function",
+        "name": "bindCallback",
+        "size": 187,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:async::Zone",
+        "children": [
+          "closure/dart:async::Zone.bindCallback.Zone_bindCallback_closure"
+        ],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "#A/*free*/ Function()",
+        "inferredReturnType": "[subtype=Function|powerset={IN}{O}{N}]",
+        "parameters": [
+          {
+            "name": "callback",
+            "type": "[subtype=Function|powerset={IN}{O}{N}]",
+            "declaredType": "bindCallback.R Function()"
+          }
+        ],
+        "sideEffects": "SideEffects(reads field, static; writes nothing)",
+        "inlinedCount": 0,
+        "code": "H(a,b){return new A.cF(this,this.m(this,a),b)}",
+        "type": "#A Function() Function<#A extends Object?>(#A Function())",
+        "functionKind": 2
+      },
+      "dart:async::Zone.bindCallback.Zone_bindCallback_closure.call": {
+        "id": "function/dart:async::Zone.bindCallback.Zone_bindCallback_closure.call",
+        "kind": "function",
+        "name": "call",
+        "size": 40,
+        "outputUnit": "outputUnit/main",
+        "parent": "closure/dart:async::Zone.bindCallback.Zone_bindCallback_closure",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "bindCallback.R",
+        "inferredReturnType": "[null|subclass=Object|powerset={null}{IN}{GFUO}{IMN}]",
+        "parameters": [],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 0,
+        "code": "$0(){var s=this.a\nreturn s.wX(s,this.b)}",
+        "type": "bindCallback.R Function()",
+        "functionKind": 2
+      },
+      "dart:async::Zone.bindCallbackGuarded": {
+        "id": "function/dart:async::Zone.bindCallbackGuarded",
+        "kind": "function",
+        "name": "bindCallbackGuarded",
+        "size": 139,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:async::Zone",
+        "children": [
+          "closure/dart:async::Zone.bindCallbackGuarded.Zone_bindCallbackGuarded_closure"
+        ],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "void Function()",
+        "inferredReturnType": "[subtype=Function|powerset={IN}{O}{N}]",
+        "parameters": [
+          {
+            "name": "callback",
+            "type": "[subtype=Function|powerset={IN}{O}{N}]",
+            "declaredType": "void Function()"
+          }
+        ],
+        "sideEffects": "SideEffects(reads field, static; writes nothing)",
+        "inlinedCount": 0,
+        "code": "qS(a){return new A.CB(this,this.m(this,a))}",
+        "type": "void Function() Function(void Function())",
+        "functionKind": 2
+      },
+      "dart:async::Zone.bindCallbackGuarded.Zone_bindCallbackGuarded_closure.call": {
+        "id": "function/dart:async::Zone.bindCallbackGuarded.Zone_bindCallbackGuarded_closure.call",
+        "kind": "function",
+        "name": "call",
+        "size": 30,
+        "outputUnit": "outputUnit/main",
+        "parent": "closure/dart:async::Zone.bindCallbackGuarded.Zone_bindCallbackGuarded_closure",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "void",
+        "inferredReturnType": "[null|subclass=Object|powerset={null}{IN}{GFUO}{IMN}]",
+        "parameters": [],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 0,
+        "code": "$0(){return this.a.bH(this.b)}",
+        "type": "void Function()",
+        "functionKind": 2
+      },
+      "dart:async::Zone.bindUnaryCallbackGuarded": {
+        "id": "function/dart:async::Zone.bindUnaryCallbackGuarded",
+        "kind": "function",
+        "name": "bindUnaryCallbackGuarded",
+        "size": 182,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:async::Zone",
+        "children": [
+          "closure/dart:async::Zone.bindUnaryCallbackGuarded.Zone_bindUnaryCallbackGuarded_closure"
+        ],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "void Function(#A/*free*/)",
+        "inferredReturnType": "[subtype=Function|powerset={IN}{O}{N}]",
+        "parameters": [
+          {
+            "name": "callback",
+            "type": "[subtype=Function|powerset={IN}{O}{N}]",
+            "declaredType": "void Function(bindUnaryCallbackGuarded.T)"
+          }
+        ],
+        "sideEffects": "SideEffects(reads field, static; writes nothing)",
+        "inlinedCount": 0,
+        "code": "Py(a,b){return new A.Oy(this,this.F(this,a),b)}",
+        "type": "void Function(#A) Function<#A extends Object?>(void Function(#A))",
+        "functionKind": 2
+      },
+      "dart:async::Zone.bindUnaryCallbackGuarded.Zone_bindUnaryCallbackGuarded_closure.call": {
+        "id": "function/dart:async::Zone.bindUnaryCallbackGuarded.Zone_bindUnaryCallbackGuarded_closure.call",
+        "kind": "function",
+        "name": "call",
+        "size": 33,
+        "outputUnit": "outputUnit/main",
+        "parent": "closure/dart:async::Zone.bindUnaryCallbackGuarded.Zone_bindUnaryCallbackGuarded_closure",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "void",
+        "inferredReturnType": "[null|subclass=Object|powerset={null}{IN}{GFUO}{IMN}]",
+        "parameters": [
+          {
+            "name": "argument",
+            "type": "[null|subclass=Object|powerset={null}{IN}{GFUO}{IMN}]",
+            "declaredType": "bindUnaryCallbackGuarded.T"
+          }
+        ],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 0,
+        "code": "$1(a){return this.a.m1(this.b,a)}",
+        "type": "void Function(bindUnaryCallbackGuarded.T)",
+        "functionKind": 2
+      },
+      "dart:async::Zone.createTimer": {
+        "id": "function/dart:async::Zone.createTimer",
+        "kind": "function",
+        "name": "createTimer",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:async::Zone",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "Timer",
+        "inferredReturnType": "[exact=_TimerImpl|powerset={N}{O}{N}]",
+        "parameters": [
+          {
+            "name": "duration",
+            "type": "[exact=Duration|powerset={N}{O}{N}]",
+            "declaredType": "Duration"
+          },
+          {
+            "name": "callback",
+            "type": "[subtype=Function|powerset={IN}{O}{N}]",
+            "declaredType": "void Function()"
+          }
+        ],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 2,
         "code": "",
-        "type": "void Function(_Zone)",
-        "functionKind": 0
+        "type": "Timer Function(Duration,void Function())",
+        "functionKind": 2
       },
       "dart:async::Zone.current": {
         "id": "function/dart:async::Zone.current",
@@ -27857,13 +28354,231 @@
           "external": false
         },
         "returnType": "Zone",
-        "inferredReturnType": "[exact=_RootZone|powerset={N}{O}{N}]",
+        "inferredReturnType": "[exact=Zone|powerset={N}{O}{N}]",
         "parameters": [],
         "sideEffects": "SideEffects(reads static; writes nothing)",
         "inlinedCount": 9,
         "code": "",
         "type": "Zone Function()",
         "functionKind": 0
+      },
+      "dart:async::Zone.errorCallback": {
+        "id": "function/dart:async::Zone.errorCallback",
+        "kind": "function",
+        "name": "errorCallback",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:async::Zone",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "AsyncError?",
+        "inferredReturnType": "[null|powerset={null}]",
+        "parameters": [
+          {
+            "name": "error",
+            "type": "[subclass=Object|powerset={IN}{GFUO}{IMN}]",
+            "declaredType": "Object"
+          },
+          {
+            "name": "stackTrace",
+            "type": "[null|subtype=StackTrace|powerset={null}{N}{O}{N}]",
+            "declaredType": "StackTrace?"
+          }
+        ],
+        "sideEffects": "SideEffects(reads field, static; writes nothing)",
+        "inlinedCount": 1,
+        "code": "",
+        "type": "AsyncError? Function(Object,StackTrace?)",
+        "functionKind": 2
+      },
+      "dart:async::Zone.handleUncaughtError": {
+        "id": "function/dart:async::Zone.handleUncaughtError",
+        "kind": "function",
+        "name": "handleUncaughtError",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:async::Zone",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "void",
+        "inferredReturnType": "[null|powerset={null}]",
+        "parameters": [
+          {
+            "name": "error",
+            "type": "[subclass=Object|powerset={IN}{GFUO}{IMN}]",
+            "declaredType": "Object"
+          },
+          {
+            "name": "stackTrace",
+            "type": "[subtype=StackTrace|powerset={N}{O}{N}]",
+            "declaredType": "StackTrace"
+          }
+        ],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 2,
+        "code": "",
+        "type": "void Function(Object,StackTrace)",
+        "functionKind": 2
+      },
+      "dart:async::Zone.inSameErrorZone": {
+        "id": "function/dart:async::Zone.inSameErrorZone",
+        "kind": "function",
+        "name": "inSameErrorZone",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:async::Zone",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "bool",
+        "inferredReturnType": "[exact=JSBool|powerset={I}{O}{N}]",
+        "parameters": [
+          {
+            "name": "otherZone",
+            "type": "[exact=Zone|powerset={N}{O}{N}]",
+            "declaredType": "Zone"
+          }
+        ],
+        "sideEffects": "SideEffects(reads field; writes nothing)",
+        "inlinedCount": 2,
+        "code": "",
+        "type": "bool Function(Zone)",
+        "functionKind": 2
+      },
+      "dart:async::Zone.registerBinaryCallback": {
+        "id": "function/dart:async::Zone.registerBinaryCallback",
+        "kind": "function",
+        "name": "registerBinaryCallback",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:async::Zone",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "#A/*free*/ Function(#B/*free*/,#C/*free*/)",
+        "inferredReturnType": "[subtype=Function|powerset={IN}{O}{N}]",
+        "parameters": [
+          {
+            "name": "callback",
+            "type": "[subtype=Function|powerset={IN}{O}{N}]",
+            "declaredType": "registerBinaryCallback.R Function(registerBinaryCallback.T1,registerBinaryCallback.T2)"
+          }
+        ],
+        "sideEffects": "SideEffects(reads field, static; writes nothing)",
+        "inlinedCount": 2,
+        "code": "",
+        "type": "#A Function(#B,#C) Function<#A extends Object?,#B extends Object?,#C extends Object?>(#A Function(#B,#C))",
+        "functionKind": 2
+      },
+      "dart:async::Zone.registerUnaryCallback": {
+        "id": "function/dart:async::Zone.registerUnaryCallback",
+        "kind": "function",
+        "name": "registerUnaryCallback",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:async::Zone",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "#A/*free*/ Function(#B/*free*/)",
+        "inferredReturnType": "[subtype=Function|powerset={IN}{O}{N}]",
+        "parameters": [
+          {
+            "name": "callback",
+            "type": "[subtype=Function|powerset={IN}{O}{N}]",
+            "declaredType": "registerUnaryCallback.R Function(registerUnaryCallback.T)"
+          }
+        ],
+        "sideEffects": "SideEffects(reads field, static; writes nothing)",
+        "inlinedCount": 2,
+        "code": "",
+        "type": "#A Function(#B) Function<#A extends Object?,#B extends Object?>(#A Function(#B))",
+        "functionKind": 2
+      },
+      "dart:async::Zone.runGuarded": {
+        "id": "function/dart:async::Zone.runGuarded",
+        "kind": "function",
+        "name": "runGuarded",
+        "size": 92,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:async::Zone",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "void",
+        "inferredReturnType": "[null|subclass=Object|powerset={null}{IN}{GFUO}{IMN}]",
+        "parameters": [
+          {
+            "name": "action",
+            "type": "[subtype=Function|powerset={IN}{O}{N}]",
+            "declaredType": "void Function()"
+          }
+        ],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 0,
+        "code": "bH(a){var s,r,q,p,o=this\ntry{q=o.wX(o,a)\nreturn q}catch(p){s=A.Ru(p)\nr=A.ts(p)\no.Fh(o,s,r)}}",
+        "type": "void Function(void Function())",
+        "functionKind": 2
+      },
+      "dart:async::Zone.runUnaryGuarded": {
+        "id": "function/dart:async::Zone.runUnaryGuarded",
+        "kind": "function",
+        "name": "runUnaryGuarded",
+        "size": 128,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:async::Zone",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "void",
+        "inferredReturnType": "[null|subclass=Object|powerset={null}{IN}{GFUO}{IMN}]",
+        "parameters": [
+          {
+            "name": "action",
+            "type": "[subtype=Function|powerset={IN}{O}{N}]",
+            "declaredType": "void Function(runUnaryGuarded.T)"
+          },
+          {
+            "name": "argument",
+            "type": "[null|subclass=Object|powerset={null}{IN}{GFUO}{IMN}]",
+            "declaredType": "runUnaryGuarded.T"
+          }
+        ],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 0,
+        "code": "Dl(a,b){var s,r,q,p,o=this\ntry{q=o.u9(o,a,b)\nreturn q}catch(p){s=A.Ru(p)\nr=A.ts(p)\no.Fh(o,s,r)}}\nm1(a,b){return this.Dl(a,b,t.z)}",
+        "type": "void Function<#A extends Object?>(void Function(#A),#A)",
+        "functionKind": 2
       },
       "dart:async::_AsyncAwaitCompleter._AsyncAwaitCompleter": {
         "id": "function/dart:async::_AsyncAwaitCompleter._AsyncAwaitCompleter",
@@ -27921,7 +28636,7 @@
         "id": "function/dart:async::_AsyncAwaitCompleter.completeError",
         "kind": "function",
         "name": "completeError",
-        "size": 74,
+        "size": 75,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:async::_AsyncAwaitCompleter",
         "children": [],
@@ -27947,7 +28662,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "q(a,b){var s=this.a\nif(this.b)s.SX(new A.OH(a,b))\nelse s.i(new A.OH(a,b))}",
+        "code": "q(a,b){var s=this.a\nif(this.b)s.SX(new A.OH(a,b))\nelse s.Gd(new A.OH(a,b))}",
         "type": "void Function(Object,[StackTrace?])",
         "functionKind": 2
       },
@@ -28338,7 +29053,7 @@
         "id": "function/dart:async::_Completer.completeError",
         "kind": "function",
         "name": "completeError",
-        "size": 122,
+        "size": 123,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:async::_Completer",
         "children": [],
@@ -28364,7 +29079,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "q(a,b){var s=this.a\nif((s.a&30)!==0)throw A.b(A.u(\"Future already completed\"))\ns.i(A.ux(a,b))}\npm(a){return this.q(a,null)}",
+        "code": "q(a,b){var s=this.a\nif((s.a&30)!==0)throw A.b(A.u(\"Future already completed\"))\ns.Gd(A.ux(a,b))}\npm(a){return this.q(a,null)}",
         "type": "void Function(Object,[StackTrace?])",
         "functionKind": 2
       },
@@ -28433,21 +29148,21 @@
         "parameters": [
           {
             "name": "_zone",
-            "type": "[exact=_RootZone|powerset={N}{O}{N}]",
-            "declaredType": "_Zone"
+            "type": "[exact=Zone|powerset={N}{O}{N}]",
+            "declaredType": "Zone"
           }
         ],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
         "inlinedCount": 1,
         "code": "",
-        "type": "dynamic Function(_Zone)",
+        "type": "dynamic Function(Zone)",
         "functionKind": 3
       },
       "dart:async::_Future._addListener": {
         "id": "function/dart:async::_Future._addListener",
         "kind": "function",
         "name": "_addListener",
-        "size": 236,
+        "size": 230,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:async::_Future",
         "children": [
@@ -28470,7 +29185,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "xf(a){var s=this,r=s.a\nif(r<=3){a.a=s.c\ns.c=a}else{if((r&4)!==0){r=s.c\nif((r.a&24)===0){r.xf(a)\nreturn}s.V(r)}A.Tk(null,null,s.b,new A.da(s,a))}}",
+        "code": "xf(a){var s=this,r=s.a\nif(r<=3){a.a=s.c\ns.c=a}else{if((r&4)!==0){r=s.c\nif((r.a&24)===0){r.xf(a)\nreturn}s.V(r)}r=s.b\nr.w2(r,new A.da(s,a))}}",
         "type": "void Function(_FutureListener<dynamic,dynamic>)",
         "functionKind": 2
       },
@@ -28564,7 +29279,7 @@
         "id": "function/dart:async::_Future._asyncCompleteErrorObject",
         "kind": "function",
         "name": "_asyncCompleteErrorObject",
-        "size": 144,
+        "size": 145,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:async::_Future",
         "children": [
@@ -28587,7 +29302,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "i(a){this.a^=2\nA.Tk(null,null,this.b,new A.xR(this,a))}",
+        "code": "Gd(a){var s\nthis.a^=2\ns=this.b\ns.w2(s,new A.xR(this,a))}",
         "type": "void Function(AsyncError)",
         "functionKind": 2
       },
@@ -28641,7 +29356,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "wU(a){this.a^=2\nA.Tk(null,null,this.b,new A.rt(this,a))}",
+        "code": "wU(a){var s\nthis.a^=2\ns=this.b\ns.w2(s,new A.rt(this,a))}",
         "type": "void Function(Object?)",
         "functionKind": 2
       },
@@ -28672,7 +29387,7 @@
         "id": "function/dart:async::_Future._chainCoreFuture",
         "kind": "function",
         "name": "_chainCoreFuture",
-        "size": 478,
+        "size": 476,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:async::_Future",
         "children": [
@@ -28705,7 +29420,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "A9(a,b,c){var s,r,q,p={},o=p.a=a\nwhile(s=o.a,(s&4)!==0){o=o.c\np.a=o}if(o===b){s=A.Zb()\nb.i(new A.OH(new A.AT(!0,o,null,\"Cannot complete a future with itself\"),s))\nreturn}r=b.a&1\ns=o.a=s|r\nif((s&24)===0){q=b.c\nb.a=b.a&1|4\nb.c=o\no.H(q)\nreturn}if(!c)if(b.c==null)o=(s&16)===0||r!==0\nelse o=!1\nelse o=!0\nif(o){q=b.ah()\nb.V(p.a)\nA.HZ(b,q)\nreturn}b.a^=2\nA.Tk(null,null,b.b,new A.fG(p,b))}",
+        "code": "A9(a,b,c){var s,r,q,p,o={},n=o.a=a\nwhile(s=n.a,(s&4)!==0){n=n.c\no.a=n}if(n===b){s=A.Zb()\nb.Gd(new A.OH(new A.AT(!0,n,null,\"Cannot complete a future with itself\"),s))\nreturn}r=b.a&1\ns=n.a=s|r\nif((s&24)===0){q=b.c\nb.a=b.a&1|4\nb.c=n\nn.jQ(q)\nreturn}if(!c)if(b.c==null)n=(s&16)===0||r!==0\nelse n=!1\nelse n=!0\nif(n){q=b.ah()\nb.V(o.a)\nA.HZ(b,q)\nreturn}b.a^=2\np=b.b\np.w2(p,new A.fG(o,b))}",
         "type": "void Function(_Future<dynamic>,_Future<dynamic>,bool)",
         "functionKind": 0
       },
@@ -28880,7 +29595,7 @@
         "id": "function/dart:async::_Future._completeErrorObject",
         "kind": "function",
         "name": "_completeErrorObject",
-        "size": 45,
+        "size": 46,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:async::_Future",
         "children": [],
@@ -28901,7 +29616,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "SX(a){var s=this.ah()\nthis.F(a)\nA.HZ(this,s)}",
+        "code": "SX(a){var s=this.ah()\nthis.P9(a)\nA.HZ(this,s)}",
         "type": "void Function(AsyncError)",
         "functionKind": 2
       },
@@ -28909,7 +29624,7 @@
         "id": "function/dart:async::_Future._completeWithResultOf",
         "kind": "function",
         "name": "_completeWithResultOf",
-        "size": 108,
+        "size": 45,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:async::_Future",
         "children": [],
@@ -28930,7 +29645,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "O1(a){var s,r,q=this\nif((a.a&16)!==0){s=q.b===a.b\ns=!(s||s)}else s=!1\nif(s)return\nr=q.ah()\nq.V(a)\nA.HZ(q,r)}",
+        "code": "O1(a){var s=this.ah()\nthis.V(a)\nA.HZ(this,s)}",
         "type": "void Function(_Future<Object?>)",
         "functionKind": 2
       },
@@ -29144,14 +29859,14 @@
         "sideEffects": "SideEffects(reads field; writes nothing)",
         "inlinedCount": 1,
         "code": "",
-        "type": "_Future<_Future.T> Function([_Zone?])",
+        "type": "_Future<_Future.T> Function([Zone?])",
         "functionKind": 2
       },
       "dart:async::_Future._prependListeners": {
         "id": "function/dart:async::_Future._prependListeners",
         "kind": "function",
         "name": "_prependListeners",
-        "size": 339,
+        "size": 336,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:async::_Future",
         "children": [
@@ -29174,7 +29889,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "H(a){var s,r,q,p,o,n=this,m={}\nm.a=a\nif(a==null)return\ns=n.a\nif(s<=3){r=n.c\nn.c=a\nif(r!=null){q=a.a\nfor(p=a;q!=null;p=q,q=o)o=q.a\np.a=r}}else{if((s&4)!==0){s=n.c\nif((s.a&24)===0){s.H(a)\nreturn}n.V(s)}m.a=n.J(a)\nA.Tk(null,null,n.b,new A.oQ(m,n))}}",
+        "code": "jQ(a){var s,r,q,p,o,n=this,m={}\nm.a=a\nif(a==null)return\ns=n.a\nif(s<=3){r=n.c\nn.c=a\nif(r!=null){q=a.a\nfor(p=a;q!=null;p=q,q=o)o=q.a\np.a=r}}else{if((s&4)!==0){s=n.c\nif((s.a&24)===0){s.jQ(a)\nreturn}n.V(s)}m.a=n.N8(a)\ns=n.b\ns.w2(s,new A.oQ(m,n))}}",
         "type": "void Function(_FutureListener<dynamic,dynamic>?)",
         "functionKind": 2
       },
@@ -29205,7 +29920,7 @@
         "id": "function/dart:async::_Future._propagateToListeners",
         "kind": "function",
         "name": "_propagateToListeners",
-        "size": 2017,
+        "size": 1971,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:async::_Future",
         "children": [
@@ -29237,7 +29952,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "HZ(a,b){var s,r,q,p,o,n,m,l,k,j,i,h,g={},f=g.a=a\nfor(;;){s={}\nr=f.a\nq=(r&16)===0\np=!q\nif(b==null){if(p&&(r&1)===0){f=f.c\nA.Si(f.a,f.b)}return}s.a=b\no=b.a\nfor(f=b;o!=null;f=o,o=n){f.a=null\nA.HZ(g.a,f)\ns.a=o\nn=o.a}r=g.a\nm=r.c\ns.b=p\ns.c=m\nif(q){l=f.c\nl=(l&1)!==0||(l&15)===8}else l=!0\nif(l){k=f.b.b\nif(p){r=r.b===k\nr=!(r||r)}else r=!1\nif(r){A.Si(m.a,m.b)\nreturn}j=$.X3\nif(j!==k)$.X3=k\nelse j=null\nf=f.c\nif((f&15)===8)new A.RT(s,g,p).$0()\nelse if(q){if((f&1)!==0)new A.rq(s,m).$0()}else if((f&2)!==0)new A.RW(g,s).$0()\nif(j!=null)$.X3=j\nf=s.c\nif(f instanceof A.vs){r=s.a.$ti\nr=r.C(\"b8<2>\").b(f)||!r.y[1].b(f)}else r=!1\nif(r){i=s.a.b\nif((f.a&24)!==0){h=i.c\ni.c=null\nb=i.J(h)\ni.a=f.a&30|i.a&1\ni.c=f.c\ng.a=f\ncontinue}else A.A9(f,i,!0)\nreturn}}i=s.a.b\nh=i.c\ni.c=null\nb=i.J(h)\nf=s.b\nr=s.c\nif(!f){i.a=8\ni.c=r}else{i.a=i.a&1|16\ni.c=r}g.a=i\nf=i}}",
+        "code": "HZ(a,b){var s,r,q,p,o,n,m,l,k,j,i,h={},g=h.a=a\nfor(;;){s={}\nr=g.a\nq=(r&16)===0\np=!q\nif(b==null){if(p&&(r&1)===0){r=g.c\ng=g.b\ng.Fh(g,r.a,r.b)}return}s.a=b\no=b.a\nfor(g=b;o!=null;g=o,o=n){g.a=null\nA.HZ(h.a,g)\ns.a=o\nn=o.a}m=h.a.c\ns.b=p\ns.c=m\nif(q){r=g.c\nr=(r&1)!==0||(r&15)===8}else r=!0\nif(r){l=g.b.b\nk=$.X3\nif(k!==l)$.X3=l\nelse k=null\ng=g.c\nif((g&15)===8)new A.RT(s,h,p).$0()\nelse if(q){if((g&1)!==0)new A.rq(s,m).$0()}else if((g&2)!==0)new A.RW(h,s).$0()\nif(k!=null)$.X3=k\ng=s.c\nif(g instanceof A.vs){r=s.a.$ti\nr=r.C(\"b8<2>\").b(g)||!r.y[1].b(g)}else r=!1\nif(r){j=s.a.b\nif((g.a&24)!==0){i=j.c\nj.c=null\nb=j.N8(i)\nj.a=g.a&30|j.a&1\nj.c=g.c\nh.a=g\ncontinue}else A.A9(g,j,!0)\nreturn}}j=s.a.b\ni=j.c\nj.c=null\nb=j.N8(i)\ng=s.b\nr=s.c\nif(!g){j.a=8\nj.c=r}else{j.a=j.a&1|16\nj.c=r}h.a=j\ng=j}}",
         "type": "void Function(_Future<dynamic>,_FutureListener<dynamic,dynamic>?)",
         "functionKind": 0
       },
@@ -29245,7 +29960,7 @@
         "id": "function/dart:async::_Future._propagateToListeners._Future__propagateToListeners_handleError.call",
         "kind": "function",
         "name": "call",
-        "size": 235,
+        "size": 236,
         "outputUnit": "outputUnit/main",
         "parent": "closure/dart:async::_Future._propagateToListeners._Future__propagateToListeners_handleError",
         "children": [],
@@ -29260,7 +29975,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "$0(){var s,r,q,p,o,n,m,l=this\ntry{s=l.a.a.c\np=l.b\nif(p.a.HR(s)&&p.a.e!=null){p.c=p.a.X(s)\np.b=!1}}catch(o){r=A.Ru(o)\nq=A.ts(o)\np=l.a.a.c\nif(p.a===r){n=l.b\nn.c=p\np=n}else{p=r\nn=q\nif(n==null)n=A.v0(p)\nm=l.b\nm.c=new A.OH(p,n)\np=m}p.b=!0}}",
+        "code": "$0(){var s,r,q,p,o,n,m,l=this\ntry{s=l.a.a.c\np=l.b\nif(p.a.HR(s)&&p.a.e!=null){p.c=p.a.Kw(s)\np.b=!1}}catch(o){r=A.Ru(o)\nq=A.ts(o)\np=l.a.a.c\nif(p.a===r){n=l.b\nn.c=p\np=n}else{p=r\nn=q\nif(n==null)n=A.v0(p)\nm=l.b\nm.c=new A.OH(p,n)\np=m}p.b=!0}}",
         "type": "void Function()",
         "functionKind": 2
       },
@@ -29268,7 +29983,7 @@
         "id": "function/dart:async::_Future._propagateToListeners._Future__propagateToListeners_handleValueCallback.call",
         "kind": "function",
         "name": "call",
-        "size": 158,
+        "size": 164,
         "outputUnit": "outputUnit/main",
         "parent": "closure/dart:async::_Future._propagateToListeners._Future__propagateToListeners_handleValueCallback",
         "children": [],
@@ -29283,7 +29998,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "$0(){var s,r,q,p,o,n\ntry{q=this.a\np=q.a\nq.c=p.b.b.FI(p.d,this.b)}catch(o){s=A.Ru(o)\nr=A.ts(o)\nq=s\np=r\nif(p==null)p=A.v0(q)\nn=this.a\nn.c=new A.OH(q,p)\nn.b=!0}}",
+        "code": "$0(){var s,r,q,p,o,n\ntry{q=this.a\np=q.a\no=p.b.b\nq.c=o.u9(o,p.d,this.b)}catch(n){s=A.Ru(n)\nr=A.ts(n)\nq=s\np=r\nif(p==null)p=A.v0(q)\no=this.a\no.c=new A.OH(q,p)\no.b=!0}}",
         "type": "void Function()",
         "functionKind": 2
       },
@@ -29291,7 +30006,7 @@
         "id": "function/dart:async::_Future._propagateToListeners._Future__propagateToListeners_handleWhenCompleteCallback.call",
         "kind": "function",
         "name": "call",
-        "size": 401,
+        "size": 407,
         "outputUnit": "outputUnit/main",
         "parent": "closure/dart:async::_Future._propagateToListeners._Future__propagateToListeners_handleWhenCompleteCallback",
         "children": [],
@@ -29306,7 +30021,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "$0(){var s,r,q,p,o,n,m,l,k=this,j=null\ntry{q=k.a.a\nj=q.b.b.Gr(q.d)}catch(p){s=A.Ru(p)\nr=A.ts(p)\nif(k.c&&k.b.a.c.a===s){q=k.a\nq.c=k.b.a.c}else{q=s\no=r\nif(o==null)o=A.v0(q)\nn=k.a\nn.c=new A.OH(q,o)\nq=n}q.b=!0\nreturn}if(j instanceof A.vs&&(j.a&24)!==0){if((j.a&16)!==0){q=k.a\nq.c=j.c\nq.b=!0}return}if(j instanceof A.vs){m=k.b.a\nl=new A.vs(m.b,m.$ti)\nj.S(new A.jZ(l,m),new A.FZ(l),t.H)\nq=k.a\nq.c=l\nq.b=!1}}",
+        "code": "$0(){var s,r,q,p,o,n,m,l,k=this,j=null\ntry{q=k.a.a\np=q.b.b\nj=p.wX(p,q.d)}catch(o){s=A.Ru(o)\nr=A.ts(o)\nif(k.c&&k.b.a.c.a===s){q=k.a\nq.c=k.b.a.c}else{q=s\np=r\nif(p==null)p=A.v0(q)\nn=k.a\nn.c=new A.OH(q,p)\nq=n}q.b=!0\nreturn}if(j instanceof A.vs&&(j.a&24)!==0){if((j.a&16)!==0){q=k.a\nq.c=j.c\nq.b=!0}return}if(j instanceof A.vs){m=k.b.a\nl=new A.vs(m.b,m.$ti)\nj.S(new A.jZ(l,m),new A.FZ(l),t.H)\nq=k.a\nq.c=l\nq.b=!1}}",
         "type": "void Function()",
         "functionKind": 2
       },
@@ -29377,7 +30092,7 @@
         "id": "function/dart:async::_Future._removeListeners",
         "kind": "function",
         "name": "_removeListeners",
-        "size": 47,
+        "size": 48,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:async::_Future",
         "children": [],
@@ -29392,7 +30107,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads field; writes field)",
         "inlinedCount": 2,
-        "code": "ah(){var s=this.c\nthis.c=null\nreturn this.J(s)}",
+        "code": "ah(){var s=this.c\nthis.c=null\nreturn this.N8(s)}",
         "type": "_FutureListener<dynamic,dynamic>? Function()",
         "functionKind": 2
       },
@@ -29400,7 +30115,7 @@
         "id": "function/dart:async::_Future._reverseListeners",
         "kind": "function",
         "name": "_reverseListeners",
-        "size": 68,
+        "size": 69,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:async::_Future",
         "children": [],
@@ -29421,7 +30136,7 @@
         ],
         "sideEffects": "SideEffects(reads field; writes field)",
         "inlinedCount": 0,
-        "code": "J(a){var s,r,q\nfor(s=a,r=null;s!=null;r=s,s=q){q=s.a\ns.a=r}return r}",
+        "code": "N8(a){var s,r,q\nfor(s=a,r=null;s!=null;r=s,s=q){q=s.a\ns.a=r}return r}",
         "type": "_FutureListener<dynamic,dynamic>? Function(_FutureListener<dynamic,dynamic>?)",
         "functionKind": 2
       },
@@ -29458,7 +30173,7 @@
         "id": "function/dart:async::_Future._setErrorObject",
         "kind": "function",
         "name": "_setErrorObject",
-        "size": 33,
+        "size": 34,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:async::_Future",
         "children": [],
@@ -29479,7 +30194,7 @@
         ],
         "sideEffects": "SideEffects(reads field; writes field)",
         "inlinedCount": 1,
-        "code": "F(a){this.a=this.a&1|16\nthis.c=a}",
+        "code": "P9(a){this.a=this.a&1|16\nthis.c=a}",
         "type": "void Function(AsyncError)",
         "functionKind": 2
       },
@@ -29573,7 +30288,7 @@
         "id": "function/dart:async::_Future.then",
         "kind": "function",
         "name": "then",
-        "size": 209,
+        "size": 220,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:async::_Future",
         "children": [],
@@ -29599,7 +30314,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "S(a,b,c){var s,r=$.X3\nif(r===B.NU){if(!t.Q.b(b)&&!t.v.b(b))throw A.b(A.L3(b,\"onError\",u.c))}else b=A.VH(b,r)\ns=new A.vs(r,c.C(\"vs<0>\"))\nthis.xf(new A.Fe(s,3,a,b,this.$ti.C(\"@<1>\").K(c).C(\"Fe<1,2>\")))\nreturn s}",
+        "code": "S(a,b,c){var s,r=$.X3\nif(r===B.HE){if(!t.Q.b(b)&&!t.v.b(b))throw A.b(A.L3(b,\"onError\",u.c))}else{a=r.F(r,a)\nb=A.VH(b,r)}s=new A.vs(r,c.C(\"vs<0>\"))\nthis.xf(new A.Fe(s,3,a,b,this.$ti.C(\"@<1>\").K(c).C(\"Fe<1,2>\")))\nreturn s}",
         "type": "Future<#A> Function<#A extends Object?>(FutureOr<#A> Function(_Future.T),{Function? onError})",
         "functionKind": 2
       },
@@ -29787,20 +30502,20 @@
           "factory": false,
           "external": false
         },
-        "returnType": "_Zone",
-        "inferredReturnType": "[exact=_RootZone|powerset={N}{O}{N}]",
+        "returnType": "Zone",
+        "inferredReturnType": "[exact=Zone|powerset={N}{O}{N}]",
         "parameters": [],
         "sideEffects": "SideEffects(reads field; writes nothing)",
-        "inlinedCount": 6,
+        "inlinedCount": 11,
         "code": "",
-        "type": "_Zone Function()",
+        "type": "Zone Function()",
         "functionKind": 2
       },
       "dart:async::_FutureListener.handleError": {
         "id": "function/dart:async::_FutureListener.handleError",
         "kind": "function",
         "name": "handleError",
-        "size": 386,
+        "size": 392,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:async::_FutureListener",
         "children": [],
@@ -29821,7 +30536,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "X(a){var s,r=this.e,q=null,p=a.a,o=this.b.b\nif(t.Q.b(r))q=o.m(r,p,a.b)\nelse q=o.FI(r,p)\ntry{p=q\nreturn p}catch(s){if(t.A.b(A.Ru(s))){if((this.c&1)!==0)throw A.b(A.xY(\"The error handler of Future.then must return a value of the returned future's type\",\"onError\"))\nthrow A.b(A.xY(\"The error handler of Future.catchError must return a value of the future's type\",\"onError\"))}else throw s}}",
+        "code": "Kw(a){var s,r=this.e,q=null,p=a.a,o=this.b.b\nif(t.Q.b(r))q=o.Pj(o,r,p,a.b)\nelse q=o.u9(o,r,p)\ntry{p=q\nreturn p}catch(s){if(t.A.b(A.Ru(s))){if((this.c&1)!==0)throw A.b(A.xY(\"The error handler of Future.then must return a value of the returned future's type\",\"onError\"))\nthrow A.b(A.xY(\"The error handler of Future.catchError must return a value of the future's type\",\"onError\"))}else throw s}}",
         "type": "FutureOr<_FutureListener.T> Function(AsyncError)",
         "functionKind": 2
       },
@@ -29996,7 +30711,7 @@
         "id": "function/dart:async::_FutureListener.matchesErrorTest",
         "kind": "function",
         "name": "matchesErrorTest",
-        "size": 65,
+        "size": 77,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:async::_FutureListener",
         "children": [],
@@ -30017,7 +30732,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "HR(a){if((this.c&15)!==6)return!0\nreturn this.b.b.FI(this.d,a.a)}",
+        "code": "HR(a){var s\nif((this.c&15)!==6)return!0\ns=this.b.b\nreturn s.u9(s,this.d,a.a)}",
         "type": "bool Function(AsyncError)",
         "functionKind": 2
       },
@@ -30048,497 +30763,6 @@
         "inlinedCount": 1,
         "code": "",
         "type": "bool Function(Future<dynamic>)",
-        "functionKind": 2
-      },
-      "dart:async::_RootZone.bindCallbackGuarded": {
-        "id": "function/dart:async::_RootZone.bindCallbackGuarded",
-        "kind": "function",
-        "name": "bindCallbackGuarded",
-        "size": 126,
-        "outputUnit": "outputUnit/main",
-        "parent": "class/dart:async::_RootZone",
-        "children": [
-          "closure/dart:async::_RootZone.bindCallbackGuarded._RootZone_bindCallbackGuarded_closure"
-        ],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "void Function()",
-        "inferredReturnType": "[subtype=Function|powerset={IN}{O}{N}]",
-        "parameters": [
-          {
-            "name": "f",
-            "type": "[subtype=Function|powerset={IN}{O}{N}]",
-            "declaredType": "void Function()"
-          }
-        ],
-        "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 0,
-        "code": "qS(a){return new A.Vp(this,a)}",
-        "type": "void Function() Function(void Function())",
-        "functionKind": 2
-      },
-      "dart:async::_RootZone.bindCallbackGuarded._RootZone_bindCallbackGuarded_closure.call": {
-        "id": "function/dart:async::_RootZone.bindCallbackGuarded._RootZone_bindCallbackGuarded_closure.call",
-        "kind": "function",
-        "name": "call",
-        "size": 30,
-        "outputUnit": "outputUnit/main",
-        "parent": "closure/dart:async::_RootZone.bindCallbackGuarded._RootZone_bindCallbackGuarded_closure",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "void",
-        "inferredReturnType": "[null|powerset={null}]",
-        "parameters": [],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 0,
-        "code": "$0(){return this.a.bH(this.b)}",
-        "type": "void Function()",
-        "functionKind": 2
-      },
-      "dart:async::_RootZone.bindUnaryCallbackGuarded": {
-        "id": "function/dart:async::_RootZone.bindUnaryCallbackGuarded",
-        "kind": "function",
-        "name": "bindUnaryCallbackGuarded",
-        "size": 169,
-        "outputUnit": "outputUnit/main",
-        "parent": "class/dart:async::_RootZone",
-        "children": [
-          "closure/dart:async::_RootZone.bindUnaryCallbackGuarded._RootZone_bindUnaryCallbackGuarded_closure"
-        ],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "void Function(#A/*free*/)",
-        "inferredReturnType": "[subtype=Function|powerset={IN}{O}{N}]",
-        "parameters": [
-          {
-            "name": "f",
-            "type": "[subtype=Function|powerset={IN}{O}{N}]",
-            "declaredType": "void Function(bindUnaryCallbackGuarded.T)"
-          }
-        ],
-        "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 0,
-        "code": "Py(a,b){return new A.OR(this,a,b)}",
-        "type": "void Function(#A) Function<#A extends Object?>(void Function(#A))",
-        "functionKind": 2
-      },
-      "dart:async::_RootZone.bindUnaryCallbackGuarded._RootZone_bindUnaryCallbackGuarded_closure.call": {
-        "id": "function/dart:async::_RootZone.bindUnaryCallbackGuarded._RootZone_bindUnaryCallbackGuarded_closure.call",
-        "kind": "function",
-        "name": "call",
-        "size": 33,
-        "outputUnit": "outputUnit/main",
-        "parent": "closure/dart:async::_RootZone.bindUnaryCallbackGuarded._RootZone_bindUnaryCallbackGuarded_closure",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "void",
-        "inferredReturnType": "[null|powerset={null}]",
-        "parameters": [
-          {
-            "name": "arg",
-            "type": "[null|subclass=Object|powerset={null}{IN}{GFUO}{IMN}]",
-            "declaredType": "bindUnaryCallbackGuarded.T"
-          }
-        ],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 0,
-        "code": "$1(a){return this.a.m1(this.b,a)}",
-        "type": "void Function(bindUnaryCallbackGuarded.T)",
-        "functionKind": 2
-      },
-      "dart:async::_RootZone.createTimer": {
-        "id": "function/dart:async::_RootZone.createTimer",
-        "kind": "function",
-        "name": "createTimer",
-        "size": 0,
-        "outputUnit": "outputUnit/main",
-        "parent": "class/dart:async::_RootZone",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "Timer",
-        "inferredReturnType": "[exact=_TimerImpl|powerset={N}{O}{N}]",
-        "parameters": [
-          {
-            "name": "duration",
-            "type": "[exact=Duration|powerset={N}{O}{N}]",
-            "declaredType": "Duration"
-          },
-          {
-            "name": "f",
-            "type": "[subtype=Function|powerset={IN}{O}{N}]",
-            "declaredType": "void Function()"
-          }
-        ],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 2,
-        "code": "",
-        "type": "Timer Function(Duration,void Function())",
-        "functionKind": 2
-      },
-      "dart:async::_RootZone.errorCallback": {
-        "id": "function/dart:async::_RootZone.errorCallback",
-        "kind": "function",
-        "name": "errorCallback",
-        "size": 0,
-        "outputUnit": "outputUnit/main",
-        "parent": "class/dart:async::_RootZone",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "AsyncError?",
-        "inferredReturnType": "[null|powerset={null}]",
-        "parameters": [
-          {
-            "name": "error",
-            "type": "[subclass=Object|powerset={IN}{GFUO}{IMN}]",
-            "declaredType": "Object"
-          },
-          {
-            "name": "stackTrace",
-            "type": "[null|subtype=StackTrace|powerset={null}{N}{O}{N}]",
-            "declaredType": "StackTrace?"
-          }
-        ],
-        "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 1,
-        "code": "",
-        "type": "AsyncError? Function(Object,StackTrace?)",
-        "functionKind": 2
-      },
-      "dart:async::_RootZone.errorZone": {
-        "id": "function/dart:async::_RootZone.errorZone",
-        "kind": "function",
-        "name": "errorZone",
-        "size": 0,
-        "outputUnit": "outputUnit/main",
-        "parent": "class/dart:async::_RootZone",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "Zone",
-        "inferredReturnType": "[exact=_RootZone|powerset={N}{O}{N}]",
-        "parameters": [],
-        "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 6,
-        "code": "",
-        "type": "Zone Function()",
-        "functionKind": 2
-      },
-      "dart:async::_RootZone.handleUncaughtError": {
-        "id": "function/dart:async::_RootZone.handleUncaughtError",
-        "kind": "function",
-        "name": "handleUncaughtError",
-        "size": 0,
-        "outputUnit": "outputUnit/main",
-        "parent": "class/dart:async::_RootZone",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "void",
-        "inferredReturnType": "[null|powerset={null}]",
-        "parameters": [
-          {
-            "name": "error",
-            "type": "[subclass=Object|powerset={IN}{GFUO}{IMN}]",
-            "declaredType": "Object"
-          },
-          {
-            "name": "stackTrace",
-            "type": "[subtype=StackTrace|powerset={N}{O}{N}]",
-            "declaredType": "StackTrace"
-          }
-        ],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 4,
-        "code": "",
-        "type": "void Function(Object,StackTrace)",
-        "functionKind": 2
-      },
-      "dart:async::_RootZone.registerBinaryCallback": {
-        "id": "function/dart:async::_RootZone.registerBinaryCallback",
-        "kind": "function",
-        "name": "registerBinaryCallback",
-        "size": 54,
-        "outputUnit": "outputUnit/main",
-        "parent": "class/dart:async::_RootZone",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "#A/*free*/ Function(#B/*free*/,#C/*free*/)",
-        "inferredReturnType": "[subtype=Function|powerset={IN}{O}{N}]",
-        "parameters": [
-          {
-            "name": "f",
-            "type": "[subtype=Function|powerset={IN}{O}{N}]",
-            "declaredType": "registerBinaryCallback.R Function(registerBinaryCallback.T1,registerBinaryCallback.T2)"
-          }
-        ],
-        "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 0,
-        "code": "Lj(a){return a}\nO(a){var s=t.z\nreturn this.Lj(a,s,s,s)}",
-        "type": "#A Function(#B,#C) Function<#A extends Object?,#B extends Object?,#C extends Object?>(#A Function(#B,#C))",
-        "functionKind": 2
-      },
-      "dart:async::_RootZone.registerUnaryCallback": {
-        "id": "function/dart:async::_RootZone.registerUnaryCallback",
-        "kind": "function",
-        "name": "registerUnaryCallback",
-        "size": 0,
-        "outputUnit": "outputUnit/main",
-        "parent": "class/dart:async::_RootZone",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "#A/*free*/ Function(#B/*free*/)",
-        "inferredReturnType": "[subtype=Function|powerset={IN}{O}{N}]",
-        "parameters": [
-          {
-            "name": "f",
-            "type": "[subtype=Function|powerset={IN}{O}{N}]",
-            "declaredType": "registerUnaryCallback.R Function(registerUnaryCallback.T)"
-          }
-        ],
-        "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 2,
-        "code": "",
-        "type": "#A Function(#B) Function<#A extends Object?,#B extends Object?>(#A Function(#B))",
-        "functionKind": 2
-      },
-      "dart:async::_RootZone.run": {
-        "id": "function/dart:async::_RootZone.run",
-        "kind": "function",
-        "name": "run",
-        "size": 93,
-        "outputUnit": "outputUnit/main",
-        "parent": "class/dart:async::_RootZone",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "#A/*free*/",
-        "inferredReturnType": "[null|subclass=Object|powerset={null}{IN}{GFUO}{IMN}]",
-        "parameters": [
-          {
-            "name": "f",
-            "type": "[subtype=Function|powerset={IN}{O}{N}]",
-            "declaredType": "run.R Function()"
-          }
-        ],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 0,
-        "code": "zz(a){if($.X3===B.NU)return a.$0()\nreturn A.T8(null,null,this,a)}\nGr(a){return this.zz(a,t.z)}",
-        "type": "#A Function<#A extends Object?>(#A Function())",
-        "functionKind": 2
-      },
-      "dart:async::_RootZone.runBinary": {
-        "id": "function/dart:async::_RootZone.runBinary",
-        "kind": "function",
-        "name": "runBinary",
-        "size": 123,
-        "outputUnit": "outputUnit/main",
-        "parent": "class/dart:async::_RootZone",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "#A/*free*/",
-        "inferredReturnType": "[null|subclass=Object|powerset={null}{IN}{GFUO}{IMN}]",
-        "parameters": [
-          {
-            "name": "f",
-            "type": "[subtype=Function|powerset={IN}{O}{N}]",
-            "declaredType": "runBinary.R Function(runBinary.T1,runBinary.T2)"
-          },
-          {
-            "name": "arg1",
-            "type": "[subclass=Object|powerset={IN}{GFUO}{IMN}]",
-            "declaredType": "runBinary.T1"
-          },
-          {
-            "name": "arg2",
-            "type": "[subtype=StackTrace|powerset={N}{O}{N}]",
-            "declaredType": "runBinary.T2"
-          }
-        ],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 0,
-        "code": "rp(a,b,c){if($.X3===B.NU)return a.$2(b,c)\nreturn A.Qx(null,null,this,a,b,c)}\nm(a,b,c){var s=t.z\nreturn this.rp(a,b,c,s,s,s)}",
-        "type": "#A Function<#A extends Object?,#B extends Object?,#C extends Object?>(#A Function(#B,#C),#B,#C)",
-        "functionKind": 2
-      },
-      "dart:async::_RootZone.runGuarded": {
-        "id": "function/dart:async::_RootZone.runGuarded",
-        "kind": "function",
-        "name": "runGuarded",
-        "size": 113,
-        "outputUnit": "outputUnit/main",
-        "parent": "class/dart:async::_RootZone",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "void",
-        "inferredReturnType": "[null|powerset={null}]",
-        "parameters": [
-          {
-            "name": "f",
-            "type": "[subtype=Function|powerset={IN}{O}{N}]",
-            "declaredType": "void Function()"
-          }
-        ],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 0,
-        "code": "bH(a){var s,r,q\ntry{if(B.NU===$.X3){a.$0()\nreturn}A.T8(null,null,this,a)}catch(q){s=A.Ru(q)\nr=A.ts(q)\nA.Si(s,r)}}",
-        "type": "void Function(void Function())",
-        "functionKind": 2
-      },
-      "dart:async::_RootZone.runUnary": {
-        "id": "function/dart:async::_RootZone.runUnary",
-        "kind": "function",
-        "name": "runUnary",
-        "size": 112,
-        "outputUnit": "outputUnit/main",
-        "parent": "class/dart:async::_RootZone",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "#A/*free*/",
-        "inferredReturnType": "[null|subclass=Object|powerset={null}{IN}{GFUO}{IMN}]",
-        "parameters": [
-          {
-            "name": "f",
-            "type": "[subtype=Function|powerset={IN}{O}{N}]",
-            "declaredType": "runUnary.R Function(runUnary.T)"
-          },
-          {
-            "name": "arg",
-            "type": "[null|subclass=Object|powerset={null}{IN}{GFUO}{IMN}]",
-            "declaredType": "runUnary.T"
-          }
-        ],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 0,
-        "code": "bv(a,b){if($.X3===B.NU)return a.$1(b)\nreturn A.yv(null,null,this,a,b)}\nFI(a,b){var s=t.z\nreturn this.bv(a,b,s,s)}",
-        "type": "#A Function<#A extends Object?,#B extends Object?>(#A Function(#B),#B)",
-        "functionKind": 2
-      },
-      "dart:async::_RootZone.runUnaryGuarded": {
-        "id": "function/dart:async::_RootZone.runUnaryGuarded",
-        "kind": "function",
-        "name": "runUnaryGuarded",
-        "size": 150,
-        "outputUnit": "outputUnit/main",
-        "parent": "class/dart:async::_RootZone",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "void",
-        "inferredReturnType": "[null|powerset={null}]",
-        "parameters": [
-          {
-            "name": "f",
-            "type": "[subtype=Function|powerset={IN}{O}{N}]",
-            "declaredType": "void Function(runUnaryGuarded.T)"
-          },
-          {
-            "name": "arg",
-            "type": "[null|subclass=Object|powerset={null}{IN}{GFUO}{IMN}]",
-            "declaredType": "runUnaryGuarded.T"
-          }
-        ],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 0,
-        "code": "Dl(a,b){var s,r,q\ntry{if(B.NU===$.X3){a.$1(b)\nreturn}A.yv(null,null,this,a,b)}catch(q){s=A.Ru(q)\nr=A.ts(q)\nA.Si(s,r)}}\nm1(a,b){return this.Dl(a,b,t.z)}",
-        "type": "void Function<#A extends Object?>(void Function(#A),#A)",
-        "functionKind": 2
-      },
-      "dart:async::_RootZone.scheduleMicrotask": {
-        "id": "function/dart:async::_RootZone.scheduleMicrotask",
-        "kind": "function",
-        "name": "scheduleMicrotask",
-        "size": 0,
-        "outputUnit": "outputUnit/main",
-        "parent": "class/dart:async::_RootZone",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "void",
-        "inferredReturnType": "[null|powerset={null}]",
-        "parameters": [
-          {
-            "name": "f",
-            "type": "[subtype=Function|powerset={IN}{O}{N}]",
-            "declaredType": "void Function()"
-          }
-        ],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 5,
-        "code": "",
-        "type": "void Function(void Function())",
         "functionKind": 2
       },
       "dart:async::_StreamIterator._StreamIterator": {
@@ -30933,35 +31157,6 @@
         "type": "void Function()",
         "functionKind": 2
       },
-      "dart:async::_Zone.inSameErrorZone": {
-        "id": "function/dart:async::_Zone.inSameErrorZone",
-        "kind": "function",
-        "name": "inSameErrorZone",
-        "size": 0,
-        "outputUnit": "outputUnit/main",
-        "parent": "class/dart:async::_Zone",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "bool",
-        "inferredReturnType": "[exact=JSBool|powerset={I}{O}{N}]",
-        "parameters": [
-          {
-            "name": "otherZone",
-            "type": "[exact=_RootZone|powerset={N}{O}{N}]",
-            "declaredType": "Zone"
-          }
-        ],
-        "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 3,
-        "code": "",
-        "type": "bool Function(Zone)",
-        "functionKind": 2
-      },
       "dart:async::_asyncAwait": {
         "id": "function/dart:async::_asyncAwait",
         "kind": "function",
@@ -31344,7 +31539,7 @@
         "id": "function/dart:async::_interceptError",
         "kind": "function",
         "name": "_interceptError",
-        "size": 47,
+        "size": 67,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:async::",
         "children": [],
@@ -31370,7 +31565,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "vS(a,b){if($.X3===B.NU)return null\nreturn null}",
+        "code": "vS(a,b){var s=$.X3\nif(s===B.HE)return null\ns.Jm(s,a,b)\nreturn null}",
         "type": "AsyncError? Function(Object,StackTrace?)",
         "functionKind": 0
       },
@@ -31404,7 +31599,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "ux(a,b){if($.X3!==B.NU)A.vS(a,b)\nif(b==null)if(t.C.b(a)){b=a.gI4()\nif(b==null){A.mj(a,B.pd)\nb=B.pd}}else b=B.pd\nelse if(t.C.b(a))A.mj(a,b)\nreturn new A.OH(a,b)}",
+        "code": "ux(a,b){if($.X3!==B.HE)A.vS(a,b)\nif(b==null)if(t.C.b(a)){b=a.gI4()\nif(b==null){A.mj(a,B.pd)\nb=B.pd}}else b=B.pd\nelse if(t.C.b(a))A.mj(a,b)\nreturn new A.OH(a,b)}",
         "type": "AsyncError Function(Object,StackTrace?)",
         "functionKind": 0
       },
@@ -31516,7 +31711,7 @@
         "id": "function/dart:async::_registerErrorHandler",
         "kind": "function",
         "name": "_registerErrorHandler",
-        "size": 88,
+        "size": 97,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:async::",
         "children": [],
@@ -31536,25 +31731,64 @@
           },
           {
             "name": "zone",
-            "type": "[exact=_RootZone|powerset={N}{O}{N}]",
+            "type": "[exact=Zone|powerset={N}{O}{N}]",
             "declaredType": "Zone"
           }
         ],
-        "sideEffects": "SideEffects(reads nothing; writes nothing)",
+        "sideEffects": "SideEffects(reads field, static; writes nothing)",
         "inlinedCount": 0,
-        "code": "VH(a,b){if(t.Q.b(a))return b.O(a)\nif(t.v.b(a))return a\nthrow A.b(A.L3(a,\"onError\",u.c))}",
+        "code": "VH(a,b){if(t.Q.b(a))return b.j(b,a)\nif(t.v.b(a))return b.F(b,a)\nthrow A.b(A.L3(a,\"onError\",u.c))}",
         "type": "Function Function(Function,Zone)",
         "functionKind": 0
       },
-      "dart:async::_rootHandleError": {
-        "id": "function/dart:async::_rootHandleError",
+      "dart:async::_rootCreateTimer": {
+        "id": "function/dart:async::_rootCreateTimer",
         "kind": "function",
-        "name": "_rootHandleError",
+        "name": "_rootCreateTimer",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "library/dart:async::",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "Timer",
+        "inferredReturnType": "[exact=_TimerImpl|powerset={N}{O}{N}]",
+        "parameters": [
+          {
+            "name": "zone",
+            "type": "[exact=Zone|powerset={N}{O}{N}]",
+            "declaredType": "Zone"
+          },
+          {
+            "name": "duration",
+            "type": "[exact=Duration|powerset={N}{O}{N}]",
+            "declaredType": "Duration"
+          },
+          {
+            "name": "callback",
+            "type": "[subtype=Function|powerset={IN}{O}{N}]",
+            "declaredType": "void Function()"
+          }
+        ],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 1,
+        "code": "",
+        "type": "Timer Function(Zone,Duration,void Function())",
+        "functionKind": 0
+      },
+      "dart:async::_rootHandleUncaughtError": {
+        "id": "function/dart:async::_rootHandleUncaughtError",
+        "kind": "function",
+        "name": "_rootHandleUncaughtError",
         "size": 119,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:async::",
         "children": [
-          "closure/dart:async::_rootHandleError._rootHandleError_closure"
+          "closure/dart:async::_rootHandleUncaughtError._rootHandleUncaughtError_closure"
         ],
         "modifiers": {
           "static": false,
@@ -31578,17 +31812,17 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "Si(a,b){A.rR(new A.Ev(a,b))}",
+        "code": "L2(a,b){A.rR(new A.pK(a,b))}",
         "type": "void Function(Object,StackTrace)",
         "functionKind": 0
       },
-      "dart:async::_rootHandleError._rootHandleError_closure.call": {
-        "id": "function/dart:async::_rootHandleError._rootHandleError_closure.call",
+      "dart:async::_rootHandleUncaughtError._rootHandleUncaughtError_closure.call": {
+        "id": "function/dart:async::_rootHandleUncaughtError._rootHandleUncaughtError_closure.call",
         "kind": "function",
         "name": "call",
         "size": 25,
         "outputUnit": "outputUnit/main",
-        "parent": "closure/dart:async::_rootHandleError._rootHandleError_closure",
+        "parent": "closure/dart:async::_rootHandleUncaughtError._rootHandleUncaughtError_closure",
         "children": [],
         "modifiers": {
           "static": false,
@@ -31605,158 +31839,11 @@
         "type": "void Function()",
         "functionKind": 2
       },
-      "dart:async::_rootRun": {
-        "id": "function/dart:async::_rootRun",
-        "kind": "function",
-        "name": "_rootRun",
-        "size": 97,
-        "outputUnit": "outputUnit/main",
-        "parent": "library/dart:async::",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "#A/*free*/",
-        "inferredReturnType": "[null|subclass=Object|powerset={null}{IN}{GFUO}{IMN}]",
-        "parameters": [
-          {
-            "name": "self",
-            "type": "[null|powerset={null}]",
-            "declaredType": "Zone?"
-          },
-          {
-            "name": "parent",
-            "type": "[null|powerset={null}]",
-            "declaredType": "ZoneDelegate?"
-          },
-          {
-            "name": "zone",
-            "type": "[exact=_RootZone|powerset={N}{O}{N}]",
-            "declaredType": "Zone"
-          },
-          {
-            "name": "f",
-            "type": "[subtype=Function|powerset={IN}{O}{N}]",
-            "declaredType": "_rootRun.R Function()"
-          }
-        ],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 0,
-        "code": "T8(a,b,c,d){var s,r=$.X3\nif(r===c)return d.$0()\n$.X3=c\ns=r\ntry{r=d.$0()\nreturn r}finally{$.X3=s}}",
-        "type": "#A Function<#A extends Object?>(Zone?,ZoneDelegate?,Zone,#A Function())",
-        "functionKind": 0
-      },
-      "dart:async::_rootRunBinary": {
-        "id": "function/dart:async::_rootRunBinary",
-        "kind": "function",
-        "name": "_rootRunBinary",
-        "size": 107,
-        "outputUnit": "outputUnit/main",
-        "parent": "library/dart:async::",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "#A/*free*/",
-        "inferredReturnType": "[null|subclass=Object|powerset={null}{IN}{GFUO}{IMN}]",
-        "parameters": [
-          {
-            "name": "self",
-            "type": "[null|powerset={null}]",
-            "declaredType": "Zone?"
-          },
-          {
-            "name": "parent",
-            "type": "[null|powerset={null}]",
-            "declaredType": "ZoneDelegate?"
-          },
-          {
-            "name": "zone",
-            "type": "[exact=_RootZone|powerset={N}{O}{N}]",
-            "declaredType": "Zone"
-          },
-          {
-            "name": "f",
-            "type": "[subtype=Function|powerset={IN}{O}{N}]",
-            "declaredType": "_rootRunBinary.R Function(_rootRunBinary.T1,_rootRunBinary.T2)"
-          },
-          {
-            "name": "arg1",
-            "type": "[subclass=Object|powerset={IN}{GFUO}{IMN}]",
-            "declaredType": "_rootRunBinary.T1"
-          },
-          {
-            "name": "arg2",
-            "type": "[subtype=StackTrace|powerset={N}{O}{N}]",
-            "declaredType": "_rootRunBinary.T2"
-          }
-        ],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 0,
-        "code": "Qx(a,b,c,d,e,f){var s,r=$.X3\nif(r===c)return d.$2(e,f)\n$.X3=c\ns=r\ntry{r=d.$2(e,f)\nreturn r}finally{$.X3=s}}",
-        "type": "#A Function<#A extends Object?,#B extends Object?,#C extends Object?>(Zone?,ZoneDelegate?,Zone,#A Function(#B,#C),#B,#C)",
-        "functionKind": 0
-      },
-      "dart:async::_rootRunUnary": {
-        "id": "function/dart:async::_rootRunUnary",
-        "kind": "function",
-        "name": "_rootRunUnary",
-        "size": 101,
-        "outputUnit": "outputUnit/main",
-        "parent": "library/dart:async::",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "#A/*free*/",
-        "inferredReturnType": "[null|subclass=Object|powerset={null}{IN}{GFUO}{IMN}]",
-        "parameters": [
-          {
-            "name": "self",
-            "type": "[null|powerset={null}]",
-            "declaredType": "Zone?"
-          },
-          {
-            "name": "parent",
-            "type": "[null|powerset={null}]",
-            "declaredType": "ZoneDelegate?"
-          },
-          {
-            "name": "zone",
-            "type": "[exact=_RootZone|powerset={N}{O}{N}]",
-            "declaredType": "Zone"
-          },
-          {
-            "name": "f",
-            "type": "[subtype=Function|powerset={IN}{O}{N}]",
-            "declaredType": "_rootRunUnary.R Function(_rootRunUnary.T)"
-          },
-          {
-            "name": "arg",
-            "type": "[null|subclass=Object|powerset={null}{IN}{GFUO}{IMN}]",
-            "declaredType": "_rootRunUnary.T"
-          }
-        ],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 0,
-        "code": "yv(a,b,c,d,e){var s,r=$.X3\nif(r===c)return d.$1(e)\n$.X3=c\ns=r\ntry{r=d.$1(e)\nreturn r}finally{$.X3=s}}",
-        "type": "#A Function<#A extends Object?,#B extends Object?>(Zone?,ZoneDelegate?,Zone,#A Function(#B),#B)",
-        "functionKind": 0
-      },
       "dart:async::_rootScheduleMicrotask": {
         "id": "function/dart:async::_rootScheduleMicrotask",
         "kind": "function",
         "name": "_rootScheduleMicrotask",
-        "size": 47,
+        "size": 41,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:async::",
         "children": [],
@@ -31770,30 +31857,20 @@
         "inferredReturnType": "[null|powerset={null}]",
         "parameters": [
           {
-            "name": "self",
-            "type": "[null|powerset={null}]",
-            "declaredType": "Zone?"
-          },
-          {
-            "name": "parent",
-            "type": "[null|powerset={null}]",
-            "declaredType": "ZoneDelegate?"
-          },
-          {
             "name": "zone",
-            "type": "[exact=_RootZone|powerset={N}{O}{N}]",
+            "type": "[exact=Zone|powerset={N}{O}{N}]",
             "declaredType": "Zone"
           },
           {
-            "name": "f",
+            "name": "callback",
             "type": "[subtype=Function|powerset={IN}{O}{N}]",
             "declaredType": "void Function()"
           }
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "Tk(a,b,c,d){if(B.NU!==c){d=c.qS(d)\nd=d}A.IA(d)}",
-        "type": "void Function(Zone?,ZoneDelegate?,Zone,void Function())",
+        "code": "Tk(a,b){if(B.HE!==a)b=a.H(b,t.H)\nA.IA(b)}",
+        "type": "void Function(Zone,void Function())",
         "functionKind": 0
       },
       "dart:async::_scheduleAsyncCallback": {
@@ -31915,7 +31992,7 @@
         "id": "function/dart:async::_wrapJsFunctionForAsync",
         "kind": "function",
         "name": "_wrapJsFunctionForAsync",
-        "size": 204,
+        "size": 210,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:async::",
         "children": [
@@ -31938,7 +32015,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "l(a){var s=function(b,c){return function(d,e){while(true){try{b(d,e)\nbreak}catch(r){e=r\nd=c}}}}(a,1)\nreturn $.X3.O(new A.Gs(s))}",
+        "code": "l(a){var s=function(b,c){return function(d,e){while(true){try{b(d,e)\nbreak}catch(q){e=q\nd=c}}}}(a,1),r=$.X3\nreturn r.j(r,new A.Gs(s))}",
         "type": "void Function(int,dynamic) Function(dynamic)",
         "functionKind": 0
       },
@@ -35998,29 +36075,6 @@
         "type": "int Function()",
         "functionKind": 2
       },
-      "dart:core::Duration.inMicroseconds": {
-        "id": "function/dart:core::Duration.inMicroseconds",
-        "kind": "function",
-        "name": "inMicroseconds",
-        "size": 0,
-        "outputUnit": "outputUnit/main",
-        "parent": "class/dart:core::Duration",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "int",
-        "inferredReturnType": "[subclass=JSInt|powerset={I}{O}{N}]",
-        "parameters": [],
-        "sideEffects": "SideEffects(reads field; writes nothing)",
-        "inlinedCount": 2,
-        "code": "",
-        "type": "int Function()",
-        "functionKind": 2
-      },
       "dart:core::Duration.inMilliseconds": {
         "id": "function/dart:core::Duration.inMilliseconds",
         "kind": "function",
@@ -36048,7 +36102,7 @@
         "id": "function/dart:core::Duration.toString",
         "kind": "function",
         "name": "toString",
-        "size": 228,
+        "size": 225,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:core::Duration",
         "children": [],
@@ -36063,7 +36117,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "\"[\"(a){var s,r,q,p,o,n=this.a,m=B.jn.BU(n,36e8),l=n%36e8\nif(n<0){m=0-m\nn=0-l\ns=\"-\"}else{n=l\ns=\"\"}r=B.jn.BU(n,6e7)\nn%=6e7\nq=r<10?\"0\":\"\"\np=B.jn.BU(n,1e6)\no=p<10?\"0\":\"\"\nreturn s+m+\":\"+q+r+\":\"+o+p+\".\"+B.xB.v(B.jn[\"[\"](n%1e6),6,\"0\")}",
+        "code": "\"[\"(a){var s,r,q,p,o,n=this.a,m=B.jn.O(n,36e8),l=n%36e8\nif(n<0){m=0-m\nn=0-l\ns=\"-\"}else{n=l\ns=\"\"}r=B.jn.O(n,6e7)\nn%=6e7\nq=r<10?\"0\":\"\"\np=B.jn.O(n,1e6)\no=p<10?\"0\":\"\"\nreturn s+m+\":\"+q+r+\":\"+o+p+\".\"+B.xB.v(B.jn[\"[\"](n%1e6),6,\"0\")}",
         "type": "String Function()",
         "functionKind": 2
       },
@@ -47218,9 +47272,9 @@
             "declaredType": "void Function(_wrapZone.T)?"
           }
         ],
-        "sideEffects": "SideEffects(reads static; writes nothing)",
+        "sideEffects": "SideEffects(reads field, static; writes nothing)",
         "inlinedCount": 0,
-        "code": "aF(a,b){var s=$.X3\nif(s===B.NU)return a\nreturn s.Py(a,b)}",
+        "code": "aF(a,b){var s=$.X3\nif(s===B.HE)return a\nreturn s.Py(a,b)}",
         "type": "void Function(#A)? Function<#A extends Object?>(void Function(#A)?)",
         "functionKind": 0
       }
@@ -49207,6 +49261,30 @@
         "code": "gI4(){return this.b}",
         "type": "StackTrace"
       },
+      "dart:async::Zone._createPeriodicTimerFunction": {
+        "id": "field/dart:async::Zone._createPeriodicTimerFunction",
+        "kind": "field",
+        "name": "_createPeriodicTimerFunction",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:async::Zone",
+        "children": [],
+        "inferredType": "[null|powerset={null}]",
+        "code": "",
+        "type": "_ZoneCreatePeriodicTimer?"
+      },
+      "dart:async::Zone._createTimerFunction": {
+        "id": "field/dart:async::Zone._createTimerFunction",
+        "kind": "field",
+        "name": "_createTimerFunction",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:async::Zone",
+        "children": [],
+        "inferredType": "[null|powerset={null}]",
+        "code": "",
+        "type": "_ZoneCreateTimer?"
+      },
       "dart:async::Zone._current": {
         "id": "field/dart:async::Zone._current",
         "kind": "field",
@@ -49215,9 +49293,189 @@
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:async::Zone",
         "children": [],
-        "inferredType": "[exact=_RootZone|powerset={N}{O}{N}]",
-        "code": "$.X3=B.NU",
-        "type": "_Zone"
+        "inferredType": "[exact=Zone|powerset={N}{O}{N}]",
+        "code": "$.X3=B.HE",
+        "type": "Zone"
+      },
+      "dart:async::Zone._delegate": {
+        "id": "field/dart:async::Zone._delegate",
+        "kind": "field",
+        "name": "_delegate",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:async::Zone",
+        "children": [],
+        "inferredType": "[null|powerset={null}]",
+        "code": "",
+        "type": "ZoneDelegate?"
+      },
+      "dart:async::Zone._errorCallbackFunction": {
+        "id": "field/dart:async::Zone._errorCallbackFunction",
+        "kind": "field",
+        "name": "_errorCallbackFunction",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:async::Zone",
+        "children": [],
+        "inferredType": "[null|powerset={null}]",
+        "code": "",
+        "type": "_ZoneErrorCallback?"
+      },
+      "dart:async::Zone._forkFunction": {
+        "id": "field/dart:async::Zone._forkFunction",
+        "kind": "field",
+        "name": "_forkFunction",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:async::Zone",
+        "children": [],
+        "inferredType": "[null|powerset={null}]",
+        "code": "",
+        "type": "_ZoneFork?"
+      },
+      "dart:async::Zone._handleUncaughtErrorFunction": {
+        "id": "field/dart:async::Zone._handleUncaughtErrorFunction",
+        "kind": "field",
+        "name": "_handleUncaughtErrorFunction",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:async::Zone",
+        "children": [],
+        "inferredType": "[null|powerset={null}]",
+        "code": "",
+        "type": "_ZoneHandleUncaughtError?"
+      },
+      "dart:async::Zone._parent": {
+        "id": "field/dart:async::Zone._parent",
+        "kind": "field",
+        "name": "_parent",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:async::Zone",
+        "children": [],
+        "inferredType": "[null|powerset={null}]",
+        "code": "",
+        "type": "Zone?"
+      },
+      "dart:async::Zone._printFunction": {
+        "id": "field/dart:async::Zone._printFunction",
+        "kind": "field",
+        "name": "_printFunction",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:async::Zone",
+        "children": [],
+        "inferredType": "[null|powerset={null}]",
+        "code": "",
+        "type": "_ZonePrint?"
+      },
+      "dart:async::Zone._registerBinaryCallbackFunction": {
+        "id": "field/dart:async::Zone._registerBinaryCallbackFunction",
+        "kind": "field",
+        "name": "_registerBinaryCallbackFunction",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:async::Zone",
+        "children": [],
+        "inferredType": "[null|powerset={null}]",
+        "code": "",
+        "type": "_ZoneRegisterBinaryCallback?"
+      },
+      "dart:async::Zone._registerCallbackFunction": {
+        "id": "field/dart:async::Zone._registerCallbackFunction",
+        "kind": "field",
+        "name": "_registerCallbackFunction",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:async::Zone",
+        "children": [],
+        "inferredType": "[null|powerset={null}]",
+        "code": "",
+        "type": "_ZoneRegisterCallback?"
+      },
+      "dart:async::Zone._registerUnaryCallbackFunction": {
+        "id": "field/dart:async::Zone._registerUnaryCallbackFunction",
+        "kind": "field",
+        "name": "_registerUnaryCallbackFunction",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:async::Zone",
+        "children": [],
+        "inferredType": "[null|powerset={null}]",
+        "code": "",
+        "type": "_ZoneRegisterUnaryCallback?"
+      },
+      "dart:async::Zone._runBinaryFunction": {
+        "id": "field/dart:async::Zone._runBinaryFunction",
+        "kind": "field",
+        "name": "_runBinaryFunction",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:async::Zone",
+        "children": [],
+        "inferredType": "[null|powerset={null}]",
+        "code": "",
+        "type": "_ZoneRunBinary?"
+      },
+      "dart:async::Zone._runFunction": {
+        "id": "field/dart:async::Zone._runFunction",
+        "kind": "field",
+        "name": "_runFunction",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:async::Zone",
+        "children": [],
+        "inferredType": "[null|powerset={null}]",
+        "code": "",
+        "type": "_ZoneRun?"
+      },
+      "dart:async::Zone._runUnaryFunction": {
+        "id": "field/dart:async::Zone._runUnaryFunction",
+        "kind": "field",
+        "name": "_runUnaryFunction",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:async::Zone",
+        "children": [],
+        "inferredType": "[null|powerset={null}]",
+        "code": "",
+        "type": "_ZoneRunUnary?"
+      },
+      "dart:async::Zone._scheduleMicrotaskFunction": {
+        "id": "field/dart:async::Zone._scheduleMicrotaskFunction",
+        "kind": "field",
+        "name": "_scheduleMicrotaskFunction",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:async::Zone",
+        "children": [],
+        "inferredType": "[null|powerset={null}]",
+        "code": "",
+        "type": "_ZoneScheduleMicrotask?"
+      },
+      "dart:async::Zone._zoneValues": {
+        "id": "field/dart:async::Zone._zoneValues",
+        "kind": "field",
+        "name": "_zoneValues",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:async::Zone",
+        "children": [],
+        "inferredType": "[null|powerset={null}]",
+        "code": "",
+        "type": "_ZoneValues?"
+      },
+      "dart:async::ZoneDelegate._zone": {
+        "id": "field/dart:async::ZoneDelegate._zone",
+        "kind": "field",
+        "name": "_zone",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:async::ZoneDelegate",
+        "children": [],
+        "inferredType": "[exact=Zone|powerset={N}{O}{N}]",
+        "code": "",
+        "type": "Zone"
       },
       "dart:async::_AsyncAwaitCompleter._future": {
         "id": "field/dart:async::_AsyncAwaitCompleter._future",
@@ -49323,9 +49581,9 @@
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:async::_Future",
         "children": [],
-        "inferredType": "[exact=_RootZone|powerset={N}{O}{N}]",
+        "inferredType": "[exact=Zone|powerset={N}{O}{N}]",
         "code": "",
-        "type": "_Zone"
+        "type": "Zone"
       },
       "dart:async::_FutureListener._nextListener": {
         "id": "field/dart:async::_FutureListener._nextListener",
@@ -49531,30 +49789,6 @@
         "code": "",
         "type": "int"
       },
-      "dart:async::_ZoneFunction.function": {
-        "id": "field/dart:async::_ZoneFunction.function",
-        "kind": "field",
-        "name": "function",
-        "size": 0,
-        "outputUnit": "outputUnit/main",
-        "parent": "class/dart:async::_ZoneFunction",
-        "children": [],
-        "inferredType": "[subtype=Function|powerset={IN}{O}{N}]",
-        "code": "",
-        "type": "_ZoneFunction.T"
-      },
-      "dart:async::_ZoneFunction.zone": {
-        "id": "field/dart:async::_ZoneFunction.zone",
-        "kind": "field",
-        "name": "zone",
-        "size": 0,
-        "outputUnit": "outputUnit/main",
-        "parent": "class/dart:async::_ZoneFunction",
-        "children": [],
-        "inferredType": "[exact=_RootZone|powerset={N}{O}{N}]",
-        "code": "",
-        "type": "_Zone"
-      },
       "dart:async::_isInCallbackLoop": {
         "id": "field/dart:async::_isInCallbackLoop",
         "kind": "field",
@@ -49602,6 +49836,18 @@
         "inferredType": "[null|exact=_AsyncCallbackEntry|powerset={null}{N}{O}{N}]",
         "code": "$.S6=null",
         "type": "_AsyncCallbackEntry?"
+      },
+      "dart:async::_rootDelegate": {
+        "id": "field/dart:async::_rootDelegate",
+        "kind": "field",
+        "name": "_rootDelegate",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "library/dart:async::",
+        "children": [],
+        "inferredType": "[exact=ZoneDelegate|powerset={N}{O}{N}]",
+        "code": "",
+        "type": "ZoneDelegate"
       },
       "dart:collection::MapView._map": {
         "id": "field/dart:collection::MapView._map",
@@ -50467,10 +50713,10 @@
         "code": "",
         "type": "Object?"
       },
-      "dart:core::Duration._duration": {
-        "id": "field/dart:core::Duration._duration",
+      "dart:core::Duration.inMicroseconds": {
+        "id": "field/dart:core::Duration.inMicroseconds",
         "kind": "field",
-        "name": "_duration",
+        "name": "inMicroseconds",
         "size": 0,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:core::Duration",
@@ -51889,6 +52135,14 @@
         "outputUnit": "outputUnit/main",
         "code": "B.GO=new A.tT(\"DOT\",0,\"dot\")"
       },
+      "B.HE=new A.Qm()": {
+        "id": "constant/B.HE=new A.Qm()",
+        "kind": "constant",
+        "name": "",
+        "size": 15,
+        "outputUnit": "outputUnit/main",
+        "code": "B.HE=new A.Qm()"
+      },
       "B.Hb=new A.tT(\"SVG\",2,\"svg\")": {
         "id": "constant/B.Hb=new A.tT(\"SVG\",2,\"svg\")",
         "kind": "constant",
@@ -51944,14 +52198,6 @@
         "size": 15,
         "outputUnit": "outputUnit/main",
         "code": "B.NS=new A.hT()"
-      },
-      "B.NU=new A.Ji()": {
-        "id": "constant/B.NU=new A.Ji()",
-        "kind": "constant",
-        "name": "",
-        "size": 15,
-        "outputUnit": "outputUnit/main",
-        "code": "B.NU=new A.Ji()"
       },
       "B.Nm=J.jd.prototype": {
         "id": "constant/B.Nm=J.jd.prototype",
@@ -52305,6 +52551,33 @@
         "parent": "function/dart:async::Future.Future.delayed",
         "function": "function/dart:async::Future.Future.delayed.Future_Future$delayed_closure.call"
       },
+      "dart:async::Zone.bindCallback.Zone_bindCallback_closure": {
+        "id": "closure/dart:async::Zone.bindCallback.Zone_bindCallback_closure",
+        "kind": "closure",
+        "name": "Zone_bindCallback_closure",
+        "size": 141,
+        "outputUnit": "outputUnit/main",
+        "parent": "function/dart:async::Zone.bindCallback",
+        "function": "function/dart:async::Zone.bindCallback.Zone_bindCallback_closure.call"
+      },
+      "dart:async::Zone.bindCallbackGuarded.Zone_bindCallbackGuarded_closure": {
+        "id": "closure/dart:async::Zone.bindCallbackGuarded.Zone_bindCallbackGuarded_closure",
+        "kind": "closure",
+        "name": "Zone_bindCallbackGuarded_closure",
+        "size": 96,
+        "outputUnit": "outputUnit/main",
+        "parent": "function/dart:async::Zone.bindCallbackGuarded",
+        "function": "function/dart:async::Zone.bindCallbackGuarded.Zone_bindCallbackGuarded_closure.call"
+      },
+      "dart:async::Zone.bindUnaryCallbackGuarded.Zone_bindUnaryCallbackGuarded_closure": {
+        "id": "closure/dart:async::Zone.bindUnaryCallbackGuarded.Zone_bindUnaryCallbackGuarded_closure",
+        "kind": "closure",
+        "name": "Zone_bindUnaryCallbackGuarded_closure",
+        "size": 135,
+        "outputUnit": "outputUnit/main",
+        "parent": "function/dart:async::Zone.bindUnaryCallbackGuarded",
+        "function": "function/dart:async::Zone.bindUnaryCallbackGuarded.Zone_bindUnaryCallbackGuarded_closure.call"
+      },
       "dart:async::_AsyncRun._initializeScheduleImmediate._AsyncRun__initializeScheduleImmediate_closure": {
         "id": "closure/dart:async::_AsyncRun._initializeScheduleImmediate._AsyncRun__initializeScheduleImmediate_closure",
         "kind": "closure",
@@ -52390,7 +52663,7 @@
         "id": "closure/dart:async::_Future._propagateToListeners._Future__propagateToListeners_handleError",
         "kind": "closure",
         "name": "_Future__propagateToListeners_handleError",
-        "size": 301,
+        "size": 302,
         "outputUnit": "outputUnit/main",
         "parent": "function/dart:async::_Future._propagateToListeners",
         "function": "function/dart:async::_Future._propagateToListeners._Future__propagateToListeners_handleError.call"
@@ -52399,7 +52672,7 @@
         "id": "closure/dart:async::_Future._propagateToListeners._Future__propagateToListeners_handleValueCallback",
         "kind": "closure",
         "name": "_Future__propagateToListeners_handleValueCallback",
-        "size": 224,
+        "size": 230,
         "outputUnit": "outputUnit/main",
         "parent": "function/dart:async::_Future._propagateToListeners",
         "function": "function/dart:async::_Future._propagateToListeners._Future__propagateToListeners_handleValueCallback.call"
@@ -52408,7 +52681,7 @@
         "id": "closure/dart:async::_Future._propagateToListeners._Future__propagateToListeners_handleWhenCompleteCallback",
         "kind": "closure",
         "name": "_Future__propagateToListeners_handleWhenCompleteCallback",
-        "size": 478,
+        "size": 484,
         "outputUnit": "outputUnit/main",
         "parent": "function/dart:async::_Future._propagateToListeners",
         "function": "function/dart:async::_Future._propagateToListeners._Future__propagateToListeners_handleWhenCompleteCallback.call"
@@ -52430,24 +52703,6 @@
         "outputUnit": "outputUnit/main",
         "parent": "function/dart:async::_Future._propagateToListeners",
         "function": "function/dart:async::_Future._propagateToListeners._Future__propagateToListeners_handleWhenCompleteCallback_closure.call%0"
-      },
-      "dart:async::_RootZone.bindCallbackGuarded._RootZone_bindCallbackGuarded_closure": {
-        "id": "closure/dart:async::_RootZone.bindCallbackGuarded._RootZone_bindCallbackGuarded_closure",
-        "kind": "closure",
-        "name": "_RootZone_bindCallbackGuarded_closure",
-        "size": 96,
-        "outputUnit": "outputUnit/main",
-        "parent": "function/dart:async::_RootZone.bindCallbackGuarded",
-        "function": "function/dart:async::_RootZone.bindCallbackGuarded._RootZone_bindCallbackGuarded_closure.call"
-      },
-      "dart:async::_RootZone.bindUnaryCallbackGuarded._RootZone_bindUnaryCallbackGuarded_closure": {
-        "id": "closure/dart:async::_RootZone.bindUnaryCallbackGuarded._RootZone_bindUnaryCallbackGuarded_closure",
-        "kind": "closure",
-        "name": "_RootZone_bindUnaryCallbackGuarded_closure",
-        "size": 135,
-        "outputUnit": "outputUnit/main",
-        "parent": "function/dart:async::_RootZone.bindUnaryCallbackGuarded",
-        "function": "function/dart:async::_RootZone.bindUnaryCallbackGuarded._RootZone_bindUnaryCallbackGuarded_closure.call"
       },
       "dart:async::_TimerImpl._TimerImpl._TimerImpl_internalCallback": {
         "id": "closure/dart:async::_TimerImpl._TimerImpl._TimerImpl_internalCallback",
@@ -52476,14 +52731,14 @@
         "parent": "function/dart:async::_awaitOnObject",
         "function": "function/dart:async::_awaitOnObject._awaitOnObject_closure.call%0"
       },
-      "dart:async::_rootHandleError._rootHandleError_closure": {
-        "id": "closure/dart:async::_rootHandleError._rootHandleError_closure",
+      "dart:async::_rootHandleUncaughtError._rootHandleUncaughtError_closure": {
+        "id": "closure/dart:async::_rootHandleUncaughtError._rootHandleUncaughtError_closure",
         "kind": "closure",
-        "name": "_rootHandleError_closure",
+        "name": "_rootHandleUncaughtError_closure",
         "size": 91,
         "outputUnit": "outputUnit/main",
-        "parent": "function/dart:async::_rootHandleError",
-        "function": "function/dart:async::_rootHandleError._rootHandleError_closure.call"
+        "parent": "function/dart:async::_rootHandleUncaughtError",
+        "function": "function/dart:async::_rootHandleUncaughtError._rootHandleUncaughtError_closure.call"
       },
       "dart:async::_wrapJsFunctionForAsync._wrapJsFunctionForAsync_closure": {
         "id": "closure/dart:async::_wrapJsFunctionForAsync._wrapJsFunctionForAsync_closure",
@@ -53957,9 +54212,29 @@
         "id": "function/dart:_late_helper::throwLateFieldADI"
       }
     ],
+    "field/dart:async::Zone._createPeriodicTimerFunction": [
+      {
+        "id": "function/dart:_late_helper::throwLateFieldADI"
+      }
+    ],
     "field/dart:async::Zone._current": [
       {
         "id": "function/dart:_rti::findType"
+      }
+    ],
+    "field/dart:async::Zone._forkFunction": [
+      {
+        "id": "function/dart:_late_helper::throwLateFieldADI"
+      }
+    ],
+    "field/dart:async::Zone._printFunction": [
+      {
+        "id": "function/dart:_late_helper::throwLateFieldADI"
+      }
+    ],
+    "field/dart:async::Zone._zoneValues": [
+      {
+        "id": "function/dart:_late_helper::throwLateFieldADI"
       }
     ],
     "field/dart:async::_AsyncAwaitCompleter._future": [
@@ -54195,7 +54470,7 @@
         "id": "function/dart:_late_helper::throwLateFieldADI"
       }
     ],
-    "field/dart:core::Duration._duration": [
+    "field/dart:core::Duration.inMicroseconds": [
       {
         "id": "function/dart:_late_helper::throwLateFieldADI"
       }
@@ -55431,12 +55706,6 @@
       },
       {
         "id": "function/dart:_interceptors::JSString._skipTrailingWhitespace"
-      }
-    ],
-    "function/dart:_interceptors::JS_INTEROP_INTERCEPTOR_TAG": [
-      {
-        "id": "function/dart:_js_helper::getIsolateAffinityTag",
-        "mask": "inlined"
       }
     ],
     "function/dart:_interceptors::JavaScriptFunction.toString": [
@@ -57710,6 +57979,13 @@
       {
         "id": "function/dart:_js_helper::JsLinkedHashMap._getTableBucket",
         "mask": "inlined"
+      },
+      {
+        "id": "function/dart:_js_helper::JsLinkedHashMap._getTableBucket"
+      },
+      {
+        "id": "function/dart:_js_helper::JsLinkedHashMap.internalComputeHashCode",
+        "mask": "[subclass=JsLinkedHashMap|powerset={N}{O}{N}]"
       }
     ],
     "function/dart:_js_helper::JsLinkedHashMap._newHashTable": [
@@ -57971,18 +58247,7 @@
         "id": "field/dart:_js_helper::LinkedHashMapCell.hashMapCellValue"
       },
       {
-        "id": "function/dart:_js_helper::JsLinkedHashMap._getBucket",
-        "mask": "inlined"
-      },
-      {
         "id": "function/dart:_js_helper::JsLinkedHashMap._getBucket"
-      },
-      {
-        "id": "function/dart:_js_helper::JsLinkedHashMap._getTableBucket"
-      },
-      {
-        "id": "function/dart:_js_helper::JsLinkedHashMap.internalComputeHashCode",
-        "mask": "[subclass=JsLinkedHashMap|powerset={N}{O}{N}]"
       },
       {
         "id": "function/dart:_js_helper::JsLinkedHashMap.internalFindBucketIndex",
@@ -60560,10 +60825,6 @@
       }
     ],
     "function/dart:_js_helper::unminifyOrTag": [
-      {
-        "id": "function/dart:_js_names::unmangleGlobalNameIfPreservedAnyways",
-        "mask": "inlined"
-      },
       {
         "id": "function/dart:_js_names::unmangleGlobalNameIfPreservedAnyways"
       }
@@ -63321,6 +63582,14 @@
         "mask": "inlined"
       }
     ],
+    "function/dart:_rti::_Universe._parseRecipe": [
+      {
+        "id": "function/dart:_rti::_Parser.create"
+      },
+      {
+        "id": "function/dart:_rti::_Parser.parse"
+      }
+    ],
     "function/dart:_rti::_Universe.addErasedTypes": [
       {
         "id": "function/dart:_rti::_Universe.erasedTypes",
@@ -63429,16 +63698,6 @@
     ],
     "function/dart:_rti::_Universe.eval": [
       {
-        "id": "function/dart:_rti::_Parser.create"
-      },
-      {
-        "id": "function/dart:_rti::_Parser.parse"
-      },
-      {
-        "id": "function/dart:_rti::_Universe._parseRecipe",
-        "mask": "inlined"
-      },
-      {
         "id": "function/dart:_rti::_Universe._parseRecipe"
       },
       {
@@ -63487,16 +63746,6 @@
       },
       {
         "id": "function/dart:_rti::Rti._setEvalCache"
-      },
-      {
-        "id": "function/dart:_rti::_Parser.create"
-      },
-      {
-        "id": "function/dart:_rti::_Parser.parse"
-      },
-      {
-        "id": "function/dart:_rti::_Universe._parseRecipe",
-        "mask": "inlined"
       },
       {
         "id": "function/dart:_rti::_Universe._parseRecipe"
@@ -66056,10 +66305,6 @@
     ],
     "function/dart:_rti::_unminifyOrTag": [
       {
-        "id": "function/dart:_js_names::unmangleGlobalNameIfPreservedAnyways",
-        "mask": "inlined"
-      },
-      {
         "id": "function/dart:_js_names::unmangleGlobalNameIfPreservedAnyways"
       }
     ],
@@ -66845,7 +67090,17 @@
         "id": "function/dart:_rti::findType"
       },
       {
-        "id": "function/dart:async::Timer._createTimer"
+        "id": "function/dart:async::Zone._createTimerZoned"
+      },
+      {
+        "id": "function/dart:async::Zone.bindCallbackGuarded"
+      },
+      {
+        "id": "function/dart:async::Zone.createTimer",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:async::Zone.createTimer"
       },
       {
         "id": "function/dart:async::Zone.current",
@@ -66853,16 +67108,6 @@
       },
       {
         "id": "function/dart:async::Zone.current"
-      },
-      {
-        "id": "function/dart:async::_RootZone.bindCallbackGuarded"
-      },
-      {
-        "id": "function/dart:async::_RootZone.createTimer",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/dart:async::_RootZone.createTimer"
       },
       {
         "id": "function/dart:core::Object.==",
@@ -66874,7 +67119,7 @@
     ],
     "function/dart:async::Timer._createTimer": [
       {
-        "id": "field/dart:core::Duration._duration"
+        "id": "field/dart:core::Duration.inMicroseconds"
       },
       {
         "id": "function/dart:_interceptors::JSNumber._tdivFast"
@@ -66888,6 +67133,141 @@
       },
       {
         "id": "function/dart:core::Duration.inMilliseconds"
+      }
+    ],
+    "function/dart:async::Zone._createTimerZoned": [
+      {
+        "id": "function/dart:_rti::findType"
+      },
+      {
+        "id": "function/dart:async::Timer._createTimer"
+      },
+      {
+        "id": "function/dart:async::Zone.bindCallback"
+      },
+      {
+        "id": "function/dart:async::_rootCreateTimer",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:async::_rootCreateTimer"
+      }
+    ],
+    "function/dart:async::Zone._handleUncaughtErrorZoned": [
+      {
+        "id": "field/dart:async::Zone._current"
+      },
+      {
+        "id": "function/dart:_js_helper::getTraceFromException"
+      },
+      {
+        "id": "function/dart:_js_helper::unwrapException"
+      },
+      {
+        "id": "function/dart:async::_rootHandleUncaughtError"
+      }
+    ],
+    "function/dart:async::Zone._runBinaryZoned": [
+      {
+        "id": "field/dart:async::Zone._current"
+      }
+    ],
+    "function/dart:async::Zone._runUnaryZoned": [
+      {
+        "id": "field/dart:async::Zone._current"
+      }
+    ],
+    "function/dart:async::Zone._runZoned": [
+      {
+        "id": "field/dart:async::Zone._current"
+      }
+    ],
+    "function/dart:async::Zone._scheduleMicrotaskZoned": [
+      {
+        "id": "function/dart:async::_rootScheduleMicrotask"
+      }
+    ],
+    "function/dart:async::Zone.bindCallback": [
+      {
+        "id": "function/dart:_rti::_setArrayType"
+      },
+      {
+        "id": "function/dart:async::Zone._registerCallbackZoned",
+        "mask": "[exact=Zone|powerset={N}{O}{N}]"
+      },
+      {
+        "id": "function/dart:async::Zone.bindCallback.Zone_bindCallback_closure.call"
+      }
+    ],
+    "function/dart:async::Zone.bindCallback.Zone_bindCallback_closure.call": [
+      {
+        "id": "function/dart:async::Zone._runZoned",
+        "mask": "[exact=Zone|powerset={N}{O}{N}]"
+      }
+    ],
+    "function/dart:async::Zone.bindCallbackGuarded": [
+      {
+        "id": "function/dart:_rti::_setArrayType"
+      },
+      {
+        "id": "function/dart:async::Zone._registerCallbackZoned",
+        "mask": "[exact=Zone|powerset={N}{O}{N}]"
+      },
+      {
+        "id": "function/dart:async::Zone.bindCallbackGuarded.Zone_bindCallbackGuarded_closure.call"
+      }
+    ],
+    "function/dart:async::Zone.bindCallbackGuarded.Zone_bindCallbackGuarded_closure.call": [
+      {
+        "id": "function/dart:async::Zone.runGuarded"
+      }
+    ],
+    "function/dart:async::Zone.bindUnaryCallbackGuarded": [
+      {
+        "id": "function/dart:_rti::_setArrayType"
+      },
+      {
+        "id": "function/dart:async::Zone._registerUnaryCallbackZoned",
+        "mask": "[exact=Zone|powerset={N}{O}{N}]"
+      },
+      {
+        "id": "function/dart:async::Zone.bindUnaryCallbackGuarded.Zone_bindUnaryCallbackGuarded_closure.call"
+      }
+    ],
+    "function/dart:async::Zone.bindUnaryCallbackGuarded.Zone_bindUnaryCallbackGuarded_closure.call": [
+      {
+        "id": "function/dart:async::Zone.runUnaryGuarded",
+        "mask": "[exact=Zone|powerset={N}{O}{N}]"
+      }
+    ],
+    "function/dart:async::Zone.runGuarded": [
+      {
+        "id": "function/dart:_js_helper::getTraceFromException"
+      },
+      {
+        "id": "function/dart:_js_helper::unwrapException"
+      },
+      {
+        "id": "function/dart:async::Zone._handleUncaughtErrorZoned"
+      },
+      {
+        "id": "function/dart:async::Zone._runZoned",
+        "mask": "[exact=Zone|powerset={N}{O}{N}]"
+      }
+    ],
+    "function/dart:async::Zone.runUnaryGuarded": [
+      {
+        "id": "function/dart:_js_helper::getTraceFromException"
+      },
+      {
+        "id": "function/dart:_js_helper::unwrapException"
+      },
+      {
+        "id": "function/dart:async::Zone._handleUncaughtErrorZoned"
+      },
+      {
+        "id": "function/dart:async::Zone._runUnaryZoned",
+        "mask": "[exact=Zone|powerset={N}{O}{N}]"
       }
     ],
     "function/dart:async::_AsyncAwaitCompleter._AsyncAwaitCompleter": [
@@ -67175,6 +67555,9 @@
         "id": "function/dart:_rti::_setArrayType"
       },
       {
+        "id": "function/dart:async::Zone._scheduleMicrotaskZoned"
+      },
+      {
         "id": "function/dart:async::_Future._addListener"
       },
       {
@@ -67210,16 +67593,6 @@
       },
       {
         "id": "function/dart:async::_Future._mayAddListener"
-      },
-      {
-        "id": "function/dart:async::_RootZone.scheduleMicrotask",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/dart:async::_RootZone.scheduleMicrotask"
-      },
-      {
-        "id": "function/dart:async::_rootScheduleMicrotask"
       }
     ],
     "function/dart:async::_Future._addListener._Future__addListener_closure.call": [
@@ -67342,6 +67715,9 @@
         "id": "function/dart:_rti::_setArrayType"
       },
       {
+        "id": "function/dart:async::Zone._scheduleMicrotaskZoned"
+      },
+      {
         "id": "function/dart:async::_Future._asyncCompleteErrorObject._Future__asyncCompleteErrorObject_closure.call"
       },
       {
@@ -67350,16 +67726,6 @@
       },
       {
         "id": "function/dart:async::_Future._setPendingComplete"
-      },
-      {
-        "id": "function/dart:async::_RootZone.scheduleMicrotask",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/dart:async::_RootZone.scheduleMicrotask"
-      },
-      {
-        "id": "function/dart:async::_rootScheduleMicrotask"
       }
     ],
     "function/dart:async::_Future._asyncCompleteErrorObject._Future__asyncCompleteErrorObject_closure.call": [
@@ -67378,6 +67744,9 @@
         "id": "function/dart:_rti::_setArrayType"
       },
       {
+        "id": "function/dart:async::Zone._scheduleMicrotaskZoned"
+      },
+      {
         "id": "function/dart:async::_Future._asyncCompleteWithValue._Future__asyncCompleteWithValue_closure.call"
       },
       {
@@ -67386,16 +67755,6 @@
       },
       {
         "id": "function/dart:async::_Future._setPendingComplete"
-      },
-      {
-        "id": "function/dart:async::_RootZone.scheduleMicrotask",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/dart:async::_RootZone.scheduleMicrotask"
-      },
-      {
-        "id": "function/dart:async::_rootScheduleMicrotask"
       }
     ],
     "function/dart:async::_Future._asyncCompleteWithValue._Future__asyncCompleteWithValue_closure.call": [
@@ -67418,6 +67777,9 @@
       },
       {
         "id": "function/dart:async::AsyncError.AsyncError"
+      },
+      {
+        "id": "function/dart:async::Zone._scheduleMicrotaskZoned"
       },
       {
         "id": "function/dart:async::_Future._asyncCompleteError",
@@ -67485,16 +67847,6 @@
       },
       {
         "id": "function/dart:async::_Future._setPendingComplete"
-      },
-      {
-        "id": "function/dart:async::_RootZone.scheduleMicrotask",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/dart:async::_RootZone.scheduleMicrotask"
-      },
-      {
-        "id": "function/dart:async::_rootScheduleMicrotask"
       },
       {
         "id": "function/dart:core::ArgumentError.ArgumentError.value",
@@ -67565,10 +67917,11 @@
     ],
     "function/dart:async::_Future._completeWithResultOf": [
       {
-        "id": "field/dart:async::_Future._state"
+        "id": "function/dart:async::Zone.inSameErrorZone",
+        "mask": "inlined"
       },
       {
-        "id": "field/dart:async::_Future._zone"
+        "id": "function/dart:async::Zone.inSameErrorZone"
       },
       {
         "id": "function/dart:async::_Future._cloneResult"
@@ -67585,16 +67938,6 @@
       },
       {
         "id": "function/dart:async::_Future._removeListeners"
-      },
-      {
-        "id": "function/dart:async::_RootZone.errorZone"
-      },
-      {
-        "id": "function/dart:async::_Zone.inSameErrorZone",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/dart:async::_Zone.inSameErrorZone"
       }
     ],
     "function/dart:async::_Future._completeWithValue": [
@@ -67641,6 +67984,9 @@
         "id": "function/dart:_rti::_setArrayType"
       },
       {
+        "id": "function/dart:async::Zone._scheduleMicrotaskZoned"
+      },
+      {
         "id": "function/dart:async::_Future._chainSource",
         "mask": "inlined"
       },
@@ -67679,16 +68025,6 @@
       },
       {
         "id": "function/dart:async::_Future._reverseListeners"
-      },
-      {
-        "id": "function/dart:async::_RootZone.scheduleMicrotask",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/dart:async::_RootZone.scheduleMicrotask"
-      },
-      {
-        "id": "function/dart:async::_rootScheduleMicrotask"
       }
     ],
     "function/dart:async::_Future._prependListeners._Future__prependListeners_closure.call": [
@@ -67821,18 +68157,21 @@
         "id": "function/dart:_rti::instanceType"
       },
       {
-        "id": "function/dart:async::Zone._enter",
+        "id": "function/dart:async::Zone._handleUncaughtErrorZoned"
+      },
+      {
+        "id": "function/dart:async::Zone.handleUncaughtError",
         "mask": "inlined"
       },
       {
-        "id": "function/dart:async::Zone._enter"
+        "id": "function/dart:async::Zone.handleUncaughtError"
       },
       {
-        "id": "function/dart:async::Zone._leave",
+        "id": "function/dart:async::Zone.inSameErrorZone",
         "mask": "inlined"
       },
       {
-        "id": "function/dart:async::Zone._leave"
+        "id": "function/dart:async::Zone.inSameErrorZone"
       },
       {
         "id": "function/dart:async::_Future._chainCoreFuture"
@@ -67942,26 +68281,6 @@
       },
       {
         "id": "function/dart:async::_FutureListener.shouldChain"
-      },
-      {
-        "id": "function/dart:async::_RootZone.errorZone"
-      },
-      {
-        "id": "function/dart:async::_RootZone.handleUncaughtError",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/dart:async::_RootZone.handleUncaughtError"
-      },
-      {
-        "id": "function/dart:async::_Zone.inSameErrorZone",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/dart:async::_Zone.inSameErrorZone"
-      },
-      {
-        "id": "function/dart:async::_rootHandleError"
       }
     ],
     "function/dart:async::_Future._propagateToListeners._Future__propagateToListeners_handleError.call": [
@@ -68044,6 +68363,10 @@
         "id": "function/dart:async::AsyncError.defaultStackTrace"
       },
       {
+        "id": "function/dart:async::Zone._runUnaryZoned",
+        "mask": "[exact=Zone|powerset={N}{O}{N}]"
+      },
+      {
         "id": "function/dart:async::_FutureListener._onValue"
       },
       {
@@ -68055,10 +68378,6 @@
       },
       {
         "id": "function/dart:async::_FutureListener.handleValue"
-      },
-      {
-        "id": "function/dart:async::_RootZone.runUnary",
-        "mask": "[exact=_RootZone|powerset={N}{O}{N}]"
       }
     ],
     "function/dart:async::_Future._propagateToListeners._Future__propagateToListeners_handleWhenCompleteCallback.call": [
@@ -68104,6 +68423,10 @@
       },
       {
         "id": "function/dart:async::AsyncError.defaultStackTrace"
+      },
+      {
+        "id": "function/dart:async::Zone._runZoned",
+        "mask": "[exact=Zone|powerset={N}{O}{N}]"
       },
       {
         "id": "function/dart:async::_Future._Future.zone"
@@ -68157,10 +68480,6 @@
       },
       {
         "id": "function/dart:async::_FutureListener.handleWhenComplete"
-      },
-      {
-        "id": "function/dart:async::_RootZone.run",
-        "mask": "[exact=_RootZone|powerset={N}{O}{N}]"
       }
     ],
     "function/dart:async::_Future._propagateToListeners._Future__propagateToListeners_handleWhenCompleteCallback_closure.call": [
@@ -68327,11 +68646,22 @@
         "id": "function/dart:_rti::instanceType"
       },
       {
+        "id": "function/dart:async::Zone._registerUnaryCallbackZoned",
+        "mask": "[exact=Zone|powerset={N}{O}{N}]"
+      },
+      {
         "id": "function/dart:async::Zone.current",
         "mask": "inlined"
       },
       {
         "id": "function/dart:async::Zone.current"
+      },
+      {
+        "id": "function/dart:async::Zone.registerUnaryCallback",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:async::Zone.registerUnaryCallback"
       },
       {
         "id": "function/dart:async::_Future._Future",
@@ -68349,13 +68679,6 @@
       },
       {
         "id": "function/dart:async::_FutureListener._FutureListener.then"
-      },
-      {
-        "id": "function/dart:async::_RootZone.registerUnaryCallback",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/dart:async::_RootZone.registerUnaryCallback"
       },
       {
         "id": "function/dart:async::_registerErrorHandler"
@@ -68498,6 +68821,14 @@
         "id": "function/dart:_rti::instanceType"
       },
       {
+        "id": "function/dart:async::Zone._runBinaryZoned",
+        "mask": "[exact=Zone|powerset={N}{O}{N}]"
+      },
+      {
+        "id": "function/dart:async::Zone._runUnaryZoned",
+        "mask": "[exact=Zone|powerset={N}{O}{N}]"
+      },
+      {
         "id": "function/dart:async::_FutureListener._zone",
         "mask": "inlined"
       },
@@ -68510,14 +68841,6 @@
       },
       {
         "id": "function/dart:async::_FutureListener.handlesValue"
-      },
-      {
-        "id": "function/dart:async::_RootZone.runBinary",
-        "mask": "[exact=_RootZone|powerset={N}{O}{N}]"
-      },
-      {
-        "id": "function/dart:async::_RootZone.runUnary",
-        "mask": "[exact=_RootZone|powerset={N}{O}{N}]"
       },
       {
         "id": "function/dart:core::ArgumentError.ArgumentError"
@@ -68569,6 +68892,10 @@
         "id": "function/dart:_internal::unsafeCast"
       },
       {
+        "id": "function/dart:async::Zone._runUnaryZoned",
+        "mask": "[exact=Zone|powerset={N}{O}{N}]"
+      },
+      {
         "id": "function/dart:async::_FutureListener._errorTest",
         "mask": "inlined"
       },
@@ -68588,124 +68915,6 @@
       },
       {
         "id": "function/dart:async::_FutureListener.hasErrorTest"
-      },
-      {
-        "id": "function/dart:async::_RootZone.runUnary",
-        "mask": "[exact=_RootZone|powerset={N}{O}{N}]"
-      }
-    ],
-    "function/dart:async::_RootZone.bindCallbackGuarded": [
-      {
-        "id": "function/dart:_rti::_setArrayType"
-      },
-      {
-        "id": "function/dart:async::_RootZone.bindCallbackGuarded._RootZone_bindCallbackGuarded_closure.call"
-      }
-    ],
-    "function/dart:async::_RootZone.bindCallbackGuarded._RootZone_bindCallbackGuarded_closure.call": [
-      {
-        "id": "function/dart:async::_RootZone.runGuarded"
-      }
-    ],
-    "function/dart:async::_RootZone.bindUnaryCallbackGuarded": [
-      {
-        "id": "function/dart:_rti::_setArrayType"
-      },
-      {
-        "id": "function/dart:async::_RootZone.bindUnaryCallbackGuarded._RootZone_bindUnaryCallbackGuarded_closure.call"
-      }
-    ],
-    "function/dart:async::_RootZone.bindUnaryCallbackGuarded._RootZone_bindUnaryCallbackGuarded_closure.call": [
-      {
-        "id": "function/dart:async::_RootZone.runUnaryGuarded",
-        "mask": "[exact=_RootZone|powerset={N}{O}{N}]"
-      }
-    ],
-    "function/dart:async::_RootZone.run": [
-      {
-        "id": "field/dart:async::Zone._current"
-      },
-      {
-        "id": "function/dart:_rti::findType"
-      },
-      {
-        "id": "function/dart:async::_rootRun"
-      }
-    ],
-    "function/dart:async::_RootZone.runBinary": [
-      {
-        "id": "field/dart:async::Zone._current"
-      },
-      {
-        "id": "function/dart:_rti::findType"
-      },
-      {
-        "id": "function/dart:async::_rootRunBinary"
-      }
-    ],
-    "function/dart:async::_RootZone.runGuarded": [
-      {
-        "id": "field/dart:async::Zone._current"
-      },
-      {
-        "id": "function/dart:_js_helper::getTraceFromException"
-      },
-      {
-        "id": "function/dart:_js_helper::unwrapException"
-      },
-      {
-        "id": "function/dart:_rti::findType"
-      },
-      {
-        "id": "function/dart:async::_RootZone.handleUncaughtError",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/dart:async::_RootZone.handleUncaughtError"
-      },
-      {
-        "id": "function/dart:async::_rootHandleError"
-      },
-      {
-        "id": "function/dart:async::_rootRun"
-      }
-    ],
-    "function/dart:async::_RootZone.runUnary": [
-      {
-        "id": "field/dart:async::Zone._current"
-      },
-      {
-        "id": "function/dart:_rti::findType"
-      },
-      {
-        "id": "function/dart:async::_rootRunUnary"
-      }
-    ],
-    "function/dart:async::_RootZone.runUnaryGuarded": [
-      {
-        "id": "field/dart:async::Zone._current"
-      },
-      {
-        "id": "function/dart:_js_helper::getTraceFromException"
-      },
-      {
-        "id": "function/dart:_js_helper::unwrapException"
-      },
-      {
-        "id": "function/dart:_rti::findType"
-      },
-      {
-        "id": "function/dart:async::_RootZone.handleUncaughtError",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/dart:async::_RootZone.handleUncaughtError"
-      },
-      {
-        "id": "function/dart:async::_rootHandleError"
-      },
-      {
-        "id": "function/dart:async::_rootRunUnary"
       }
     ],
     "function/dart:async::_SyncStarIterable.iterator": [
@@ -69023,12 +69232,6 @@
         "id": "function/dart:core::UnsupportedError.UnsupportedError"
       }
     ],
-    "function/dart:async::_Zone.inSameErrorZone": [
-      {
-        "id": "function/dart:async::_RootZone.errorZone",
-        "mask": "inlined"
-      }
-    ],
     "function/dart:async::_asyncAwait": [
       {
         "id": "function/dart:async::_awaitOnObject"
@@ -69153,11 +69356,14 @@
         "id": "function/dart:_rti::findType"
       },
       {
-        "id": "function/dart:async::_RootZone.errorCallback",
+        "id": "function/dart:async::Zone._errorCallbackZoned"
+      },
+      {
+        "id": "function/dart:async::Zone.errorCallback",
         "mask": "inlined"
       },
       {
-        "id": "function/dart:async::_RootZone.errorCallback"
+        "id": "function/dart:async::Zone.errorCallback"
       },
       {
         "id": "function/dart:async::_trySetStackTrace",
@@ -69448,91 +69654,45 @@
         "id": "function/dart:_rti::instanceType"
       },
       {
-        "id": "function/dart:async::_RootZone.registerBinaryCallback",
-        "mask": "[exact=_RootZone|powerset={N}{O}{N}]"
+        "id": "function/dart:async::Zone._registerBinaryCallbackZoned",
+        "mask": "[exact=Zone|powerset={N}{O}{N}]"
       },
       {
-        "id": "function/dart:async::_RootZone.registerUnaryCallback",
+        "id": "function/dart:async::Zone._registerUnaryCallbackZoned",
+        "mask": "[exact=Zone|powerset={N}{O}{N}]"
+      },
+      {
+        "id": "function/dart:async::Zone.registerBinaryCallback",
         "mask": "inlined"
       },
       {
-        "id": "function/dart:async::_RootZone.registerUnaryCallback"
+        "id": "function/dart:async::Zone.registerBinaryCallback"
+      },
+      {
+        "id": "function/dart:async::Zone.registerUnaryCallback",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:async::Zone.registerUnaryCallback"
       },
       {
         "id": "function/dart:core::ArgumentError.ArgumentError.value"
       }
     ],
-    "function/dart:async::_rootHandleError": [
+    "function/dart:async::_rootHandleUncaughtError": [
       {
         "id": "function/dart:_rti::_setArrayType"
       },
       {
-        "id": "function/dart:async::_rootHandleError._rootHandleError_closure.call"
+        "id": "function/dart:async::_rootHandleUncaughtError._rootHandleUncaughtError_closure.call"
       },
       {
         "id": "function/dart:async::_schedulePriorityAsyncCallback"
       }
     ],
-    "function/dart:async::_rootHandleError._rootHandleError_closure.call": [
+    "function/dart:async::_rootHandleUncaughtError._rootHandleUncaughtError_closure.call": [
       {
         "id": "function/dart:core::Error.throwWithStackTrace"
-      }
-    ],
-    "function/dart:async::_rootRun": [
-      {
-        "id": "field/dart:async::Zone._current"
-      },
-      {
-        "id": "function/dart:async::Zone._enter",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/dart:async::Zone._enter"
-      },
-      {
-        "id": "function/dart:async::Zone._leave",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/dart:async::Zone._leave"
-      }
-    ],
-    "function/dart:async::_rootRunBinary": [
-      {
-        "id": "field/dart:async::Zone._current"
-      },
-      {
-        "id": "function/dart:async::Zone._enter",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/dart:async::Zone._enter"
-      },
-      {
-        "id": "function/dart:async::Zone._leave",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/dart:async::Zone._leave"
-      }
-    ],
-    "function/dart:async::_rootRunUnary": [
-      {
-        "id": "field/dart:async::Zone._current"
-      },
-      {
-        "id": "function/dart:async::Zone._enter",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/dart:async::Zone._enter"
-      },
-      {
-        "id": "function/dart:async::Zone._leave",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/dart:async::Zone._leave"
       }
     ],
     "function/dart:async::_rootScheduleMicrotask": [
@@ -69540,17 +69700,7 @@
         "id": "function/dart:_rti::findType"
       },
       {
-        "id": "function/dart:async::_RootZone.bindCallbackGuarded"
-      },
-      {
-        "id": "function/dart:async::_RootZone.errorZone"
-      },
-      {
-        "id": "function/dart:async::_Zone.inSameErrorZone",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/dart:async::_Zone.inSameErrorZone"
+        "id": "function/dart:async::Zone.bindCallback"
       },
       {
         "id": "function/dart:async::_scheduleAsyncCallback"
@@ -69657,6 +69807,10 @@
         "id": "function/dart:_rti::_setArrayType"
       },
       {
+        "id": "function/dart:async::Zone._registerBinaryCallbackZoned",
+        "mask": "[exact=Zone|powerset={N}{O}{N}]"
+      },
+      {
         "id": "function/dart:async::Zone.current",
         "mask": "inlined"
       },
@@ -69664,8 +69818,11 @@
         "id": "function/dart:async::Zone.current"
       },
       {
-        "id": "function/dart:async::_RootZone.registerBinaryCallback",
-        "mask": "[exact=_RootZone|powerset={N}{O}{N}]"
+        "id": "function/dart:async::Zone.registerBinaryCallback",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:async::Zone.registerBinaryCallback"
       },
       {
         "id": "function/dart:async::_wrapJsFunctionForAsync._wrapJsFunctionForAsync_closure.call"
@@ -73282,19 +73439,12 @@
     ],
     "function/dart:core::Duration.==": [
       {
-        "id": "field/dart:core::Duration._duration"
-      },
-      {
-        "id": "function/dart:core::Duration.inMicroseconds",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/dart:core::Duration.inMicroseconds"
+        "id": "field/dart:core::Duration.inMicroseconds"
       }
     ],
     "function/dart:core::Duration.compareTo": [
       {
-        "id": "field/dart:core::Duration._duration"
+        "id": "field/dart:core::Duration.inMicroseconds"
       },
       {
         "id": "function/dart:_interceptors::JSNumber.compareTo"
@@ -73302,7 +73452,7 @@
     ],
     "function/dart:core::Duration.hashCode": [
       {
-        "id": "field/dart:core::Duration._duration"
+        "id": "field/dart:core::Duration.inMicroseconds"
       },
       {
         "id": "function/dart:_interceptors::JSNumber.hashCode"
@@ -73310,7 +73460,7 @@
     ],
     "function/dart:core::Duration.toString": [
       {
-        "id": "field/dart:core::Duration._duration"
+        "id": "field/dart:core::Duration.inMicroseconds"
       },
       {
         "id": "function/dart:_interceptors::JSNumber._tdivFast"
@@ -73320,13 +73470,6 @@
       },
       {
         "id": "function/dart:_interceptors::JSString.padLeft"
-      },
-      {
-        "id": "function/dart:core::Duration.inMicroseconds",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/dart:core::Duration.inMicroseconds"
       }
     ],
     "function/dart:core::Error._stringToSafeString": [
@@ -85379,14 +85522,14 @@
         "id": "function/dart:_rti::findType"
       },
       {
+        "id": "function/dart:async::Zone.bindUnaryCallbackGuarded"
+      },
+      {
         "id": "function/dart:async::Zone.current",
         "mask": "inlined"
       },
       {
         "id": "function/dart:async::Zone.current"
-      },
-      {
-        "id": "function/dart:async::_RootZone.bindUnaryCallbackGuarded"
       },
       {
         "id": "function/dart:core::Object.==",
@@ -85403,7 +85546,7 @@
       "id": "outputUnit/main",
       "kind": "outputUnit",
       "name": "main",
-      "size": 148749,
+      "size": 149317,
       "filename": "web_app.dart2js.js",
       "imports": []
     }
