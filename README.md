@@ -10,136 +10,23 @@
 
 Here's an [example](https://kevmoo.github.io/pubviz/) of `pubviz` run on itself.
 
-### Installing
-
-Activate `pubviz`.
-```console
-$ dart pub global activate pubviz
-```
-
 ### Use
 
-If you have [configured your PATH correctly][path], you can run `pubviz`
-directly.
+Run `pubviz` directly without installing:
 
 ```console
+$ dart run pubviz@
+```
+
+Or install `pubviz` globally:
+
+```console
+$ dart install pubviz
 $ pubviz
 ```
 
-Otherwise, you can use the `pub global` command.
-
-```console
-$ dart pub global run pubviz
-```
-
-### Generate and open an HTML file for the package on the current path.
-
-```console
-$ pubviz
-```
-
-Will open the default browser to something like:
-
-<!-- MERMAID_START -->
-```mermaid
-flowchart TD
-  classDef primary fill:#e3f2fd,stroke:#0175C2,stroke-width:2px;
-  classDef outdated stroke:#e53935,stroke-width:2px;
-  classDef publishToNone stroke-dasharray: 5 5;
-  args["args<br/>2.7.0"]
-  async["async<br/>2.13.1"]
-  build_cli_annotations["build_cli_annotations<br/>2.1.1"]
-  checked_yaml["checked_yaml<br/>2.0.4"]
-  collection["collection<br/>1.19.1"]
-  convert["convert<br/>3.1.2"]
-  gviz["gviz<br/>0.4.2"]
-  http["http<br/>1.6.0"]
-  http_parser["http_parser<br/>4.1.2"]
-  io["io<br/>1.0.5"]
-  json_annotation["json_annotation<br/>4.11.0"]
-  meta["meta<br/>1.18.2"]
-  mime["mime<br/>2.0.0"]
-  path["path<br/>1.9.1"]
-  pub_semver["pub_semver<br/>2.2.0"]
-  pubspec_parse["pubspec_parse<br/>1.5.0"]
-  pubviz["pubviz<br/>6.2.0"]
-  shelf["shelf<br/>1.4.2"]
-  shelf_static["shelf_static<br/>1.1.3"]
-  source_span["source_span<br/>1.10.2"]
-  stack_trace["stack_trace<br/>1.12.1"]
-  stream_channel["stream_channel<br/>2.1.4"]
-  string_scanner["string_scanner<br/>1.4.1"]
-  term_glyph["term_glyph<br/>1.2.2"]
-  typed_data["typed_data<br/>1.4.0"]
-  web["web<br/>1.1.1"]
-  yaml["yaml<br/>3.1.3"]
-  async -- "^1.15.0"--> collection
-  async -- "^1.3.0"--> meta
-  build_cli_annotations -- "^2.6.0"--> args
-  build_cli_annotations -- "^1.16.0"--> meta
-  checked_yaml -- "^4.3.0"--> json_annotation
-  checked_yaml -- "^1.8.0"--> source_span
-  checked_yaml -- "^3.0.0"--> yaml
-  convert -- "^1.3.0"--> typed_data
-  http -- "^2.5.0"--> async
-  http -- "^4.0.0"--> http_parser
-  http -- "^1.3.0"--> meta
-  http -- ">=0.5.0 <2.0.0"--> web
-  http_parser -- "^1.19.0"--> collection
-  http_parser -- "^1.8.0"--> source_span
-  http_parser -- "^1.1.0"--> string_scanner
-  http_parser -- "^1.3.0"--> typed_data
-  io -- "^1.3.0"--> meta
-  io -- "^1.8.0"--> path
-  io -- "^1.1.0"--> string_scanner
-  json_annotation -- "^1.16.0"--> meta
-  pub_semver -- "^1.15.0"--> collection
-  pubspec_parse -- "^2.0.1"--> checked_yaml
-  pubspec_parse -- "^1.19.0"--> collection
-  pubspec_parse -- "^4.9.0"--> json_annotation
-  pubspec_parse -- "^2.1.4"--> pub_semver
-  pubspec_parse -- "^3.0.0"--> yaml
-  pubviz -- "^2.6.0"--> args
-  pubviz -- "^2.1.1"--> build_cli_annotations
-  pubviz -- "^1.19.0"--> collection
-  pubviz -- "^0.4.2"--> gviz
-  pubviz -- "^1.0.0"--> http
-  pubviz -- "^1.0.0"--> io
-  pubviz -- "^4.11.0"--> json_annotation
-  pubviz -- "^1.18.2"--> meta
-  pubviz -- "^1.9.0"--> path
-  pubviz -- "^2.1.4"--> pub_semver
-  pubviz -- "^1.5.0"--> pubspec_parse
-  pubviz -- "^1.4.1"--> shelf
-  pubviz -- "^1.1.2"--> shelf_static
-  pubviz -- "^1.10.0"--> stack_trace
-  pubviz -- "^1.2.0"--> string_scanner
-  pubviz -- "^1.0.0"--> web
-  pubviz -- "^3.1.3"--> yaml
-  shelf -- "^2.5.0"--> async
-  shelf -- "^1.15.0"--> collection
-  shelf -- "^4.1.0"--> http_parser
-  shelf -- "^1.8.0"--> path
-  shelf -- "^1.10.0"--> stack_trace
-  shelf -- "^2.1.0"--> stream_channel
-  shelf_static -- "^3.0.0"--> convert
-  shelf_static -- "^4.0.0"--> http_parser
-  shelf_static -- ">=1.0.0 <3.0.0"--> mime
-  shelf_static -- "^1.8.0"--> path
-  shelf_static -- "^1.1.2"--> shelf
-  source_span -- "^1.15.0"--> collection
-  source_span -- "^1.8.0"--> path
-  source_span -- "^1.2.0"--> term_glyph
-  stack_trace -- "^1.8.0"--> path
-  stream_channel -- "^2.5.0"--> async
-  string_scanner -- "^1.8.0"--> source_span
-  typed_data -- "^1.15.0"--> collection
-  yaml -- "^1.15.0"--> collection
-  yaml -- "^1.8.0"--> source_span
-  yaml -- "^1.2.0"--> string_scanner
-  class pubviz primary;
-```
-<!-- MERMAID_END -->
+Running `pubviz` in your target package directory opens the interactive web UI
+in your default browser.
 
 ### Print GraphViz dot format to command line for a package on a specified path.
 
@@ -239,5 +126,3 @@ Arguments:
 
 If <package path> is omitted, the current directory is used.
 ```
-
-[path]: https://dart.dev/tools/pub/cmd/pub-global#running-a-script-from-your-path

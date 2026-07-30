@@ -24,7 +24,7 @@ const assetInputs = <String, String>{
       ..writeln("      '$hash',");
   }
 
-  buffer.writeln('''
+  buffer.write('''
 };
 
 const embeddedAssets = <String, String>{
