@@ -62,7 +62,7 @@ flowchart TD
   path["path<br/>1.9.1"]
   pub_semver["pub_semver<br/>2.2.0"]
   pubspec_parse["pubspec_parse<br/>1.5.0"]
-  pubviz["pubviz<br/>6.2.0-wip"]
+  pubviz["pubviz<br/>6.2.0"]
   shelf["shelf<br/>1.4.2"]
   shelf_static["shelf_static<br/>1.1.3"]
   source_span["source_span<br/>1.10.2"]
