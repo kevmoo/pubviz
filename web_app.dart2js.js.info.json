@@ -3,11 +3,11 @@
   "dump_minor_version": 1,
   "program": {
     "entrypoint": "function/org-dartlang-app:///web/web_app.dart::main",
-    "size": 149317,
+    "size": 149319,
     "ramUsage": "N/A MB",
     "dart2jsVersion": "3.14.0-76.0.dev",
-    "compilationMoment": "2026-07-30 10:51:44.082994",
-    "compilationDuration": 881636,
+    "compilationMoment": "2026-07-30 11:15:01.238932",
+    "compilationDuration": 884613,
     "toJsonDuration": 3000,
     "dumpInfoDuration": 0,
     "noSuchMethodEnabled": false,
@@ -902,7 +902,7 @@
         "id": "library/package:pubviz/src/web/ui_manager.dart::",
         "kind": "library",
         "name": "<unnamed>",
-        "size": 15099,
+        "size": 15101,
         "children": [
           "class/package:pubviz/src/web/ui_manager.dart::UIManager",
           "class/package:pubviz/src/web/ui_manager.dart::_ExportFormat",
@@ -5627,7 +5627,7 @@
         "id": "class/package:pubviz/src/web/ui_manager.dart::UIManager",
         "kind": "class",
         "name": "UIManager",
-        "size": 13390,
+        "size": 13392,
         "outputUnit": "outputUnit/main",
         "parent": "library/package:pubviz/src/web/ui_manager.dart::",
         "modifiers": {
@@ -85546,7 +85546,7 @@
       "id": "outputUnit/main",
       "kind": "outputUnit",
       "name": "main",
-      "size": 149317,
+      "size": 149319,
       "filename": "web_app.dart2js.js",
       "imports": []
     }
