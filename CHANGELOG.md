@@ -1,4 +1,4 @@
-## 6.2.0-wip
+## 6.2.0
 
 - Now supports `dart run pubviz@`.
 - Faster local web serving via pre-gzipped embedded assets with HTTP
