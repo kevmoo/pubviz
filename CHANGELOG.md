@@ -1,3 +1,7 @@
+## 6.2.0+1
+
+- Documentation updates.
+
 ## 6.2.0
 
 - Now supports `dart run pubviz@`.
