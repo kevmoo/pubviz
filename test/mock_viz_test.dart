@@ -319,82 +319,76 @@ void main() {
       check(filtered.packages.containsKey('d')).isFalse();
     });
 
-    test(
-      'hideIsolatedWorkspacePackages hides isolated unpublished and root nodes',
-      () {
-        final a = VizPackage(
-          'a',
-          Version(1, 0, 0),
-          {Dependency('c', VersionConstraint.any, false)},
-          null,
-          isPrimary: true,
-        );
+    test('hideIsolated hides isolated unpublished and root nodes', () {
+      final a = VizPackage(
+        'a',
+        Version(1, 0, 0),
+        {Dependency('c', VersionConstraint.any, false)},
+        null,
+        isPrimary: true,
+      );
 
-        final b = VizPackage(
-          'b',
-          Version(1, 0, 0),
-          {},
-          null,
-          isPrimary: true,
-          isPublishToNone: true,
-        );
+      final b = VizPackage(
+        'b',
+        Version(1, 0, 0),
+        {},
+        null,
+        isPrimary: true,
+        isPublishToNone: true,
+      );
 
-        final c = VizPackage('c', Version(1, 0, 0), {}, null);
+      final c = VizPackage('c', Version(1, 0, 0), {}, null);
 
-        final root = VizRoot.assemble('a', {
-          'a': a,
-          'b': b,
-          'c': c,
-        }, isWorkspace: true);
+      final root = VizRoot.assemble('a', {
+        'a': a,
+        'b': b,
+        'c': c,
+      }, isWorkspace: true);
 
-        final filtered = root.filter(hideIsolatedWorkspacePackages: true);
+      final filtered = root.filter(hideIsolated: true);
 
-        // 'a' (root) is primary, so it is kept.
-        // 'b' (unpublished) has no incoming dependencies and is not primary,
-        // so it is hidden.
-        // 'c' is kept because 'a' depends on it.
-        check(filtered.packages.keys).unorderedEquals(['a', 'c']);
-        check(filtered.packages.containsKey('a')).isTrue();
-        check(filtered.packages.containsKey('b')).isFalse();
+      // 'a' (root) is primary, so it is kept.
+      // 'b' (unpublished) has no incoming dependencies and is not primary,
+      // so it is hidden.
+      // 'c' is kept because 'a' depends on it.
+      check(filtered.packages.keys).unorderedEquals(['a', 'c']);
+      check(filtered.packages.containsKey('a')).isTrue();
+      check(filtered.packages.containsKey('b')).isFalse();
 
-        // Fallback logic should preserve the root name even if missing from
-        // packages
-        check(filtered.rootPackageName).equals('a');
-        check(filtered.root.name).equals('a');
-      },
-    );
+      // Fallback logic should preserve the root name even if missing from
+      // packages
+      check(filtered.rootPackageName).equals('a');
+      check(filtered.root.name).equals('a');
+    });
 
-    test(
-      'hideIsolatedWorkspacePackages is ignored in non-workspace context',
-      () {
-        final a = VizPackage(
-          'a',
-          Version(1, 0, 0),
-          {Dependency('c', VersionConstraint.any, false)},
-          null,
-          isPrimary: true,
-        );
+    test('hideIsolated is ignored in non-workspace context', () {
+      final a = VizPackage(
+        'a',
+        Version(1, 0, 0),
+        {Dependency('c', VersionConstraint.any, false)},
+        null,
+        isPrimary: true,
+      );
 
-        final b = VizPackage(
-          'b',
-          Version(1, 0, 0),
-          {},
-          null,
-          isPrimary: true,
-          isPublishToNone: true,
-        );
+      final b = VizPackage(
+        'b',
+        Version(1, 0, 0),
+        {},
+        null,
+        isPrimary: true,
+        isPublishToNone: true,
+      );
 
-        final c = VizPackage('c', Version(1, 0, 0), {}, null);
+      final c = VizPackage('c', Version(1, 0, 0), {}, null);
 
-        final root = VizRoot.assemble('a', {'a': a, 'b': b, 'c': c});
+      final root = VizRoot.assemble('a', {'a': a, 'b': b, 'c': c});
 
-        final filtered = root.filter(hideIsolatedWorkspacePackages: true);
+      final filtered = root.filter(hideIsolated: true);
 
-        check(filtered.packages.keys).unorderedEquals(['a', 'b', 'c']);
-      },
-    );
+      check(filtered.packages.keys).unorderedEquals(['a', 'b', 'c']);
+    });
 
-    test('hideIsolatedWorkspacePackages does not hide primary packages', () {
+    test('hideIsolated does not hide primary packages', () {
       final a = VizPackage(
         'a',
         Version(1, 0, 0),
@@ -414,51 +408,48 @@ void main() {
 
       final root = VizRoot.assemble('a', {'a': a, 'b': b}, isWorkspace: true);
 
-      final filtered = root.filter(hideIsolatedWorkspacePackages: true);
+      final filtered = root.filter(hideIsolated: true);
 
       check(filtered.packages.keys).unorderedEquals(['a']);
     });
 
-    test(
-      'hideIsolatedWorkspacePackages removes floating disconnected nodes',
-      () {
-        final a = VizPackage(
-          'a',
-          Version(1, 0, 0),
-          {Dependency('b', VersionConstraint.any, false)},
-          null,
-          isPublishToNone: true,
-        );
+    test('hideIsolated removes floating disconnected nodes', () {
+      final a = VizPackage(
+        'a',
+        Version(1, 0, 0),
+        {Dependency('b', VersionConstraint.any, false)},
+        null,
+        isPublishToNone: true,
+      );
 
-        final b = VizPackage(
-          'b',
-          Version(1, 0, 0),
-          {},
-          null,
-          isPublishToNone: true,
-        );
+      final b = VizPackage(
+        'b',
+        Version(1, 0, 0),
+        {},
+        null,
+        isPublishToNone: true,
+      );
 
-        final rootPkg = VizPackage(
-          'root',
-          Version(1, 0, 0),
-          {},
-          null,
-          isPrimary: true,
-        );
+      final rootPkg = VizPackage(
+        'root',
+        Version(1, 0, 0),
+        {},
+        null,
+        isPrimary: true,
+      );
 
-        final root = VizRoot.assemble('root', {
-          'root': rootPkg,
-          'a': a,
-          'b': b,
-        }, isWorkspace: true);
+      final root = VizRoot.assemble('root', {
+        'root': rootPkg,
+        'a': a,
+        'b': b,
+      }, isWorkspace: true);
 
-        final filtered = root.filter(hideIsolatedWorkspacePackages: true);
+      final filtered = root.filter(hideIsolated: true);
 
-        check(filtered.packages.keys).unorderedEquals(['root']);
-      },
-    );
+      check(filtered.packages.keys).unorderedEquals(['root']);
+    });
 
-    test('hideIsolatedWorkspacePackages removes edges to ghost nodes', () {
+    test('hideIsolated removes edges to ghost nodes', () {
       final a = VizPackage(
         'a',
         Version(1, 0, 0),
@@ -472,7 +463,7 @@ void main() {
 
       final root = VizRoot.assemble('a', {'a': a}, isWorkspace: true);
 
-      final filtered = root.filter(hideIsolatedWorkspacePackages: true);
+      final filtered = root.filter(hideIsolated: true);
 
       // 'a' is kept.
       // 'b' is not in sourcePackages, so it should NOT be in 'a's
@@ -712,7 +703,7 @@ class _MockVizRoot with HasPackages implements VizRoot {
     bool excludeDev = false,
     bool onlyOutdated = false,
     bool onlyWorkspace = false,
-    bool hideIsolatedWorkspacePackages = false,
+    bool hideIsolated = false,
   }) => throw UnimplementedError();
 
   @override

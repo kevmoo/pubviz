@@ -107,18 +107,10 @@ Future<void> run(Options options) async {
     }
     switch (options.action) {
       case Action.print:
-        final filteredVp = vp.filter(
-          excludeDev: options.filters.contains('hide-dev'),
-          onlyOutdated: options.filters.contains('outdated'),
-          onlyWorkspace: options.filters.contains('workspace'),
-        );
+        final filteredVp = _filter(vp, options);
         _printContent(filteredVp, options.ignorePackages);
       case Action.printMermaid:
-        final filteredVp = vp.filter(
-          excludeDev: options.filters.contains('hide-dev'),
-          onlyOutdated: options.filters.contains('outdated'),
-          onlyWorkspace: options.filters.contains('workspace'),
-        );
+        final filteredVp = _filter(vp, options);
         final content = filteredVp.toMermaid(
           ignorePackages: options.ignorePackages,
         );
@@ -134,6 +126,13 @@ Future<void> run(Options options) async {
     }
   }
 }
+
+VizRoot _filter(VizRoot vp, Options options) => vp.filter(
+  excludeDev: options.filters.contains(filterHideDev),
+  onlyOutdated: options.filters.contains(filterOutdated),
+  onlyWorkspace: options.filters.contains(filterWorkspace),
+  hideIsolated: options.filters.contains(filterHideIsolated),
+);
 
 String _getContentDot(VizRoot root, List<String> ignorePackages) =>
     root.toDot(ignorePackages: ignorePackages);
