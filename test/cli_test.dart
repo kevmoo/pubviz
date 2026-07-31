@@ -189,10 +189,20 @@ environment:
   sdk: ^3.12.0
 workspace:
   - pkga
+  - pkgb
 '''),
         d.dir('pkga', [
           d.file('pubspec.yaml', '''
 name: pkga
+environment:
+  sdk: ^3.12.0
+resolution: workspace
+'''),
+        ]),
+        d.dir('pkgb', [
+          d.file('pubspec.yaml', '''
+name: pkgb
+publish_to: none
 environment:
   sdk: ^3.12.0
 resolution: workspace
@@ -218,11 +228,33 @@ resolution: workspace
 
       final output = await process.stdoutStream().join('\n');
 
-      // Both packages should be present as highlighted primary nodes.
+      // All packages should be present as highlighted primary nodes.
       // Since root was the invocation target, it gets the primary label
       // format without a version.
       check(output).contains('root [label="⚙️ root"');
       check(output).contains(r'pkga [label="pkga\n0.0.0"');
+      check(output).contains('pkgb [label=pkgb');
+
+      await process.shouldExit(0);
+    });
+
+    test('print with filter hide-isolated', () async {
+      final process = await TestProcess.start(Platform.executable, [
+        _entryPoint,
+        '-a',
+        'print',
+        '--filters',
+        'hide-isolated',
+        d.path('workspace'),
+      ]);
+
+      final output = await process.stdoutStream().join('\n');
+
+      // 'root' is primary and 'pkga' is a published workspace member.
+      // 'pkgb' is isolated and unpublished, so it should be hidden.
+      check(output).contains('root [label="⚙️ root"');
+      check(output).contains(r'pkga [label="pkga\n0.0.0"');
+      check(output).not((it) => it.contains('pkgb'));
 
       await process.shouldExit(0);
     });

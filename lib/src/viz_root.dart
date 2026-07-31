@@ -121,12 +121,9 @@ class VizRoot with HasPackages {
     bool excludeDev = false,
     bool onlyOutdated = false,
     bool onlyWorkspace = false,
-    bool hideIsolatedWorkspacePackages = false,
+    bool hideIsolated = false,
   }) {
-    if (!excludeDev &&
-        !onlyOutdated &&
-        !onlyWorkspace &&
-        !hideIsolatedWorkspacePackages) {
+    if (!excludeDev && !onlyOutdated && !onlyWorkspace && !hideIsolated) {
       return this;
     }
 
@@ -141,8 +138,8 @@ class VizRoot with HasPackages {
       currentPackages = _filterStandard(currentPackages, excludeDev);
     }
 
-    if (hideIsolatedWorkspacePackages && isWorkspace) {
-      currentPackages = _filterIsolatedWorkspacePackages(currentPackages);
+    if (hideIsolated && isWorkspace) {
+      currentPackages = _filterIsolated(currentPackages);
     }
 
     return VizRoot.assemble(
@@ -355,7 +352,7 @@ class VizRoot with HasPackages {
     return newPackages;
   }
 
-  Map<String, VizPackage> _filterIsolatedWorkspacePackages(
+  Map<String, VizPackage> _filterIsolated(
     Map<String, VizPackage> sourcePackages,
   ) {
     // 1. Find all "seeds" (root package and all published packages).

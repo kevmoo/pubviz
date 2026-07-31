@@ -271,7 +271,7 @@ final class UIManager {
 
   bool get workspaceOnly => _checkboxes['workspaceOnlyCheckbox']!.checked;
 
-  bool get hideIsolatedPackages => _checkboxes['hideIsolatedCheckbox']!.checked;
+  bool get hideIsolated => _checkboxes['hideIsolatedCheckbox']!.checked;
 
   void _toggleControls() {
     _hamburgerCheckbox.checked = !_hamburgerCheckbox.checked;
@@ -329,7 +329,7 @@ final class UIManager {
                 excludeDev: hideDevDependencies,
                 onlyOutdated: outdatedOnly,
                 onlyWorkspace: workspaceOnly,
-                hideIsolatedWorkspacePackages: hideIsolatedPackages,
+                hideIsolated: hideIsolated,
               )
               .toDot();
 
@@ -345,7 +345,7 @@ final class UIManager {
                 excludeDev: hideDevDependencies,
                 onlyOutdated: outdatedOnly,
                 onlyWorkspace: workspaceOnly,
-                hideIsolatedWorkspacePackages: hideIsolatedPackages,
+                hideIsolated: hideIsolated,
               )
               .toMermaid();
 
