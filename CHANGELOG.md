@@ -1,8 +1,9 @@
 # Changelog
 
-## unreleased
+## 6.3.0-wip
 
-- Fixes `hide-isolated` filter was not being applied to the `print` and `print-mermaid` actions.
+- Fixes `hide-isolated` filter was not being applied to the `print` and
+  `print-mermaid` actions.
 
 ## 6.2.0+1
 
