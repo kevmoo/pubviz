@@ -48,7 +48,8 @@ void main() {
     ]);
 
     final output = await proc.stdoutStream().join('\n');
-    check(output).equals('''Could not find an option named "--bob".
+    check(output).equals('''
+Could not find an option named "--bob".
 
 $_usage''');
 
@@ -96,7 +97,8 @@ $_usage''');
     ]);
 
     final output = await proc.stdoutStream().join('\n');
-    check(output).equals('''Only one argument is allowed. You provided 2.
+    check(output).equals('''
+Only one argument is allowed. You provided 2.
 
 $_usage''');
 
@@ -360,7 +362,8 @@ resolution: workspace
   });
 }
 
-const _usage = r'''Usage: pubviz [<args>] [<package path>]
+const _usage = '''
+Usage: pubviz [<args>] [<package path>]
 
 Arguments:
   -a, --action=<action>

@@ -4,7 +4,6 @@ import 'package:checks/checks.dart';
 import 'package:path/path.dart' as p;
 import 'package:pub_semver/pub_semver.dart';
 import 'package:pubspec_parse/pubspec_parse.dart' as parse;
-import 'package:pubviz/src/colors.dart';
 import 'package:pubviz/src/converters.dart';
 import 'package:pubviz/src/dependency.dart';
 import 'package:pubviz/src/deps_list.dart';
@@ -17,15 +16,6 @@ import 'package:test/scaffolding.dart';
 import 'package:test_descriptor/test_descriptor.dart' as d;
 
 void main() {
-  group('colors', () {
-    test('isOutdatedColor', () {
-      check(isOutdatedColor(null)).isFalse();
-      check(isOutdatedColor('pink')).isTrue();
-      check(isOutdatedColor('red')).isTrue();
-      check(isOutdatedColor('BLUE')).isFalse();
-    });
-  });
-
   group('converters', () {
     test('FalseNullConverter', () {
       const converter = FalseNullConverter();
@@ -104,9 +94,9 @@ void main() {
 
   group('VizPackage', () {
     test('equality and hashCode', () {
-      final p1 = VizPackage('a', Version(1, 0, 0), {}, null);
-      final p2 = VizPackage('a', Version(1, 0, 0), {}, null);
-      final p3 = VizPackage('b', Version(1, 0, 0), {}, null);
+      final p1 = VizPackage('a', Version(1, 0, 0), const {}, null);
+      final p2 = VizPackage('a', Version(1, 0, 0), const {}, null);
+      final p3 = VizPackage('b', Version(1, 0, 0), const {}, null);
 
       check(p1).equals(p2);
       check(p1.hashCode).equals(p2.hashCode);
@@ -114,8 +104,8 @@ void main() {
     });
 
     test('compareTo', () {
-      final p1 = VizPackage('a', Version(1, 0, 0), {}, null);
-      final p2 = VizPackage('b', Version(1, 0, 0), {}, null);
+      final p1 = VizPackage('a', Version(1, 0, 0), const {}, null);
+      final p2 = VizPackage('b', Version(1, 0, 0), const {}, null);
 
       check(p1.compareTo(p2)).isLessThan(0);
       check(p2.compareTo(p1)).isGreaterThan(0);
@@ -123,7 +113,7 @@ void main() {
 
     test('toString', () {
       check(
-        VizPackage('a', Version(1, 0, 0), {}, null).toString(),
+        VizPackage('a', Version(1, 0, 0), const {}, null).toString(),
       ).equals('a @ 1.0.0');
     });
 
@@ -160,7 +150,7 @@ void main() {
   group('VizRoot', () {
     test('json', () {
       final root = VizRoot('a', {
-        'a': VizPackage('a', Version(1, 0, 0), {}, null),
+        'a': VizPackage('a', Version(1, 0, 0), const {}, null),
       });
       final json = root.toJson();
       check(json['rootPackageName']).equals('a');

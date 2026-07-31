@@ -20,8 +20,11 @@ setupPublishedPackageProject(String targetPackage) async {
 
   try {
     VersionConstraint.parse(version);
-  } on FormatException catch (e) {
-    throw UsageException('Invalid version constraint "$version": ${e.message}');
+  } on FormatException catch (e, st) {
+    Error.throwWithStackTrace(
+      UsageException('Invalid version constraint "$version": ${e.message}'),
+      st,
+    );
   }
 
   final tempDir = Directory.systemTemp.createTempSync('pubviz_');

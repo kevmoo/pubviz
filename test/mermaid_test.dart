@@ -23,11 +23,17 @@ void main() {
       'b': VizPackage(
         'b',
         Version(1, 2, 0),
-        {},
+        const {},
         Version(1, 3, 0),
         onlyDev: false,
       ), // outdated
-      'c': VizPackage('c', Version(2, 0, 0), {}, null, isPublishToNone: true),
+      'c': VizPackage(
+        'c',
+        Version(2, 0, 0),
+        const {},
+        null,
+        isPublishToNone: true,
+      ),
     });
 
     final mermaid = root.toMermaid();

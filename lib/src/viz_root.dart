@@ -31,11 +31,11 @@ class VizRoot with HasPackages {
 
   Map<String, dynamic> toJson() => _$VizRootToJson(this);
 
-  static VizRoot assemble(
+  factory VizRoot.assemble(
     String rootPackageName,
     Map<String, VizPackage> packages, {
     bool flagOutdated = false,
-    Iterable<String>? ignorePackages,
+    Iterable<String> ignorePackages = const [],
     bool isWorkspace = false,
   }) {
     var primaryPackageNames = packages.values
@@ -53,7 +53,7 @@ class VizRoot with HasPackages {
       if (nonDevReachable.add(current)) {
         final pkg = packages[current];
         if (pkg != null) {
-          for (var dep in pkg.dependencies) {
+          for (final dep in pkg.dependencies) {
             if (!dep.isDevDependency) {
               queue.add(dep.name);
             }
@@ -63,9 +63,9 @@ class VizRoot with HasPackages {
     }
 
     final newPackages = SplayTreeMap<String, VizPackage>();
-    final ignoreSet = ignorePackages?.toSet() ?? {};
+    final ignoreSet = ignorePackages.toSet();
 
-    for (var entry in packages.entries) {
+    for (final entry in packages.entries) {
       final name = entry.key;
       final pkg = entry.value;
       final skipOutdated = ignoreSet.contains(name);
@@ -166,8 +166,10 @@ class VizRoot with HasPackages {
       final current = queue.removeLast();
       final pkg = sourcePackages[current];
       if (pkg != null) {
-        for (var dep in pkg.dependencies) {
-          if (excludeDev && dep.isDevDependency) continue;
+        for (final dep in pkg.dependencies) {
+          if (excludeDev && dep.isDevDependency) {
+            continue;
+          }
           if (forwardReachable.add(dep.name)) {
             queue.add(dep.name);
           }
@@ -177,11 +179,13 @@ class VizRoot with HasPackages {
 
     // 2. Build Incoming Edges (only for forward reachable nodes to save time)
     final incoming = <String, Set<String>>{};
-    for (var name in forwardReachable) {
+    for (final name in forwardReachable) {
       final pkg = sourcePackages[name];
       if (pkg != null) {
-        for (var dep in pkg.dependencies) {
-          if (excludeDev && dep.isDevDependency) continue;
+        for (final dep in pkg.dependencies) {
+          if (excludeDev && dep.isDevDependency) {
+            continue;
+          }
           incoming.putIfAbsent(dep.name, () => {}).add(name);
         }
       }
@@ -192,7 +196,7 @@ class VizRoot with HasPackages {
     final backQueue = primaryNodes.toList();
     while (backQueue.isNotEmpty) {
       final current = backQueue.removeLast();
-      for (var parent in incoming[current] ?? <String>{}) {
+      for (final parent in incoming[current] ?? <String>{}) {
         if (backwardReachable.add(parent)) {
           backQueue.add(parent);
         }
@@ -203,7 +207,7 @@ class VizRoot with HasPackages {
     final keepNodes = forwardReachable.intersection(backwardReachable);
 
     final newPackages = SplayTreeMap<String, VizPackage>();
-    for (var name in keepNodes) {
+    for (final name in keepNodes) {
       final orig = sourcePackages[name];
       if (orig != null) {
         final filteredDeps = orig.dependencies
@@ -241,8 +245,10 @@ class VizRoot with HasPackages {
       final current = rootQueue.removeLast();
       final orig = sourcePackages[current];
       if (orig != null) {
-        for (var dep in orig.dependencies) {
-          if (excludeDev && dep.isDevDependency) continue;
+        for (final dep in orig.dependencies) {
+          if (excludeDev && dep.isDevDependency) {
+            continue;
+          }
           if (reachableFromRoot.add(dep.name)) {
             rootQueue.add(dep.name);
           }
@@ -251,11 +257,13 @@ class VizRoot with HasPackages {
     }
 
     final incoming = <String, Set<String>>{};
-    for (var pkgName in reachableFromRoot) {
+    for (final pkgName in reachableFromRoot) {
       final pkg = sourcePackages[pkgName];
       if (pkg != null) {
-        for (var dep in pkg.dependencies) {
-          if (excludeDev && dep.isDevDependency) continue;
+        for (final dep in pkg.dependencies) {
+          if (excludeDev && dep.isDevDependency) {
+            continue;
+          }
           incoming.putIfAbsent(dep.name, () => {}).add(pkg.name);
         }
       }
@@ -269,11 +277,11 @@ class VizRoot with HasPackages {
     }).toSet();
 
     final queue = outdatedNodes.toList();
-    final keepNodes = Set<String>.from(outdatedNodes);
+    final keepNodes = Set<String>.of(outdatedNodes);
 
     while (queue.isNotEmpty) {
       final current = queue.removeLast();
-      for (var parent in incoming[current] ?? <String>{}) {
+      for (final parent in incoming[current] ?? <String>{}) {
         if (keepNodes.add(parent)) {
           queue.add(parent);
         }
@@ -282,7 +290,7 @@ class VizRoot with HasPackages {
 
     keepNodes.add(rootPackageName);
 
-    for (var pkgName in keepNodes) {
+    for (final pkgName in keepNodes) {
       final orig = sourcePackages[pkgName];
       if (orig != null) {
         final filteredDeps = orig.dependencies
@@ -322,10 +330,14 @@ class VizRoot with HasPackages {
     while (queue.isNotEmpty) {
       final current = queue.removeLast();
       final orig = sourcePackages[current];
-      if (orig == null) continue;
+      if (orig == null) {
+        continue;
+      }
 
-      for (var dep in orig.dependencies) {
-        if (excludeDev && dep.isDevDependency) continue;
+      for (final dep in orig.dependencies) {
+        if (excludeDev && dep.isDevDependency) {
+          continue;
+        }
 
         if (keepNodes.add(dep.name)) {
           queue.add(dep.name);
@@ -333,9 +345,11 @@ class VizRoot with HasPackages {
       }
     }
 
-    for (var pkgName in keepNodes) {
+    for (final pkgName in keepNodes) {
       final orig = sourcePackages[pkgName];
-      if (orig == null) continue;
+      if (orig == null) {
+        continue;
+      }
 
       newPackages[pkgName] = VizPackage(
         orig.name,
@@ -370,7 +384,9 @@ class VizRoot with HasPackages {
     while (queue.isNotEmpty) {
       final current = queue.removeLast();
       final pkg = sourcePackages[current];
-      if (pkg == null) continue;
+      if (pkg == null) {
+        continue;
+      }
 
       for (final dep in pkg.dependencies) {
         if (keepNodes.add(dep.name)) {
@@ -383,7 +399,9 @@ class VizRoot with HasPackages {
     final newPackages = SplayTreeMap<String, VizPackage>();
     for (final name in keepNodes) {
       final orig = sourcePackages[name];
-      if (orig == null) continue;
+      if (orig == null) {
+        continue;
+      }
       final filteredDeps = orig.dependencies
           .where(
             (d) =>
@@ -437,7 +455,9 @@ abstract mixin class HasPackages {
     while (queue.isNotEmpty) {
       final current = queue.removeLast();
       final pkg = packages[current];
-      if (pkg == null) continue;
+      if (pkg == null) {
+        continue;
+      }
 
       for (final dep in pkg.dependencies) {
         if (reachable.add(dep.name)) {

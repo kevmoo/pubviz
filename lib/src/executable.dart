@@ -141,7 +141,7 @@ Future<void> _createOrOpen(VizRoot root, Options options) async {
   final jsContent = vizDataString(root);
 
   final handler = Cascade()
-      .add((Request request) {
+      .add((request) {
         if (request.url.path == 'viz_data.js') {
           return Response.ok(
             jsContent,

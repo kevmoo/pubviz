@@ -12,7 +12,7 @@ extension VizRootExt on VizRoot {
       edgeProperties: {'fontcolor': 'gray'},
     );
 
-    for (var pack in packages.values.where(
+    for (final pack in packages.values.where(
       (v) => !ignorePackages.contains(v.name),
     )) {
       gviz.addBlankLine();
@@ -74,7 +74,9 @@ void _writeDot(
 
   final orderedDeps = pkg.dependencies.toList(growable: false)..sort();
 
-  for (var dep in orderedDeps.where((d) => !ignorePackages.contains(d.name))) {
+  for (final dep in orderedDeps.where(
+    (d) => !ignorePackages.contains(d.name),
+  )) {
     if (!dep.isDevDependency || isRoot || pkg.isPrimary) {
       final edgeProps = <String, String>{};
 

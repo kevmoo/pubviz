@@ -97,11 +97,15 @@ Map<String, VersionConstraint> _gatherConstraints(List<String> memberDirs) {
   }
 
   for (final dir in memberDirs) {
-    if (dir == '.') continue;
+    if (dir == '.') {
+      continue;
+    }
     final pubspecFile = File(
       p.join('test/demo_workspace', dir, 'pubspec.yaml'),
     );
-    if (!pubspecFile.existsSync()) continue;
+    if (!pubspecFile.existsSync()) {
+      continue;
+    }
 
     final pubspec = parse.Pubspec.parse(pubspecFile.readAsStringSync());
     addDeps(pubspec.dependencies);
@@ -134,7 +138,7 @@ name: temp_project
 environment:
   sdk: '^3.12.0'
 dependencies:
-${depsBuffer.toString()}
+$depsBuffer
 ''');
 
   print('Running `dart pub get` in temp project...');
@@ -268,7 +272,9 @@ Future<void> _updateOutdatedJson(Directory tempDir) async {
 
     for (final pkg in packages.cast<Map<String, dynamic>>()) {
       final name = pkg['package'] as String;
-      if (name == 'outdated_pkg') continue;
+      if (name == 'outdated_pkg') {
+        continue;
+      }
       outputPackages.add(pkg);
     }
 

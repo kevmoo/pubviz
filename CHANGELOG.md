@@ -4,6 +4,10 @@
 
 - Fixes `hide-isolated` filter was not being applied to the `print` and
   `print-mermaid` actions.
+- Updated all dependencies
+- Move `http`,`yaml` to dev_dependencies
+- Remove dead code
+- Add new rules
 
 ## 6.2.0+1
 

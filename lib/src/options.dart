@@ -73,7 +73,7 @@ I.E. "--package pubviz" or "--package pubviz:5.0.0"''',
 
   const Options({
     required this.action,
-    List<String>? ignorePackages,
+    this.ignorePackages = const [],
     required this.flagOutdated,
     this.directDependencies,
     this.package,
@@ -82,9 +82,8 @@ I.E. "--package pubviz" or "--package pubviz:5.0.0"''',
     required this.rest,
     required this.version,
     this.workspace,
-    List<String>? filters,
-  }) : ignorePackages = ignorePackages ?? const [],
-       filters = filters ?? const [];
+    this.filters = const [],
+  });
 }
 
 enum Action { open, print, printMermaid, serve }

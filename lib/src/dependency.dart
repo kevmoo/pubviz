@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 import 'package:pub_semver/pub_semver.dart';
 import 'package:pubspec_parse/pubspec_parse.dart' as parse;
 
@@ -6,6 +7,7 @@ import 'converters.dart';
 
 part 'dependency.g.dart';
 
+@immutable
 @JsonSerializable(includeIfNull: false)
 class Dependency implements Comparable<Dependency> {
   final String name;
@@ -17,7 +19,7 @@ class Dependency implements Comparable<Dependency> {
 
   final bool? includesLatest;
 
-  Dependency(
+  const Dependency(
     this.name,
     this.versionConstraint,
     this.isDevDependency, {
@@ -47,7 +49,7 @@ class Dependency implements Comparable<Dependency> {
     Set<Dependency> value,
     bool isDev,
   ) {
-    for (var entry in yaml.entries) {
+    for (final entry in yaml.entries) {
       final constraint = entry.value;
       final constraintString = (constraint is parse.HostedDependency)
           ? constraint.version.toString()

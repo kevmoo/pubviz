@@ -15,7 +15,7 @@ extension VizRootMermaidExt on VizRoot {
     final outdatedNodes = <String>[];
     final publishToNoneNodes = <String>[];
 
-    for (var pkg in packages.values.where((v) => !ignored.contains(v.name))) {
+    for (final pkg in packages.values.where((v) => !ignored.contains(v.name))) {
       final isRoot = root.name == pkg.name;
 
       var label = pkg.name;
@@ -48,11 +48,11 @@ extension VizRootMermaidExt on VizRoot {
       sb.writeln('  ${pkg.name}$shapeOpen"$label"$shapeClose');
     }
 
-    for (var pkg in packages.values.where((v) => !ignored.contains(v.name))) {
+    for (final pkg in packages.values.where((v) => !ignored.contains(v.name))) {
       final isRoot = root.name == pkg.name;
       final orderedDeps = pkg.dependencies.toList(growable: false)..sort();
 
-      for (var dep in orderedDeps.where((d) => !ignored.contains(d.name))) {
+      for (final dep in orderedDeps.where((d) => !ignored.contains(d.name))) {
         if (!dep.isDevDependency || isRoot || pkg.isPrimary) {
           final hasConstraint = !dep.versionConstraint.isAny;
           final constraintStr = hasConstraint
@@ -61,17 +61,9 @@ extension VizRootMermaidExt on VizRoot {
 
           final String link;
           if (dep.isDevDependency) {
-            if (hasConstraint) {
-              link = '-. "${dep.versionConstraint}" .->';
-            } else {
-              link = '-.->';
-            }
+            link = hasConstraint ? '-. "${dep.versionConstraint}" .->' : '-.->';
           } else {
-            if (hasConstraint) {
-              link = '--$constraintStr-->';
-            } else {
-              link = '-->';
-            }
+            link = hasConstraint ? '--$constraintStr-->' : '-->';
           }
 
           sb.writeln('  ${pkg.name} $link ${dep.name}');

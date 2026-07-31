@@ -13,7 +13,9 @@ List<VizPackage> computeUpdateOrder(VizRoot root) {
   final needsUpdate = <String, VizPackage>{};
 
   for (final pkg in root.packages.values) {
-    if (pkg.name == root.rootPackageName) continue;
+    if (pkg.name == root.rootPackageName) {
+      continue;
+    }
 
     final hasOutdatedDep = pkg.dependencies.any(
       (dep) => dep.includesLatest == false,
@@ -24,20 +26,26 @@ List<VizPackage> computeUpdateOrder(VizRoot root) {
     }
   }
 
-  if (needsUpdate.isEmpty) return [];
+  if (needsUpdate.isEmpty) {
+    return [];
+  }
 
   final sorted = <VizPackage>[];
   final visited = <String>{};
   final visiting = <String>{};
 
   void visit(VizPackage pkg) {
-    if (visited.contains(pkg.name)) return;
+    if (visited.contains(pkg.name)) {
+      return;
+    }
 
     // We intentionally don't throw on cycle detection here.
     // Circular dependencies (especially involving dev_dependencies)
     // are common in Dart monorepos. Returning here breaks the cycle
     // gracefully and provides a best-effort topological sort.
-    if (visiting.contains(pkg.name)) return;
+    if (visiting.contains(pkg.name)) {
+      return;
+    }
 
     visiting.add(pkg.name);
 
@@ -53,9 +61,7 @@ List<VizPackage> computeUpdateOrder(VizRoot root) {
     sorted.add(pkg);
   }
 
-  for (final pkg in needsUpdate.values) {
-    visit(pkg);
-  }
+  needsUpdate.values.forEach(visit);
 
   return sorted;
 }

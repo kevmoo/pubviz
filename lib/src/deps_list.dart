@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart';
+import 'package:meta/meta.dart';
 import 'package:pub_semver/pub_semver.dart';
 import 'package:string_scanner/string_scanner.dart';
 
@@ -19,7 +20,7 @@ class DepsList {
     this.rootPackageName, {
     required this.transitiveDependencies,
   }) {
-    for (var entry in packages.values) {
+    for (final entry in packages.values) {
       entry._parent = this;
     }
   }
@@ -91,7 +92,7 @@ class DepsPackageEntry extends VersionedEntry {
         ..._parent.packages.values.expand((e) => e.sections.values),
       ]);
 
-  DepsPackageEntry._(super.entry, this.sections) : super.copy();
+  DepsPackageEntry._(super.other, this.sections) : super.copy();
 
   factory DepsPackageEntry._parse(StringScanner scanner) {
     scanner.expect(_packageLine, name: 'Source package');
@@ -117,11 +118,11 @@ class DepsPackageEntry extends VersionedEntry {
     'name': name,
     'version': version.toString(),
     'sections': {
-      for (var section in sections.entries)
+      for (final section in sections.entries)
         section.key: {
-          for (var usage in section.value.entries)
+          for (final usage in section.value.entries)
             usage.key.toString(): {
-              for (var dep in usage.value.entries)
+              for (final dep in usage.value.entries)
                 dep.key: dep.value.toString(),
             },
         },
@@ -177,18 +178,18 @@ _scanSection(StringScanner scanner, {required Pattern headerPattern}) {
   return (name: header, entries: entries);
 }
 
+@immutable
 class VersionedEntry {
   final String name;
   final Version version;
 
-  VersionedEntry(this.name, this.version);
+  VersionedEntry.fromMatch(Match match)
+    : name = match[1]!,
+      version = Version.parse(match[2]!);
 
   VersionedEntry.copy(VersionedEntry other)
     : name = other.name,
       version = other.version;
-
-  factory VersionedEntry.fromMatch(Match match) =>
-      VersionedEntry(match[1]!, Version.parse(match[2]!));
 
   @override
   String toString() => '$name @ $version';

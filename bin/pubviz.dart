@@ -53,7 +53,8 @@ String _indent(String input) =>
     LineSplitter.split(input).map((l) => '  $l'.trimRight()).join('\n');
 
 void _printUsage() {
-  print('''Usage: pubviz [<args>] [<package path>]
+  print('''
+Usage: pubviz [<args>] [<package path>]
 
 ${styleBold.wrap('Arguments:')}
 ${_indent(parser.usage)}

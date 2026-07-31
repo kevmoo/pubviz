@@ -6,9 +6,13 @@ import 'dart:io';
 import 'package:checks/checks.dart';
 import 'package:path/path.dart' as p;
 import 'package:pub_semver/pub_semver.dart';
-import 'package:pubviz/pubviz.dart';
+import 'package:pubviz/src/dependency.dart';
+import 'package:pubviz/src/dot.dart';
+import 'package:pubviz/src/root_builder.dart';
 import 'package:pubviz/src/service.dart';
 import 'package:pubviz/src/update_order.dart';
+import 'package:pubviz/src/viz_package.dart';
+import 'package:pubviz/src/viz_root.dart';
 import 'package:test/scaffolding.dart';
 import 'package:test_descriptor/test_descriptor.dart' as d;
 
@@ -183,7 +187,12 @@ void main() {
       }, Version(2, 0, 0));
 
       final root = _MockVizRoot({
-        'root': VizPackage('root', Version(1, 0, 0), {}, Version(1, 0, 0)),
+        'root': VizPackage(
+          'root',
+          Version(1, 0, 0),
+          const {},
+          Version(1, 0, 0),
+        ),
         'a': pkgA,
         'b': pkgB,
       });
@@ -265,7 +274,12 @@ void main() {
         null,
         isPrimary: true,
       );
-      final depPkg = VizPackage('foo', Version(1, 1, 0), {}, Version(1, 3, 0));
+      final depPkg = VizPackage(
+        'foo',
+        Version(1, 1, 0),
+        const {},
+        Version(1, 3, 0),
+      );
 
       final root = VizRoot.assemble('bar', {
         'bar': pkg,
@@ -281,7 +295,13 @@ void main() {
     });
 
     test('filter preserves onlyDev state', () {
-      final pkg = VizPackage('a', Version(1, 0, 0), {}, null, onlyDev: false);
+      final pkg = VizPackage(
+        'a',
+        Version(1, 0, 0),
+        const {},
+        null,
+        onlyDev: false,
+      );
 
       final root = VizRoot('a', {'a': pkg});
 
@@ -302,9 +322,15 @@ void main() {
         Dependency('c', VersionConstraint.any, false),
       }, null);
 
-      final c = VizPackage('c', Version(1, 0, 0), {}, null, isPrimary: true);
+      final c = VizPackage(
+        'c',
+        Version(1, 0, 0),
+        const {},
+        null,
+        isPrimary: true,
+      );
 
-      final d = VizPackage('d', Version(1, 0, 0), {}, null);
+      final d = VizPackage('d', Version(1, 0, 0), const {}, null);
 
       final root = VizRoot.assemble('a', {
         'a': a,
@@ -331,13 +357,13 @@ void main() {
       final b = VizPackage(
         'b',
         Version(1, 0, 0),
-        {},
+        const {},
         null,
         isPrimary: true,
         isPublishToNone: true,
       );
 
-      final c = VizPackage('c', Version(1, 0, 0), {}, null);
+      final c = VizPackage('c', Version(1, 0, 0), const {}, null);
 
       final root = VizRoot.assemble('a', {
         'a': a,
@@ -373,13 +399,13 @@ void main() {
       final b = VizPackage(
         'b',
         Version(1, 0, 0),
-        {},
+        const {},
         null,
         isPrimary: true,
         isPublishToNone: true,
       );
 
-      final c = VizPackage('c', Version(1, 0, 0), {}, null);
+      final c = VizPackage('c', Version(1, 0, 0), const {}, null);
 
       final root = VizRoot.assemble('a', {'a': a, 'b': b, 'c': c});
 
@@ -392,7 +418,7 @@ void main() {
       final a = VizPackage(
         'a',
         Version(1, 0, 0),
-        {},
+        const {},
         null,
         isPrimary: true,
         isPublishToNone: true,
@@ -401,7 +427,7 @@ void main() {
       final b = VizPackage(
         'b',
         Version(1, 0, 0),
-        {},
+        const {},
         null,
         isPublishToNone: true,
       );
@@ -425,7 +451,7 @@ void main() {
       final b = VizPackage(
         'b',
         Version(1, 0, 0),
-        {},
+        const {},
         null,
         isPublishToNone: true,
       );
@@ -433,7 +459,7 @@ void main() {
       final rootPkg = VizPackage(
         'root',
         Version(1, 0, 0),
-        {},
+        const {},
         null,
         isPrimary: true,
       );
@@ -485,9 +511,15 @@ void main() {
         Dependency('c', VersionConstraint.any, false),
       }, Version(2, 0, 0));
 
-      final c = VizPackage('c', Version(1, 0, 0), {}, null, isPrimary: true);
+      final c = VizPackage(
+        'c',
+        Version(1, 0, 0),
+        const {},
+        null,
+        isPrimary: true,
+      );
 
-      final d = VizPackage('d', Version(1, 0, 0), {}, null);
+      final d = VizPackage('d', Version(1, 0, 0), const {}, null);
 
       final root = VizRoot.assemble(
         'a',
@@ -508,7 +540,7 @@ void main() {
       final pkg = VizPackage(
         'a',
         Version(1, 0, 0),
-        {},
+        const {},
         null,
         isPublishToNone: true,
       );
@@ -671,7 +703,7 @@ dependencies:
       final vp = await stableService.vizRoot(flagOutdated: true);
       final dep = vp.root.dependencies.firstWhere((d) => d.name == 'args');
       check(
-        because: 'Stable constraint ^2.0.0 shouldn\'t allow latest 1.5.0',
+        because: "Stable constraint ^2.0.0 shouldn't allow latest 1.5.0",
         dep.includesLatest,
       ).equals(false);
     });
@@ -682,7 +714,7 @@ dependencies:
       final pkg = VizPackage(
         'test_pkg',
         Version.parse('1.0.0'),
-        {},
+        const {},
         Version.parse('1.0.0'),
         onlyDev: false,
       );

@@ -53,7 +53,9 @@ abstract class Service {
     /// If the package already exists in the [map], it is skipped to avoid
     /// overwriting primary status or previously loaded constraints.
     void addPkg(VersionedEntry key, Map<String, VersionConstraint> value) {
-      if (map.containsKey(key.name)) return;
+      if (map.containsKey(key.name)) {
+        return;
+      }
       final pkg = VizPackage(
         key.name,
         key.version,
@@ -77,7 +79,7 @@ abstract class Service {
     void addSectionValues(
       Map<VersionedEntry, Map<String, VersionConstraint>> section,
     ) {
-      for (var entry in section.entries) {
+      for (final entry in section.entries) {
         addPkg(entry.key, entry.value);
       }
     }
@@ -92,14 +94,16 @@ abstract class Service {
       final members = await workspaceMembers();
       final memberPubspecs = <String, Pubspec>{};
 
-      for (var entry in members.entries) {
+      for (final entry in members.entries) {
         final memberPubspecPath = p.join(
           rootPackageDir,
           entry.value,
           'pubspec.yaml',
         );
         final file = File(memberPubspecPath);
-        if (!file.existsSync()) continue;
+        if (!file.existsSync()) {
+          continue;
+        }
         final memberPubspec = Pubspec.parse(
           file.readAsStringSync(),
           sourceUrl: Uri.file(memberPubspecPath),
@@ -111,7 +115,7 @@ abstract class Service {
 
       // Filter the full dependency list to only include actual workspace
       // members as primary entries.
-      for (var entry in allDeps().where(
+      for (final entry in allDeps().where(
         (d) => workspaceMemberNames.contains(d.name),
       )) {
         final memberPubspec = memberPubspecs[entry.name]!;

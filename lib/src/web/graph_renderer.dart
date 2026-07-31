@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'dart:convert' show LineSplitter;
+import 'dart:convert';
 import 'dart:js_interop';
 
 import 'package:web/web.dart';
@@ -20,7 +20,7 @@ final class GraphRenderer {
   final PubvizApp _app;
   SVGElement? __root;
   SVGGElement? _lockedElement;
-  VizRoot? _currentRoot;
+  late VizRoot _currentRoot;
 
   int _renderGeneration = 0;
   Worker? _currentWorker;
@@ -75,10 +75,10 @@ final class GraphRenderer {
         _app.ui.showCrashReport(e.toString(), stack.toString());
       } catch (error, stack) {
         console.error(
-          '''Even the crash reporter crashed!,
-          $error,
-          $stack,
-        '''
+          '''
+Even the crash reporter crashed!,
+$error,
+$stack,'''
               .toJS,
         );
       }
@@ -177,7 +177,7 @@ final class GraphRenderer {
       final title = element.querySelector('title')!.textContent!;
       element.id = title;
 
-      final pkg = _currentRoot!.packages[title];
+      final pkg = _currentRoot.packages[title];
       final isOutdated =
           pkg != null &&
           pkg.version != null &&
@@ -198,7 +198,7 @@ final class GraphRenderer {
       final from = things[0];
       final to = things[1];
 
-      final pkgFrom = _currentRoot!.packages[from];
+      final pkgFrom = _currentRoot.packages[from];
       final dep = pkgFrom?.dependencies.where((d) => d.name == to).firstOrNull;
       final constraint = dep?.versionConstraint.toString() ?? '';
       final isDev = dep?.isDevDependency ?? false;
@@ -218,14 +218,16 @@ final class GraphRenderer {
       );
     }).toList();
 
-    _root.onMouseOver.listen((MouseEvent event) {
+    _root.onMouseOver.listen((event) {
       final target =
           (event.target as Element).closest('g.node, g.edge') as SVGGElement?;
       final related =
           (event.relatedTarget as Element?)?.closest('g.node, g.edge')
               as SVGGElement?;
 
-      if (target == related) return;
+      if (target == related) {
+        return;
+      }
 
       if (target != null) {
         final textElements = target.querySelectorAll('text');
@@ -249,15 +251,11 @@ final class GraphRenderer {
       }
     });
 
-    _root.onClick.listen((MouseEvent event) {
+    _root.onClick.listen((event) {
       final target =
           (event.target as Element).closest('g.node, g.edge') as SVGGElement?;
       if (target != null) {
-        if (_lockedElement == target) {
-          _lockedElement = null;
-        } else {
-          _lockedElement = target;
-        }
+        _lockedElement = _lockedElement == target ? null : target;
         _updateOver(_lockedElement ?? target, nodes, edges);
       } else if (_lockedElement != null) {
         _lockedElement = null;
@@ -293,7 +291,7 @@ final class GraphRenderer {
       }
     }
 
-    for (var node in nodes) {
+    for (final node in nodes) {
       if (targetPkg.contains(node.id)) {
         node.element.classList.add('active');
       } else {
@@ -309,7 +307,7 @@ final class GraphRenderer {
 
     final fromDeps = <DepInfo>[];
     final toDeps = <DepInfo>[];
-    for (var edge in edges) {
+    for (final edge in edges) {
       final nodeXTo = edge.to;
       final nodeXFrom = edge.from;
       if (targetPkg.length == 2) {

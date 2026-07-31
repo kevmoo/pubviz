@@ -83,12 +83,18 @@ Future<Map<String, String>> hashInputs() async {
 
   final map = <String, String>{};
   for (final file in files) {
-    if (file.startsWith('lib/assets/')) continue;
-    if (file == 'web/viz_data.js') continue;
+    if (file.startsWith('lib/assets/')) {
+      continue;
+    }
+    if (file == 'web/viz_data.js') {
+      continue;
+    }
 
     if (file.startsWith('lib/src/')) {
       final matches = regexes.any((r) => r.hasMatch(file));
-      if (!matches) continue;
+      if (!matches) {
+        continue;
+      }
     }
 
     final stream = File(file).openRead();
@@ -98,7 +104,7 @@ Future<Map<String, String>> hashInputs() async {
   return map;
 }
 
-// TODO: consider just moving the "io" bits into a different directory
+// TODO(kevmoo): consider just moving the "io" bits into a different directory
 /// Parses `build.yaml` to extract the list of files under `lib/src/` that are
 /// defined as sources for the default target.
 ///

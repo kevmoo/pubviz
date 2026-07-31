@@ -8,26 +8,89 @@ analyzer:
 
 linter:
   rules:
+    - annotate_redeclares
+    - avoid_annotating_with_dynamic
     - avoid_bool_literals_in_conditional_expressions
     - avoid_classes_with_only_static_members
+    - avoid_double_and_int_checks
+    - avoid_equals_and_hash_code_on_mutable_classes
+    - avoid_escaping_inner_quotes
+    - avoid_field_initializers_in_const_classes
+    - avoid_final_parameters
+    - avoid_futureor_void
+    - avoid_implementing_value_types
+    - avoid_js_rounded_ints
     - avoid_private_typedef_functions
     - avoid_redundant_argument_values
     - avoid_returning_this
+    - avoid_setters_without_getters
+    - avoid_slow_async_io
+    - avoid_type_to_string
+    - avoid_types_on_closure_parameters
     - avoid_unused_constructor_parameters
     - avoid_void_async
     - cancel_subscriptions
     - cascade_invocations
+    - close_sinks
+    - deprecated_consistency
+    - deprecated_member_use_from_same_package
+    - discarded_futures
+    - do_not_use_environment
+    - eol_at_end_of_file
+    - implicit_reopen
+    - invalid_case_patterns
     - join_return_with_assignment
+    - leading_newlines_in_multiline_strings
+    - library_names
     - literal_only_boolean_expressions
+    - matching_super_parameters
+    - missing_code_block_language_in_doc_comment
     - missing_whitespace_between_adjacent_strings
     - no_adjacent_strings_in_list
-    - no_runtimeType_toString
+    - no_default_cases
+    - no_literal_bool_comparisons
+    - no_runtimetype_tostring
+    - no_self_assignments
+    - noop_primitive_operations
+    - omit_obvious_local_variable_types
+    - one_member_abstracts
+    - package_prefixed_library_names
+    - prefer_const_constructors_in_immutables
     - prefer_const_declarations
+    - prefer_const_literals_to_create_immutables
+    - prefer_constructors_over_static_methods
     - prefer_expression_function_bodies
+    - prefer_final_fields
+    - prefer_final_in_for_each
     - prefer_final_locals
+    - prefer_foreach
+    - prefer_if_elements_to_conditional_expressions
+    - prefer_int_literals
+    - prefer_mixin
+    - prefer_null_aware_method_calls
+    - prefer_void_to_null
     - require_trailing_commas
     - simple_directive_paths
+    - simplify_variable_pattern
+    - sort_unnamed_constructors_first
+    - switch_on_type
+    - tighten_type_of_initializing_formals
+    - unnecessary_async
     - unnecessary_await_in_return
+    - unnecessary_breaks
     - unnecessary_ignore
+    - unnecessary_null_aware_operator_on_extension_on_nullable
+    - unnecessary_null_checks
+    - unnecessary_raw_strings
+    - unnecessary_unawaited
+    - unsafe_variance
+    - use_enums
+    - use_late_for_private_fields_and_variables
+    - use_named_constants
     - use_raw_strings
+    - use_setters_to_change_properties
     - use_string_buffers
+    - use_test_throws_matchers
+    - use_to_and_as_if_applicable
+    - use_truncating_division
+    - var_with_no_type_annotation

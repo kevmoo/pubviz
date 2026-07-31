@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 import 'package:pub_semver/pub_semver.dart';
 
 import 'converters.dart';
@@ -7,6 +8,7 @@ import 'dependency.dart';
 
 part 'viz_package.g.dart';
 
+@immutable
 @JsonSerializable(includeIfNull: false)
 class VizPackage implements Comparable<VizPackage> {
   final String name;

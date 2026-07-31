@@ -16,8 +16,8 @@ void main() {
     await _initTest();
   });
 
-  test('validate pub completed', () async {
-    final type = await FileSystemEntity.type(p.join(d.sandbox, 'pubspec.lock'));
+  test('validate pub completed', () {
+    final type = FileSystemEntity.typeSync(p.join(d.sandbox, 'pubspec.lock'));
 
     check(type).equals(FileSystemEntityType.file);
   });

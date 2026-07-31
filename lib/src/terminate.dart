@@ -74,10 +74,10 @@ Future<void> waitForTerminate() {
       stdin.lineMode = false;
       stdin.echoMode = false;
     }
-    stdinSub = stdin.listen((event) {
+    stdinSub = stdin.listen((event) async {
       if (event.contains(113) || event.contains(81)) {
         // 'q' or 'Q'
-        signalHandler();
+        await signalHandler();
       }
     });
   } catch (_) {

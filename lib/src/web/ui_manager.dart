@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'dart:convert' show htmlEscape;
+import 'dart:convert';
 import 'dart:js_interop';
 import 'dart:js_interop_unsafe';
 
@@ -118,7 +118,7 @@ final class UIManager {
       disabledMessage: 'Showing Isolated Packages',
       unavailableMessage: 'No isolated packages to filter',
       availableTooltip: () =>
-          'Hide workspace packages that aren\'t reachable from published '
+          "Hide workspace packages that aren't reachable from published "
           'members.',
       unavailableTooltip: () => !_app.isWorkspace
           ? 'Not a workspace (only one package).'
@@ -313,9 +313,7 @@ final class UIManager {
     _ExportFormat format, {
     required bool isCopy,
   }) async {
-    final hasClipboard = (window.navigator as JSObject)
-        .hasProperty('clipboard'.toJS)
-        .toDart;
+    final hasClipboard = window.navigator.hasProperty('clipboard'.toJS).toDart;
     if (isCopy && !hasClipboard) {
       showToast('⚠️ Clipboard API not available in this context');
       return;
@@ -556,9 +554,9 @@ final class UIManager {
       return;
     }
 
-    final sortedFrom = List<DepInfo>.from(fromDeps)
+    final sortedFrom = List<DepInfo>.of(fromDeps)
       ..sort((a, b) => a.name.compareTo(b.name));
-    final sortedTo = List<DepInfo>.from(toDeps)
+    final sortedTo = List<DepInfo>.of(toDeps)
       ..sort((a, b) => a.name.compareTo(b.name));
 
     _updateHudBox(_depsInBox, 'INCOMING', sortedFrom);
@@ -653,14 +651,18 @@ String _buildTable(Iterable<DepInfo> deps) {
 
 String _injectStyles(String svgText) {
   final index = svgText.indexOf('>');
-  if (index == -1) return svgText;
+  if (index == -1) {
+    return svgText;
+  }
 
   final cssBuffer = StringBuffer();
   try {
     final sheets = document.styleSheets;
     for (var i = 0; i < sheets.length; i++) {
       final sheet = sheets.item(i);
-      if (sheet == null) continue;
+      if (sheet == null) {
+        continue;
+      }
 
       final href = sheet.href ?? '';
       if (href.contains('style.css') || href.isEmpty) {

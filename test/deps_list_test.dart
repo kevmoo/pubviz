@@ -24,7 +24,7 @@ void main() {
     ['mock', 'pub_deps_list'],
   ];
 
-  for (var path in depsList.map((e) => p.joinAll(['test', ...e]))) {
+  for (final path in depsList.map((e) => p.joinAll(['test', ...e]))) {
     test(path, () {
       final file = File('$path.txt');
       final deps = DepsList.parse(file.readAsStringSync());
