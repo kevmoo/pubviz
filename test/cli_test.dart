@@ -193,6 +193,7 @@ workspace:
         d.dir('pkga', [
           d.file('pubspec.yaml', '''
 name: pkga
+publish_to: none
 environment:
   sdk: ^3.12.0
 resolution: workspace
@@ -223,6 +224,26 @@ resolution: workspace
       // format without a version.
       check(output).contains('root [label="⚙️ root"');
       check(output).contains(r'pkga [label="pkga\n0.0.0"');
+
+      await process.shouldExit(0);
+    });
+
+    test('print with filter hide-isolated', () async {
+      final process = await TestProcess.start(Platform.executable, [
+        _entryPoint,
+        '-a',
+        'print',
+        '--filters',
+        'hide-isolated',
+        d.path('workspace'),
+      ]);
+
+      final output = await process.stdoutStream().join('\n');
+
+      // 'root' is primary, so it is kept. 'pkga' is isolated and unpublished,
+      // so it should be hidden when 'hide-isolated' filter is active.
+      check(output).contains('root [label="⚙️ root"');
+      check(output).not((it) => it.contains('pkga'));
 
       await process.shouldExit(0);
     });
