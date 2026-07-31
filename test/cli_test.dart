@@ -16,6 +16,8 @@ import 'package:test_process/test_process.dart';
 
 final _entryPoint = p.join('bin', 'pubviz.dart');
 
+final String _projectRoot = Directory.current.path;
+
 void main() {
   test('help', () async {
     final proc = await TestProcess.start(Platform.executable, [
@@ -80,7 +82,7 @@ $_usage''');
       'print',
       '--filters',
       'hide-dev',
-    ]);
+    ], workingDirectory: _projectRoot);
 
     final output = await process.stdoutStream().join('\n');
     check(output).contains('digraph pubviz {');
@@ -110,7 +112,7 @@ $_usage''');
       _entryPoint,
       '-a',
       'print',
-    ]);
+    ], workingDirectory: _projectRoot);
 
     await check(process.stdout).emits((it) => it.equals('digraph pubviz {'));
 
@@ -123,7 +125,7 @@ $_usage''');
       '-o',
       '-a',
       'print',
-    ]);
+    ], workingDirectory: _projectRoot);
 
     await check(process.stdout).emits((it) => it.equals('digraph pubviz {'));
 
@@ -135,7 +137,7 @@ $_usage''');
       _entryPoint,
       '-a',
       'serve',
-    ]);
+    ], workingDirectory: _projectRoot);
 
     await check(process.stdout).emitsThrough((it) => it.contains('Press "q"'));
 
@@ -149,7 +151,7 @@ $_usage''');
       _entryPoint,
       '-a',
       'serve',
-    ]);
+    ], workingDirectory: _projectRoot);
 
     late String serverUrl;
     while (true) {
