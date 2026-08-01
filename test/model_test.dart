@@ -4,7 +4,6 @@ import 'package:checks/checks.dart';
 import 'package:path/path.dart' as p;
 import 'package:pub_semver/pub_semver.dart';
 import 'package:pubspec_parse/pubspec_parse.dart' as parse;
-import 'package:pubviz/src/colors.dart';
 import 'package:pubviz/src/converters.dart';
 import 'package:pubviz/src/dependency.dart';
 import 'package:pubviz/src/deps_list.dart';
@@ -17,15 +16,6 @@ import 'package:test/scaffolding.dart';
 import 'package:test_descriptor/test_descriptor.dart' as d;
 
 void main() {
-  group('colors', () {
-    test('isOutdatedColor', () {
-      check(isOutdatedColor(null)).isFalse();
-      check(isOutdatedColor('pink')).isTrue();
-      check(isOutdatedColor('red')).isTrue();
-      check(isOutdatedColor('BLUE')).isFalse();
-    });
-  });
-
   group('converters', () {
     test('FalseNullConverter', () {
       const converter = FalseNullConverter();
