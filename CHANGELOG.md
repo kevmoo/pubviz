@@ -4,7 +4,6 @@
 
 - Fixes `hide-isolated` filter was not being applied to the `print` and
   `print-mermaid` actions.
-- Removed unused `isOutdatedColor`
 
 ## 6.2.0+1
 
