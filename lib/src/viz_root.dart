@@ -46,21 +46,12 @@ class VizRoot with HasPackages {
       primaryPackageNames = {rootPackageName};
     }
 
-    final nonDevReachable = <String>{};
-    final queue = [...primaryPackageNames];
-    while (queue.isNotEmpty) {
-      final current = queue.removeLast();
-      if (nonDevReachable.add(current)) {
-        final pkg = packages[current];
-        if (pkg != null) {
-          for (var dep in pkg.dependencies) {
-            if (!dep.isDevDependency) {
-              queue.add(dep.name);
-            }
-          }
-        }
-      }
-    }
+    final nonDevReachable = _reachable(
+      primaryPackageNames,
+      (pkg) => packages[pkg]?.dependencies
+          .where((d) => !d.isDevDependency)
+          .map((d) => d.name),
+    );
 
     final newPackages = SplayTreeMap<String, VizPackage>();
     final ignoreSet = ignorePackages?.toSet() ?? {};
@@ -160,20 +151,12 @@ class VizRoot with HasPackages {
         .toSet();
 
     // 1. Forward Reachable from Primary
-    final forwardReachable = <String>{...primaryNodes};
-    final queue = primaryNodes.toList();
-    while (queue.isNotEmpty) {
-      final current = queue.removeLast();
-      final pkg = sourcePackages[current];
-      if (pkg != null) {
-        for (var dep in pkg.dependencies) {
-          if (excludeDev && dep.isDevDependency) continue;
-          if (forwardReachable.add(dep.name)) {
-            queue.add(dep.name);
-          }
-        }
-      }
-    }
+    final forwardReachable = _reachable(
+      primaryNodes,
+      (pkg) => sourcePackages[pkg]?.dependencies
+          .where((d) => !excludeDev || !d.isDevDependency)
+          .map((d) => d.name),
+    );
 
     // 2. Build Incoming Edges (only for forward reachable nodes to save time)
     final incoming = <String, Set<String>>{};
@@ -188,16 +171,7 @@ class VizRoot with HasPackages {
     }
 
     // 3. Backward Reachable to Primary
-    final backwardReachable = <String>{...primaryNodes};
-    final backQueue = primaryNodes.toList();
-    while (backQueue.isNotEmpty) {
-      final current = backQueue.removeLast();
-      for (var parent in incoming[current] ?? <String>{}) {
-        if (backwardReachable.add(parent)) {
-          backQueue.add(parent);
-        }
-      }
-    }
+    final backwardReachable = _reachable(primaryNodes, (pkg) => incoming[pkg]);
 
     // 4. Intersection
     final keepNodes = forwardReachable.intersection(backwardReachable);
@@ -235,20 +209,12 @@ class VizRoot with HasPackages {
         .where((p) => p.isPrimary)
         .map((p) => p.name)
         .toList();
-    final reachableFromRoot = <String>{...primaryPackages, rootPackageName};
-    final rootQueue = <String>[...reachableFromRoot];
-    while (rootQueue.isNotEmpty) {
-      final current = rootQueue.removeLast();
-      final orig = sourcePackages[current];
-      if (orig != null) {
-        for (var dep in orig.dependencies) {
-          if (excludeDev && dep.isDevDependency) continue;
-          if (reachableFromRoot.add(dep.name)) {
-            rootQueue.add(dep.name);
-          }
-        }
-      }
-    }
+    final reachableFromRoot = _reachable(
+      [...primaryPackages, rootPackageName],
+      (pkg) => sourcePackages[pkg]?.dependencies
+          .where((d) => !excludeDev || !d.isDevDependency)
+          .map((d) => d.name),
+    );
 
     final incoming = <String, Set<String>>{};
     for (var pkgName in reachableFromRoot) {
@@ -268,19 +234,8 @@ class VizRoot with HasPackages {
           p.latestVersion!.compareTo(p.version!) > 0;
     }).toSet();
 
-    final queue = outdatedNodes.toList();
-    final keepNodes = Set<String>.from(outdatedNodes);
-
-    while (queue.isNotEmpty) {
-      final current = queue.removeLast();
-      for (var parent in incoming[current] ?? <String>{}) {
-        if (keepNodes.add(parent)) {
-          queue.add(parent);
-        }
-      }
-    }
-
-    keepNodes.add(rootPackageName);
+    final keepNodes = _reachable(outdatedNodes, (pkg) => incoming[pkg])
+      ..add(rootPackageName);
 
     for (var pkgName in keepNodes) {
       final orig = sourcePackages[pkgName];
@@ -316,22 +271,12 @@ class VizRoot with HasPackages {
         .where((p) => p.isPrimary)
         .map((p) => p.name)
         .toList();
-    final keepNodes = <String>{...primaryPackages, rootPackageName};
-    final queue = <String>[...keepNodes];
-
-    while (queue.isNotEmpty) {
-      final current = queue.removeLast();
-      final orig = sourcePackages[current];
-      if (orig == null) continue;
-
-      for (var dep in orig.dependencies) {
-        if (excludeDev && dep.isDevDependency) continue;
-
-        if (keepNodes.add(dep.name)) {
-          queue.add(dep.name);
-        }
-      }
-    }
+    final keepNodes = _reachable(
+      [...primaryPackages, rootPackageName],
+      (pkg) => sourcePackages[pkg]?.dependencies
+          .where((d) => !excludeDev || !d.isDevDependency)
+          .map((d) => d.name),
+    );
 
     for (var pkgName in keepNodes) {
       final orig = sourcePackages[pkgName];
@@ -364,20 +309,10 @@ class VizRoot with HasPackages {
     }
 
     // 2. Find all nodes reachable from these seeds.
-    final keepNodes = <String>{...seeds};
-    final queue = seeds.toList();
-
-    while (queue.isNotEmpty) {
-      final current = queue.removeLast();
-      final pkg = sourcePackages[current];
-      if (pkg == null) continue;
-
-      for (final dep in pkg.dependencies) {
-        if (keepNodes.add(dep.name)) {
-          queue.add(dep.name);
-        }
-      }
-    }
+    final keepNodes = _reachable(
+      seeds,
+      (pkg) => sourcePackages[pkg]?.dependencies.map((d) => d.name),
+    );
 
     // 3. Rebuild the graph with only reachable nodes.
     final newPackages = SplayTreeMap<String, VizPackage>();
@@ -431,21 +366,31 @@ abstract mixin class HasPackages {
       }
     }
 
-    final reachable = <String>{...seeds};
-    final queue = seeds.toList();
-
-    while (queue.isNotEmpty) {
-      final current = queue.removeLast();
-      final pkg = packages[current];
-      if (pkg == null) continue;
-
-      for (final dep in pkg.dependencies) {
-        if (reachable.add(dep.name)) {
-          queue.add(dep.name);
-        }
-      }
-    }
+    final reachable = _reachable(
+      seeds,
+      (pkg) => packages[pkg]?.dependencies.map((d) => d.name),
+    );
 
     return packages.keys.any((name) => !reachable.contains(name));
   }();
+}
+
+Set<String> _reachable(
+  Iterable<String> seeds,
+  Iterable<String>? Function(String node) getNeighbors,
+) {
+  final visited = <String>{...seeds};
+  final queue = seeds.toList();
+  while (queue.isNotEmpty) {
+    final current = queue.removeLast();
+    final neighbors = getNeighbors(current);
+    if (neighbors != null) {
+      for (final next in neighbors) {
+        if (visited.add(next)) {
+          queue.add(next);
+        }
+      }
+    }
+  }
+  return visited;
 }
