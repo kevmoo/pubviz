@@ -17,8 +17,8 @@
 - Added native Mermaid diagram support:
   - Added the `print-mermaid` action (`-a print-mermaid`) to print the
     dependency graph as a Mermaid flowchart.
-  - Added Mermaid export options ("Copy Mermaid" and "Save Mermaid") to the
-    web UI.
+  - Added Mermaid export options ("Copy Mermaid" and "Save Mermaid") to the web
+    UI.
 - Require `sdk: ^3.12.0`.
 
 ## 6.1.0
@@ -37,6 +37,7 @@
 ## 6.0.0
 
 ### Breaking Changes
+
 - `VizRoot.forDirectory` has been replaced by the `vizRoot` extension method on
   `Service` to accommodate internal refactoring. `vizRoot` is exposed directly
   via `pubviz.dart`.
@@ -49,18 +50,21 @@
 - Removed the `--out-dir` option.
 
 ### Web UI Overhaul
+
 - `--flag-outdated` now defaults to on.
 - Added a filter to hide `dev_dependency` edges and nodes.
 - Added a filter to only show paths to outdated dependencies.
 - Assets are now served without creating a temp directory.
 
 ### New Features
-- **Workspaces**: `pubviz` now automatically infers workspace context.
-  If run in a workspace root or member package, it natively visualizes the
-  layout for the entire workspace graph. The `--workspace` flag is now optional
+
+- **Workspaces**: `pubviz` now automatically infers workspace context. If run in
+  a workspace root or member package, it natively visualizes the layout for the
+  entire workspace graph. The `--workspace` flag is now optional
   (`--[no-]workspace`).
 
 ### Bug Fixes
+
 - **Workspaces**: Included missing relational web edges for `dev_dependencies`
   belonging to workspace sub-members. They previously rendered as disconnected
   nodes.
@@ -68,6 +72,7 @@
 ## 5.0.0
 
 ### Breaking Changes
+
 - Replaced positional commands (`open`, `create`, `print`) and the `--format`
   option with a unified `--action` (`-a`) flag.
 - Default execution (`pubviz`) now functions identically to `pubviz -a open`.
@@ -75,18 +80,20 @@
   on `VizRoot`
 
 ### New Features
+
 - **Workspaces:** Added the `--workspace` (`-w`) flag to visualize all linked
   packages within a Dart workspace.
 - **Output Controls:** Added the `--out-dir` option to specify a target
   destination for generated HTML and offline capabilities.
-- **Serve Mode & Offline Support:** Added the `serve` action which hosts the
-  web app locally via `dhttpd` without booting up a new browser window. The
-  `open` action now uses this local server to bypass strict `file://` CORS
-  restrictions internally. Additionally, the package now supports complete
-  offline functionality by bundling compiled Dart web application assets (JS
-  and WASM) directly inside the package.
+- **Serve Mode & Offline Support:** Added the `serve` action which hosts the web
+  app locally via `dhttpd` without booting up a new browser window. The `open`
+  action now uses this local server to bypass strict `file://` CORS restrictions
+  internally. Additionally, the package now supports complete offline
+  functionality by bundling compiled Dart web application assets (JS and WASM)
+  directly inside the package.
 
 ### Web UI Overhaul
+
 - Completely redesigned the interactive web interface, adding a collapsible
   sidebar for cleaner zooming and display control.
 - Added a `z` keyboard shortcut to easily toggle graph zoom capabilities.
@@ -94,6 +101,7 @@
   color to distinguish them easily.
 
 ### Other Improvements & Fixes
+
 - Modernized workspace discovery inside the codebase by utilizing structured
   JSON data directly from `pub` tool invocations.
 - Hide version labels for primary node packages intentionally marked
@@ -134,177 +142,176 @@
 
 ## 2.8.2+1
 
-* Update README with instructions how to generate PDF, PNG or other files
+- Update README with instructions how to generate PDF, PNG or other files
 
 ## 2.8.2
 
-* Handle a `null` output from `pub` without crashing.
+- Handle a `null` output from `pub` without crashing.
 
 ## 2.8.1
 
-* Copy valid package name parsing logic from `pub` tool.
-  * Packages with `.` in their name are now allowed.
+- Copy valid package name parsing logic from `pub` tool.
+  - Packages with `.` in their name are now allowed.
 
 ## 2.8.0
 
-* Add new `--production-dependencies` flag to only output packages needed for
+- Add new `--production-dependencies` flag to only output packages needed for
   production.
-* Updated `--direct-dependencies` behavior to treat `dev_dependencies` the same
+- Updated `--direct-dependencies` behavior to treat `dev_dependencies` the same
   as `dependencies`.
-* Don't include `sky_engine` in output ever – it's just `dart:ui`.
-* Bumped min Dart SDK to `2.8.1`.
-* Implementation: use new `pub outdated` command.
+- Don't include `sky_engine` in output ever – it's just `dart:ui`.
+- Bumped min Dart SDK to `2.8.1`.
+- Implementation: use new `pub outdated` command.
 
 ## 2.7.0
 
-* Added `--version` to CLI.
-* Bumped min Dart SDK to 2.3.
+- Added `--version` to CLI.
+- Bumped min Dart SDK to 2.3.
 
 ## 2.6.0
 
-* Add support for direct dependencies only with `--direct-dependencies` (`-d`).
+- Add support for direct dependencies only with `--direct-dependencies` (`-d`).
 
 ## 2.5.5
 
-* Update dependencies.
+- Update dependencies.
 
 ## 2.5.4
 
-* Improve the package description.
+- Improve the package description.
 
-* Update some dependencies.
+- Update some dependencies.
 
 ## 2.5.3
 
-* Support Dart 2 stable.
+- Support Dart 2 stable.
 
 ## 2.5.2
 
-* Fixes for Dart 2 type system.
+- Fixes for Dart 2 type system.
 
 ## 2.5.1
 
-* Stop using deprecated HTTP constants.
+- Stop using deprecated HTTP constants.
 
 ## 2.5.0
 
-* Use `pkg:pubspec_parse` package.
+- Use `pkg:pubspec_parse` package.
 
-* Stop using deprecated constants.
+- Stop using deprecated constants.
 
-* Improve handling of pre-release packages.
+- Improve handling of pre-release packages.
 
 ## 2.4.5
 
-* Fix for latest Flutter SDK.
+- Fix for latest Flutter SDK.
 
 ## 2.4.4
 
-* Fixed code organization to eliminate warning during `pub global activate`.
+- Fixed code organization to eliminate warning during `pub global activate`.
 
 ## 2.4.3
 
-* Improvements in CLI error handling and help.
+- Improvements in CLI error handling and help.
 
 ## 2.4.2
 
-* Updated output format.
+- Updated output format.
 
-* And other cleanup...
+- And other cleanup...
 
 ## 2.4.1
 
-* Using `nodesep=0.2` on the graph to make it tighter.
+- Using `nodesep=0.2` on the graph to make it tighter.
 
-* Hosted code
+- Hosted code
 
-  * Much more robust handling of node clicks to add/remove.
+  - Much more robust handling of node clicks to add/remove.
 
-  * Make it clear that nodes can be clicked by changing the cursor.
+  - Make it clear that nodes can be clicked by changing the cursor.
 
 ## 2.4.0
 
-* Better error output if a subprocess fails.
+- Better error output if a subprocess fails.
 
-* Try to handle flutter packages.
+- Try to handle flutter packages.
 
 ## 2.3.11
 
-* Better hover-over behavior for outdated dependencies.
+- Better hover-over behavior for outdated dependencies.
 
 ## 2.3.10
 
-* Update `gviz`.
+- Update `gviz`.
 
-* Support larger dependency graphs.
+- Support larger dependency graphs.
 
-* Update version of `viz.js`.
+- Update version of `viz.js`.
 
-* Use `viz-lite.js` – smaller download.
-  * Continue to host `vis.js` so we don't break existing installations.
+- Use `viz-lite.js` – smaller download.
+  - Continue to host `vis.js` so we don't break existing installations.
 
 ## 2.3.9+1
 
-* Use `gviz` package. Get out of the GraphViz formatting business.
+- Use `gviz` package. Get out of the GraphViz formatting business.
 
 ## 2.3.9
 
-* Updated dependencies.
+- Updated dependencies.
 
-* Fix case where we're pulling in a pre-release version that is after the
-  latest stable version.
+- Fix case where we're pulling in a pre-release version that is after the latest
+  stable version.
 
 ## 2.3.8
 
-* Send a descriptive user agent to the server.
+- Send a descriptive user agent to the server.
 
-* Added retry logic for HTTP requests.
+- Added retry logic for HTTP requests.
 
-* Sort the output.
+- Sort the output.
 
 ## 2.3.7
 
-* Better stack trace on errors.
+- Better stack trace on errors.
 
 ## 2.3.6
 
-* Cleanup, handled some deprecations, improve load time.
+- Cleanup, handled some deprecations, improve load time.
 
 ## 2.3.5
 
-* Tweaks test code, examples, dependencies.
+- Tweaks test code, examples, dependencies.
 
 ## 2.3.4
 
-* Properly escape the latest version for outdated dependencies.
+- Properly escape the latest version for outdated dependencies.
 
-* Add a reasonable tool-tip for the entire graph.
+- Add a reasonable tool-tip for the entire graph.
 
-* Don't show the root node as outdated.
+- Don't show the root node as outdated.
 
 ## 2.3.3
 
-* Using CSS animations for effects. Hosting style on GitHub.
+- Using CSS animations for effects. Hosting style on GitHub.
 
 ## 2.3.2
 
-* All fancy with mouse-over effects.
+- All fancy with mouse-over effects.
 
 ## 2.3.1+1
 
-* Fix `README.md`.
+- Fix `README.md`.
 
 ## 2.3.1
 
-* With `--flag-outdated` (`-o`) do version lookup in parallel. *MUCH* faster.
+- With `--flag-outdated` (`-o`) do version lookup in parallel. _MUCH_ faster.
 
 ## 2.3.0
 
-* Allow ignoring packages via `--ignore-packages`.
-  *Thanks, [Günter](https://github.com/zoechi)!*
+- Allow ignoring packages via `--ignore-packages`. _Thanks,
+  [Günter](https://github.com/zoechi)!_
 
-* A fix for running on Windows.
-  *Thanks, [Oliver](https://github.com/Fox32)!*
+- A fix for running on Windows. _Thanks, [Oliver](https://github.com/Fox32)!_
 
-* A fix for formatting packages with hyphens.
-  *Thanks, [Bryon](https://github.com/bryonmarks)!*
+- A fix for formatting packages with hyphens. _Thanks,
+  [Bryon](https://github.com/bryonmarks)!_

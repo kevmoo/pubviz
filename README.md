@@ -4,7 +4,8 @@
 [![package publisher](https://img.shields.io/pub/publisher/pubviz.svg)](https://pub.dev/packages/pubviz/publisher)
 [![CI](https://github.com/kevmoo/pubviz/actions/workflows/ci.yml/badge.svg)](https://github.com/kevmoo/pubviz/actions/workflows/ci.yml)
 
-*Make sure you run `dart pub get` or `dart pub upgrade` in your target project directory.*
+_Make sure you run `dart pub get` or `dart pub upgrade` in your target project
+directory._
 
 ### Example
 
@@ -66,9 +67,12 @@ digraph G {
 
 ### Generate PDF, PNG and other files
 
-[GraphViz](https://graphviz.org/about/) tool allows dot format to be converted to various types of outputs like PNG, PDF or SVG. 
+[GraphViz](https://graphviz.org/about/) tool allows dot format to be converted
+to various types of outputs like PNG, PDF or SVG.
 
-In order to export `pubviz` data to PNG file you need to install GraphViz package on your machine ([see detailed installation instructions](https://graphviz.org/doc/info/output.html)). 
+In order to export `pubviz` data to PNG file you need to install GraphViz
+package on your machine
+([see detailed installation instructions](https://graphviz.org/doc/info/output.html)).
 
 On macOS:
 
