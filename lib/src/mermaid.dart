@@ -26,10 +26,7 @@ extension VizRootMermaidExt on VizRoot {
         label = '$label<br/>${pkg.version}';
       }
 
-      if (!isRoot &&
-          pkg.version != null &&
-          pkg.latestVersion != null &&
-          pkg.latestVersion!.compareTo(pkg.version!) > 0) {
+      if (!isRoot && pkg.isOutdated) {
         label = '$label<br/>(latest: ${pkg.latestVersion})';
         outdatedNodes.add(pkg.name);
       }

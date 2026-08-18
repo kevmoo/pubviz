@@ -38,10 +38,7 @@ class VizRoot with HasPackages {
     Iterable<String>? ignorePackages,
     bool isWorkspace = false,
   }) {
-    var primaryPackageNames = packages.values
-        .where((p) => p.isPrimary)
-        .map((p) => p.name)
-        .toSet();
+    var primaryPackageNames = _primaryPackageNames(packages);
     if (primaryPackageNames.isEmpty) {
       primaryPackageNames = {rootPackageName};
     }
@@ -154,37 +151,19 @@ class VizRoot with HasPackages {
   Map<String, VizPackage> _filterIgnored(
     Map<String, VizPackage> sourcePackages,
     Set<String> ignored,
-  ) {
-    final newPackages = SplayTreeMap<String, VizPackage>();
-    for (var entry in sourcePackages.entries) {
-      if (entry.key != rootPackageName && ignored.contains(entry.key)) {
-        continue;
-      }
-      final pkg = entry.value;
-      final filteredDeps = pkg.dependencies
-          .where((d) => !ignored.contains(d.name))
-          .toSet();
-      newPackages[entry.key] = VizPackage(
-        pkg.name,
-        pkg.version,
-        SplayTreeSet.of(filteredDeps),
-        pkg.latestVersion,
-        isPrimary: pkg.isPrimary,
-        onlyDev: pkg.onlyDev,
-        isPublishToNone: pkg.isPublishToNone,
-      );
-    }
-    return newPackages;
-  }
+  ) => _rebuildPackages(
+    sourcePackages,
+    sourcePackages.keys.where(
+      (k) => k == rootPackageName || !ignored.contains(k),
+    ),
+    includeDep: (d) => !ignored.contains(d.name),
+  );
 
   Map<String, VizPackage> _filterWorkspace(
     Map<String, VizPackage> sourcePackages,
     bool excludeDev,
   ) {
-    final primaryNodes = sourcePackages.values
-        .where((p) => p.isPrimary)
-        .map((p) => p.name)
-        .toSet();
+    final primaryNodes = _primaryPackageNames(sourcePackages);
 
     // 1. Forward Reachable from Primary
     final forwardReachable = _reachable(
@@ -195,8 +174,108 @@ class VizRoot with HasPackages {
     );
 
     // 2. Build Incoming Edges (only for forward reachable nodes to save time)
+    final incoming = _buildIncoming(
+      sourcePackages,
+      forwardReachable,
+      excludeDev: excludeDev,
+    );
+
+    // 3. Backward Reachable to Primary
+    final backwardReachable = _reachable(primaryNodes, (pkg) => incoming[pkg]);
+
+    // 4. Intersection
+    final keepNodes = forwardReachable.intersection(backwardReachable);
+
+    return _rebuildPackages(
+      sourcePackages,
+      keepNodes,
+      includeDep: (d) =>
+          keepNodes.contains(d.name) && !(excludeDev && d.isDevDependency),
+    );
+  }
+
+  Map<String, VizPackage> _filterOutdated(
+    Map<String, VizPackage> sourcePackages,
+    bool excludeDev,
+  ) {
+    final reachableFromRoot = _reachableFromRoots(
+      sourcePackages,
+      excludeDev: excludeDev,
+    );
+
+    final incoming = _buildIncoming(
+      sourcePackages,
+      reachableFromRoot,
+      excludeDev: excludeDev,
+    );
+
+    final outdatedNodes = reachableFromRoot.where((name) {
+      final p = sourcePackages[name];
+      return p != null && p.isOutdated;
+    }).toSet();
+
+    final keepNodes = _reachable(outdatedNodes, (pkg) => incoming[pkg])
+      ..add(rootPackageName);
+
+    return _rebuildPackages(
+      sourcePackages,
+      keepNodes,
+      includeDep: (d) =>
+          keepNodes.contains(d.name) && (!excludeDev || !d.isDevDependency),
+    );
+  }
+
+  Map<String, VizPackage> _filterStandard(
+    Map<String, VizPackage> sourcePackages,
+    bool excludeDev,
+  ) {
+    final keepNodes = _reachableFromRoots(
+      sourcePackages,
+      excludeDev: excludeDev,
+    );
+
+    return _rebuildPackages(
+      sourcePackages,
+      keepNodes,
+      includeDep: (d) => !excludeDev || !d.isDevDependency,
+    );
+  }
+
+  Map<String, VizPackage> _filterIsolated(
+    Map<String, VizPackage> sourcePackages,
+  ) {
+    final keepNodes = _reachableFromPublished(rootPackageName, sourcePackages);
+    return _rebuildPackages(
+      sourcePackages,
+      keepNodes,
+      includeDep: (d) =>
+          keepNodes.contains(d.name) && sourcePackages.containsKey(d.name),
+    );
+  }
+
+  static Set<String> _primaryPackageNames(Map<String, VizPackage> packages) =>
+      packages.values.where((p) => p.isPrimary).map((p) => p.name).toSet();
+
+  Set<String> _reachableFromRoots(
+    Map<String, VizPackage> sourcePackages, {
+    required bool excludeDev,
+  }) {
+    final seeds = [..._primaryPackageNames(sourcePackages), rootPackageName];
+    return _reachable(
+      seeds,
+      (pkg) => sourcePackages[pkg]?.dependencies
+          .where((d) => !excludeDev || !d.isDevDependency)
+          .map((d) => d.name),
+    );
+  }
+
+  static Map<String, Set<String>> _buildIncoming(
+    Map<String, VizPackage> sourcePackages,
+    Iterable<String> nodes, {
+    required bool excludeDev,
+  }) {
     final incoming = <String, Set<String>>{};
-    for (var name in forwardReachable) {
+    for (var name in nodes) {
       final pkg = sourcePackages[name];
       if (pkg != null) {
         for (var dep in pkg.dependencies) {
@@ -205,173 +284,21 @@ class VizRoot with HasPackages {
         }
       }
     }
+    return incoming;
+  }
 
-    // 3. Backward Reachable to Primary
-    final backwardReachable = _reachable(primaryNodes, (pkg) => incoming[pkg]);
-
-    // 4. Intersection
-    final keepNodes = forwardReachable.intersection(backwardReachable);
-
+  static Map<String, VizPackage> _rebuildPackages(
+    Map<String, VizPackage> sourcePackages,
+    Iterable<String> keepNodes, {
+    required bool Function(Dependency dep) includeDep,
+  }) {
     final newPackages = SplayTreeMap<String, VizPackage>();
     for (var name in keepNodes) {
       final orig = sourcePackages[name];
       if (orig != null) {
-        final filteredDeps = orig.dependencies
-            .where((d) => keepNodes.contains(d.name))
-            .where((d) => !(excludeDev && d.isDevDependency))
-            .toSet();
-
-        newPackages[name] = VizPackage(
-          orig.name,
-          orig.version,
-          filteredDeps,
-          orig.latestVersion,
-          isPrimary: orig.isPrimary,
-          onlyDev: orig.onlyDev,
-          isPublishToNone: orig.isPublishToNone,
-        );
+        final filteredDeps = orig.dependencies.where(includeDep).toSet();
+        newPackages[name] = orig.withDependencies(filteredDeps);
       }
-    }
-
-    return newPackages;
-  }
-
-  Map<String, VizPackage> _filterOutdated(
-    Map<String, VizPackage> sourcePackages,
-    bool excludeDev,
-  ) {
-    final newPackages = SplayTreeMap<String, VizPackage>();
-    final primaryPackages = sourcePackages.values
-        .where((p) => p.isPrimary)
-        .map((p) => p.name)
-        .toList();
-    final reachableFromRoot = _reachable(
-      [...primaryPackages, rootPackageName],
-      (pkg) => sourcePackages[pkg]?.dependencies
-          .where((d) => !excludeDev || !d.isDevDependency)
-          .map((d) => d.name),
-    );
-
-    final incoming = <String, Set<String>>{};
-    for (var pkgName in reachableFromRoot) {
-      final pkg = sourcePackages[pkgName];
-      if (pkg != null) {
-        for (var dep in pkg.dependencies) {
-          if (excludeDev && dep.isDevDependency) continue;
-          incoming.putIfAbsent(dep.name, () => {}).add(pkg.name);
-        }
-      }
-    }
-
-    final outdatedNodes = reachableFromRoot.where((name) {
-      final p = sourcePackages[name];
-      return p != null &&
-          p.latestVersion != null &&
-          p.latestVersion!.compareTo(p.version!) > 0;
-    }).toSet();
-
-    final keepNodes = _reachable(outdatedNodes, (pkg) => incoming[pkg])
-      ..add(rootPackageName);
-
-    for (var pkgName in keepNodes) {
-      final orig = sourcePackages[pkgName];
-      if (orig != null) {
-        final filteredDeps = orig.dependencies
-            .where(
-              (d) =>
-                  keepNodes.contains(d.name) &&
-                  (!excludeDev || !d.isDevDependency),
-            )
-            .toSet();
-
-        newPackages[pkgName] = VizPackage(
-          orig.name,
-          orig.version,
-          filteredDeps,
-          orig.latestVersion,
-          isPrimary: orig.isPrimary,
-          onlyDev: orig.onlyDev,
-          isPublishToNone: orig.isPublishToNone,
-        );
-      }
-    }
-    return newPackages;
-  }
-
-  Map<String, VizPackage> _filterStandard(
-    Map<String, VizPackage> sourcePackages,
-    bool excludeDev,
-  ) {
-    final newPackages = SplayTreeMap<String, VizPackage>();
-    final primaryPackages = sourcePackages.values
-        .where((p) => p.isPrimary)
-        .map((p) => p.name)
-        .toList();
-    final keepNodes = _reachable(
-      [...primaryPackages, rootPackageName],
-      (pkg) => sourcePackages[pkg]?.dependencies
-          .where((d) => !excludeDev || !d.isDevDependency)
-          .map((d) => d.name),
-    );
-
-    for (var pkgName in keepNodes) {
-      final orig = sourcePackages[pkgName];
-      if (orig == null) continue;
-
-      newPackages[pkgName] = VizPackage(
-        orig.name,
-        orig.version,
-        orig.dependencies
-            .where((d) => !excludeDev || !d.isDevDependency)
-            .toSet(),
-        orig.latestVersion,
-        isPrimary: orig.isPrimary,
-        onlyDev: orig.onlyDev,
-        isPublishToNone: orig.isPublishToNone,
-      );
-    }
-    return newPackages;
-  }
-
-  Map<String, VizPackage> _filterIsolated(
-    Map<String, VizPackage> sourcePackages,
-  ) {
-    // 1. Find all "seeds" (root package and all published packages).
-    final seeds = <String>{rootPackageName};
-    for (final pkg in sourcePackages.values) {
-      if (!pkg.isPublishToNone) {
-        seeds.add(pkg.name);
-      }
-    }
-
-    // 2. Find all nodes reachable from these seeds.
-    final keepNodes = _reachable(
-      seeds,
-      (pkg) => sourcePackages[pkg]?.dependencies.map((d) => d.name),
-    );
-
-    // 3. Rebuild the graph with only reachable nodes.
-    final newPackages = SplayTreeMap<String, VizPackage>();
-    for (final name in keepNodes) {
-      final orig = sourcePackages[name];
-      if (orig == null) continue;
-      final filteredDeps = orig.dependencies
-          .where(
-            (d) =>
-                keepNodes.contains(d.name) &&
-                sourcePackages.containsKey(d.name),
-          )
-          .toSet();
-
-      newPackages[name] = VizPackage(
-        orig.name,
-        orig.version,
-        filteredDeps,
-        orig.latestVersion,
-        isPrimary: orig.isPrimary,
-        onlyDev: orig.onlyDev,
-        isPublishToNone: orig.isPublishToNone,
-      );
     }
     return newPackages;
   }
@@ -383,32 +310,31 @@ abstract mixin class HasPackages {
 
   late final root = packages[rootPackageName]!;
 
-  late final hasOutdated = packages.values.any(
-    (p) =>
-        p.version != null &&
-        p.latestVersion != null &&
-        p.latestVersion!.compareTo(p.version!) > 0,
-  );
+  late final hasOutdated = packages.values.any((p) => p.isOutdated);
 
   late final hasDevDependencies = packages.values.any(
     (p) => p.dependencies.any((d) => d.isDevDependency),
   );
 
   late final hasIsolatedPackages = () {
-    final seeds = <String>{rootPackageName};
-    for (final pkg in packages.values) {
-      if (!pkg.isPublishToNone) {
-        seeds.add(pkg.name);
-      }
-    }
-
-    final reachable = _reachable(
-      seeds,
-      (pkg) => packages[pkg]?.dependencies.map((d) => d.name),
-    );
-
+    final reachable = _reachableFromPublished(rootPackageName, packages);
     return packages.keys.any((name) => !reachable.contains(name));
   }();
+}
+
+Set<String> _reachableFromPublished(
+  String rootPackageName,
+  Map<String, VizPackage> packages,
+) {
+  final seeds = <String>{
+    rootPackageName,
+    for (final pkg in packages.values)
+      if (!pkg.isPublishToNone) pkg.name,
+  };
+  return _reachable(
+    seeds,
+    (pkg) => packages[pkg]?.dependencies.map((d) => d.name),
+  );
 }
 
 Set<String> _reachable(
