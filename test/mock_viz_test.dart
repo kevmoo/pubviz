@@ -756,6 +756,7 @@ class _MockVizRoot with HasPackages implements VizRoot {
     bool onlyOutdated = false,
     bool onlyWorkspace = false,
     bool hideIsolated = false,
+    Iterable<String> ignorePackages = const [],
   }) => throw UnimplementedError();
 
   @override

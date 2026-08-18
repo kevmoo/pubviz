@@ -7,6 +7,7 @@
   `deps -s list` text parsing and `string_scanner` dependency.
 - Fixes `hide-isolated` filter was not being applied to the `print` and
   `print-mermaid` actions.
+- Fixes `--ignore-packages` having no effect with the `open` and `serve` actions.
 
 ## 6.2.0+1
 

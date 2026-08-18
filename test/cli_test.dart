@@ -179,6 +179,33 @@ $_usage''');
     await process.shouldExit(0);
   });
 
+  test('serve action respects -i / --ignore-packages in viz_data.js', () async {
+    final process = await TestProcess.start(Platform.executable, [
+      _entryPoint,
+      '-a',
+      'serve',
+      '-i',
+      'path',
+    ]);
+
+    late String serverUrl;
+    while (true) {
+      final line = await process.stdout.next;
+      if (line.startsWith('Serving pubviz on ')) {
+        serverUrl = line.substring('Serving pubviz on '.length).trim();
+        break;
+      }
+    }
+
+    final dataResponse = await http.get(Uri.parse('${serverUrl}viz_data.js'));
+    check(dataResponse.statusCode).equals(200);
+    check(dataResponse.body).contains('vizDataString');
+    check(dataResponse.body).not((it) => it.contains('"name":"path"'));
+
+    process.stdin.writeln('q');
+    await process.shouldExit(0);
+  });
+
   group('workspace inference', () {
     setUp(() async {
       await d.dir('workspace', [

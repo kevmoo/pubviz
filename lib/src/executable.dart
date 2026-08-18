@@ -105,19 +105,18 @@ Future<void> run(Options options) async {
           ..writeln();
       }
     }
+    final filteredVp = _filter(vp, options);
     switch (options.action) {
       case Action.print:
-        final filteredVp = _filter(vp, options);
         _printContent(filteredVp, options.ignorePackages);
       case Action.printMermaid:
-        final filteredVp = _filter(vp, options);
         final content = filteredVp.toMermaid(
           ignorePackages: options.ignorePackages,
         );
         print(content);
       case Action.open:
       case Action.serve:
-        await _createOrOpen(vp, options);
+        await _createOrOpen(filteredVp, options);
     }
   } finally {
     if (tempDir != null) {
@@ -132,6 +131,7 @@ VizRoot _filter(VizRoot vp, Options options) => vp.filter(
   onlyOutdated: options.filters.contains(filterOutdated),
   onlyWorkspace: options.filters.contains(filterWorkspace),
   hideIsolated: options.filters.contains(filterHideIsolated),
+  ignorePackages: options.ignorePackages,
 );
 
 String _getContentDot(VizRoot root, List<String> ignorePackages) =>
