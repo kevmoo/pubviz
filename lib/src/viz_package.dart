@@ -41,6 +41,21 @@ class VizPackage implements Comparable<VizPackage> {
 
   Map<String, dynamic> toJson() => _$VizPackageToJson(this);
 
+  bool get isOutdated =>
+      version != null &&
+      latestVersion != null &&
+      latestVersion!.compareTo(version!) > 0;
+
+  VizPackage withDependencies(Set<Dependency> newDependencies) => VizPackage(
+    name,
+    version,
+    newDependencies,
+    latestVersion,
+    isPrimary: isPrimary,
+    onlyDev: onlyDev,
+    isPublishToNone: isPublishToNone,
+  );
+
   @override
   String toString() => '$name @ $version';
 

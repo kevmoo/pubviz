@@ -62,10 +62,7 @@ void _writeDot(
     props['style'] = currentStyle == null ? 'dashed' : '$currentStyle,dashed';
   }
 
-  if (!isRoot &&
-      pkg.version != null &&
-      pkg.latestVersion != null &&
-      pkg.latestVersion!.compareTo(pkg.version!) > 0) {
+  if (!isRoot && pkg.isOutdated) {
     props['color'] = colorRed;
     props['xlabel'] = '${pkg.latestVersion}';
   }

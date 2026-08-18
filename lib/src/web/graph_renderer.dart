@@ -320,28 +320,20 @@ final class GraphRenderer {
         }
       } else {
         if (targetPkg.contains(nodeXTo) || targetPkg.contains(nodeXFrom)) {
+          DepInfo makeDepInfo(String name) => (
+            name: name,
+            constraint: edge.constraint,
+            isDev: edge.isDev,
+            isNodeOutdated: nodes.firstWhere((n) => n.id == name).isOutdated,
+            isEdgeOutdated: edge.isOutdated,
+          );
+
           if (targetPkg.contains(nodeXTo)) {
-            fromDeps.add((
-              name: nodeXFrom,
-              constraint: edge.constraint,
-              isDev: edge.isDev,
-              isNodeOutdated: nodes
-                  .firstWhere((n) => n.id == nodeXFrom)
-                  .isOutdated,
-              isEdgeOutdated: edge.isOutdated,
-            ));
+            fromDeps.add(makeDepInfo(nodeXFrom));
           }
 
           if (targetPkg.contains(nodeXFrom)) {
-            toDeps.add((
-              name: nodeXTo,
-              constraint: edge.constraint,
-              isDev: edge.isDev,
-              isNodeOutdated: nodes
-                  .firstWhere((n) => n.id == nodeXTo)
-                  .isOutdated,
-              isEdgeOutdated: edge.isOutdated,
-            ));
+            toDeps.add(makeDepInfo(nodeXTo));
           }
 
           edge.element.classList.add('active');
