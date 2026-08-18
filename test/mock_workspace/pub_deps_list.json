@@ -1,0 +1,84 @@
+{
+  "root": "my_workspace",
+  "packages": [
+    {
+      "name": "my_workspace",
+      "version": "0.0.0",
+      "kind": "root",
+      "source": "root",
+      "dependencies": [
+        "member_b"
+      ],
+      "directDependencies": [
+        "member_b"
+      ],
+      "devDependencies": [],
+      "dependencyConstraints": {
+        "member_b": "any"
+      }
+    },
+    {
+      "name": "member_a",
+      "version": "1.0.0",
+      "kind": "root",
+      "source": "root",
+      "dependencies": [
+        "args",
+        "path"
+      ],
+      "directDependencies": [
+        "args"
+      ],
+      "devDependencies": [
+        "path"
+      ],
+      "dependencyConstraints": {
+        "args": "any",
+        "path": "any"
+      }
+    },
+    {
+      "name": "member_b",
+      "version": "1.0.0",
+      "kind": "root",
+      "source": "root",
+      "dependencies": [
+        "member_a"
+      ],
+      "directDependencies": [
+        "member_a"
+      ],
+      "devDependencies": [],
+      "dependencyConstraints": {
+        "member_a": "any"
+      }
+    },
+    {
+      "name": "args",
+      "version": "2.0.0",
+      "kind": "direct",
+      "source": "hosted",
+      "dependencies": [],
+      "directDependencies": [],
+      "devDependencies": [],
+      "dependencyConstraints": {}
+    },
+    {
+      "name": "path",
+      "version": "1.8.0",
+      "kind": "dev",
+      "source": "hosted",
+      "dependencies": [],
+      "directDependencies": [],
+      "devDependencies": [],
+      "dependencyConstraints": {}
+    }
+  ],
+  "sdks": [
+    {
+      "name": "Dart",
+      "version": "3.12.0"
+    }
+  ],
+  "executables": []
+}

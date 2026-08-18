@@ -53,9 +53,8 @@ void main() {
 
 Future<void> _initTest() async {
   // add pubspec
-  final content = await File(
-    p.join('test', 'test_pubspec.yaml'),
-  ).readAsString();
+  final content = await File(p.join('test', 'test_pubspec.yaml'))
+      .readAsString();
 
   await d.file('pubspec.yaml', content).create();
 

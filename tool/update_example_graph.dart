@@ -10,7 +10,7 @@ import 'package:pubviz/src/root_builder.dart';
 
 import '../test/mock_data_service.dart';
 
-const _pubDepsListPath = 'test/demo_workspace/pub_deps_list.txt';
+const _pubDepsListPath = 'test/demo_workspace/pub_deps_list.json';
 const _outdatedJsonPath = 'test/demo_workspace/outdated.json';
 const _workspaceListPath = 'test/demo_workspace/workspace_list.json';
 
@@ -51,9 +51,9 @@ Future<void> _resolveWorkspaceDependencies() async {
 List<String> _findWorkspaceMembers() {
   final workspaceListFile = File(_workspaceListPath);
   if (workspaceListFile.existsSync()) {
-    final json =
-        jsonDecode(workspaceListFile.readAsStringSync())
-            as Map<String, dynamic>;
+    final json = jsonDecode(
+      workspaceListFile.readAsStringSync(),
+    ) as Map<String, dynamic>;
     final packages = json['packages'] as List;
     return packages
         .cast<Map<String, dynamic>>()
@@ -132,7 +132,7 @@ Future<void> _runPubGetAndDeps(
   pubspecFile.writeAsStringSync('''
 name: temp_project
 environment:
-  sdk: '^3.12.0'
+  sdk: '^3.13.0'
 dependencies:
 ${depsBuffer.toString()}
 ''');
@@ -152,11 +152,11 @@ ${depsBuffer.toString()}
     );
   }
 
-  print('Running `dart pub deps` in temp project...');
+  print('Running `dart pub deps --json` in temp project...');
   final depsResult = await Process.run(Platform.executable, [
     'pub',
     'deps',
-    '--style=list',
+    '--json',
   ], workingDirectory: tempDir.path);
 
   if (depsResult.exitCode != 0) {
@@ -173,73 +173,38 @@ ${depsBuffer.toString()}
 }
 
 void _updatePubDepsList(String depsOutput) {
-  final transitiveIndex = depsOutput.indexOf('transitive dependencies:');
-
-  if (transitiveIndex == -1) {
-    throw const FormatException(
-      'Could not find "transitive dependencies:" in deps output.',
-    );
-  }
-
-  final newTransitiveSection = depsOutput.substring(transitiveIndex).trim();
-
-  // Extract 'test', 'typed_data', and 'http_parser' blocks from
-  // dependencies section and prepend them to transitive dependencies.
-  const packagesToExtract = {'test', 'typed_data', 'http_parser'};
-  final extractedBlocks = <String>[];
-  final lines = depsOutput.split('\n');
-
-  for (final pkg in packagesToExtract) {
-    final block = <String>[];
-    var inBlock = false;
-
-    for (final line in lines) {
-      if (line.startsWith('- $pkg ')) {
-        inBlock = true;
-        block.add(line);
-      } else if (inBlock) {
-        if (line.startsWith('- ') ||
-            line.startsWith('transitive dependencies:')) {
-          break;
-        }
-        block.add(line);
-      }
-    }
-    if (block.isNotEmpty) {
-      extractedBlocks.add(block.join('\n').trim());
-    }
-  }
-
-  final extractedStr = extractedBlocks.join('\n').trim();
-  final restOfTransitive = newTransitiveSection
-      .substring('transitive dependencies:'.length)
-      .trim();
-  final finalTransitiveSection = extractedStr.isNotEmpty
-      ? 'transitive dependencies:\n$extractedStr\n$restOfTransitive'
-      : newTransitiveSection;
-
-  print('Merging with existing $_pubDepsListPath...');
+  final decoded = jsonDecode(depsOutput) as Map<String, dynamic>;
   final existingFile = File(_pubDepsListPath);
   if (!existingFile.existsSync()) {
     throw const FileSystemException('File not found', _pubDepsListPath);
   }
 
-  final existingContent = existingFile.readAsStringSync();
-  final existingTransitiveIndex = existingContent.indexOf(
-    'transitive dependencies:',
-  );
+  final existingJson =
+      jsonDecode(existingFile.readAsStringSync()) as Map<String, dynamic>;
+  final existingPackages = (existingJson['packages'] as List)
+      .cast<Map<String, dynamic>>();
 
-  if (existingTransitiveIndex == -1) {
-    throw const FormatException(
-      'Could not find "transitive dependencies:" in $_pubDepsListPath.',
-    );
-  }
+  final rootPackages = existingPackages
+      .where((p) => p['kind'] == 'root')
+      .toList();
 
-  final staticPart = existingContent.substring(0, existingTransitiveIndex);
-  final updatedContent = '$staticPart$finalTransitiveSection\n';
+  final tempPackages = (decoded['packages'] as List)
+      .cast<Map<String, dynamic>>();
 
-  existingFile.writeAsStringSync(updatedContent);
+  final nonRootPackages = tempPackages
+      .where((p) => p['kind'] != 'root')
+      .toList();
 
+  final merged = {
+    'root': existingJson['root'] ?? 'demo_workspace',
+    'packages': [...rootPackages, ...nonRootPackages],
+    'sdks': decoded['sdks'] ?? existingJson['sdks'],
+    'executables':
+        decoded['executables'] ?? existingJson['executables'] ?? <Object>[],
+  };
+
+  const encoder = JsonEncoder.withIndent('  ');
+  existingFile.writeAsStringSync('${encoder.convert(merged)}\n');
   print('Successfully updated $_pubDepsListPath!');
 }
 
@@ -274,9 +239,8 @@ Future<void> _updateOutdatedJson(Directory tempDir) async {
 
     final outputJson = {'packages': outputPackages};
     const encoder = JsonEncoder.withIndent('  ');
-    File(
-      _outdatedJsonPath,
-    ).writeAsStringSync('${encoder.convert(outputJson)}\n');
+    File(_outdatedJsonPath)
+        .writeAsStringSync('${encoder.convert(outputJson)}\n');
     print('Successfully updated $_outdatedJsonPath!');
   } else {
     stderr.writeln('Warning: Failed to run pub outdated in temp project.');

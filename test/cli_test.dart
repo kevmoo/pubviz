@@ -65,9 +65,8 @@ $_usage''');
     ]);
 
     final output = await proc.stdoutStream().join('\n');
-    check(
-      output,
-    ).contains('"bob" is not an allowed value for option "--filters".');
+    check(output)
+        .contains('"bob" is not an allowed value for option "--filters".');
 
     await proc.shouldExit(64);
   });
@@ -160,16 +159,16 @@ $_usage''');
 
     final dataResponse = await http.get(Uri.parse('${serverUrl}viz_data.js'));
     check(dataResponse.statusCode).equals(200);
-    check(
-      dataResponse.headers['content-type'],
-    ).isNotNull().contains('text/javascript');
+    check(dataResponse.headers['content-type'])
+        .isNotNull()
+        .contains('text/javascript');
     check(dataResponse.body).contains('vizDataString');
 
     final indexResponse = await http.get(Uri.parse(serverUrl));
     check(indexResponse.statusCode).equals(200);
-    check(
-      indexResponse.headers['content-type'],
-    ).isNotNull().contains('text/html');
+    check(indexResponse.headers['content-type'])
+        .isNotNull()
+        .contains('text/html');
     check(indexResponse.body).contains('<!DOCTYPE html>');
 
     final cssResponse = await http.get(Uri.parse('${serverUrl}style.css'));
@@ -354,9 +353,8 @@ resolution: workspace
   test('readme', () {
     final readmeContent = File('README.md').readAsStringSync();
 
-    check(
-      readmeContent,
-    ).contains(['```console', r'$ pubviz -?', _usage, '```'].join('\n'));
+    check(readmeContent)
+        .contains(['```console', r'$ pubviz -?', _usage, '```'].join('\n'));
   });
 }
 

@@ -10,7 +10,6 @@ linter:
   rules:
     - avoid_bool_literals_in_conditional_expressions
     - avoid_classes_with_only_static_members
-    - avoid_private_typedef_functions
     - avoid_redundant_argument_values
     - avoid_returning_this
     - avoid_unused_constructor_parameters
@@ -27,7 +26,6 @@ linter:
     - prefer_final_locals
     - require_trailing_commas
     - simple_directive_paths
-    - unnecessary_await_in_return
     - unnecessary_ignore
     - use_raw_strings
     - use_string_buffers

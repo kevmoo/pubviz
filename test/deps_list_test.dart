@@ -1,88 +1,152 @@
 @TestOn('vm')
 library;
 
-import 'dart:convert';
-import 'dart:io';
-
 import 'package:checks/checks.dart';
-import 'package:path/path.dart' as p;
 import 'package:pub_semver/pub_semver.dart';
 import 'package:pubviz/src/deps_list.dart';
-import 'package:stack_trace/stack_trace.dart';
 import 'package:test/scaffolding.dart';
 
-const _write = false;
-
 void main() {
-  const depsList = [
-    ['deps', 'empty_deps'],
-    ['deps', 'flutter_gallery'],
-    ['deps', 'knarly_deps'],
-    ['deps', 'with_dots'],
-    ['deps', 'with_overrides'],
-    ['mock', 'json_serial'],
-    ['mock', 'pub_deps_list'],
-  ];
+  test('DepsList.fromJson parses pub deps --json format with constraints '
+      'correctly', () {
+    final jsonMap = <String, dynamic>{
+      'root': 'myapp',
+      'packages': <dynamic>[
+        <String, dynamic>{
+          'name': 'myapp',
+          'version': '1.0.0',
+          'kind': 'root',
+          'source': 'root',
+          'dependencies': <String>['foo', 'test_dep'],
+          'directDependencies': <String>['foo'],
+          'devDependencies': <String>['test_dep'],
+          'dependencyConstraints': <String, String>{
+            'foo': '^2.1.0',
+            'test_dep': '^1.0.0',
+          },
+        },
+        <String, dynamic>{
+          'name': 'foo',
+          'version': '2.3.4',
+          'kind': 'direct',
+          'source': 'hosted',
+          'dependencies': <String>['bar'],
+          'directDependencies': <String>['bar'],
+          'dependencyConstraints': <String, String>{'bar': '>=1.0.0 <3.0.0'},
+        },
+        <String, dynamic>{
+          'name': 'test_dep',
+          'version': '1.5.0',
+          'kind': 'dev',
+          'source': 'hosted',
+          'dependencies': <String>[],
+          'directDependencies': <String>[],
+          'dependencyConstraints': <String, String>{},
+        },
+        <String, dynamic>{
+          'name': 'bar',
+          'version': '1.2.0',
+          'kind': 'transitive',
+          'source': 'hosted',
+          'dependencies': <String>[],
+          'directDependencies': <String>[],
+          'dependencyConstraints': <String, String>{},
+        },
+      ],
+      'sdks': <dynamic>[
+        <String, String>{'name': 'Dart', 'version': '3.13.0'},
+      ],
+      'executables': <String>[],
+    };
 
-  for (var path in depsList.map((e) => p.joinAll(['test', ...e]))) {
-    test(path, () {
-      final file = File('$path.txt');
-      final deps = DepsList.parse(file.readAsStringSync());
+    final depsList = DepsList.fromJson(jsonMap);
 
-      // ignore: prefer_interpolation_to_compose_strings
-      final depsJson = _prettyJsonEncode(deps) + '\n';
+    check(depsList.rootPackageName).equals('myapp');
+    check(depsList.sdks)['Dart'].equals(Version.parse('3.13.0'));
 
-      final jsonFile = File('$path.json');
+    final rootPkg = depsList.rootPackage;
+    check(rootPkg.name).equals('myapp');
+    check(rootPkg.version).equals(Version.parse('1.0.0'));
 
-      if (_write) {
-        jsonFile.writeAsStringSync(depsJson);
-        throw StateError('Set `_write` to false!');
-      }
+    // Check dependencies section of root package
+    check(rootPkg.sections).containsKey('dependencies');
+    final depsSection = rootPkg.sections['dependencies']!;
+    check(depsSection.keys.map((e) => e.name)).contains('foo');
+    check(depsSection.keys.map((e) => e.version))
+        .contains(Version.parse('2.3.4'));
 
-      check(depsJson).equals(jsonFile.readAsStringSync());
-    });
-  }
-}
+    final fooKey = depsSection.keys.firstWhere((e) => e.name == 'foo');
+    check(
+      depsSection[fooKey]!,
+    )['bar'].equals(VersionConstraint.parse('>=1.0.0 <3.0.0'));
 
-String _prettyJsonEncode(Object? content) {
-  try {
-    return '${_encoder.convert(content)}\n';
-  } catch (e) {
-    if (e is JsonUnsupportedObjectError) {
-      Object? error = e;
+    // Check dev dependencies section of root package
+    check(rootPkg.sections).containsKey('dev dependencies');
+    final devSection = rootPkg.sections['dev dependencies']!;
+    check(devSection.keys.map((e) => e.name)).contains('test_dep');
 
-      var count = 1;
+    // Check transitive dependencies
+    check(depsList.transitiveDependencies.keys.map((e) => e.name))
+        .contains('bar');
+    final barKey = depsList.transitiveDependencies.keys.firstWhere(
+      (e) => e.name == 'bar',
+    );
+    check(depsList.transitiveDependencies[barKey]!).isEmpty();
 
-      while (error is JsonUnsupportedObjectError) {
-        final juoe = error;
-        print(
-          '(${count++}) $error ${juoe.unsupportedObject} '
-          '${juoe.unsupportedObject.runtimeType} !!!',
-        );
-        print(Trace.from(juoe.stackTrace!).terse);
-        error = juoe.cause;
-      }
+    // Check allEntries
+    check(rootPkg.allEntries.keys.map((e) => e.name))
+        .unorderedEquals(['foo', 'test_dep', 'bar']);
+  });
 
-      if (error != null) {
-        print('(${count++}) $error ???');
-        if (error is AssertionError) {
-          print(error.stackTrace);
-        }
-      }
-    }
-    rethrow;
-  }
-}
+  test('DepsList.fromJson handles workspace with multiple roots', () {
+    final jsonMap = <String, dynamic>{
+      'root': 'workspace_root',
+      'packages': <dynamic>[
+        <String, dynamic>{
+          'name': 'workspace_root',
+          'version': '0.0.0',
+          'kind': 'root',
+          'source': 'root',
+          'dependencies': <String>['member_a'],
+          'directDependencies': <String>['member_a'],
+          'devDependencies': <String>[],
+          'dependencyConstraints': <String, String>{'member_a': '0.0.0'},
+        },
+        <String, dynamic>{
+          'name': 'member_a',
+          'version': '1.0.0',
+          'kind': 'root',
+          'source': 'root',
+          'dependencies': <String>['args'],
+          'directDependencies': <String>['args'],
+          'devDependencies': <String>[],
+          'dependencyConstraints': <String, String>{'args': '^2.0.0'},
+        },
+        <String, dynamic>{
+          'name': 'args',
+          'version': '2.4.2',
+          'kind': 'direct',
+          'source': 'hosted',
+          'dependencies': <String>[],
+          'directDependencies': <String>[],
+          'dependencyConstraints': <String, String>{},
+        },
+      ],
+      'sdks': <dynamic>[
+        <String, String>{'name': 'Dart', 'version': '3.13.0'},
+      ],
+      'executables': <String>[],
+    };
 
-const _encoder = JsonEncoder.withIndent(' ', _toEncodable);
+    final depsList = DepsList.fromJson(jsonMap);
+    check(depsList.packages.keys)
+        .unorderedEquals(['workspace_root', 'member_a']);
+    check(depsList.rootPackage.name).equals('workspace_root');
 
-Object? _toEncodable(Object? source) {
-  if (source is DepsList) {
-    return source.toJson();
-  } else if (source is DepsPackageEntry) {
-    return source.toJson();
-  } else if (source is VersionConstraint) {
-    return source.toString();
-  }
-  throw UnsupportedError('unknown ${source.runtimeType} ${source.hashCode}');
+    final memberA = depsList.packages['member_a']!;
+    check(memberA.sections).containsKey('dependencies');
+    final argsKey = memberA.sections['dependencies']!.keys.first;
+    check(argsKey.name).equals('args');
+    check(argsKey.version).equals(Version.parse('2.4.2'));
+  });
 }
