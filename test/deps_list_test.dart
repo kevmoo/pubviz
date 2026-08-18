@@ -72,9 +72,8 @@ void main() {
     check(rootPkg.sections).containsKey('dependencies');
     final depsSection = rootPkg.sections['dependencies']!;
     check(depsSection.keys.map((e) => e.name)).contains('foo');
-    check(
-      depsSection.keys.map((e) => e.version),
-    ).contains(Version.parse('2.3.4'));
+    check(depsSection.keys.map((e) => e.version))
+        .contains(Version.parse('2.3.4'));
 
     final fooKey = depsSection.keys.firstWhere((e) => e.name == 'foo');
     check(
@@ -87,18 +86,16 @@ void main() {
     check(devSection.keys.map((e) => e.name)).contains('test_dep');
 
     // Check transitive dependencies
-    check(
-      depsList.transitiveDependencies.keys.map((e) => e.name),
-    ).contains('bar');
+    check(depsList.transitiveDependencies.keys.map((e) => e.name))
+        .contains('bar');
     final barKey = depsList.transitiveDependencies.keys.firstWhere(
       (e) => e.name == 'bar',
     );
     check(depsList.transitiveDependencies[barKey]!).isEmpty();
 
     // Check allEntries
-    check(
-      rootPkg.allEntries.keys.map((e) => e.name),
-    ).unorderedEquals(['foo', 'test_dep', 'bar']);
+    check(rootPkg.allEntries.keys.map((e) => e.name))
+        .unorderedEquals(['foo', 'test_dep', 'bar']);
   });
 
   test('DepsList.fromJson handles workspace with multiple roots', () {
@@ -142,9 +139,8 @@ void main() {
     };
 
     final depsList = DepsList.fromJson(jsonMap);
-    check(
-      depsList.packages.keys,
-    ).unorderedEquals(['workspace_root', 'member_a']);
+    check(depsList.packages.keys)
+        .unorderedEquals(['workspace_root', 'member_a']);
     check(depsList.rootPackage.name).equals('workspace_root');
 
     final memberA = depsList.packages['member_a']!;

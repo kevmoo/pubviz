@@ -36,13 +36,11 @@ void main() {
 
     test('VersionConstraintConverter', () {
       const converter = VersionConstraintConverter();
-      check(
-        converter.fromJson('^1.0.0'),
-      ).equals(VersionConstraint.parse('^1.0.0'));
+      check(converter.fromJson('^1.0.0'))
+          .equals(VersionConstraint.parse('^1.0.0'));
       check(converter.fromJson('bad')).equals(VersionConstraint.empty);
-      check(
-        converter.toJson(VersionConstraint.parse('^1.0.0')),
-      ).equals('^1.0.0');
+      check(converter.toJson(VersionConstraint.parse('^1.0.0')))
+          .equals('^1.0.0');
     });
   });
 
@@ -73,9 +71,8 @@ void main() {
       check(
         Dependency('a', VersionConstraint.parse('^1.0.0'), false).toString(),
       ).equals('a ^1.0.0');
-      check(
-        Dependency('a', VersionConstraint.parse('^1.0.0'), true).toString(),
-      ).equals('a(dev) ^1.0.0');
+      check(Dependency('a', VersionConstraint.parse('^1.0.0'), true).toString())
+          .equals('a(dev) ^1.0.0');
     });
 
     test('json', () {
@@ -112,9 +109,8 @@ void main() {
     });
 
     test('toString', () {
-      check(
-        VizPackage('a', Version(1, 0, 0), {}, null).toString(),
-      ).equals('a @ 1.0.0');
+      check(VizPackage('a', Version(1, 0, 0), {}, null).toString())
+          .equals('a @ 1.0.0');
     });
 
     test('json', () {

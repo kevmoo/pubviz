@@ -11,13 +11,12 @@ void main() {
     test(
       'throws UsageException for invalid format (too many colons)',
       () async {
-        await check(
-          setupPublishedPackageProject('a:b:c'),
-        ).throws<UsageException>(
-          (it) => it
-              .has((e) => e.message, 'message')
-              .contains('Invalid package format'),
-        );
+        await check(setupPublishedPackageProject('a:b:c'))
+            .throws<UsageException>(
+              (it) => it
+                  .has((e) => e.message, 'message')
+                  .contains('Invalid package format'),
+            );
       },
     );
 
@@ -55,13 +54,12 @@ void main() {
     );
 
     test('throws UsageException for invalid version constraint', () async {
-      await check(
-        setupPublishedPackageProject('a:invalid-version'),
-      ).throws<UsageException>(
-        (it) => it
-            .has((e) => e.message, 'message')
-            .contains('Invalid version constraint'),
-      );
+      await check(setupPublishedPackageProject('a:invalid-version'))
+          .throws<UsageException>(
+            (it) => it
+                .has((e) => e.message, 'message')
+                .contains('Invalid version constraint'),
+          );
     });
   });
 }

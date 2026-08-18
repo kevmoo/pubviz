@@ -51,9 +51,9 @@ Future<void> _resolveWorkspaceDependencies() async {
 List<String> _findWorkspaceMembers() {
   final workspaceListFile = File(_workspaceListPath);
   if (workspaceListFile.existsSync()) {
-    final json =
-        jsonDecode(workspaceListFile.readAsStringSync())
-            as Map<String, dynamic>;
+    final json = jsonDecode(
+      workspaceListFile.readAsStringSync(),
+    ) as Map<String, dynamic>;
     final packages = json['packages'] as List;
     return packages
         .cast<Map<String, dynamic>>()
@@ -239,9 +239,8 @@ Future<void> _updateOutdatedJson(Directory tempDir) async {
 
     final outputJson = {'packages': outputPackages};
     const encoder = JsonEncoder.withIndent('  ');
-    File(
-      _outdatedJsonPath,
-    ).writeAsStringSync('${encoder.convert(outputJson)}\n');
+    File(_outdatedJsonPath)
+        .writeAsStringSync('${encoder.convert(outputJson)}\n');
     print('Successfully updated $_outdatedJsonPath!');
   } else {
     stderr.writeln('Warning: Failed to run pub outdated in temp project.');

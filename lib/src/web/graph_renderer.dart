@@ -221,9 +221,9 @@ final class GraphRenderer {
     _root.onMouseOver.listen((MouseEvent event) {
       final target =
           (event.target as Element).closest('g.node, g.edge') as SVGGElement?;
-      final related =
-          (event.relatedTarget as Element?)?.closest('g.node, g.edge')
-              as SVGGElement?;
+      final related = (event.relatedTarget as Element?)?.closest(
+        'g.node, g.edge',
+      ) as SVGGElement?;
 
       if (target == related) return;
 
