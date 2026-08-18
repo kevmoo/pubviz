@@ -113,12 +113,21 @@ class VizRoot with HasPackages {
     bool onlyOutdated = false,
     bool onlyWorkspace = false,
     bool hideIsolated = false,
+    Iterable<String> ignorePackages = const [],
   }) {
-    if (!excludeDev && !onlyOutdated && !onlyWorkspace && !hideIsolated) {
+    final ignored = ignorePackages.toSet();
+    if (!excludeDev &&
+        !onlyOutdated &&
+        !onlyWorkspace &&
+        !hideIsolated &&
+        ignored.isEmpty) {
       return this;
     }
 
     var currentPackages = packages;
+    if (ignored.isNotEmpty) {
+      currentPackages = _filterIgnored(currentPackages, ignored);
+    }
     if (onlyWorkspace) {
       currentPackages = _filterWorkspace(currentPackages, excludeDev);
     }
@@ -138,7 +147,34 @@ class VizRoot with HasPackages {
       currentPackages,
       flagOutdated: packages.values.any((p) => p.latestVersion != null),
       isWorkspace: isWorkspace,
+      ignorePackages: ignorePackages,
     );
+  }
+
+  Map<String, VizPackage> _filterIgnored(
+    Map<String, VizPackage> sourcePackages,
+    Set<String> ignored,
+  ) {
+    final newPackages = SplayTreeMap<String, VizPackage>();
+    for (var entry in sourcePackages.entries) {
+      if (entry.key != rootPackageName && ignored.contains(entry.key)) {
+        continue;
+      }
+      final pkg = entry.value;
+      final filteredDeps = pkg.dependencies
+          .where((d) => !ignored.contains(d.name))
+          .toSet();
+      newPackages[entry.key] = VizPackage(
+        pkg.name,
+        pkg.version,
+        SplayTreeSet.of(filteredDeps),
+        pkg.latestVersion,
+        isPrimary: pkg.isPrimary,
+        onlyDev: pkg.onlyDev,
+        isPublishToNone: pkg.isPublishToNone,
+      );
+    }
+    return newPackages;
   }
 
   Map<String, VizPackage> _filterWorkspace(

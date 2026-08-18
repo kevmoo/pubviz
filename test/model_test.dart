@@ -177,6 +177,25 @@ void main() {
       check(filtered.packages.keys).not((it) => it.contains('c'));
     });
 
+    test('filter with ignorePackages', () {
+      final root = VizRoot.assemble('a', {
+        'a': VizPackage('a', Version(1, 0, 0), {
+          Dependency('b', VersionConstraint.any, false),
+          Dependency('c', VersionConstraint.any, false),
+        }, null),
+        'b': VizPackage('b', Version(1, 0, 0), {
+          Dependency('d', VersionConstraint.any, false),
+        }, null),
+        'c': VizPackage('c', Version(1, 0, 0), {}, null),
+        'd': VizPackage('d', Version(1, 0, 0), {}, null),
+      });
+
+      final filtered = root.filter(ignorePackages: ['b']);
+      check(filtered.packages.keys).unorderedEquals(['a', 'c']);
+      check(filtered.packages['a']!.dependencies.map((d) => d.name))
+          .unorderedEquals(['c']);
+    });
+
     test('Dependency.getDependencies', () {
       final pubspec = parse.Pubspec.parse('''
 name: foo
