@@ -113,6 +113,46 @@ void main() {
           .equals('a @ 1.0.0');
     });
 
+    test('isOutdated', () {
+      final p1 = VizPackage('a', Version(1, 0, 0), {}, null);
+      check(p1.isOutdated).isFalse();
+
+      final p2 = VizPackage('a', null, {}, Version(1, 1, 0));
+      check(p2.isOutdated).isFalse();
+
+      final p3 = VizPackage('a', Version(1, 0, 0), {}, Version(1, 0, 0));
+      check(p3.isOutdated).isFalse();
+
+      final p4 = VizPackage('a', Version(1, 0, 0), {}, Version(0, 9, 0));
+      check(p4.isOutdated).isFalse();
+
+      final p5 = VizPackage('a', Version(1, 0, 0), {}, Version(1, 1, 0));
+      check(p5.isOutdated).isTrue();
+    });
+
+    test('withDependencies', () {
+      final orig = VizPackage(
+        'a',
+        Version(1, 0, 0),
+        {Dependency('b', VersionConstraint.any, false)},
+        Version(1, 1, 0),
+        isPrimary: true,
+        onlyDev: false,
+        isPublishToNone: true,
+      );
+
+      final newDeps = {Dependency('c', VersionConstraint.any, true)};
+      final updated = orig.withDependencies(newDeps);
+
+      check(updated.name).equals('a');
+      check(updated.version).equals(Version(1, 0, 0));
+      check(updated.latestVersion).equals(Version(1, 1, 0));
+      check(updated.isPrimary).isTrue();
+      check(updated.onlyDev).isFalse();
+      check(updated.isPublishToNone).isTrue();
+      check(updated.dependencies.map((d) => d.name)).unorderedEquals(['c']);
+    });
+
     test('json', () {
       final pkg = VizPackage(
         'a',
@@ -194,6 +234,56 @@ void main() {
       check(filtered.packages.keys).unorderedEquals(['a', 'c']);
       check(filtered.packages['a']!.dependencies.map((d) => d.name))
           .unorderedEquals(['c']);
+    });
+
+    test('filter outdated', () {
+      final root = VizRoot.assemble('a', {
+        'a': VizPackage('a', Version(1, 0, 0), {
+          Dependency('b', VersionConstraint.any, false),
+          Dependency('c', VersionConstraint.any, false),
+        }, null),
+        'b': VizPackage('b', Version(1, 0, 0), {
+          Dependency('d', VersionConstraint.any, false),
+        }, Version(1, 1, 0)),
+        'c': VizPackage('c', Version(1, 0, 0), {}, null),
+        'd': VizPackage('d', Version(1, 0, 0), {}, null),
+      }, flagOutdated: true);
+
+      final filtered = root.filter(onlyOutdated: true);
+      check(filtered.packages.keys).unorderedEquals(['a', 'b']);
+    });
+
+    test('filter isolated with isWorkspace', () {
+      final root = VizRoot.assemble('a', {
+        'a': VizPackage(
+          'a',
+          Version(1, 0, 0),
+          {Dependency('b', VersionConstraint.any, false)},
+          null,
+          isPublishToNone: true,
+        ),
+        'b': VizPackage('b', Version(1, 0, 0), {}, null),
+        'c': VizPackage('c', Version(1, 0, 0), {}, null, isPublishToNone: true),
+      }, isWorkspace: true);
+
+      check(root.hasIsolatedPackages).isTrue();
+
+      final filtered = root.filter(hideIsolated: true);
+      check(filtered.packages.keys).unorderedEquals(['a', 'b']);
+      check(filtered.packages.keys).not((it) => it.contains('c'));
+    });
+
+    test('HasPackages properties', () {
+      final root = VizRoot.assemble('a', {
+        'a': VizPackage('a', Version(1, 0, 0), {
+          Dependency('b', VersionConstraint.any, true),
+        }, null),
+        'b': VizPackage('b', Version(1, 0, 0), {}, Version(1, 2, 0)),
+      }, flagOutdated: true);
+
+      check(root.hasOutdated).isTrue();
+      check(root.hasDevDependencies).isTrue();
+      check(root.hasIsolatedPackages).isFalse();
     });
 
     test('Dependency.getDependencies', () {

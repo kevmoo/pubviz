@@ -259,12 +259,8 @@ class VizRoot with HasPackages {
   Set<String> _reachableFromRoots(
     Map<String, VizPackage> sourcePackages, {
     required bool excludeDev,
-    bool includePrimary = true,
   }) {
-    final seeds = [
-      if (includePrimary) ..._primaryPackageNames(sourcePackages),
-      rootPackageName,
-    ];
+    final seeds = [..._primaryPackageNames(sourcePackages), rootPackageName];
     return _reachable(
       seeds,
       (pkg) => sourcePackages[pkg]?.dependencies
