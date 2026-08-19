@@ -10,8 +10,8 @@ import '../viz_root.dart';
 import 'interop.dart';
 import 'pubviz_app.dart';
 
-final class CancellationException implements Exception {
-  const CancellationException();
+final class _CancellationException implements Exception {
+  const _CancellationException();
   @override
   String toString() => 'Cancelled';
 }
@@ -68,7 +68,7 @@ final class GraphRenderer {
 
       _updateBody(output);
     } catch (e, stack) {
-      if (e is CancellationException) {
+      if (e is _CancellationException) {
         return;
       }
       try {
@@ -94,7 +94,7 @@ final class GraphRenderer {
   Future<String> _renderWithWorker(String dotString, int generation) {
     final oldCompleter = _currentCompleter;
     if (oldCompleter != null && !oldCompleter.isCompleted) {
-      oldCompleter.completeError(const CancellationException());
+      oldCompleter.completeError(const _CancellationException());
     }
 
     final completer = Completer<String>();
