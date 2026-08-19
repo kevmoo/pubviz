@@ -61,7 +61,7 @@ I.E. "--package pubviz" or "--package pubviz:5.0.0"''',
   @CliOption(
     abbr: 'f',
     help: 'A comma separated list of filters to apply.',
-    allowed: allowedFilters,
+    allowed: _allowedFilters,
     allowedHelp: _filterHelp,
   )
   final List<String> filters;
@@ -101,7 +101,7 @@ const filterWorkspace = 'workspace';
 const filterOutdated = 'outdated';
 const filterHideIsolated = 'hide-isolated';
 
-const allowedFilters = [
+const _allowedFilters = [
   filterHideDev,
   filterWorkspace,
   filterOutdated,
