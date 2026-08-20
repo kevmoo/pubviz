@@ -1,0 +1,6 @@
+name: bazel_worker
+version: 0.1.25
+dependencies:
+  async: ">1.9.0 <3.0.0"
+  pedantic: "^1.8.0"
+  protobuf: ">=0.14.4 <2.0.0"

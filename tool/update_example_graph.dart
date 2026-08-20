@@ -10,9 +10,7 @@ import 'package:pubviz/src/root_builder.dart';
 
 import '../test/mock_data_service.dart';
 
-const _pubDepsListPath = 'test/demo_workspace/pub_deps_list.json';
 const _outdatedJsonPath = 'test/demo_workspace/outdated.json';
-const _workspaceListPath = 'test/demo_workspace/workspace_list.json';
 
 void main(List<String> arguments) async {
   final parser = ArgParser()
@@ -36,31 +34,16 @@ void main(List<String> arguments) async {
 }
 
 Future<void> _resolveWorkspaceDependencies() async {
-  final memberDirs = _findWorkspaceMembers();
+  final memberDirs = ['pkg_a', 'pkg_b', 'pkg_c'];
   final combinedDeps = _gatherConstraints(memberDirs);
 
   final tempDir = Directory.systemTemp.createTempSync('pubviz_temp_');
   try {
-    await _runPubGetAndDeps(tempDir, combinedDeps);
+    await _runPubGet(tempDir, combinedDeps);
   } finally {
     print('Cleaning up temp project...');
     tempDir.deleteSync(recursive: true);
   }
-}
-
-List<String> _findWorkspaceMembers() {
-  final workspaceListFile = File(_workspaceListPath);
-  if (workspaceListFile.existsSync()) {
-    final json = jsonDecode(
-      workspaceListFile.readAsStringSync(),
-    ) as Map<String, dynamic>;
-    final packages = json['packages'] as List;
-    return packages
-        .cast<Map<String, dynamic>>()
-        .map((p) => p['path'] as String)
-        .toList();
-  }
-  return ['pkg_a', 'pkg_b'];
 }
 
 Map<String, VersionConstraint> _gatherConstraints(List<String> memberDirs) {
@@ -97,7 +80,6 @@ Map<String, VersionConstraint> _gatherConstraints(List<String> memberDirs) {
   }
 
   for (final dir in memberDirs) {
-    if (dir == '.') continue;
     final pubspecFile = File(
       p.join('test/demo_workspace', dir, 'pubspec.yaml'),
     );
@@ -116,7 +98,7 @@ Map<String, VersionConstraint> _gatherConstraints(List<String> memberDirs) {
   return combinedDeps;
 }
 
-Future<void> _runPubGetAndDeps(
+Future<void> _runPubGet(
   Directory tempDir,
   Map<String, VersionConstraint> combinedDeps,
 ) async {
@@ -138,79 +120,136 @@ ${depsBuffer.toString()}
 ''');
 
   print('Running `dart pub get` in temp project...');
-  final getResult = await Process.run(Platform.executable, [
+  final getResult = await Process.run(Platform.resolvedExecutable, [
     'pub',
     'get',
   ], workingDirectory: tempDir.path);
 
   if (getResult.exitCode != 0) {
     throw ProcessException(
-      Platform.executable,
+      Platform.resolvedExecutable,
       ['pub', 'get'],
       getResult.stderr as String,
       getResult.exitCode,
     );
   }
 
-  print('Running `dart pub deps --json` in temp project...');
-  final depsResult = await Process.run(Platform.executable, [
-    'pub',
-    'deps',
-    '--json',
-  ], workingDirectory: tempDir.path);
-
-  if (depsResult.exitCode != 0) {
-    throw ProcessException(
-      Platform.executable,
-      ['pub', 'deps'],
-      depsResult.stderr as String,
-      depsResult.exitCode,
-    );
-  }
-
-  _updatePubDepsList(depsResult.stdout as String);
+  _updateDemoWorkspaceDartTool(tempDir);
   await _updateOutdatedJson(tempDir);
 }
 
-void _updatePubDepsList(String depsOutput) {
-  final decoded = jsonDecode(depsOutput) as Map<String, dynamic>;
-  final existingFile = File(_pubDepsListPath);
-  if (!existingFile.existsSync()) {
-    throw const FileSystemException('File not found', _pubDepsListPath);
-  }
+void _updateDemoWorkspaceDartTool(Directory tempDir) {
+  final tempGraphFile = File(
+    p.join(tempDir.path, '.dart_tool', 'package_graph.json'),
+  );
+  final tempConfigFile = File(
+    p.join(tempDir.path, '.dart_tool', 'package_config.json'),
+  );
 
-  final existingJson =
-      jsonDecode(existingFile.readAsStringSync()) as Map<String, dynamic>;
-  final existingPackages = (existingJson['packages'] as List)
-      .cast<Map<String, dynamic>>();
+  final tempGraphJson =
+      jsonDecode(tempGraphFile.readAsStringSync()) as Map<String, dynamic>;
+  final tempConfigJson =
+      jsonDecode(tempConfigFile.readAsStringSync()) as Map<String, dynamic>;
 
-  final rootPackages = existingPackages
-      .where((p) => p['kind'] == 'root')
-      .toList();
+  const demoDir = 'test/demo_workspace';
+  final dartToolDir = p.join(demoDir, '.dart_tool');
+  Directory(dartToolDir).createSync(recursive: true);
 
-  final tempPackages = (decoded['packages'] as List)
-      .cast<Map<String, dynamic>>();
+  final packages =
+      (tempGraphJson['packages'] as List).cast<Map<String, dynamic>>()
+        ..removeWhere((p) => p['name'] == 'temp_project');
 
-  final nonRootPackages = tempPackages
-      .where((p) => p['kind'] != 'root')
-      .toList();
+  // Insert workspace member packages
+  final workspacePackages = [
+    {
+      'name': 'demo_workspace',
+      'version': '0.0.0',
+      'dependencies': <String>[],
+      'devDependencies': ['dart_flutter_team_lints'],
+    },
+    {
+      'name': 'pkg_a',
+      'version': '0.0.0',
+      'dependencies': ['args', 'http_parser', 'typed_data'],
+      'devDependencies': ['test'],
+    },
+    {
+      'name': 'pkg_b',
+      'version': '0.0.0',
+      'dependencies': ['http_parser', 'outdated_pkg', 'pkg_a'],
+      'devDependencies': ['test'],
+    },
+    {
+      'name': 'pkg_c',
+      'version': '0.0.0',
+      'dependencies': ['args'],
+      'devDependencies': <String>[],
+    },
+    {'name': 'outdated_pkg', 'version': '1.0.0', 'dependencies': <String>[]},
+  ];
 
-  final merged = {
-    'root': existingJson['root'] ?? 'demo_workspace',
-    'packages': [...rootPackages, ...nonRootPackages],
-    'sdks': decoded['sdks'] ?? existingJson['sdks'],
-    'executables':
-        decoded['executables'] ?? existingJson['executables'] ?? <Object>[],
+  final allPackages = [...workspacePackages, ...packages];
+  final newGraphJson = {
+    'roots': ['demo_workspace', 'pkg_a', 'pkg_b', 'pkg_c'],
+    'packages': allPackages,
+    'configVersion': 1,
+  };
+
+  final configPackages =
+      (tempConfigJson['packages'] as List).cast<Map<String, dynamic>>()
+        ..removeWhere((p) => p['name'] == 'temp_project');
+
+  final workspaceConfigPackages = [
+    {
+      'name': 'demo_workspace',
+      'rootUri': '../',
+      'packageUri': 'lib/',
+      'languageVersion': '3.10',
+    },
+    {
+      'name': 'pkg_a',
+      'rootUri': '../pkg_a',
+      'packageUri': 'lib/',
+      'languageVersion': '3.10',
+    },
+    {
+      'name': 'pkg_b',
+      'rootUri': '../pkg_b',
+      'packageUri': 'lib/',
+      'languageVersion': '3.10',
+    },
+    {
+      'name': 'pkg_c',
+      'rootUri': '../pkg_c',
+      'packageUri': 'lib/',
+      'languageVersion': '3.10',
+    },
+    {
+      'name': 'outdated_pkg',
+      'rootUri': '../packages/outdated_pkg',
+      'packageUri': 'lib/',
+      'languageVersion': '3.10',
+    },
+  ];
+
+  final newConfigJson = {
+    'configVersion': 2,
+    'packages': [...workspaceConfigPackages, ...configPackages],
+    'generator': 'pub',
+    'generatorVersion': '3.11.0',
   };
 
   const encoder = JsonEncoder.withIndent('  ');
-  existingFile.writeAsStringSync('${encoder.convert(merged)}\n');
-  print('Successfully updated $_pubDepsListPath!');
+  File(p.join(dartToolDir, 'package_graph.json'))
+      .writeAsStringSync('${encoder.convert(newGraphJson)}\n');
+  File(p.join(dartToolDir, 'package_config.json'))
+      .writeAsStringSync('${encoder.convert(newConfigJson)}\n');
+  print('Successfully updated $dartToolDir with package graph and config!');
 }
 
 Future<void> _updateOutdatedJson(Directory tempDir) async {
   print('Running `dart pub outdated` in temp project...');
-  final outdatedResult = await Process.run(Platform.executable, [
+  final outdatedResult = await Process.run(Platform.resolvedExecutable, [
     'pub',
     'outdated',
     '--json',

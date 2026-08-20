@@ -1,0 +1,6 @@
+name: node_io
+version: 1.2.0
+dependencies:
+  file: "^5.0.0"
+  node_interop: "^1.2.1"
+  path: "^1.6.2"

@@ -1,0 +1,5 @@
+name: convert
+version: 2.1.1
+dependencies:
+  charcode: "^1.1.0"
+  typed_data: "^1.1.0"

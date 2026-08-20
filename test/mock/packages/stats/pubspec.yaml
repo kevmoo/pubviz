@@ -1,0 +1,4 @@
+name: stats
+version: 1.0.1
+dependencies:
+  json_annotation: ">=3.0.0 <5.0.0"

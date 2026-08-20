@@ -1,0 +1,199 @@
+{
+  "roots": [
+    "demo_workspace",
+    "pkg_a",
+    "pkg_b",
+    "pkg_c"
+  ],
+  "packages": [
+    {
+      "name": "demo_workspace",
+      "version": "0.0.0",
+      "dependencies": [],
+      "devDependencies": [
+        "dart_flutter_team_lints"
+      ]
+    },
+    {
+      "name": "pkg_a",
+      "version": "0.0.0",
+      "dependencies": [
+        "args",
+        "http_parser",
+        "typed_data"
+      ],
+      "devDependencies": [
+        "test"
+      ]
+    },
+    {
+      "name": "pkg_b",
+      "version": "0.0.0",
+      "dependencies": [
+        "http_parser",
+        "outdated_pkg",
+        "pkg_a"
+      ],
+      "devDependencies": [
+        "test"
+      ]
+    },
+    {
+      "name": "pkg_c",
+      "version": "0.0.0",
+      "dependencies": [
+        "args"
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "outdated_pkg",
+      "version": "1.0.0",
+      "dependencies": []
+    },
+    {
+      "name": "args",
+      "version": "2.6.0",
+      "dependencies": []
+    },
+    {
+      "name": "http_parser",
+      "version": "4.1.2",
+      "dependencies": [
+        "charcode",
+        "collection",
+        "source_span",
+        "string_scanner",
+        "typed_data"
+      ]
+    },
+    {
+      "name": "typed_data",
+      "version": "1.3.2",
+      "dependencies": [
+        "collection"
+      ]
+    },
+    {
+      "name": "charcode",
+      "version": "1.4.0",
+      "dependencies": []
+    },
+    {
+      "name": "collection",
+      "version": "1.19.0",
+      "dependencies": []
+    },
+    {
+      "name": "source_span",
+      "version": "1.10.0",
+      "dependencies": [
+        "collection",
+        "path",
+        "term_glyph"
+      ]
+    },
+    {
+      "name": "string_scanner",
+      "version": "1.3.0",
+      "dependencies": [
+        "charcode",
+        "source_span"
+      ]
+    },
+    {
+      "name": "path",
+      "version": "1.9.0",
+      "dependencies": []
+    },
+    {
+      "name": "term_glyph",
+      "version": "1.2.1",
+      "dependencies": []
+    },
+    {
+      "name": "test",
+      "version": "1.25.15",
+      "dependencies": [
+        "matcher",
+        "path",
+        "test_api",
+        "test_core"
+      ]
+    },
+    {
+      "name": "test_api",
+      "version": "0.7.4",
+      "dependencies": [
+        "matcher",
+        "meta",
+        "source_span",
+        "stack_trace",
+        "stream_channel",
+        "string_scanner",
+        "term_glyph"
+      ]
+    },
+    {
+      "name": "test_core",
+      "version": "0.6.9",
+      "dependencies": [
+        "matcher",
+        "meta",
+        "path",
+        "source_span",
+        "stack_trace",
+        "stream_channel",
+        "test_api"
+      ]
+    },
+    {
+      "name": "matcher",
+      "version": "0.12.16+1",
+      "dependencies": [
+        "stack_trace",
+        "term_glyph"
+      ]
+    },
+    {
+      "name": "meta",
+      "version": "1.16.0",
+      "dependencies": []
+    },
+    {
+      "name": "stack_trace",
+      "version": "1.12.0",
+      "dependencies": [
+        "path"
+      ]
+    },
+    {
+      "name": "stream_channel",
+      "version": "2.1.4",
+      "dependencies": [
+        "async"
+      ]
+    },
+    {
+      "name": "async",
+      "version": "2.12.0",
+      "dependencies": [
+        "collection",
+        "meta"
+      ]
+    },
+    {
+      "name": "dart_flutter_team_lints",
+      "version": "3.2.1",
+      "dependencies": [
+        "lints"
+      ]
+    },
+    {
+      "name": "lints",
+      "version": "5.0.0",
+      "dependencies": []
+    }
+  ],
+  "configVersion": 1
+}

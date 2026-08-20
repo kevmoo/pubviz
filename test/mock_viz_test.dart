@@ -553,39 +553,34 @@ environment:
 dependencies:
   args: $constraint
 '''),
-        d.file('pub_deps_list.json', '''
+        d.dir('.dart_tool', [
+          d.file('package_graph.json', '''
 {
-  "root": "$projectName",
+  "roots": ["$projectName"],
   "packages": [
     {
       "name": "$projectName",
       "version": "1.0.0",
-      "kind": "root",
-      "source": "root",
-      "dependencies": ["args"],
-      "directDependencies": ["args"],
-      "devDependencies": [],
-      "dependencyConstraints": {
-        "args": "$constraint"
-      }
+      "dependencies": ["args"]
     },
     {
       "name": "args",
       "version": "2.0.0",
-      "kind": "direct",
-      "source": "hosted",
-      "dependencies": [],
-      "directDependencies": [],
-      "devDependencies": [],
-      "dependencyConstraints": {}
+      "dependencies": []
     }
-  ],
-  "sdks": [
-    { "name": "Dart", "version": "3.13.0" }
-  ],
-  "executables": []
+  ]
 }
 '''),
+          d.file('package_config.json', '''
+{
+  "configVersion": 2,
+  "packages": [
+    {"name": "$projectName", "rootUri": "../", "packageUri": "lib/"},
+    {"name": "args", "rootUri": "file:///fake/args", "packageUri": "lib/"}
+  ]
+}
+'''),
+        ]),
         d.file('outdated.json', '''
 {
   "packages": [

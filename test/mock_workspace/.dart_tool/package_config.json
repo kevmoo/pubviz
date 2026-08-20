@@ -1,0 +1,37 @@
+{
+  "configVersion": 2,
+  "packages": [
+    {
+      "name": "my_workspace",
+      "rootUri": "../",
+      "packageUri": "lib/",
+      "languageVersion": "3.10"
+    },
+    {
+      "name": "member_a",
+      "rootUri": "../member_a",
+      "packageUri": "lib/",
+      "languageVersion": "3.10"
+    },
+    {
+      "name": "member_b",
+      "rootUri": "../member_b",
+      "packageUri": "lib/",
+      "languageVersion": "3.10"
+    },
+    {
+      "name": "args",
+      "rootUri": "../packages/args",
+      "packageUri": "lib/",
+      "languageVersion": "3.10"
+    },
+    {
+      "name": "path",
+      "rootUri": "../packages/path",
+      "packageUri": "lib/",
+      "languageVersion": "3.10"
+    }
+  ],
+  "generator": "pub",
+  "generatorVersion": "3.11.0"
+}

@@ -1,0 +1,6 @@
+name: archive
+version: 2.0.13
+dependencies:
+  crypto: ">=2.0.0 <3.0.0"
+  args: ">=1.4.0 <2.0.0"
+  path: ">=1.5.1 <2.0.0"

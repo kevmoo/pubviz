@@ -1,0 +1,151 @@
+{
+  "configVersion": 2,
+  "packages": [
+    {
+      "name": "demo_workspace",
+      "rootUri": "../",
+      "packageUri": "lib/",
+      "languageVersion": "3.10"
+    },
+    {
+      "name": "pkg_a",
+      "rootUri": "../pkg_a",
+      "packageUri": "lib/",
+      "languageVersion": "3.10"
+    },
+    {
+      "name": "pkg_b",
+      "rootUri": "../pkg_b",
+      "packageUri": "lib/",
+      "languageVersion": "3.10"
+    },
+    {
+      "name": "pkg_c",
+      "rootUri": "../pkg_c",
+      "packageUri": "lib/",
+      "languageVersion": "3.10"
+    },
+    {
+      "name": "outdated_pkg",
+      "rootUri": "../packages/outdated_pkg",
+      "packageUri": "lib/",
+      "languageVersion": "3.10"
+    },
+    {
+      "name": "args",
+      "rootUri": "../packages/args",
+      "packageUri": "lib/",
+      "languageVersion": "3.10"
+    },
+    {
+      "name": "http_parser",
+      "rootUri": "../packages/http_parser",
+      "packageUri": "lib/",
+      "languageVersion": "3.10"
+    },
+    {
+      "name": "typed_data",
+      "rootUri": "../packages/typed_data",
+      "packageUri": "lib/",
+      "languageVersion": "3.10"
+    },
+    {
+      "name": "charcode",
+      "rootUri": "../packages/charcode",
+      "packageUri": "lib/",
+      "languageVersion": "3.10"
+    },
+    {
+      "name": "collection",
+      "rootUri": "../packages/collection",
+      "packageUri": "lib/",
+      "languageVersion": "3.10"
+    },
+    {
+      "name": "source_span",
+      "rootUri": "../packages/source_span",
+      "packageUri": "lib/",
+      "languageVersion": "3.10"
+    },
+    {
+      "name": "string_scanner",
+      "rootUri": "../packages/string_scanner",
+      "packageUri": "lib/",
+      "languageVersion": "3.10"
+    },
+    {
+      "name": "path",
+      "rootUri": "../packages/path",
+      "packageUri": "lib/",
+      "languageVersion": "3.10"
+    },
+    {
+      "name": "term_glyph",
+      "rootUri": "../packages/term_glyph",
+      "packageUri": "lib/",
+      "languageVersion": "3.10"
+    },
+    {
+      "name": "test",
+      "rootUri": "../packages/test",
+      "packageUri": "lib/",
+      "languageVersion": "3.10"
+    },
+    {
+      "name": "test_api",
+      "rootUri": "../packages/test_api",
+      "packageUri": "lib/",
+      "languageVersion": "3.10"
+    },
+    {
+      "name": "test_core",
+      "rootUri": "../packages/test_core",
+      "packageUri": "lib/",
+      "languageVersion": "3.10"
+    },
+    {
+      "name": "matcher",
+      "rootUri": "../packages/matcher",
+      "packageUri": "lib/",
+      "languageVersion": "3.10"
+    },
+    {
+      "name": "meta",
+      "rootUri": "../packages/meta",
+      "packageUri": "lib/",
+      "languageVersion": "3.10"
+    },
+    {
+      "name": "stack_trace",
+      "rootUri": "../packages/stack_trace",
+      "packageUri": "lib/",
+      "languageVersion": "3.10"
+    },
+    {
+      "name": "stream_channel",
+      "rootUri": "../packages/stream_channel",
+      "packageUri": "lib/",
+      "languageVersion": "3.10"
+    },
+    {
+      "name": "async",
+      "rootUri": "../packages/async",
+      "packageUri": "lib/",
+      "languageVersion": "3.10"
+    },
+    {
+      "name": "dart_flutter_team_lints",
+      "rootUri": "../packages/dart_flutter_team_lints",
+      "packageUri": "lib/",
+      "languageVersion": "3.10"
+    },
+    {
+      "name": "lints",
+      "rootUri": "../packages/lints",
+      "packageUri": "lib/",
+      "languageVersion": "3.10"
+    }
+  ],
+  "generator": "pub",
+  "generatorVersion": "3.11.0"
+}

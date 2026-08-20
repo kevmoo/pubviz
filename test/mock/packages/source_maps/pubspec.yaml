@@ -1,0 +1,4 @@
+name: source_maps
+version: 0.10.10
+dependencies:
+  source_span: "^1.8.0"

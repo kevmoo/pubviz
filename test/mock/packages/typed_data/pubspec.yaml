@@ -1,0 +1,4 @@
+name: typed_data
+version: 1.3.0
+dependencies:
+  collection: "^1.15.0"

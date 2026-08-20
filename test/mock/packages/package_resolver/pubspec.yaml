@@ -1,0 +1,7 @@
+name: package_resolver
+version: 1.0.10
+dependencies:
+  collection: "^1.9.0"
+  http: ">0.11.0 <0.13.0"
+  package_config: ">=0.1.0 <2.0.0"
+  path: "^1.0.0"

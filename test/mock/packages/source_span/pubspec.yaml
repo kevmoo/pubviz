@@ -1,0 +1,6 @@
+name: source_span
+version: 1.8.1
+dependencies:
+  collection: "^1.15.0"
+  path: "^1.8.0"
+  term_glyph: "^1.2.0"

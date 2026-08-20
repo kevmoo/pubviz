@@ -1,0 +1,5 @@
+name: http_retry
+version: 0.1.1+3
+dependencies:
+  async: "^2.0.7"
+  http: ">=0.11.0 <0.13.0"

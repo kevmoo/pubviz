@@ -1,0 +1,4 @@
+name: pub_semver
+version: 1.4.4
+dependencies:
+  collection: "^1.0.0"

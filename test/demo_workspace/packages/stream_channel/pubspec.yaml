@@ -1,0 +1,4 @@
+name: stream_channel
+version: 2.1.4
+dependencies:
+  async: "^2.8.0"

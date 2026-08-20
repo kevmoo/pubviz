@@ -1,0 +1,6 @@
+name: http
+version: 0.12.2
+dependencies:
+  http_parser: ">=0.0.1 <4.0.0"
+  path: ">=0.9.0 <2.0.0"
+  pedantic: "^1.0.0"

@@ -1,0 +1,5 @@
+name: kernel
+version: 0.3.27
+dependencies:
+  args: ">=0.13.4 <2.0.0"
+  meta: "^1.0.0"

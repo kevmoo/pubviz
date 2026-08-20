@@ -1,0 +1,4 @@
+name: resource
+version: 2.1.7
+dependencies:
+  typed_data: "^1.0.0"

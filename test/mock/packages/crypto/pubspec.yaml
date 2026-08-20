@@ -1,0 +1,6 @@
+name: crypto
+version: 2.1.5
+dependencies:
+  collection: "^1.0.0"
+  convert: ">=1.0.0 <3.0.0"
+  typed_data: "^1.0.0"

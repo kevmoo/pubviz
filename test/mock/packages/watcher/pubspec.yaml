@@ -1,0 +1,6 @@
+name: watcher
+version: 0.9.7+15
+dependencies:
+  async: "^2.0.0"
+  path: "^1.0.0"
+  pedantic: "^1.1.0"

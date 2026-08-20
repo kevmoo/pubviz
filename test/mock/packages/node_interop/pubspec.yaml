@@ -1,0 +1,4 @@
+name: node_interop
+version: 1.2.1
+dependencies:
+  js: "^0.6.1"

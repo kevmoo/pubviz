@@ -1,0 +1,5 @@
+name: async
+version: 2.8.2
+dependencies:
+  collection: "^1.15.0"
+  meta: "^1.1.7"

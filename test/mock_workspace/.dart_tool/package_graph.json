@@ -1,0 +1,46 @@
+{
+  "roots": [
+    "my_workspace",
+    "member_a",
+    "member_b"
+  ],
+  "packages": [
+    {
+      "name": "my_workspace",
+      "version": "0.0.0",
+      "dependencies": [
+        "member_b"
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "member_a",
+      "version": "1.0.0",
+      "dependencies": [
+        "args"
+      ],
+      "devDependencies": [
+        "path"
+      ]
+    },
+    {
+      "name": "member_b",
+      "version": "1.0.0",
+      "dependencies": [
+        "member_a"
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "args",
+      "version": "2.0.0",
+      "dependencies": []
+    },
+    {
+      "name": "path",
+      "version": "1.8.0",
+      "dependencies": []
+    }
+  ],
+  "configVersion": 1
+}

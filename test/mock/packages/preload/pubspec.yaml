@@ -1,0 +1,7 @@
+name: preload
+version: 1.1.6
+dependencies:
+  build: ">=0.12.1 <2.0.0"
+  build_config: ">=0.3.0 <5.0.0"
+  glob: "^1.0.0"
+  path: "^1.0.0"

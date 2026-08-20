@@ -1,0 +1,4 @@
+name: protobuf
+version: 1.1.4
+dependencies:
+  fixnum: "^0.10.9"

@@ -1,0 +1,5 @@
+name: matcher
+version: 0.12.16+1
+dependencies:
+  stack_trace: "^1.10.0"
+  term_glyph: "^1.2.0"

@@ -1,0 +1,4 @@
+name: dart_flutter_team_lints
+version: 3.2.1
+dependencies:
+  lints: "^5.0.0"

@@ -1,0 +1,7 @@
+name: yaml
+version: 2.2.1
+dependencies:
+  charcode: "^1.1.0"
+  collection: ">=1.1.0 <2.0.0"
+  string_scanner: ">=0.1.4 <2.0.0"
+  source_span: ">=1.0.0 <2.0.0"

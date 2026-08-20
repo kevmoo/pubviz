@@ -1,0 +1,4 @@
+name: csslib
+version: 0.16.2
+dependencies:
+  source_span: "^1.4.0"

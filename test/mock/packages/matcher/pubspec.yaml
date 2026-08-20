@@ -1,0 +1,4 @@
+name: matcher
+version: 0.12.11
+dependencies:
+  stack_trace: "^1.10.0"

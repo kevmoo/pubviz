@@ -1,0 +1,6 @@
+name: shelf_web_socket
+version: 0.2.4+1
+dependencies:
+  shelf: ">=0.7.0 <2.0.0"
+  stream_channel: ">1.4.0 <3.0.0"
+  web_socket_channel: ">=1.0.0 <3.0.0"

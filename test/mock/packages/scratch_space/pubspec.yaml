@@ -1,0 +1,8 @@
+name: scratch_space
+version: 0.0.4+3
+dependencies:
+  build: ">=0.10.0 <2.0.0"
+  crypto: ">=2.0.3 <4.0.0"
+  path: "^1.1.0"
+  pedantic: "^1.0.0"
+  pool: "^1.0.0"
