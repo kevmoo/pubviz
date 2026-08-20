@@ -34,7 +34,7 @@ void main(List<String> arguments) async {
 }
 
 Future<void> _resolveWorkspaceDependencies() async {
-  final memberDirs = ['pkg_a', 'pkg_b', 'pkg_c'];
+  final memberDirs = ['.', 'pkg_a', 'pkg_b', 'pkg_c'];
   final combinedDeps = _gatherConstraints(memberDirs);
 
   final tempDir = Directory.systemTemp.createTempSync('pubviz_temp_');
@@ -226,7 +226,7 @@ void _updateDemoWorkspaceDartTool(Directory tempDir) {
     },
     {
       'name': 'outdated_pkg',
-      'rootUri': '../packages/outdated_pkg',
+      'rootUri': 'file:///fake/outdated_pkg',
       'packageUri': 'lib/',
       'languageVersion': '3.10',
     },

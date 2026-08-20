@@ -19,6 +19,7 @@
       "package": "typed_data",
       "kind": "direct",
       "isDiscontinued": false,
+      "replacedBy": null,
       "isCurrentRetracted": false,
       "isCurrentAffectedByAdvisory": false,
       "current": {

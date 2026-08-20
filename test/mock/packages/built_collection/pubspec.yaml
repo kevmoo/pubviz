@@ -1,5 +1,0 @@
-name: built_collection
-version: 4.3.2
-dependencies:
-  collection: "^1.7.0"
-  quiver: ">=0.21.0 <3.0.0"

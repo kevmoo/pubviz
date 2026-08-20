@@ -21,7 +21,7 @@ const assetInputs = <String, String>{
   'lib/src/options.dart':
       'ac619406ec9bfbbc3cfd0f84b6c9b787f1edecff0be9ed421e114d5bef2d550b',
   'lib/src/options.g.dart':
-      '7f71be683e3c7892bed640537de8cba0581623cdd9a6271b9a11a866035761a8',
+      '6c3ae2f3dd2a298136ba3d2925a41dc79ee4c2f07f9fbbdc612657c5a8621dce',
   'lib/src/util.dart':
       'e94192cb5d65c7658accbe3e825aace6f1432eac14b22f62f8e3a7074e8141a4',
   'lib/src/version.dart':
