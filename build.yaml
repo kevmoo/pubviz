@@ -12,6 +12,7 @@ targets:
       - lib/src/dot.dart
       - lib/src/mermaid.dart
       - lib/src/options.*
+      - lib/src/util.dart
       - lib/src/version.dart
       - lib/src/viz_package.*
       - lib/src/viz_root.*
