@@ -28,16 +28,7 @@ void main() {
       final vp = await service.vizRoot();
 
       check(vp.root.name).equals('repo_manager');
-      check(vp.packages).length.equals(82);
-
-      check(
-        because: 'Only primary',
-        vp.packages.values.where((element) => element.isPrimary),
-      ).length.equals(1);
-      check(
-        because: 'Only non-primary',
-        vp.packages.values.where((element) => !element.isPrimary),
-      ).length.equals(81);
+      _verifyPackageCounts(vp, total: 82, primary: 1, nonPrimary: 81);
 
       _verifyDotOutput(vp, 'all_deps');
     });
@@ -46,16 +37,7 @@ void main() {
       final vp = await service.vizRoot(directDependenciesOnly: true);
 
       check(vp.root.name).equals('repo_manager');
-      check(vp.packages).length.equals(25);
-
-      check(
-        because: 'Only primary',
-        vp.packages.values.where((element) => element.isPrimary),
-      ).length.equals(1);
-      check(
-        because: 'Only non-primary',
-        vp.packages.values.where((element) => !element.isPrimary),
-      ).length.equals(24);
+      _verifyPackageCounts(vp, total: 25, primary: 1, nonPrimary: 24);
 
       _verifyDotOutput(vp, 'direct_deps');
     });
@@ -64,16 +46,7 @@ void main() {
       final vp = await service.vizRoot(productionDependenciesOnly: true);
 
       check(vp.root.name).equals('repo_manager');
-      check(vp.packages).length.equals(51);
-
-      check(
-        because: 'Only primary',
-        vp.packages.values.where((element) => element.isPrimary),
-      ).length.equals(1);
-      check(
-        because: 'Only non-primary',
-        vp.packages.values.where((element) => !element.isPrimary),
-      ).length.equals(50);
+      _verifyPackageCounts(vp, total: 51, primary: 1, nonPrimary: 50);
 
       _verifyDotOutput(vp, 'production_deps');
     });
@@ -85,16 +58,7 @@ void main() {
       );
 
       check(vp.root.name).equals('repo_manager');
-      check(vp.packages).length.equals(20);
-
-      check(
-        because: 'Only primary',
-        vp.packages.values.where((element) => element.isPrimary),
-      ).length.equals(1);
-      check(
-        because: 'Only non-primary',
-        vp.packages.values.where((element) => !element.isPrimary),
-      ).length.equals(19);
+      _verifyPackageCounts(vp, total: 20, primary: 1, nonPrimary: 19);
 
       _verifyDotOutput(vp, 'direct_production_deps');
     });
@@ -144,16 +108,7 @@ void main() {
 
       check(vp.isWorkspace).isTrue(); // Verify it starts as true
       check(vp.root.name).equals('repo_manager');
-      check(vp.packages).length.equals(82);
-
-      check(
-        because: 'Only primary',
-        vp.packages.values.where((element) => element.isPrimary),
-      ).length.equals(1);
-      check(
-        because: 'Only non-primary',
-        vp.packages.values.where((element) => !element.isPrimary),
-      ).length.equals(81);
+      _verifyPackageCounts(vp, total: 82, primary: 1, nonPrimary: 81);
 
       // Regression test: filter should preserve isWorkspace
       final filtered = vp.filter(excludeDev: true);
@@ -585,22 +540,25 @@ void main() {
   group('ahead of latest', () {
     late Service service;
 
-    setUpAll(() async {
-      await d.dir('pubviz_ahead_test_', [
+    Future<void> createAheadProject(
+      String projectName,
+      String constraint,
+    ) async {
+      await d.dir('${projectName}_test_', [
         d.file('pubspec.yaml', '''
-name: test_ahead
+name: $projectName
 version: 1.0.0
 environment:
   sdk: '>=3.0.0 <4.0.0'
 dependencies:
-  args: ^2.0.0-dev
+  args: $constraint
 '''),
         d.file('pub_deps_list.json', '''
 {
-  "root": "test_ahead",
+  "root": "$projectName",
   "packages": [
     {
-      "name": "test_ahead",
+      "name": "$projectName",
       "version": "1.0.0",
       "kind": "root",
       "source": "root",
@@ -608,7 +566,7 @@ dependencies:
       "directDependencies": ["args"],
       "devDependencies": [],
       "dependencyConstraints": {
-        "args": "^2.0.0-dev"
+        "args": "$constraint"
       }
     },
     {
@@ -642,7 +600,10 @@ dependencies:
 }
 '''),
       ]).create();
+    }
 
+    setUpAll(() async {
+      await createAheadProject('pubviz_ahead', '^2.0.0-dev');
       service = MockDataService(d.path('pubviz_ahead_test_'));
     });
 
@@ -650,7 +611,7 @@ dependencies:
       final vp = await service.vizRoot(flagOutdated: true);
 
       final root = vp.root;
-      check(root.name).equals('test_ahead');
+      check(root.name).equals('pubviz_ahead');
 
       final dep = root.dependencies.firstWhere((d) => d.name == 'args');
       check(
@@ -660,62 +621,7 @@ dependencies:
     });
 
     test('allowsLatest is false for stable ahead constraints', () async {
-      await d.dir('pubviz_ahead_stable_test_', [
-        d.file('pubspec.yaml', '''
-name: test_ahead_stable
-version: 1.0.0
-environment:
-  sdk: '>=3.0.0 <4.0.0'
-dependencies:
-  args: ^2.0.0
-'''),
-        d.file('pub_deps_list.json', '''
-{
-  "root": "test_ahead_stable",
-  "packages": [
-    {
-      "name": "test_ahead_stable",
-      "version": "1.0.0",
-      "kind": "root",
-      "source": "root",
-      "dependencies": ["args"],
-      "directDependencies": ["args"],
-      "devDependencies": [],
-      "dependencyConstraints": {
-        "args": "^2.0.0"
-      }
-    },
-    {
-      "name": "args",
-      "version": "2.0.0",
-      "kind": "direct",
-      "source": "hosted",
-      "dependencies": [],
-      "directDependencies": [],
-      "devDependencies": [],
-      "dependencyConstraints": {}
-    }
-  ],
-  "sdks": [
-    { "name": "Dart", "version": "3.13.0" }
-  ],
-  "executables": []
-}
-'''),
-        d.file('outdated.json', '''
-{
-  "packages": [
-    {
-      "package": "args",
-      "current": { "version": "2.0.0" },
-      "upgradable": { "version": "2.0.0" },
-      "resolvable": { "version": "2.0.0" },
-      "latest": { "version": "1.5.0" }
-    }
-  ]
-}
-'''),
-      ]).create();
+      await createAheadProject('pubviz_ahead_stable', '^2.0.0');
 
       final stableService = MockDataService(
         d.path('pubviz_ahead_stable_test_'),
@@ -773,6 +679,24 @@ class _MockVizRoot with HasPackages implements VizRoot {
 }
 
 const _writeOutput = false;
+
+void _verifyPackageCounts(
+  VizRoot root, {
+  required int total,
+  required int primary,
+  required int nonPrimary,
+}) {
+  check(root.packages).length.equals(total);
+
+  check(
+    because: 'Only primary',
+    root.packages.values.where((element) => element.isPrimary),
+  ).length.equals(primary);
+  check(
+    because: 'Only non-primary',
+    root.packages.values.where((element) => !element.isPrimary),
+  ).length.equals(nonPrimary);
+}
 
 void _verifyDotOutput(
   VizRoot root,

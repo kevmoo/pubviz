@@ -1,3 +1,4 @@
+import 'util.dart';
 import 'viz_root.dart';
 
 extension VizRootMermaidExt on VizRoot {
@@ -18,13 +19,12 @@ extension VizRootMermaidExt on VizRoot {
     for (var pkg in packages.values.where((v) => !ignored.contains(v.name))) {
       final isRoot = root.name == pkg.name;
 
-      var label = pkg.name;
-      if (isWorkspace && isRoot) {
-        label = '⚙️ $label';
-      }
-      if (pkg.version != null) {
-        label = '$label<br/>${pkg.version}';
-      }
+      var label = formatNodeLabel(
+        pkg,
+        isRoot: isRoot,
+        isWorkspace: isWorkspace,
+        lineBreak: '<br/>',
+      );
 
       if (!isRoot && pkg.isOutdated) {
         label = '$label<br/>(latest: ${pkg.latestVersion})';
