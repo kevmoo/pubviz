@@ -1,6 +1,7 @@
 import 'package:gviz/gviz.dart';
 
 import 'colors.dart';
+import 'util.dart';
 import 'viz_package.dart';
 import 'viz_root.dart';
 
@@ -32,13 +33,12 @@ void _writeDot(
 ) {
   final isRoot = rootName == pkg.name;
 
-  var label = pkg.name;
-  if (isWorkspace && isRoot) {
-    label = '⚙️ $label';
-  }
-  if (pkg.version != null) {
-    label = '$label\\n${pkg.version}';
-  }
+  final label = formatNodeLabel(
+    pkg,
+    isRoot: isRoot,
+    isWorkspace: isWorkspace,
+    lineBreak: r'\n',
+  );
 
   final props = {'label': label};
 
