@@ -1,6 +1,7 @@
 @TestOn('vm')
 library;
 
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:checks/checks.dart';
@@ -16,12 +17,55 @@ import 'mock_data_service.dart';
 
 final _mockPath = p.join('test', 'mock');
 
+Future<void> _setupMockSandbox() async {
+  final pubspecsJson = jsonDecode(
+    File(p.join(_mockPath, 'package_pubspecs.json')).readAsStringSync(),
+  ) as Map<String, dynamic>;
+
+  final packageDirs = <d.Descriptor>[];
+  for (final entry in pubspecsJson.entries) {
+    final deps = (entry.value as Map).cast<String, dynamic>();
+    final yamlBuffer = StringBuffer('name: ${entry.key}\ndependencies:\n');
+    for (final depEntry in deps.entries) {
+      yamlBuffer.writeln('  ${depEntry.key}: "${depEntry.value}"');
+    }
+    packageDirs.add(
+      d.dir(entry.key, [d.file('pubspec.yaml', yamlBuffer.toString())]),
+    );
+  }
+
+  await d.dir('mock', [
+    d.file(
+      'pubspec.yaml',
+      File(p.join(_mockPath, 'pubspec.yaml')).readAsStringSync(),
+    ),
+    d.file(
+      'outdated.json',
+      File(p.join(_mockPath, 'outdated.json')).readAsStringSync(),
+    ),
+    d.dir('.dart_tool', [
+      d.file(
+        'package_graph.json',
+        File(p.join(_mockPath, '.dart_tool', 'package_graph.json'))
+            .readAsStringSync(),
+      ),
+      d.file(
+        'package_config.json',
+        File(p.join(_mockPath, '.dart_tool', 'package_config.json'))
+            .readAsStringSync(),
+      ),
+    ]),
+    d.dir('packages', packageDirs),
+  ]).create();
+}
+
 void main() {
   group('generate VizRoot', () {
     late Service service;
 
-    setUpAll(() {
-      service = MockDataService(_mockPath);
+    setUpAll(() async {
+      await _setupMockSandbox();
+      service = MockDataService(d.path('mock'));
     });
 
     test('all dependencies', () async {
@@ -478,8 +522,87 @@ void main() {
   group('generate VizRoot (real workspace)', () {
     late Service service;
 
-    setUpAll(() {
-      service = MockDataService(p.join('test', 'mock_workspace'));
+    setUpAll(() async {
+      await d.dir('mock_workspace', [
+        d.file('pubspec.yaml', '''
+name: my_workspace
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+workspace:
+  - member_a
+  - member_b
+'''),
+        d.dir('member_a', [
+          d.file('pubspec.yaml', '''
+name: member_a
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+resolution: workspace
+dependencies:
+  args: ^2.0.0
+dev_dependencies:
+  path: ^1.8.0
+'''),
+        ]),
+        d.dir('member_b', [
+          d.file('pubspec.yaml', '''
+name: member_b
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+resolution: workspace
+dependencies:
+  member_a: any
+'''),
+        ]),
+        d.dir('.dart_tool', [
+          d.file('package_graph.json', '''
+{
+  "roots": ["my_workspace", "member_a", "member_b"],
+  "packages": [
+    {
+      "name": "my_workspace",
+      "version": "0.0.0",
+      "dependencies": []
+    },
+    {
+      "name": "member_a",
+      "version": "1.0.0",
+      "dependencies": ["args"],
+      "devDependencies": ["path"]
+    },
+    {
+      "name": "member_b",
+      "version": "1.0.0",
+      "dependencies": ["member_a"]
+    },
+    {
+      "name": "args",
+      "version": "2.5.0",
+      "dependencies": []
+    },
+    {
+      "name": "path",
+      "version": "1.9.0",
+      "dependencies": []
+    }
+  ]
+}
+'''),
+          d.file('package_config.json', '''
+{
+  "configVersion": 2,
+  "packages": [
+    {"name": "my_workspace", "rootUri": "../", "packageUri": "lib/"},
+    {"name": "member_a", "rootUri": "../member_a", "packageUri": "lib/"},
+    {"name": "member_b", "rootUri": "../member_b", "packageUri": "lib/"},
+    {"name": "args", "rootUri": "file:///fake/args", "packageUri": "lib/"},
+    {"name": "path", "rootUri": "file:///fake/path", "packageUri": "lib/"}
+  ]
+}
+'''),
+        ]),
+      ]).create();
+      service = MockDataService(d.path('mock_workspace'));
     });
 
     test('workspace', () async {
@@ -553,39 +676,34 @@ environment:
 dependencies:
   args: $constraint
 '''),
-        d.file('pub_deps_list.json', '''
+        d.dir('.dart_tool', [
+          d.file('package_graph.json', '''
 {
-  "root": "$projectName",
+  "roots": ["$projectName"],
   "packages": [
     {
       "name": "$projectName",
       "version": "1.0.0",
-      "kind": "root",
-      "source": "root",
-      "dependencies": ["args"],
-      "directDependencies": ["args"],
-      "devDependencies": [],
-      "dependencyConstraints": {
-        "args": "$constraint"
-      }
+      "dependencies": ["args"]
     },
     {
       "name": "args",
       "version": "2.0.0",
-      "kind": "direct",
-      "source": "hosted",
-      "dependencies": [],
-      "directDependencies": [],
-      "devDependencies": [],
-      "dependencyConstraints": {}
+      "dependencies": []
     }
-  ],
-  "sdks": [
-    { "name": "Dart", "version": "3.13.0" }
-  ],
-  "executables": []
+  ]
 }
 '''),
+          d.file('package_config.json', '''
+{
+  "configVersion": 2,
+  "packages": [
+    {"name": "$projectName", "rootUri": "../", "packageUri": "lib/"},
+    {"name": "args", "rootUri": "file:///fake/args", "packageUri": "lib/"}
+  ]
+}
+'''),
+        ]),
         d.file('outdated.json', '''
 {
   "packages": [

@@ -1,6 +1,0 @@
-name: my_workspace
-environment:
-  sdk: ^3.12.0
-workspace:
-  - member_a
-  - member_b

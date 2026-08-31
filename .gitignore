@@ -1,3 +1,5 @@
 .dart_tool
+!test/**/.dart_tool
 build
 pubspec.lock
+

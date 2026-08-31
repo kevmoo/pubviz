@@ -3,25 +3,21 @@ export const vizDataString = JSON.stringify({
   "packages": {
     "_fe_analyzer_shared": {
       "name": "_fe_analyzer_shared",
-      "version": "99.0.0",
+      "version": "105.0.0",
       "dependencies": [
         {
           "name": "meta",
           "versionConstraint": "^1.9.0"
-        },
-        {
-          "name": "source_span",
-          "versionConstraint": "^1.10.0"
         }
       ]
     },
     "analyzer": {
       "name": "analyzer",
-      "version": "12.1.0",
+      "version": "14.1.0",
       "dependencies": [
         {
           "name": "_fe_analyzer_shared",
-          "versionConstraint": "^99.0.0"
+          "versionConstraint": "^105.0.0"
         },
         {
           "name": "collection",
@@ -41,11 +37,11 @@ export const vizDataString = JSON.stringify({
         },
         {
           "name": "meta",
-          "versionConstraint": "^1.18.0"
+          "versionConstraint": "^1.18.3"
         },
         {
           "name": "package_config",
-          "versionConstraint": "^2.0.0"
+          "versionConstraint": ">=2.0.0 <4.0.0"
         },
         {
           "name": "path",
@@ -71,7 +67,7 @@ export const vizDataString = JSON.stringify({
     },
     "args": {
       "name": "args",
-      "version": "2.0.0",
+      "version": "2.7.0",
       "dependencies": [],
       "onlyDev": false
     },
@@ -136,7 +132,7 @@ export const vizDataString = JSON.stringify({
     },
     "coverage": {
       "name": "coverage",
-      "version": "1.15.0",
+      "version": "1.15.1",
       "dependencies": [
         {
           "name": "args",
@@ -160,7 +156,7 @@ export const vizDataString = JSON.stringify({
         },
         {
           "name": "package_config",
-          "versionConstraint": "^2.0.0"
+          "versionConstraint": ">=2.0.0 <4.0.0"
         },
         {
           "name": "path",
@@ -197,8 +193,13 @@ export const vizDataString = JSON.stringify({
     },
     "dart_flutter_team_lints": {
       "name": "dart_flutter_team_lints",
-      "version": "3.0.0",
-      "dependencies": []
+      "version": "3.5.2",
+      "dependencies": [
+        {
+          "name": "lints",
+          "versionConstraint": "^6.0.0"
+        }
+      ]
     },
     "demo_workspace": {
       "name": "demo_workspace",
@@ -318,6 +319,11 @@ export const vizDataString = JSON.stringify({
         }
       ]
     },
+    "lints": {
+      "name": "lints",
+      "version": "6.1.0",
+      "dependencies": []
+    },
     "logging": {
       "name": "logging",
       "version": "1.3.0",
@@ -325,7 +331,7 @@ export const vizDataString = JSON.stringify({
     },
     "matcher": {
       "name": "matcher",
-      "version": "0.12.19",
+      "version": "0.12.20",
       "dependencies": [
         {
           "name": "async",
@@ -351,7 +357,7 @@ export const vizDataString = JSON.stringify({
     },
     "meta": {
       "name": "meta",
-      "version": "1.18.2",
+      "version": "1.19.0",
       "dependencies": []
     },
     "mime": {
@@ -373,11 +379,11 @@ export const vizDataString = JSON.stringify({
     },
     "package_config": {
       "name": "package_config",
-      "version": "2.2.0",
+      "version": "3.0.0",
       "dependencies": [
         {
-          "name": "path",
-          "versionConstraint": "^1.8.0"
+          "name": "meta",
+          "versionConstraint": "^1.15.0"
         }
       ]
     },
@@ -415,7 +421,7 @@ export const vizDataString = JSON.stringify({
     },
     "pkg_b": {
       "name": "pkg_b",
-      "version": "1.0.0",
+      "version": "0.0.0",
       "dependencies": [
         {
           "name": "http_parser",
@@ -587,7 +593,7 @@ export const vizDataString = JSON.stringify({
     },
     "source_maps": {
       "name": "source_maps",
-      "version": "0.10.13",
+      "version": "0.10.14",
       "dependencies": [
         {
           "name": "source_span",
@@ -653,11 +659,11 @@ export const vizDataString = JSON.stringify({
     },
     "test": {
       "name": "test",
-      "version": "1.31.0",
+      "version": "1.31.2",
       "dependencies": [
         {
           "name": "analyzer",
-          "versionConstraint": ">=8.0.0 <13.0.0"
+          "versionConstraint": ">=13.0.0 <15.0.0"
         },
         {
           "name": "async",
@@ -685,7 +691,7 @@ export const vizDataString = JSON.stringify({
         },
         {
           "name": "matcher",
-          "versionConstraint": ">=0.12.16 <0.12.20"
+          "versionConstraint": ">=0.12.16 <0.12.21"
         },
         {
           "name": "node_preamble",
@@ -693,7 +699,7 @@ export const vizDataString = JSON.stringify({
         },
         {
           "name": "package_config",
-          "versionConstraint": "^2.0.0"
+          "versionConstraint": ">=2.0.0 <4.0.0"
         },
         {
           "name": "path",
@@ -733,11 +739,11 @@ export const vizDataString = JSON.stringify({
         },
         {
           "name": "test_api",
-          "versionConstraint": "0.7.11"
+          "versionConstraint": "0.7.13"
         },
         {
           "name": "test_core",
-          "versionConstraint": "0.6.17"
+          "versionConstraint": "0.6.19"
         },
         {
           "name": "typed_data",
@@ -760,7 +766,7 @@ export const vizDataString = JSON.stringify({
     },
     "test_api": {
       "name": "test_api",
-      "version": "0.7.11",
+      "version": "0.7.13",
       "dependencies": [
         {
           "name": "async",
@@ -802,11 +808,11 @@ export const vizDataString = JSON.stringify({
     },
     "test_core": {
       "name": "test_core",
-      "version": "0.6.17",
+      "version": "0.6.19",
       "dependencies": [
         {
           "name": "analyzer",
-          "versionConstraint": ">=8.0.0 <13.0.0"
+          "versionConstraint": ">=13.0.0 <15.0.0"
         },
         {
           "name": "args",
@@ -846,7 +852,7 @@ export const vizDataString = JSON.stringify({
         },
         {
           "name": "package_config",
-          "versionConstraint": "^2.0.0"
+          "versionConstraint": ">=2.0.0 <4.0.0"
         },
         {
           "name": "path",
@@ -878,7 +884,7 @@ export const vizDataString = JSON.stringify({
         },
         {
           "name": "test_api",
-          "versionConstraint": "0.7.11"
+          "versionConstraint": "0.7.13"
         },
         {
           "name": "vm_service",
@@ -904,7 +910,7 @@ export const vizDataString = JSON.stringify({
     },
     "vm_service": {
       "name": "vm_service",
-      "version": "15.0.2",
+      "version": "15.3.0",
       "dependencies": []
     },
     "watcher": {

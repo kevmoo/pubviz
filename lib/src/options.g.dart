@@ -77,7 +77,8 @@ ArgParser _$populateOptionsParser(ArgParser parser) => parser
   )
   ..addOption(
     'package',
-    help: 'A published package name (and optional version) to visualize.\nI.E. "--package pubviz" or "--package pubviz:5.0.0"',
+    help:
+        'A published package name (and optional version) to visualize.\nI.E. "--package pubviz" or "--package pubviz:5.0.0"',
   )
   ..addFlag(
     'production-dependencies',
