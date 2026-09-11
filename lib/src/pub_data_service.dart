@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:cli_util/cli_util.dart';
-import 'package:path/path.dart' as p;
 
 import 'deps_list.dart';
 import 'service.dart';
