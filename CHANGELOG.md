@@ -2,13 +2,15 @@
 
 ## 6.3.0-wip
 
-- Migrate to `package:cli_util` for SDK resolution instead of a locally defined `dartExecutable()` helper.
+- Migrate to `package:cli_util` for SDK resolution instead of a locally defined
+  `dartExecutable()` helper.
 - Require `sdk: ^3.13.0`.
 - Switch to native structured `dart pub deps --json` parsing and remove legacy
   `deps -s list` text parsing and `string_scanner` dependency.
 - Fixes `hide-isolated` filter was not being applied to the `print` and
   `print-mermaid` actions.
-- Fixes `--ignore-packages` having no effect with the `open` and `serve` actions.
+- Fixes `--ignore-packages` having no effect with the `open` and `serve`
+  actions.
 
 ## 6.2.0+1
 
