@@ -86,8 +86,9 @@ Future<void> run(Options options) async {
         includeWorkspace: includeWorkspace,
       );
     }
+    final filteredVp = _filter(vp, options);
     if (options.flagOutdated) {
-      final updateOrder = computeUpdateOrder(vp);
+      final updateOrder = computeUpdateOrder(filteredVp);
       if (updateOrder.isNotEmpty) {
         stderr
           ..writeln()
@@ -105,7 +106,6 @@ Future<void> run(Options options) async {
           ..writeln();
       }
     }
-    final filteredVp = _filter(vp, options);
     switch (options.action) {
       case Action.print:
         _printContent(filteredVp, options.ignorePackages);

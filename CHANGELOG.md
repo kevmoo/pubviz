@@ -13,6 +13,10 @@
   actions.
 - Style outdated version constraint edges and dev-only edges in Mermaid output
   (`linkStyle`), matching GraphViz DOT edge coloring.
+- Omit disconnected `publish_to: none` workspace root nodes from rendered DOT
+  and Mermaid graphs when workspace member packages are present.
+- Apply CLI `--filters` before computing the `Outdated package update order:`
+  summary.
 
 ## 6.2.0+1
 

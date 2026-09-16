@@ -86,4 +86,42 @@ void main() {
     check(mermaid)
         .contains('linkStyle 2 stroke:#f48fb1,color:#e53935,stroke-width:2px;');
   });
+
+  test(
+    'omits isolated publish_to: none workspace root when other packages exist',
+    () {
+      final root = VizRoot('workspace_root', {
+        'workspace_root': VizPackage(
+          'workspace_root',
+          null,
+          {},
+          null,
+          isPrimary: true,
+          onlyDev: false,
+          isPublishToNone: true,
+        ),
+        'pkg_a': VizPackage(
+          'pkg_a',
+          Version(1, 0, 0),
+          {Dependency('pkg_b', VersionConstraint.parse('^1.0.0'), false)},
+          null,
+          isPrimary: true,
+          onlyDev: false,
+        ),
+        'pkg_b': VizPackage(
+          'pkg_b',
+          Version(1, 0, 0),
+          {},
+          null,
+          isPrimary: true,
+          onlyDev: false,
+        ),
+      }, isWorkspace: true);
+
+      final mermaid = root.toMermaid();
+      check(mermaid).not((it) => it.contains('workspace_root'));
+      check(mermaid).contains('pkg_a["pkg_a<br/>1.0.0"]');
+      check(mermaid).contains('pkg_b["pkg_b<br/>1.0.0"]');
+    },
+  );
 }

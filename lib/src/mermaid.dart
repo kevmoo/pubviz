@@ -14,9 +14,7 @@ extension VizRootMermaidExt on VizRoot {
       ..writeln('  classDef outdated stroke:#e53935,stroke-width:2px;')
       ..writeln('  classDef publishToNone stroke-dasharray: 5 5;');
 
-    final visiblePackages = packages.values
-        .where((v) => !ignored.contains(v.name))
-        .toList(growable: false);
+    final visiblePackages = renderablePackages(this, ignorePackages);
 
     final primaryNodes = <String>[];
     final outdatedNodes = <String>[];
