@@ -47,4 +47,43 @@ void main() {
     check(mermaid).contains('class b outdated;');
     check(mermaid).contains('class c publishToNone;');
   });
+
+  test('toMermaid styles outdated and dev-only edges with linkStyle', () {
+    final root = VizRoot.assemble('a', {
+      'a': VizPackage(
+        'a',
+        Version(1, 0, 0),
+        {
+          Dependency('b', VersionConstraint.parse('^1.0.0'), false),
+          Dependency('c', VersionConstraint.parse('^1.0.0'), true),
+        },
+        null,
+        isPrimary: true,
+        onlyDev: false,
+      ),
+      'b': VizPackage(
+        'b',
+        Version(1, 0, 0),
+        {},
+        Version(2, 0, 0),
+        onlyDev: false,
+      ),
+      'c': VizPackage('c', Version(1, 0, 0), {
+        Dependency('b', VersionConstraint.parse('^1.0.0'), false),
+        Dependency('d', VersionConstraint.parse('^1.0.0'), false),
+      }, Version(1, 0, 0)),
+      'd': VizPackage('d', Version(1, 0, 0), {}, Version(1, 0, 0)),
+    }, flagOutdated: true);
+
+    final mermaid = root.toMermaid();
+    // Edge 0: a -> b (outdated prod edge: ^1.0.0 does not allow 2.0.0)
+    // Edge 1: a -.-> c (non-outdated dev edge)
+    // Edge 2: c -> b (outdated onlyDev edge: ^1.0.0 does not allow 2.0.0)
+    // Edge 3: c -> d (non-outdated onlyDev edge: gray)
+    check(mermaid).contains('linkStyle 3 stroke:#9e9e9e,color:#9e9e9e;');
+    check(mermaid)
+        .contains('linkStyle 0 stroke:#e53935,color:#e53935,stroke-width:2px;');
+    check(mermaid)
+        .contains('linkStyle 2 stroke:#f48fb1,color:#e53935,stroke-width:2px;');
+  });
 }

@@ -11,6 +11,8 @@
   `print-mermaid` actions.
 - Fixes `--ignore-packages` having no effect with the `open` and `serve`
   actions.
+- Style outdated version constraint edges and dev-only edges in Mermaid output
+  (`linkStyle`), matching GraphViz DOT edge coloring.
 
 ## 6.2.0+1
 
