@@ -13,9 +13,7 @@ extension VizRootExt on VizRoot {
       edgeProperties: {'fontcolor': 'gray'},
     );
 
-    for (var pack in packages.values.where(
-      (v) => !ignorePackages.contains(v.name),
-    )) {
+    for (var pack in renderablePackages(this, ignorePackages)) {
       gviz.addBlankLine();
       _writeDot(pack, gviz, root.name, ignorePackages, isWorkspace);
     }
