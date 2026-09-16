@@ -1,6 +1,6 @@
 # Changelog
 
-## 6.3.0-wip
+## 6.3.0
 
 - Migrate to `package:cli_util` for SDK resolution instead of a locally defined
   `dartExecutable()` helper.
