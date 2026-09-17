@@ -170,136 +170,166 @@ abstract class Service {
     final configFile = _loadPackageConfigFile(ascend: ascend);
 
     final map = SplayTreeMap<String, VizPackage>();
-    final visitedTransitiveDeps = <String>{};
+    final pendingTransitive = Queue<String>();
+    final pubspecCache = <String, parse.Pubspec?>{pubspec.name: pubspec};
 
-    final pubspecCache = <String, parse.Pubspec?>{};
     parse.Pubspec? getPubspec(String name) => pubspecCache.putIfAbsent(
       name,
       () => _loadPubspecForPackage(name, configFile),
     );
-
-    // Ensure root pubspec is cached
-    pubspecCache[pubspec.name] = pubspec;
-
-    void addPkg(String name) {
-      if (map.containsKey(name)) return;
-
-      final graphEntry = graphFile.packages[name];
-      if (graphEntry == null) {
-        throw StateError('Could not find an entry for `$name`.');
-      }
-
-      final pkgPubspec = getPubspec(name);
-      final dependencies = <Dependency>{};
-
-      for (final depName in graphEntry.dependencies) {
-        if (_ignoredPackages.contains(depName)) continue;
-        dependencies.add(
-          Dependency(
-            depName,
-            _getConstraint(pkgPubspec, depName, isDev: false),
-            false,
-          ),
-        );
-      }
-
-      final isPublishToNone = pkgPubspec?.publishTo == 'none';
-
-      map[name] = VizPackage(
-        name,
-        graphEntry.version ?? pkgPubspec?.version,
-        SplayTreeSet.of(dependencies),
-        flagOutdated ? _latest(name) : null,
-        isPublishToNone: isPublishToNone,
-      );
-
-      if (!directDependenciesOnly) {
-        visitedTransitiveDeps.addAll(
-          dependencies
-              .map((d) => d.name)
-              .where((depName) => !map.containsKey(depName)),
-        );
-      }
-    }
 
     final primaryRoots = includeWorkspace && graphFile.roots.isNotEmpty
         ? graphFile.roots.toSet()
         : {pubspec.name};
 
     for (final rootName in primaryRoots) {
-      final graphEntry = graphFile.packages[rootName];
-      final memberPubspec =
-          getPubspec(rootName) ?? (rootName == pubspec.name ? pubspec : null);
-
-      final dependencies = <Dependency>{};
-
-      // Production dependencies
-      final prodDepNames =
-          graphEntry?.dependencies ??
-          memberPubspec?.dependencies.keys ??
-          const <String>[];
-      for (final depName in prodDepNames) {
-        if (_ignoredPackages.contains(depName)) continue;
-        dependencies.add(
-          Dependency(
-            depName,
-            _getConstraint(memberPubspec, depName, isDev: false),
-            false,
-          ),
-        );
-      }
-
-      // Dev dependencies
-      if (!productionDependenciesOnly) {
-        final devDepNames =
-            graphEntry?.devDependencies ??
-            memberPubspec?.devDependencies.keys ??
-            const <String>[];
-        for (final depName in devDepNames) {
-          if (_ignoredPackages.contains(depName)) continue;
-          dependencies.add(
-            Dependency(
-              depName,
-              _getConstraint(memberPubspec, depName, isDev: true),
-              true,
-            ),
-          );
-        }
-      }
-
-      final isPublishToNone = memberPubspec?.publishTo == 'none';
-      final version = includeWorkspace
-          ? (rootName == pubspec.name || isPublishToNone
-                ? null
-                : (graphEntry?.version ?? memberPubspec?.version))
-          : memberPubspec?.version;
-
-      map[rootName] = VizPackage(
+      final pkg = _buildPrimaryPackage(
         rootName,
-        version,
-        SplayTreeSet.of(dependencies),
-        includeWorkspace && flagOutdated ? _latest(rootName) : null,
-        isPrimary: true,
-        onlyDev: false,
-        isPublishToNone: isPublishToNone,
+        rootPubspec: pubspec,
+        graphEntry: graphFile.packages[rootName],
+        memberPubspec: getPubspec(rootName),
+        flagOutdated: flagOutdated,
+        productionDependenciesOnly: productionDependenciesOnly,
+        includeWorkspace: includeWorkspace,
       );
-
-      for (final dep in dependencies) {
-        addPkg(dep.name);
+      map[rootName] = pkg;
+      for (final dep in pkg.dependencies) {
+        pendingTransitive.add(dep.name);
       }
     }
 
-    // Resolve transitive dependencies
-    if (!directDependenciesOnly) {
-      while (visitedTransitiveDeps.isNotEmpty) {
-        final next = visitedTransitiveDeps.first;
-        visitedTransitiveDeps.remove(next);
-        addPkg(next);
+    while (pendingTransitive.isNotEmpty) {
+      final name = pendingTransitive.removeFirst();
+      if (map.containsKey(name)) continue;
+
+      final pkg = _buildTransitivePackage(
+        name,
+        graphFile: graphFile,
+        pkgPubspec: getPubspec(name),
+        flagOutdated: flagOutdated,
+      );
+      map[name] = pkg;
+
+      if (!directDependenciesOnly) {
+        for (final dep in pkg.dependencies) {
+          if (!map.containsKey(dep.name)) {
+            pendingTransitive.add(dep.name);
+          }
+        }
       }
     }
 
     return map;
   }
+
+  VizPackage _buildPrimaryPackage(
+    String rootName, {
+    required parse.Pubspec rootPubspec,
+    required _PackageGraphPackage? graphEntry,
+    required parse.Pubspec? memberPubspec,
+    required bool flagOutdated,
+    required bool productionDependenciesOnly,
+    required bool includeWorkspace,
+  }) {
+    final effectivePubspec =
+        memberPubspec ?? (rootName == rootPubspec.name ? rootPubspec : null);
+    final prodDepNames =
+        graphEntry?.dependencies ??
+        effectivePubspec?.dependencies.keys ??
+        const <String>[];
+    final dependencies = _buildDependencies(
+      prodDepNames,
+      effectivePubspec,
+      isDev: false,
+    );
+
+    if (!productionDependenciesOnly) {
+      final devDepNames =
+          graphEntry?.devDependencies ??
+          effectivePubspec?.devDependencies.keys ??
+          const <String>[];
+      dependencies.addAll(
+        _buildDependencies(devDepNames, effectivePubspec, isDev: true),
+      );
+    }
+
+    final isPublishToNone = effectivePubspec?.publishTo == 'none';
+    final version = _resolvePrimaryVersion(
+      rootName: rootName,
+      rootPubspecName: rootPubspec.name,
+      includeWorkspace: includeWorkspace,
+      isPublishToNone: isPublishToNone,
+      graphEntry: graphEntry,
+      memberPubspec: effectivePubspec,
+    );
+
+    return VizPackage(
+      rootName,
+      version,
+      SplayTreeSet.of(dependencies),
+      includeWorkspace && flagOutdated ? _latest(rootName) : null,
+      isPrimary: true,
+      onlyDev: false,
+      isPublishToNone: isPublishToNone,
+    );
+  }
+
+  Version? _resolvePrimaryVersion({
+    required String rootName,
+    required String rootPubspecName,
+    required bool includeWorkspace,
+    required bool isPublishToNone,
+    required _PackageGraphPackage? graphEntry,
+    required parse.Pubspec? memberPubspec,
+  }) {
+    if (!includeWorkspace) {
+      return memberPubspec?.version;
+    }
+    if (rootName == rootPubspecName || isPublishToNone) {
+      return null;
+    }
+    return graphEntry?.version ?? memberPubspec?.version;
+  }
+
+  VizPackage _buildTransitivePackage(
+    String name, {
+    required _PackageGraphFile graphFile,
+    required parse.Pubspec? pkgPubspec,
+    required bool flagOutdated,
+  }) {
+    final graphEntry = graphFile.packages[name];
+    if (graphEntry == null) {
+      throw StateError('Could not find an entry for `$name`.');
+    }
+
+    final dependencies = _buildDependencies(
+      graphEntry.dependencies,
+      pkgPubspec,
+      isDev: false,
+    );
+
+    return VizPackage(
+      name,
+      graphEntry.version ?? pkgPubspec?.version,
+      SplayTreeSet.of(dependencies),
+      flagOutdated ? _latest(name) : null,
+      isPublishToNone: pkgPubspec?.publishTo == 'none',
+    );
+  }
+
+  Set<Dependency> _buildDependencies(
+    Iterable<String> depNames,
+    parse.Pubspec? pubspec, {
+    required bool isDev,
+  }) => {
+    for (final depName in depNames)
+      if (!_ignoredPackages.contains(depName))
+        Dependency(
+          depName,
+          _getConstraint(pubspec, depName, isDev: isDev),
+          isDev,
+        ),
+  };
 
   Version? _latest(String package) {
     _outdatedCache ??= {
