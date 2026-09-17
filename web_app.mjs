@@ -4,7 +4,7 @@
 // `source` needs to be a `Response` object (or promise thereof) e.g. created
 // via the `fetch()` JS API.
 export async function compileStreaming(source) {
-  const builtins = {builtins: ['js-string']};
+  const builtins = {builtins: ['js-string'], importedStringConstants: ''};
   return new CompiledApp(
       await WebAssembly.compileStreaming(source, builtins), builtins);
 }
@@ -12,7 +12,7 @@ export async function compileStreaming(source) {
 // Compiles a dart2wasm-generated wasm module from `bytes` which is then
 // instantiable via the `instantiate` method.
 export async function compile(bytes) {
-  const builtins = {builtins: ['js-string']};
+  const builtins = {builtins: ['js-string'], importedStringConstants: ''};
   return new CompiledApp(await WebAssembly.compile(bytes, builtins), builtins);
 }
 
