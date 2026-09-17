@@ -42,23 +42,22 @@ class Dependency implements Comparable<Dependency> {
     return deps;
   }
 
+  static VersionConstraint extractConstraint(parse.Dependency dep) {
+    if (dep
+        case parse.HostedDependency(:final version) ||
+            parse.SdkDependency(:final version)) {
+      return version;
+    }
+    return _parseOrNull(dep.toString());
+  }
+
   static void _populateFromSection(
     Map<String, parse.Dependency> yaml,
     Set<Dependency> value,
     bool isDev,
   ) {
     for (var entry in yaml.entries) {
-      final constraint = entry.value;
-      final VersionConstraint parsedConstraint;
-      if (constraint
-          case parse.HostedDependency(:final version) ||
-              parse.SdkDependency(:final version)) {
-        parsedConstraint = version;
-      } else {
-        parsedConstraint = _parseOrNull(constraint.toString());
-      }
-
-      final dep = Dependency(entry.key, parsedConstraint, isDev);
+      final dep = Dependency(entry.key, extractConstraint(entry.value), isDev);
 
       value.add(dep);
     }

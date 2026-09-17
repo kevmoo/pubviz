@@ -198,7 +198,8 @@ void main() {
     late VizRoot vp;
 
     setUpAll(() async {
-      service = MockDataService(_mockPath);
+      await _setupMockSandbox();
+      service = MockDataService(d.path('mock'));
       vp = await service.vizRoot(flagOutdated: true);
     });
 

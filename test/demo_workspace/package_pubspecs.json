@@ -1,0 +1,243 @@
+{
+  "_fe_analyzer_shared": {
+    "meta": "^1.9.0"
+  },
+  "analyzer": {
+    "_fe_analyzer_shared": "^108.0.0",
+    "collection": "^1.19.0",
+    "convert": "^3.0.0",
+    "crypto": "^3.0.0",
+    "glob": "^2.0.0",
+    "meta": "^1.18.3",
+    "package_config": ">=2.0.0 <4.0.0",
+    "path": "^1.9.0",
+    "pub_semver": "^2.1.4",
+    "source_span": "^1.8.0",
+    "watcher": "^1.1.0",
+    "yaml": "^3.0.0"
+  },
+  "args": {},
+  "async": {
+    "collection": "^1.15.0",
+    "meta": "^1.3.0"
+  },
+  "boolean_selector": {
+    "source_span": "^1.8.0",
+    "string_scanner": "^1.1.0"
+  },
+  "cli_config": {
+    "args": "^2.4.0",
+    "yaml": "^3.1.1"
+  },
+  "collection": {},
+  "convert": {
+    "typed_data": "^1.3.0"
+  },
+  "coverage": {
+    "args": "^2.0.0",
+    "cli_config": "^0.2.0",
+    "glob": "^2.1.2",
+    "logging": "^1.0.0",
+    "meta": "^1.0.2",
+    "package_config": ">=2.0.0 <4.0.0",
+    "path": "^1.8.0",
+    "source_maps": "^0.10.10",
+    "stack_trace": "^1.10.0",
+    "vm_service": ">=12.0.0 <16.0.0",
+    "yaml": "^3.1.3"
+  },
+  "crypto": {
+    "typed_data": "^1.3.0"
+  },
+  "dart_flutter_team_lints": {
+    "lints": "^6.0.0"
+  },
+  "file": {
+    "meta": "^1.9.1",
+    "path": "^1.8.3"
+  },
+  "frontend_server_client": {
+    "async": "^2.5.0",
+    "path": "^1.8.0"
+  },
+  "glob": {
+    "async": "^2.5.0",
+    "collection": "^1.15.0",
+    "file": ">=6.1.3 <8.0.0",
+    "path": "^1.8.0",
+    "string_scanner": "^1.1.0"
+  },
+  "http_multi_server": {
+    "async": "^2.5.0"
+  },
+  "http_parser": {
+    "collection": "^1.19.0",
+    "source_span": "^1.8.0",
+    "string_scanner": "^1.1.0",
+    "typed_data": "^1.3.0"
+  },
+  "io": {
+    "meta": "^1.3.0",
+    "path": "^1.8.0",
+    "string_scanner": "^1.1.0"
+  },
+  "lints": {},
+  "logging": {},
+  "matcher": {
+    "async": "^2.10.0",
+    "meta": "^1.8.0",
+    "stack_trace": "^1.10.0",
+    "term_glyph": "^1.2.0",
+    "test_api": ">=0.5.0 <0.8.0"
+  },
+  "meta": {},
+  "mime": {},
+  "node_preamble": {},
+  "package_config": {
+    "meta": "^1.15.0"
+  },
+  "path": {},
+  "pool": {
+    "async": "^2.5.0",
+    "stack_trace": "^1.10.0"
+  },
+  "pub_semver": {
+    "collection": "^1.15.0"
+  },
+  "shelf": {
+    "async": "^2.5.0",
+    "collection": "^1.15.0",
+    "http_parser": "^4.1.0",
+    "path": "^1.8.0",
+    "stack_trace": "^1.10.0",
+    "stream_channel": "^2.1.0"
+  },
+  "shelf_packages_handler": {
+    "path": "^1.8.0",
+    "shelf": "^1.0.0",
+    "shelf_static": "^1.0.0"
+  },
+  "shelf_static": {
+    "convert": "^3.0.0",
+    "http_parser": "^4.0.0",
+    "mime": ">=1.0.0 <3.0.0",
+    "path": "^1.8.0",
+    "shelf": "^1.1.2"
+  },
+  "shelf_web_socket": {
+    "shelf": "^1.1.0",
+    "stream_channel": "^2.1.0",
+    "web_socket_channel": ">=2.0.0 <4.0.0"
+  },
+  "source_map_stack_trace": {
+    "path": "^1.8.0",
+    "source_maps": "^0.10.10",
+    "stack_trace": "^1.10.0"
+  },
+  "source_maps": {
+    "source_span": "^1.8.0"
+  },
+  "source_span": {
+    "collection": "^1.15.0",
+    "path": "^1.8.0",
+    "term_glyph": "^1.2.0"
+  },
+  "stack_trace": {
+    "path": "^1.8.0"
+  },
+  "stream_channel": {
+    "async": "^2.5.0"
+  },
+  "string_scanner": {
+    "source_span": "^1.8.0"
+  },
+  "term_glyph": {},
+  "test": {
+    "analyzer": ">=13.0.0 <15.0.0",
+    "async": "^2.5.0",
+    "boolean_selector": "^2.1.0",
+    "collection": "^1.15.0",
+    "coverage": "^1.15.0",
+    "http_multi_server": "^3.0.0",
+    "io": "^1.0.0",
+    "matcher": ">=0.12.16 <0.12.21",
+    "node_preamble": "^2.0.0",
+    "package_config": ">=2.0.0 <4.0.0",
+    "path": "^1.8.0",
+    "pool": "^1.5.0",
+    "shelf": "^1.0.0",
+    "shelf_packages_handler": "^3.0.0",
+    "shelf_static": "^1.0.0",
+    "shelf_web_socket": ">=1.0.0 <4.0.0",
+    "source_span": "^1.8.0",
+    "stack_trace": "^1.10.0",
+    "stream_channel": "^2.1.0",
+    "test_api": "0.7.14",
+    "test_core": "0.6.20",
+    "typed_data": "^1.3.0",
+    "web_socket_channel": ">=2.0.0 <4.0.0",
+    "webkit_inspection_protocol": "^1.0.0",
+    "yaml": "^3.0.0"
+  },
+  "test_api": {
+    "async": "^2.5.0",
+    "boolean_selector": "^2.1.0",
+    "collection": "^1.15.0",
+    "meta": "^1.16.0",
+    "source_span": "^1.8.0",
+    "stack_trace": "^1.10.0",
+    "stream_channel": "^2.1.0",
+    "string_scanner": "^1.1.0",
+    "term_glyph": "^1.2.0"
+  },
+  "test_core": {
+    "analyzer": ">=13.0.0 <15.0.0",
+    "args": "^2.0.0",
+    "async": "^2.5.0",
+    "boolean_selector": "^2.1.0",
+    "collection": "^1.15.0",
+    "coverage": "^1.15.0",
+    "frontend_server_client": ">=3.2.0 <5.0.0",
+    "glob": "^2.0.0",
+    "io": "^1.0.0",
+    "meta": "^1.16.0",
+    "package_config": ">=2.0.0 <4.0.0",
+    "path": "^1.8.0",
+    "pool": "^1.5.0",
+    "source_map_stack_trace": "^2.1.0",
+    "source_maps": "^0.10.10",
+    "source_span": "^1.8.0",
+    "stack_trace": "^1.10.0",
+    "stream_channel": "^2.1.0",
+    "test_api": "0.7.14",
+    "vm_service": ">=6.0.0 <16.0.0",
+    "yaml": "^3.0.0"
+  },
+  "typed_data": {
+    "collection": "^1.15.0"
+  },
+  "vm_service": {},
+  "watcher": {
+    "async": "^2.5.0",
+    "path": "^1.8.0"
+  },
+  "web": {},
+  "web_socket": {
+    "web": ">=0.5.0 <2.0.0"
+  },
+  "web_socket_channel": {
+    "async": "^2.5.0",
+    "crypto": "^3.0.0",
+    "stream_channel": "^2.1.0",
+    "web": ">=0.5.0 <2.0.0",
+    "web_socket": ">=0.1.5 <2.0.0"
+  },
+  "webkit_inspection_protocol": {
+    "logging": "^1.0.0"
+  },
+  "yaml": {
+    "collection": "^1.15.0",
+    "source_span": "^1.8.0",
+    "string_scanner": "^1.2.0"
+  }
+}

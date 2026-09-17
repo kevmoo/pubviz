@@ -5,6 +5,7 @@ import 'package:args/args.dart';
 import 'package:path/path.dart' as p;
 import 'package:pub_semver/pub_semver.dart';
 import 'package:pubspec_parse/pubspec_parse.dart' as parse;
+import 'package:pubviz/src/dependency.dart';
 import 'package:pubviz/src/executable.dart';
 import 'package:pubviz/src/root_builder.dart';
 
@@ -175,7 +176,7 @@ void _updateDemoWorkspaceDartTool(Directory tempDir) {
     },
     {
       'name': 'pkg_b',
-      'version': '0.0.0',
+      'version': '1.0.0',
       'dependencies': ['http_parser', 'outdated_pkg', 'pkg_a'],
       'devDependencies': ['test'],
     },
@@ -195,9 +196,35 @@ void _updateDemoWorkspaceDartTool(Directory tempDir) {
     'configVersion': 1,
   };
 
-  final configPackages =
+  final rawConfigPackages =
       (tempConfigJson['packages'] as List).cast<Map<String, dynamic>>()
         ..removeWhere((p) => p['name'] == 'temp_project');
+
+  final tempDartToolUri = Uri.directory(p.join(tempDir.path, '.dart_tool'));
+  final pubspecsMap = <String, Map<String, String>>{};
+  final configPackages = <Map<String, dynamic>>[];
+
+  for (final pkgEntry in rawConfigPackages) {
+    final pkgName = pkgEntry['name'] as String;
+    final rawRootUri = pkgEntry['rootUri'] as String;
+    final resolvedRootUri = tempDartToolUri.resolve(rawRootUri);
+    if (resolvedRootUri.scheme == 'file') {
+      final pubspecFile = File(
+        p.join(resolvedRootUri.toFilePath(), 'pubspec.yaml'),
+      );
+      if (pubspecFile.existsSync()) {
+        final pubspec = parse.Pubspec.parse(
+          pubspecFile.readAsStringSync(),
+          sourceUrl: pubspecFile.uri,
+        );
+        pubspecsMap[pkgName] = {
+          for (final dep in pubspec.dependencies.entries)
+            dep.key: Dependency.extractConstraint(dep.value).toString(),
+        };
+      }
+    }
+    configPackages.add({...pkgEntry, 'rootUri': '../packages/$pkgName'});
+  }
 
   final workspaceConfigPackages = [
     {
@@ -244,6 +271,8 @@ void _updateDemoWorkspaceDartTool(Directory tempDir) {
       .writeAsStringSync('${encoder.convert(newGraphJson)}\n');
   File(p.join(dartToolDir, 'package_config.json'))
       .writeAsStringSync('${encoder.convert(newConfigJson)}\n');
+  File(p.join(demoDir, 'package_pubspecs.json'))
+      .writeAsStringSync('${encoder.convert(pubspecsMap)}\n');
   print('Successfully updated $dartToolDir with package graph and config!');
 }
 

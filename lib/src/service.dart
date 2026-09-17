@@ -2,6 +2,7 @@ import 'dart:collection';
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:meta/meta.dart';
 import 'package:path/path.dart' as p;
 import 'package:pub_semver/pub_semver.dart';
 import 'package:pubspec_parse/pubspec_parse.dart' as parse;
@@ -98,9 +99,13 @@ abstract class Service {
     final entry = config.packages[packageName];
     if (entry == null) return null;
     if (entry.rootUri.scheme != 'file') return null;
-    final pubspecFile = File(
-      p.join(entry.rootUri.toFilePath(), 'pubspec.yaml'),
-    );
+    return loadPubspecAt(packageName, entry.rootUri.toFilePath());
+  }
+
+  /// Loads and parses `pubspec.yaml` for [packageName] at [packageRootPath].
+  @protected
+  parse.Pubspec? loadPubspecAt(String packageName, String packageRootPath) {
+    final pubspecFile = File(p.join(packageRootPath, 'pubspec.yaml'));
     if (!pubspecFile.existsSync()) return null;
     try {
       return parse.Pubspec.parse(
@@ -121,31 +126,19 @@ abstract class Service {
     if (pubspec == null) return VersionConstraint.empty;
     if (isDev) {
       if (pubspec.devDependencies.containsKey(depName)) {
-        return _extractConstraint(pubspec.devDependencies[depName]!);
+        return Dependency.extractConstraint(pubspec.devDependencies[depName]!);
       }
     } else {
       if (pubspec.dependencies.containsKey(depName)) {
-        return _extractConstraint(pubspec.dependencies[depName]!);
+        return Dependency.extractConstraint(pubspec.dependencies[depName]!);
       }
       if (pubspec.dependencyOverrides.containsKey(depName)) {
-        return _extractConstraint(pubspec.dependencyOverrides[depName]!);
+        return Dependency.extractConstraint(
+          pubspec.dependencyOverrides[depName]!,
+        );
       }
     }
     return VersionConstraint.empty;
-  }
-
-  static VersionConstraint _extractConstraint(parse.Dependency dep) {
-    if (dep
-        case parse.HostedDependency(:final version) ||
-            parse.SdkDependency(:final version)) {
-      return version;
-    }
-    final str = dep.toString();
-    try {
-      return VersionConstraint.parse(str);
-    } on FormatException {
-      return VersionConstraint.empty;
-    }
   }
 
   /// Resolves all referenced package nodes from `.dart_tool/package_graph.json`
@@ -211,11 +204,7 @@ abstract class Service {
       map[name] = pkg;
 
       if (!directDependenciesOnly) {
-        for (final dep in pkg.dependencies) {
-          if (!map.containsKey(dep.name)) {
-            pendingTransitive.add(dep.name);
-          }
-        }
+        pendingTransitive.addAll(pkg.dependencies.map((d) => d.name));
       }
     }
 
@@ -381,14 +370,12 @@ final class _PackageGraphPackage {
   final Version? version;
   final List<String> dependencies;
   final List<String> devDependencies;
-  final List<String> dependencyOverrides;
 
   _PackageGraphPackage({
     required this.name,
     this.version,
     required this.dependencies,
     required this.devDependencies,
-    required this.dependencyOverrides,
   });
 
   factory _PackageGraphPackage.fromJson(Map<String, dynamic> json) {
@@ -405,16 +392,12 @@ final class _PackageGraphPackage {
         .cast<String>();
     final devDependencies =
         (json['devDependencies'] as List? ?? const <dynamic>[]).cast<String>();
-    final dependencyOverrides =
-        (json['dependencyOverrides'] as List? ?? const <dynamic>[])
-            .cast<String>();
 
     return _PackageGraphPackage(
       name: name,
       version: version,
       dependencies: dependencies,
       devDependencies: devDependencies,
-      dependencyOverrides: dependencyOverrides,
     );
   }
 }
@@ -442,13 +425,8 @@ final class _PackageConfigFile {
 final class _PackageConfigEntry {
   final String name;
   final Uri rootUri;
-  final Uri? packageUri;
 
-  _PackageConfigEntry({
-    required this.name,
-    required this.rootUri,
-    this.packageUri,
-  });
+  _PackageConfigEntry({required this.name, required this.rootUri});
 
   factory _PackageConfigEntry.fromJson(
     Map<String, dynamic> json, {
@@ -457,15 +435,7 @@ final class _PackageConfigEntry {
     final name = json['name'] as String;
     final rawRootUri = json['rootUri'] as String;
     final resolvedRoot = baseUri.resolve(rawRootUri);
-    final rawPackageUri = json['packageUri'] as String?;
-    final resolvedPackageUri = rawPackageUri != null
-        ? resolvedRoot.resolve(rawPackageUri)
-        : null;
 
-    return _PackageConfigEntry(
-      name: name,
-      rootUri: resolvedRoot,
-      packageUri: resolvedPackageUri,
-    );
+    return _PackageConfigEntry(name: name, rootUri: resolvedRoot);
   }
 }

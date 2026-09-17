@@ -3,7 +3,7 @@ export const vizDataString = JSON.stringify({
   "packages": {
     "_fe_analyzer_shared": {
       "name": "_fe_analyzer_shared",
-      "version": "105.0.0",
+      "version": "108.0.0",
       "dependencies": [
         {
           "name": "meta",
@@ -13,11 +13,11 @@ export const vizDataString = JSON.stringify({
     },
     "analyzer": {
       "name": "analyzer",
-      "version": "14.1.0",
+      "version": "14.4.0",
       "dependencies": [
         {
           "name": "_fe_analyzer_shared",
-          "versionConstraint": "^105.0.0"
+          "versionConstraint": "^108.0.0"
         },
         {
           "name": "collection",
@@ -243,7 +243,7 @@ export const vizDataString = JSON.stringify({
     },
     "glob": {
       "name": "glob",
-      "version": "2.1.3",
+      "version": "2.2.0",
       "dependencies": [
         {
           "name": "async",
@@ -303,7 +303,7 @@ export const vizDataString = JSON.stringify({
     },
     "io": {
       "name": "io",
-      "version": "1.0.5",
+      "version": "1.1.0",
       "dependencies": [
         {
           "name": "meta",
@@ -362,7 +362,7 @@ export const vizDataString = JSON.stringify({
     },
     "mime": {
       "name": "mime",
-      "version": "2.0.0",
+      "version": "2.1.0",
       "dependencies": []
     },
     "node_preamble": {
@@ -421,7 +421,7 @@ export const vizDataString = JSON.stringify({
     },
     "pkg_b": {
       "name": "pkg_b",
-      "version": "0.0.0",
+      "version": "1.0.0",
       "dependencies": [
         {
           "name": "http_parser",
@@ -459,7 +459,7 @@ export const vizDataString = JSON.stringify({
     },
     "pool": {
       "name": "pool",
-      "version": "1.5.2",
+      "version": "1.5.3",
       "dependencies": [
         {
           "name": "async",
@@ -473,7 +473,7 @@ export const vizDataString = JSON.stringify({
     },
     "pub_semver": {
       "name": "pub_semver",
-      "version": "2.2.0",
+      "version": "2.2.1",
       "dependencies": [
         {
           "name": "collection",
@@ -622,7 +622,7 @@ export const vizDataString = JSON.stringify({
     },
     "stack_trace": {
       "name": "stack_trace",
-      "version": "1.12.1",
+      "version": "1.12.2",
       "dependencies": [
         {
           "name": "path",
@@ -659,7 +659,7 @@ export const vizDataString = JSON.stringify({
     },
     "test": {
       "name": "test",
-      "version": "1.31.2",
+      "version": "1.32.0",
       "dependencies": [
         {
           "name": "analyzer",
@@ -739,11 +739,11 @@ export const vizDataString = JSON.stringify({
         },
         {
           "name": "test_api",
-          "versionConstraint": "0.7.13"
+          "versionConstraint": "0.7.14"
         },
         {
           "name": "test_core",
-          "versionConstraint": "0.6.19"
+          "versionConstraint": "0.6.20"
         },
         {
           "name": "typed_data",
@@ -766,7 +766,7 @@ export const vizDataString = JSON.stringify({
     },
     "test_api": {
       "name": "test_api",
-      "version": "0.7.13",
+      "version": "0.7.14",
       "dependencies": [
         {
           "name": "async",
@@ -808,7 +808,7 @@ export const vizDataString = JSON.stringify({
     },
     "test_core": {
       "name": "test_core",
-      "version": "0.6.19",
+      "version": "0.6.20",
       "dependencies": [
         {
           "name": "analyzer",
@@ -884,7 +884,7 @@ export const vizDataString = JSON.stringify({
         },
         {
           "name": "test_api",
-          "versionConstraint": "0.7.13"
+          "versionConstraint": "0.7.14"
         },
         {
           "name": "vm_service",
@@ -980,7 +980,7 @@ export const vizDataString = JSON.stringify({
     },
     "yaml": {
       "name": "yaml",
-      "version": "3.1.3",
+      "version": "3.1.4",
       "dependencies": [
         {
           "name": "collection",
