@@ -1,13 +1,22 @@
 # Changelog
 
-## 6.3.0-wip
+## 6.3.0
 
+- Migrate to `package:cli_util` for SDK resolution instead of a locally defined
+  `dartExecutable()` helper.
 - Require `sdk: ^3.13.0`.
 - Switch to native structured `dart pub deps --json` parsing and remove legacy
   `deps -s list` text parsing and `string_scanner` dependency.
 - Fixes `hide-isolated` filter was not being applied to the `print` and
   `print-mermaid` actions.
-- Fixes `--ignore-packages` having no effect with the `open` and `serve` actions.
+- Fixes `--ignore-packages` having no effect with the `open` and `serve`
+  actions.
+- Style outdated version constraint edges and dev-only edges in Mermaid output
+  (`linkStyle`), matching GraphViz DOT edge coloring.
+- Omit disconnected `publish_to: none` workspace root nodes from rendered DOT
+  and Mermaid graphs when workspace member packages are present.
+- Apply CLI `--filters` before computing the `Outdated package update order:`
+  summary.
 
 ## 6.2.0+1
 

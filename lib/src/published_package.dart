@@ -1,11 +1,11 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:cli_util/cli_util.dart';
 import 'package:path/path.dart' as p;
 import 'package:pub_semver/pub_semver.dart';
 
 import 'options.dart';
-import 'pub_data_service.dart';
 
 /// Sets up a fake project to resolve dependencies for a published package.
 Future<({Directory directory, String packageName})>
@@ -37,7 +37,7 @@ dependencies:
 ''');
 
     stderr.writeln('Resolving dependencies for $name...');
-    final result = Process.runSync(dartExecutable(), [
+    final result = Process.runSync(dartExecutable ?? 'dart', [
       'pub',
       'get',
     ], workingDirectory: tempDir.path);
