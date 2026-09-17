@@ -321,7 +321,7 @@ dev_dependencies:
     });
   });
 
-  group('Service', () {
+  group('Service', testOn: 'vm', () {
     test('vizRoot orElse throw StateError', () async {
       await d.dir('simple_pkg', [
         d.file('pubspec.yaml', 'name: a\n'),
@@ -364,7 +364,7 @@ dev_dependencies:
       );
     });
 
-    test('vizRoot workspace with outdated', testOn: 'vm', () async {
+    test('vizRoot workspace with outdated', () async {
       await d.dir('fake_pkg', [
         d.file('pubspec.yaml', 'name: a\n'),
         d.dir('member', [d.file('pubspec.yaml', 'name: member\n')]),
