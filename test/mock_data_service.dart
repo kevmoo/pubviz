@@ -2,51 +2,45 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
-import 'package:pubviz/src/deps_list.dart';
+import 'package:pubspec_parse/pubspec_parse.dart' as parse;
 import 'package:pubviz/src/service.dart';
 
-class MockDataService extends Service {
+final class MockDataService extends Service {
+  Map<String, dynamic>? _packagePubspecsCache;
+
   @override
   final String rootPackageDir;
 
   MockDataService(this.rootPackageDir);
 
   @override
-  Map<String, dynamic> outdated() {
-    final file = File(p.join(rootPackageDir, 'outdated.json'));
+  parse.Pubspec? loadPubspecAt(String packageName, String packageRootPath) {
+    final fromDisk = super.loadPubspecAt(packageName, packageRootPath);
+    if (fromDisk != null) return fromDisk;
+
+    _packagePubspecsCache ??= _loadPackagePubspecs();
+    final deps = _packagePubspecsCache?[packageName];
+    if (deps is! Map) return null;
+
+    final yamlBuffer = StringBuffer('name: $packageName\ndependencies:\n');
+    for (final entry in deps.cast<String, dynamic>().entries) {
+      yamlBuffer.writeln('  ${entry.key}: "${entry.value}"');
+    }
+    return parse.Pubspec.parse(yamlBuffer.toString());
+  }
+
+  Map<String, dynamic> _loadPackagePubspecs() {
+    final file = File(p.join(rootPackageDir, 'package_pubspecs.json'));
+    if (!file.existsSync()) return const {};
     return jsonDecode(file.readAsStringSync()) as Map<String, dynamic>;
   }
 
-  DepsList? _depsListCache;
-
-  DepsList _getDepsList() {
-    if (_depsListCache == null) {
-      final depsFile = File(p.join(rootPackageDir, 'pub_deps_list.json'));
-      _depsListCache = DepsList.fromJson(
-        jsonDecode(depsFile.readAsStringSync()) as Map<String, dynamic>,
-      );
-    }
-    return _depsListCache!;
-  }
-
   @override
-  DepsPackageEntry rootDeps() => _getDepsList().packages[rootPubspec().name]!;
-
-  @override
-  Iterable<DepsPackageEntry> allDeps() => _getDepsList().packages.values;
-
-  @override
-  Future<Map<String, String>> workspaceMembers() async {
-    final file = File(p.join(rootPackageDir, 'workspace_list.json'));
+  Map<String, dynamic> outdated() {
+    final file = File(p.join(rootPackageDir, 'outdated.json'));
     if (!file.existsSync()) {
-      return {rootPubspec().name: '.'};
+      return {'packages': <void>[]};
     }
-
-    final json = jsonDecode(file.readAsStringSync()) as Map<String, dynamic>;
-    final packages = json['packages'] as List;
-    return {
-      for (var pkgEntry in packages.cast<Map<String, dynamic>>())
-        pkgEntry['name'] as String: pkgEntry['path'] as String,
-    };
+    return jsonDecode(file.readAsStringSync()) as Map<String, dynamic>;
   }
 }

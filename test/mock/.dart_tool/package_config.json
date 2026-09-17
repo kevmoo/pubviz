@@ -1,0 +1,499 @@
+{
+  "configVersion": 2,
+  "packages": [
+    {
+      "name": "repo_manager",
+      "rootUri": "../",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "analyzer",
+      "rootUri": "../packages/analyzer",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "archive",
+      "rootUri": "../packages/archive",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "async",
+      "rootUri": "../packages/async",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "bazel_worker",
+      "rootUri": "../packages/bazel_worker",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "build",
+      "rootUri": "../packages/build",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "build_config",
+      "rootUri": "../packages/build_config",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "build_daemon",
+      "rootUri": "../packages/build_daemon",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "build_modules",
+      "rootUri": "../packages/build_modules",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "build_resolvers",
+      "rootUri": "../packages/build_resolvers",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "build_runner_core",
+      "rootUri": "../packages/build_runner_core",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "built_collection",
+      "rootUri": "../packages/built_collection",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "built_value",
+      "rootUri": "../packages/built_value",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "charcode",
+      "rootUri": "../packages/charcode",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "checked_yaml",
+      "rootUri": "../packages/checked_yaml",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "cli_util",
+      "rootUri": "../packages/cli_util",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "clock",
+      "rootUri": "../packages/clock",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "code_builder",
+      "rootUri": "../packages/code_builder",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "convert",
+      "rootUri": "../packages/convert",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "crypto",
+      "rootUri": "../packages/crypto",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "csslib",
+      "rootUri": "../packages/csslib",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "dart_style",
+      "rootUri": "../packages/dart_style",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "file",
+      "rootUri": "../packages/file",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "fixnum",
+      "rootUri": "../packages/fixnum",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "front_end",
+      "rootUri": "../packages/front_end",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "glob",
+      "rootUri": "../packages/glob",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "graphs",
+      "rootUri": "../packages/graphs",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "html",
+      "rootUri": "../packages/html",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "http_multi_server",
+      "rootUri": "../packages/http_multi_server",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "http_parser",
+      "rootUri": "../packages/http_parser",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "intl",
+      "rootUri": "../packages/intl",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "js",
+      "rootUri": "../packages/js",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "kernel",
+      "rootUri": "../packages/kernel",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "logging",
+      "rootUri": "../packages/logging",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "markdown",
+      "rootUri": "../packages/markdown",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "matcher",
+      "rootUri": "../packages/matcher",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "mime",
+      "rootUri": "../packages/mime",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "node_interop",
+      "rootUri": "../packages/node_interop",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "node_io",
+      "rootUri": "../packages/node_io",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "package_config",
+      "rootUri": "../packages/package_config",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "package_resolver",
+      "rootUri": "../packages/package_resolver",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "protobuf",
+      "rootUri": "../packages/protobuf",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "quiver",
+      "rootUri": "../packages/quiver",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "resource",
+      "rootUri": "../packages/resource",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "scratch_space",
+      "rootUri": "../packages/scratch_space",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "shelf",
+      "rootUri": "../packages/shelf",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "shelf_web_socket",
+      "rootUri": "../packages/shelf_web_socket",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "source_gen",
+      "rootUri": "../packages/source_gen",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "source_maps",
+      "rootUri": "../packages/source_maps",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "source_span",
+      "rootUri": "../packages/source_span",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "stream_channel",
+      "rootUri": "../packages/stream_channel",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "stream_transform",
+      "rootUri": "../packages/stream_transform",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "string_scanner",
+      "rootUri": "../packages/string_scanner",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "term_glyph",
+      "rootUri": "../packages/term_glyph",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "timing",
+      "rootUri": "../packages/timing",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "typed_data",
+      "rootUri": "../packages/typed_data",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "watcher",
+      "rootUri": "../packages/watcher",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "web_socket_channel",
+      "rootUri": "../packages/web_socket_channel",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "args",
+      "rootUri": "../packages/args",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "collection",
+      "rootUri": "../packages/collection",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "github",
+      "rootUri": "../packages/github",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "gviz",
+      "rootUri": "../packages/gviz",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "http",
+      "rootUri": "../packages/http",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "http_retry",
+      "rootUri": "../packages/http_retry",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "http_throttle",
+      "rootUri": "../packages/http_throttle",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "io",
+      "rootUri": "../packages/io",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "json_annotation",
+      "rootUri": "../packages/json_annotation",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "lints",
+      "rootUri": "../packages/lints",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "meta",
+      "rootUri": "../packages/meta",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "pana",
+      "rootUri": "../packages/pana",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "path",
+      "rootUri": "../packages/path",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "pool",
+      "rootUri": "../packages/pool",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "pub_semver",
+      "rootUri": "../packages/pub_semver",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "pubspec_parse",
+      "rootUri": "../packages/pubspec_parse",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "stack_trace",
+      "rootUri": "../packages/stack_trace",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "stats",
+      "rootUri": "../packages/stats",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "yaml",
+      "rootUri": "../packages/yaml",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "build_runner",
+      "rootUri": "../packages/build_runner",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "build_web_compilers",
+      "rootUri": "../packages/build_web_compilers",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "json_serializable",
+      "rootUri": "../packages/json_serializable",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "pedantic",
+      "rootUri": "../packages/pedantic",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "preload",
+      "rootUri": "../packages/preload",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    }
+  ],
+  "generator": "pub",
+  "generatorVersion": "3.11.0"
+}

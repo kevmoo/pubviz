@@ -1,8 +1,0 @@
-{
-  "packages": [
-    {"name": "demo_workspace", "path": "."},
-    {"name": "pkg_a", "path": "pkg_a"},
-    {"name": "pkg_b", "path": "pkg_b"},
-    {"name": "pkg_c", "path": "pkg_c"}
-  ]
-}
