@@ -45,16 +45,21 @@ abstract class Service {
     );
   }
 
-  /// Locates a file named [fileName] inside a `.dart_tool` directory,
-  /// searching [rootPackageDir] and ascending parent directories.
+  /// Locates a file named [fileName] inside a `.dart_tool` directory.
+  ///
+  /// When [ascend] is `true`, searches [rootPackageDir] and ascending parent
+  /// directories. Otherwise, only checks [rootPackageDir].
   ///
   /// Throws [FileSystemException] if `.dart_tool/[fileName]` cannot be found.
-  File _findDartToolFile(String fileName) {
+  File _findDartToolFile(String fileName, {required bool ascend}) {
     var dir = Directory(rootPackageDir).absolute;
     while (true) {
       final candidate = File(p.join(dir.path, '.dart_tool', fileName));
       if (candidate.existsSync()) {
         return candidate;
+      }
+      if (!ascend) {
+        break;
       }
       final parent = dir.parent;
       if (parent.path == dir.path) {
@@ -63,21 +68,22 @@ abstract class Service {
       dir = parent;
     }
     throw FileSystemException(
-      'Could not find `.dart_tool/$fileName` in "$rootPackageDir" or any of '
-      'its parent directories. Run `dart pub get` first.',
+      'Could not find `.dart_tool/$fileName` in "$rootPackageDir"'
+      '${ascend ? ' or any of its parent directories' : ''}. '
+      'Run `dart pub get` first.',
     );
   }
 
   /// Loads and parses the `.dart_tool/package_graph.json` file.
-  _PackageGraphFile _loadPackageGraphFile() {
-    final file = _findDartToolFile('package_graph.json');
+  _PackageGraphFile _loadPackageGraphFile({required bool ascend}) {
+    final file = _findDartToolFile('package_graph.json', ascend: ascend);
     final json = jsonDecode(file.readAsStringSync()) as Map<String, dynamic>;
     return _PackageGraphFile.fromJson(json);
   }
 
   /// Loads and parses the `.dart_tool/package_config.json` file.
-  _PackageConfigFile _loadPackageConfigFile() {
-    final file = _findDartToolFile('package_config.json');
+  _PackageConfigFile _loadPackageConfigFile({required bool ascend}) {
+    final file = _findDartToolFile('package_config.json', ascend: ascend);
     final json = jsonDecode(file.readAsStringSync()) as Map<String, dynamic>;
     final baseUri = Uri.directory(file.parent.path);
     return _PackageConfigFile.fromJson(json, baseUri: baseUri);
@@ -129,8 +135,10 @@ abstract class Service {
   }
 
   static VersionConstraint _extractConstraint(parse.Dependency dep) {
-    if (dep is parse.HostedDependency) {
-      return dep.version;
+    if (dep
+        case parse.HostedDependency(:final version) ||
+            parse.SdkDependency(:final version)) {
+      return version;
     }
     final str = dep.toString();
     try {
@@ -157,8 +165,9 @@ abstract class Service {
     bool includeWorkspace = false,
   }) async {
     final pubspec = rootPubspec();
-    final graphFile = _loadPackageGraphFile();
-    final configFile = _loadPackageConfigFile();
+    final ascend = pubspec.resolution == 'workspace';
+    final graphFile = _loadPackageGraphFile(ascend: ascend);
+    final configFile = _loadPackageConfigFile(ascend: ascend);
 
     final map = SplayTreeMap<String, VizPackage>();
     final visitedTransitiveDeps = <String>{};

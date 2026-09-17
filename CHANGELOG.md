@@ -1,5 +1,11 @@
 # Changelog
 
+## 6.3.1-wip
+
+- Read `.dart_tool/package_graph.json` and `.dart_tool/package_config.json`
+  directly instead of invoking `dart pub deps --json` and
+  `dart pub workspace list --json`.
+
 ## 6.3.0
 
 - Migrate to `package:cli_util` for SDK resolution instead of a locally defined

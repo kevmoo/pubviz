@@ -49,11 +49,16 @@ class Dependency implements Comparable<Dependency> {
   ) {
     for (var entry in yaml.entries) {
       final constraint = entry.value;
-      final constraintString = (constraint is parse.HostedDependency)
-          ? constraint.version.toString()
-          : constraint.toString();
+      final VersionConstraint parsedConstraint;
+      if (constraint
+          case parse.HostedDependency(:final version) ||
+              parse.SdkDependency(:final version)) {
+        parsedConstraint = version;
+      } else {
+        parsedConstraint = _parseOrNull(constraint.toString());
+      }
 
-      final dep = Dependency(entry.key, _parseOrNull(constraintString), isDev);
+      final dep = Dependency(entry.key, parsedConstraint, isDev);
 
       value.add(dep);
     }

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:checks/checks.dart';
 import 'package:pub_semver/pub_semver.dart';
@@ -406,6 +407,82 @@ dev_dependencies:
           .isNotNull()
           .has((p) => p.latestVersion, 'latestVersion')
           .equals(Version(1, 1, 0));
+    });
+
+    test(
+      'does not ascend to parent .dart_tool without resolution: workspace',
+      () async {
+        await d.dir('parent_pkg', [
+          d.file('pubspec.yaml', 'name: parent\n'),
+          d.dir('.dart_tool', [
+            d.file(
+              'package_graph.json',
+              '{"roots": ["parent"], "packages": []}',
+            ),
+            d.file(
+              'package_config.json',
+              '{"configVersion": 2, "packages": []}',
+            ),
+          ]),
+          d.dir('sub_pkg', [d.file('pubspec.yaml', 'name: sub_pkg\n')]),
+        ]).create();
+
+        final service = _SimpleMockService(d.path('parent_pkg/sub_pkg'));
+        await check(service.vizRoot()).throws<FileSystemException>(
+          (it) => it
+              .has((e) => e.message, 'message')
+              .contains('Could not find `.dart_tool/package_graph.json`'),
+        );
+      },
+    );
+
+    test('extracts version constraint for SdkDependency', () async {
+      await d.dir('sdk_pkg', [
+        d.file('pubspec.yaml', '''
+name: a
+dependencies:
+  flutter:
+    sdk: flutter
+    version: ^3.0.0
+'''),
+        d.dir('.dart_tool', [
+          d.file('package_graph.json', '''
+{
+  "roots": ["a"],
+  "packages": [
+    {
+      "name": "a",
+      "version": "1.0.0",
+      "dependencies": ["flutter"]
+    },
+    {
+      "name": "flutter",
+      "version": "3.24.0",
+      "dependencies": []
+    }
+  ]
+}
+'''),
+          d.file('package_config.json', '''
+{
+  "configVersion": 2,
+  "packages": [
+    {"name": "a", "rootUri": "../", "packageUri": "lib/"},
+    {"name": "flutter", "rootUri": "file:///fake/flutter", "packageUri": "lib/"}
+  ]
+}
+'''),
+        ]),
+      ]).create();
+
+      final service = _SimpleMockService(d.path('sdk_pkg'));
+      final root = await service.vizRoot();
+      check(root.packages['a']!.dependencies.single)
+        ..has((d) => d.name, 'name').equals('flutter')
+        ..has(
+          (d) => d.versionConstraint,
+          'versionConstraint',
+        ).equals(VersionConstraint.parse('^3.0.0'));
     });
   });
 }
