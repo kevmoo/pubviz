@@ -10,14 +10,25 @@ import 'viz_package.dart';
 part 'viz_root.g.dart';
 
 @JsonSerializable(includeIfNull: false)
-class VizRoot with HasPackages {
-  @override
+class VizRoot {
   final String rootPackageName;
-  @override
   final Map<String, VizPackage> packages;
 
   @FalseNullConverter()
   final bool isWorkspace;
+
+  late final VizPackage root = packages[rootPackageName]!;
+
+  late final bool hasOutdated = packages.values.any((p) => p.isOutdated);
+
+  late final bool hasDevDependencies = packages.values.any(
+    (p) => p.dependencies.any((d) => d.isDevDependency),
+  );
+
+  late final bool hasIsolatedPackages = () {
+    final reachable = _reachableFromPublished(rootPackageName, packages);
+    return packages.keys.any((name) => !reachable.contains(name));
+  }();
 
   VizRoot(
     this.rootPackageName,
@@ -59,30 +70,9 @@ class VizRoot with HasPackages {
       final skipOutdated = ignoreSet.contains(name);
 
       final newDeps = pkg.dependencies.map((dep) {
-        bool? includesLatest;
-        if (flagOutdated && !skipOutdated) {
-          final depPackage = packages[dep.name];
-          if (depPackage != null &&
-              depPackage.latestVersion != null &&
-              dep.versionConstraint != VersionConstraint.empty) {
-            var allowsLatest = dep.versionConstraint.allows(
-              depPackage.latestVersion!,
-            );
-
-            if (!allowsLatest) {
-              final constraint = dep.versionConstraint;
-              if (constraint is VersionRange) {
-                final min = constraint.min;
-                if (min != null &&
-                    min.isPreRelease &&
-                    min.compareTo(depPackage.latestVersion!) > 0) {
-                  allowsLatest = true;
-                }
-              }
-            }
-            includesLatest = allowsLatest;
-          }
-        }
+        final includesLatest = flagOutdated && !skipOutdated
+            ? _computeIncludesLatest(dep, packages[dep.name])
+            : null;
         return Dependency(
           dep.name,
           dep.versionConstraint,
@@ -103,6 +93,22 @@ class VizRoot with HasPackages {
     }
 
     return VizRoot(rootPackageName, newPackages, isWorkspace: isWorkspace);
+  }
+
+  static bool? _computeIncludesLatest(Dependency dep, VizPackage? depPackage) {
+    final latestVersion = depPackage?.latestVersion;
+    final constraint = dep.versionConstraint;
+    if (latestVersion == null || constraint == VersionConstraint.empty) {
+      return null;
+    }
+    if (constraint.allows(latestVersion)) {
+      return true;
+    }
+    if (constraint case VersionRange(:final min?)
+        when min.isPreRelease && min.compareTo(latestVersion) > 0) {
+      return true;
+    }
+    return false;
   }
 
   VizRoot filter({
@@ -302,24 +308,6 @@ class VizRoot with HasPackages {
     }
     return newPackages;
   }
-}
-
-abstract mixin class HasPackages {
-  String get rootPackageName;
-  Map<String, VizPackage> get packages;
-
-  late final root = packages[rootPackageName]!;
-
-  late final hasOutdated = packages.values.any((p) => p.isOutdated);
-
-  late final hasDevDependencies = packages.values.any(
-    (p) => p.dependencies.any((d) => d.isDevDependency),
-  );
-
-  late final hasIsolatedPackages = () {
-    final reachable = _reachableFromPublished(rootPackageName, packages);
-    return packages.keys.any((name) => !reachable.contains(name));
-  }();
 }
 
 Set<String> _reachableFromPublished(

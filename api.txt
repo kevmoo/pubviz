@@ -3,32 +3,22 @@ environment:
 executables:
   pubviz
 package:pubviz/pubviz.dart:
-  Dependency@1 (class extends Object implements Comparable<Dependency@1>):
-    extractConstraint (static method: VersionConstraint Function(Dependency@2))
-    getDependencies (static method: Set<Dependency@1> Function(Pubspec, {bool includeDevDependencies}))
-    new (constructor: Dependency@1 Function(String, VersionConstraint, bool, {bool? includesLatest}))
-    fromJson (constructor: Dependency@1 Function(Map<String, dynamic>))
+  Dependency (class extends Object implements Comparable<Dependency>):
+    new (constructor: Dependency Function(String, VersionConstraint, bool, {bool? includesLatest}))
+    fromJson (constructor: Dependency Function(Map<String, dynamic>))
     hashCode (getter: int)
     includesLatest (getter: bool?)
     isDevDependency (getter: bool)
     name (getter: String)
     versionConstraint (getter: VersionConstraint)
     == (method: bool Function(Object))
-    compareTo (method: int Function(Dependency@1))
+    compareTo (method: int Function(Dependency))
     toJson (method: Map<String, dynamic> Function())
     toString (method: String Function())
-  HasPackages (mixin class extends Object, abstract, mixin):
-    new (constructor: HasPackages Function())
-    hasDevDependencies (getter: bool)
-    hasIsolatedPackages (getter: bool)
-    hasOutdated (getter: bool)
-    packages (getter: Map<String, VizPackage>)
-    root (getter: VizPackage)
-    rootPackageName (getter: String)
   VizPackage (class extends Object implements Comparable<VizPackage>):
-    new (constructor: VizPackage Function(String, Version?, Set<Dependency@1>, Version?, {bool isPrimary, bool isPublishToNone, bool onlyDev}))
+    new (constructor: VizPackage Function(String, Version?, Set<Dependency>, Version?, {bool isPrimary, bool isPublishToNone, bool onlyDev}))
     fromJson (constructor: VizPackage Function(Map<String, dynamic>))
-    dependencies (getter: Set<Dependency@1>)
+    dependencies (getter: Set<Dependency>)
     hashCode (getter: int)
     isOutdated (getter: bool)
     isPrimary (getter: bool)
@@ -41,24 +31,22 @@ package:pubviz/pubviz.dart:
     compareTo (method: int Function(VizPackage))
     toJson (method: Map<String, dynamic> Function())
     toString (method: String Function())
-    withDependencies (method: VizPackage Function(Set<Dependency@1>))
-  VizRoot (class extends Object with HasPackages):
+    withDependencies (method: VizPackage Function(Set<Dependency>))
+  VizRoot (class extends Object):
     assemble (static method: VizRoot Function(String, Map<String, VizPackage>, {bool flagOutdated, Iterable<String>? ignorePackages, bool isWorkspace}))
     new (constructor: VizRoot Function(String, Map<String, VizPackage>, {bool isWorkspace}))
     fromJson (constructor: VizRoot Function(Map<String, dynamic>))
+    hasDevDependencies (getter: bool)
+    hasIsolatedPackages (getter: bool)
+    hasOutdated (getter: bool)
     isWorkspace (getter: bool)
     packages (getter: Map<String, VizPackage>)
+    root (getter: VizPackage)
     rootPackageName (getter: String)
     filter (method: VizRoot Function({bool excludeDev, bool hideIsolated, Iterable<String> ignorePackages, bool onlyOutdated, bool onlyWorkspace}))
     toJson (method: Map<String, dynamic> Function())
-  ServiceVizRootExt (extension on Service):
-    vizRoot (method: Future<VizRoot> Function({bool directDependenciesOnly, bool flagOutdated, Iterable<String>? ignorePackages, bool includeWorkspace, bool productionDependenciesOnly}))
   VizRootExt (extension on VizRoot):
     toDot (method: String Function({Iterable<String> ignorePackages}))
-package:pubviz/src/service.dart:
-  Service (non-public)
-dart:async:
-  Future (referenced)
 dart:core:
   Comparable (referenced)
   Iterable (referenced)
@@ -72,7 +60,3 @@ package:pub_semver/src/version.dart:
   Version (referenced)
 package:pub_semver/src/version_constraint.dart:
   VersionConstraint (referenced)
-package:pubspec_parse/src/dependency.dart:
-  Dependency@2 (referenced)
-package:pubspec_parse/src/pubspec.dart:
-  Pubspec (referenced)

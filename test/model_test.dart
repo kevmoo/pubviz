@@ -1,3 +1,6 @@
+@TestOn('vm')
+library;
+
 import 'dart:convert';
 import 'dart:io';
 
@@ -272,7 +275,7 @@ void main() {
       check(filtered.packages.keys).not((it) => it.contains('c'));
     });
 
-    test('HasPackages properties', () {
+    test('VizRoot computed properties', () {
       final root = VizRoot.assemble('a', {
         'a': VizPackage('a', Version(1, 0, 0), {
           Dependency('b', VersionConstraint.any, true),
@@ -285,7 +288,7 @@ void main() {
       check(root.hasIsolatedPackages).isFalse();
     });
 
-    test('Dependency.getDependencies', () {
+    test('extractConstraint', () {
       final pubspec = parse.Pubspec.parse('''
 name: foo
 dependencies:
@@ -295,23 +298,12 @@ dependencies:
 dev_dependencies:
   qux: '>=1.0.0 <2.0.0'
 ''');
-      final deps = Dependency.getDependencies(pubspec);
-      check(deps.map((d) => d.name))
-        ..contains('bar')
-        ..contains('baz')
-        ..contains('qux');
-
-      final bar = deps.firstWhere((d) => d.name == 'bar');
-      check(bar.versionConstraint.toString()).equals('^1.0.0');
-      check(bar.isDevDependency).isFalse();
-
-      final baz = deps.firstWhere((d) => d.name == 'baz');
-      // PathDependency.toString() is "path: ../baz", which is not a valid version constraint.
-      check(baz.versionConstraint).equals(VersionConstraint.empty);
-      check(baz.isDevDependency).isFalse();
-
-      final qux = deps.firstWhere((d) => d.name == 'qux');
-      check(qux.isDevDependency).isTrue();
+      check(extractConstraint(pubspec.dependencies['bar']!).toString())
+          .equals('^1.0.0');
+      check(extractConstraint(pubspec.dependencies['baz']!))
+          .equals(VersionConstraint.empty);
+      check(extractConstraint(pubspec.devDependencies['qux']!).toString())
+          .equals('>=1.0.0 <2.0.0');
     });
   });
 

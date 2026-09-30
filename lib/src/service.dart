@@ -126,16 +126,14 @@ abstract class Service {
     if (pubspec == null) return VersionConstraint.empty;
     if (isDev) {
       if (pubspec.devDependencies.containsKey(depName)) {
-        return Dependency.extractConstraint(pubspec.devDependencies[depName]!);
+        return extractConstraint(pubspec.devDependencies[depName]!);
       }
     } else {
       if (pubspec.dependencies.containsKey(depName)) {
-        return Dependency.extractConstraint(pubspec.dependencies[depName]!);
+        return extractConstraint(pubspec.dependencies[depName]!);
       }
       if (pubspec.dependencyOverrides.containsKey(depName)) {
-        return Dependency.extractConstraint(
-          pubspec.dependencyOverrides[depName]!,
-        );
+        return extractConstraint(pubspec.dependencyOverrides[depName]!);
       }
     }
     return VersionConstraint.empty;
@@ -437,5 +435,23 @@ final class _PackageConfigEntry {
     final resolvedRoot = baseUri.resolve(rawRootUri);
 
     return _PackageConfigEntry(name: name, rootUri: resolvedRoot);
+  }
+}
+
+/// Extracts a [VersionConstraint] from a `pubspec_parse` [parse.Dependency].
+VersionConstraint extractConstraint(parse.Dependency dep) => switch (dep) {
+  parse.HostedDependency(:final version) => version,
+  parse.SdkDependency(:final version) => version,
+  parse.GitDependency(:final url, :final path, :final ref) =>
+    [url.toString(), ?path, ?ref].map(_parseOrNull).nonNulls.firstOrNull ??
+        VersionConstraint.empty,
+  _ => VersionConstraint.empty,
+};
+
+VersionConstraint? _parseOrNull(String input) {
+  try {
+    return VersionConstraint.parse(input);
+  } on FormatException {
+    return null;
   }
 }
