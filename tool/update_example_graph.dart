@@ -5,9 +5,9 @@ import 'package:args/args.dart';
 import 'package:path/path.dart' as p;
 import 'package:pub_semver/pub_semver.dart';
 import 'package:pubspec_parse/pubspec_parse.dart' as parse;
-import 'package:pubviz/src/dependency.dart';
 import 'package:pubviz/src/executable.dart';
 import 'package:pubviz/src/root_builder.dart';
+import 'package:pubviz/src/service.dart';
 
 import '../test/mock_data_service.dart';
 
@@ -219,7 +219,7 @@ void _updateDemoWorkspaceDartTool(Directory tempDir) {
         );
         pubspecsMap[pkgName] = {
           for (final dep in pubspec.dependencies.entries)
-            dep.key: Dependency.extractConstraint(dep.value).toString(),
+            dep.key: extractConstraint(dep.value).toString(),
         };
       }
     }

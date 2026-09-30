@@ -1,6 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pub_semver/pub_semver.dart';
-import 'package:pubspec_parse/pubspec_parse.dart' as parse;
 
 import 'converters.dart';
 
@@ -29,40 +28,6 @@ class Dependency implements Comparable<Dependency> {
 
   Map<String, dynamic> toJson() => _$DependencyToJson(this);
 
-  static Set<Dependency> getDependencies(
-    parse.Pubspec pubspec, {
-    bool includeDevDependencies = true,
-  }) {
-    final deps = <Dependency>{};
-
-    _populateFromSection(pubspec.dependencies, deps, false);
-    if (includeDevDependencies) {
-      _populateFromSection(pubspec.devDependencies, deps, true);
-    }
-    return deps;
-  }
-
-  static VersionConstraint extractConstraint(parse.Dependency dep) {
-    if (dep
-        case parse.HostedDependency(:final version) ||
-            parse.SdkDependency(:final version)) {
-      return version;
-    }
-    return _parseOrNull(dep.toString());
-  }
-
-  static void _populateFromSection(
-    Map<String, parse.Dependency> yaml,
-    Set<Dependency> value,
-    bool isDev,
-  ) {
-    for (var entry in yaml.entries) {
-      final dep = Dependency(entry.key, extractConstraint(entry.value), isDev);
-
-      value.add(dep);
-    }
-  }
-
   @override
   bool operator ==(Object other) => other is Dependency && other.name == name;
 
@@ -84,13 +49,5 @@ class Dependency implements Comparable<Dependency> {
   String toString() {
     final devStr = isDevDependency ? '(dev)' : '';
     return '$name$devStr $versionConstraint';
-  }
-}
-
-VersionConstraint _parseOrNull(String input) {
-  try {
-    return VersionConstraint.parse(input);
-  } on FormatException {
-    return VersionConstraint.empty;
   }
 }

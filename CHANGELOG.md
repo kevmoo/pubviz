@@ -1,7 +1,10 @@
 # Changelog
 
-## 6.3.1-wip
+## 7.0.0-wip
 
+- **Breaking**: Remove unused `Dependency.getDependencies`, move
+  `Dependency.extractConstraint` to internal `service.dart`, unexport
+  `ServiceVizRootExt`, and fold `HasPackages` directly into `VizRoot`.
 - Read `.dart_tool/package_graph.json` and `.dart_tool/package_config.json`
   directly instead of invoking `dart pub deps --json` and
   `dart pub workspace list --json`.

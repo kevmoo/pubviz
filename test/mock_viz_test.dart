@@ -8,6 +8,7 @@ import 'package:checks/checks.dart';
 import 'package:path/path.dart' as p;
 import 'package:pub_semver/pub_semver.dart';
 import 'package:pubviz/pubviz.dart';
+import 'package:pubviz/src/root_builder.dart';
 import 'package:pubviz/src/service.dart';
 import 'package:pubviz/src/update_order.dart';
 import 'package:test/scaffolding.dart';
@@ -181,7 +182,7 @@ void main() {
         Dependency('a', VersionConstraint.any, false, includesLatest: false),
       }, Version(2, 0, 0));
 
-      final root = _MockVizRoot({
+      final root = VizRoot('root', {
         'root': VizPackage('root', Version(1, 0, 0), {}, Version(1, 0, 0)),
         'a': pkgA,
         'b': pkgB,
@@ -772,29 +773,6 @@ dependencies:
       ).isFalse();
     });
   });
-}
-
-class _MockVizRoot with HasPackages implements VizRoot {
-  @override
-  VizRoot filter({
-    bool excludeDev = false,
-    bool onlyOutdated = false,
-    bool onlyWorkspace = false,
-    bool hideIsolated = false,
-    Iterable<String> ignorePackages = const [],
-  }) => throw UnimplementedError();
-
-  @override
-  final String rootPackageName;
-  @override
-  final Map<String, VizPackage> packages;
-  @override
-  bool get isWorkspace => false;
-
-  _MockVizRoot(this.packages) : rootPackageName = 'root';
-
-  @override
-  Map<String, dynamic> toJson() => {};
 }
 
 const _writeOutput = false;
