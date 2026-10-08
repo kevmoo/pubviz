@@ -9,6 +9,7 @@ import '../dot.dart';
 import '../mermaid.dart';
 import '../options.dart';
 import '../version.dart';
+import '../viz_root.dart';
 import 'pubviz_app.dart';
 
 enum _ExportFormat {
@@ -324,54 +325,64 @@ final class UIManager {
     }
 
     try {
-      if (format == _ExportFormat.png) {
-        final svg =
-            document.querySelector('#graph-container svg') as SVGElement?;
-        if (svg == null) {
-          showToast('⚠️ No graph found to export');
-          return;
-        }
-        _exportPng(svg, isCopy: isCopy);
-        return;
-      }
-
-      final String content;
       switch (format) {
         case _ExportFormat.dot:
+          await _exportText(format, _filteredRoot().toDot(), isCopy: isCopy);
         case _ExportFormat.mermaid:
-          final filtered = _app.originalVizRoot.filter(
-            excludeDev: hideDevDependencies,
-            onlyOutdated: outdatedOnly,
-            onlyWorkspace: workspaceOnly,
-            hideIsolated: hideIsolated,
+          await _exportText(
+            format,
+            _filteredRoot().toMermaid(),
+            isCopy: isCopy,
           );
-          content = format == _ExportFormat.dot
-              ? filtered.toDot()
-              : filtered.toMermaid();
         case _ExportFormat.svg:
-          final svg =
-              document.querySelector('#graph-container svg') as SVGElement?;
-          if (svg == null) {
-            showToast('⚠️ No SVG graph found to export');
-            return;
-          }
-          content = _injectStyles((svg.outerHTML as JSString).toDart);
+          final svg = _graphSvg(
+            missingMessage: '⚠️ No SVG graph found to export',
+          );
+          if (svg == null) return;
+          await _exportText(
+            format,
+            _injectStyles((svg.outerHTML as JSString).toDart),
+            isCopy: isCopy,
+          );
         case _ExportFormat.png:
-          throw StateError('PNG export is handled before this switch.');
-      }
-
-      if (isCopy) {
-        await window.navigator.clipboard.writeText(content).toDart;
-        showToast('${format.label} Copied to Clipboard');
-      } else {
-        _downloadBlob(
-          content,
-          'dependencies.${format.extension}',
-          format.contentType,
-        );
+          final svg = _graphSvg(missingMessage: '⚠️ No graph found to export');
+          if (svg == null) return;
+          _exportPng(svg, isCopy: isCopy);
       }
     } catch (e) {
       showToast('⚠️ Export failed: $e');
+    }
+  }
+
+  VizRoot _filteredRoot() => _app.originalVizRoot.filter(
+    excludeDev: hideDevDependencies,
+    onlyOutdated: outdatedOnly,
+    onlyWorkspace: workspaceOnly,
+    hideIsolated: hideIsolated,
+  );
+
+  /// Returns the rendered graph `<svg>`, or shows [missingMessage] and
+  /// returns `null` if there is none.
+  SVGElement? _graphSvg({required String missingMessage}) {
+    final svg = document.querySelector('#graph-container svg') as SVGElement?;
+    if (svg == null) showToast(missingMessage);
+    return svg;
+  }
+
+  Future<void> _exportText(
+    _ExportFormat format,
+    String content, {
+    required bool isCopy,
+  }) async {
+    if (isCopy) {
+      await window.navigator.clipboard.writeText(content).toDart;
+      showToast('${format.label} Copied to Clipboard');
+    } else {
+      _downloadBlob(
+        content,
+        'dependencies.${format.extension}',
+        format.contentType,
+      );
     }
   }
 

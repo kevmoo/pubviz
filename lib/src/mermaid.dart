@@ -3,15 +3,6 @@ import 'util.dart';
 import 'viz_package.dart';
 import 'viz_root.dart';
 
-typedef _MermaidStyleLists = ({
-  List<String> primaryNodes,
-  List<String> outdatedNodes,
-  List<String> publishToNoneNodes,
-  List<int> onlyDevLinks,
-  List<int> outdatedLinks,
-  List<int> outdatedDevLinks,
-});
-
 extension VizRootMermaidExt on VizRoot {
   String toMermaid({Iterable<String> ignorePackages = const []}) {
     final ignored = ignorePackages.toSet();
@@ -24,24 +15,12 @@ extension VizRootMermaidExt on VizRoot {
       ..writeln('  classDef publishToNone stroke-dasharray: 5 5;');
 
     final visiblePackages = renderablePackages(this, ignorePackages);
-
-    final styles = (
-      primaryNodes: <String>[],
-      outdatedNodes: <String>[],
-      publishToNoneNodes: <String>[],
-      onlyDevLinks: <int>[],
-      outdatedLinks: <int>[],
-      outdatedDevLinks: <int>[],
-    );
+    final styles = _MermaidStyles();
 
     for (final pkg in visiblePackages) {
-      _writeNode(
-        sb,
-        pkg,
-        styles,
-        rootName: root.name,
-        isWorkspace: isWorkspace,
-      );
+      final isRoot = root.name == pkg.name;
+      _writeNode(sb, pkg, isRoot: isRoot, isWorkspace: isWorkspace);
+      styles.addNode(pkg, isRoot: isRoot);
     }
 
     var edgeIndex = 0;
@@ -58,11 +37,11 @@ extension VizRootMermaidExt on VizRoot {
         if (dep.isDevDependency && !isRoot && !pkg.isPrimary) continue;
 
         sb.writeln('  ${pkg.name} ${_formatLink(dep)} ${dep.name}');
-        _classifyEdge(pkg, dep, edgeIndex++, styles);
+        styles.addEdge(pkg, dep, edgeIndex++);
       }
     }
 
-    _writeClassesAndStyles(sb, styles);
+    styles.write(sb);
 
     return sb.toString();
   }
@@ -70,28 +49,18 @@ extension VizRootMermaidExt on VizRoot {
 
 void _writeNode(
   StringBuffer sb,
-  VizPackage pkg,
-  _MermaidStyleLists styles, {
-  required String rootName,
+  VizPackage pkg, {
+  required bool isRoot,
   required bool isWorkspace,
 }) {
-  final isRoot = rootName == pkg.name;
   var label = formatNodeLabel(
     pkg,
     isRoot: isRoot,
     isWorkspace: isWorkspace,
     lineBreak: '<br/>',
   );
-
   if (!isRoot && pkg.isOutdated) {
     label = '$label<br/>(latest: ${pkg.latestVersion})';
-    styles.outdatedNodes.add(pkg.name);
-  }
-  if (pkg.isPrimary) {
-    styles.primaryNodes.add(pkg.name);
-  }
-  if (pkg.isPublishToNone) {
-    styles.publishToNoneNodes.add(pkg.name);
   }
 
   final shapeOpen = pkg.onlyDev ? '(' : '[';
@@ -107,50 +76,54 @@ String _formatLink(Dependency dep) {
   return hasConstraint ? '-- "${dep.versionConstraint}"-->' : '-->';
 }
 
-void _classifyEdge(
-  VizPackage pkg,
-  Dependency dep,
-  int edgeIndex,
-  _MermaidStyleLists styles,
-) {
-  final isOutdatedEdge = dep.includesLatest == false;
-  final isGrayEdge = !dep.isDevDependency && pkg.onlyDev;
+/// Collects the node classes and link styles emitted after the graph body.
+final class _MermaidStyles {
+  final _primaryNodes = <String>[];
+  final _outdatedNodes = <String>[];
+  final _publishToNoneNodes = <String>[];
+  final _onlyDevLinks = <int>[];
+  final _outdatedLinks = <int>[];
+  final _outdatedDevLinks = <int>[];
 
-  if (isOutdatedEdge) {
-    (isGrayEdge ? styles.outdatedDevLinks : styles.outdatedLinks).add(
-      edgeIndex,
-    );
-  } else if (isGrayEdge) {
-    styles.onlyDevLinks.add(edgeIndex);
+  void addNode(VizPackage pkg, {required bool isRoot}) {
+    if (!isRoot && pkg.isOutdated) _outdatedNodes.add(pkg.name);
+    if (pkg.isPrimary) _primaryNodes.add(pkg.name);
+    if (pkg.isPublishToNone) _publishToNoneNodes.add(pkg.name);
   }
-}
 
-void _writeClassesAndStyles(StringBuffer sb, _MermaidStyleLists styles) {
-  if (styles.primaryNodes.isNotEmpty) {
-    sb.writeln('  class ${styles.primaryNodes.join(',')} primary;');
+  void addEdge(VizPackage pkg, Dependency dep, int edgeIndex) {
+    final isOutdatedEdge = dep.includesLatest == false;
+    final isGrayEdge = !dep.isDevDependency && pkg.onlyDev;
+
+    if (isOutdatedEdge) {
+      (isGrayEdge ? _outdatedDevLinks : _outdatedLinks).add(edgeIndex);
+    } else if (isGrayEdge) {
+      _onlyDevLinks.add(edgeIndex);
+    }
   }
-  if (styles.outdatedNodes.isNotEmpty) {
-    sb.writeln('  class ${styles.outdatedNodes.join(',')} outdated;');
-  }
-  if (styles.publishToNoneNodes.isNotEmpty) {
-    sb.writeln('  class ${styles.publishToNoneNodes.join(',')} publishToNone;');
-  }
-  if (styles.onlyDevLinks.isNotEmpty) {
-    sb.writeln(
-      '  linkStyle ${styles.onlyDevLinks.join(',')} '
-      'stroke:#9e9e9e,color:#9e9e9e;',
-    );
-  }
-  if (styles.outdatedLinks.isNotEmpty) {
-    sb.writeln(
-      '  linkStyle ${styles.outdatedLinks.join(',')} '
+
+  void write(StringSink sink) {
+    _writeClass(sink, _primaryNodes, 'primary');
+    _writeClass(sink, _outdatedNodes, 'outdated');
+    _writeClass(sink, _publishToNoneNodes, 'publishToNone');
+    _writeLinkStyle(sink, _onlyDevLinks, 'stroke:#9e9e9e,color:#9e9e9e;');
+    _writeLinkStyle(
+      sink,
+      _outdatedLinks,
       'stroke:#e53935,color:#e53935,stroke-width:2px;',
     );
-  }
-  if (styles.outdatedDevLinks.isNotEmpty) {
-    sb.writeln(
-      '  linkStyle ${styles.outdatedDevLinks.join(',')} '
+    _writeLinkStyle(
+      sink,
+      _outdatedDevLinks,
       'stroke:#f48fb1,color:#e53935,stroke-width:2px;',
     );
+  }
+
+  static void _writeClass(StringSink sink, List<String> nodes, String name) {
+    if (nodes.isNotEmpty) sink.writeln('  class ${nodes.join(',')} $name;');
+  }
+
+  static void _writeLinkStyle(StringSink sink, List<int> links, String style) {
+    if (links.isNotEmpty) sink.writeln('  linkStyle ${links.join(',')} $style');
   }
 }
