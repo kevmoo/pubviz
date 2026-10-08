@@ -75,6 +75,33 @@ abstract class Service {
     );
   }
 
+  /// Loads and parses the `.dart_tool/package_graph.json` file.
+  _PackageGraphFile _loadPackageGraphFile({required bool ascend}) {
+    final file = _findDartToolFile('package_graph.json', ascend: ascend);
+    final json = jsonDecode(file.readAsStringSync()) as Map<String, dynamic>;
+    return _PackageGraphFile.fromJson(json);
+  }
+
+  /// Loads and parses the `.dart_tool/package_config.json` file.
+  _PackageConfigFile _loadPackageConfigFile({required bool ascend}) {
+    final file = _findDartToolFile('package_config.json', ascend: ascend);
+    final json = jsonDecode(file.readAsStringSync()) as Map<String, dynamic>;
+    final baseUri = Uri.directory(file.parent.path);
+    return _PackageConfigFile.fromJson(json, baseUri: baseUri);
+  }
+
+  /// Loads the [parse.Pubspec] for package [packageName] using the locations in
+  /// [config].
+  parse.Pubspec? _loadPubspecForPackage(
+    String packageName,
+    _PackageConfigFile config,
+  ) {
+    final entry = config.packages[packageName];
+    if (entry == null) return null;
+    if (entry.rootUri.scheme != 'file') return null;
+    return loadPubspecAt(packageName, entry.rootUri.toFilePath());
+  }
+
   /// Loads and parses `pubspec.yaml` for [packageName] at [packageRootPath].
   @protected
   parse.Pubspec? loadPubspecAt(String packageName, String packageRootPath) {
@@ -130,51 +157,31 @@ abstract class Service {
   }) async {
     final pubspec = rootPubspec();
     final ascend = pubspec.resolution == 'workspace';
-    final graphJsonFile = _findDartToolFile(
-      'package_graph.json',
-      ascend: ascend,
-    );
-    final graphFile = _PackageGraphFile.fromJson(
-      jsonDecode(graphJsonFile.readAsStringSync()) as Map<String, dynamic>,
-    );
-    final configJsonFile = _findDartToolFile(
-      'package_config.json',
-      ascend: ascend,
-    );
-    final configFile = _PackageConfigFile.fromJson(
-      jsonDecode(configJsonFile.readAsStringSync()) as Map<String, dynamic>,
-      baseUri: Uri.directory(configJsonFile.parent.path),
-    );
+    final graphFile = _loadPackageGraphFile(ascend: ascend);
+    final configFile = _loadPackageConfigFile(ascend: ascend);
 
     final map = SplayTreeMap<String, VizPackage>();
     final pendingTransitive = Queue<String>();
     final pubspecCache = <String, parse.Pubspec?>{pubspec.name: pubspec};
 
-    parse.Pubspec? getPubspec(String name) =>
-        pubspecCache.putIfAbsent(name, () {
-          final rootUri = configFile.packages[name]?.rootUri;
-          return rootUri?.scheme == 'file'
-              ? loadPubspecAt(name, rootUri!.toFilePath())
-              : null;
-        });
+    parse.Pubspec? getPubspec(String name) => pubspecCache.putIfAbsent(
+      name,
+      () => _loadPubspecForPackage(name, configFile),
+    );
 
     final primaryRoots = includeWorkspace && graphFile.roots.isNotEmpty
         ? graphFile.roots.toSet()
         : {pubspec.name};
 
-    final primaryContext = (
-      rootPubspec: pubspec,
-      graphFile: graphFile,
-      flagOutdated: flagOutdated,
-      productionDependenciesOnly: productionDependenciesOnly,
-      includeWorkspace: includeWorkspace,
-    );
-
     for (final rootName in primaryRoots) {
       final pkg = _buildPrimaryPackage(
         rootName,
-        getPubspec(rootName),
-        primaryContext,
+        rootPubspec: pubspec,
+        graphEntry: graphFile.packages[rootName],
+        memberPubspec: getPubspec(rootName),
+        flagOutdated: flagOutdated,
+        productionDependenciesOnly: productionDependenciesOnly,
+        includeWorkspace: includeWorkspace,
       );
       map[rootName] = pkg;
       for (final dep in pkg.dependencies) {
@@ -203,14 +210,16 @@ abstract class Service {
   }
 
   VizPackage _buildPrimaryPackage(
-    String rootName,
-    parse.Pubspec? memberPubspec,
-    _PrimaryBuildContext context,
-  ) {
-    final graphEntry = context.graphFile.packages[rootName];
+    String rootName, {
+    required parse.Pubspec rootPubspec,
+    required _PackageGraphPackage? graphEntry,
+    required parse.Pubspec? memberPubspec,
+    required bool flagOutdated,
+    required bool productionDependenciesOnly,
+    required bool includeWorkspace,
+  }) {
     final effectivePubspec =
-        memberPubspec ??
-        (rootName == context.rootPubspec.name ? context.rootPubspec : null);
+        memberPubspec ?? (rootName == rootPubspec.name ? rootPubspec : null);
     final prodDepNames =
         graphEntry?.dependencies ??
         effectivePubspec?.dependencies.keys ??
@@ -221,7 +230,7 @@ abstract class Service {
       isDev: false,
     );
 
-    if (!context.productionDependenciesOnly) {
+    if (!productionDependenciesOnly) {
       final devDepNames =
           graphEntry?.devDependencies ??
           effectivePubspec?.devDependencies.keys ??
@@ -232,26 +241,41 @@ abstract class Service {
     }
 
     final isPublishToNone = effectivePubspec?.publishTo == 'none';
-    final Version? version;
-    if (!context.includeWorkspace) {
-      version = effectivePubspec?.version;
-    } else if (rootName == context.rootPubspec.name || isPublishToNone) {
-      version = null;
-    } else {
-      version = graphEntry?.version ?? effectivePubspec?.version;
-    }
+    final version = _resolvePrimaryVersion(
+      rootName: rootName,
+      rootPubspecName: rootPubspec.name,
+      includeWorkspace: includeWorkspace,
+      isPublishToNone: isPublishToNone,
+      graphEntry: graphEntry,
+      memberPubspec: effectivePubspec,
+    );
 
     return VizPackage(
       rootName,
       version,
       SplayTreeSet.of(dependencies),
-      context.includeWorkspace && context.flagOutdated
-          ? _latest(rootName)
-          : null,
+      includeWorkspace && flagOutdated ? _latest(rootName) : null,
       isPrimary: true,
       onlyDev: false,
       isPublishToNone: isPublishToNone,
     );
+  }
+
+  Version? _resolvePrimaryVersion({
+    required String rootName,
+    required String rootPubspecName,
+    required bool includeWorkspace,
+    required bool isPublishToNone,
+    required _PackageGraphPackage? graphEntry,
+    required parse.Pubspec? memberPubspec,
+  }) {
+    if (!includeWorkspace) {
+      return memberPubspec?.version;
+    }
+    if (rootName == rootPubspecName || isPublishToNone) {
+      return null;
+    }
+    return graphEntry?.version ?? memberPubspec?.version;
   }
 
   VizPackage _buildTransitivePackage(
@@ -313,14 +337,6 @@ abstract class Service {
   /// Returns the JSON representation of package outdated information.
   Map<String, dynamic> outdated();
 }
-
-typedef _PrimaryBuildContext = ({
-  parse.Pubspec rootPubspec,
-  _PackageGraphFile graphFile,
-  bool flagOutdated,
-  bool productionDependenciesOnly,
-  bool includeWorkspace,
-});
 
 const _ignoredPackages = {
   'sky_engine', // maps to `dart:ui` in Flutter – not useful

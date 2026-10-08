@@ -49,14 +49,14 @@ ${Chain.forTrace(stack).terse}''');
   }
 }
 
+String _indent(String input) =>
+    LineSplitter.split(input).map((l) => '  $l'.trimRight()).join('\n');
+
 void _printUsage() {
-  final indentedUsage = LineSplitter.split(parser.usage)
-      .map((l) => '  $l'.trimRight())
-      .join('\n');
   print('''Usage: pubviz [<args>] [<package path>]
 
 ${styleBold.wrap('Arguments:')}
-$indentedUsage
+${_indent(parser.usage)}
 
 If <package path> is omitted, the current directory is used.''');
 }

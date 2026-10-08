@@ -129,13 +129,7 @@ class VizRoot {
 
     var currentPackages = packages;
     if (ignored.isNotEmpty) {
-      currentPackages = _rebuildPackages(
-        currentPackages,
-        currentPackages.keys.where(
-          (k) => k == rootPackageName || !ignored.contains(k),
-        ),
-        includeDep: (d) => !ignored.contains(d.name),
-      );
+      currentPackages = _filterIgnored(currentPackages, ignored);
     }
     if (onlyWorkspace) {
       currentPackages = _filterWorkspace(currentPackages, excludeDev);
@@ -144,28 +138,11 @@ class VizRoot {
       currentPackages = _filterOutdated(currentPackages, excludeDev);
     }
     if (!onlyWorkspace && !onlyOutdated) {
-      final keepNodes = _reachableFromRoots(
-        currentPackages,
-        excludeDev: excludeDev,
-      );
-      currentPackages = _rebuildPackages(
-        currentPackages,
-        keepNodes,
-        includeDep: (d) => !excludeDev || !d.isDevDependency,
-      );
+      currentPackages = _filterStandard(currentPackages, excludeDev);
     }
 
     if (hideIsolated && isWorkspace) {
-      final keepNodes = _reachableFromPublished(
-        rootPackageName,
-        currentPackages,
-      );
-      currentPackages = _rebuildPackages(
-        currentPackages,
-        keepNodes,
-        includeDep: (d) =>
-            keepNodes.contains(d.name) && currentPackages.containsKey(d.name),
-      );
+      currentPackages = _filterIsolated(currentPackages);
     }
 
     return VizRoot.assemble(
@@ -176,6 +153,17 @@ class VizRoot {
       ignorePackages: ignorePackages,
     );
   }
+
+  Map<String, VizPackage> _filterIgnored(
+    Map<String, VizPackage> sourcePackages,
+    Set<String> ignored,
+  ) => _rebuildPackages(
+    sourcePackages,
+    sourcePackages.keys.where(
+      (k) => k == rootPackageName || !ignored.contains(k),
+    ),
+    includeDep: (d) => !ignored.contains(d.name),
+  );
 
   Map<String, VizPackage> _filterWorkspace(
     Map<String, VizPackage> sourcePackages,
@@ -240,6 +228,34 @@ class VizRoot {
       keepNodes,
       includeDep: (d) =>
           keepNodes.contains(d.name) && (!excludeDev || !d.isDevDependency),
+    );
+  }
+
+  Map<String, VizPackage> _filterStandard(
+    Map<String, VizPackage> sourcePackages,
+    bool excludeDev,
+  ) {
+    final keepNodes = _reachableFromRoots(
+      sourcePackages,
+      excludeDev: excludeDev,
+    );
+
+    return _rebuildPackages(
+      sourcePackages,
+      keepNodes,
+      includeDep: (d) => !excludeDev || !d.isDevDependency,
+    );
+  }
+
+  Map<String, VizPackage> _filterIsolated(
+    Map<String, VizPackage> sourcePackages,
+  ) {
+    final keepNodes = _reachableFromPublished(rootPackageName, sourcePackages);
+    return _rebuildPackages(
+      sourcePackages,
+      keepNodes,
+      includeDep: (d) =>
+          keepNodes.contains(d.name) && sourcePackages.containsKey(d.name),
     );
   }
 

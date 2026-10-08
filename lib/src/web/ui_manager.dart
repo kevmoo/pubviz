@@ -240,9 +240,7 @@ final class UIManager {
   void _handleBodyChange(Event e) {
     final target = e.target as Element;
     if (target.id == 'controlsToggle') {
-      showToast(
-        _hamburgerCheckbox.checked ? 'Controls Shown' : 'Controls Hidden',
-      );
+      _showControlsToast();
       _updateNonDefaultDot();
       return;
     }
@@ -272,6 +270,17 @@ final class UIManager {
   bool get workspaceOnly => _checkboxes['workspaceOnlyCheckbox']!.checked;
 
   bool get hideIsolated => _checkboxes['hideIsolatedCheckbox']!.checked;
+
+  void _toggleControls() {
+    _hamburgerCheckbox.checked = !_hamburgerCheckbox.checked;
+    _showControlsToast();
+  }
+
+  void _showControlsToast() {
+    showToast(
+      _hamburgerCheckbox.checked ? 'Controls Shown' : 'Controls Hidden',
+    );
+  }
 
   void _resetFilters() {
     var anyChanged = false;
@@ -348,7 +357,7 @@ final class UIManager {
           }
           content = _injectStyles((svg.outerHTML as JSString).toDart);
         case _ExportFormat.png:
-          return;
+          throw StateError('PNG export is handled before this switch.');
       }
 
       if (isCopy) {
@@ -474,10 +483,7 @@ final class UIManager {
 
     switch (key) {
       case 'c':
-        _hamburgerCheckbox.checked = !_hamburgerCheckbox.checked;
-        showToast(
-          _hamburgerCheckbox.checked ? 'Controls Shown' : 'Controls Hidden',
-        );
+        _toggleControls();
       case 'r':
         if (!_resetButton.disabled) {
           _resetFilters();

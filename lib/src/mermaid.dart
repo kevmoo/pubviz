@@ -35,7 +35,13 @@ extension VizRootMermaidExt on VizRoot {
     );
 
     for (final pkg in visiblePackages) {
-      _writeNode(sb, pkg, this, styles);
+      _writeNode(
+        sb,
+        pkg,
+        styles,
+        rootName: root.name,
+        isWorkspace: isWorkspace,
+      );
     }
 
     var edgeIndex = 0;
@@ -65,14 +71,15 @@ extension VizRootMermaidExt on VizRoot {
 void _writeNode(
   StringBuffer sb,
   VizPackage pkg,
-  VizRoot vizRoot,
-  _MermaidStyleLists styles,
-) {
-  final isRoot = vizRoot.root.name == pkg.name;
+  _MermaidStyleLists styles, {
+  required String rootName,
+  required bool isWorkspace,
+}) {
+  final isRoot = rootName == pkg.name;
   var label = formatNodeLabel(
     pkg,
     isRoot: isRoot,
-    isWorkspace: vizRoot.isWorkspace,
+    isWorkspace: isWorkspace,
     lineBreak: '<br/>',
   );
 
