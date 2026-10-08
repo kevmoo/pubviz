@@ -1,6 +1,7 @@
 import 'package:gviz/gviz.dart';
 
 import 'colors.dart';
+import 'dependency.dart';
 import 'util.dart';
 import 'viz_package.dart';
 import 'viz_root.dart';
@@ -13,24 +14,45 @@ extension VizRootExt on VizRoot {
       edgeProperties: {'fontcolor': 'gray'},
     );
 
-    for (var pack in renderablePackages(this, ignorePackages)) {
+    final ignored = ignorePackages.toSet();
+    for (final pack in renderablePackages(this, ignored)) {
       gviz.addBlankLine();
-      _writeDot(pack, gviz, root.name, ignorePackages, isWorkspace);
+      final isRoot = root.name == pack.name;
+      gviz.addNode(
+        pack.name,
+        properties: _nodeProperties(
+          pack,
+          isRoot: isRoot,
+          isWorkspace: isWorkspace,
+        ),
+      );
+
+      final orderedDeps =
+          pack.dependencies
+              .where((d) => !ignored.contains(d.name))
+              .toList(growable: false)
+            ..sort();
+
+      for (final dep in orderedDeps) {
+        if (!dep.isDevDependency || isRoot || pack.isPrimary) {
+          gviz.addEdge(
+            pack.name,
+            dep.name,
+            properties: _edgeProperties(pack, dep, rootName: root.name),
+          );
+        }
+      }
     }
 
     return gviz.toString();
   }
 }
 
-void _writeDot(
-  VizPackage pkg,
-  Gviz gviz,
-  String rootName,
-  Iterable<String> ignorePackages,
-  bool isWorkspace,
-) {
-  final isRoot = rootName == pkg.name;
-
+Map<String, String> _nodeProperties(
+  VizPackage pkg, {
+  required bool isRoot,
+  required bool isWorkspace,
+}) {
   final label = formatNodeLabel(
     pkg,
     isRoot: isRoot,
@@ -65,43 +87,40 @@ void _writeDot(
     props['xlabel'] = '${pkg.latestVersion}';
   }
 
-  gviz.addNode(pkg.name, properties: props);
+  return props;
+}
 
-  final orderedDeps = pkg.dependencies.toList(growable: false)..sort();
+Map<String, String> _edgeProperties(
+  VizPackage pkg,
+  Dependency dep, {
+  required String rootName,
+}) {
+  final isRoot = rootName == pkg.name;
+  final edgeProps = <String, String>{};
 
-  for (var dep in orderedDeps.where((d) => !ignorePackages.contains(d.name))) {
-    if (!dep.isDevDependency || isRoot || pkg.isPrimary) {
-      final edgeProps = <String, String>{};
-
-      if (!dep.versionConstraint.isAny) {
-        edgeProps['label'] = '${dep.versionConstraint}';
-      }
-
-      if (isRoot) {
-        edgeProps['penwidth'] = '2';
-      }
-
-      if (dep.isDevDependency) {
-        edgeProps['style'] = 'dashed';
-      } else if (pkg.onlyDev) {
-        edgeProps['color'] = 'gray';
-      }
-
-      if (dep.includesLatest != null && !dep.includesLatest!) {
-        edgeProps['fontcolor'] = colorRed;
-        if (edgeProps['color'] == 'gray') {
-          edgeProps['color'] = colorPink;
-        } else {
-          edgeProps['color'] = colorRed;
-        }
-      }
-
-      if (dep.name == rootName) {
-        // If a package depends on the root node, it should not affect layout
-        edgeProps['constraint'] = 'false';
-      }
-
-      gviz.addEdge(pkg.name, dep.name, properties: edgeProps);
-    }
+  if (!dep.versionConstraint.isAny) {
+    edgeProps['label'] = '${dep.versionConstraint}';
   }
+
+  if (isRoot) {
+    edgeProps['penwidth'] = '2';
+  }
+
+  if (dep.isDevDependency) {
+    edgeProps['style'] = 'dashed';
+  } else if (pkg.onlyDev) {
+    edgeProps['color'] = 'gray';
+  }
+
+  if (dep.includesLatest == false) {
+    edgeProps['fontcolor'] = colorRed;
+    edgeProps['color'] = edgeProps['color'] == 'gray' ? colorPink : colorRed;
+  }
+
+  if (dep.name == rootName) {
+    // If a package depends on the root node, it should not affect layout
+    edgeProps['constraint'] = 'false';
+  }
+
+  return edgeProps;
 }

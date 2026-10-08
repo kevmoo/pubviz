@@ -15,6 +15,8 @@
 import 'dart:async';
 import 'dart:io';
 
+const _quitChars = {81, 113}; // 'Q', 'q'
+
 /// Returns a [Future] that completes when the process receives a
 /// [ProcessSignal] requesting a shutdown, or when 'q'/'Q' is pressed.
 ///
@@ -30,35 +32,33 @@ Future<void> waitForTerminate() {
   StreamSubscription<List<int>>? stdinSub;
 
   Future<void> signalHandler([ProcessSignal? signal]) async {
-    if (signal != null) {
-      print('\nReceived signal $signal - closing');
-    } else {
-      print('\nQuit requested - closing');
-    }
+    print(
+      signal != null
+          ? '\nReceived signal $signal - closing'
+          : '\nQuit requested - closing',
+    );
 
     final subCopy = sigIntSub;
-    if (subCopy != null) {
-      sigIntSub = null;
-      await subCopy.cancel();
-      if (sigTermSub != null) {
-        await sigTermSub!.cancel();
-        sigTermSub = null;
+    if (subCopy == null) return;
+
+    sigIntSub = null;
+    await subCopy.cancel();
+    await sigTermSub?.cancel();
+    sigTermSub = null;
+
+    try {
+      if (stdinSub != null && stdin.hasTerminal) {
+        stdin.lineMode = true;
+        stdin.echoMode = true;
       }
-      if (stdinSub != null) {
-        if (stdin.hasTerminal) {
-          try {
-            stdin.lineMode = true;
-            stdin.echoMode = true;
-          } catch (_) {
-            // Contexts like some CI or debuggers may report hasTerminal = true
-            // but fail when these properties are modified.
-          }
-        }
-        await stdinSub!.cancel();
-        stdinSub = null;
-      }
-      completer.complete(true);
+    } catch (_) {
+      // Contexts like some CI or debuggers may report hasTerminal = true
+      // but fail when these properties are modified.
     }
+    await stdinSub?.cancel();
+    stdinSub = null;
+
+    completer.complete(true);
   }
 
   sigIntSub = ProcessSignal.sigint.watch().listen(signalHandler);
@@ -75,8 +75,7 @@ Future<void> waitForTerminate() {
       stdin.echoMode = false;
     }
     stdinSub = stdin.listen((event) {
-      if (event.contains(113) || event.contains(81)) {
-        // 'q' or 'Q'
+      if (event.any(_quitChars.contains)) {
         signalHandler();
       }
     });

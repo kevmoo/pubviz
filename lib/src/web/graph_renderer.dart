@@ -10,6 +10,17 @@ import '../viz_root.dart';
 import 'interop.dart';
 import 'pubviz_app.dart';
 
+typedef _GraphNode = ({SVGGElement element, String id, bool isOutdated});
+
+typedef _GraphEdge = ({
+  SVGGElement element,
+  String from,
+  String to,
+  String constraint,
+  bool isDev,
+  bool isOutdated,
+});
+
 final class _CancellationException implements Exception {
   const _CancellationException();
   @override
@@ -105,24 +116,7 @@ final class GraphRenderer {
       _currentWorker = worker;
 
       worker
-        ..onmessage = (MessageEvent event) {
-          final response = event.data as RenderResponse;
-          if (response.generation == _renderGeneration) {
-            final activeCompleter = _currentCompleter;
-            if (activeCompleter != null && !activeCompleter.isCompleted) {
-              if (response.success) {
-                activeCompleter.complete(response.output);
-              } else {
-                activeCompleter.completeError(
-                  '${response.error}\n${response.stack ?? ''}',
-                );
-              }
-              if (_currentCompleter == activeCompleter) {
-                _currentCompleter = null;
-              }
-            }
-          }
-        }.toJS
+        ..onmessage = _onWorkerMessage.toJS
         ..onerror = (Event event) {
           final activeCompleter = _currentCompleter;
           if (activeCompleter != null && !activeCompleter.isCompleted) {
@@ -145,6 +139,25 @@ final class GraphRenderer {
     );
 
     return completer.future;
+  }
+
+  void _onWorkerMessage(MessageEvent event) {
+    final response = event.data as RenderResponse;
+    if (response.generation != _renderGeneration) return;
+
+    final activeCompleter = _currentCompleter;
+    if (activeCompleter == null || activeCompleter.isCompleted) return;
+
+    if (response.success) {
+      activeCompleter.complete(response.output);
+    } else {
+      activeCompleter.completeError(
+        '${response.error}\n${response.stack ?? ''}',
+      );
+    }
+    if (_currentCompleter == activeCompleter) {
+      _currentCompleter = null;
+    }
   }
 
   void _updateBody(String output) {
@@ -178,11 +191,7 @@ final class GraphRenderer {
       element.id = title;
 
       final pkg = _currentRoot!.packages[title];
-      final isOutdated =
-          pkg != null &&
-          pkg.version != null &&
-          pkg.latestVersion != null &&
-          pkg.latestVersion!.compareTo(pkg.version!) > 0;
+      final isOutdated = pkg?.isOutdated ?? false;
 
       if (isOutdated) {
         element.classList.add('outdated');
@@ -218,6 +227,10 @@ final class GraphRenderer {
       );
     }).toList();
 
+    _attachListeners(nodes, edges);
+  }
+
+  void _attachListeners(List<_GraphNode> nodes, List<_GraphEdge> edges) {
     _root.onMouseOver.listen((MouseEvent event) {
       final target =
           (event.target as Element).closest('g.node, g.edge') as SVGGElement?;
@@ -227,15 +240,14 @@ final class GraphRenderer {
 
       if (target == related) return;
 
-      if (target != null) {
-        final textElements = target.querySelectorAll('text');
-        final text = textElements.elements
-            .map((e) => e.textContent?.trim() ?? '')
-            .where((t) => t.isNotEmpty)
-            .join(' ');
-        if (text.isNotEmpty) {
-          _app.ui.showToast(text);
-        }
+      final text = target
+          ?.querySelectorAll('text')
+          .elements
+          .map((e) => e.textContent?.trim() ?? '')
+          .where((t) => t.isNotEmpty)
+          .join(' ');
+      if (text != null && text.isNotEmpty) {
+        _app.ui.showToast(text);
       }
 
       if (_lockedElement == null) {
@@ -253,12 +265,8 @@ final class GraphRenderer {
       final target =
           (event.target as Element).closest('g.node, g.edge') as SVGGElement?;
       if (target != null) {
-        if (_lockedElement == target) {
-          _lockedElement = null;
-        } else {
-          _lockedElement = target;
-        }
-        _updateOver(_lockedElement ?? target, nodes, edges);
+        _lockedElement = _lockedElement == target ? null : target;
+        _updateOver(target, nodes, edges);
       } else if (_lockedElement != null) {
         _lockedElement = null;
         _updateOver(null, nodes, edges);
@@ -268,91 +276,55 @@ final class GraphRenderer {
 
   void _updateOver(
     SVGGElement? element,
-    Iterable<({SVGGElement element, String id, bool isOutdated})> nodes,
-    Iterable<
-      ({
-        SVGGElement element,
-        String from,
-        String to,
-        String constraint,
-        bool isDev,
-        bool isOutdated,
-      })
-    >
-    edges,
+    Iterable<_GraphNode> nodes,
+    Iterable<_GraphEdge> edges,
   ) {
-    final targetPkg = <String?>[];
-    if (element != null) {
-      if (element.classList.contains('edge')) {
-        final title = element.querySelector('title')!.textContent!;
-        final things = title.split('->');
-        targetPkg.addAll([things[1], things[0]]);
-      } else {
-        assert(element.classList.contains('node'));
-        targetPkg.add(element.id);
-      }
+    final targetPkg = switch (element) {
+      null => const <String>[],
+      _ when element.classList.contains('edge') =>
+        element
+            .querySelector('title')!
+            .textContent!
+            .split('->')
+            .reversed
+            .toList(),
+      _ => [element.id],
+    };
+
+    for (final node in nodes) {
+      node.element.classList
+        ..toggle('active', targetPkg.contains(node.id))
+        ..toggle('locked', node.element == _lockedElement);
     }
 
-    for (var node in nodes) {
-      if (targetPkg.contains(node.id)) {
-        node.element.classList.add('active');
-      } else {
-        node.element.classList.remove('active');
-      }
-
-      if (node.element == _lockedElement) {
-        node.element.classList.add('locked');
-      } else {
-        node.element.classList.remove('locked');
-      }
-    }
-
+    final singleTarget = targetPkg.length == 1 ? targetPkg.first : null;
     final fromDeps = <DepInfo>[];
     final toDeps = <DepInfo>[];
-    for (var edge in edges) {
-      final nodeXTo = edge.to;
-      final nodeXFrom = edge.from;
-      if (targetPkg.length == 2) {
-        if (targetPkg.contains(nodeXTo) && targetPkg.contains(nodeXFrom)) {
-          edge.element.classList.add('active');
-        } else {
-          edge.element.classList.remove('active');
-        }
-      } else {
-        if (targetPkg.contains(nodeXTo) || targetPkg.contains(nodeXFrom)) {
-          DepInfo makeDepInfo(String name) => (
-            name: name,
-            constraint: edge.constraint,
-            isDev: edge.isDev,
-            isNodeOutdated: nodes.firstWhere((n) => n.id == name).isOutdated,
-            isEdgeOutdated: edge.isOutdated,
-          );
+    for (final edge in edges) {
+      final isActive = targetPkg.length == 2
+          ? (targetPkg.contains(edge.to) && targetPkg.contains(edge.from))
+          : (targetPkg.contains(edge.to) || targetPkg.contains(edge.from));
 
-          if (targetPkg.contains(nodeXTo)) {
-            fromDeps.add(makeDepInfo(nodeXFrom));
-          }
+      edge.element.classList
+        ..toggle('active', isActive)
+        ..toggle('locked', edge.element == _lockedElement);
 
-          if (targetPkg.contains(nodeXFrom)) {
-            toDeps.add(makeDepInfo(nodeXTo));
-          }
+      DepInfo makeDepInfo(String name) => (
+        name: name,
+        constraint: edge.constraint,
+        isDev: edge.isDev,
+        isNodeOutdated: nodes.firstWhere((n) => n.id == name).isOutdated,
+        isEdgeOutdated: edge.isOutdated,
+      );
 
-          edge.element.classList.add('active');
-        } else {
-          edge.element.classList.remove('active');
-        }
+      if (edge.to == singleTarget) {
+        fromDeps.add(makeDepInfo(edge.from));
       }
-
-      if (edge.element == _lockedElement) {
-        edge.element.classList.add('locked');
-      } else {
-        edge.element.classList.remove('locked');
+      if (edge.from == singleTarget) {
+        toDeps.add(makeDepInfo(edge.to));
       }
     }
 
-    if (targetPkg.length == 1) {
-      _app.ui.updateBoxes(fromDeps: fromDeps, toDeps: toDeps);
-    } else {
-      _app.ui.updateBoxes(fromDeps: [], toDeps: []);
-    }
+    _app.ui.updateBoxes(fromDeps: fromDeps, toDeps: toDeps);
   }
 }

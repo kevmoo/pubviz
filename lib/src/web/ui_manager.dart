@@ -160,15 +160,13 @@ final class UIManager {
 
       _checkboxes[config.id] = checkbox;
 
-      if (!config.isAvailable()) {
-        checkbox.disabled = true;
-        if (config.unavailableTooltip().isNotEmpty) {
-          label.title = config.unavailableTooltip();
-        }
-      } else {
-        if (config.availableTooltip().isNotEmpty) {
-          label.title = config.availableTooltip();
-        }
+      final available = config.isAvailable();
+      checkbox.disabled = !available;
+      final tooltip = available
+          ? config.availableTooltip()
+          : config.unavailableTooltip();
+      if (tooltip.isNotEmpty) {
+        label.title = tooltip;
       }
     }
 
@@ -224,25 +222,7 @@ final class UIManager {
       }
     });
 
-    document.body!.onChange.listen((e) {
-      final target = e.target as Element;
-      if (target.id == 'controlsToggle') {
-        showToast(
-          _hamburgerCheckbox.checked ? 'Controls Shown' : 'Controls Hidden',
-        );
-        _updateNonDefaultDot();
-        return;
-      }
-
-      for (final config in _filterConfigs) {
-        if (config.id == target.id) {
-          config.onChanged(_checkboxes[config.id]!);
-          _updateNonDefaultDot();
-          _updateResetButtonState();
-          return;
-        }
-      }
-    });
+    document.body!.onChange.listen(_handleBodyChange);
 
     document.body!.onClick.listen((e) {
       final target = e.target as Element;
@@ -255,6 +235,26 @@ final class UIManager {
 
     (document.querySelector('#version') as HTMLSpanElement).textContent =
         'v$packageVersion';
+  }
+
+  void _handleBodyChange(Event e) {
+    final target = e.target as Element;
+    if (target.id == 'controlsToggle') {
+      showToast(
+        _hamburgerCheckbox.checked ? 'Controls Shown' : 'Controls Hidden',
+      );
+      _updateNonDefaultDot();
+      return;
+    }
+
+    for (final config in _filterConfigs) {
+      if (config.id == target.id) {
+        config.onChanged(_checkboxes[config.id]!);
+        _updateNonDefaultDot();
+        _updateResetButtonState();
+        return;
+      }
+    }
   }
 
   void _triggerRender() {
@@ -272,13 +272,6 @@ final class UIManager {
   bool get workspaceOnly => _checkboxes['workspaceOnlyCheckbox']!.checked;
 
   bool get hideIsolated => _checkboxes['hideIsolatedCheckbox']!.checked;
-
-  void _toggleControls() {
-    _hamburgerCheckbox.checked = !_hamburgerCheckbox.checked;
-    showToast(
-      _hamburgerCheckbox.checked ? 'Controls Shown' : 'Controls Hidden',
-    );
-  }
 
   void _resetFilters() {
     var anyChanged = false;
@@ -322,39 +315,30 @@ final class UIManager {
     }
 
     try {
+      if (format == _ExportFormat.png) {
+        final svg =
+            document.querySelector('#graph-container svg') as SVGElement?;
+        if (svg == null) {
+          showToast('⚠️ No graph found to export');
+          return;
+        }
+        _exportPng(svg, isCopy: isCopy);
+        return;
+      }
+
+      final String content;
       switch (format) {
         case _ExportFormat.dot:
-          final dot = _app.originalVizRoot
-              .filter(
-                excludeDev: hideDevDependencies,
-                onlyOutdated: outdatedOnly,
-                onlyWorkspace: workspaceOnly,
-                hideIsolated: hideIsolated,
-              )
-              .toDot();
-
-          if (isCopy) {
-            await window.navigator.clipboard.writeText(dot).toDart;
-            showToast('DOT Copied to Clipboard');
-          } else {
-            _downloadBlob(dot, 'dependencies.dot', 'text/plain');
-          }
         case _ExportFormat.mermaid:
-          final mermaid = _app.originalVizRoot
-              .filter(
-                excludeDev: hideDevDependencies,
-                onlyOutdated: outdatedOnly,
-                onlyWorkspace: workspaceOnly,
-                hideIsolated: hideIsolated,
-              )
-              .toMermaid();
-
-          if (isCopy) {
-            await window.navigator.clipboard.writeText(mermaid).toDart;
-            showToast('Mermaid Copied to Clipboard');
-          } else {
-            _downloadBlob(mermaid, 'dependencies.md', 'text/plain');
-          }
+          final filtered = _app.originalVizRoot.filter(
+            excludeDev: hideDevDependencies,
+            onlyOutdated: outdatedOnly,
+            onlyWorkspace: workspaceOnly,
+            hideIsolated: hideIsolated,
+          );
+          content = format == _ExportFormat.dot
+              ? filtered.toDot()
+              : filtered.toMermaid();
         case _ExportFormat.svg:
           final svg =
               document.querySelector('#graph-container svg') as SVGElement?;
@@ -362,22 +346,20 @@ final class UIManager {
             showToast('⚠️ No SVG graph found to export');
             return;
           }
-          var svgText = (svg.outerHTML as JSString).toDart;
-          svgText = _injectStyles(svgText);
-          if (isCopy) {
-            await window.navigator.clipboard.writeText(svgText).toDart;
-            showToast('SVG Copied to Clipboard');
-          } else {
-            _downloadBlob(svgText, 'dependencies.svg', 'image/svg+xml');
-          }
+          content = _injectStyles((svg.outerHTML as JSString).toDart);
         case _ExportFormat.png:
-          final svg =
-              document.querySelector('#graph-container svg') as SVGElement?;
-          if (svg == null) {
-            showToast('⚠️ No graph found to export');
-            return;
-          }
-          _exportPng(svg, isCopy: isCopy);
+          return;
+      }
+
+      if (isCopy) {
+        await window.navigator.clipboard.writeText(content).toDart;
+        showToast('${format.label} Copied to Clipboard');
+      } else {
+        _downloadBlob(
+          content,
+          'dependencies.${format.extension}',
+          format.contentType,
+        );
       }
     } catch (e) {
       showToast('⚠️ Export failed: $e');
@@ -423,47 +405,38 @@ final class UIManager {
 
         Timer(Duration.zero, () => URL.revokeObjectURL(url));
 
-        if (isCopy) {
-          canvas.toBlob(
-            (Blob? blob) {
-              if (blob != null) {
-                unawaited(() async {
-                  try {
-                    final items = JSObject()
-                      ..setProperty('image/png'.toJS, blob);
-
-                    final clipboardItem = ClipboardItem(items);
-                    await window.navigator.clipboard
-                        .write([clipboardItem].toJS)
-                        .toDart;
-                    showToast('PNG Copied to Clipboard');
-                  } catch (e) {
-                    showToast('⚠️ Browser blocked image clipboard write: $e');
-                  }
-                }());
-              }
-            }.toJS,
-            'image/png',
-          );
-        } else {
-          canvas.toBlob(
-            (Blob? blob) {
-              if (blob != null) {
-                final pngUrl = URL.createObjectURL(blob);
-                _triggerDownload(pngUrl, 'dependencies.png');
-                Timer(Duration.zero, () => URL.revokeObjectURL(pngUrl));
-                showToast('PNG Saved');
-              }
-            }.toJS,
-            'image/png',
-          );
-        }
+        canvas.toBlob(
+          ((Blob? blob) => unawaited(
+            _handlePngBlob(blob, isCopy: isCopy),
+          )).toJS,
+          'image/png',
+        );
       }.toJS
       ..onerror = (Event event) {
         Timer(Duration.zero, () => URL.revokeObjectURL(url));
         showToast('⚠️ Failed to render PNG');
       }.toJS
       ..src = url;
+  }
+
+  Future<void> _handlePngBlob(Blob? blob, {required bool isCopy}) async {
+    if (blob == null) return;
+    if (!isCopy) {
+      final pngUrl = URL.createObjectURL(blob);
+      _triggerDownload(pngUrl, 'dependencies.png');
+      Timer(Duration.zero, () => URL.revokeObjectURL(pngUrl));
+      showToast('PNG Saved');
+      return;
+    }
+
+    try {
+      final items = JSObject()..setProperty('image/png'.toJS, blob);
+      final clipboardItem = ClipboardItem(items);
+      await window.navigator.clipboard.write([clipboardItem].toJS).toDart;
+      showToast('PNG Copied to Clipboard');
+    } catch (e) {
+      showToast('⚠️ Browser blocked image clipboard write: $e');
+    }
   }
 
   // Industrially-standard way to trigger a download.
@@ -501,7 +474,10 @@ final class UIManager {
 
     switch (key) {
       case 'c':
-        _toggleControls();
+        _hamburgerCheckbox.checked = !_hamburgerCheckbox.checked;
+        showToast(
+          _hamburgerCheckbox.checked ? 'Controls Shown' : 'Controls Hidden',
+        );
       case 'r':
         if (!_resetButton.disabled) {
           _resetFilters();
@@ -660,21 +636,21 @@ String _injectStyles(String svgText) {
     final sheets = document.styleSheets;
     for (var i = 0; i < sheets.length; i++) {
       final sheet = sheets.item(i);
-      if (sheet == null) continue;
+      final href = sheet?.href ?? '';
+      if (sheet == null || (!href.contains('style.css') && href.isNotEmpty)) {
+        continue;
+      }
 
-      final href = sheet.href ?? '';
-      if (href.contains('style.css') || href.isEmpty) {
-        try {
-          final rules = sheet.cssRules;
-          for (var j = 0; j < rules.length; j++) {
-            final rule = rules.item(j);
-            if (rule != null) {
-              cssBuffer.writeln(rule.cssText);
-            }
+      try {
+        final rules = sheet.cssRules;
+        for (var j = 0; j < rules.length; j++) {
+          final rule = rules.item(j);
+          if (rule != null) {
+            cssBuffer.writeln(rule.cssText);
           }
-        } catch (_) {
-          // CORS block guard
         }
+      } catch (_) {
+        // CORS block guard
       }
     }
   } catch (_) {
