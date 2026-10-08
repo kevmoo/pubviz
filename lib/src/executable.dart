@@ -30,27 +30,7 @@ Future<void> run(Options options) async {
         await setupPublishedPackageProject(targetPackage);
     effectivePath = tempDir.path;
   } else {
-    if (options.rest.length > 1) {
-      throw UsageException(
-        'Only one argument is allowed. You provided ${options.rest.length}.',
-      );
-    }
-    effectivePath = options.rest.isEmpty ? p.current : options.rest.first;
-
-    if (!FileSystemEntity.isDirectorySync(effectivePath)) {
-      throw UsageException(
-        'The provided path does not exist or is not a directory: '
-        '$effectivePath',
-      );
-    }
-
-    final yamlPath = p.join(effectivePath, 'pubspec.yaml');
-
-    if (!FileSystemEntity.isFileSync(yamlPath)) {
-      throw UsageException(
-        'Could not find a pubspec.yaml in the target path.: $effectivePath',
-      );
-    }
+    effectivePath = _resolveLocalPath(options.rest);
   }
   try {
     final service = PubDataService(effectivePath);
@@ -86,34 +66,21 @@ Future<void> run(Options options) async {
         includeWorkspace: includeWorkspace,
       );
     }
-    final filteredVp = _filter(vp, options);
+    final filteredVp = vp.filter(
+      excludeDev: options.filters.contains(filterHideDev),
+      onlyOutdated: options.filters.contains(filterOutdated),
+      onlyWorkspace: options.filters.contains(filterWorkspace),
+      hideIsolated: options.filters.contains(filterHideIsolated),
+      ignorePackages: options.ignorePackages,
+    );
     if (options.flagOutdated) {
-      final updateOrder = computeUpdateOrder(filteredVp);
-      if (updateOrder.isNotEmpty) {
-        stderr
-          ..writeln()
-          ..writeln(styleBold.wrap('Outdated package update order:'));
-        for (final pkg in updateOrder) {
-          final hasNewer = switch ((pkg.latestVersion, pkg.version)) {
-            (final latest?, final current?) => latest > current,
-            _ => false,
-          };
-          final suffix = hasNewer ? ' *' : '';
-          stderr.writeln('  ${pkg.name}$suffix');
-        }
-        stderr
-          ..writeln('\n(*) Newer version available')
-          ..writeln();
-      }
+      _printUpdateOrder(filteredVp);
     }
     switch (options.action) {
       case Action.print:
-        _printContent(filteredVp, options.ignorePackages);
+        print(filteredVp.toDot(ignorePackages: options.ignorePackages));
       case Action.printMermaid:
-        final content = filteredVp.toMermaid(
-          ignorePackages: options.ignorePackages,
-        );
-        print(content);
+        print(filteredVp.toMermaid(ignorePackages: options.ignorePackages));
       case Action.open:
       case Action.serve:
         await _createOrOpen(filteredVp, options);
@@ -126,16 +93,50 @@ Future<void> run(Options options) async {
   }
 }
 
-VizRoot _filter(VizRoot vp, Options options) => vp.filter(
-  excludeDev: options.filters.contains(filterHideDev),
-  onlyOutdated: options.filters.contains(filterOutdated),
-  onlyWorkspace: options.filters.contains(filterWorkspace),
-  hideIsolated: options.filters.contains(filterHideIsolated),
-  ignorePackages: options.ignorePackages,
-);
+String _resolveLocalPath(List<String> rest) {
+  if (rest.length > 1) {
+    throw UsageException(
+      'Only one argument is allowed. You provided ${rest.length}.',
+    );
+  }
+  final effectivePath = rest.isEmpty ? p.current : rest.first;
 
-String _getContentDot(VizRoot root, List<String> ignorePackages) =>
-    root.toDot(ignorePackages: ignorePackages);
+  if (!FileSystemEntity.isDirectorySync(effectivePath)) {
+    throw UsageException(
+      'The provided path does not exist or is not a directory: '
+      '$effectivePath',
+    );
+  }
+
+  final yamlPath = p.join(effectivePath, 'pubspec.yaml');
+  if (!FileSystemEntity.isFileSync(yamlPath)) {
+    throw UsageException(
+      'Could not find a pubspec.yaml in the target path.: $effectivePath',
+    );
+  }
+
+  return effectivePath;
+}
+
+void _printUpdateOrder(VizRoot root) {
+  final updateOrder = computeUpdateOrder(root);
+  if (updateOrder.isEmpty) return;
+
+  stderr
+    ..writeln()
+    ..writeln(styleBold.wrap('Outdated package update order:'));
+  for (final pkg in updateOrder) {
+    final hasNewer = switch ((pkg.latestVersion, pkg.version)) {
+      (final latest?, final current?) => latest > current,
+      _ => false,
+    };
+    final suffix = hasNewer ? ' *' : '';
+    stderr.writeln('  ${pkg.name}$suffix');
+  }
+  stderr
+    ..writeln('\n(*) Newer version available')
+    ..writeln();
+}
 
 Future<void> _createOrOpen(VizRoot root, Options options) async {
   final jsContent = vizDataString(root);
@@ -179,11 +180,6 @@ Future<void> _createOrOpen(VizRoot root, Options options) async {
   print('Press "q" (or "Q") or Ctrl+C to stop.');
   await waitForTerminate();
   await server.close(force: true);
-}
-
-void _printContent(VizRoot root, List<String> ignorePackages) {
-  final content = _getContentDot(root, ignorePackages);
-  print(content);
 }
 
 /// Return a string that can be used as a JavaScript module exporting the

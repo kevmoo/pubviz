@@ -10,19 +10,12 @@ import 'viz_root.dart';
 /// If A depends on B, and both A and B need to be updated, B will appear
 /// before A in the returned list.
 List<VizPackage> computeUpdateOrder(VizRoot root) {
-  final needsUpdate = <String, VizPackage>{};
-
-  for (final pkg in root.packages.values) {
-    if (pkg.name == root.rootPackageName) continue;
-
-    final hasOutdatedDep = pkg.dependencies.any(
-      (dep) => dep.includesLatest == false,
-    );
-
-    if (hasOutdatedDep) {
-      needsUpdate[pkg.name] = pkg;
-    }
-  }
+  final needsUpdate = {
+    for (final pkg in root.packages.values)
+      if (pkg.name != root.rootPackageName &&
+          pkg.dependencies.any((dep) => dep.includesLatest == false))
+        pkg.name: pkg,
+  };
 
   if (needsUpdate.isEmpty) return [];
 
@@ -31,19 +24,16 @@ List<VizPackage> computeUpdateOrder(VizRoot root) {
   final visiting = <String>{};
 
   void visit(VizPackage pkg) {
-    if (visited.contains(pkg.name)) return;
-
     // We intentionally don't throw on cycle detection here.
     // Circular dependencies (especially involving dev_dependencies)
-    // are common in Dart monorepos. Returning here breaks the cycle
-    // gracefully and provides a best-effort topological sort.
-    if (visiting.contains(pkg.name)) return;
+    // are common in Dart monorepos. Returning when already visiting breaks
+    // the cycle gracefully and provides a best-effort topological sort.
+    if (visited.contains(pkg.name) || visiting.contains(pkg.name)) return;
 
     visiting.add(pkg.name);
 
     for (final dep in pkg.dependencies) {
-      final depPkg = needsUpdate[dep.name];
-      if (depPkg != null) {
+      if (needsUpdate[dep.name] case final depPkg?) {
         visit(depPkg);
       }
     }
