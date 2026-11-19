@@ -151,13 +151,13 @@ void main() {
     test('workspace', () async {
       final vp = await service.vizRoot(includeWorkspace: true);
 
-      check(vp.isWorkspace).isTrue(); // Verify it starts as true
+      check(vp.isWorkspace).isTrue; // Verify it starts as true
       check(vp.root.name).equals('repo_manager');
       _verifyPackageCounts(vp, total: 82, primary: 1, nonPrimary: 81);
 
       // Regression test: filter should preserve isWorkspace
       final filtered = vp.filter(excludeDev: true);
-      check(filtered.isWorkspace).isTrue();
+      check(filtered.isWorkspace).isTrue;
     });
 
     test('update order', () async {
@@ -218,7 +218,7 @@ void main() {
       // Ensure no packages have devDependencies left!
       for (final p in filtered.packages.values) {
         for (final d in p.dependencies) {
-          check(d.isDevDependency).isFalse();
+          check(d.isDevDependency).isFalse;
         }
       }
     });
@@ -238,7 +238,7 @@ void main() {
               p.latestVersion != null &&
               p.latestVersion!.compareTo(p.version!) > 0,
         ),
-      ).isTrue();
+      ).isTrue;
     });
 
     test('excludeDev and onlyOutdated', () {
@@ -249,7 +249,7 @@ void main() {
 
       for (final p in filtered.packages.values) {
         for (final d in p.dependencies) {
-          check(d.isDevDependency).isFalse();
+          check(d.isDevDependency).isFalse;
         }
       }
     });
@@ -287,7 +287,7 @@ void main() {
       final root = VizRoot('a', {'a': pkg});
 
       final filtered = root.filter(excludeDev: true);
-      check(filtered.packages['a']!.onlyDev).isFalse();
+      check(filtered.packages['a']!.onlyDev).isFalse;
     });
 
     test('onlyWorkspace retains bridges', () {
@@ -317,7 +317,7 @@ void main() {
       final filtered = root.filter(onlyWorkspace: true);
 
       check(filtered.packages.keys).unorderedEquals(['a', 'b', 'c']);
-      check(filtered.packages.containsKey('d')).isFalse();
+      check(filtered.packages.containsKey('d')).isFalse;
     });
 
     test('hideIsolated hides isolated unpublished and root nodes', () {
@@ -353,8 +353,8 @@ void main() {
       // so it is hidden.
       // 'c' is kept because 'a' depends on it.
       check(filtered.packages.keys).unorderedEquals(['a', 'c']);
-      check(filtered.packages.containsKey('a')).isTrue();
-      check(filtered.packages.containsKey('b')).isFalse();
+      check(filtered.packages.containsKey('a')).isTrue;
+      check(filtered.packages.containsKey('b')).isFalse;
 
       // Fallback logic should preserve the root name even if missing from
       // packages
@@ -470,7 +470,7 @@ void main() {
       // 'b' is not in sourcePackages, so it should NOT be in 'a's
       // dependencies after filtering!
       final filteredA = filtered.packages['a']!;
-      check(filteredA.dependencies.any((d) => d.name == 'b')).isFalse();
+      check(filteredA.dependencies.any((d) => d.name == 'b')).isFalse;
     });
 
     test('onlyWorkspace and onlyOutdated can be combined', () {
@@ -517,7 +517,7 @@ void main() {
       final root = VizRoot('a', {'a': pkg});
 
       final filtered = root.filter(excludeDev: true);
-      check(filtered.packages['a']!.isPublishToNone).isTrue();
+      check(filtered.packages['a']!.isPublishToNone).isTrue;
     });
   });
 
@@ -646,7 +646,7 @@ dependencies:
         because: 'Filtering should retain all workspace primary packages',
         filtered.packages.values.where((p) => p.isPrimary).map((e) => e.name),
       ).unorderedEquals(['my_workspace', 'member_a', 'member_b']);
-      check(filtered.packages.containsKey('args')).isTrue();
+      check(filtered.packages.containsKey('args')).isTrue;
     });
 
     test('workspace primary package dev dependencies emit dot edges', () async {
@@ -770,7 +770,7 @@ dependencies:
       check(
         because: 'onlyDev should remain false after roundtrip',
         pkg2.onlyDev,
-      ).isFalse();
+      ).isFalse;
     });
   });
 }

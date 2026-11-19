@@ -13,9 +13,11 @@ void main() {
       () async {
         await check(setupPublishedPackageProject('a:b:c'))
             .throws<UsageException>(
-              (it) => it
-                  .has((e) => e.message, 'message')
-                  .contains('Invalid package format'),
+              .it()
+                ..has(
+                  'message',
+                  (e) => e.message,
+                ).contains('Invalid package format'),
             );
       },
     );
@@ -24,9 +26,8 @@ void main() {
       'throws UsageException for invalid package name (starts with number)',
       () async {
         await check(setupPublishedPackageProject('1a')).throws<UsageException>(
-          (it) => it
-              .has((e) => e.message, 'message')
-              .contains('Invalid package name'),
+          .it()
+            ..has('message', (e) => e.message).contains('Invalid package name'),
         );
       },
     );
@@ -35,9 +36,8 @@ void main() {
       'throws UsageException for invalid package name (contains hyphen)',
       () async {
         await check(setupPublishedPackageProject('a-b')).throws<UsageException>(
-          (it) => it
-              .has((e) => e.message, 'message')
-              .contains('Invalid package name'),
+          .it()
+            ..has('message', (e) => e.message).contains('Invalid package name'),
         );
       },
     );
@@ -46,9 +46,8 @@ void main() {
       'throws UsageException for invalid package name (uppercase)',
       () async {
         await check(setupPublishedPackageProject('A')).throws<UsageException>(
-          (it) => it
-              .has((e) => e.message, 'message')
-              .contains('Invalid package name'),
+          .it()
+            ..has('message', (e) => e.message).contains('Invalid package name'),
         );
       },
     );
@@ -56,9 +55,11 @@ void main() {
     test('throws UsageException for invalid version constraint', () async {
       await check(setupPublishedPackageProject('a:invalid-version'))
           .throws<UsageException>(
-            (it) => it
-                .has((e) => e.message, 'message')
-                .contains('Invalid version constraint'),
+            .it()
+              ..has(
+                'message',
+                (e) => e.message,
+              ).contains('Invalid version constraint'),
           );
     });
   });

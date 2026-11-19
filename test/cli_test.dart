@@ -82,7 +82,7 @@ $_usage''');
 
     final output = await process.stdoutStream().join('\n');
     check(output).contains('digraph pubviz {');
-    check(output).not((it) => it.contains('"test" ['));
+    check(output).not(.it()..contains('"test" ['));
 
     await process.shouldExit(0);
   });
@@ -109,7 +109,7 @@ $_usage''');
       'print',
     ]);
 
-    await check(process.stdout).emits((it) => it.equals('digraph pubviz {'));
+    await check(process.stdout).emits(.it()..equals('digraph pubviz {'));
 
     await process.shouldExit(0);
   });
@@ -122,7 +122,7 @@ $_usage''');
       'print',
     ]);
 
-    await check(process.stdout).emits((it) => it.equals('digraph pubviz {'));
+    await check(process.stdout).emits(.it()..equals('digraph pubviz {'));
 
     await process.shouldExit(0);
   });
@@ -134,7 +134,7 @@ $_usage''');
       'serve',
     ]);
 
-    await check(process.stdout).emitsThrough((it) => it.contains('Press "q"'));
+    await check(process.stdout).emitsThrough(.it()..contains('Press "q"'));
 
     process.stdin.writeln('q');
 
@@ -200,7 +200,7 @@ $_usage''');
     final dataResponse = await http.get(Uri.parse('${serverUrl}viz_data.js'));
     check(dataResponse.statusCode).equals(200);
     check(dataResponse.body).contains('vizDataString');
-    check(dataResponse.body).not((it) => it.contains('"name":"path"'));
+    check(dataResponse.body).not(.it()..contains('"name":"path"'));
 
     process.stdin.writeln('q');
     await process.shouldExit(0);
@@ -280,7 +280,7 @@ resolution: workspace
       // 'pkgb' is isolated and unpublished, so it should be hidden.
       check(output).contains('root [label="⚙️ root"');
       check(output).contains(r'pkga [label="pkga\n0.0.0"');
-      check(output).not((it) => it.contains('pkgb'));
+      check(output).not(.it()..contains('pkgb'));
 
       await process.shouldExit(0);
     });
@@ -320,7 +320,7 @@ resolution: workspace
       // or included at all because the root package does not list it as a
       // dependency.
       check(output).contains('root [label=root');
-      check(output).not((it) => it.contains('pkga'));
+      check(output).not(.it()..contains('pkga'));
 
       await process.shouldExit(0);
     });
