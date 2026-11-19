@@ -21,19 +21,19 @@ void main() {
   group('converters', () {
     test('FalseNullConverter', () {
       const converter = FalseNullConverter();
-      check(converter.fromJson(null)).isFalse();
-      check(converter.fromJson(true)).isTrue();
-      check(converter.fromJson(false)).isFalse();
+      check(converter.fromJson(null)).isFalse;
+      check(converter.fromJson(true)).isTrue;
+      check(converter.fromJson(false)).isFalse;
       check(converter.toJson(true)).equals(true);
-      check(converter.toJson(false)).isNull();
+      check(converter.toJson(false)).isNull;
     });
 
     test('VersionConverter', () {
       const converter = VersionConverter();
-      check(converter.fromJson(null)).isNull();
+      check(converter.fromJson(null)).isNull;
       check(converter.fromJson('1.0.0')).equals(Version(1, 0, 0));
       check(converter.toJson(Version(1, 0, 0))).equals('1.0.0');
-      check(converter.toJson(null)).isNull();
+      check(converter.toJson(null)).isNull;
     });
 
     test('VersionConstraintConverter', () {
@@ -54,7 +54,7 @@ void main() {
 
       check(d1).equals(d2);
       check(d1.hashCode).equals(d2.hashCode);
-      check(d1).not((it) => it.equals(d3));
+      check(d1).not(.it()..equals(d3));
     });
 
     test('compareTo', () {
@@ -99,7 +99,7 @@ void main() {
 
       check(p1).equals(p2);
       check(p1.hashCode).equals(p2.hashCode);
-      check(p1).not((it) => it.equals(p3));
+      check(p1).not(.it()..equals(p3));
     });
 
     test('compareTo', () {
@@ -117,19 +117,19 @@ void main() {
 
     test('isOutdated', () {
       final p1 = VizPackage('a', Version(1, 0, 0), {}, null);
-      check(p1.isOutdated).isFalse();
+      check(p1.isOutdated).isFalse;
 
       final p2 = VizPackage('a', null, {}, Version(1, 1, 0));
-      check(p2.isOutdated).isFalse();
+      check(p2.isOutdated).isFalse;
 
       final p3 = VizPackage('a', Version(1, 0, 0), {}, Version(1, 0, 0));
-      check(p3.isOutdated).isFalse();
+      check(p3.isOutdated).isFalse;
 
       final p4 = VizPackage('a', Version(1, 0, 0), {}, Version(0, 9, 0));
-      check(p4.isOutdated).isFalse();
+      check(p4.isOutdated).isFalse;
 
       final p5 = VizPackage('a', Version(1, 0, 0), {}, Version(1, 1, 0));
-      check(p5.isOutdated).isTrue();
+      check(p5.isOutdated).isTrue;
     });
 
     test('withDependencies', () {
@@ -149,9 +149,9 @@ void main() {
       check(updated.name).equals('a');
       check(updated.version).equals(Version(1, 0, 0));
       check(updated.latestVersion).equals(Version(1, 1, 0));
-      check(updated.isPrimary).isTrue();
-      check(updated.onlyDev).isFalse();
-      check(updated.isPublishToNone).isTrue();
+      check(updated.isPrimary).isTrue;
+      check(updated.onlyDev).isFalse;
+      check(updated.isPublishToNone).isTrue;
       check(updated.dependencies.map((d) => d.name)).unorderedEquals(['c']);
     });
 
@@ -181,7 +181,7 @@ void main() {
       final dep = pkg2.dependencies.first;
       check(dep.name).equals('b');
       check(dep.versionConstraint).equals(VersionConstraint.any);
-      check(dep.isDevDependency).isFalse();
+      check(dep.isDevDependency).isFalse;
     });
   });
 
@@ -216,7 +216,7 @@ void main() {
       final filtered = root.filter(onlyWorkspace: true, excludeDev: true);
       check(filtered.packages.keys).contains('a');
       check(filtered.packages.keys).contains('b');
-      check(filtered.packages.keys).not((it) => it.contains('c'));
+      check(filtered.packages.keys).not(.it()..contains('c'));
     });
 
     test('filter with ignorePackages', () {
@@ -268,11 +268,11 @@ void main() {
         'c': VizPackage('c', Version(1, 0, 0), {}, null, isPublishToNone: true),
       }, isWorkspace: true);
 
-      check(root.hasIsolatedPackages).isTrue();
+      check(root.hasIsolatedPackages).isTrue;
 
       final filtered = root.filter(hideIsolated: true);
       check(filtered.packages.keys).unorderedEquals(['a', 'b']);
-      check(filtered.packages.keys).not((it) => it.contains('c'));
+      check(filtered.packages.keys).not(.it()..contains('c'));
     });
 
     test('VizRoot computed properties', () {
@@ -283,9 +283,9 @@ void main() {
         'b': VizPackage('b', Version(1, 0, 0), {}, Version(1, 2, 0)),
       }, flagOutdated: true);
 
-      check(root.hasOutdated).isTrue();
-      check(root.hasDevDependencies).isTrue();
-      check(root.hasIsolatedPackages).isFalse();
+      check(root.hasOutdated).isTrue;
+      check(root.hasDevDependencies).isTrue;
+      check(root.hasIsolatedPackages).isFalse;
     });
 
     test('extractConstraint', () {
@@ -350,9 +350,11 @@ dev_dependencies:
       final service = _SimpleMockService(d.path('simple_pkg'));
       // 'c' is a dependency of 'b', but 'c' is not in package_graph.json
       await check(service.vizRoot()).throws<StateError>(
-        (it) => it
-            .has((e) => e.message, 'message')
-            .contains('Could not find an entry for `c`'),
+        .it()
+          ..has(
+            'message',
+            (e) => e.message,
+          ).contains('Could not find an entry for `c`'),
       );
     });
 
@@ -397,7 +399,7 @@ dev_dependencies:
       );
       check(root.packages['member'])
           .isNotNull()
-          .has((p) => p.latestVersion, 'latestVersion')
+          .has('latestVersion', (p) => p.latestVersion)
           .equals(Version(1, 1, 0));
     });
 
@@ -421,9 +423,11 @@ dev_dependencies:
 
         final service = _SimpleMockService(d.path('parent_pkg/sub_pkg'));
         await check(service.vizRoot()).throws<FileSystemException>(
-          (it) => it
-              .has((e) => e.message, 'message')
-              .contains('Could not find `.dart_tool/package_graph.json`'),
+          .it()
+            ..has(
+              'message',
+              (e) => e.message,
+            ).contains('Could not find `.dart_tool/package_graph.json`'),
         );
       },
     );
@@ -470,10 +474,10 @@ dependencies:
       final service = _SimpleMockService(d.path('sdk_pkg'));
       final root = await service.vizRoot();
       check(root.packages['a']!.dependencies.single)
-        ..has((d) => d.name, 'name').equals('flutter')
+        ..has('name', (d) => d.name).equals('flutter')
         ..has(
-          (d) => d.versionConstraint,
           'versionConstraint',
+          (d) => d.versionConstraint,
         ).equals(VersionConstraint.parse('^3.0.0'));
     });
   });

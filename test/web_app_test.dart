@@ -32,16 +32,16 @@ void main() {
 
     final checkbox =
         document.querySelector('#zoomCheckbox') as HTMLInputElement;
-    check(checkbox.checked).isFalse();
+    check(checkbox.checked).isFalse;
 
     checkbox
       ..click()
       ..dispatchEvent(Event('change'));
 
-    check(checkbox.checked).isTrue();
+    check(checkbox.checked).isTrue;
 
     final svg = document.querySelector('#mock-svg') as SVGElement;
-    check(svg.classList.contains('zoom')).isTrue();
+    check(svg.classList.contains('zoom')).isTrue;
   });
 
   test('PubvizApp renders SVG using mocked Viz', () async {
@@ -72,7 +72,7 @@ void main() {
 
     final svg = document.querySelector('svg');
     check(svg).isNotNull();
-    check(svg!.id).not((it) => it.equals('mock-svg'));
+    check(svg!.id).not(.it()..equals('mock-svg'));
   });
 }
 

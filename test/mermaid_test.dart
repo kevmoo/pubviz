@@ -119,7 +119,7 @@ void main() {
       }, isWorkspace: true);
 
       final mermaid = root.toMermaid();
-      check(mermaid).not((it) => it.contains('workspace_root'));
+      check(mermaid).not(.it()..contains('workspace_root'));
       check(mermaid).contains('pkg_a["pkg_a<br/>1.0.0"]');
       check(mermaid).contains('pkg_b["pkg_b<br/>1.0.0"]');
     },

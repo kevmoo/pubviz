@@ -46,7 +46,7 @@ void main() {
       check(vp.packages)
         ..containsKey('http')
         ..containsKey('test')
-        ..not((it) => it.containsKey('test_core'));
+        ..not(.it()..containsKey('test_core'));
     });
   });
 }
